@@ -1,0 +1,698 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="12" skipped="5" tests="47" time="26.701" timestamp="2026-10-17T06:57:07.282570+08:00" hostname="DESKTOP-J4OGV5M"><testcase classname="tests.integration.test_drug_trace_domain" name="test_a04_migration_idempotent_and_upgrade_path" time="0.850" /><testcase classname="tests.integration.test_drug_trace_domain" name="test_a01_drug_only_registry_and_unknown_strictness" time="0.805" /><testcase classname="tests.integration.test_drug_trace_domain" name="test_a05_zero_one_n_codes_and_multipage" time="0.733" /><testcase classname="tests.integration.test_drug_trace_domain" name="test_a05_multipage_codes_full_read" time="0.692" /><testcase classname="tests.integration.test_drug_trace_domain" name="test_a06_original_values_preserved" time="0.695" /><testcase classname="tests.integration.test_drug_trace_domain" name="test_a07_cross_pharmacy_same_bill_no" time="0.678" /><testcase classname="tests.integration.test_drug_trace_domain" name="test_a08_s03_halfopen_window_and_same_timestamp" time="0.669" /><testcase classname="tests.integration.test_drug_trace_domain" name="test_a09_checkpoint_same_transaction_rollback" time="0.661" /><testcase classname="tests.integration.test_drug_trace_domain" name="test_a10_idempotent_reimport_and_conflict" time="0.787" /><testcase classname="tests.integration.test_drug_trace_domain" name="test_a11_kind_unknown_waits_and_profile_routing" time="0.714" /><testcase classname="tests.integration.test_drug_trace_domain" name="test_a12_duplicate_rows_and_codes_flagged" time="0.660" /><testcase classname="tests.integration.test_drug_trace_domain" name="test_a13_limit_guard_boundary" time="0.669" /><testcase classname="tests.integration.test_drug_trace_domain" name="test_a14_readonly_guard" time="0.646" /><testcase classname="tests.integration.test_drug_trace_domain" name="test_a16_preview_dryrun_no_submission_no_network" time="0.697" /><testcase classname="tests.integration.test_drug_trace_domain" name="test_s01_two_codes_same_group_both_kept" time="0.700" /><testcase classname="tests.integration.test_drug_trace_domain" name="test_s02_record_granularity_kept" time="0.631" /><testcase classname="tests.integration.test_drug_trace_domain" name="test_s06_level_boundary_flagged" time="0.651" /><testcase classname="tests.integration.test_drug_trace_domain" name="test_b02_profile_routing_and_bill_code_stability" time="0.742" /><testcase classname="tests.integration.test_drug_trace_domain" name="test_a02_empty_evidence_blocks_real_send" time="0.693" /><testcase classname="tests.integration.test_drug_trace_domain" name="test_a02_full_evidence_allows_and_revoke_blocks" time="0.955" /><testcase classname="tests.integration.test_drug_trace_domain" name="test_b03_b05_mock_send_unknown_and_query" time="0.849" /><testcase classname="tests.integration.test_drug_trace_domain" name="test_b07_gateway_error_classification" time="0.001" /><testcase classname="tests.integration.test_drug_trace_domain" name="test_b07_signature_blocked_until_vectors_verified" time="0.001" /><testcase classname="tests.integration.test_drug_trace_domain" name="test_worker_routes_drug_trace_jobs" time="0.827" /><testcase classname="tests.integration.test_drug_trace_api" name="test_roles_and_masking" time="1.108" /><testcase classname="tests.integration.test_drug_trace_api" name="test_collection_run_via_api" time="0.948" /><testcase classname="tests.integration.test_drug_trace_api" name="test_send_requires_confirm_and_evidence" time="0.907" /><testcase classname="tests.integration.test_drug_trace_api" name="test_readiness_shows_missing_ext" time="0.812" /><testcase classname="tests.integration.test_drug_trace_api" name="test_evidence_lifecycle_and_reconciliation_drill" time="0.985" /><testcase classname="tests.integration.test_drug_trace_ops" name="test_ops01_test_ca_san_cert_roundtrip" time="0.485"><failure message="AssertionError: &lt;3&gt;WSL (25927 - Relay) ERROR: CreateProcessCommon:800: execvpe(/bin/bash) failed: No such file or directory&#10;  &#10;assert 1 == 0&#10; +  where 1 = CompletedProcess(args=['C:\\Windows\\system32\\bash.EXE', 'F:\\python\\blyb\\implementation\\deploy\\linux\\certs.sh',...stderr='&lt;3&gt;WSL (25927 - Relay) ERROR: CreateProcessCommon:800: execvpe(/bin/bash) failed: No such file or directory\n').returncode">tmp_path = WindowsPath('C:/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops01_test_ca_san_cert_ro0')
+
+    def test_ops01_test_ca_san_cert_roundtrip(tmp_path):
+        d = tmp_path / "certs"
+        r1 = run_bash("certs.sh", ["make-test-ca", str(d)], {})
+&gt;       assert r1.returncode == 0, r1.stderr
+E       AssertionError: &lt;3&gt;WSL (25927 - Relay) ERROR: CreateProcessCommon:800: execvpe(/bin/bash) failed: No such file or directory
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\Windows\\system32\\bash.EXE', 'F:\\python\\blyb\\implementation\\deploy\\linux\\certs.sh',...stderr='&lt;3&gt;WSL (25927 - Relay) ERROR: CreateProcessCommon:800: execvpe(/bin/bash) failed: No such file or directory\n').returncode
+
+tests\integration\test_drug_trace_ops.py:179: AssertionError</failure></testcase><testcase classname="tests.integration.test_drug_trace_ops" name="test_ops01_status_script_no_insecure_curl" time="0.002" /><testcase classname="tests.integration.test_drug_trace_ops" name="test_ops02_restore_drill_isolated_project_and_dirs" time="0.360"><failure message="subprocess.CalledProcessError: Command '['C:\\Windows\\system32\\bash.EXE', '-c', &quot;tar -C '/c/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops02_restore_drill_isola0/backup/etc-staging' -czf '/c/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops02_restore_drill_isola0/backup/etc-blyb.tar.gz' blyb&quot;]' returned non-zero exit status 1.">fake_docker = {'bin': 'C:\\Users\\Administrator\\AppData\\Local\\Temp\\pytest-of-Administrator\\pytest-149\\test_ops02_restore_drill...ta/Local/Temp/pytest-of-Administrator/pytest-149/test_ops02_restore_drill_isola0/prod-root/etc-blyb/runtime.env'), ...}
+tmp_path = WindowsPath('C:/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops02_restore_drill_isola0')
+
+    def test_ops02_restore_drill_isolated_project_and_dirs(fake_docker, tmp_path):
+        """独立项目/数据根/配置根恢复成功；生产目录字节不变；pg_restore 走统一入口。"""
+&gt;       bdir = _make_backup(tmp_path, with_objects=True)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\integration\test_drug_trace_ops.py:242: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\integration\test_drug_trace_ops.py:220: in _make_backup
+    subprocess.run([BASH, "-c",
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+input = None, capture_output = False, timeout = None, check = True
+popenargs = (['C:\\Windows\\system32\\bash.EXE', '-c', "tar -C '/c/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/.../AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops02_restore_drill_isola0/backup/etc-blyb.tar.gz' blyb"],)
+kwargs = {}
+process = &lt;Popen: returncode: 1 args: ['C:\\Windows\\system32\\bash.EXE', '-c', "tar -...&gt;
+stdout = None, stderr = None, retcode = 1
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output &amp; stderr attributes if those streams
+        were captured.
+    
+        If timeout (seconds) is given and the process takes too long,
+         a TimeoutExpired exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+&gt;               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['C:\\Windows\\system32\\bash.EXE', '-c', "tar -C '/c/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops02_restore_drill_isola0/backup/etc-staging' -czf '/c/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops02_restore_drill_isola0/backup/etc-blyb.tar.gz' blyb"]' returned non-zero exit status 1.
+
+C:\Users\Administrator\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py:578: CalledProcessError</failure></testcase><testcase classname="tests.integration.test_drug_trace_ops" name="test_ops03_restore_rejects_path_traversal_archive" time="0.353"><failure message="subprocess.CalledProcessError: Command '['C:\\Windows\\system32\\bash.EXE', '-c', &quot;tar -C '/c/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_rejects_pat0/backup/etc-staging' -czf '/c/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_rejects_pat0/backup/etc-blyb.tar.gz' blyb&quot;]' returned non-zero exit status 1.">fake_docker = {'bin': 'C:\\Users\\Administrator\\AppData\\Local\\Temp\\pytest-of-Administrator\\pytest-149\\test_ops03_restore_rejec...ta/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_rejects_pat0/prod-root/etc-blyb/runtime.env'), ...}
+tmp_path = WindowsPath('C:/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_rejects_pat0')
+
+    def test_ops03_restore_rejects_path_traversal_archive(fake_docker, tmp_path):
+&gt;       bdir = _make_backup(tmp_path)
+               ^^^^^^^^^^^^^^^^^^^^^^
+
+tests\integration\test_drug_trace_ops.py:305: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\integration\test_drug_trace_ops.py:220: in _make_backup
+    subprocess.run([BASH, "-c",
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+input = None, capture_output = False, timeout = None, check = True
+popenargs = (['C:\\Windows\\system32\\bash.EXE', '-c', "tar -C '/c/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/.../AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_rejects_pat0/backup/etc-blyb.tar.gz' blyb"],)
+kwargs = {}
+process = &lt;Popen: returncode: 1 args: ['C:\\Windows\\system32\\bash.EXE', '-c', "tar -...&gt;
+stdout = None, stderr = None, retcode = 1
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output &amp; stderr attributes if those streams
+        were captured.
+    
+        If timeout (seconds) is given and the process takes too long,
+         a TimeoutExpired exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+&gt;               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['C:\\Windows\\system32\\bash.EXE', '-c', "tar -C '/c/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_rejects_pat0/backup/etc-staging' -czf '/c/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_rejects_pat0/backup/etc-blyb.tar.gz' blyb"]' returned non-zero exit status 1.
+
+C:\Users\Administrator\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py:578: CalledProcessError</failure></testcase><testcase classname="tests.integration.test_drug_trace_ops" name="test_ops03_restore_rejects_symlink_member" time="0.377"><failure message="subprocess.CalledProcessError: Command '['C:\\Windows\\system32\\bash.EXE', '-c', &quot;tar -C '/c/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_rejects_sym0/backup/etc-staging' -czf '/c/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_rejects_sym0/backup/etc-blyb.tar.gz' blyb&quot;]' returned non-zero exit status 1.">fake_docker = {'bin': 'C:\\Users\\Administrator\\AppData\\Local\\Temp\\pytest-of-Administrator\\pytest-149\\test_ops03_restore_rejec...ta/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_rejects_sym0/prod-root/etc-blyb/runtime.env'), ...}
+tmp_path = WindowsPath('C:/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_rejects_sym0')
+
+    def test_ops03_restore_rejects_symlink_member(fake_docker, tmp_path):
+&gt;       bdir = _make_backup(tmp_path)
+               ^^^^^^^^^^^^^^^^^^^^^^
+
+tests\integration\test_drug_trace_ops.py:316: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\integration\test_drug_trace_ops.py:220: in _make_backup
+    subprocess.run([BASH, "-c",
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+input = None, capture_output = False, timeout = None, check = True
+popenargs = (['C:\\Windows\\system32\\bash.EXE', '-c', "tar -C '/c/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/.../AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_rejects_sym0/backup/etc-blyb.tar.gz' blyb"],)
+kwargs = {}
+process = &lt;Popen: returncode: 1 args: ['C:\\Windows\\system32\\bash.EXE', '-c', "tar -...&gt;
+stdout = None, stderr = None, retcode = 1
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output &amp; stderr attributes if those streams
+        were captured.
+    
+        If timeout (seconds) is given and the process takes too long,
+         a TimeoutExpired exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+&gt;               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['C:\\Windows\\system32\\bash.EXE', '-c', "tar -C '/c/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_rejects_sym0/backup/etc-staging' -czf '/c/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_rejects_sym0/backup/etc-blyb.tar.gz' blyb"]' returned non-zero exit status 1.
+
+C:\Users\Administrator\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py:578: CalledProcessError</failure></testcase><testcase classname="tests.integration.test_drug_trace_ops" name="test_ops03_restore_rejects_nonempty_target" time="0.346"><failure message="subprocess.CalledProcessError: Command '['C:\\Windows\\system32\\bash.EXE', '-c', &quot;tar -C '/c/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_rejects_non0/backup/etc-staging' -czf '/c/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_rejects_non0/backup/etc-blyb.tar.gz' blyb&quot;]' returned non-zero exit status 1.">fake_docker = {'bin': 'C:\\Users\\Administrator\\AppData\\Local\\Temp\\pytest-of-Administrator\\pytest-149\\test_ops03_restore_rejec...ta/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_rejects_non0/prod-root/etc-blyb/runtime.env'), ...}
+tmp_path = WindowsPath('C:/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_rejects_non0')
+
+    def test_ops03_restore_rejects_nonempty_target(fake_docker, tmp_path):
+&gt;       bdir = _make_backup(tmp_path)
+               ^^^^^^^^^^^^^^^^^^^^^^
+
+tests\integration\test_drug_trace_ops.py:325: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\integration\test_drug_trace_ops.py:220: in _make_backup
+    subprocess.run([BASH, "-c",
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+input = None, capture_output = False, timeout = None, check = True
+popenargs = (['C:\\Windows\\system32\\bash.EXE', '-c', "tar -C '/c/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/.../AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_rejects_non0/backup/etc-blyb.tar.gz' blyb"],)
+kwargs = {}
+process = &lt;Popen: returncode: 1 args: ['C:\\Windows\\system32\\bash.EXE', '-c', "tar -...&gt;
+stdout = None, stderr = None, retcode = 1
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output &amp; stderr attributes if those streams
+        were captured.
+    
+        If timeout (seconds) is given and the process takes too long,
+         a TimeoutExpired exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+&gt;               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['C:\\Windows\\system32\\bash.EXE', '-c', "tar -C '/c/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_rejects_non0/backup/etc-staging' -czf '/c/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_rejects_non0/backup/etc-blyb.tar.gz' blyb"]' returned non-zero exit status 1.
+
+C:\Users\Administrator\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py:578: CalledProcessError</failure></testcase><testcase classname="tests.integration.test_drug_trace_ops" name="test_ops03_restore_rejects_production_overlap" time="0.354"><failure message="subprocess.CalledProcessError: Command '['C:\\Windows\\system32\\bash.EXE', '-c', &quot;tar -C '/c/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_rejects_pro0/backup/etc-staging' -czf '/c/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_rejects_pro0/backup/etc-blyb.tar.gz' blyb&quot;]' returned non-zero exit status 1.">fake_docker = {'bin': 'C:\\Users\\Administrator\\AppData\\Local\\Temp\\pytest-of-Administrator\\pytest-149\\test_ops03_restore_rejec...ta/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_rejects_pro0/prod-root/etc-blyb/runtime.env'), ...}
+tmp_path = WindowsPath('C:/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_rejects_pro0')
+
+    def test_ops03_restore_rejects_production_overlap(fake_docker, tmp_path):
+&gt;       bdir = _make_backup(tmp_path)
+               ^^^^^^^^^^^^^^^^^^^^^^
+
+tests\integration\test_drug_trace_ops.py:336: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\integration\test_drug_trace_ops.py:220: in _make_backup
+    subprocess.run([BASH, "-c",
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+input = None, capture_output = False, timeout = None, check = True
+popenargs = (['C:\\Windows\\system32\\bash.EXE', '-c', "tar -C '/c/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/.../AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_rejects_pro0/backup/etc-blyb.tar.gz' blyb"],)
+kwargs = {}
+process = &lt;Popen: returncode: 1 args: ['C:\\Windows\\system32\\bash.EXE', '-c', "tar -...&gt;
+stdout = None, stderr = None, retcode = 1
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output &amp; stderr attributes if those streams
+        were captured.
+    
+        If timeout (seconds) is given and the process takes too long,
+         a TimeoutExpired exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+&gt;               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['C:\\Windows\\system32\\bash.EXE', '-c', "tar -C '/c/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_rejects_pro0/backup/etc-staging' -czf '/c/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_rejects_pro0/backup/etc-blyb.tar.gz' blyb"]' returned non-zero exit status 1.
+
+C:\Users\Administrator\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py:578: CalledProcessError</failure></testcase><testcase classname="tests.integration.test_drug_trace_ops" name="test_ops03_restore_rejects_missing_backup_env_vars" time="0.341"><failure message="subprocess.CalledProcessError: Command '['C:\\Windows\\system32\\bash.EXE', '-c', &quot;tar -C '/c/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_rejects_mis0/backup/etc-staging' -czf '/c/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_rejects_mis0/backup/etc-blyb.tar.gz' blyb&quot;]' returned non-zero exit status 1.">fake_docker = {'bin': 'C:\\Users\\Administrator\\AppData\\Local\\Temp\\pytest-of-Administrator\\pytest-149\\test_ops03_restore_rejec...ta/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_rejects_mis0/prod-root/etc-blyb/runtime.env'), ...}
+tmp_path = WindowsPath('C:/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_rejects_mis0')
+
+    def test_ops03_restore_rejects_missing_backup_env_vars(fake_docker, tmp_path):
+&gt;       bdir = _make_backup(tmp_path, env_override=lambda t: t.replace(
+            "BLYB_OBJECTS_DIR=/old/host/objects\n", ""))
+
+tests\integration\test_drug_trace_ops.py:349: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\integration\test_drug_trace_ops.py:220: in _make_backup
+    subprocess.run([BASH, "-c",
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+input = None, capture_output = False, timeout = None, check = True
+popenargs = (['C:\\Windows\\system32\\bash.EXE', '-c', "tar -C '/c/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/.../AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_rejects_mis0/backup/etc-blyb.tar.gz' blyb"],)
+kwargs = {}
+process = &lt;Popen: returncode: 1 args: ['C:\\Windows\\system32\\bash.EXE', '-c', "tar -...&gt;
+stdout = None, stderr = None, retcode = 1
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output &amp; stderr attributes if those streams
+        were captured.
+    
+        If timeout (seconds) is given and the process takes too long,
+         a TimeoutExpired exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+&gt;               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['C:\\Windows\\system32\\bash.EXE', '-c', "tar -C '/c/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_rejects_mis0/backup/etc-staging' -czf '/c/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_rejects_mis0/backup/etc-blyb.tar.gz' blyb"]' returned non-zero exit status 1.
+
+C:\Users\Administrator\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py:578: CalledProcessError</failure></testcase><testcase classname="tests.integration.test_drug_trace_ops" name="test_ops03_restore_validate_only_writes_nothing" time="0.335"><failure message="subprocess.CalledProcessError: Command '['C:\\Windows\\system32\\bash.EXE', '-c', &quot;tar -C '/c/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_validate_on0/backup/etc-staging' -czf '/c/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_validate_on0/backup/etc-blyb.tar.gz' blyb&quot;]' returned non-zero exit status 1.">fake_docker = {'bin': 'C:\\Users\\Administrator\\AppData\\Local\\Temp\\pytest-of-Administrator\\pytest-149\\test_ops03_restore_valid...ta/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_validate_on0/prod-root/etc-blyb/runtime.env'), ...}
+tmp_path = WindowsPath('C:/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_validate_on0')
+
+    def test_ops03_restore_validate_only_writes_nothing(fake_docker, tmp_path):
+&gt;       bdir = _make_backup(tmp_path)
+               ^^^^^^^^^^^^^^^^^^^^^^
+
+tests\integration\test_drug_trace_ops.py:358: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\integration\test_drug_trace_ops.py:220: in _make_backup
+    subprocess.run([BASH, "-c",
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+input = None, capture_output = False, timeout = None, check = True
+popenargs = (['C:\\Windows\\system32\\bash.EXE', '-c', "tar -C '/c/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/.../AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_validate_on0/backup/etc-blyb.tar.gz' blyb"],)
+kwargs = {}
+process = &lt;Popen: returncode: 1 args: ['C:\\Windows\\system32\\bash.EXE', '-c', "tar -...&gt;
+stdout = None, stderr = None, retcode = 1
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output &amp; stderr attributes if those streams
+        were captured.
+    
+        If timeout (seconds) is given and the process takes too long,
+         a TimeoutExpired exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+&gt;               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['C:\\Windows\\system32\\bash.EXE', '-c', "tar -C '/c/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_validate_on0/backup/etc-staging' -czf '/c/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops03_restore_validate_on0/backup/etc-blyb.tar.gz' blyb"]' returned non-zero exit status 1.
+
+C:\Users\Administrator\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py:578: CalledProcessError</failure></testcase><testcase classname="tests.integration.test_drug_trace_ops" name="test_ops04_backup_still_window_before_snapshots" time="0.314"><failure message="AssertionError: &lt;3&gt;WSL (25989 - Relay) ERROR: CreateProcessCommon:800: execvpe(/bin/bash) failed: No such file or directory&#10;  &#10;assert 1 == 0&#10; +  where 1 = CompletedProcess(args=['C:\\Windows\\system32\\bash.EXE', 'F:\\python\\blyb\\implementation\\deploy\\linux\\backup.sh'...stderr='&lt;3&gt;WSL (25989 - Relay) ERROR: CreateProcessCommon:800: execvpe(/bin/bash) failed: No such file or directory\n').returncode">fake_docker = {'bin': 'C:\\Users\\Administrator\\AppData\\Local\\Temp\\pytest-of-Administrator\\pytest-149\\test_ops04_backup_still_...ta/Local/Temp/pytest-of-Administrator/pytest-149/test_ops04_backup_still_window0/prod-root/etc-blyb/runtime.env'), ...}
+tmp_path = WindowsPath('C:/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops04_backup_still_window0')
+
+    def test_ops04_backup_still_window_before_snapshots(fake_docker, tmp_path):
+        r, dest = _run_backup(fake_docker, tmp_path, with_objects=True)
+&gt;       assert r.returncode == 0, r.stderr
+E       AssertionError: &lt;3&gt;WSL (25989 - Relay) ERROR: CreateProcessCommon:800: execvpe(/bin/bash) failed: No such file or directory
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\Windows\\system32\\bash.EXE', 'F:\\python\\blyb\\implementation\\deploy\\linux\\backup.sh'...stderr='&lt;3&gt;WSL (25989 - Relay) ERROR: CreateProcessCommon:800: execvpe(/bin/bash) failed: No such file or directory\n').returncode
+
+tests\integration\test_drug_trace_ops.py:386: AssertionError</failure></testcase><testcase classname="tests.integration.test_drug_trace_ops" name="test_ops04_backup_failure_restores_services" time="0.342"><failure message="FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Administrator\\AppData\\Local\\Temp\\pytest-of-Administrator\\pytest-149\\test_ops04_backup_failure_rest0\\docker.log'">fake_docker = {'bin': 'C:\\Users\\Administrator\\AppData\\Local\\Temp\\pytest-of-Administrator\\pytest-149\\test_ops04_backup_failur...ta/Local/Temp/pytest-of-Administrator/pytest-149/test_ops04_backup_failure_rest0/prod-root/etc-blyb/runtime.env'), ...}
+tmp_path = WindowsPath('C:/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops04_backup_failure_rest0')
+
+    def test_ops04_backup_failure_restores_services(fake_docker, tmp_path):
+        r, _dest = _run_backup(fake_docker, tmp_path, fail=True)
+        assert r.returncode != 0
+&gt;       log = fake_docker["log"].read_text(encoding="utf-8")
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\integration\test_drug_trace_ops.py:406: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\Administrator\AppData\Local\Python\pythoncore-3.14-64\Lib\pathlib\__init__.py:787: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops04_backup_failure_rest0/docker.log')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+&gt;       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Administrator\\AppData\\Local\\Temp\\pytest-of-Administrator\\pytest-149\\test_ops04_backup_failure_rest0\\docker.log'
+
+C:\Users\Administrator\AppData\Local\Python\pythoncore-3.14-64\Lib\pathlib\__init__.py:771: FileNotFoundError</failure></testcase><testcase classname="tests.integration.test_drug_trace_ops" name="test_ops04_backup_rejects_objects_with_no_stop" time="0.327"><failure message="AssertionError: assert '--no-stop' in ('' + '&lt;3&gt;WSL (25995 - Relay) ERROR: CreateProcessCommon:800: execvpe(/bin/bash) failed: No such file or directory\n')&#10; +  where '' = CompletedProcess(args=['C:\\Windows\\system32\\bash.EXE', 'F:\\python\\blyb\\implementation\\deploy\\linux\\backup.sh'...stderr='&lt;3&gt;WSL (25995 - Relay) ERROR: CreateProcessCommon:800: execvpe(/bin/bash) failed: No such file or directory\n').stdout&#10; +  and   '&lt;3&gt;WSL (25995 - Relay) ERROR: CreateProcessCommon:800: execvpe(/bin/bash) failed: No such file or directory\n' = CompletedProcess(args=['C:\\Windows\\system32\\bash.EXE', 'F:\\python\\blyb\\implementation\\deploy\\linux\\backup.sh'...stderr='&lt;3&gt;WSL (25995 - Relay) ERROR: CreateProcessCommon:800: execvpe(/bin/bash) failed: No such file or directory\n').stderr">fake_docker = {'bin': 'C:\\Users\\Administrator\\AppData\\Local\\Temp\\pytest-of-Administrator\\pytest-149\\test_ops04_backup_reject...ta/Local/Temp/pytest-of-Administrator/pytest-149/test_ops04_backup_rejects_obje0/prod-root/etc-blyb/runtime.env'), ...}
+tmp_path = WindowsPath('C:/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops04_backup_rejects_obje0')
+
+    def test_ops04_backup_rejects_objects_with_no_stop(fake_docker, tmp_path):
+        r, _ = _run_backup(fake_docker, tmp_path, with_objects=True, no_stop=True)
+        assert r.returncode != 0
+&gt;       assert "--no-stop" in (r.stdout + r.stderr)
+E       AssertionError: assert '--no-stop' in ('' + '&lt;3&gt;WSL (25995 - Relay) ERROR: CreateProcessCommon:800: execvpe(/bin/bash) failed: No such file or directory\n')
+E        +  where '' = CompletedProcess(args=['C:\\Windows\\system32\\bash.EXE', 'F:\\python\\blyb\\implementation\\deploy\\linux\\backup.sh'...stderr='&lt;3&gt;WSL (25995 - Relay) ERROR: CreateProcessCommon:800: execvpe(/bin/bash) failed: No such file or directory\n').stdout
+E        +  and   '&lt;3&gt;WSL (25995 - Relay) ERROR: CreateProcessCommon:800: execvpe(/bin/bash) failed: No such file or directory\n' = CompletedProcess(args=['C:\\Windows\\system32\\bash.EXE', 'F:\\python\\blyb\\implementation\\deploy\\linux\\backup.sh'...stderr='&lt;3&gt;WSL (25995 - Relay) ERROR: CreateProcessCommon:800: execvpe(/bin/bash) failed: No such file or directory\n').stderr
+
+tests\integration\test_drug_trace_ops.py:414: AssertionError</failure></testcase><testcase classname="tests.integration.test_drug_trace_ops" name="test_ops04_backup_fails_closed_on_missing_env_paths" time="0.351"><failure message="AssertionError: assert 'BLYB_EXCHANGE_DIR' in ('' + '&lt;3&gt;WSL (25998 - Relay) ERROR: CreateProcessCommon:800: execvpe(/bin/bash) failed: No such file or directory\n')&#10; +  where '' = CompletedProcess(args=['C:\\Windows\\system32\\bash.EXE', 'F:\\python\\blyb\\implementation\\deploy\\linux\\backup.sh'...stderr='&lt;3&gt;WSL (25998 - Relay) ERROR: CreateProcessCommon:800: execvpe(/bin/bash) failed: No such file or directory\n').stdout&#10; +  and   '&lt;3&gt;WSL (25998 - Relay) ERROR: CreateProcessCommon:800: execvpe(/bin/bash) failed: No such file or directory\n' = CompletedProcess(args=['C:\\Windows\\system32\\bash.EXE', 'F:\\python\\blyb\\implementation\\deploy\\linux\\backup.sh'...stderr='&lt;3&gt;WSL (25998 - Relay) ERROR: CreateProcessCommon:800: execvpe(/bin/bash) failed: No such file or directory\n').stderr">fake_docker = {'bin': 'C:\\Users\\Administrator\\AppData\\Local\\Temp\\pytest-of-Administrator\\pytest-149\\test_ops04_backup_fails_...ta/Local/Temp/pytest-of-Administrator/pytest-149/test_ops04_backup_fails_closed0/prod-root/etc-blyb/runtime.env'), ...}
+tmp_path = WindowsPath('C:/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-149/test_ops04_backup_fails_closed0')
+
+    def test_ops04_backup_fails_closed_on_missing_env_paths(fake_docker, tmp_path):
+        env_text = fake_docker["prod_env"].read_text(encoding="utf-8")
+        fake_docker["prod_env"].write_text(
+            env_text.replace(next(l for l in env_text.splitlines()
+                                  if l.startswith("BLYB_EXCHANGE_DIR=")), ""),
+            encoding="utf-8")
+        r, _ = _run_backup(fake_docker, tmp_path)
+        assert r.returncode != 0
+&gt;       assert "BLYB_EXCHANGE_DIR" in (r.stdout + r.stderr)
+E       AssertionError: assert 'BLYB_EXCHANGE_DIR' in ('' + '&lt;3&gt;WSL (25998 - Relay) ERROR: CreateProcessCommon:800: execvpe(/bin/bash) failed: No such file or directory\n')
+E        +  where '' = CompletedProcess(args=['C:\\Windows\\system32\\bash.EXE', 'F:\\python\\blyb\\implementation\\deploy\\linux\\backup.sh'...stderr='&lt;3&gt;WSL (25998 - Relay) ERROR: CreateProcessCommon:800: execvpe(/bin/bash) failed: No such file or directory\n').stdout
+E        +  and   '&lt;3&gt;WSL (25998 - Relay) ERROR: CreateProcessCommon:800: execvpe(/bin/bash) failed: No such file or directory\n' = CompletedProcess(args=['C:\\Windows\\system32\\bash.EXE', 'F:\\python\\blyb\\implementation\\deploy\\linux\\backup.sh'...stderr='&lt;3&gt;WSL (25998 - Relay) ERROR: CreateProcessCommon:800: execvpe(/bin/bash) failed: No such file or directory\n').stderr
+
+tests\integration\test_drug_trace_ops.py:425: AssertionError</failure></testcase><testcase classname="tests.integration.test_dmz_forwarder" name="test_c02_fixed_upstream_methods_paths" time="0.003"><skipped type="pytest.skip" message="openssl 不可用（证书生成）">F:\python\blyb\implementation\tests\integration\test_dmz_forwarder.py:196: openssl 不可用（证书生成）</skipped></testcase><testcase classname="tests.integration.test_dmz_forwarder" name="test_c03_bytes_preserved_no_retry_no_cache" time="0.001"><skipped type="pytest.skip" message="openssl 不可用（证书生成）">F:\python\blyb\implementation\tests\integration\test_dmz_forwarder.py:234: openssl 不可用（证书生成）</skipped></testcase><testcase classname="tests.integration.test_dmz_forwarder" name="test_c04_resource_limits_and_redacted_logs" time="0.001"><skipped type="pytest.skip" message="openssl 不可用（证书生成）">F:\python\blyb\implementation\tests\integration\test_dmz_forwarder.py:264: openssl 不可用（证书生成）</skipped></testcase><testcase classname="tests.integration.test_dmz_forwarder" name="test_c01_mtls_identity" time="0.001"><skipped type="pytest.skip" message="openssl 不可用（证书生成）">F:\python\blyb\implementation\tests\integration\test_dmz_forwarder.py:287: openssl 不可用（证书生成）</skipped></testcase><testcase classname="tests.integration.test_dmz_forwarder" name="test_config_validation" time="0.004"><skipped type="pytest.skip" message="openssl 不可用（证书生成）">F:\python\blyb\implementation\tests\integration\test_dmz_forwarder.py:306: openssl 不可用（证书生成）</skipped></testcase></testsuite></testsuites>

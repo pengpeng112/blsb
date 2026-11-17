@@ -1,0 +1,28 @@
+{
+  "exit_code": 0,
+  "result": {
+    "ok": true,
+    "phase": "prepare",
+    "uploads": 0,
+    "source_writes": 0,
+    "calls": [
+      {
+        "method": "GET",
+        "path": "/connectors",
+        "http_status": 200
+      },
+      {
+        "method": "POST",
+        "path": "/drug-trace/bills/0894706b-410b-4244-a893-62132cc560de/prepare",
+        "http_status": 200
+      }
+    ],
+    "prepared": {
+      "submission_id": "7ed95aaa-ee66-4510-b80d-630f6c9dc381",
+      "package_revision_id": "93fc0afb-b068-471a-bd3a-4b03f72799a1",
+      "created": true,
+      "state": "PREPARED",
+      "superseded_submission_id": null
+    }
+  }
+}

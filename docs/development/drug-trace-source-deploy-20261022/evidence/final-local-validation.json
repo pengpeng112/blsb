@@ -1,0 +1,12 @@
+{
+  "new_doc_missing_links": [],
+  "release_code_matches_local": {
+    "plugins/sources/db_view/drug_trace.py": true,
+    "plugins/sources/db_view/source_profiles.py": true,
+    "plugins/domains/drug_trace/service.py": true,
+    "plugins/domains/drug_trace/routes.py": true,
+    "plugins/domains/drug_trace/source_config.py": true,
+    "deploy/linux/restore.sh": true
+  },
+  "scope": "six deployed delta files; no credential reads"
+}

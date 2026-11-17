@@ -1,0 +1,97 @@
+{
+  "channel": "sjzc/<relay-jump>/data-asset-api/OracleConnector.execute_readonly",
+  "source_writes": 0,
+  "uploads": 0,
+  "registration_changes": 0,
+  "queries": {
+    "identity": {
+      "ok": true,
+      "sql": "SELECT USER AS LOGIN_USER,SYS_CONTEXT('USERENV','SERVICE_NAME') AS SERVICE_NAME FROM DUAL",
+      "params": null,
+      "rows_returned": 1,
+      "truncated": false,
+      "rows": [
+        {
+          "LOGIN_USER": "BLYB_DRUGTRACE",
+          "SERVICE_NAME": "his"
+        }
+      ]
+    },
+    "choose_one_bill": {
+      "ok": true,
+      "sql": "SELECT source_system,pharmacy_code,business_kind,source_bill_id FROM V_DRUG_TRACE_CODE WHERE bill_time>=:begin_time AND bill_time<:end_time AND ROWNUM<=1",
+      "params": "[business key retained remotely]",
+      "rows_returned": 1,
+      "truncated": false
+    },
+    "baseline": {
+      "ok": true,
+      "sql": "SELECT source_code_record_id,source_revision FROM V_DRUG_TRACE_CODE WHERE source_system=:source_system AND pharmacy_code=:pharmacy_code AND business_kind=:business_kind AND source_bill_id=:source_bill_id AND bill_time>=:begin_time AND bill_time<:end_time ORDER BY source_code_record_id",
+      "params": "[business key retained remotely]",
+      "rows_returned": 4,
+      "truncated": false
+    },
+    "first_null": {
+      "ok": true,
+      "sql": "SELECT * FROM (SELECT source_system, source_bill_id, pharmacy_code, business_kind, source_revision, source_line_id, source_code_record_id, trace_code, quantity, unit, code_level, parent_code, updated_at, is_deleted, f_trace_code, s_trace_code, t_trace_code, bill_time FROM V_DRUG_TRACE_CODE WHERE source_system = :source_system AND pharmacy_code = :pharmacy_code AND business_kind = :business_kind AND source_bill_id = :source_bill_id AND (:after_record_id IS NULL      OR source_code_record_id > :after_record_id) AND bill_time>=:begin_time AND bill_time<:end_time ORDER BY source_code_record_id) WHERE ROWNUM <= 2",
+      "params": "[business key retained remotely]",
+      "rows_returned": 2,
+      "truncated": false
+    },
+    "first_empty": {
+      "ok": true,
+      "sql": "SELECT * FROM (SELECT source_system, source_bill_id, pharmacy_code, business_kind, source_revision, source_line_id, source_code_record_id, trace_code, quantity, unit, code_level, parent_code, updated_at, is_deleted, f_trace_code, s_trace_code, t_trace_code, bill_time FROM V_DRUG_TRACE_CODE WHERE source_system = :source_system AND pharmacy_code = :pharmacy_code AND business_kind = :business_kind AND source_bill_id = :source_bill_id AND (:after_record_id IS NULL      OR source_code_record_id > :after_record_id) AND bill_time>=:begin_time AND bill_time<:end_time ORDER BY source_code_record_id) WHERE ROWNUM <= 2",
+      "params": "[business key retained remotely]",
+      "rows_returned": 2,
+      "truncated": false
+    },
+    "page_1": {
+      "ok": true,
+      "sql": "SELECT * FROM (SELECT source_system, source_bill_id, pharmacy_code, business_kind, source_revision, source_line_id, source_code_record_id, trace_code, quantity, unit, code_level, parent_code, updated_at, is_deleted, f_trace_code, s_trace_code, t_trace_code, bill_time FROM V_DRUG_TRACE_CODE WHERE source_system = :source_system AND pharmacy_code = :pharmacy_code AND business_kind = :business_kind AND source_bill_id = :source_bill_id AND (:after_record_id IS NULL      OR source_code_record_id > :after_record_id) AND bill_time>=:begin_time AND bill_time<:end_time ORDER BY source_code_record_id) WHERE ROWNUM <= 2",
+      "params": "[business key retained remotely]",
+      "rows_returned": 2,
+      "truncated": false
+    },
+    "page_2": {
+      "ok": true,
+      "sql": "SELECT * FROM (SELECT source_system, source_bill_id, pharmacy_code, business_kind, source_revision, source_line_id, source_code_record_id, trace_code, quantity, unit, code_level, parent_code, updated_at, is_deleted, f_trace_code, s_trace_code, t_trace_code, bill_time FROM V_DRUG_TRACE_CODE WHERE source_system = :source_system AND pharmacy_code = :pharmacy_code AND business_kind = :business_kind AND source_bill_id = :source_bill_id AND (:after_record_id IS NULL      OR source_code_record_id > :after_record_id) AND bill_time>=:begin_time AND bill_time<:end_time ORDER BY source_code_record_id) WHERE ROWNUM <= 2",
+      "params": "[business key retained remotely]",
+      "rows_returned": 2,
+      "truncated": false
+    },
+    "page_3": {
+      "ok": true,
+      "sql": "SELECT * FROM (SELECT source_system, source_bill_id, pharmacy_code, business_kind, source_revision, source_line_id, source_code_record_id, trace_code, quantity, unit, code_level, parent_code, updated_at, is_deleted, f_trace_code, s_trace_code, t_trace_code, bill_time FROM V_DRUG_TRACE_CODE WHERE source_system = :source_system AND pharmacy_code = :pharmacy_code AND business_kind = :business_kind AND source_bill_id = :source_bill_id AND (:after_record_id IS NULL      OR source_code_record_id > :after_record_id) AND bill_time>=:begin_time AND bill_time<:end_time ORDER BY source_code_record_id) WHERE ROWNUM <= 2",
+      "params": "[business key retained remotely]",
+      "rows_returned": 0,
+      "truncated": false
+    }
+  },
+  "business_identifiers_returned": false,
+  "registration": {
+    "source_code": "his_source_<his_host_id>",
+    "host": "<his-host>",
+    "port": 1521,
+    "service": "his",
+    "write_policy": "medical_dict_push"
+  },
+  "checks": {
+    "authenticated_as_new_reader": true,
+    "null_first_page_matches_baseline": true,
+    "empty_first_page_matches_baseline": true,
+    "whole_bill_matches_baseline_in_order": true,
+    "no_duplicate_record_ids": true,
+    "single_revision": true,
+    "all_returned_keys_match": true
+  },
+  "bill_code_rows": 4,
+  "page_sizes": [
+    2,
+    2,
+    0
+  ],
+  "passed": true,
+  "sql_origin": "actual corrected local drugtrace.bill_codes template, with additive same-day guard",
+  "template_sha256": "742698985d25fcdcd0f9a07a9b061bef83f9da9a0bbe21bc47651a780e47edd5",
+  "captured_at": "2026-10-22T08:36:09.345852+00:00"
+}

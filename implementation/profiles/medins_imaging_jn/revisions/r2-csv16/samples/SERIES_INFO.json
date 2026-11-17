@@ -1,0 +1,13 @@
+{
+ "input": {
+  "studyUid": "合成studyUid",
+  "studyInstanceUid": "合成studyInsta",
+  "pacsSeriesId": "合成pacsSeries",
+  "seriesInstanceUid": "合成seriesInst",
+  "seriesNumber": "合成seriesNumb",
+  "seriesImageCount": 1,
+  "dep": "合成dep",
+  "seriesPath": "合成seriesPath",
+  "disableFlag": 1
+ }
+}

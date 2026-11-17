@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: unknown values stay visible and missing numbers differ from zero
+ok 1 - unknown values stay visible and missing numbers differ from zero
+  ---
+  duration_ms: 22.4089
+  type: 'test'
+  ...
+# Subtest: submission aggregates include all states without relabeling accepted as success
+ok 2 - submission aggregates include all states without relabeling accepted as success
+  ---
+  duration_ms: 1.104
+  type: 'test'
+  ...
+# Subtest: hospital dates and next scheduled time use GMT+8, not browser timezone or last report
+ok 3 - hospital dates and next scheduled time use GMT+8, not browser timezone or last report
+  ---
+  duration_ms: 2.8949
+  type: 'test'
+  ...
+# Subtest: missing report and streak use actual adjacent hospital business dates
+ok 4 - missing report and streak use actual adjacent hospital business dates
+  ---
+  duration_ms: 1.4806
+  type: 'test'
+  ...
+# Subtest: no records are not presented as proof of scheduler health
+ok 5 - no records are not presented as proof of scheduler health
+  ---
+  duration_ms: 0.2107
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 235.8176

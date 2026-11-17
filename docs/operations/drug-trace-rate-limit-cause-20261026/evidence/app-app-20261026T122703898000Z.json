@@ -1,0 +1,64 @@
+{
+  "host": "app",
+  "phase": "app",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T12:27:03.897945+00:00",
+  "result": {
+    "query_jobs_for_old247": 2964,
+    "old_query_classification": [
+      {
+        "classification": "PROCESSING",
+        "reason": null,
+        "n": 1
+      },
+      {
+        "classification": "NOT_FOUND",
+        "reason": "complete platform query has no entry for bill_code",
+        "n": 460
+      },
+      {
+        "classification": "UNKNOWN",
+        "reason": "http 429",
+        "n": 2462
+      }
+    ],
+    "upload429": [
+      {
+        "http_status": 200,
+        "outcome": "ACCEPTED",
+        "first_utc": "2026-10-25T12:39:25.835559",
+        "last_utc": "2026-10-25T13:14:45.246441",
+        "n": 41
+      },
+      {
+        "http_status": null,
+        "outcome": "UNKNOWN",
+        "first_utc": "2026-10-25T10:12:24.431272",
+        "last_utc": "2026-10-25T10:12:24.431272",
+        "n": 1
+      },
+      {
+        "http_status": 429,
+        "outcome": "UNKNOWN",
+        "first_utc": "2026-10-25T12:39:38.384614",
+        "last_utc": "2026-10-25T13:19:36.448855",
+        "n": 205
+      }
+    ],
+    "active_jobs": 0,
+    "scope_quota": [
+      {
+        "used": 2823,
+        "max_bills": 80000
+      }
+    ],
+    "running_transport": {
+      "transport_sha256": "601c7b09cb29622ba1ed695ba5663e25eee1a0b42a811d45d371b475e2d0d37d",
+      "interval_1_5_seconds": true,
+      "http429_cooldown": true,
+      "transport_inspects_top_code7": false,
+      "query_parser_keeps_subcode": false
+    },
+    "release": "ui-clarity-20261026T063000Z"
+  }
+}

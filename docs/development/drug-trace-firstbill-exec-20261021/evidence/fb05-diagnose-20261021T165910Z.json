@@ -1,0 +1,30 @@
+{
+  "captured_at": "2026-10-21T16:58:48.505567+00:00",
+  "route": "<prod-host>_worker->mTLS->DMZ_forwarder->platform",
+  "method": "query.billstatus",
+  "uploads": 0,
+  "status": "CAPTURED",
+  "target_8156_clock_utc": "2026-10-21T16:59:00Z",
+  "diagnostic": {
+    "uid": 0,
+    "dest": {
+      "code": "alihealth-drugtrace-retail",
+      "is_mock": false,
+      "config_revision": "2e138e50-2be7-4574-8e48-61264be8946d"
+    },
+    "query": {
+      "probe_bill_code": "BLYB_FB05_C3B50C99D6C244",
+      "found": null,
+      "total_num": null,
+      "unknown": true,
+      "error": null,
+      "entry_count": 0,
+      "timestamp_gmt8": "2026-10-22 00:59:04"
+    },
+    "signature_verified": true
+  },
+  "dmz_platform_date_probe": {
+    "rc": 0,
+    "out": "2026-10-21T16:26:47Z\nDate: Wed, 21 Oct 2026 16:59:10 GMT"
+  }
+}

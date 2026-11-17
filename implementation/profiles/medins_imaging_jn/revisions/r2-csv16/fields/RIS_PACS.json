@@ -1,0 +1,41 @@
+{
+ "code": "RIS_PACS",
+ "schema_version": 2,
+ "root": "input",
+ "length_unit": "UNCONFIRMED",
+ "source": "spec_csv",
+ "nodes": [
+  {
+   "code": "risStudyId",
+   "name": "检查唯一标识符",
+   "label_raw": "检查唯一\n标识符",
+   "data_element": "-",
+   "type": "string",
+   "type_raw": "字符串",
+   "max_len": 36,
+   "dict": null,
+   "required": true,
+   "source": "spec_csv",
+   "status": "EXTRACTED_NOT_APPROVED",
+   "source_row": 2,
+   "source_table_index": "9",
+   "notes": []
+  },
+  {
+   "code": "studyUid",
+   "name": "Study唯一号",
+   "label_raw": "Study唯一号",
+   "data_element": "-",
+   "type": "string",
+   "type_raw": "字符串",
+   "max_len": 128,
+   "dict": null,
+   "required": true,
+   "source": "spec_csv",
+   "status": "EXTRACTED_NOT_APPROVED",
+   "source_row": 3,
+   "source_table_index": "9",
+   "notes": []
+  }
+ ]
+}

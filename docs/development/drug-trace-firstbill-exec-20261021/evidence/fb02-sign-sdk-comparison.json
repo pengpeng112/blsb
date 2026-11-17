@@ -1,0 +1,51 @@
+{
+  "captured_at": "2026-10-21T16:24:09.473157+00:00",
+  "sdk": {
+    "name": "Top (PyPI, taobao open platform Python SDK)",
+    "version": "1.0.0",
+    "source": "https://pypi.org/project/Top/",
+    "zip_sha256": "9ca70d8368baf0fb58da09334b88713437537ca2fe989a5a64d88d5d52b8ea82",
+    "sign_function": "top/api/base.py::sign",
+    "sign_source_sha256": "cb2cbb5771b92c57acfaf4e750a453f50de0c10e6b62f6f9bd3c1717c84d4a33"
+  },
+  "csharp_reference": {
+    "source": "developer.alibaba.com docs doc.htm articleId=107727（平台联调 2026-10-20 已提取对照并修齐空值过滤）",
+    "vectors": "../platform-live-test-20261020/evidence/public-reference-vectors.json"
+  },
+  "vectors": [
+    {
+      "id": "official_article_example",
+      "has_empty_value": false,
+      "ours": "AF4396FC8B32007A83FAEB5695A4F354",
+      "official_sdk": "AF4396FC8B32007A83FAEB5695A4F354",
+      "match": true
+    },
+    {
+      "id": "unicode_and_leading_zeros",
+      "has_empty_value": false,
+      "ours": "F12B20840B0B0C27FAFE1890E45BEE5C",
+      "official_sdk": "F12B20840B0B0C27FAFE1890E45BEE5C",
+      "match": true
+    },
+    {
+      "id": "typical_retail_query_shape",
+      "has_empty_value": false,
+      "ours": "8F5F46C312F076A970B36D4F0EEF9338",
+      "official_sdk": "8F5F46C312F076A970B36D4F0EEF9338",
+      "match": true
+    },
+    {
+      "id": "upload_retail_shape",
+      "has_empty_value": false,
+      "ours": "A07DE67B6061FFA0D707A2B953E3F5D6",
+      "official_sdk": "A07DE67B6061FFA0D707A2B953E3F5D6",
+      "match": true
+    }
+  ],
+  "known_divergence": [
+    "官方 PyPI Top SDK（Python2 时代）sign 不过滤空参数名/空字符串值；官方 C# 参考跳过空项。本项目按 C# 参考实现空值过滤——build_form 的全部必填业务参数经 build_biz_params 校验非空，实际流量不含空值，两实现对本项目真实流量等价。",
+    "表单编码：SDK 用 urlencode(quote_plus)；本项目用 quote(safe='')（%20）。签名均覆盖原始参数而非编码串，编码差异不影响签名与TOP解析。",
+    "时间戳：SDK 用毫秒 epoch；官方签名文档示例与本项目用 yyyy-MM-dd HH:mm:ss（GMT+8 墙钟显式生成）。TOP 网关两种均接受。"
+  ],
+  "conclusion": "non-empty vectors agree"
+}

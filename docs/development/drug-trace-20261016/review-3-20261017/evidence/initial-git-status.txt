@@ -1,0 +1,43 @@
+ M docs/README.md
+ M docs/ai/BACKLOG.md
+ M docs/ai/HANDOFF.md
+ M docs/ai/STATE.md
+ M implementation/apps/admin_web/src/App.vue
+ M implementation/apps/admin_web/src/views/DrugTrace.vue
+ M implementation/apps/admin_web/src/views/Login.vue
+ M implementation/deploy/dmz/README.md
+ M implementation/deploy/dmz/blyb-dmz-forwarder.service
+ M implementation/deploy/dmz/config.template.json
+ M implementation/deploy/dmz/forwarder.py
+ M implementation/deploy/dmz/install.sh
+ M implementation/deploy/linux/backup.sh
+ M implementation/deploy/linux/restore.sh
+ M implementation/docs/04-API目录对照矩阵.md
+ M implementation/docs/外部阻断清单.md
+ M implementation/docs/实施状态矩阵.md
+ M implementation/docs/测试执行记录.md
+ M implementation/plugins/destinations/alihealth_drugtrace/client.py
+ M implementation/plugins/destinations/alihealth_drugtrace/protocol.py
+ M implementation/plugins/destinations/alihealth_drugtrace/transport.py
+ M implementation/plugins/domains/drug_trace/contracts.py
+ M implementation/plugins/domains/drug_trace/ingest.py
+ M implementation/plugins/domains/drug_trace/models.py
+ M implementation/plugins/domains/drug_trace/payload.py
+ M implementation/plugins/domains/drug_trace/plugin.py
+ M implementation/plugins/domains/drug_trace/quality.py
+ M implementation/plugins/domains/drug_trace/routes.py
+ M implementation/plugins/domains/drug_trace/service.py
+ M implementation/plugins/sources/db_view/drug_trace.py
+ M implementation/tests/e2e/serve_drug_trace_ui.py
+ M implementation/tests/integration/test_dmz_forwarder.py
+ M implementation/tests/integration/test_drug_trace_api.py
+ M implementation/tests/integration/test_drug_trace_domain.py
+ M implementation/tests/integration/test_drug_trace_ops.py
+ M implementation/tests/integration/test_drug_trace_pg.py
+?? docs/ai/sessions/DTR-FIX2-20261017.md
+?? docs/ai/sessions/DTR-REVIEW2-20261017.md
+?? docs/deployment/reporting-20261015/view-contract-r6.md
+?? docs/development/drug-trace-20261016/fix2-20261017/
+?? docs/development/drug-trace-20261016/review-2-20261017/
+?? docs/development/drug-trace-20261016/review-3-20261017/
+?? implementation/tests/integration/test_drug_trace_fix2.py

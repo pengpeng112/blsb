@@ -1,0 +1,10 @@
+{
+  "captured_at": "2026-10-25T10:05:47.305292+00:00",
+  "ssh_exit_code": 0,
+  "result": {
+    "installed": false,
+    "started": false,
+    "business_containers_restarted": 0,
+    "error_kind": "COMMAND_FAILED:docker:1"
+  }
+}

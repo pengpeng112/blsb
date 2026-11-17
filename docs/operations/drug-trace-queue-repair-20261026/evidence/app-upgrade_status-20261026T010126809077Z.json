@@ -1,0 +1,38 @@
+{
+  "host": "app",
+  "phase": "upgrade_status",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T01:01:26.809001+00:00",
+  "result": {
+    "current": "/opt/blyb/releases/queue-20261026T010000Z-r2",
+    "result": {
+      "exit_code": 0,
+      "finished_at": "2026-10-26T01:00:28.349467+00:00"
+    },
+    "containers": {
+      "rc": 0,
+      "out": "blyb-nginx-1 Up About a minute (healthy)\n<worker-container> Up About a minute (healthy)\nblyb-storage-1 Up About a minute (healthy)\nblyb-core-1 Up About a minute (healthy)\nblyb-exchange-1 Up About a minute (healthy)\nblyb-bootstrap-1 Exited (0) About a minute ago\nblyb-migrate-1 Exited (0) About a minute ago\nblyb-db-1 Up About a minute (healthy)\n"
+    },
+    "migrations": {
+      "rc": 0,
+      "out": "1|001_core_init\n2|002_pathology_domain\n3|003_receipt_publication_ref\n4|004_bigint_sizes\n5|005_storage_reservation_ledger\n6|006_config_release_digest\n7|007_tenant_composite_constraints\n8|008_publication_revoked_at_reservation_generalize\n9|009_drug_trace_domain\n10|010_drug_trace_fix2\n11|011_drug_trace_fix3\n12|012_drug_trace_daily_report\n"
+    },
+    "backup_dirs": {
+      "rc": 0,
+      "out": "20261026T005833Z\n20261025T134213Z\n20261022T095541Z\n20261021T165233Z\n20261021T111644Z\n20261016T114711Z\n"
+    },
+    "log_bytes": 8091,
+    "markers": {
+      "healthy": 6,
+      "备份完成": 1,
+      "安装完成": 1,
+      "升级完成": 1,
+      "Traceback": 0,
+      "ERROR": 0,
+      "错误": 0,
+      "permission denied": 0,
+      "Permission denied": 0
+    },
+    "error_types": []
+  }
+}

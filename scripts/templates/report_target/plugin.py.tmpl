@@ -1,0 +1,13 @@
+"""$name 插件注册（脚手架骨架；只登记钩子与 domain.routes，无采集/发送 job）。
+
+不自动加入生产插件加载集（BLYB_PLUGINS 显式集）；发送能力不存在。
+"""
+from __future__ import annotations
+
+
+def register(reg):
+    from domains.$plugin_key import hooks as _hooks
+    from domains.$plugin_key import routes as _routes
+    from plugins.domain_hooks import HOOK_TARGET_SUMMARY
+    reg.attach(HOOK_TARGET_SUMMARY, _hooks.target_summary)
+    reg.attach("domain.routes", _routes.register_routes)

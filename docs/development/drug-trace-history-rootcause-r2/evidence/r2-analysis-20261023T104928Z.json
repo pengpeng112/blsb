@@ -1,0 +1,54 @@
+{
+  "analyzed_at": "2026-10-23T10:51:40.561040+00:00",
+  "run_id": "20261023T104928Z",
+  "source_writes": 0,
+  "uploads": 0,
+  "q03_quality_aggregate": {
+    "whole_bills_evaluated": 11,
+    "by_state": {
+      "INVALID": 11
+    },
+    "bills_with_dup_active_codes": 11,
+    "all_bills_header_rows_unique": true
+  },
+  "q03_quality_private_path": "C:\\Users\\Administrator\\AppData\\Local\\BLYB\\history-rootcause-r2\\live-20261023T104928Z\\q03-whole-bill-quality.json",
+  "q02_state_migration": {
+    "r1_pairs": 1396,
+    "r2_pairs": 1396,
+    "pairs_in_both": 1396,
+    "pairs_state_changed": 0,
+    "pairs_left_excluded_set": 0,
+    "pairs_new_in_excluded_set": 0
+  },
+  "q01_view_side_changes": {
+    "r1_codes_with_view_rows": 369,
+    "r2_codes_with_view_rows": 369,
+    "codes_with_rows_in_both": 369,
+    "codes_appeared_since_r1": 0,
+    "codes_vanished_since_r1": 0,
+    "codes_rowcount_changed": 0,
+    "codes_without_rows_both_timepoints": 162,
+    "exact_legacy_pairs_now_in_view": 0,
+    "note": "view rows for these codes are under 14-digit line ids; exact 20-digit legacy line ids still absent"
+  },
+  "q00_view_definition_check": {
+    "restricted_reader_unchanged": true,
+    "view_status_rows": 2,
+    "per_view": {
+      "V_DRUG_TRACE_BILL": {
+        "fetched_length": 1712,
+        "identical_to_r1_capture": true,
+        "tokens_equal_to_r10_draft": true,
+        "draft_token_count": 362,
+        "view_token_count": 362
+      },
+      "V_DRUG_TRACE_CODE": {
+        "fetched_length": 1498,
+        "identical_to_r1_capture": true,
+        "tokens_equal_to_r10_draft": true,
+        "draft_token_count": 296,
+        "view_token_count": 296
+      }
+    }
+  }
+}

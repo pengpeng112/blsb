@@ -1,0 +1,30 @@
+{
+  "exit_code": 0,
+  "result": {
+    "ok": true,
+    "phase": "collect",
+    "uploads": 0,
+    "source_writes": 0,
+    "calls": [
+      {
+        "method": "GET",
+        "path": "/connectors",
+        "http_status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/drug-trace/collection-runs?limit=200",
+        "http_status": 200
+      },
+      {
+        "method": "POST",
+        "path": "/drug-trace/collection-runs",
+        "http_status": 200
+      }
+    ],
+    "collection": {
+      "collection_run_id": "1bce9518-ea05-4574-aa71-93f1e3a1da27",
+      "job_id": "d70f81a2-04d7-43d5-9937-e97e9053677c"
+    }
+  }
+}

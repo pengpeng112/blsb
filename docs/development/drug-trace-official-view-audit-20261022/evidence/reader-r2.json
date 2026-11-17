@@ -1,0 +1,48 @@
+{
+  "channel": "sjzc/<relay-jump>/data-asset-api/OracleConnector.execute_readonly",
+  "source_writes": 0,
+  "uploads": 0,
+  "registration_changes": 0,
+  "queries": {
+    "identity": {
+      "ok": true,
+      "sql": "SELECT USER AS LOGIN_USER, SYS_CONTEXT('USERENV','SERVICE_NAME') AS SERVICE_NAME FROM DUAL",
+      "params": null,
+      "rows_returned": 1,
+      "truncated": false,
+      "rows": [
+        {
+          "LOGIN_USER": "BLYB_DRUGTRACE",
+          "SERVICE_NAME": "his"
+        }
+      ]
+    },
+    "bounded_time_lag": {
+      "ok": true,
+      "sql": "SELECT bill_time,updated_at FROM PHARMACY.V_DRUG_TRACE_CODE WHERE bill_time>=:begin_time AND bill_time<:end_time AND ROWNUM<=100",
+      "params": "[business key retained remotely]",
+      "rows_returned": 100,
+      "truncated": false
+    }
+  },
+  "business_identifiers_returned": false,
+  "registration": {
+    "source_code": "his_source_<his_host_id>",
+    "host": "<his-host>",
+    "port": 1521,
+    "service": "his",
+    "write_policy": "medical_dict_push"
+  },
+  "lag_summary": {
+    "sample_rows": 100,
+    "parsed_rows": 100,
+    "null_rows": 0,
+    "parse_failures": 0,
+    "positive_lag_rows": 100,
+    "min_seconds": 20.0,
+    "max_seconds": 251.0,
+    "over_60_seconds": 89,
+    "over_300_seconds": 0
+  },
+  "captured_at": "2026-10-22T14:54:35.353886+00:00"
+}

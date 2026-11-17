@@ -1,0 +1,16 @@
+[Unit]
+Description=BLYB DMZ drug-trace forwarder socket (TCP 443)
+Documentation=file:/opt/blyb-dmz/current/README.socket.md
+# systemd 219（Anolis 7.9 实测）支持的指令集；socket activation 托管 443：
+# 服务进程以非 root 用户运行，监听 socket 由 PID1 持有并经 FD 传入。
+ConditionPathExists=/etc/blyb-dmz/forwarder.json
+
+[Socket]
+# ListenStream 地址由安装脚本按 forwarder.json 的 listen_host 渲染（占位符
+# @LISTEN_ADDR@）；只监听内网侧地址，不绑 0.0.0.0。
+ListenStream=@LISTEN_ADDR@:443
+Accept=no
+Backlog=128
+
+[Install]
+WantedBy=sockets.target

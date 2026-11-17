@@ -1,0 +1,34 @@
+{
+  "host": "app",
+  "phase": "status",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T14:04:37.432038+00:00",
+  "result": {
+    "runner": {
+      "exit_code": 1,
+      "result": {
+        "ok": false,
+        "error_type": "AssertionError"
+      }
+    },
+    "container_exit": 0,
+    "progress": {
+      "task": "DTR-HISTORY-RETRY-20261026",
+      "target": "9b19170e-5ceb-4da4-99bb-7478c77d9695",
+      "started_utc": "2026-10-26T14:04:23.058101+00:00",
+      "stage": "precheck",
+      "upload_calls": 0,
+      "lookup": {
+        "submission_id": "9b19170e-5ceb-4da4-99bb-7478c77d9695",
+        "bill_hash": "c59321aefc1d98e5246f1d622e1af4f3e86af2e85246d0d79e26162c167d618c",
+        "state": "NOT_FOUND",
+        "query_status": "OK",
+        "checked_utc": "2026-10-26T14:04:23.491159+00:00",
+        "pages": 1,
+        "windows": 1
+      },
+      "error_type": "AssertionError",
+      "failed_utc": "2026-10-26T14:04:23.563288+00:00"
+    }
+  }
+}

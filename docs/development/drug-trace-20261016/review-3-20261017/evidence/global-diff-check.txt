@@ -1,0 +1,21 @@
+implementation/docs/测试执行记录.md:409: new blank line at EOF.
+
+warning: in the working copy of 'docs/README.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'implementation/deploy/dmz/README.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'implementation/deploy/dmz/blyb-dmz-forwarder.service', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'implementation/deploy/dmz/config.template.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'implementation/deploy/dmz/forwarder.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'implementation/plugins/destinations/alihealth_drugtrace/client.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'implementation/plugins/destinations/alihealth_drugtrace/protocol.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'implementation/plugins/destinations/alihealth_drugtrace/transport.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'implementation/plugins/domains/drug_trace/contracts.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'implementation/plugins/domains/drug_trace/ingest.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'implementation/plugins/domains/drug_trace/models.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'implementation/plugins/domains/drug_trace/payload.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'implementation/plugins/domains/drug_trace/plugin.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'implementation/plugins/domains/drug_trace/quality.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'implementation/plugins/domains/drug_trace/routes.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'implementation/plugins/sources/db_view/drug_trace.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'implementation/tests/e2e/serve_drug_trace_ui.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'implementation/tests/integration/test_drug_trace_api.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'implementation/tests/integration/test_drug_trace_domain.py', LF will be replaced by CRLF the next time Git touches it

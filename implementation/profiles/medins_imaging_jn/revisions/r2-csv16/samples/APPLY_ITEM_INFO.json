@@ -1,0 +1,11 @@
+{
+ "input": {
+  "hospitalCode": "合成hospitalCo",
+  "hospitalName": "合成hospitalNa",
+  "itemNum": "合成itemNum",
+  "itemName": "合成itemName",
+  "dep": "合成dep",
+  "lastChangeTime": "2026-02-01 08:00:00",
+  "disableFlag": 1
+ }
+}

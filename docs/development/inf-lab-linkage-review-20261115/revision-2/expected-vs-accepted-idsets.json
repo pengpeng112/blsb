@@ -1,0 +1,36 @@
+{
+  "ok": true,
+  "source": "ods_internal",
+  "groups": {
+    "P3": {
+      "n": 27,
+      "sha256": "5ecf50d729f038565be58ad39b8db5d1ff9b0692a414f1274e5bca2d7c055c02"
+    },
+    "P1": {
+      "n": 4,
+      "sha256": "19360cc7717f649aae08dec2501ca0859839178170a418ee2b5f3edf8a128838"
+    },
+    "P2": {
+      "n": 7,
+      "sha256": "52f5cfde7b70e969f09c97018b2d5ca0c7b8cdfd0f439428a1d1a0a44cda2a01"
+    }
+  },
+  "comparisons": {
+    "P3": {
+      "expected": 27,
+      "accepted": 27,
+      "same_id_set": true
+    },
+    "P1": {
+      "expected": 4,
+      "accepted": 4,
+      "same_id_set": true
+    },
+    "P2": {
+      "expected": 7,
+      "accepted": 7,
+      "same_id_set": true
+    }
+  },
+  "sql_sha256": "77edaac07351b0cf554e53d946a968af01d9d2b84e876afebcb91209ad3b38bd"
+}

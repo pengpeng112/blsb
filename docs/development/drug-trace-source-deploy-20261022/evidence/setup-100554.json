@@ -1,0 +1,58 @@
+{
+  "exit_code": 0,
+  "result": {
+    "ok": true,
+    "phase": "setup",
+    "uploads": 0,
+    "source_writes": 0,
+    "calls": [
+      {
+        "method": "GET",
+        "path": "/connectors",
+        "http_status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/dictionaries",
+        "http_status": 200
+      },
+      {
+        "method": "POST",
+        "path": "/dictionaries",
+        "http_status": 200
+      },
+      {
+        "method": "POST",
+        "path": "/dictionaries",
+        "http_status": 200
+      },
+      {
+        "method": "POST",
+        "path": "/dictionaries",
+        "http_status": 200
+      },
+      {
+        "method": "POST",
+        "path": "/drug-trace/evidence",
+        "http_status": 200
+      },
+      {
+        "method": "POST",
+        "path": "/drug-trace/sources/7d51abd7-3f32-4c8e-b2fa-9b652a511808/config-revisions",
+        "http_status": 200
+      }
+    ],
+    "source": {
+      "config_revision_id": "10bd581d-5a28-49c9-ab14-668aa9dfc4d6",
+      "revision": 1,
+      "state": "PUBLISHED",
+      "connector_status": "ENABLED",
+      "created": true
+    },
+    "dictionary_revisions": {
+      "version": "r10-normal-20261022-r1",
+      "namespaces": 3,
+      "prior_revisions_preserved": true
+    }
+  }
+}

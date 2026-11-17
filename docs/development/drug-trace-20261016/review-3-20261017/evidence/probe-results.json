@@ -1,0 +1,134 @@
+{
+  "at_utc": "2026-10-17T10:19:21.402228+00:00",
+  "mode": "offline_review_no_credentials_no_network",
+  "confirmed_fixes": {
+    "partial_now_PARTIAL": true,
+    "official_upload_now_ACCEPTED": true,
+    "real_signature_still_disabled": true
+  },
+  "observations": [
+    {
+      "id": "R3-03-accepted",
+      "issue_reproduced": true,
+      "detail": {
+        "state": "ACCEPTED",
+        "new_query_jobs": 0
+      }
+    },
+    {
+      "id": "R3-03-error",
+      "issue_reproduced": true,
+      "detail": {
+        "permission_error_classification": {
+          "state": "NOT_FOUND",
+          "error": {}
+        }
+      }
+    },
+    {
+      "id": "R3-01-query",
+      "issue_reproduced": true,
+      "detail": {
+        "actual_query_bill_type": "323",
+        "documented_selector_values": [
+          "A",
+          "AI",
+          "AO"
+        ]
+      }
+    },
+    {
+      "id": "R3-03-page",
+      "issue_reproduced": true,
+      "detail": {
+        "requested_pages_before_guard": [
+          "1",
+          "1",
+          "1",
+          "1"
+        ]
+      }
+    },
+    {
+      "id": "R3-04-scope",
+      "issue_reproduced": true,
+      "detail": {
+        "excluded_pharmacy_and_zero_quota_allowed": true
+      }
+    },
+    {
+      "id": "R3-04-config",
+      "issue_reproduced": true,
+      "detail": {
+        "blank_evidence_vs_nonblank_release": "APPROVED"
+      }
+    },
+    {
+      "id": "R3-01-id",
+      "issue_reproduced": true,
+      "detail": {
+        "upload_ref_user_id": "HOSP-REF",
+        "purchase_to_user_id": "HOSP-REF",
+        "expected_hospital_ent_id": "HOSP-ENT"
+      }
+    },
+    {
+      "id": "R3-06-reprepare",
+      "issue_reproduced": true,
+      "detail": {
+        "same_old_submission": true,
+        "state": "PREPARED_never_sent",
+        "pinned_config_unchanged": true
+      }
+    },
+    {
+      "id": "R3-06-config-owner",
+      "issue_reproduced": true,
+      "detail": {
+        "cross_tenant_DRAFT_config_was_loaded": true
+      }
+    },
+    {
+      "id": "R3-06-dict-evidence",
+      "issue_reproduced": true,
+      "detail": {
+        "value_from_approved_old": "OLD-APPROVED",
+        "recorded_revision_points_to_draft": true
+      }
+    },
+    {
+      "id": "R3-07-reconcile",
+      "issue_reproduced": true,
+      "detail": {
+        "pages_read": 1,
+        "missing_required_query_dates": true,
+        "matched_despite_total2_only1_observed": 1
+      }
+    },
+    {
+      "id": "R3-02-cursor",
+      "issue_reproduced": true,
+      "detail": {
+        "ORDER_BY_tuple_A_before_B": true,
+        "SQL_concatenation_B_after_cursor_A": false,
+        "scope": "predicate counterexample, not a live Oracle query"
+      }
+    },
+    {
+      "id": "R3-05-pause",
+      "issue_reproduced": true,
+      "detail": {
+        "independent_session_PAUSED_then_collector_state": "DONE",
+        "bills_seen": 2
+      }
+    },
+    {
+      "id": "R3-05-atomic",
+      "issue_reproduced": true,
+      "detail": {
+        "persisted_bills_after_failed_run": 1,
+        "checkpoints": 0
+      }
+    }
+  ]
+}

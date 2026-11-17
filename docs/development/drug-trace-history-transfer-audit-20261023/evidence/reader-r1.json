@@ -1,0 +1,183 @@
+{
+  "channel": "sjzc/<relay-jump>/data-asset-api/OracleConnector.execute_readonly",
+  "source_writes": 0,
+  "uploads": 0,
+  "registration_changes": 0,
+  "queries": {
+    "identity": {
+      "ok": true,
+      "sql": "SELECT USER AS LOGIN_USER,SYS_CONTEXT('USERENV','SERVICE_NAME') AS SERVICE_NAME FROM DUAL",
+      "params": null,
+      "rows_returned": 1,
+      "truncated": false,
+      "rows": [
+        {
+          "LOGIN_USER": "BLYB_DRUGTRACE",
+          "SERVICE_NAME": "his"
+        }
+      ]
+    },
+    "privileges": {
+      "ok": true,
+      "sql": "SELECT PRIVILEGE FROM SESSION_PRIVS ORDER BY PRIVILEGE",
+      "params": null,
+      "rows_returned": 1,
+      "truncated": false,
+      "rows": [
+        {
+          "PRIVILEGE": "CREATE SESSION"
+        }
+      ]
+    },
+    "roles": {
+      "ok": true,
+      "sql": "SELECT ROLE FROM SESSION_ROLES ORDER BY ROLE",
+      "params": null,
+      "rows_returned": 0,
+      "truncated": false,
+      "rows": []
+    },
+    "grants": {
+      "ok": true,
+      "sql": "SELECT OWNER,TABLE_NAME,PRIVILEGE,GRANTABLE FROM USER_TAB_PRIVS_RECD ORDER BY OWNER,TABLE_NAME,PRIVILEGE",
+      "params": null,
+      "rows_returned": 2,
+      "truncated": false,
+      "rows": [
+        {
+          "OWNER": "PHARMACY",
+          "TABLE_NAME": "V_DRUG_TRACE_BILL",
+          "PRIVILEGE": "SELECT",
+          "GRANTABLE": "NO"
+        },
+        {
+          "OWNER": "PHARMACY",
+          "TABLE_NAME": "V_DRUG_TRACE_CODE",
+          "PRIVILEGE": "SELECT",
+          "GRANTABLE": "NO"
+        }
+      ]
+    },
+    "view_definitions": {
+      "ok": true,
+      "sql": "SELECT VIEW_NAME,TEXT FROM ALL_VIEWS WHERE OWNER='PHARMACY' AND VIEW_NAME IN ('V_DRUG_TRACE_CODE','V_DRUG_TRACE_BILL') ORDER BY VIEW_NAME",
+      "params": null,
+      "rows_returned": 2,
+      "truncated": false,
+      "rows": [
+        {
+          "VIEW_NAME": "V_DRUG_TRACE_BILL",
+          "TEXT": "SELECT\n    CAST('HIS' AS VARCHAR2(16)) AS source_system,\n\n    TO_CHAR(M.PRESC_DATE, 'YYYY-MM-DD HH24:MI:SS')\n        || '|' || TO_CHAR(M.PRESC_NO)\n        || '|' || M.DISPENSARY AS source_bill_id,\n\n    TO_CHAR(M.PRESC_NO) AS source_bill_no,\n\n    TO_CHAR(M.PRESC_DATE, 'YYYYMMDDHH24MISS')\n        || '_' || TO_CHAR(M.PRESC_NO)\n        || '_' || M.DISPENSARY\n        || '_' || TO_CHAR(M.DISPENSING_DATETIME, 'YYYYMMDDHH24MISS')\n        || '_' || NVL(TO_CHAR(M.PRESC_SOURCE), 'NULL')\n        || '_' || NVL(TO_CHAR(M.FLAG), 'NULL') || '_R10_RF_' || NVL(TO_CHAR(M.REFUND_FLAG), 'NULL') AS source_revision,\n\n    CASE WHEN M.PRESC_SOURCE = 0 AND M.FLAG = 1 AND M.DISPENSING_DATETIME IS NOT NULL AND NVL(M.REFUND_FLAG, 0) = 0 THEN 'PATIENT_DISPENSE' ELSE 'UNKNOWN' END AS business_kind,\n    M.DISPENSARY AS pharmacy_code,\n    CAST(NULL AS VARCHAR2(64)) AS warehouse_code,\n    CAST(NULL AS VARCHAR2(64)) AS supplier_code,\n    M.DISPENSING_DATETIME AS bill_time,\n    M.DISPENSING_DATETIME AS updated_at,\n    CAST(NULL AS VARCHAR2(64)) AS source_event_seq,\n    CASE WHEN M.PRESC_SOURCE = 0 AND M.FLAG = 1 AND M.DISPENSING_DATETIME IS NOT NULL AND NVL(M.REFUND_FLAG, 0) = 0 THEN 1 ELSE CAST(NULL AS NUMBER(1)) END AS finalized,\n    CASE WHEN M.PRESC_SOURCE = 0 AND M.FLAG = 1 AND M.DISPENSING_DATETIME IS NOT NULL AND NVL(M.REFUND_FLAG, 0) = 0 THEN 0 ELSE CAST(NULL AS NUMBER(1)) END AS is_void,\n    CAST(NULL AS NUMBER(12)) AS expected_code_count,\n    CAST(NULL AS VARCHAR2(64)) AS patient_ref,\n    CAST(NULL AS VARCHAR2(64)) AS encounter_ref,\n\n    'PRESC_SOURCE=' || TO_CHAR(M.PRESC_SOURCE)\n        || CHR(59) || 'FLAG=' || TO_CHAR(M.FLAG)\n        AS source_bill_kind_raw\n\nFROM PHARMACY.DRUG_PRESC_MASTER M\nWITH READ ONLY\n"
+        },
+        {
+          "VIEW_NAME": "V_DRUG_TRACE_CODE",
+          "TEXT": "SELECT\n    CAST('HIS' AS VARCHAR2(16)) AS source_system,\n\n    TO_CHAR(M.PRESC_DATE, 'YYYY-MM-DD HH24:MI:SS')\n        || '|' || TO_CHAR(M.PRESC_NO)\n        || '|' || M.DISPENSARY AS source_bill_id,\n\n    M.DISPENSARY AS pharmacy_code,\n    CASE WHEN M.PRESC_SOURCE = 0 AND M.FLAG = 1 AND M.DISPENSING_DATETIME IS NOT NULL AND NVL(M.REFUND_FLAG, 0) = 0 THEN 'PATIENT_DISPENSE' ELSE 'UNKNOWN' END AS business_kind,\n\n    TO_CHAR(M.PRESC_DATE, 'YYYYMMDDHH24MISS')\n        || '_' || TO_CHAR(M.PRESC_NO)\n        || '_' || M.DISPENSARY\n        || '_' || TO_CHAR(M.DISPENSING_DATETIME, 'YYYYMMDDHH24MISS')\n        || '_' || NVL(TO_CHAR(M.PRESC_SOURCE), 'NULL')\n        || '_' || NVL(TO_CHAR(M.FLAG), 'NULL') || '_R10_RF_' || NVL(TO_CHAR(M.REFUND_FLAG), 'NULL') AS source_revision,\n\n    T.PRESC_DETAILID AS source_line_id,\n    T.RECORD_ID AS source_code_record_id,\n    T.T_TRACE_CODE AS trace_code,\n    CAST(NULL AS NUMBER(20,6)) AS quantity,\n    CAST(NULL AS VARCHAR2(32)) AS unit,\n    CAST(NULL AS VARCHAR2(16)) AS code_level,\n    CAST(NULL AS VARCHAR2(255)) AS parent_code,\n    T.MODIFY_TIME AS updated_at,\n    T.IS_DELETED AS is_deleted,\n    T.F_TRACE_CODE AS f_trace_code,\n    T.S_TRACE_CODE AS s_trace_code,\n    T.T_TRACE_CODE AS t_trace_code,\n    M.DISPENSING_DATETIME AS bill_time\n\nFROM DRUG_USER.MED_TRACE_RECORD T\nJOIN PHARMACY.DRUG_PRESC_MASTER M\n  ON T.TRACE_BILLNO = TO_CHAR(M.PRESC_NO)\n AND T.PRESC_DATE = M.PRESC_DATE\n AND T.STORE_CODE = M.DISPENSARY\n\nWHERE T.IN_OUT_TYPE = 'OUT'\nWITH READ ONLY\n"
+        }
+      ]
+    },
+    "three_exact_pairs": {
+      "ok": true,
+      "sql": "SELECT source_system,source_bill_id,source_line_id,source_code_record_id,\n       pharmacy_code,business_kind,trace_code,is_deleted,bill_time,updated_at\nFROM PHARMACY.V_DRUG_TRACE_CODE\nWHERE ((trace_code=:legacy_code_0 AND source_line_id=:legacy_id_0)\n    OR (trace_code=:legacy_code_1 AND source_line_id=:legacy_id_1)\n    OR (trace_code=:legacy_code_2 AND source_line_id=:legacy_id_2))\n  AND ROWNUM<=101",
+      "params": "[business key retained remotely]",
+      "rows_returned": 3,
+      "truncated": false
+    },
+    "sample_0_header_0": {
+      "ok": true,
+      "sql": "SELECT business_kind,finalized,is_void,bill_time,expected_code_count FROM PHARMACY.V_DRUG_TRACE_BILL WHERE source_system=:ss AND pharmacy_code=:pharmacy AND business_kind=:kind AND source_bill_id=:bid AND ((:bt IS NULL AND bill_time IS NULL) OR bill_time=:bt) AND ROWNUM<=3",
+      "params": "[business key retained remotely]",
+      "rows_returned": 1,
+      "truncated": false
+    },
+    "sample_2_header_0": {
+      "ok": true,
+      "sql": "SELECT business_kind,finalized,is_void,bill_time,expected_code_count FROM PHARMACY.V_DRUG_TRACE_BILL WHERE source_system=:ss AND pharmacy_code=:pharmacy AND business_kind=:kind AND source_bill_id=:bid AND ((:bt IS NULL AND bill_time IS NULL) OR bill_time=:bt) AND ROWNUM<=3",
+      "params": "[business key retained remotely]",
+      "rows_returned": 1,
+      "truncated": false
+    }
+  },
+  "business_identifiers_returned": false,
+  "registration": {
+    "source_code": "his_source_<his_host_id>",
+    "host": "<his-host>",
+    "port": 1521,
+    "service": "his",
+    "write_policy": "medical_dict_push"
+  },
+  "probe_elapsed_seconds": 0.009,
+  "probe_row_cap_reached": false,
+  "samples": [
+    {
+      "category": "standard_key",
+      "historical_occurrences": 1,
+      "view_rows": 1,
+      "source_record_ids_distinct": 1,
+      "business_kinds": {
+        "PATIENT_DISPENSE": 1
+      },
+      "deleted_values": {
+        "0": 1
+      },
+      "header_checks": [
+        {
+          "rows": 1,
+          "finalized_values": {
+            "1": 1
+          },
+          "void_values": {
+            "0": 1
+          }
+        }
+      ],
+      "bill_time_minus_historical_time_seconds": {
+        "min": -19.0,
+        "max": -19.0
+      }
+    },
+    {
+      "category": "nonstandard_key",
+      "historical_occurrences": 1,
+      "view_rows": 0,
+      "source_record_ids_distinct": 0,
+      "business_kinds": {},
+      "deleted_values": {},
+      "header_checks": [],
+      "bill_time_minus_historical_time_seconds": {
+        "min": null,
+        "max": null
+      }
+    },
+    {
+      "category": "repeated_pair",
+      "historical_occurrences": 2,
+      "view_rows": 2,
+      "source_record_ids_distinct": 2,
+      "business_kinds": {
+        "PATIENT_DISPENSE": 2
+      },
+      "deleted_values": {
+        "0": 2
+      },
+      "header_checks": [
+        {
+          "rows": 1,
+          "finalized_values": {
+            "1": 1
+          },
+          "void_values": {
+            "0": 1
+          }
+        }
+      ],
+      "bill_time_minus_historical_time_seconds": {
+        "min": -1608.0,
+        "max": -237.0
+      }
+    }
+  ],
+  "total_elapsed_seconds": 0.21,
+  "history_total_rows": 489613,
+  "whole_history_compared": false,
+  "captured_at": "2026-10-23T04:05:03.892917+00:00"
+}

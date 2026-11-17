@@ -1,0 +1,104 @@
+<template>
+  <div class="drugtrace-page">
+    <header class="page-header">
+      <div class="page-heading">
+        <div class="page-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM15 14v3h-1v3h3v-2h3v-4M19 20h1" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" /></svg></div>
+        <div><p class="eyebrow">码上放心 · 医疗机构数据上报</p><h2>药品追溯</h2><p class="page-description">看进度、查结果，集中处理需要关注的单据。</p></div>
+      </div>
+      <div class="header-tools">
+        <span class="mode-badge" :class="modeClass"><i></i>{{ modeLabel }}</span>
+        <button class="refresh-button" @click="refreshDashboard" :disabled="refreshing"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M16 8a6 6 0 1 0 .1 4M16 3v5h-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>{{ refreshing ? '正在刷新' : '刷新数据' }}</button>
+        <span class="last-refresh">{{ lastRefreshed ? '刷新于 ' + lastRefreshed : '正在读取数据' }}</span>
+      </div>
+    </header>
+
+    <div v-if="retailDestination?.is_mock" class="notice info"><strong>当前为演练环境</strong><span>这里的合成结果不代表真实平台上报。</span></div>
+    <div v-if="timedError" class="notice danger" role="alert"><strong>部分数据暂时无法读取</strong><span>{{ timedError }}。显示“—”的项目暂无有效统计，请刷新重试。</span></div>
+    <div v-if="msg" class="action-message" role="status"><span>{{ msg }}</span><button class="text-button" @click="msg = ''" aria-label="关闭操作提示">关闭</button></div>
+
+    <nav class="page-tabs" aria-label="药品追溯功能">
+      <button v-for="tab in tabs" :key="tab.id" :class="{ active: activeTab === tab.id }" :aria-current="activeTab === tab.id ? 'page' : undefined" @click="switchTab(tab.id)">{{ tab.name }}<span v-if="tab.id === 'reports' && attentionCount" class="tab-count">{{ n(attentionCount) }}</span></button>
+    </nav>
+
+    <section v-if="activeTab === 'overview'" class="overview-pane">
+      <div class="section-toolbar"><div><h3>上报总览</h3><p>药品追溯全部业务 · 按提交记录统计</p></div><div class="range-controls"><label class="auto-refresh"><input type="checkbox" v-model="autoRefresh" /> 每60秒刷新</label><select v-model.number="statsDaysParam" @change="changeRange" aria-label="统计范围"><option :value="7">近7天</option><option :value="14">近14天</option><option :value="30">近30天</option><option :value="90">近90天</option></select></div></div>
+      <div class="metric-grid">
+        <button v-for="card in metricCards" :key="card.state" class="metric-card" :class="card.tone" @click="openRecords(card.state)">
+          <div class="metric-top"><span>{{ card.title }}</span><span class="metric-symbol" aria-hidden="true">{{ card.symbol }}</span></div>
+          <div class="metric-value">{{ n(card.count) }}<small>笔</small></div><p>{{ card.note }}</p><span class="metric-link">查看记录 <span aria-hidden="true">↗</span></span>
+        </button>
+      </div>
+
+      <div class="overview-grid">
+        <div class="main-column">
+          <section class="panel progress-panel">
+            <div class="panel-heading"><div><h3>当前上报进度</h3><p>平台受理后，还需要查询确认最终结果。</p></div><span class="quiet-badge">共 {{ n(statsAvailable ? aggregate.total : null) }} 笔提交</span></div>
+            <div class="progress-head"><strong>{{ summaryTitle }}</strong><span v-if="statsAvailable && aggregate.total">确认占比 <b>{{ confirmedPercent }}%</b></span></div>
+            <div class="status-track" role="img" :aria-label="statsAvailable ? '已确认占比 ' + confirmedPercent + '%' : '统计暂不可用'">
+              <span v-for="part in progressParts" :key="part.key" :class="part.tone" :style="{ width: part.percent + '%' }" :title="part.label + ' ' + n(part.value) + '笔'"></span>
+            </div>
+            <div class="track-legend"><span v-for="part in progressParts" :key="part.key"><i :class="part.tone"></i>{{ part.label }} <b>{{ n(part.value) }}</b></span></div>
+            <div class="flow-grid"><div v-for="(step, i) in flowSteps" :key="step.name" class="flow-step"><span class="step-index">{{ i + 1 }}</span><span>{{ step.name }}</span><strong>{{ n(step.count) }}</strong><small>{{ step.note }}</small></div></div>
+            <p class="panel-footnote">这是各状态的当前数量，不是同一批单据的累计流转量。结果待核查、部分成功及退回记录单独处理。</p>
+          </section>
+
+          <section class="panel trend-panel">
+            <div class="panel-heading"><div><h3>近期提交情况</h3><p>按提交创建日期（UTC）分组，结果会随平台查询更新。</p></div><button class="text-button" @click="switchTab('reports')">查看全部记录 →</button></div>
+            <div v-if="!statsAvailable" class="empty-state">{{ timedBusy ? '正在读取统计…' : '统计暂不可用，请刷新重试' }}</div>
+            <div v-else-if="!chartDays.length" class="empty-state"><span class="empty-symbol">▤</span>近 {{ statsDaysParam }} 天暂无提交记录</div>
+            <div v-else class="chart" role="img" aria-label="近期每日提交数量和状态">
+              <div v-for="day in chartDays" :key="day.date" class="chart-day"><span class="chart-number">{{ n(day.total) }}</span><div class="chart-bar-area"><div class="chart-bar" :style="{ height: (day.total / chartMax * 110) + 'px' }"><span v-for="part in dayParts(day)" :key="part.key" :class="part.tone" :style="{ height: part.percent + '%' }" :title="day.date + ' ' + part.label + ' ' + n(part.value)"></span></div></div><span class="chart-date">{{ day.date.slice(5) }}</span></div>
+            </div>
+            <div class="chart-key"><span><i class="success"></i>确认成功</span><span><i class="pending"></i>平台受理</span><span><i class="unknown"></i>待核查</span><span><i class="failed"></i>部分成功 / 退回</span><span><i class="other"></i>其他</span></div>
+          </section>
+        </div>
+
+        <aside class="summary-column">
+          <section class="panel attention-panel"><div class="panel-heading"><h3>需要关注</h3><span v-if="attentionCount" class="count-pill">{{ n(attentionCount) }} 笔</span></div>
+            <div v-if="!statsAvailable" class="empty-state compact">统计读取后显示待处理事项</div>
+            <template v-else>
+              <button v-if="count('UNKNOWN')" class="attention-item" @click="openRecords('UNKNOWN')"><i class="attention-dot unknown"></i><div><strong>结果待核查 <b>{{ n(count('UNKNOWN')) }}</b></strong><p>先核对平台结果，避免重复上报。</p></div><span>›</span></button>
+              <button v-if="failedCount" class="attention-item" @click="openRecords('problem')"><i class="attention-dot failed"></i><div><strong>退回或部分成功 <b>{{ n(failedCount) }}</b></strong><p>查看返回原因，核对原始单据。</p></div><span>›</span></button>
+              <button v-if="count('ACCEPTED')" class="attention-item" @click="openRecords('ACCEPTED')"><i class="attention-dot pending"></i><div><strong>等待最终确认 <b>{{ n(count('ACCEPTED')) }}</b></strong><p>平台已受理，尚未确认全部成功。</p></div><span>›</span></button>
+              <p v-if="!attentionCount && !count('ACCEPTED')" class="empty-state compact">当前汇总未见待核查或平台退回记录。</p>
+            </template>
+            <div v-if="problemMismatch" class="inline-warning">汇总仍有待处理记录，近期明细暂未完整显示。请以汇总为准，不要据空列表判定已处理完。</div>
+          </section>
+
+          <section class="panel schedule-panel"><div class="panel-heading"><h3>定时上报</h3><span class="quiet-badge">每日 06:10</span></div><div class="schedule-next"><span>下次计划时间 · 北京时间</span><strong>{{ health.nextAt }}</strong></div>
+            <dl class="simple-list"><div><dt>处理范围</dt><dd>前一日业务数据</dd></div><div><dt>最近日报</dt><dd>{{ sectionOk.reports ? health.latest?.report_date || '暂无记录' : '暂不可用' }}</dd></div><div><dt>当次结果</dt><dd><span v-if="health.latest && sectionOk.reports" class="status-badge" :class="health.latest.outcome === 'OK' ? 'success' : 'failed'">{{ label(health.latest.outcome) }}</span><span v-else>—</span></dd></div></dl>
+            <p v-if="health.missing" class="inline-warning">{{ health.yesterdayStr }} 的日报尚未入库，需检查任务进度。</p><p class="panel-footnote">计划时间不代表任务当前运行状态；日报在任务结束后更新，可能晚于实时平台结果。</p><button class="secondary-button full-width" @click="switchTab('reports')">查看任务日报</button>
+          </section>
+
+          <section class="panel scope-panel"><div class="panel-heading"><h3>发送授权</h3><span class="status-badge" :class="scopeApproved ? 'success' : 'neutral'">{{ sectionOk.scope ? scopeApproved ? '有效授权' : '需要核查' : '暂不可用' }}</span></div><template v-if="timedScope?.quota"><div class="quota-line"><strong>{{ n(timedScope.quota.used) }}</strong><span>/ {{ n(timedScope.quota.max_bills) }} 笔额度</span></div><div class="quota-track"><span :style="{ width: quotaPercent + '%' }"></span></div></template><dl class="simple-list"><div><dt>授权药房</dt><dd>{{ timedScope?.scope?.pharmacies?.length ?? '—' }} 家</dd></div><div><dt>业务窗口</dt><dd>{{ shortDate(timedScope?.scope?.window_begin) }} 至 {{ shortDate(timedScope?.scope?.window_end) }}</dd></div></dl><button class="text-button" @click="switchTab('settings')">查看接入与授权 →</button></section>
+        </aside>
+      </div>
+      <p class="page-footnote">统计单位为“提交记录”，近 {{ statsDaysParam }} 天、全部药品追溯业务；日报按业务日期（北京时间），平台统计按提交创建日（UTC），两者不可按同日直接相减。</p>
+    </section>
+
+    <section v-if="activeTab === 'reports'" class="records-pane">
+      <div class="section-toolbar"><div><h3>上报记录</h3><p>查看平台处理结果，按状态快速筛选。</p></div><button class="secondary-button" @click="loadRecordRows">刷新记录</button></div>
+      <section class="panel"><div class="record-filters"><input v-model="recordSearch" placeholder="搜索单据号、平台单号或提交编号" aria-label="搜索上报记录" /><select v-model="recordState" aria-label="上报状态"><option value="">全部状态</option><option value="problem">需要处理</option><option v-for="state in ['CONFIRMED','ACCEPTED','UNKNOWN','PARTIAL','REJECTED','PREPARED','SENDING']" :key="state" :value="state">{{ label(state) }}</option></select><span class="muted">已加载 {{ n(recordRows.length) }} 笔，当前显示 {{ n(filteredRecords.length) }} 笔</span></div>
+        <p class="panel-footnote">明细最多显示近期200笔，筛选仅作用于已加载记录；完整数量请看总览汇总。查询状态不会重新发送单据。</p>
+        <div v-if="recordError" class="notice danger" role="alert">{{ recordError }}</div><div v-if="recordIncomplete" class="notice warning">汇总仍有 {{ n(attentionCount) }} 笔需要关注，当前明细未完整覆盖。请通过平台核对名单，不能据此判定已处理完。</div>
+        <div class="table-scroll"><table v-if="filteredRecords.length"><thead><tr><th>业务单据 / 平台单号</th><th>平台状态</th><th>最近反馈</th><th>更新时间（UTC）</th><th class="right">操作</th></tr></thead><tbody><tr v-for="s in filteredRecords" :key="s.id"><td><strong class="bill-number">{{ s.source_bill_no || s.bill_code || s.id.slice(0,8) }}</strong><small class="cell-secondary">{{ s.bill_code || s.id }}</small></td><td><span class="status-badge" :class="tone(s.state)">{{ label(s.state) }}</span></td><td>{{ s.attempt_http_status ? 'HTTP ' + s.attempt_http_status : '暂无发送反馈' }}<small class="cell-secondary">{{ label(s.attempt_outcome) }}</small></td><td class="mono">{{ (s.updated_at || '').slice(0,16).replace('T',' ') }}</td><td class="right"><button v-if="canOperate && ['ACCEPTED','UNKNOWN','PARTIAL','REJECTED'].includes(s.state)" class="text-button" @click="queryProblem(s)">查询结果</button><button v-if="canOperate && s.state === 'PREPARED'" class="text-button" @click="send(s)">发送单据</button><span v-if="s.state === 'CONFIRMED'" class="cell-secondary">已完成</span></td></tr></tbody></table><div v-else-if="!recordError" class="empty-state">{{ recordBusy ? '正在读取记录…' : '当前已加载记录中没有符合条件的提交' }}</div></div>
+      </section>
+      <section class="panel"><div class="panel-heading"><div><h3>任务日报</h3><p>记录任务当次执行结果；发送请求数与最终成功数分别统计。</p></div><span class="quiet-badge">业务日期 · 北京时间</span></div><div class="table-scroll"><table v-if="dailyReports.length"><thead><tr><th>业务日期</th><th>来源</th><th class="num">候选单据</th><th class="num">发送请求</th><th class="num">准备 / 发送错误</th><th class="num">查询错误</th><th>当次结果</th><th>耗时</th><th></th></tr></thead><tbody><tr v-for="r in dailyReports" :key="r.report_date+r.source"><td class="mono">{{ r.report_date }}</td><td>{{ label(r.source) }}</td><td class="num">{{ n(r.candidate_count) }}</td><td class="num">{{ n(r.sent) }}</td><td class="num" :class="r.errors_count ? 'error-text' : ''">{{ n(r.errors_count || 0) }}</td><td class="num">{{ n(r.query_errors_count || 0) }}</td><td><span class="status-badge" :class="r.outcome==='OK'?'success':'failed'">{{ label(r.outcome) }}</span></td><td>{{ fmtMinutes(r.elapsed_seconds) }}</td><td><button class="text-button" @click="showDailyDetail(r.report_date)">查看详情</button></td></tr></tbody></table><div v-else class="empty-state">{{ sectionOk.reports ? '暂无任务日报' : '日报暂不可用，请刷新重试' }}</div></div></section>
+    </section>
+
+    <section v-if="activeTab === 'bills'" class="tool-pane"><div class="section-toolbar"><div><h3>单据与追溯码</h3><p>核查业务分类、药房、单据完整性及追溯码明细。</p></div></div>
+      <!-- BILL_SECTION -->
+      <details class="panel technical-details"><summary>数据采集记录与演练工具</summary><p class="panel-footnote">这里的手动采集仅为合成演练；正式数据由已部署任务抽取。</p><!-- COLLECT_SECTION --></details>
+    </section>
+
+    <section v-if="activeTab === 'reconcile'" class="tool-pane"><div class="section-toolbar"><div><h3>对账核查</h3><p>核对本地与平台单据状态，查看差异及已有处置记录。</p></div></div><!-- RECON_SECTION --></section>
+
+    <section v-if="activeTab === 'settings'" class="tool-pane"><div class="section-toolbar"><div><h3>接入与授权</h3><p>低频配置集中在此处，日常查看上报进度请使用“总览”。</p></div></div><div class="notice info">就绪配置用于核对接入条件；“网络状态未知”不能视为已经连通。</div><!-- READY_SECTION --><details v-if="canApprove" class="panel technical-details"><summary>停发操作</summary><p class="panel-footnote">撤销全部证据后，真实采集、发送、查询与对账均会被拦截。此操作需要再次确认。</p><button class="secondary-button stop-button" @click="revokeAll">撤销上报证据并停发</button></details></section>
+
+    <div v-if="dailyDetail" class="detail-overlay" role="dialog" aria-modal="true" aria-labelledby="daily-detail-title" @click.self="dailyDetail=null; detailDate=''">
+      <section class="detail-dialog"><div class="panel-heading"><div><p class="eyebrow">任务执行记录 · 不代表当前批次进度</p><h3 id="daily-detail-title">{{ dailyDetail.report_date }} 日报详情</h3></div><button class="secondary-button" @click="dailyDetail=null; detailDate=''">关闭</button></div><div class="detail-summary"><span>当次结果 <b>{{ label(dailyDetail.outcome) }}</b></span><span>发送请求 <b>{{ n(dailyDetail.send?.sent || 0) }}</b></span><span>候选单据 <b>{{ n(dailyDetail.candidate_count) }}</b></span><span>耗时 <b>{{ fmtMinutes(dailyDetail.elapsed_seconds) }}</b></span></div><p class="panel-footnote">业务窗口 {{ dailyDetail.window?.[0] }} 至 {{ dailyDetail.window?.[1] }}（北京时间）。这是当次任务结束时的记录，处理问题后请结合最新平台统计判断。</p>
+        <div v-if="dailyDetail.send?.aborted_reason" class="notice warning">任务中止原因：{{ errorText({ error_code: dailyDetail.send.aborted_reason }) }}</div><h4>准备与发送问题</h4><p v-if="dailyDetail.send?.errors_truncated" class="panel-footnote">共 {{ n(dailyDetail.send.errors_total) }} 项，显示已保留的前 {{ dailyDetail.send.errors.length }} 项。</p><div class="table-scroll"><table v-if="dailyDetail.send?.errors?.length"><thead><tr><th>单据 / 提交编号</th><th>步骤</th><th>问题说明</th></tr></thead><tbody><tr v-for="(e,i) in dailyDetail.send.errors" :key="i"><td class="mono">{{ e.bill || e.submission || '—' }}</td><td>{{ stepLabel(e.step) }}</td><td>{{ errorText(e.res || e) }}</td></tr></tbody></table><p v-else class="empty-state compact">本次记录未列出准备或发送错误。</p></div><h4>查询与后续核查</h4><p class="panel-footnote">查询错误 {{ n(dailyDetail.query_stats?.errors_total || dailyDetail.query_stats?.errors?.length || 0) }} 项；查询轮次已用尽 {{ n(dailyDetail.query_stats?.skipped_exhausted || 0) }} 笔；已有查询在途 {{ n(dailyDetail.query_stats?.skipped_inflight || 0) }} 笔。</p><div class="table-scroll"><table v-if="dailyDetail.query_stats?.errors?.length"><thead><tr><th>提交编号</th><th>问题说明</th></tr></thead><tbody><tr v-for="(e,i) in dailyDetail.query_stats.errors" :key="i"><td class="mono">{{ e.submission }}</td><td>{{ errorText(e.res || e) }}</td></tr></tbody></table></div><details class="technical-details"><summary>查看完整技术信息</summary><pre class="json">{{ JSON.stringify(dailyDetail,null,2) }}</pre></details>
+      </section>
+    </div>
+  </div>
+</template>

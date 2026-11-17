@@ -1,0 +1,32 @@
+{
+  "host": "app",
+  "phase": "content",
+  "exit_code": 0,
+  "captured_at": "2026-10-27T06:46:45.641703+00:00",
+  "result": {
+    "business_date": "2026-10-26",
+    "source_calls": 0,
+    "platform_calls": 0,
+    "writes": 0,
+    "checked_bills": 1995,
+    "codes": 6476,
+    "mismatches": {},
+    "transaction_read_only": "on",
+    "submission_states": {
+      "CONFIRMED": 1555,
+      "PREPARED": 420,
+      "ACCEPTED": 20
+    },
+    "items_states": {
+      "PENDING": 6476
+    },
+    "attempt_states": {
+      "ACCEPTED": 1575,
+      "UNKNOWN": 1
+    },
+    "attempt_digests_checked": 1576,
+    "expected_code_count_unknown": 1995,
+    "consistent": true,
+    "utc": "2026-10-27T06:46:48.119048+00:00"
+  }
+}

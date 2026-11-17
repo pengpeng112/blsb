@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="10" skipped="0" tests="12" time="0.715" timestamp="2026-10-22T16:34:14.234320+08:00" hostname="DESKTOP-J4OGV5M"><testcase classname="tests.integration.test_drug_trace_oracle_first_page" name="test_first_page_reads_codes_with_oracle_null_cursor[None]" time="0.034"><failure message="AssertionError: assert [] == ['0001', '0010']&#10;  &#10;  Right contains 2 more items, first extra item: '0001'&#10;  Use -v to get more diff">repository = (&lt;sources.db_view.drug_trace.OracleDrugTraceWarehouse object at 0x0000015AB3EF7A10&gt;, {'bill_time': '2026-10-22 08:00:0......}, {'bill_time': '2026-10-22 08:00:00', 'business_kind': 'UNKNOWN', 'code_level': None, 'f_trace_code': None, ...}])
+initial = None
+
+    @pytest.mark.parametrize("initial", [None, ""])
+    def test_first_page_reads_codes_with_oracle_null_cursor(repository, initial):
+        wh, _, expected = repository
+        rows = wh.fetch_all("drugtrace.bill_codes",
+                            {**KEY, "after_record_id": initial}, 2)
+&gt;       assert [r["source_code_record_id"] for r in rows] == RECORD_IDS[:2]
+E       AssertionError: assert [] == ['0001', '0010']
+E         
+E         Right contains 2 more items, first extra item: '0001'
+E         Use -v to get more diff
+
+tests\integration\test_drug_trace_oracle_first_page.py:99: AssertionError</failure></testcase><testcase classname="tests.integration.test_drug_trace_oracle_first_page" name="test_first_page_reads_codes_with_oracle_null_cursor[]" time="0.020"><failure message="AssertionError: assert [] == ['0001', '0010']&#10;  &#10;  Right contains 2 more items, first extra item: '0001'&#10;  Use -v to get more diff">repository = (&lt;sources.db_view.drug_trace.OracleDrugTraceWarehouse object at 0x0000015AB407EC10&gt;, {'bill_time': '2026-10-22 08:00:0......}, {'bill_time': '2026-10-22 08:00:00', 'business_kind': 'UNKNOWN', 'code_level': None, 'f_trace_code': None, ...}])
+initial = ''
+
+    @pytest.mark.parametrize("initial", [None, ""])
+    def test_first_page_reads_codes_with_oracle_null_cursor(repository, initial):
+        wh, _, expected = repository
+        rows = wh.fetch_all("drugtrace.bill_codes",
+                            {**KEY, "after_record_id": initial}, 2)
+&gt;       assert [r["source_code_record_id"] for r in rows] == RECORD_IDS[:2]
+E       AssertionError: assert [] == ['0001', '0010']
+E         
+E         Right contains 2 more items, first extra item: '0001'
+E         Use -v to get more diff
+
+tests\integration\test_drug_trace_oracle_first_page.py:99: AssertionError</failure></testcase><testcase classname="tests.integration.test_drug_trace_oracle_first_page" name="test_whole_bill_reads_all_pages_without_duplicates[1]" time="0.020"><failure message="AssertionError: assert [] == ['0001', '001...1', '10', '2']&#10;  &#10;  Right contains 6 more items, first extra item: '0001'&#10;  Use -v to get more diff">repository = (&lt;sources.db_view.drug_trace.OracleDrugTraceWarehouse object at 0x0000015AB407F250&gt;, {'bill_time': '2026-10-22 08:00:0......}, {'bill_time': '2026-10-22 08:00:00', 'business_kind': 'UNKNOWN', 'code_level': None, 'f_trace_code': None, ...}])
+page_size = 1
+
+    @pytest.mark.parametrize("page_size", [1, 2, 3, 10])
+    def test_whole_bill_reads_all_pages_without_duplicates(repository, page_size):
+        wh, header, expected = repository
+        rows, checked, reread = read_bill_whole(wh, header, code_page_limit=page_size)
+&gt;       assert [r["source_code_record_id"] for r in rows] == RECORD_IDS
+E       AssertionError: assert [] == ['0001', '001...1', '10', '2']
+E         
+E         Right contains 6 more items, first extra item: '0001'
+E         Use -v to get more diff
+
+tests\integration\test_drug_trace_oracle_first_page.py:107: AssertionError</failure></testcase><testcase classname="tests.integration.test_drug_trace_oracle_first_page" name="test_whole_bill_reads_all_pages_without_duplicates[2]" time="0.021"><failure message="AssertionError: assert [] == ['0001', '001...1', '10', '2']&#10;  &#10;  Right contains 6 more items, first extra item: '0001'&#10;  Use -v to get more diff">repository = (&lt;sources.db_view.drug_trace.OracleDrugTraceWarehouse object at 0x0000015AB40A8D60&gt;, {'bill_time': '2026-10-22 08:00:0......}, {'bill_time': '2026-10-22 08:00:00', 'business_kind': 'UNKNOWN', 'code_level': None, 'f_trace_code': None, ...}])
+page_size = 2
+
+    @pytest.mark.parametrize("page_size", [1, 2, 3, 10])
+    def test_whole_bill_reads_all_pages_without_duplicates(repository, page_size):
+        wh, header, expected = repository
+        rows, checked, reread = read_bill_whole(wh, header, code_page_limit=page_size)
+&gt;       assert [r["source_code_record_id"] for r in rows] == RECORD_IDS
+E       AssertionError: assert [] == ['0001', '001...1', '10', '2']
+E         
+E         Right contains 6 more items, first extra item: '0001'
+E         Use -v to get more diff
+
+tests\integration\test_drug_trace_oracle_first_page.py:107: AssertionError</failure></testcase><testcase classname="tests.integration.test_drug_trace_oracle_first_page" name="test_whole_bill_reads_all_pages_without_duplicates[3]" time="0.021"><failure message="AssertionError: assert [] == ['0001', '001...1', '10', '2']&#10;  &#10;  Right contains 6 more items, first extra item: '0001'&#10;  Use -v to get more diff">repository = (&lt;sources.db_view.drug_trace.OracleDrugTraceWarehouse object at 0x0000015AB40A96E0&gt;, {'bill_time': '2026-10-22 08:00:0......}, {'bill_time': '2026-10-22 08:00:00', 'business_kind': 'UNKNOWN', 'code_level': None, 'f_trace_code': None, ...}])
+page_size = 3
+
+    @pytest.mark.parametrize("page_size", [1, 2, 3, 10])
+    def test_whole_bill_reads_all_pages_without_duplicates(repository, page_size):
+        wh, header, expected = repository
+        rows, checked, reread = read_bill_whole(wh, header, code_page_limit=page_size)
+&gt;       assert [r["source_code_record_id"] for r in rows] == RECORD_IDS
+E       AssertionError: assert [] == ['0001', '001...1', '10', '2']
+E         
+E         Right contains 6 more items, first extra item: '0001'
+E         Use -v to get more diff
+
+tests\integration\test_drug_trace_oracle_first_page.py:107: AssertionError</failure></testcase><testcase classname="tests.integration.test_drug_trace_oracle_first_page" name="test_whole_bill_reads_all_pages_without_duplicates[10]" time="0.021"><failure message="AssertionError: assert [] == ['0001', '001...1', '10', '2']&#10;  &#10;  Right contains 6 more items, first extra item: '0001'&#10;  Use -v to get more diff">repository = (&lt;sources.db_view.drug_trace.OracleDrugTraceWarehouse object at 0x0000015AB401F1D0&gt;, {'bill_time': '2026-10-22 08:00:0......}, {'bill_time': '2026-10-22 08:00:00', 'business_kind': 'UNKNOWN', 'code_level': None, 'f_trace_code': None, ...}])
+page_size = 10
+
+    @pytest.mark.parametrize("page_size", [1, 2, 3, 10])
+    def test_whole_bill_reads_all_pages_without_duplicates(repository, page_size):
+        wh, header, expected = repository
+        rows, checked, reread = read_bill_whole(wh, header, code_page_limit=page_size)
+&gt;       assert [r["source_code_record_id"] for r in rows] == RECORD_IDS
+E       AssertionError: assert [] == ['0001', '001...1', '10', '2']
+E         
+E         Right contains 6 more items, first extra item: '0001'
+E         Use -v to get more diff
+
+tests\integration\test_drug_trace_oracle_first_page.py:107: AssertionError</failure></testcase><testcase classname="tests.integration.test_drug_trace_oracle_first_page" name="test_first_page_preserves_each_composite_key_filter[source_system]" time="0.020"><failure message="assert 0 == 1&#10; +  where 0 = len([])">repository = (&lt;sources.db_view.drug_trace.OracleDrugTraceWarehouse object at 0x0000015AB3F23F00&gt;, {'bill_time': '2026-10-22 08:00:0......}, {'bill_time': '2026-10-22 08:00:00', 'business_kind': 'UNKNOWN', 'code_level': None, 'f_trace_code': None, ...}])
+field = 'source_system'
+
+    @pytest.mark.parametrize("field", list(KEY))
+    def test_first_page_preserves_each_composite_key_filter(repository, field):
+        wh, _, _ = repository
+        rows = wh.fetch_all("drugtrace.bill_codes",
+                            {**KEY, field: "OTHER", "after_record_id": None}, 100)
+&gt;       assert len(rows) == 1
+E       assert 0 == 1
+E        +  where 0 = len([])
+
+tests\integration\test_drug_trace_oracle_first_page.py:120: AssertionError</failure></testcase><testcase classname="tests.integration.test_drug_trace_oracle_first_page" name="test_first_page_preserves_each_composite_key_filter[pharmacy_code]" time="0.020"><failure message="assert 0 == 1&#10; +  where 0 = len([])">repository = (&lt;sources.db_view.drug_trace.OracleDrugTraceWarehouse object at 0x0000015AB3F23020&gt;, {'bill_time': '2026-10-22 08:00:0......}, {'bill_time': '2026-10-22 08:00:00', 'business_kind': 'UNKNOWN', 'code_level': None, 'f_trace_code': None, ...}])
+field = 'pharmacy_code'
+
+    @pytest.mark.parametrize("field", list(KEY))
+    def test_first_page_preserves_each_composite_key_filter(repository, field):
+        wh, _, _ = repository
+        rows = wh.fetch_all("drugtrace.bill_codes",
+                            {**KEY, field: "OTHER", "after_record_id": None}, 100)
+&gt;       assert len(rows) == 1
+E       assert 0 == 1
+E        +  where 0 = len([])
+
+tests\integration\test_drug_trace_oracle_first_page.py:120: AssertionError</failure></testcase><testcase classname="tests.integration.test_drug_trace_oracle_first_page" name="test_first_page_preserves_each_composite_key_filter[business_kind]" time="0.022"><failure message="assert 0 == 1&#10; +  where 0 = len([])">repository = (&lt;sources.db_view.drug_trace.OracleDrugTraceWarehouse object at 0x0000015AB40ADE50&gt;, {'bill_time': '2026-10-22 08:00:0......}, {'bill_time': '2026-10-22 08:00:00', 'business_kind': 'UNKNOWN', 'code_level': None, 'f_trace_code': None, ...}])
+field = 'business_kind'
+
+    @pytest.mark.parametrize("field", list(KEY))
+    def test_first_page_preserves_each_composite_key_filter(repository, field):
+        wh, _, _ = repository
+        rows = wh.fetch_all("drugtrace.bill_codes",
+                            {**KEY, field: "OTHER", "after_record_id": None}, 100)
+&gt;       assert len(rows) == 1
+E       assert 0 == 1
+E        +  where 0 = len([])
+
+tests\integration\test_drug_trace_oracle_first_page.py:120: AssertionError</failure></testcase><testcase classname="tests.integration.test_drug_trace_oracle_first_page" name="test_first_page_preserves_each_composite_key_filter[source_bill_id]" time="0.020"><failure message="assert 0 == 1&#10; +  where 0 = len([])">repository = (&lt;sources.db_view.drug_trace.OracleDrugTraceWarehouse object at 0x0000015AB40AD250&gt;, {'bill_time': '2026-10-22 08:00:0......}, {'bill_time': '2026-10-22 08:00:00', 'business_kind': 'UNKNOWN', 'code_level': None, 'f_trace_code': None, ...}])
+field = 'source_bill_id'
+
+    @pytest.mark.parametrize("field", list(KEY))
+    def test_first_page_preserves_each_composite_key_filter(repository, field):
+        wh, _, _ = repository
+        rows = wh.fetch_all("drugtrace.bill_codes",
+                            {**KEY, field: "OTHER", "after_record_id": None}, 100)
+&gt;       assert len(rows) == 1
+E       assert 0 == 1
+E        +  where 0 = len([])
+
+tests\integration\test_drug_trace_oracle_first_page.py:120: AssertionError</failure></testcase><testcase classname="tests.integration.test_drug_trace_oracle_first_page" name="test_nonempty_cursor_keeps_string_order_and_excludes_boundary" time="0.020" /><testcase classname="tests.integration.test_drug_trace_oracle_first_page" name="test_empty_bill_stays_empty" time="0.019" /></testsuite></testsuites>

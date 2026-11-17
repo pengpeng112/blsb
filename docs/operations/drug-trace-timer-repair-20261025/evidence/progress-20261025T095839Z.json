@@ -1,0 +1,37 @@
+{
+  "captured_at": "2026-10-25T09:58:39.195211+00:00",
+  "ssh_exit_code": 0,
+  "progress": {
+    "host_time": "2026-10-25T09:58:38.364807+00:00",
+    "blyb-daily-upload.service": {
+      "ExecMainStartTimestamp": "Sun 2026-10-25 17:57:41 CST",
+      "ExecMainExitTimestamp": "n/a",
+      "ExecMainStatus": "0",
+      "ActiveState": "activating",
+      "SubState": "start"
+    },
+    "blyb-daily-upload.timer": {
+      "NextElapseUSecRealtime": "Mon 2026-10-26 06:10:00 CST",
+      "ActiveState": "active",
+      "SubState": "waiting"
+    },
+    "receipts": [
+      {
+        "file": "20261025-061029.json",
+        "bytes": 0
+      },
+      {
+        "file": "20261025-175741.json",
+        "bytes": 0
+      }
+    ],
+    "driver_error": {
+      "bytes": 0,
+      "types": []
+    },
+    "database_exit_code": 1,
+    "database_error": [
+      "column \"event_type\" does not exist"
+    ]
+  }
+}

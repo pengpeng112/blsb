@@ -1,0 +1,107 @@
+{
+  "mode": "SYNTHETIC_HTTP_INTERCEPTED_NO_NETWORK",
+  "scenarios": [
+    {
+      "scenario": "normal_parent_then_child",
+      "events": [
+        {
+          "kind": "parent",
+          "id": "SYN-P1",
+          "parent": null,
+          "accepted": true
+        },
+        {
+          "kind": "child",
+          "id": "SYN-C1",
+          "parent": "SYN-P1",
+          "accepted": true
+        }
+      ]
+    },
+    {
+      "scenario": "reversed_cli_list",
+      "events": [
+        {
+          "kind": "parent",
+          "id": "SYN-P1",
+          "parent": null,
+          "accepted": true
+        },
+        {
+          "kind": "child",
+          "id": "SYN-C1",
+          "parent": "SYN-P1",
+          "accepted": true
+        }
+      ]
+    },
+    {
+      "scenario": "parent_rejected_04",
+      "events": [
+        {
+          "kind": "parent",
+          "id": "SYN-P1",
+          "parent": null,
+          "accepted": false
+        },
+        {
+          "kind": "child",
+          "id": "SYN-C1",
+          "parent": "SYN-P1",
+          "accepted": true
+        }
+      ]
+    },
+    {
+      "scenario": "parent_fetch_exception",
+      "events": [
+        {
+          "kind": "child",
+          "id": "SYN-C1",
+          "parent": "SYN-P1",
+          "accepted": true
+        }
+      ]
+    },
+    {
+      "scenario": "child_only_cli",
+      "events": [
+        {
+          "kind": "child",
+          "id": "SYN-C1",
+          "parent": "SYN-P1",
+          "accepted": true
+        }
+      ]
+    },
+    {
+      "scenario": "limit_does_not_pair_parent",
+      "events": [
+        {
+          "kind": "parent",
+          "id": "SYN-P1",
+          "parent": null,
+          "accepted": true
+        },
+        {
+          "kind": "child",
+          "id": "SYN-C1",
+          "parent": "SYN-P2",
+          "accepted": true
+        }
+      ]
+    },
+    {
+      "scenario": "accepted_parent_from_history",
+      "events": [
+        {
+          "kind": "child",
+          "id": "SYN-C1",
+          "parent": "SYN-P1",
+          "accepted": true
+        }
+      ]
+    }
+  ],
+  "result": "CURRENT_BEHAVIOR_REPRODUCED_NOT_FIX_ACCEPTANCE"
+}

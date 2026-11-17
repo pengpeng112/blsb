@@ -1,0 +1,125 @@
+# LT-09 标准化收尾：新业务接入脚手架、影像云 Profile、清理、全量回归与发布准备
+
+> 预计：1 个执行日。依赖：LT-01—07 完成（LT-08 可选）。动生产：否（只产出发布包与 runbook，不部署）。迁移：无。
+> 先读 [README §五 通则](README.md#五所有长任务通用的执行通则执行-ai-必读每个-lt-文件都引用本节)。
+
+## 0. 为什么做
+
+前 8 个任务做出了"通用底座 + 三个业务形态"。要真正成为"标准、能兼容多个上报要求"的系统，还需要：
+①**下一个上报需求来时，有一条固定、半自动的接入路径**（脚手架 + 接入指南 + 检查清单）；
+②用一个尚未开发的真实需求（济南医保影像云 V2.0）**走一遍这条路径**，证明它可用；
+③清理易误导的技术债；④全量回归、发布包构建、部署 runbook，交给用户择机上线。
+
+## 1. 交付物
+
+1. 接入指南 `docs/development/platform-evolution-20261103/新上报业务接入指南.md`。
+2. 脚手架 `scripts/new_report_target.py`：一条命令生成插件骨架、manifest、Profile 目录、业务 README、测试骨架、ReportTarget 种子条目。
+3. 用脚手架生成 `medins_imaging_jn`（济南医保影像云）骨架 + 从现有 CSV 生成 Profile。
+4. 清理：旧兼容层去留决策落地、`deploy/release/dist` 加警示、空目录说明、`uuid7ish` 注释。
+5. 全量回归 + 探针 + 前端构建 + 发布包构建（`build_release.py`，只在本机产出）。
+6. 部署 runbook `docs/development/platform-evolution-20261103/DEPLOY_RUNBOOK.md`（不执行）。
+7. 总结 `docs/development/platform-evolution-20261103/RESULT.md`：LT-01—09 实测/未测/阻断总表。
+
+## 2. 修改范围
+
+```
+scripts/new_report_target.py                         （新建）
+scripts/templates/report_target/**                   （新建模板）
+implementation/plugins/domains/medins_imaging/**     （脚手架生成）
+implementation/profiles/medins_imaging_jn/**         （生成）
+implementation/plugins/plugin_registry.py            （仅加弃用注释/告警，见步骤 4）
+implementation/deploy/release/dist/README_DO_NOT_USE.md （新建，不改 dist 其它文件）
+implementation/profiles/README.md、implementation/hospital_packs/README.md、implementation/migrations/README.md （说明空目录用途）
+docs/development/platform-evolution-20261103/{新上报业务接入指南,DEPLOY_RUNBOOK,RESULT}.md
+数据上报/README.md、数据上报/<新目录>/README.md（若用户同意为影像云建业务目录——见步骤 3）
+四类实施文档 + docs/ai/*
+```
+
+## 3. 步骤
+
+### 步骤 1：接入指南（先写文档，后写脚手架）
+
+章节（每节给出"要做什么 / 产出文件 / 检查项"）：
+1. **需求登记**：在 ReportTarget 建条目（lifecycle=PLANNED），收集规范原件放入 `数据上报/<编号、业务名>/`，建 README（用 `数据上报/上报项目目录说明模板.md`）。
+2. **判定运行形态**：PUSH / PULL（视图发布+文件网关）/ HYBRID；平台推送 or 外部程序 or 人工（决策表：对方有 HTTP 接口→PUSH；对方来采→PULL；已有稳定外部程序→EXTERNAL 先只读接入台账）。
+3. **契约化**：用 LT-07 的 `tools/spec_extract` 生成 `profiles/<target>/`；人工复核 EXTRACTION_REPORT 待核项；Profile status=REVIEWED。
+4. **数据源**：SourceProfile / 视图 DDL 提案（交 DBA）；字段映射用 mapping_engine 声明式规则；索引友好的谓词（引用 view-tuning 教训：拼接串/函数包裹索引列会全表扫）。
+5. **目的地**：优先 generic_http_json 配置化；协议特殊（签名/加密/SOAP）再写专用适配器，实现 `DestinationAdapter`。
+6. **回执与状态**：定义平台返回码 → REPORT_BUCKETS 映射表（必须覆盖"未知"——网络异常、服务端异常耗尽重试一律 UNKNOWN，不得当失败重发）。
+7. **幂等与次序**：idempotency_key 规则（业务主键+版本/操作时间）；更正=新 revision，重试=同 revision。
+8. **调度与告警**：建 schedule（先 enabled=False）、默认 4 条告警规则（NO_SUCCESS_WITHIN、UNKNOWN_OVER、BACKLOG_OVER、REJECT_RATE_OVER）。
+9. **测试**：Mock 行为档、契约校验、映射等价、闸门拒绝真实发送。
+10. **上线闸门**：MOCK_ONLY → PILOT（用户授权、唯一推送方确认 CONFIRMED）→ PRODUCTION；回退路径。
+11. **文档同步**：业务 README、数据上报索引、STATE/BACKLOG/HANDOFF、四类实施文档。
+
+附"新业务接入检查清单"（30 条以内，可打勾）。
+
+### 步骤 2：脚手架 `scripts/new_report_target.py`
+
+```powershell
+python scripts/new_report_target.py --code medins_imaging_jn --plugin-key medins_imaging --name "济南医保影像云索引" `
+  --category 影像 --authority "济南市医保影像云" --mode HYBRID --biz-dir "5、医保影像云上报" [--dry-run]
+```
+行为：
+- 校验 code/plugin-key 格式（小写字母数字下划线）且不与现有 manifest/种子冲突。
+- 从 `scripts/templates/report_target/` 渲染（用 `string.Template`，标准库）：
+  `plugins/domains/<plugin_key>/{__init__.py, manifest.json, plugin.py, hooks.py, README.md}`、
+  `profiles/<code>/profile.json`（status=DRAFT）、
+  `tests/unit/test_<plugin_key>_skeleton.py`（断言 manifest 可发现、钩子返回 data_source="none"、真实发送被闸门拒绝）、
+  `数据上报/<biz-dir>/README.md`（按模板，未知项写"待确认"）。
+- 在 `plugins/report_targets.py` 的种子列表追加条目（lifecycle=PLANNED）——用**明确的标记注释块**插入，便于脚本幂等检测。
+- `--dry-run` 只打印将创建的文件。已存在文件**不覆盖**，打印跳过。
+- 为脚手架本身写测试 `implementation/tests/unit/test_new_report_target_script.py`（在 tmp 目录用 `--workspace` 参数运行，断言生成文件与幂等）。
+
+### 步骤 3：影像云走一遍
+
+- **用户已确认（2026-11-04）**：为影像云单独新建 `数据上报/5、医保影像云上报/` 业务目录及 `README.md` 做导航，根目录 `pacs接口上传说明/` 下的原始材料原封不动保留（不搬迁）。同时同步更新 `数据上报/README.md` 总索引。
+- 运行脚手架生成骨架。
+- Profile：`设计交付v0.4/契约与示例/PACS_V2_字段清单_原样提取.csv`（16 数据集 / 288 字段）→ 写一个转换函数（放 `tools/spec_extract/csv_profile.py`）生成 `profiles/medins_imaging_jn/fields/<数据集>.json`，EXTRACTION_REPORT 列出 16 个数据集与字段数，并与 v0.4 文档中已实现的病理 chk_info/asset_info 投影做对照（哪些已实现、哪些未实现）。
+- 不实现取数与发送（规范的传输/鉴权方式待确认），ReportTarget 保持 PLANNED，README 写清下一步。
+
+### 步骤 4：清理（只做低风险项）
+
+- `plugins/plugin_registry.py`：在模块 docstring 加"弃用说明：新代码请使用 app_runtime.load_registry；保留为兼容层"，**不删除、不改行为**。在 `接口与设计差异.md` 记录双装配路径与未来移除条件（所有调用点迁移 + 部署环境显式设置 BLYB_PLUGINS）。
+  另：检查生产 compose/env 是否设置了 `BLYB_PLUGINS`（只读 `deploy/compose/*.yml`、`deploy/linux/*`），把结论写进 RESULT——若未设置，新插件（infectious、medins_emr、medins_imaging）在生产会不会被加载、会不会建表，必须写清楚，并在 runbook 中给出"部署时 BLYB_PLUGINS 应设为何值"。
+- `deploy/release/dist/README_DO_NOT_USE.md`：说明该目录是历史发行快照，非现行代码，AI/人工不得以此为准。
+- 空目录 `profiles/`（已由 LT-07 赋予用途）、`hospital_packs/`、`migrations/`：各写 README 说明用途或"保留为空的原因"。
+- `uuid7ish`：只加注释"当前实际返回 uuid4，排序语义不可依赖"，不改实现。
+
+### 步骤 5：全量验证
+
+```powershell
+cd F:\python\blyb\implementation
+python -m pytest tests -q -ra -p no:cacheprovider --junitxml=../var/LT-09-regression.xml
+python ../docs/audit/2026-10-01/test_review_probes.py
+cd apps/admin_web; npm run build; node --test tests/
+cd F:\python\blyb; python scripts/project_docs.py inventory
+```
+构建发行包：先读 `implementation/deploy/release/build_release.py` 的用法说明与 `docs/startup/README.md`；若需要 Docker 且本机不可用 → 记录"外部阻断：本机无 Docker"，不要尝试安装。
+
+### 步骤 6：部署 runbook（不执行）
+
+`DEPLOY_RUNBOOK.md` 必含：
+1. 变更概览：新迁移 014—019、新插件、新路由、新前端页面、新系统调度（3 个只读调度会在部署后**自动运行**——列出它们对生产的影响：只读查询频率、写 alert_event/notification_log/schedule_run）。
+2. 前置检查：备份（`deploy/linux/backup.sh`）、磁盘、当前发行版本、药品 01:00 批次与传染病班次时间。
+3. **窗口**：避开 00:30—07:00（药品批次）、传染病 */15 班次的整刻钟附近（选 xx:05—xx:10 之间开始），须用户在场。
+4. 步骤：build_release → 拷贝 → upgrade.sh（迁移自动执行）→ BLYB_PLUGINS 设定 → 健康检查 → 前端验证 → 种子执行确认（镜像调度 enabled=False）。
+5. 验证清单：六容器 healthy；`/api/v1/report-targets` 5 条；驾驶舱可见药品数据；告警 file 通道有输出；**药品与传染病生产链路零变化**（timer/crontab 未动、当日推送正常）。
+6. 回退：rollback.sh 回上一发行；迁移只前进时的处理（新表不影响旧代码）。
+7. 部署后观察 24h 的指标。
+
+### 步骤 7：RESULT.md
+
+表格：LT-01—09 每项交付物 × {实测通过（命令/通过数/日期）、实现未测（原因）、外部阻断（等谁）}；以及"仍待用户决策"清单（例如：告警通道参数、影像云目录、传染病切换时间、药品调度切换、唯一推送方确认）。
+
+## 4. 验收清单
+
+- [ ] 脚手架 dry-run 与实跑均成功，重复执行幂等；脚手架测试通过
+- [ ] `profiles/medins_imaging_jn/` 16 个数据集文件，字段总数与 CSV 一致（288 或以 CSV 实际为准）
+- [ ] 全量回归、探针、前端构建全部有真实输出并写入 RESULT
+- [ ] runbook 中明确 BLYB_PLUGINS 与新插件加载结论
+- [ ] STATE/BACKLOG/HANDOFF 更新，平台演进计划在 BACKLOG 中的条目全部有状态
+
+## 5. 停止条件
+
+- 全量回归出现新增失败：先修复（属于本系列任务引入的问题），修不好则在 RESULT 标红并 handed_off，**不得**带着新增失败构建发布包。

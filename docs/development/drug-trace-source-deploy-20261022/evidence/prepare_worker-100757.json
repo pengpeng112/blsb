@@ -1,0 +1,78 @@
+{
+  "exit_code": 0,
+  "result": {
+    "ok": true,
+    "source_writes": 0,
+    "uploads": 0,
+    "source_status": "ENABLED",
+    "config_state": "PUBLISHED",
+    "source_profile": "blyb_drugtrace_views@20261022-r10",
+    "collection_runs": [
+      {
+        "id": "1bce9518-ea05-4574-aa71-93f1e3a1da27",
+        "state": "DONE",
+        "summary": {
+          "bills_seen": 1,
+          "revisions_created": 1,
+          "idempotent": 0,
+          "waiting": 0,
+          "valid": 1,
+          "invalid": 0,
+          "conflicts": 0,
+          "version_rereads": 0,
+          "skipped_version_changing": 0,
+          "retried_ok": 0,
+          "retried_failed": 0
+        }
+      }
+    ],
+    "bill_count": 1,
+    "candidate_sha256": "c055a75095109598e56f44fa1d5f8cbd0809a76538abfc7366d2df52c660f55a",
+    "quality_state": "VALID",
+    "code_count": 4,
+    "quality_rules": [
+      "QD-LEVEL-UNCONFIRMED"
+    ],
+    "prepared": [
+      {
+        "submission_id": "7ed95aaa-ee66-4510-b80d-630f6c9dc381",
+        "state": "PREPARED",
+        "package_revision_id": "93fc0afb-b068-471a-bd3a-4b03f72799a1",
+        "digest": "b176a33f445eabe9a76b0d85a1b93a3fc8fa3474e69e22accbd074662bb8411b"
+      }
+    ],
+    "method": "alibaba.alihealth.drugtrace.top.yljg.uploadretail",
+    "bill_type": "321",
+    "dictionary_revisions": {
+      "drugtrace.bill_type": {
+        "revision_id": "4ac31657-75ca-4fbb-9909-021714ff8064",
+        "version": "r10-normal-20261022-r1"
+      },
+      "drugtrace.ref_ent_id": {
+        "revision_id": "e9219d75-ddf2-4adb-bea0-97174a918d44",
+        "version": "r10-normal-20261022-r1"
+      },
+      "drugtrace.query_bill_type": {
+        "revision_id": "cdba3bf5-8e55-4e91-8148-cc4ab4497488",
+        "version": "r10-normal-20261022-r1"
+      }
+    },
+    "ref_user_id_matches_ref_ent_id": true,
+    "evidence": {
+      "collect": "APPROVED",
+      "send": "MISSING",
+      "query": "APPROVED",
+      "reconcile": "APPROVED"
+    },
+    "destination_status": "DRAFT",
+    "delivery_attempt_count": 0,
+    "quota_count": 0,
+    "platform_query": {
+      "found": true,
+      "total_num": 0,
+      "unknown": false,
+      "error": null,
+      "scope": "new local stable platform bill code only; not legacy trace-level reconciliation"
+    }
+  }
+}

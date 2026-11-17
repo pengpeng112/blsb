@@ -1,0 +1,28 @@
+{
+  "exit_code": 0,
+  "result": {
+    "ok": true,
+    "phase": "approve",
+    "calls": [
+      {
+        "method": "POST",
+        "path": "/drug-trace/evidence",
+        "http_status": 200
+      },
+      {
+        "method": "POST",
+        "path": "/drug-trace/destinations/345df8f4-410e-4c89-a258-a34957eb4151/activation",
+        "http_status": 200
+      }
+    ],
+    "approval_kind": "USER_SINGLE_BILL_EXCEPTION",
+    "approval": {
+      "evidence_id": "0eb0b906-3a3d-497b-abba-62117dd1e672",
+      "status": "APPROVED"
+    },
+    "destination": {
+      "destination_id": "345df8f4-410e-4c89-a258-a34957eb4151",
+      "status": "ENABLED"
+    }
+  }
+}

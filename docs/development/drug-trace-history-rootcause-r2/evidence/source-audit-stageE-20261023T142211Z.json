@@ -1,0 +1,89 @@
+{
+  "authorization": "User explicit authorization 2026-10-23; stage-E aggregates",
+  "budget_seconds": 180,
+  "per_query_timeout_seconds": 30,
+  "source_writes": 0,
+  "uploads": 0,
+  "e1_prescno_length": {
+    "ok": true,
+    "key": "e1",
+    "rows": 5,
+    "seconds": 0.1928,
+    "groups": [
+      {
+        "LEN": 1,
+        "N": 97
+      },
+      {
+        "LEN": 2,
+        "N": 1002
+      },
+      {
+        "LEN": 3,
+        "N": 9121
+      },
+      {
+        "LEN": 4,
+        "N": 94325
+      },
+      {
+        "LEN": 5,
+        "N": 141249
+      }
+    ]
+  },
+  "e2_dispensary": {
+    "ok": true,
+    "key": "e2",
+    "rows": 9,
+    "seconds": 0.5735,
+    "groups": [
+      {
+        "DISPENSARY": "050121",
+        "N": 102644
+      },
+      {
+        "DISPENSARY": "050102",
+        "N": 67629
+      },
+      {
+        "DISPENSARY": "050103",
+        "N": 38309
+      },
+      {
+        "DISPENSARY": "050107",
+        "N": 22170
+      },
+      {
+        "DISPENSARY": "050101",
+        "N": 7124
+      },
+      {
+        "DISPENSARY": "050110",
+        "N": 4204
+      },
+      {
+        "DISPENSARY": "050109",
+        "N": 2642
+      },
+      {
+        "DISPENSARY": "050116",
+        "N": 943
+      },
+      {
+        "DISPENSARY": "050117",
+        "N": 129
+      }
+    ]
+  },
+  "e3_master_by_no_date": {
+    "ok": true,
+    "rows": 0,
+    "oracle_codes": null,
+    "matches_privately_retained": "saved to C:\\Users\\Administrator\\AppData\\Local\\BLYB\\history-rootcause-r2\\live-20261023T104928Z\\source-audit-20261023T141852Z\\stageE-20261023T142211Z-e3.json"
+  },
+  "run_completed": true,
+  "total_elapsed_seconds": 0.77,
+  "captured_at": "2026-10-23T14:22:14.004740+00:00",
+  "run_id": "20261023T142211Z"
+}

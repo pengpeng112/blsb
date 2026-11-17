@@ -1,0 +1,1288 @@
+{
+ "code": "12101",
+ "envelope_ref": "fields/_envelope.json",
+ "root": "input",
+ "length_unit": "UNCONFIRMED",
+ "nodes": [
+  {
+   "code": "mdtrt_sn",
+   "name": "就医流水号",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "mdtrt_id",
+   "name": "就诊ID",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "medins_file_no",
+   "name": "医院内部档案号",
+   "type": "string",
+   "max_len": 64,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "psn_no",
+   "name": "人员编号",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "appy_no",
+   "name": "申请单号",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "appy_org_code",
+   "name": "申请机构代码",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "appy_org_name",
+   "name": "申请机构名称",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "bilg_dr_codg",
+   "name": "开单医生代码",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "bilg_dr_name",
+   "name": "开单医生姓名",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": true,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "exam_org_code",
+   "name": "检验机构代码",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "exam_org_name",
+   "name": "检验机构名称",
+   "type": "string",
+   "max_len": 700,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "appy_dept_code",
+   "name": "申请科室代码",
+   "type": "string",
+   "max_len": 30,
+   "dict": "Y",
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "appy_dept_name",
+   "name": "申请科室名称",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": true,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "exam_dept_code",
+   "name": "检查科室代码",
+   "type": "string",
+   "max_len": 30,
+   "dict": "Y",
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "exam_dept_name",
+   "name": "检查科室名称",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": true,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "exam_mtd",
+   "name": "检验方法",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "rpotc_no",
+   "name": "报告单号",
+   "type": "string",
+   "max_len": 64,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "rpotc_type_name",
+   "name": "报告单类别名称",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": true,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "exam_item_code",
+   "name": "检验 - 项目代码",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "exam_item_name",
+   "name": "检验 - 项目名称",
+   "type": "string",
+   "max_len": 300,
+   "dict": null,
+   "required": true,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "inhosp_exam_item_code",
+   "name": "院内检验-项目代码",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "inhosp_exam_item_name",
+   "name": "院内检验-项目名称",
+   "type": "string",
+   "max_len": 300,
+   "dict": null,
+   "required": true,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "rpt_date",
+   "name": "报告日期",
+   "type": "datetime",
+   "max_len": null,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "rpot_doc_code",
+   "name": "报告医师代码",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "rpot_doc",
+   "name": "报告医师",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "exam_charge",
+   "name": "检查费用",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "vali_flag",
+   "name": "有效标志",
+   "type": "string",
+   "max_len": 3,
+   "dict": "Y",
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "etip_flag",
+   "name": "外检标志",
+   "type": "string",
+   "max_len": 3,
+   "dict": "Y",
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "rx_id",
+   "name": "处方ID",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "etip_org_code",
+   "name": "外检机构代码",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "etip_org_name",
+   "name": "外检机构名称",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "rpotc_no",
+   "name": "报告单号",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "appy_no",
+   "name": "申请单号",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "exam_kpi_sn",
+   "name": "检验指标流水号",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "exam_item_detl_code",
+   "name": "检验 - 项目明细代码",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "exam_item_detl_name",
+   "name": "检验 - 项目明细名称",
+   "type": "string",
+   "max_len": 300,
+   "dict": null,
+   "required": true,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "exam_mtd",
+   "name": "检验方法",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "ref_val",
+   "name": "参考值",
+   "type": "string",
+   "max_len": 200,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "ref_val_ul",
+   "name": "参考值（上限）",
+   "type": "string",
+   "max_len": 100,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "ref_val_ll",
+   "name": "参考值（下限）",
+   "type": "string",
+   "max_len": 100,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "exam_unt",
+   "name": "检验-计量单位",
+   "type": "string",
+   "max_len": 200,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "exam_rslt_val",
+   "name": "检验-结果(数值)",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "exam_rslt_dicm",
+   "name": "检验 - 结果(定性)",
+   "type": "string",
+   "max_len": 2000,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "exam_rslt_abn",
+   "name": "检查 / 检验结果异常标识",
+   "type": "string",
+   "max_len": 10,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "exam_item_code",
+   "name": "检验 - 项目代码",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "rpotc_no",
+   "name": "报告单号",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "appy_no",
+   "name": "申请单号",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "sapl_date",
+   "name": "采样日期",
+   "type": "datetime",
+   "max_len": null,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "spcm_no",
+   "name": "标本号",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "spcm_name",
+   "name": "标本名称",
+   "type": "string",
+   "max_len": 64,
+   "dict": null,
+   "required": true,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "cainfo",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "dev_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "dev_safe_info",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "fixmedins_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "inf_time",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "info",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "infver",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.iteminfo",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.iteminfo[0].appy_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.iteminfo[0].exam_item_detl_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.iteminfo[0].exam_item_detl_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.iteminfo[0].exam_kpi_sn",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.iteminfo[0].exam_mtd",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.iteminfo[0].exam_rslt_abn",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.iteminfo[0].exam_rslt_dicm",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.iteminfo[0].exam_rslt_val",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.iteminfo[0].exam_unt",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.iteminfo[0].ref_val",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.iteminfo[0].ref_val_ll",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.iteminfo[0].ref_val_ul",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.iteminfo[0].rpotc_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.iteminfo[1].appy_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.iteminfo[1].exam_item_detl_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.iteminfo[1].exam_item_detl_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.iteminfo[1].exam_kpi_sn",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.iteminfo[1].exam_mtd",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.iteminfo[1].exam_rslt_abn",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.iteminfo[1].exam_rslt_dicm",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.iteminfo[1].exam_rslt_val",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.iteminfo[1].exam_unt",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.iteminfo[1].ref_val",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.iteminfo[1].ref_val_ll",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.iteminfo[1].ref_val_ul",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.iteminfo[1].rpotc_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.labinfo",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.labinfo.appy_dept_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.labinfo.appy_dept_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.labinfo.appy_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.labinfo.appy_org_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.labinfo.appy_org_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.labinfo.bilg_dr_codg",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.labinfo.bilg_dr_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.labinfo.exam_charge",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.labinfo.exam_dept_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.labinfo.exam_dept_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.labinfo.exam_item_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.labinfo.exam_item_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.labinfo.exam_mtd",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.labinfo.exam_org_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.labinfo.exam_org_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.labinfo.inhosp_exam_item_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.labinfo.inhosp_exam_item_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.labinfo.mdtrt_id",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.labinfo.mdtrt_sn",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.labinfo.medins_file_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.labinfo.psn_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.labinfo.rpot_doc",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.labinfo.rpot_doc_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.labinfo.rpotc_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.labinfo.rpotc_type_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.labinfo.rpt_date",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.labinfo.vali_flag",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.sampleinfo",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.sampleinfo[0].appy_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.sampleinfo[0].rpotc_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.sampleinfo[0].sapl_date",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.sampleinfo[0].spcm_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.sampleinfo[0].spcm_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "insuplc_admdvs",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "mdtrtarea_admvs",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "msgid",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "opter",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "opter_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "opter_type",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "recer_sys_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "sign_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "signtype",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  }
+ ]
+}

@@ -1,0 +1,1560 @@
+{
+ "authorization": "DTR-SCOPE-DEV-20261027 user-authorized HIS read-only probe via sjzc controlled connector (<relay-jump>, READY_HIS precedent)",
+ "source_writes": 0,
+ "uploads": 0,
+ "identity": {
+  "ok": true,
+  "n": 1,
+  "rows": [
+   {
+    "LOGIN_USER": "READY_HIS",
+    "SESSION_USER": "READY_HIS"
+   }
+  ],
+  "seconds": 0.122
+ },
+ "q1_inp_columns": {
+  "ok": true,
+  "n": 105,
+  "columns": [
+   "DISP_NO",
+   "PHA_CODE",
+   "DEPT_CODE",
+   "PATIENT_NO",
+   "INPATIENT_NO",
+   "BABY_FLAG",
+   "HAPPEN_NO",
+   "MO_ORDER",
+   "EXEC_SQN",
+   "DISP_DATE",
+   "USAGE_CODE",
+   "USE_NAME",
+   "DRUG_PRI",
+   "DRUG_NAME",
+   "TRADE_NAME",
+   "DRUG_SPEC",
+   "MIN_UNIT_NAME",
+   "UNITS_SPEC",
+   "UNITS_NAME",
+   "DISP_QUANTITY",
+   "OPERATOR",
+   "OPERATOR_NAME",
+   "DISP_FLAG",
+   "DISP_NO_OLD",
+   "VALID_STATE",
+   "SEND_DRUG_STATUS",
+   "RETURN_DRUG_STATUS",
+   "FREQUENCY_CODE",
+   "FREQUENCY_NAME",
+   "ORDER_TYPE",
+   "DOSE_MODEL_CODE",
+   "DOSE_PER_UNIT",
+   "DOSE_UNITS_CODE",
+   "PATIENT_NAME",
+   "DISP_EXECUTE_TIME",
+   "NURSE_CELL_CODE",
+   "NURSE_CELL_NAME",
+   "BED_NUM",
+   "REQUEST_OPER",
+   "REQUEST_OPER_NAME",
+   "REQUEST_NO",
+   "SEND_DRUG_TYPE",
+   "SEND_DRUG_TYPE_NAME",
+   "DOSE_UNITS_NAME",
+   "FEE_ID",
+   "RETAIL_PRICE",
+   "PRODUCT_DATE",
+   "EXPIRE_DATE",
+   "BATCH_NO",
+   "REQUEST_DATE",
+   "RETURN_REASON",
+   "SPECIAL_DRUG",
+   "PAT_ID",
+   "PATIENT_NAME_PY",
+   "IN_COUNT",
+   "ORDER_SUB_NO",
+   "PAT_FEE_TYPE",
+   "DISCHARGE_TAKING_INDICATOR",
+   "USE_SEVEN_DETAIL",
+   "REQUEST_DESCRIPTION",
+   "DISP_DRUG_DAYS",
+   "LONG_ORDER_LAST_DATE",
+   "PAT_IDENTITY",
+   "URGENT_SIGN",
+   "REVIEWER_CODE",
+   "REVIEWER_NAME",
+   "ALLOT_CODE",
+   "ALLOT_NAME",
+   "CHECK_CODE",
+   "CHECK_NAME",
+   "DELIVER_MEDICINE_STATE",
+   "FEE_PRICE",
+   "PAT_BIRTHDAY",
+   "PAT_SEX",
+   "PRESC_CREATE_TIME",
+   "IN_DIAGNOSE_NAME",
+   "PHA_NAME",
+   "DOCTOR_NAME",
+   "DEPT_NAME",
+   "DOSE_ONCE",
+   "FLAG",
+   "AMOUNT_UNIT",
+   "COMMENT2",
+   "ORDER_STOP_TIME",
+   "EXPERT_DOCTOR",
+   "EXPERT_DOCTOR_FLAG",
+   "EXPERT_DOCTOR_OPION",
+   "MEDICATION_STATUS",
+   "PHARMACISIT_HANDLE_RESULT",
+   "PHARMACISIT_HANDLE_DESCRIBE",
+   "PROFESSION_HANDLE_RESULT",
+   "PROFESSION_HANDLE_DESCRIBE",
+   "RESULTS",
+   "DELIVER_MEDICINE_TIME",
+   "DELIVER_MEDICINE_NUMBER",
+   "UNAME",
+   "ID_NO",
+   "GBJSHID",
+   "YLTCDJH",
+   "INSUR_TYPE",
+   "SETTLED_FLAG",
+   "CODE_UPLOAD_TYPE",
+   "SPLIT_FLAG",
+   "PRIMARY_KEY_1",
+   "ISWORKRELAT"
+  ]
+ },
+ "q1_inp_indexes": {
+  "ok": true,
+  "n": 23,
+  "rows": [
+   {
+    "INDEX_NAME": "IDX_DISP_DATE",
+    "COLUMN_NAME": "DISP_DATE",
+    "COLUMN_POSITION": 1
+   },
+   {
+    "INDEX_NAME": "IDX_DISP_EXECUTE_TIME",
+    "COLUMN_NAME": "DISP_EXECUTE_TIME",
+    "COLUMN_POSITION": 1
+   },
+   {
+    "INDEX_NAME": "IDX_EXEC_SQN",
+    "COLUMN_NAME": "EXEC_SQN",
+    "COLUMN_POSITION": 1
+   },
+   {
+    "INDEX_NAME": "IDX_INPATIENT_NO",
+    "COLUMN_NAME": "INPATIENT_NO",
+    "COLUMN_POSITION": 1
+   },
+   {
+    "INDEX_NAME": "IDX_INP_REQ_EXEC_TIME",
+    "COLUMN_NAME": "DISP_EXECUTE_TIME",
+    "COLUMN_POSITION": 1
+   },
+   {
+    "INDEX_NAME": "IDX_INP_REQ_EXEC_TIME",
+    "COLUMN_NAME": "EXEC_SQN",
+    "COLUMN_POSITION": 2
+   },
+   {
+    "INDEX_NAME": "IDX_INP_REQ_EXEC_TIME",
+    "COLUMN_NAME": "DISP_FLAG",
+    "COLUMN_POSITION": 3
+   },
+   {
+    "INDEX_NAME": "IDX_INP_REQ_EXEC_TIME",
+    "COLUMN_NAME": "DISP_DATE",
+    "COLUMN_POSITION": 4
+   },
+   {
+    "INDEX_NAME": "IDX_IN_COUNT",
+    "COLUMN_NAME": "IN_COUNT",
+    "COLUMN_POSITION": 1
+   },
+   {
+    "INDEX_NAME": "IDX_MO_ORDER",
+    "COLUMN_NAME": "MO_ORDER",
+    "COLUMN_POSITION": 1
+   },
+   {
+    "INDEX_NAME": "IDX_ORDER_SUB_NO",
+    "COLUMN_NAME": "ORDER_SUB_NO",
+    "COLUMN_POSITION": 1
+   },
+   {
+    "INDEX_NAME": "IDX_PAT_ID",
+    "COLUMN_NAME": "PAT_ID",
+    "COLUMN_POSITION": 1
+   },
+   {
+    "INDEX_NAME": "IDX_PHA_INP_REQ_DRUG_JOIN",
+    "COLUMN_NAME": "PAT_ID",
+    "COLUMN_POSITION": 1
+   },
+   {
+    "INDEX_NAME": "IDX_PHA_INP_REQ_DRUG_JOIN",
+    "COLUMN_NAME": "INPATIENT_NO",
+    "COLUMN_POSITION": 2
+   },
+   {
+    "INDEX_NAME": "IDX_PHA_INP_REQ_DRUG_JOIN",
+    "COLUMN_NAME": "DRUG_NAME",
+    "COLUMN_POSITION": 3
+   },
+   {
+    "INDEX_NAME": "IDX_PHA_INP_REQ_DRUG_JOIN",
+    "COLUMN_NAME": "MO_ORDER",
+    "COLUMN_POSITION": 4
+   },
+   {
+    "INDEX_NAME": "IDX_PHA_INP_REQ_EXEC_SQN",
+    "COLUMN_NAME": "EXEC_SQN",
+    "COLUMN_POSITION": 1
+   },
+   {
+    "INDEX_NAME": "IDX_PHA_INP_REQ_EXEC_SQN",
+    "COLUMN_NAME": "DISP_FLAG",
+    "COLUMN_POSITION": 2
+   },
+   {
+    "INDEX_NAME": "IDX_PIR_DRUG_PRI",
+    "COLUMN_NAME": "DRUG_PRI",
+    "COLUMN_POSITION": 1
+   },
+   {
+    "INDEX_NAME": "IDX_REQUEST_NO",
+    "COLUMN_NAME": "REQUEST_NO",
+    "COLUMN_POSITION": 1
+   },
+   {
+    "INDEX_NAME": "UQ_KEY_PRIMARY_KEY",
+    "COLUMN_NAME": "EXEC_SQN",
+    "COLUMN_POSITION": 1
+   },
+   {
+    "INDEX_NAME": "UQ_KEY_PRIMARY_KEY",
+    "COLUMN_NAME": "DISP_DATE",
+    "COLUMN_POSITION": 2
+   },
+   {
+    "INDEX_NAME": "UQ_KEY_PRIMARY_KEY",
+    "COLUMN_NAME": "PRIMARY_KEY_1",
+    "COLUMN_POSITION": 3
+   }
+  ],
+  "seconds": 0.016
+ },
+ "q1_request_no_sample": {
+  "path": "disp_execute_time_index",
+  "ok": true,
+  "n": 10,
+  "rows": [
+   {
+    "REQUEST_NO": "02010420261026091911"
+   },
+   {
+    "REQUEST_NO": "02010420261026091911"
+   },
+   {
+    "REQUEST_NO": "02010420261026091911"
+   },
+   {
+    "REQUEST_NO": "02010420261026091911"
+   },
+   {
+    "REQUEST_NO": "02010420261026091911"
+   },
+   {
+    "REQUEST_NO": "02010420261026091911"
+   },
+   {
+    "REQUEST_NO": "02010420261026091911"
+   },
+   {
+    "REQUEST_NO": "02010420261026091911"
+   },
+   {
+    "REQUEST_NO": "02010420261026091911"
+   },
+   {
+    "REQUEST_NO": "02010420261026091911"
+   }
+  ],
+  "seconds": 3.051
+ },
+ "q1_disp_recordno": {
+  "ok": true,
+  "n": 1,
+  "rows": [
+   {
+    "REQUEST_NO": "02010420261026091911",
+    "DIS_RECORDNO": "2026102609235738110"
+   }
+  ],
+  "seconds": 0.071
+ },
+ "q1_mtr_by_request_no": {
+  "ok": true,
+  "n": 0,
+  "rows": [],
+  "seconds": 0.003
+ },
+ "q1_mtr_by_dis_recordno": {
+  "ok": true,
+  "n": 0,
+  "rows": [],
+  "seconds": 0.002
+ },
+ "q1_vendor_send_view": {
+  "ok": false,
+  "error": "DatabaseError: ORA-00904: \"DISP_EXECUTE_TIME\": 标识符无效",
+  "codes": [
+   "ORA-00904"
+  ]
+ },
+ "q2_mtr_return_all_dates": {
+  "ok": true,
+  "n": 7,
+  "rows": [
+   {
+    "TRACE_BILLNO": "57371",
+    "IN_OUT_TYPE": "OUT",
+    "IS_DELETED": 0,
+    "SPLIT_FLAG": 0,
+    "STORE_CODE": "050121",
+    "CNT": 29,
+    "FIRST_C": "2025-08-30 09:55:06",
+    "LAST_C": "2026-09-09 17:15:01"
+   },
+   {
+    "TRACE_BILLNO": "57372",
+    "IN_OUT_TYPE": "OUT",
+    "IS_DELETED": 0,
+    "SPLIT_FLAG": 0,
+    "STORE_CODE": "050102",
+    "CNT": 9,
+    "FIRST_C": "2026-01-02 15:59:59",
+    "LAST_C": "2026-07-24 15:39:49"
+   },
+   {
+    "TRACE_BILLNO": "57370",
+    "IN_OUT_TYPE": "OUT",
+    "IS_DELETED": 0,
+    "SPLIT_FLAG": 0,
+    "STORE_CODE": "050121",
+    "CNT": 12,
+    "FIRST_C": "2025-08-30 09:55:06",
+    "LAST_C": "2026-09-09 17:15:01"
+   },
+   {
+    "TRACE_BILLNO": "57370",
+    "IN_OUT_TYPE": "OUT",
+    "IS_DELETED": 0,
+    "SPLIT_FLAG": 1,
+    "STORE_CODE": "050102",
+    "CNT": 1,
+    "FIRST_C": "2026-04-02 10:44:57",
+    "LAST_C": "2026-04-02 10:44:57"
+   },
+   {
+    "TRACE_BILLNO": "57371",
+    "IN_OUT_TYPE": "OUT",
+    "IS_DELETED": 0,
+    "SPLIT_FLAG": 0,
+    "STORE_CODE": "050102",
+    "CNT": 10,
+    "FIRST_C": "2025-07-22 08:45:36",
+    "LAST_C": "2026-05-12 18:06:40"
+   },
+   {
+    "TRACE_BILLNO": "57372",
+    "IN_OUT_TYPE": "OUT",
+    "IS_DELETED": 0,
+    "SPLIT_FLAG": 0,
+    "STORE_CODE": "050121",
+    "CNT": 8,
+    "FIRST_C": "2026-01-26 11:42:21",
+    "LAST_C": "2026-09-09 17:15:01"
+   },
+   {
+    "TRACE_BILLNO": "57370",
+    "IN_OUT_TYPE": "OUT",
+    "IS_DELETED": 0,
+    "SPLIT_FLAG": 0,
+    "STORE_CODE": "050102",
+    "CNT": 6,
+    "FIRST_C": "2025-08-04 15:41:48",
+    "LAST_C": "2026-05-12 18:06:40"
+   }
+  ],
+  "seconds": 0.003
+ },
+ "q2_mtr_return_recent": {
+  "ok": true,
+  "n": 0,
+  "rows": [],
+  "seconds": 0.003
+ },
+ "q3_billtype_columns": {
+  "ok": true,
+  "n": 12,
+  "rows": [
+   {
+    "TABLE_NAME": "DOCK_CALL_LOG",
+    "COLUMN_NAME": "BUSINESS_KEY"
+   },
+   {
+    "TABLE_NAME": "DOCK_CALL_LOG",
+    "COLUMN_NAME": "BUSINESS_ID"
+   },
+   {
+    "TABLE_NAME": "DOCK_CALL_LOG",
+    "COLUMN_NAME": "BUSINESS_NAME"
+   },
+   {
+    "TABLE_NAME": "DOCUMENT_UPLOAD_RECORD",
+    "COLUMN_NAME": "BUSINESS_TYPE"
+   },
+   {
+    "TABLE_NAME": "DOCUMENT_UPLOAD_RECORD",
+    "COLUMN_NAME": "BUSINESS_NAME"
+   },
+   {
+    "TABLE_NAME": "MED_DICT_FACTORY",
+    "COLUMN_NAME": "BUSINESSSCOPE"
+   },
+   {
+    "TABLE_NAME": "MED_DICT_FACTORY_copy1",
+    "COLUMN_NAME": "BUSINESSSCOPE"
+   },
+   {
+    "TABLE_NAME": "MED_DICT_SUPPLIER",
+    "COLUMN_NAME": "BUSINESSSCOPE"
+   },
+   {
+    "TABLE_NAME": "PUB_CONFIG",
+    "COLUMN_NAME": "BUSINESS_TYPE_ID"
+   },
+   {
+    "TABLE_NAME": "TRACE_UPLOAD_TIME_LOG",
+    "COLUMN_NAME": "BUSINESS_ID"
+   },
+   {
+    "TABLE_NAME": "VIEW_SHOWDATA",
+    "COLUMN_NAME": "BUSINESS_NO"
+   },
+   {
+    "TABLE_NAME": "VIEW_SHOWDATA",
+    "COLUMN_NAME": "BUSINESS_NO2"
+   }
+  ],
+  "seconds": 0.071
+ },
+ "q3_pub_columns": {
+  "ok": true,
+  "columns": [
+   "ID",
+   "BUSINESS_TYPE_ID",
+   "CONFIG_CODE",
+   "CONFIG_NAME",
+   "DISPLAY_FLAG",
+   "INPUT_CODE",
+   "FULL_CODE",
+   "MEMO",
+   "SORT_ORDER",
+   "CONFIG_VALUE",
+   "IS_DELETED",
+   "CREATE_TIME",
+   "MODIFY_TIME",
+   "DELETE_TIME",
+   "CREATE_USER_ID",
+   "CREATE_USER_NAME",
+   "MODIFY_USER_ID",
+   "MODIFY_USER_NAME",
+   "DELETE_USER_ID",
+   "DELETE_USER_NAME",
+   "COCKPIT_FLAG",
+   "DEPT_FLAG",
+   "CONFIG_LABEL_VALUE"
+  ]
+ },
+ "q3_pub_trace_keys": {
+  "ok": false,
+  "skipped": "no key/value column: ['ID', 'BUSINESS_TYPE_ID', 'CONFIG_CODE', 'CONFIG_NAME', 'DISPLAY_FLAG', 'INPUT_CODE', 'FULL_CODE', 'MEMO', 'SORT_ORDER', 'CONFIG_VALUE', 'IS_DELETED', 'CREATE_TIME', 'MODIFY_TIME', 'DELETE_TIME', 'CREATE_USER_ID', 'CREATE_USER_NAME', 'MODIFY_USER_ID', 'MODIFY_USER_NAME', 'DELETE_USER_ID', 'DELETE_USER_NAME', 'COCKPIT_FLAG', 'DEPT_FLAG', 'CONFIG_LABEL_VALUE']"
+ },
+ "q3_sys_columns": {
+  "ok": true,
+  "columns": [
+   "CONFIG_ID",
+   "CONFIG_CODE",
+   "CONFIG_NAME",
+   "CONFIG_DESC",
+   "GROUP_NO",
+   "CREATE_TIME",
+   "CONFIG_VAL"
+  ]
+ },
+ "q3_sys_trace_keys": {
+  "ok": true,
+  "n": 0,
+  "rows": [],
+  "seconds": 0.007
+ },
+ "q4_cli_columns": {
+  "ok": true,
+  "n": 127,
+  "columns": [
+   "REQUEST_NO",
+   "PHA_CODE",
+   "PHA_NAME",
+   "DEPT_CODE",
+   "DEPT_NAME",
+   "PAT_ID",
+   "VISIT_ID",
+   "PAT_NAME",
+   "PAT_SEX",
+   "PAT_BIRTHDAY",
+   "PRESC_NO",
+   "PRESC_KIND",
+   "PRESC_DETAIL_ID",
+   "PRESC_CREATE_TIME",
+   "INVOICE_NO",
+   "FEE_ID",
+   "FEE_PRICE",
+   "FEE_DATE",
+   "FEE_STATE",
+   "DOCTOR_CODE",
+   "DOCTOR_NAME",
+   "SPECIAL_DRUG",
+   "DRUG_PRI",
+   "DRUG_NAME",
+   "USAGE_CODE",
+   "USAGE_NAME",
+   "DOSAGE_CODE",
+   "DPSAGE_NAME",
+   "FREQUENCY_CODE",
+   "FREQUENCY_NAME",
+   "USAGE_TYPE",
+   "DIAGNOSE_CODE",
+   "DIAGNOSE_NAME",
+   "CREATE_TIME",
+   "PROXY_NAME",
+   "PROXY_SEX",
+   "PROXY_BIRTHDAY",
+   "PROXY_CARDNO",
+   "PROXY_PAT_CARDNO",
+   "SEND_QUANTITY",
+   "CLI_FLAG",
+   "SEND_DRUG_STATUS",
+   "RETURN_DRUG_STATUS",
+   "CLI_EXECUTE_TIME",
+   "GROUP_NO",
+   "RETURN_REASON",
+   "ID",
+   "FACTORY_CODE",
+   "FACTORY_NAME",
+   "SPECS",
+   "RETAIL_PRICE",
+   "DOSE",
+   "DOSE_UNIT",
+   "PROXY_PAT_PHONE",
+   "PROXY_PHONE",
+   "NURSE_CELL_CODE",
+   "NURSE_CELL_NAME",
+   "CLI_INP_FLAG",
+   "REVIEWER_CODE",
+   "REVIEWER_NAME",
+   "ALLOT_CODE",
+   "ALLOT_NAME",
+   "CHECK_CODE",
+   "CHECK_NAME",
+   "DISPENSING_CODE",
+   "DISPENSING_NAME",
+   "BED_NUM",
+   "INPATIENT_NO",
+   "DOCTOR_NOTE",
+   "PRESC_TYPE_CODE",
+   "PRESC_TYPE_NAME",
+   "PAT_FEE_TYPE",
+   "INPUT_OPER",
+   "INPUT_OPER_NAME",
+   "DPSAGE_UNIT",
+   "MED_DRUG_DAYS",
+   "SKIN_TEST_RES",
+   "SELF_PAID_RATIO",
+   "NON_DECTCOED",
+   "CHA_DRUG_QUANTITY",
+   "WINDOW_NO",
+   "MACH_NO",
+   "PRINT_FLAG",
+   "PRINT_DATE",
+   "SEND_DRUG_SORT_NO",
+   "USE_SEVEN_DETAIL",
+   "INTERNET_BILLNO",
+   "RETURN_QUANTITY",
+   "YBPB",
+   "CARD_FLAG",
+   "OPERATORCODE",
+   "OPERATORNAME",
+   "YSSM",
+   "INTERVENTION_FLAG",
+   "JSLX",
+   "DECOCTION",
+   "DECOCTION2",
+   "DECOCTION3",
+   "ADMINISTRATION_NOTE",
+   "SPECIAL_METHOD",
+   "SEND_NO",
+   "ALL_CLI_EXECUTE_TIME",
+   "SEND_DRUG_TYPE",
+   "SEND_DRUG_TYPE_NAME",
+   "BATCH_NO",
+   "DIAGNOSIS_CODE_CN",
+   "DIAGNOSIS_NAME_CN",
+   "TRACE_CODE_NUM",
+   "DELIVER_MEDICINE_STATE",
+   "DRUG_SOURCE",
+   "DELIVER_MEDICINE_TIME",
+   "DELIVER_MEDICINE_NUMBER",
+   "RETURN_NO",
+   "INVOICE_NO_NEW",
+   "PRESC_NO_NEW",
+   "PRESC_CREATE_TIME_NEW",
+   "HISTORY_FLAG",
+   "GBJSHID",
+   "YLTCDJH",
+   "DISCHARGE_TAKING_INDICATOR",
+   "ITEM_NO",
+   "PATIENT_NO",
+   "SETTLED_FLAG",
+   "SPLIT_FLAG",
+   "EXEC_SQN",
+   "PRIMARY_KEY_1",
+   "ISWORKRELAT"
+  ]
+ },
+ "q4_compared_columns": [
+  "WINDOW_NO",
+  "TRACE_CODE_NUM",
+  "SEND_DRUG_STATUS",
+  "RETURN_DRUG_STATUS",
+  "CLI_FLAG",
+  "SPLIT_FLAG"
+ ],
+ "q4_flag_distribution": {
+  "WINDOW_NO": {
+   "nocode": {
+    "ok": true,
+    "n": 3,
+    "rows": [
+     {
+      "V": null,
+      "CNT": 1124
+     },
+     {
+      "V": "西药房",
+      "CNT": 4
+     },
+     {
+      "V": "20",
+      "CNT": 26
+     }
+    ],
+    "seconds": 0.691
+   },
+   "valid_sample": {
+    "ok": true,
+    "n": 3,
+    "rows": [
+     {
+      "V": null,
+      "CNT": 380
+     },
+     {
+      "V": "西药房",
+      "CNT": 6
+     },
+     {
+      "V": "20",
+      "CNT": 53
+     }
+    ],
+    "seconds": 0.78
+   }
+  },
+  "TRACE_CODE_NUM": {
+   "nocode": {
+    "ok": true,
+    "n": 1,
+    "rows": [
+     {
+      "V": null,
+      "CNT": 1154
+     }
+    ],
+    "seconds": 0.674
+   },
+   "valid_sample": {
+    "ok": true,
+    "n": 1,
+    "rows": [
+     {
+      "V": null,
+      "CNT": 439
+     }
+    ],
+    "seconds": 0.773
+   }
+  },
+  "SEND_DRUG_STATUS": {
+   "nocode": {
+    "ok": true,
+    "n": 1,
+    "rows": [
+     {
+      "V": "Y",
+      "CNT": 1154
+     }
+    ],
+    "seconds": 0.674
+   },
+   "valid_sample": {
+    "ok": true,
+    "n": 1,
+    "rows": [
+     {
+      "V": "Y",
+      "CNT": 439
+     }
+    ],
+    "seconds": 0.78
+   }
+  },
+  "RETURN_DRUG_STATUS": {
+   "nocode": {
+    "ok": true,
+    "n": 2,
+    "rows": [
+     {
+      "V": null,
+      "CNT": 1152
+     },
+     {
+      "V": "Y",
+      "CNT": 2
+     }
+    ],
+    "seconds": 0.677
+   },
+   "valid_sample": {
+    "ok": true,
+    "n": 1,
+    "rows": [
+     {
+      "V": null,
+      "CNT": 439
+     }
+    ],
+    "seconds": 0.782
+   }
+  },
+  "CLI_FLAG": {
+   "nocode": {
+    "ok": true,
+    "n": 2,
+    "rows": [
+     {
+      "V": "return",
+      "CNT": 2
+     },
+     {
+      "V": "send",
+      "CNT": 1152
+     }
+    ],
+    "seconds": 0.674
+   },
+   "valid_sample": {
+    "ok": true,
+    "n": 1,
+    "rows": [
+     {
+      "V": "send",
+      "CNT": 439
+     }
+    ],
+    "seconds": 0.762
+   }
+  },
+  "SPLIT_FLAG": {
+   "nocode": {
+    "ok": true,
+    "n": 2,
+    "rows": [
+     {
+      "V": 1,
+      "CNT": 191
+     },
+     {
+      "V": 0,
+      "CNT": 963
+     }
+    ],
+    "seconds": 0.672
+   },
+   "valid_sample": {
+    "ok": true,
+    "n": 2,
+    "rows": [
+     {
+      "V": 1,
+      "CNT": 77
+     },
+     {
+      "V": 0,
+      "CNT": 362
+     }
+    ],
+    "seconds": 0.784
+   }
+  }
+ },
+ "sd06_upload_log_daily": {
+  "ok": true,
+  "n": 16,
+  "rows": [
+   {
+    "BUSINESS_ID": "3503",
+    "D": "2026-10-18",
+    "UPLOAD_STATUS": 1,
+    "LOGS": 24,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "D": "2026-10-19",
+    "UPLOAD_STATUS": 1,
+    "LOGS": 24,
+    "REC": 41,
+    "SUCC": 36,
+    "FAIL": 5
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "D": "2026-10-20",
+    "UPLOAD_STATUS": 1,
+    "LOGS": 24,
+    "REC": 63,
+    "SUCC": 63,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "D": "2026-10-21",
+    "UPLOAD_STATUS": 1,
+    "LOGS": 24,
+    "REC": 25,
+    "SUCC": 25,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "D": "2026-10-22",
+    "UPLOAD_STATUS": 1,
+    "LOGS": 24,
+    "REC": 62,
+    "SUCC": 53,
+    "FAIL": 9
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "D": "2026-10-23",
+    "UPLOAD_STATUS": 1,
+    "LOGS": 24,
+    "REC": 26,
+    "SUCC": 25,
+    "FAIL": 1
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "D": "2026-10-24",
+    "UPLOAD_STATUS": 1,
+    "LOGS": 24,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "D": "2026-10-25",
+    "UPLOAD_STATUS": 1,
+    "LOGS": 24,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "D": "2026-10-26",
+    "UPLOAD_STATUS": 1,
+    "LOGS": 24,
+    "REC": 37,
+    "SUCC": 34,
+    "FAIL": 3
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "D": "2026-10-27",
+    "UPLOAD_STATUS": 1,
+    "LOGS": 21,
+    "REC": 78,
+    "SUCC": 78,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3505",
+    "D": "2026-10-18",
+    "UPLOAD_STATUS": 1,
+    "LOGS": 12,
+    "REC": 2102,
+    "SUCC": 2089,
+    "FAIL": 13
+   },
+   {
+    "BUSINESS_ID": "3505",
+    "D": "2026-10-19",
+    "UPLOAD_STATUS": 1,
+    "LOGS": 12,
+    "REC": 2899,
+    "SUCC": 2873,
+    "FAIL": 26
+   },
+   {
+    "BUSINESS_ID": "3505",
+    "D": "2026-10-20",
+    "UPLOAD_STATUS": 1,
+    "LOGS": 12,
+    "REC": 2323,
+    "SUCC": 2309,
+    "FAIL": 14
+   },
+   {
+    "BUSINESS_ID": "3505",
+    "D": "2026-10-21",
+    "UPLOAD_STATUS": 1,
+    "LOGS": 12,
+    "REC": 2463,
+    "SUCC": 2443,
+    "FAIL": 20
+   },
+   {
+    "BUSINESS_ID": "3505",
+    "D": "2026-10-22",
+    "UPLOAD_STATUS": 0,
+    "LOGS": 138,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3505",
+    "D": "2026-10-22",
+    "UPLOAD_STATUS": 1,
+    "LOGS": 1,
+    "REC": 13,
+    "SUCC": 13,
+    "FAIL": 0
+   }
+  ],
+  "seconds": 0.005
+ },
+ "sd06_upload_log_hourly": {
+  "ok": true,
+  "n": 72,
+  "rows": [
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-23 00",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-23 01",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-23 02",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-23 03",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-23 04",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-23 05",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-23 06",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-23 07",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-23 08",
+    "UPLOAD_STATUS": 1,
+    "REC": 3,
+    "SUCC": 3,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-23 09",
+    "UPLOAD_STATUS": 1,
+    "REC": 10,
+    "SUCC": 10,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-23 10",
+    "UPLOAD_STATUS": 1,
+    "REC": 2,
+    "SUCC": 1,
+    "FAIL": 1
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-23 11",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-23 12",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-23 13",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-23 14",
+    "UPLOAD_STATUS": 1,
+    "REC": 1,
+    "SUCC": 1,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-23 15",
+    "UPLOAD_STATUS": 1,
+    "REC": 8,
+    "SUCC": 8,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-23 16",
+    "UPLOAD_STATUS": 1,
+    "REC": 2,
+    "SUCC": 2,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-23 17",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-23 18",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-23 19",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-23 20",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-23 21",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-23 22",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-23 23",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-24 00",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-24 01",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-24 02",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-24 03",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-24 04",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-24 05",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-24 06",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-24 07",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-24 08",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-24 09",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-24 10",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-24 11",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-24 12",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-24 13",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-24 14",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-24 15",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-24 16",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-24 17",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-24 18",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-24 19",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-24 20",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-24 21",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-24 22",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-24 23",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-25 00",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-25 01",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-25 02",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-25 03",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-25 04",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-25 05",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-25 06",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-25 07",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-25 08",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-25 09",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-25 10",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-25 11",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-25 12",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-25 13",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-25 14",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-25 15",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-25 16",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-25 17",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-25 18",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-25 19",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-25 20",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-25 21",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-25 22",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   },
+   {
+    "BUSINESS_ID": "3503",
+    "H": "2026-10-25 23",
+    "UPLOAD_STATUS": 1,
+    "REC": 0,
+    "SUCC": 0,
+    "FAIL": 0
+   }
+  ],
+  "seconds": 0.004
+ },
+ "run_completed": true,
+ "elapsed_seconds": 12.15
+}

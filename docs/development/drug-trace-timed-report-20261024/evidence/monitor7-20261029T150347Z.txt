@@ -1,0 +1,32 @@
+The authenticity of host '<prod-host> (<prod-host>)' can't be established.
+ED25519 key fingerprint is SHA256:IjK9PN01og2d/fsSjUy4rlsyRBqOiZZycBN6j46shQc.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '<prod-host>' (ED25519) to the list of known hosts.
+
+Authorized users only. All activities may be monitored and reported.
+root@<prod-host>'s password: 
+===HOST TIME===
+2026-10-29 23:03:47 +0800
+===NEW RUN 238c79c2===
+DONE|3205|1792|true|2026-10-29T11:02:17.037226
+===LAUNCHER LOG===
+2026-10-29 19:02:42 run terminal: DONE
+{"window": ["2026-10-27T00:00:00", "2026-10-28T00:00:00"], "collection": {"id": "238c79c2-07bb-4295-a75f-b51c8228beb6", "state": "DONE", "summary": {"bills_seen": 3205, "revisions_created": 0, "idempotent": 3205, "waiting": 1413, "valid": 1792, "invalid": 0, "not_reportable": 0, "conflicts": 0, "version_rereads": 0, "skipped_version_changing": 0, "retried_ok": 0, "retried_failed": 0, "slices_completed": 129, "progress_at": "2026-10-29T11:02:17.037226", "window_completed": true, "source_metrics": {"connect_count": 129.0, "connect_seconds": 2.3868824229575694, "query_count": 6539.0, "query_seconds": 11321.550263779704}}}, "send": {"sent": 1792, "skipped_terminal": 0, "resumed": 1792, "prepared_new": 0, "errors": [], "aborted_reason": ""}, "query": {"queried": 0, "errors": [], "skipped_exhausted": 205, "skipped_inflight": 1131}, "candidate_count": 1792, "lookback": {"ok": true, "enabled": true, "keys": 411, "runs": [{"id": "1bb695c7-0057-40b7-b2ec-babbeb6d41c8", "state": "DONE"}], "sent": 0, "prepared_new": 0, "skipped_terminal": 0, "errors": []}, "elapsed_seconds": 12861.8, "outcome": "OK", "report_push": {"skipped": true, "reason": "DAILY_REPORT_NOT_DEPLOYED"}}
+2026-10-29 22:37:04 backfill rc=0
+===LAUNCHER ALIVE===
+===BACKFILL FILES===
+-rw-r--r--. 1 root root    0 Oct 29 15:46 /var/log/blyb/daily-upload/20261029-154639-backfill-1027.err
+-rw-r--r--. 1 root root 1620 Oct 29 15:46 /var/log/blyb/daily-upload/20261029-154639-backfill-1027.json
+-rw-r--r--. 1 root root 1252 Oct 29 22:37 /var/log/blyb/daily-upload/20261029-backfill-1027-launch.log
+===QUOTA===
+8413|2026-10-29 14:20:08.705092
+===SUBS UPDATED LAST 3H===
+CONFIRMED|846
+ACCEPTED|366
+PARTIAL|1
+===TIMER===
+NEXT                        LEFT          LAST                        PASSED  UNIT                    ACTIVATES
+Fri 2026-10-30 01:00:00 CST 1h 56min left Thu 2026-10-29 06:10:29 CST 16h ago blyb-daily-upload.timer blyb-daily-upload.service
+
+Connection to <prod-host> closed.

@@ -1,0 +1,23 @@
+{
+  "exit_code": 0,
+  "result": {
+    "ok": true,
+    "uploads": 0,
+    "source_writes": 0,
+    "outcome": "DRY_RUN",
+    "mandatory_fields": [
+      "bill_code",
+      "bill_time",
+      "bill_type",
+      "ref_user_id",
+      "trace_codes"
+    ],
+    "code_count": 4,
+    "hospital_id_matches": true,
+    "original_codes_preserved": true,
+    "submission_state": "PREPARED",
+    "delivery_attempt_count": 0,
+    "quota_count": 0,
+    "send_job_count": 0
+  }
+}

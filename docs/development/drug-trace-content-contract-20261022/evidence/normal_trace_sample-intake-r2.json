@@ -1,0 +1,28 @@
+{
+  "source_sql_sha256": "0bc4be26ff18251807d77abb19055ff65da8a1386a66ff80017ae86f9db24554",
+  "source_file": "docs\\development\\drug-trace-content-contract-20261022\\sql\\normal_trace_sample.sql",
+  "system_code": "HIS_SOURCE",
+  "dialect": "oracle",
+  "tables": [
+    "PHARMACY.DRUG_PRESC_MASTER",
+    "DRUG_USER.MED_TRACE_RECORD"
+  ],
+  "aliases": {
+    "DRUG_PRESC_MASTER": "PHARMACY.DRUG_PRESC_MASTER",
+    "T": "DRUG_USER.MED_TRACE_RECORD"
+  },
+  "candidates": [],
+  "warnings": [
+    "JOIN DRUG_USER.MED_TRACE_RECORD 的 ON 条件未解析出跨别名等值键，需要人工检查",
+    "检测到可能的旧式逗号连接；脚本不会自动推断 WHERE 中的隐式关系"
+  ],
+  "formal_assets_modified": false,
+  "existing_relation_lookup_note": "Current platform target relation search=0; legacy CSV target relations=0. Legacy CSV format incompatible with parser load_existing, manually filtered target records instead.",
+  "resolved_source_table": "DRUG_USER.MED_TRACE_RECORD",
+  "reviewed_complete_join": [
+    "T.TRACE_BILLNO=TO_CHAR(M.PRESC_NO)",
+    "T.PRESC_DATE=M.PRESC_DATE",
+    "T.STORE_CODE=M.DISPENSARY"
+  ],
+  "review_status": "bounded sample evidence, not formally published"
+}

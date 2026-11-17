@@ -1,0 +1,98 @@
+{
+  "task": "REPORTING-DMZ-CHECK-20261016",
+  "started_at_utc": "2026-10-16T14:33:36.438246+00:00",
+  "host": "<relay-net-host>",
+  "port": 22,
+  "username": "root",
+  "mode": "read_only_no_remote_changes_no_db_protocol_no_business_post",
+  "authenticated": true,
+  "probes": {
+    "listeners": {
+      "command": "ss -lnt",
+      "exit_code": 0,
+      "stdout": "State      Recv-Q Send-Q Local Address:Port               Peer Address:Port              \nLISTEN     0      128    127.0.0.1:631                      *:*                  \nLISTEN     0      100    127.0.0.1:25                       *:*                  \nLISTEN     0      128          *:111                      *:*                  \nLISTEN     0      5      192.168.122.1:53                       *:*                  \nLISTEN     0      128          *:22                       *:*                  \nLISTEN     0      128      [::1]:631                   [::]:*                  \nLISTEN     0      100      [::1]:25                    [::]:*                  \nLISTEN     0      100       [::]:8001                  [::]:*                  \nLISTEN     0      128       [::]:111                   [::]:*                  \nLISTEN     0      128       [::]:22                    [::]:*                  \n",
+      "stderr": ""
+    },
+    "tools": {
+      "command": "for tool in python3 curl openssl nginx docker podman chronyc timeout; do command -v \"$tool\" || true; done",
+      "exit_code": 0,
+      "stdout": "/usr/bin/curl\n/usr/bin/openssl\n/usr/bin/chronyc\n/usr/bin/timeout\n",
+      "stderr": ""
+    },
+    "dns_eco": {
+      "command": "timeout 10 getent ahostsv4 eco.taobao.com",
+      "exit_code": 0,
+      "stdout": "59.82.122.165   STREAM tao.cn.zb.aserver.tengine.ingress.alibabacorp.com.gds.alibabadns.com\n59.82.122.165   DGRAM  \n59.82.122.165   RAW    \n",
+      "stderr": ""
+    },
+    "identity": {
+      "command": "uname -srm; cat /etc/os-release; id; date -u '+%Y-%m-%dT%H:%M:%SZ'",
+      "exit_code": 0,
+      "stdout": "Linux 3.10.0-1160.an7.x86_64 x86_64\nNAME=\"Anolis OS\"\nVERSION=\"7.9\"\nID=\"anolis\"\nID_LIKE=\"rhel fedora centos\"\nVERSION_ID=\"7.9\"\nPRETTY_NAME=\"Anolis OS 7.9\"\nANSI_COLOR=\"0;31\"\nHOME_URL=\"https://openanolis.cn/\"\nBUG_REPORT_URL=\"https://bugs.openanolis.cn/\"\n\nCENTOS_MANTISBT_PROJECT=\"CentOS-7\"\nCENTOS_MANTISBT_PROJECT_VERSION=\"7\"\nREDHAT_SUPPORT_PRODUCT=\"centos\"\nREDHAT_SUPPORT_PRODUCT_VERSION=\"7\"\n\nuid=0(root) gid=0(root) 组=0(root)\n2026-10-16T14:01:40Z\n",
+      "stderr": ""
+    },
+    "resolver": {
+      "command": "cat /etc/resolv.conf",
+      "exit_code": 0,
+      "stdout": "nameserver 223.5.5.5\n",
+      "stderr": ""
+    },
+    "dns_gw": {
+      "command": "timeout 10 getent ahostsv4 gw.api.taobao.com",
+      "exit_code": 0,
+      "stdout": "59.82.31.88     STREAM default.cn.wagbridge.top.alibabacorp.com.gds.alibabadns.com\n59.82.31.88     DGRAM  \n59.82.31.88     RAW    \n",
+      "stderr": ""
+    },
+    "target_22": {
+      "command": "timeout 6 bash -c 'if exec 3<>/dev/tcp/<prod-host>/22; then printf \"TCP_CONNECTED\\n\"; exec 3>&-; else exit 1; fi'",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "bash: connect: 拒绝连接\nbash: /dev/tcp/<prod-host>/22: 拒绝连接\n"
+    },
+    "platform_http_head": {
+      "command": "curl --noproxy '*' --head --connect-timeout 5 --max-time 15 --silent --show-error --output /dev/null --write-out 'http_code=%{http_code} remote_ip=%{remote_ip} remote_port=%{remote_port} ssl_verify_result=%{ssl_verify_result} time_total=%{time_total}\n' http://gw.api.taobao.com/router/rest",
+      "exit_code": 0,
+      "stdout": "http_code=200 remote_ip=59.82.23.29 remote_port=80 ssl_verify_result=0 time_total=0.041\n",
+      "stderr": ""
+    },
+    "target_443": {
+      "command": "timeout 6 bash -c 'if exec 3<>/dev/tcp/<prod-host>/443; then printf \"TCP_CONNECTED\\n\"; exec 3>&-; else exit 1; fi'",
+      "exit_code": 0,
+      "stdout": "TCP_CONNECTED\n",
+      "stderr": ""
+    },
+    "target_route": {
+      "command": "ip route get <prod-host>",
+      "exit_code": 0,
+      "stdout": "<prod-host> via <relay-net-host> dev ens33 src <relay-net-host> \n    cache \n",
+      "stderr": ""
+    },
+    "target_8443": {
+      "command": "timeout 6 bash -c 'if exec 3<>/dev/tcp/<prod-host>/8443; then printf \"TCP_CONNECTED\\n\"; exec 3>&-; else exit 1; fi'",
+      "exit_code": 0,
+      "stdout": "TCP_CONNECTED\n",
+      "stderr": ""
+    },
+    "clock_sync": {
+      "command": "timedatectl show --property=NTP --property=NTPSynchronized --property=Timezone",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "timedatectl：无法识别的选项“--property=NTP”\n"
+    },
+    "clock_tracking": {
+      "command": "if command -v chronyc >/dev/null 2>&1; then chronyc tracking; else printf \"chronyc not available\\n\"; fi",
+      "exit_code": 0,
+      "stdout": "Reference ID    : 00000000 ()\nStratum         : 0\nRef time (UTC)  : Thu Jan 01 00:00:00 1970\nSystem time     : 0.000000000 seconds fast of NTP time\nLast offset     : +0.000000000 seconds\nRMS offset      : 0.000000000 seconds\nFrequency       : 0.000 ppm slow\nResidual freq   : +0.000 ppm\nSkew            : 0.000 ppm\nRoot delay      : 1.000000000 seconds\nRoot dispersion : 1.000000000 seconds\nUpdate interval : 0.0 seconds\nLeap status     : Not synchronised\n",
+      "stderr": ""
+    },
+    "platform_https_head": {
+      "command": "curl --noproxy '*' --head --connect-timeout 5 --max-time 15 --silent --show-error --output /dev/null --write-out 'http_code=%{http_code} remote_ip=%{remote_ip} remote_port=%{remote_port} ssl_verify_result=%{ssl_verify_result} time_total=%{time_total}\n' https://eco.taobao.com/router/rest",
+      "exit_code": 7,
+      "stdout": "http_code=000 remote_ip=2408:4001:f10::d3 remote_port=443 ssl_verify_result=0 time_total=2.015\n",
+      "stderr": "curl: (7) Failed to connect to 2408:4001:f10::d3: 网络不可达\n"
+    }
+  },
+  "fingerprint": "SHA256:3g4LnnNM0smNFZTbV7V4Ii/xmNq3Bru8gAT1xQQwBcg",
+  "fingerprint_matches_prior_observation": true,
+  "finished_at_utc": "2026-10-16T14:33:39.404083+00:00"
+}

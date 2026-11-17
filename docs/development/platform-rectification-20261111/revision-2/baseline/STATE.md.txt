@@ -1,0 +1,971 @@
+# 当前项目状态
+
+## 最新：RT-02 后端安全鉴权闭环、单轨插件装配与测试基线清零完成——探针 43/43、后端全量 958/0/0error、warnings 3453→7（2026-11-13，RT-02-20261113，ZCode/GLM-5.3）
+
+审计整改第二项完成：**4 处 target_scopes 越权全部封堵**（medins_emr 全 7 端点、PUT
+report-targets、alert-rules 新旧 target 双校验+系统级对象拒单业务 scope、旧 alerts/
+submissions 列表+详情按范围收缩且机器 token/["*"] 行为不变）；**6 类运维写操作补齐
+AuditEvent**（ack/resolve/规则增改/通道增改，快照不含敏感值）；**最后管理员并发归零
+竞态根修**（id 升序 FOR UPDATE 锁全租户活跃管理员集合+剔除锁定账号，lock 同护）；
+**插件装配单轨化**（`_loaded_registry` 永不为 None、`domain.routes` 通用挂载、
+Compose migrate/bootstrap 与 core/worker 插件集一致+默认纳入 3 新插件）；**测试基线
+清零**（探针 R22 根修 **43/43**、PG 测试动态端口+优雅 skip 消灭 1 error、
+tometadata/Query.get×49/sqlite3 datetime 适配器全清——**全量回归 958 passed/0 failed/
+0 error/8 skip、warnings 3453→7**）。新增 46 项安全/并发/装配测试；前端例行验证
+build 0、87/87；禁改清单 SHA256 前后一致；生产零触碰。[交接](sessions/RT-02-20261113.md)。
+**下一项 RT-03**（调度器状态机、早报时区与告警中心深修）。
+
+## RT-01 前端 P0 白屏清零与契约对齐完成——build 0、前端 87/87、后端 911/0/1env 零新增失败（2026-11-12，RT-01-20261112，ZCode/GLM-5.3）
+
+审计整改第一阶段（RT 系列第 1 天）完成：**路由 2 处断路（component:undefined）清零**（routes.ts
+硬断言）、**Dashboard 双 PRODUCTION 白屏根修**（sortTargets 兼容 target_code）、**Tabs 插槽/
+PageHeader actions/Drawer+Modal 双 emit/StatusTag 40+ 枚举**全部对齐；**Dashboard/TargetDetail/
+Ledger/Users/AuditSearch/Schedules/Alerts** 前后端契约逐页修复（destination_summary 脱敏摘要、
+data_source 如实、CSV 导出 Bearer、+08:00 时区、target_scopes 映射、原生弹窗清零、TimeText）；
+**零新依赖 SSR 渲染测试 35 项**（sfc_loader.mjs：compiler-sfc+esbuild+server-renderer）锁死全部
+P0 场景。验收：**build 退出码 0；node --test 87/87（51+36）；后端全量 911/0/8skip/1error
+（error=drug_trace_pg Docker 环境阻断，与 LT-09 基线同数，零新增失败）**；禁改文件 SHA256
+前后一致；npm/pip 零安装；生产零触碰。附带如实登记：performance/_server_proc.py 挂载哨兵
+基建修复（A01 600MB 与本次业务改动无关）。[交接](sessions/RT-01-20261112.md)。**下一项 RT-02**
+（后端安全鉴权闭环、单轨插件装配、探针 43/43 与 PG 测试修复）。
+
+## 已上线：关联性整改方案 A——六视图 v0.7 锚点过滤部署验收全绿（2026-11-11，INF-LINKAGE-ACCEPT，ZCode/k3.1-pro）
+
+用户核心诉求"严格按诊疗视图、无记录不上报"达成。最终形态：OGG 同步基表本地复刻诊疗视图
+（M_INF_FXHIS_ACTIVITY 本地视图，行级等价 11009=11009）+六视图 INNER JOIN 锚点+本地患者表。
+验收：六视图全 VALID；行数窗内（首程 10135/日常 10163/首页 10064/死亡 65/检查主表 44854/检查项目 45394）；
+**可关联率 100%（每行命中诊疗锚点）**；主子对齐 100%；手动一班全 6 表 failed=0（exam 补推窗内 487）。
+05 检查主表为重建版（草稿不完整）。无 dblink/镜像表/刷新任务。方案演变：dblink 镜像→端口封→OGG 本地复刻。
+**仍开放**：平台侧 19/20"锚点有行仍失败"样本的匹配逻辑澄清（工单+核查 SQL 已备，BACKLOG P0）。
+[交接](sessions/INF-LINKAGE-IMPL-20261110.md)。
+
+## 已交付待 DBA：关联性整改方案 A 落地——镜像建设说明+六视图 v0.7（2026-11-10，INF-LINKAGE-IMPL-20261110，ZCode/GLM-5.3-Flash）
+
+## 最新：LT-01—09 独立源码深度审计与二阶段整改长任务规划 RT-01—06 完成（2026-11-11，Antigravity）
+
+对前序 `LT-01`～`LT-09` 全量代码开展独立源码审查与探针实测（探针实测 `42/43 passed, 1 failed [R22], 3453 warnings`；前端内置 `@vue/compiler-sfc` + `vue/server-renderer` 实测可用）。**审计结论**：前序交付虽达成名义单测（911 后端 / 51 前端纯函数）与构建通过，但存在 **40+ 处严重盲写缺陷**——前端默认首页 `/dashboard` 双 `PRODUCTION` 排序 `TypeError` 白屏、`Tabs.vue` 缺 `<slot/>` 致 `TargetDetail` 七个页签全空白、2 处路由断路白屏、`PageHeader` 缺 `actions` 插槽、`Modal/Drawer` 关闭事件错配、`StatusTag` 显示 `—`、CSV 导出 401 及 10 个老页面未升级；后端 4 处 `target_scopes` 越权绕过（含 `medins-emr` 全 7 端点）、`ScheduleRun` 无 `RUNNING`/耗时恒 0/重试假失败/早报时区崩溃、传染病缺 `digest` 与真实 SQL `collect.py`、山东医保漏 `12601–12604` 四交易且 `mask_sensitive` 漏脱敏嵌套层患者隐私字段落库、脚手架仅能执行一次。**本轮未改业务代码、未触碰生产**；已产出 6 天深度整改长任务书 `RT-01`～`RT-06` 与每日提示词，详见 [审计与整改总览](../development/platform-rectification-20261111/README.md)、[每日提示词](../development/platform-rectification-20261111/DAILY_PROMPTS.md)、[会话交接](sessions/AUDIT-AND-RECTIFY-PLAN-20261111.md)。**在完成 RT-01～RT-04 关键缺陷清零前，严禁将 LT 系列新功能切入生产环境。**
+
+# 当前项目状态
+
+## 收官：平台演进 LT-03R1→04→05→06A→06B→07→09 全部完成（2026-11-11，LT-09，ZCode/GLM-5.3）
+
+LT-09：脚手架 scripts/new_report_target.py（幂等/dry-run零写/越界拒绝/种子复用不建重复业务）；
+影像云 medins_imaging 骨架+CSV Profile **16数据集/288字段**（实际计数）；接入指南11步+22条
+清单；清理四项（plugin_registry弃用说明/dist警示/空目录README/uuid注释）；DEPLOY_RUNBOOK
+（BLYB_PLUGINS 结论：生产 override=pathology,metrics,drug_trace——**新插件默认不加载**；
+回退保新账）；**RESULT.md** 总表。LT-09 新增6测试；**终验后端 911/0/1env、探针42/43、
+前端51/51+build**。发行构建因离线Docker材料缺失登记阻断（未调用未声称）。生产链路全程
+零触碰；本批**不部署**。各任务交接：sessions/LT-0*-2026111*.md；总表：
+[RESULT.md](../development/platform-evolution-20261103/RESULT.md)。
+
+# 当前项目状态
+
+## 最新：LT-07 医保契约与联调台完成——905测试全绿、泄漏检查命中0（2026-11-11，LT-07，ZCode/GLM-5.3）
+
+Profile 体系（tools/spec_extract 三件器+profiles/medins_emr_sd：23交易字段契约/报文头/
+合成样例/EXTRACTION_REPORT；泄漏检查**命中0**——1处历史测试通用示例号统一为合成号）；
+契约校验器（必填缺失键/类型/长度附LENGTH_UNIT_UNCONFIRMED/字典/真实日历/未知字段WARN）；
+medins_gateway（msgid 规范已证实 30 位实现；签名规范无算法→**SIGNATURE_UNCONFIRMED**
+无猜测实现；envelope 全取配置）；迁移019 debug_exchange（只存打码版）；联调 API 7端点+
+前端联调台 tab（黄条不出网/dry-run 先行/执行包导出不落库/人工回填 MANUAL_OBSERVATION）；
+种子 medins_emr_sd→DEVELOPING（存量库需运维经 API 更新，交接注明）。规范矛盾（info
+长度4 vs 交易号5位）置None待核不猜口径。新增27测试；**全量905/0/1env**、探针42/43。
+真实医保联调=外部阻断。**下一项 LT-09（收官）**。
+
+# 当前项目状态
+
+## 最新：LT-06B 运营页面完成——9页+23新前端测试，build 通过（2026-11-11，LT-06B，ZCode/GLM-5.3）
+
+P1 Dashboard（待办条/卡片网格口径分离/趋势堆叠/晨报/最近运行）、Targets、TargetDetail
+（概况图+台账+调度+告警+配置只读+EXTERNAL 外部导入 dry-run 先行）、Ledger（游标分页+
+UNKNOWN 处置）；P2 Schedules（cron 悬停预览/启停理由/镜像仅观测无操作）、Alerts 五 tab
+（规则动态表单不手写 JSON/通道本批停用如实显示）；P3 Users（范围多选/最后管理员后端把关）、
+AuditSearch（先筛后限+详情 refs+CSV 导出）。mjs 唯一事实源+TS re-export（node:test 可测）；
+菜单/路由更新（驾驶舱置顶首页）；**build exit 0、前端 51/51（新增 23）、无伪造数据**
+（grep 检查仅剩后端字段展示）；DrugTrace 三件套零触碰。后端回归见下（无后端改动）。
+[交接](sessions/LT-06B-20261111.md)。下一项 LT-07。
+
+# 当前项目状态
+
+## 最新：LT-06A 安全后端完成——业务范围鉴权全接入、881测试全绿（2026-11-11，LT-06A，ZCode/GLM-5.3）
+
+迁移018（auth_subject.target_scopes，既有 user 兼容赋 ["*"]、机器主体不受约束）；
+Principal.require_target_scope（**403 先于存在性校验防泄露**；空范围 fail-closed）；
+system_routes 5端点（最后管理员行锁保护/重置密码与锁定撤销会话即时生效/不返回 hash）；
+范围接入 21 处路由（targets/summary/ledger/处置/overview/imports/schedules/alerts/rules；
+晨报全院聚合对受限用户 403）；审计兼容扩展（action_prefix 新参数旧语义不变）+详情+
+CSV 导出（BOM/公式注入防护/超限422/导出自审计；**export 路由先于 /{id} 注册**）。
+既有测试夹具按 018 语义补 ["*"]（22 处回归全修复——鉴权本身工作正确的证据）。
+新增 20 测试；**全量 881/0/1env**、探针 42/43（R22 既有）。B 段页面未开始（handed_off 续做）。
+[交接](sessions/LT-06A-20261111.md)。下一项 LT-06B 运营页面。
+
+# 当前项目状态
+
+## 最新：LT-05 外部台账与传染病影子完成——30新测试、生产链路零触碰（2026-11-11，LT-05，ZCode/GLM-5.3）
+
+迁移017三表（batch/line/record，幂等=来源实例+逻辑文件+行偏移+digest）；导入器白名单/脱敏/
+证件号拒/source_tz显式/dry-run零写/旧失败不覆盖新成功；CLI+API（≤20MB）。影子插件 infectious：
+tables复制@0882ede143aa（parity守护）、payload等价以**真实分支**（冻结时钟+上传时刻重写）逐字段
+证明、发送只走 LT-03-R1 generic Mock 装配（回环强制）、is_mock=False 被 EXTERNAL 闸门拒、
+幂等键=源业务键+源版本。bootstrap 种子 inf_frontend_mock。**全量 861/0/1env**（=830+31）、探针 42/43（R22 既有）；
+真实副本导入与七天影子对比**未执行**（外部输入/前提，未签认）；A05 配额测试脆弱性已在本轮修订为确定性超额（margin=free+1024，
+断言不变；storage 业务代码零改动）。[交接](sessions/LT-05-20261110.md)。下一项 LT-06A/B。
+
+# 当前项目状态
+
+## 最新：LT-04 调度、运行治理与告警中心完成——830测试全绿、生产调度零切换（2026-11-10，LT-04，ZCode/GLM-5.3）
+
+迁移015(schedule/schedule_run)+016(告警三表+alert_event扩列)；cron 解析器(CST/跨午夜blackout/
+{fire_date_minus_1}反例)；调度 tick **三步单事务**+双worker条件UPDATE抢占；FORBID查真实非终态Job
+（TIMED_OUT/STALLED观测态不放行）；**镜像 observe_only 列级强制**（enable/run-now/改类型/复制/tick五路拒绝）；
+三系统任务+镜像默认停用；run_guard只标记只告警不kill；告警9kind+DATA_UNAVAILABLE不当恢复+指纹去重/
+冷却/恢复+file-only(smtp/webhook本批服务端禁用含test)+白名单脱敏+晨报；DATE_EXPIRY读实际证据不硬编码。
+新增62测试；**全量830/0/1env**；探针42/43（R22既有）；PG并发显式未测（BLYB_PG_URL缺）；
+药品timer/传染病cron/inf_watchdog零触碰。演示链路：run-now→worker→run回写→file通道JSONL。
+[交接](sessions/LT-04-20261110.md)。下一项 LT-05。
+
+# 当前项目状态
+
+## 最新：LT-03-R1 通用能力复用补强完成——Mock 走 generic、POST 不盲重发、summary 口径分离（2026-11-10，LT-03-R1，ZCode/GLM-5.3）
+
+落实 REVIEW R02/R08：①Mock generic 目的地显式派发 generic 适配器（服务层强制**本机回环**，
+改 is_mock/Target 不能绕过；其他 Mock 保留旧 MockHttpClient）；②POST 超时/断连等不确定结果
+无幂等契约（idempotency_contract=CONFIRMED）一律 **UNKNOWN 不自动重发**，3xx **禁止跟随**，
+每次尝试逐行 DeliveryAttempt（mock 布尔单列）；③闸门收紧 sole_pusher=**CONFIRMED**+独立启用证据
+real_send_evidence_ref；④summary 分离窗口/backlog_total（窗外 UNKNOWN）/quality_waiting/
+evidence_kind，病理应用 days；⑤台账游标 v2 绑定筛选上下文（CURSOR_CONTEXT_MISMATCH）、
+详情/处置按 tenant+target+submission 绑定（跨 target/无绑定 404）。新增 34 测试；
+**全量 768/0/1env**（=基线734+34）；探针 42/43（R22 Oracle stub 既有差异）；
+禁改 11 文件 SHA256 零触碰。药品/传染病生产链路零影响（装配与 worker 全链测试证明）。
+[交接](sessions/LT-03-R1-20261110.md)。下一项 LT-04。
+
+# 当前项目状态
+
+## 已交付待 DBA：关联性整改方案 A 落地——镜像建设说明+六视图 v0.7（2026-11-10，INF-LINKAGE-IMPL-20261110，ZCode/GLM-5.3-Flash）
+
+用户拍板方案 A（镜像关联）。产出 7 文件（docs/development/inf-report-20261027/sql/）：MIRROR-fxhis-关联镜像建设说明.sql
+（ODS 建两锚点镜像三选一同步+4 条自检）+ 六视图 v0.7（01/02/03/05/06/04死亡，原逻辑包内联+INNER JOIN 镜像，
+**列清单机械自查 diff=NONE**，各含验证 SQL+回滚段；06 补辅助列与 pmi JOIN；05 顺带修草稿逗号笔误）。
+诊断与方案依据见 [20261110-关联性整改方案](../../数据上报/4、传染病病历数据上报/plans/20261110-关联性整改方案.md)。
+**下一步**：DBA 执行镜像+六视图（顺序：镜像→01→02→03→05→06→04）→ 回传验证 → 执行 AI 复核 → 首班观察。
+推送器零改动。[交接](sessions/INF-LINKAGE-IMPL-20261110.md)。
+
+## 已完成：死亡 T+0 修复上线+历史补传全量成功，余平台复核观察（2026-11-06，INF-DEATH-FIX2-20261106，ZCode/GLM-5.3-Flash）
+
+## 最新：平台演进计划复核修订，下一项LT-03-R1（2026-11-10）
+
+已按现行代码重写[执行入口](../development/platform-evolution-20261103/NEXT_AI_PROMPT.md)，同步总计划与9份任务书；[复核补充](../development/platform-evolution-20261103/REVIEW-20261110.md)明确Mock装配/重试、镜像不可执行、事务与超时、传染病双时间及证据级别、范围鉴权、医保不猜签名、离线发布。LT-01/02/03/08保留既有交付，先LT-03-R1再LT-04→05→06A/B→07→09。仅文档修订、未实施新增功能或生产核查；本轮前端28项通过、探针仅收集43项，不是后端全量验收。[交接](sessions/PLATFORM-EVOLUTION-PLAN-REVIEW-20261110.md)。
+
+## 最新：LT-03 统一推送适配器与统一提交台账落地——61 测试全绿、药品链路零影响（2026-11-08，LT-03，ZCode/GLM-5.3）
+
+generic_http_json 适配器（校验/白名单二次校验/env 凭据/退避重试→UNKNOWN/令牌桶/回执规则/脱敏）
++DestinationAdapter 协议；perform_push 修 plugin_id 缺陷改 profile 键解析并接 LT-01 闸门
+（**仅 destination.* 键；药品真实发送不经 perform_push（worker job→perform_send），源码证据测试锁定；
+码上放心/传染病链路零触碰**）；mock inf_frontend 行为档；统一台账（先筛后限根治 2026-10-26
+漏旧 UNKNOWN bug——300 条反例测试）+HOOK_LEDGER_SEARCH（药品/病理）+3 API（UNKNOWN 受控
+处置 CAS+审计，RESEND_ALLOWED 不自动发送）。新增 61 测试；全量 734/0/1env（=673+61）。
+[交接](sessions/LT-03.md)。
+
+## 最新：LT-02 前端外壳与组件库重建完成——零新依赖，28/28 测试（2026-11-08，LT-02，ZCode/GLM-5.3）
+
+styles 三件套（DrugTrace 兼容 class 全保留）、组件库 21 文件（含纯 SVG 三图表）、utils 五件
+（successRate 分母 0→null 红线）、类型化 api 层（旧 api.ts re-export，14 引用方零修改）、
+分组菜单+角色路由守卫（403/404）、新外壳 App.vue、8 页面改造（JSON 直出清零，更正理由传后端）。
+build exit 0（vue-tsc 全开，JS +87KB<150 达标）；node --test 28/28（旧 7 未改+新 21）。
+DrugTrace 三件套 mtime 未动；未目视（chromium 二进制缺失，离线禁下载）。[交接](sessions/LT-02.md)。
+
+## 最新：LT-01 上报业务目录（ReportTarget）落地——5 业务台账+6 API+钩子内核，闸门未接生产链路（2026-11-08，LT-01，ZCode/GLM-5.3）
+
+按任务书交付：迁移 014 report_target、插件 manifest.json 自动发现（PLUGIN_MANIFESTS 派生兼容）、
+领域钩子 domain_hooks（overview 去病理硬编码 10→9 引用、药品/病理只读 target_summary 统一状态桶）、
+服务层 CRUD+乐观锁+审计+生产闸门+幂等种子（码上放心 CONFLICT/传染病 EXTERNAL 仅台账提醒——
+**用户红线：闸门严禁接入药品/传染病现有生产链路**，药品仍走 ProductionEvidence 门禁）、
+6 端点挂载、bootstrap 种子。新增测试 56 全绿；全量 **673/0/7/1env**（=基线617+56）。
+[交接](sessions/LT-01.md)。
+
+## 最新：药品批次超时根修已部署生效——验证窗 59ms/单（原~10s）、积压补发进行中（2026-11-08，DTR-BATCH-FIX-20261108，ZCode/GLM-5.3）
+
+用户授权后按 [根修计划](../development/drug-trace-perf-fix-20261105/PLAN.md) 一次性交付：Fix1 prepare 换代
+O(N)→定点查询（生产 2.61 亿次索引扫描实锤）、迁移 020 索引、worker tick 减 commit+心跳线程、
+purge/catchup 两 timer、驱动预算 8h、LT-08 优化随行。发行 `batchfix-20261108T0900Z` 升级六容器 healthy；
+**白天验证窗 221 单/13s=59ms/单（~170 倍），worker CPU 88%→3%、unhealthy 恢复**。补发 11-01..11-07
+七窗 ~16.4K 单 systemd 自治进行中（~10 单/min，限速跨进程共享、与夜批并发安全，预计 11-09 午后完成）。
+全量 617/0/1环境error（PG 测试端口被无关容器占）。观察：今晚 01:00 首夜 + 明 08:30 catchup 首跑。
+[交接](sessions/DTR-BATCH-FIX-20261108.md)。
+
+## 及时性 100% 方案已执行——上报语义切换上线，零漏推实锤（2026-11-07，INF-T100-IMPL-20261107，ZCode/GLM-5.3）
+
+按[计划](../../数据上报/4、传染病病历数据上报/plans/20261107-及时性100与关联处置执行计划.md)完成：①pusher operationTime 上报语义切换（payload=接口上传时刻 per-row；内部水位/去重/sent.jsonl 保持源时间解耦，selftest 61 项本地/宿主/容器三环境全绿，手动班 6 表 failed=0，sent.jsonl 源时间抽查实锤）；②exam_item overlap 2→5；③补推存量实测 **sent=0——ID 级全覆盖，无真实漏推**（早前按日对账的-85/-42 为 opTime 漂移伪影，偏差如实入档）；④B1 关联键自查：六视图 7 天非空率 100%。待办：两班 cron 观察+次日 reconcile（P5）、平台下期反馈（P6）、B2 错误样例取证（等用户）。[交接](sessions/INF-T100-IMPL-20261107.md)。
+
+## 待执行：及时性 100% 达标+关联处置计划已编制（2026-11-07，INF-T100-PLAN-20261107，交外部执行 AI）
+
+用户要求"都是及时 100%+互相关联"→ 方案落盘（[plans/20261107-及时性100与关联处置执行计划.md](../../数据上报/4、传染病病历数据上报/plans/20261107-及时性100与关联处置执行计划.md)）：
+**Part A 及时性**：operationTime 上报语义切换为接口上传时刻（手册整改§三-2 原话要求；per-row 赋值消灭跨日边界；内部水位/去重/sent.jsonl/对账全部保持源时间零变化——合规 100% 且保留真实时延自审能力），+exam_item overlap 2→5+补推漏推存量 ~150-250 条；**零 DDL 依赖**（v0.7 降为可选）。**Part B 关联性**：我方六表内部自洽，9 项全灭指向锚点（患者基本信息/诊疗活动=他方）缺失或不匹配——取证驱动（用户导出错误样例→反查我方上报值），分支 1=serial 一行改（DBA）只修增量，分支 2=锚点缺失本机不可解（彻底解=扩展本系统推伴生表，需用户重新拍板 2026-10-28 决策+双推评估）。
+
+## 待执行：检查报告项目及时性修复计划已编制（2026-11-07，INF-EXITEM-FIX-PLAN-20261107，交外部执行 AI）
+
+平台《11.7传染病质控数据情况》"检查报告项目"及时性不合格 → 计划落盘（[plans/20261107-检查项目及时性修复执行计划.md](../../数据上报/4、传染病病历数据上报/plans/20261107-检查项目及时性修复执行计划.md)）：视图 v0.7 一行（opTime 改 NVL(r.REPORT_TIME, m.REPORT_DATE_TIME, m.REQ_DATE_TIME) 与主表同链，DBA 执行）+ tables.py 一行（exam_item overlap_days 2→5 堵漏推黑洞）+ 一次性补推被漏推存量（--since 10-28，约 150-250 条）。24-48h 后同日率应从 66~85% 升至 ≥95%。质控反馈其余项（关联 9 项全灭=诊疗活动锚点问题/入院记录疑双推/病情转归源头缺编码/项目代码字典缺失）为协调项，已在计划 §2 明确责任方，勿自行尝试。
+
+## 最新：及时性手册合规比对+按平台统计规则实测审计——四表合规，exam_item 系统性跨日+漏推黑洞待修（2026-11-07，INF-TIMELINESS-ASSESS-20261107，ZCode/GLM-5.3）
+
+用户转平台方《数据及时性排查与整改手册》+《前置软件关联关系说明》→ 逐条比对 + 用 sent.jsonl（opTime vs
+推送时刻）按平台统计规则实测审计（[交接](sessions/INF-TIMELINESS-ASSESS-20261107.md)）：
+**前置机时钟秒级一致 PASS**；**计0 规则零异常**（全部行 create_date>operation_time，无未来时间戳）；
+3 分钟线不约束我方（属实时组=他方）；**admission/exam/first_course/daily_course 同日率 98~100% 合规**；
+死亡 v0.6 恰对齐"不得取业务时间"规范。**exam_item 同日率仅 66~85%（事故前即存在）**，根因：
+①opTime 回落申请时间 REQ_DATE_TIME（手册禁令项，与主表不同链）；②EXAM_ITEMS 无时间戳列；
+③**完整性黑洞**——overlap=2 天+reconcile 只补昨日+full_days 死代码 → 晚到 >2 天永久漏推（实证 10-31 缺 85 条、
+10-30 缺 42 条）。修复建议（小改待确认）：视图 v0.7 一行（opTime 改 NVL(r.REPORT_TIME,m.REPORT_DATE_TIME,
+m.REQ_DATE_TIME)，DBA 执行）+ tables.py 一行（overlap_days 2→5）+ 口径报备。跟进事项：①用户导出平台
+"错误样例"反查；②告知公卫科 11-06 补传死亡历史 323 条；③9 个数据集归属确认（医嘱/首页/出院记录/生命体征/
+门急诊/检验报告）。死亡计划已增补 operation_time 论证+历史补传闸门条款。
+
+## 已完成：死亡 T+0 修复上线+历史补传全量成功，余平台复核观察（2026-11-06，INF-DEATH-FIX2-20261106，ZCode/GLM-5.3-Flash）
+
+[死亡T0修复执行计划](../../数据上报/4、传染病病历数据上报/plans/20261105-死亡T0修复执行计划.md) Ph3–Ph4 完成：
+DBA 重建 v0.6 后复核 5 条验证全过（342 行=预演一致、11 月 6 行、必填 11 月全 0 空）；手动一班 death sent=13
+failed=0；补传三步走 mock→real limit3（3 true）→**放量 sent=307 failed=0**（18 秒）；终态**唯一 ID 341/342
+全覆盖**、errorCode 全 null、02/03/04 零出现；1~4 月 120 行欠账清零 + 186 条按设计幂等更新重推（死亡诊断填充率
+99.7%）。放量候选 310 vs 计划 127 的偏差（=文书修订晚于离院时间触发的更新重推，§2.2 设计内）已按红线 7 问用户
+（未答复）后依计划自设门（仅 02/03/04 或 failed>0 停）继续，全程零失败。铁律回写 6 项完成（01/02/03/17/README/
+STATE/BACKLOG/交接）。**余观察项**：①次日 reconcile death repushed=0（11-07 晨）；②平台复核死亡>0 连续≥2 天+
+死亡诊断缺失收敛（仍 0 人=停车条件 5 找公卫科澄清）。[交接](sessions/INF-DEATH-FIX2-20261106.md)。
+
+## 已执行（上条承接）：死亡 T+0 修复 Ph1/Ph2 完成，停在前置依赖——待 DBA 执行视图 v0.6 重建（2026-11-05，INF-DEATH-FIX-20261105，ZCode/GLM-5.3）
+
+按[执行计划](../../数据上报/4、传染病病历数据上报/plans/20261105-死亡T0修复执行计划.md)推进至 Ph3：Ph1 五组口径验证
+全部实测通过无停车（文书驱动 90 天 100 vs 编码 88=+13.6%<20%；30 天必填非空 37/37=100%；双驱动矩阵文书独有
+14/编码独有 2/交集 86；v0.6 行集预演 342=329+13；主诊断→国标映射 88/88=100%）——实测修正：11 月死亡文书 **6** 例
+（计划估计 9）、补传预期 sent≈**134~140**。Ph2 v0.6 脚本+回滚段
+[04-v_inf_death_info_v0.6.sql](../development/inf-report-20261027/sql/04-v_inf_death_info_v0.6.sql) 机械自查全过
+（列名 22 列 diff=0、回滚段语义 diff=0）。**Ph3=DBA 门（唯一外部依赖，AI 禁 DDL）**：会话内询问排期未获答复，
+按计划停在 Ph3 标 handed_off；下一棒：DBA 执行 v0.6+回传 5 条验证 SQL 结果 → 复核（行数≈342/MAX op≥11-04/
+11 月行≥6，异常即 DBA 执行回滚段）→ Ph4 自动班观察+补传三步走 → Ph5 平台复核 → Ph6 铁律回写。
+[交接](sessions/INF-DEATH-FIX-20261105.md)。
+
+## 已接续：死亡信息平台 0 人诊断完成，修复计划已编制（2026-11-05，INF-DEATH-PLAN-20261105，执行见上条）
+
+平台质控《传染病数据质量 2026.11.03》点名死亡信息 0 人/死亡诊断代码缺失 → 只读诊断（[交接](sessions/INF-DEATH-PLAN-20261105.md)）：
+推送链路正常，**视图驱动取不到当天数据**——①`PAT_VISIT.离院方式=5` 由病案编码事后补填（11 月 9 例死亡仅 2 例
+已编码，T+0 物理不可达）；②`CDA.TT_ESBHL_DEATH_ROD` **2024-08-30 起停更**（死亡诊断缺失根因）；活信号=
+嘉和死亡记录文书（月均 ~70 份、镜像滞后 ~17min、最新 11-04）。修复[计划](../../数据上报/4、传染病病历数据上报/plans/20261105-死亡T0修复执行计划.md)：
+视图 v0.6 驱动切"死亡文书∪离院方式5"（DDL 由 DBA 执行，AI 只备稿）→ 推送器零改动自动恢复 T+0 → 一次性补传
+1~4 月 ~127 条历史欠账。含停车条件与平台复核步骤；另有发现：CDA 死亡馈送停更需信息科工单（已列 BACKLOG）。
+
+## 最新：LT-08 药品采集"非查询开销"排查完成——根因=提交 I/O+commit 放大+源往返，4 项等价优化落地（2026-11-04，LT-08，ZCode/GLM-5.3）
+
+本地合成复现+同库 A/B（未连任何真实系统、未部署）。**根因**：应用侧每单 CPU 仅 6.5—8.6ms；
+装载库存量下 87% 耗时是页级事务提交 fsync/WAL I/O（synchronous=OFF 对照 -82%）；worker 全链路
+每单 ≈2.6 次 commit（outbox→prepare 链 +2.44/单实测）；每单 2 次源端往返。**优化（等价守护）**：
+O1 页级预取（SQL/单 12.45→9.53，-23%）、O2 新单跳过空 DELETE、O3 gate 合并读、O4 batch_fetch
+（默认关；源查询 -94%，5ms 延迟下每单 -63%）。等价 8/8、drug_trace 专项 316/0。生产验证与
+PG 索引/同步策略/batch_fetch 开启流程见 [LT-08-REPORT](../development/platform-evolution-20261103/LT-08-REPORT.md) §六。
+[交接](sessions/LT-08.md)。
+
+## 已编制：平台演进长任务计划 LT-01—LT-09（2026-11-03，PLATFORM-EVOLUTION-PLAN-20261103，Antigravity/claude-opus-5.5）
+
+纯分析+计划，未改代码/未部署。结论：药品为平台插件+宿主驱动、传染病为平台外脚本、医保电子病历无代码、病理仅 Mock；
+缺上报业务目录、统一推送/台账、平台调度告警，前端仅药品页可用。计划见
+[platform-evolution-20261103](../development/platform-evolution-20261103/README.md)（9 个每日长任务，新能力默认 Mock/停用，不动生产链路）。
+[交接](sessions/PLATFORM-EVOLUTION-PLAN-20261103.md)。
+
+## 最新：传染病守护告警 inf_watchdog 已上线（2026-11-03，INF-WATCH-IMPL-20261103，ZCode/GLM-5.3）
+
+按 [20261103-守护告警执行计划](../../数据上报/4、传染病病历数据上报/plans/20261103-守护告警执行计划.md)
+Ph0–Ph7 一次性交付完成：独立 inf_watchdog 部署 <prod-host> 宿主（systemd timer 5 分钟 check C1–C10 +
+08:00 晨报 + file/smtp/webhook 三档驱动+防轰+恢复通知+脱敏白名单），**推送主链路零改动**
+（crontab/pusher 代码 sha256 前后一致；state/ 仅推送器自身写入演化）。selftest 68 项本地+宿主全绿；
+timer 4 周期观察无假告警；晨报手动验证正确。**告警通道 file-only**（Ph0 提问未获回复，按计划 §8.c
+降级——通道参数后补，改宿主 config.json 即可无需重部署）。演练期修复：C3 只按当前连击告警（历史事故
+63 连击不入告警）、C10 按 docker 小写 running。01/02/README/总索引已按铁律回写。
+[交接](sessions/INF-WATCH-IMPL-20261103.md)。次晨看 daily-20261104.txt 与夜间告警（BACKLOG 观察项）。
+
+## 已执行：传染病守护告警计划已编制（2026-11-03，INF-WATCH-PLAN-20261103，交外部执行 AI 一次性开发——当日已交付，见上条）
+
+11-03 事故暴露的缺口是**检测与通知**（71h 无人知晓、告警只落本地文件）→ 编制
+[plans/20261103-守护告警执行计划.md](../../数据上报/4、传染病病历数据上报/plans/20261103-守护告警执行计划.md)：
+交付独立 inf_watchdog（systemd timer 5 分钟 check ×10 项 + 08:00 晨报 + smtp/webhook/file 三档告警外发 +
+防轰/恢复通知 + 脱敏白名单），**推送主链路零改动、state/ 只读**（D0–D7 论证在计划 §0.3：不做常驻进程替换
+cron、控制面与数据面分离、不自愈只告警）。Ph0 需用户提供告警通道参数（SMTP/企微 webhook，或 file-only）。
+执行 AI 完成后按铁律回写。
+
+## 最新：传染病上报取数挂起占锁 71 小时事故已恢复+双层根治（2026-11-03，INF-LOCK-INCIDENT-20261103，ZCode/GLM-5.3）
+
+用户报"上报都失败"→ 诊断为**及时性失败而非推送失败**：10-31 13:30 班取 ODS 无限挂起抱死 push.lock，
+约 300 班 */15 被 flock 秒退（白天零推送），仅 00:05 reconcile 每日凌晨补齐全天（375/1229/2419 条全部受理，
+**数据零丢失但全部迟到一天**）。09:29 kill 挂起链恢复，09:30 班 24s 推完积压 792 条。**双层根治**：
+①pusher ODS 连接超时（tcp 15s+call_timeout 300s，oracledb 3.4 该参数是连接属性非 connect 参数——首版
+用法错被容器真班暴露后即改）+单表异常隔离，selftest 57 项三环境全绿；②crontab 五行加 timeout -k 60
+1200/1800 硬上限，挂起最多占锁 20 分钟。09:45/10:00 两班 15s/17s 验证通过。[交接](sessions/INF-LOCK-INCIDENT-20261103.md)；
+01/02 已按铁律回写。观察：今晚三班（23:58/00:05/00:27）加固后首夜证据次晨复核。
+
+## 最新：FBI 索引全链路验证成功——10-31 窗口 1,509 单 100% CONFIRMED（2026-11-01，DTR-FBI-VERIFY-20261031）
+
+DBA 建成 IX_DT_BILLKEY（FBI）并补采隐藏虚拟列统计后，应用真实路径单头/码明细查询 **1.1s→毫秒（约300倍）**；
+夜间批次查询层确认修复（1,479 次查询共 1.99s）。**瓶颈转移为新问题**：应用侧采集管道每单 ~11s 非查询开销
+（此前被查询耗时掩盖，Codex 审查预警项），夜间批次仍 collect_progress_stalled 快速失败；值守脚本自动于
+采集 DONE（08:07）后触发补跑（10:14），**10-31 窗口 1,509/1,509 零错误、终态 CONFIRMED 100%**，
+PREPARED 清零、配额 13,180/80,000、日报行 OK。日常模式：01:00 批次采集（夜间非查询开销 ~7h 仍可能
+停滞失败）→ 值守/白天补跑完成发送——**待办 P1：采集管道非查询开销排查（scope 会话域：worker 入库/
+质量处理/调度路径）**。交接：[session](sessions/DTR-FBI-VERIFY-20261031.md)。
+
+## 最新：10-29/10-30 两天积压 3,258 单全部补发完成，PREPARED 清零（2026-10-31，DTR-TIMED-CATCHUP-20261031）
+
+用户授权后执行（[session](sessions/DTR-TIMED-CATCHUP-20261031.md)、证据 `drug-trace-timed-report-20261024/evidence/`）：
+**10-30 窗口 1,566/1,566**（首轮 325 后遇 SEND_RESULT_UNKNOWN 安全停机无错发→续跑 1,241 零错误；
+终态 CONFIRMED 1564+REJECTED 1+UNKNOWN 1）；**10-29 窗口 1,692/1,692 零错误**（main('2026-10-29') 定向补发，
+ACCEPTED 1434+CONFIRMED 258 待查询自动推进）。配额 8413→11671/80000，**PREPARED 清零**，全程无重发。
+待办移交：①BUSINESS_REJECTED 1 单（平台"存在已出售的码"2 个码跨单重复，终态待人工/药学复核）；
+②UNKNOWN 1 单（4ded59cb，今夜 01:00 批次查询补进自然覆盖）；③FBI 未建（DBA），明晨批次预计仍
+collect_timeout 需白天补跑（recipe 在任务 README）；④视图-only 边界已实测写入 view-tuning README §六。
+
+## 最新：传染病上报 T+0 强化三阶段全部落地（2026-10-31，INF-T0-EXEC-20261031，ZCode/GLM-5.3）
+
+按既定计划完成（[交接](sessions/INF-T0-EXEC-20261031.md)、[01 时间线](../../数据上报/4、传染病病历数据上报/01-项目过程与决策记录.md)、[02 手册](../../数据上报/4、传染病病历数据上报/02-上报流程与运维手册.md)）：
+**①延迟实测 L≈17min**（嘉和文书镜像滞后两次采样；HIS 侧 1–2min）→ 追加 00:27 迟班；**②crontab
+*/15 轮询**（0–5、9–23 点）+8:30+23:58+00:27+00:05 reconcile 五行上线，实测班 15–18s 全绿
+failed=0；**③推送器 --since+reconcile**（幂等补推+对账 json+ALERT+GAP 行；selftest 51 项本地/宿主/容器
+三处全绿），实跑补回昨日窗晚到 13 条，空窗演练精确补推 1 条+ALERT+md5 一致恢复通过。修复三坑：容器 UTC
+off-by-one（reconcile 日界改按 CST）、cron.log root 属主阻断 GAP 写入（chown 10001+代码降级）、
+10:45 班取数挂起 15min（kill 处置零副作用，超时缺失记 BACKLOG）。观察项：23:58/00:27/00:05 三班
+今夜首跑证据待次晨复核；常驻守护（§4）按计划记 BACKLOG 不实施。
+
+## 待执行：传染病上报 T+0 强化计划已编制（2026-10-31，INF-T0-PLAN，交外部执行 AI）
+
+用户要求 T+0 尽快完成 → 方案一(轮询加密 */15 避维护窗+23:58)+方案二(日终对账 reconcile 幂等补推+ALERT)+阶段一 ODS
+延迟实测前置。**自包含执行计划已落盘**：[plans/20261031-T0强化执行计划.md](../../数据上报/4、传染病病历数据上报/plans/20261031-T0强化执行计划.md)
+（含接手须知/安全红线/逐阶段命令/回退/验收清单）。执行 AI 完成后按铁律回写档案。
+
+## 最新：HIS 视图慢根因只读闭环，FBI 方案已交 DBA（2026-10-29，DTR-VIEW-TUNING-20261029）
+
+用户授权连库只读分析（<relay-jump> 受控连接器，零 DDL/DML）。[分析报告](../development/drug-trace-scope-dev-20261027/view-tuning-20261029/README.md)：
+**日批 1.7s/查询的根因不是缺索引，而是两类索引失效**——①应用按 source_bill_id（三列拼接串）过滤，
+拼接等值无索引可服务 → 每单全表扫 DRUG_PRESC_MASTER(702万行)；②`T.TRACE_BILLNO=TO_CHAR(M.PRESC_NO)`
+函数落在索引列侧。实测矩阵：poll 走 IDX_DISPENSING_DATETIME≈0s；单头 ~1.1s/码明细 ~1.0s（全表扫）；
+**分解谓词毫秒级**（T 侧 trace_billno 索引 / M 侧 PK 均已存在且快）——正确路径本来就在。
+方案（均未执行）：**①FBI on source_bill_id 表达式（索引级、ONLINE、视图应用零改动，日批采集
+~6h→分钟级，推荐）**；②纯视图文本 v2+hint（零 schema 变更，只救码明细，hint 因连接器拦注释未实测，
+需 DBA EXPLAIN）；③应用侧模板改造（长期）。另发现 r11 住院草案 v3 同病（TO_CHAR(DIS_RECORDNO)
++TO_CHAR(日期)=VARCHAR 连接），创建前修正建议已提 scope 会话。交接：[session](sessions/DTR-VIEW-TUNING-20261029.md)。
+
+## 最新：定时上报三项处置完成——01:00 定时/10-28 补发/10-27 积压清零（2026-10-29 深夜，DTR-TIMED-ACTION-20261029）
+
+用户授权后执行（[session](sessions/DTR-TIMED-ACTION-20261029.md)、证据 `drug-trace-timed-report-20261024/evidence/`）：
+**① timer 改每日 01:00**（下次 10-30 01:00 CST 实测确认；备份 `/root/blyb-daily-upload.timer.bak-20261028T232439Z`；
+部署避让窗口随之改为避开 00:30–07:00）。**② 10-28 窗口补发完成**：10:15 手动补跑，重扫 DONE valid 1801 →
+**1801/1801 发送零失败**（CONFIRMED 1800+PARTIAL 1），日报行更新 OK。**③ 10-27 积压清零**：晨间第 3 次
+collect_timeout 后查明 scope 冒烟误建的 CANCELLED 运行遮蔽旧 DONE 运行（驱动按最新窗口匹配）→ 新建同窗
+幂等重扫运行 + 宿主值守自动拉起 `main('2026-10-27')`（日报上报关闭保留 FAILED 历史行）→ **1792/1792 补发
+零失败**（22:37 rc=0）。配额 4820→8413/80000，**PREPARED 积压 0**；10-27 终态推进中（ACCEPTED 939 待明晨查询补进）。
+**风险如实**：采集需 ~6h 超驱动 4h 等待上限，明晨 01:00 批次大概率再 collect_timeout（失败后白天手动补跑即可）；
+根治仍是视图调优（scope 待办 DBA EXPLAIN）或驱动等待上限调整。10-24 遗留 UNKNOWN 206 与查询轮询上限
+（skipped_exhausted 205）待观察。
+
+## 最新：06:10 v3 首跑只读复核——准时触发、07:16 仍在采集未到发送；10-27 窗口 1792 单积压未发（2026-10-29，DTR-TIMED-CHECK-20261029）
+
+用户问"今天推送是否正常"→ 只读检查（[session](sessions/DTR-TIMED-CHECK-20261029.md)、
+[evidence](../development/drug-trace-timed-report-20261024/evidence/check-today-20261028T231519Z.json)）：
+**timer 准时触发、驱动运行中**（bills_seen 675/valid 293/窗口未完成/进度推进、last-error 空），
+**发送阶段尚未开始**，按近两天节奏（采集 3-4h 完不成）仍可能 collect_timeout，~10:10 见分晓。
+**10-27、10-28 日批均 FAILED（collect_timeout）**：与 scope 会话确认的 v1/v2 误复用同窗口运行及
+住院视图全表扫（3.9s/查询）相关；10-26 窗口靠 09:01 手动补跑成功（manual 行 OK sent 976）。
+**10-27 窗口 1792 张 VALID 单 prepared 后至今未发送**（近 24h 零发送、配额停 4820/80000、
+PREPARED 积压 2074）；若 v3 无跨日补发（lookback 待回执确认），需手动幂等补跑。
+待用户/下一棒：今日回执复核（含 v3 lookback 行为）、10-27 积压补发决策。
+
+## 最新：传染病上报首日巡检——cron PATH 故障已修复+增量 89 条补推受理（2026-10-29，INF-CHECK-20261029）
+
+昨晚 20:30/23:55 两班 cron 因环境无 docker 全未执行（flock 报错，cron.log 为证）；crontab 已改绝对路径修复，
+手动补推增量 **89 条全部受理零失败**（水位推进至 10-29 凌晨），今起 8:30 班恢复自动。代价：昨日 18:48 后文书
+T+0 超窗一天（及时率质控扣分，数据无丢失）。01 时间线/02 手册已按铁律同步。
+
+## 最新：scope-20261028 凌晨升级完成（Phase1-3/5 达成，住院冒烟按手册中止待视图调优）（2026-10-29 03:10 CST，DTR-SCOPE-DEPLOY-20261028，ZCode/GLM-5.3）
+
+定时部署（用户授权凌晨2点）实测：**<prod-host> 已升级 scope-20261028**（upgrade exit0、六容器 healthy、
+迁移无新增[13号系10-27既有]、驱动 v3 SHA 2f33c026 吗齐、timer→06:10）；**住院连接器 ENABLED +
+字典 bill_type/query 321/A 已批准**；退药连接器 DRAFT（profile 闸在 publish 即拦截=设计内）。
+**住院冒烟中止**（[PHASE4-DEFERRED](../development/drug-trace-scope-dev-20261027/evidence/deploy/PHASE4-DEFERRED.md)）：
+真实采集实测 3.9s/查询（视图分支二 TO_CHAR(DIS_RECORDNO) 连接致索引失效全表扫），全程约 5h 超
+手册边界，已 CANCEL 干净；另修正：v1/v2 曾误复用同窗口的 r10 门诊日批运行（列表接口无连接器字段）。
+**白天待办**：DBA EXPLAIN+调优视图分支二→重试小窗采集→DRY_RUN→单张真实发送；
+**明晨复核 06:10 v3 首跑**（回执 lookback 字段、门诊行为与 r3 一致、NOT_REPORTABLE 迁移）。
+回滚未触发；证据在任务目录 evidence/deploy/。交接：[session](sessions/DTR-SCOPE-DEPLOY-20261028.md)。
+
+## 约束生效：传染病上报统一按档案体系记录（用户令 2026-10-28，INF-CONVENTION）
+
+[业务 README](../../数据上报/4、传染病病历数据上报/README.md) 首节"维护铁律"6 条已立：改动必同步档案（01 时间线+
+interfaces 档案+03 矩阵+02 手册，未同步=任务未完成）、新接口六步法、双推红线、口径全表联动、会话纪律、state/ 对账。
+**后续该项目任何会话接手先读该 README 铁律并受其约束。**（D10 决策入 01 过程记录）
+
+## 最新：传染病上报档案体系建成（业务目录过程/运维/20接口逐档，INF-ARCHIVE-20261028）
+
+[数据上报/4、传染病病历数据上报/](../../数据上报/4、传染病病历数据上报/README.md)新增：01-项目过程与决策记录、
+02-上报流程与运维手册、03-接口总览与状态矩阵、interfaces/ 20 个接口逐档（6 已上线详档+14 待扩展档，按规范章节
+编号）。总索引已更新。运维巡检口径统一走 02 手册。
+
+## 最新：传染病上报正式上线——全量回填 12.86 万条受理 + T+0 定时推送已装（2026-10-28，INF-TIMEDPUSH，ZCode/GLM-5.3）
+
+真实通道全通：逐表首推受理（死亡表日期串强转坑已修，locale 无关归一化）；**全量回填 128,625 条受理零未决失败**
+（~200 条/秒）；垫片四件套上线（视图重跑后自动失效）；root crontab@<prod-host> 装妥 `30 8,11,14,17,20`+`55 23`
+（T+0 达标+避让药品追溯维护窗）。尾差：孤儿项目 89/首页 11/病程截断 819（已标记）。视图侧根治项与
+伴生表协调待 DBA/信息科。详见 [FIELD_MAPPING §21](../development/inf-report-20261027/FIELD_MAPPING.md)。
+
+## 最新：升级已授权并排定——2026-10-29 02:00 执行 scope-20261028 部署（2026-10-28，DTR-SCOPE-DEPLOY-20261028，ZCode/GLM-5.3）
+
+用户授权（原话「请你都记录好，并开始升级，你自行选择个时间，可以凌晨2点左右」）。
+白天已完成：**r11a profile 关闭版**（住院 unresolved=() 放行、退药留首单试传闸）+
+闸门测试（局部 48 passed）；发行包 scope-20261028 预构建中（var/rel-scope，SHA 复验后用）；
+驱动 v3 SHA=2f33c026…cc662；**部署手册**=[DEPLOY-RUNBOOK-20261029.md](../development/drug-trace-scope-dev-20261027/DEPLOY-RUNBOOK-20261029.md)
+（5 Phase：传输staging→升级+驱动v3→r11连接器（住院enable/退药不enable）+字典（住院approve/
+退药DRAFT）→住院小窗采集冒烟+DRY_RUN+**单张真实发送**→留证）。定时任务已挂（02:00 自动执行）。
+退药今晚零操作（首单试传安排其后）；06:10 日批=v3 首跑（观察 lookback 字段）。任一 Phase
+失败即停并回滚。交接：进行中（session 20261028T024xxx）。
+
+## 最新：bill_type 已确认=321（住院+退药）——药品追溯仅余部署（2026-10-28，DTR-BILLTYPE-CONFIRM-20261028，ZCode/GLM-5.3）
+
+用户渠道确认"bill_type 用 321 即可"，EXT-08 关闭。字典载荷已备好（target=321，见
+[RESULT bill_type 节](../development/drug-trace-scope-dev-20261027/RESULT.md)，部署时建并批准）。
+**退药首单观察保护**已入部署清单：321 下退药报文为正数量同类型码、reversal_of 仅本地
+留痕——首次真实退药先单张试传核对平台回执/库存语义后再批量；住院 321 语义直接成立。
+**剩余唯一待办=部署窗口**：build → <prod-host> upgrade（避 06:00–08:30、用户在场）→ 驱动 v3 →
+r11 连接器配置发布 → 字典批准 → 退药首单试传。交接：[session](sessions/DTR-BILLTYPE-CONFIRM-20261028.md)。
+
+## 最新：传染病上报视图层 6/6 完工（v0.5 终验通过，2026-10-28 10:17，INF-V05-ACCEPT2-20261028）
+
+V_INF_EX_CLINICAL 重建后 **6 张视图全 VALID 全绿**：检查主表 5424 例/周（serial 100% 就诊级粒度、报告时间 100%）、
+项目子表 5374（编码/外键 100%）。推送器已交付：`implementation/deploy/inf_pusher/` 独立工具，26/26 自测通过（MOCK 默认/水位+重叠/次序保护/
+白名单/回执JSONL，§19）。**已部署 <prod-host>**（worker 容器内运行，26/26 自测，双可达 OPEN，§19）；**唯一剩余=DBA 写入 ODS 只读账号到
+inf.env（600）**→ mock 全演 → death real 3 条 → 逐表放量 → cron 08:30。
+[§18](../development/inf-report-20261027/FIELD_MAPPING.md)。
+
+## 最新：上传实测成功+口径对齐 crbsb——370104000 过前置机，serial 之谜解封，emr_order 审查意见已出（2026-10-28，INF-ALIGN-CRBSB-20261028，ZCode/GLM-5.3）
+
+用户提供 crbsb.emr_order 视图后三连突破：①**端点上传成功**（orgCode=370104000 POST result:true + DELETE 清理，POST/DELETE
+双向实测，§14 阻断解除）；②**serial 全院口径实锤=病案号||住院次数**（crbsb 首页 59.5 万行+FXHIS 长度分布双证）；
+③**CRBSB schema 已有全套 20 表视图与我方 5 类完全重叠**。我方 6 视图已对齐 v0.5（org/serial/id/科室 INFECT 映射+兜底/
+身份证兜底，近期数据实测全绿，**待 DBA 重建**）；emr_order 审查出 2🔴+2🟠+3🟡（时间格式/serial 口径/…见 §15.3）。
+后续 §16 鉴定：crbsb 病程/死亡基于**老电子病历 MTL（2025-10-22 停更，近7天0文书）**，首页/检查为现行源——**病程必须用我方嘉和源**，推荐统一读 V_INF_* v0.5。
+[FIELD_MAPPING §15](../development/inf-report-20261027/FIELD_MAPPING.md)｜[证据](../development/inf-report-20261027/evidence/endpoint-test-20261028/responses.md)。
+交接：[session](sessions/INF-DESIGN-20261027.md)。
+
+## 最新：r11 四视图验证通过；住院码重大更正——050121 部分在写、T+1 批量补写（2026-10-28，DTR-R11-VERIFY-20261028，ZCode/GLM-5.3）
+
+DBA 建视图成功（含 ORA-01720 授权修正 [r11_grant_option_fix.sql](../development/drug-trace-scope-dev-20261027/sql/r11_grant_option_fix.sql)）；
+四视图 VALID：住院单 652 万历史行、住院码 **47,295**、退药单 7,722、退药 IN 码 **17,238**（键设计验证正确）。
+**住院码"从未写入"结论更正**：实际仅 **050121 药房**在写（4,457 单，约当日 1/4 覆盖；其余病区药房零接入），
+机制=**T+1 早上批量补写**（SD-01 当时样本恰好取自未接入药房）。部署后预判（链路自动成立，无需改动）：
+日批采到无码住院单→WAITING→次日回看补码→VALID→发送，住院数据滞后约 1 天属预期。
+[RESULT 续二节](../development/drug-trace-scope-dev-20261027/RESULT.md)。**剩余待办不变：平台确认
+住院/退货 bill_type→建字典 approve→部署（避 06:00–08:30）+驱动v3**；药学部问题更新为
+"住院扫码为何只接 050121 且 1/4 覆盖、其余病区药房何时接入"。交接：[session](sessions/DTR-R11-VERIFY-20261028.md)。
+
+## 最新：前置机端点全链路打通——传输/JSON/必填校验全过，仅剩机构编码登记（2026-10-28，INF-ENDPOINT-TEST-20261028，ZCode/GLM-5.3）
+
+用户提供前置机 `<frontend-host>` 后实测（经 <relay-jump> 跳板，合成数据零真实病历）：GET=405(Hclient)、POST 空报文=04 必填清单、
+POST 合成完整记录=**字段校验全过、止于"医疗机构编码不属于配置范围内"**。上传能力验证完毕，剩余动作二选一：取国家分配
+机构 ID 或请管理员登记 49557032X。[证据](../development/inf-report-20261027/evidence/endpoint-test-20261028/responses.md)｜[FIELD_MAPPING §14](../development/inf-report-20261027/FIELD_MAPPING.md)。
+交接：[session](sessions/INF-DESIGN-20261027.md)。
+
+## 最新：传染病上报伴生表/serial 实证——FXHIS 已有同接口实现，互补不重建（2026-10-28，INF-COMPANION-20261028，ZCode/GLM-5.3）
+
+用户三项拍板（伴生表补做/serial 查现有视图/死亡全量2.2.14）后实证：**HIS 源库 FXHIS schema 已有按传染病规范命名
+的视图群**（patient/activity/admission/discharge/vital + 用户科室 + 412行科室映射字典，2026-04 起），**恰好不含
+我方 5 类文书**——伴生表改为复用/对齐（用户表 196/196 覆盖我方操作人）；其住院 serial=唯一8位数字、非病案号，
+**我方 6 视图 serial 须与其对齐**（待 DBA 导出 FXHIS.V_EMR_ACTIVITY_INFO 全文定位号源）；CDA 区 2024-08 停更判死。
+嘉和作者ID=HIS工号 100% 同源。死亡口径已按全量定稿。[FIELD_MAPPING §13](../development/inf-report-20261027/FIELD_MAPPING.md)。
+交接：[session](sessions/INF-DESIGN-20261027.md)。
+
+## 最新：r11 DDL v3 修复+四项自查定论——双上报风险基本解除（2026-10-28，DTR-R11-DDL-FIX-20261028，ZCode/GLM-5.3）
+
+hisuser 执行 v1 失败的三因全部查明并修复（[RESULT 追加节](../development/drug-trace-scope-dev-20261027/RESULT.md)）：
+①v1 确定性 bug（d2 先引用后声明 ORA-00904）；②住院表 PRESC_CREATE_TIME 实测 VARCHAR2
+（v1/v2 日期 TO_CHAR 会 ORA-01481）；③hisuser 无权建 PHARMACY 视图——**用
+`sql/r11_inpatient_views_v3.sql` 分四部分执行**（第0部分 DRUG_USER 属主/DBA 授权→第1/2 部分
+PHARMACY 属主建视图→第3部分授权 BLYB_DRUGTRACE→第4部分验证）。**四项自查定论**：
+3503/3505=**医保追溯码上传**（DOCK_CALL_LOG 实证 URL 为医保接口，非阿里平台——双上报风险基本解除）；
+**退药 IN 码机制在且键与视图设计到秒一致**（26641/31237/66035 三样本；10-26 三张属漏扫例外；
+66035 迟到 5 天写入=K3 回看必要性新证）；**住院码从未写入**（8 月/10 月两期全零，结构性未接入）；
+**bill_type 官方指南自相矛盾无法自定**（问平台："uploadretail 患者退药/住院发药的 bill_type 取值"）。
+退药码视图验证预期改为>0（历史 return 行带出 IN 码，属预期）。
+交接：[session](sessions/DTR-R11-DDL-FIX-20261028.md)。
+
+## 最新：传染病上报多模型交叉审查完成——无硬冲突、四项真实风险、三项升级人工（2026-10-28，INF-MULTIREVIEW-20261027，GLM+Codex+Kimi，Grok 缺席）
+
+用户点名 Codex 交叉审查（multi-review round-1，[终报告](../development/inf-report-20261027/review/round-1/终报告.md)）：
+**与其他上报无硬冲突**；真实风险=调度窗（日批排 08:30 后）、月末 ODS 叠加、CDA 映射静默退化（加命中率监控）、
+JHEMR 授权登记+独立消费账号。**架构共识**：增量改"水位+重叠回扫+周期对账"组合、补改/作废捕获、发送次序与
+版本保护、三张伴生薄表期前补做、推送器不等前置机即可动工（MOCK 先行）；证据门/revision/隔离等 AGENTS 门禁
+不可砍。**升级人工三项**：①伴生表范围是否在用户授权内 ②serial_number 关联契约（病案科+厂商）③死亡推送口径
+（传染病人群约束，规范两处并存）。对辩中 GLM 修正 4 处自身错误（日行数量级/必然拒收/拼接倾向/24h初页无出处）。
+审查产物齐全于 review/round-1/。交接：[session](sessions/INF-DESIGN-20261027.md)。
+
+## 最新：口径扩展开发已复核通过——进入部署与外部确认阶段（2026-10-28，DTR-SCOPE-DEV-REVIEW-20261027，ZCode/GLM-5.3）
+
+独立复核 DTR-SCOPE-DEV-20261027 交付（[复核记录](../development/drug-trace-scope-dev-20261027/evidence/REVIEW-20261028.md)）：
+XML 数字吻合（608/7/0）、新增 13 测试本机重跑全绿、fail-closed 断言在位、test_a05 为增强非削弱、
+改动面 mtime 核对合规、r11 DDL/Profile 在位、SD-06 边界声明如实——**PASS**。
+**复核新判读**：①原厂家日批（3505）10-18~21 每天成功 2100~2900 条、10-22 起停滞——
+**E08' 缺口 10-12..23 至少 10-18~21 可能已被原厂家上报，补报前必须平台逐单核验**；
+②双上报风险降级为"仅 3503 每小时小量（2~78 条/日）在传，内容未确认"。
+下一步（按序）：DBA 建 r11 视图→平台确认住院/退货 bill_type→字典 approve→
+部署（避 06:00–08:30）+驱动v3→药学部核查住院不写码/260 缺码。
+
+## 最新：口径扩展开发完成——K1—K4 全落码，待 DBA 建视图+平台确认 bill_type（2026-10-27 深夜，DTR-SCOPE-DEV-20261027，ZCode/GLM-5.3）
+
+按[执行书](../development/drug-trace-scope-dev-20261027/EXECUTION_TASK.md)一次完成 SD-00—08，[RESULT](../development/drug-trace-scope-dev-20261027/RESULT.md)（实测/未测/阻断分开+部署清单）：
+**SD-01 只读探查定论**（READY_HIS 通道+<prod-host> 只读事务，evidence/SD-01-findings.md）：
+住院发药申请体系 REQUEST_NO/DIS_RECORDNO 10+10 键在 MED_TRACE_RECORD 全零命中、
+DISPDETAIL PDA_STATE 全 0 → **住院码未扫码落库**（非键错误，SD-02 按 §六 降级：
+bill 侧+采集可用、code 视图自然 0 行）；退药 57370/71/72 无任何 IN 行 → 冲正按
+return 行+**原发药 CONFIRMED 冻结码只读复用**；HIS 无 bill_type 线索（不猜）；
+260 缺码组人均药行 4.44 vs VALID 1.46+WINDOW_NO 缺失更多（药学部线索，050102 优先）。
+**交付**：r11 四视图 DDL（列契约与 r10 机器比对一致，DBA 执行未建）+两个
+SourceProfile（unresolved 阻断生产采集）；INPATIENT_DISPENSE/PATIENT_RETURN
+采集→质量→冻结→DRY_RUN 本地链路绿，**发送 fail-closed**（字典 DRAFT →
+DICTIONARY_UNMAPPED 拒绝有测试）；rescan 定向复核 job+API（三分支测试绿，
+已 CONFIRMED 跳过）；驱动 v3 回看阶段（BLYB_LOOKBACK_DAYS=7 可配，失败不改退出码）；
+NOT_REPORTABLE 终态（门诊 0 码超 7 天，存量单触碰迁移）；SD-06 205 对照报告
+（原厂家 10-25 rec=0 与我方 204 张 04:28-04:36 不重叠；**3503 程序 10-26/27
+仍每日成功上传=双上报风险持续**；205 状态零改动，逐单清单在受限目录）。
+全量回归与数字见 RESULT（基线 595/7/0）；npm build exit 0。生产 <prod-host>/HIS 零改动、
+r10 与既有迁移零改动、无新表迁移。交接：[session](sessions/DTR-SCOPE-DEV-20261027.md)。
+
+
+## 最新：口径扩展开发执行书已交付，待执行AI一次性完成（2026-10-27 深夜，DTR-SCOPE-PLAN-20261027，ZCode/GLM-5.3）
+
+按用户要求编制[执行书](../development/drug-trace-scope-dev-20261027/EXECUTION_TASK.md)（SD-00—08、
+验收 A01—08、§五硬边界）：**住院上报**（r11 视图按申请表体系、列契约同 r10 全链路复用、
+INPATIENT_DISPENSE）、**退药冲正**（PATIENT_RETURN+return 行/IN 码）、**K3 迟到码补报方案A**
+（定向复核 RESCAN job+驱动v3回看近7天、已CONFIRMED不重报）、**无码终态 NOT_REPORTABLE**
+（7天回看后仍无码）、**205 宏观对照报告**（TRACE_UPLOAD_TIME_LOG 聚合，不改状态）。
+核心安全设计：**bill_type 平台确认前住院/退药一律 fail-closed（只采集/冻结/DRY_RUN）**；
+含 SD-01 只读探查（住院码真实键/退药IN码/BILL_TYPE证据/260特征）。入口提示词在执行书头部
+（含 HIS 只读探查授权句）。本轮纯计划零代码。执行后部署另开窗口（DBA 建 r11 视图先行）。
+交接：[session](sessions/DTR-SCOPE-PLAN-20261027.md)。
+
+## 最新：HIS 元数据探查完成——住院/退药口径找到现成答案，原厂家程序仍在跑（2026-10-27 深夜，DTR-HIS-META-20261027，ZCode/GLM-5.3）
+
+用户授权连 HIS 库查表备注后四轮只读探查（[发现详情](../operations/drug-trace-sjzc-verify-20261027/README.md)）：
+①**原厂家四类追溯视图全在**（门诊/住院×发药/退药），口径=发药申请表体系
+（PHA_CLI_REQUEST_DRUG/PHA_INP_REQUEST_DRUG），**住院要报完全可行**（样本在申请表
+send_st=Y 状态正常；我们此前从处方主表取数所以看不到码——住院码挂医嘱/申请单号键）；
+②**退药关联确认**：样本 send+return 行成对、数量对冲；原厂家口径=全退剔除不报，
+K2 冲正口径可由 return 行+IN 方向码实现；③**205 比对材料找到**：原厂家上传日志表
+TRACE_UPLOAD_TIME_LOG 仍在每小时写入（biz=3503 每时成功 2~43 条；biz=3505 重试
+10-22 窗口），按时间窗聚合即得原厂家上传历史——**⚠️ 需核实原厂家是否仍在向平台
+传数（双上报风险）**；④**260 缺码根源收窄**：样本在申请表发药确认=Y 但码未写入
+MED_TRACE_RECORD（备用码表也零行）——指向扫码环节未写码，下一步对比申请表标志位
+或药学部核对发药方式。纯只读约 20 条查询，无患者明文。
+交接：[session](sessions/DTR-HIS-META-20261027.md)。
+
+## 最新：传染病上报视图层完工——6张V_INF_*已部署ODS并实测全绿（2026-10-27 深夜，INF-VIEW-*，ZCode/GLM-5.3）
+
+DBA 按 v0.4 三轮部署后终验通过（21:45）：[目录](../../数据上报/4、传染病病历数据上报/README.md)住院5类
+6张视图全 VALID，近7天实测：首页1396例（门急诊诊断99.8%两级兜底）/首程1131/日常1341/检查6081+项目5947/
+死亡319，住院号100%。踩坑记录（GBK库VARCHAR2 4000字节上限、JHEMR授权、11g关联不穿聚合视图、
+PATIENT_SOURCE值域NULL/1/2、PAT_VISIT.INP_NO全空）与修复全部沉淀在
+[FIELD_MAPPING §8-12](../development/inf-report-20261027/FIELD_MAPPING.md)。下一步：等前置机IP/端口/机构ID
+→ org_code 常量替换 → 推送插件（复用 drug_trace 骨架）。交接：[session](sessions/INF-DESIGN-20261027.md)。
+
+## 历史：传染病上报立项出设计——5类住院文书映射+6视图草稿，等前置机信息（2026-10-27，INF-DESIGN-20261027，ZCode/GLM-5.3）
+
+新业务[数据上报/4、传染病病历数据上报](../../数据上报/4、传染病病历数据上报/README.md)（推国家传染病前置软件，住院5类T+0，传报卡不做）：
+规范精读（20个receive API/质控指标/值域附录）+sjzc元数据定位源表（零live）+字段映射初稿+ODS六张
+`V_INF_*`视图草稿（**未部署**）。首次/日常病程三甲无现成视图，按嘉和文书模式新写（正文纯文本满足建议填）。
+用户拍板：ODS延迟满足T+0、范围住院5类、CDA新鲜度暂缓核验。**外部阻断：前置机IP/端口、国家分配机构ID、
+license 待用户提供**；DBA抽样核验4项（诊断镜像/项目编码非空率/死亡落点/病程TOPIC分布）后部署。
+[映射](../development/inf-report-20261027/FIELD_MAPPING.md)｜[交接](sessions/INF-DESIGN-20261027.md)。
+
+## 最新：上报口径三条确认——K1 无码不报（=现状）、K2 退药要报、K3 迟到码补报（2026-10-27 深夜，DTR-REPORT-SCOPE-20261027，ZCode/GLM-5.3）
+
+用户确认三条口径（[口径表+前置清单](../operations/drug-trace-sjzc-verify-20261027/README.md)）：
+无码不上传=系统现状零改动（附带等待队列终态分类小项）；**退药冲正上报**待开发（前置：DBA 日切片定位
+退药扫码真实键、平台退货 bill_type 确认、退药↔原单关联规则）；**迟到码补报**待开发（方案=每日回看
+近 N 天重扫 backfill 分区或源端变更表；边界待认可：已 CONFIRMED 不重报；260 张欠账待键查明回填）。
+其余口径：住院/拆零/部分码/双扫/历史缺口/205 维持原状待定。本轮纯文档记录零代码改动。
+交接：[session](sessions/DTR-REPORT-SCOPE-20261027.md)。
+
+## 最新：关联错位复核完成——三键关联无误，缺码单在源表无当日行；下一步 DBA 当日切片（2026-10-27 深夜，DTR-SJZC-VERIFY-20261027 续，ZCode/GLM-5.3）
+
+用户业务反证（"都扫码了，退药也扫了"）后追加核查：处方号存在**周期性复用**（单号全局查的历史行均属其他日期单据）；
+**050102 当日 904/904 VALID 全有当日扫码行、181/181 WAITING 全无**（前导零/20 位复合号格式均零命中）；
+050121 同（1088/215，退药 3 张无当日行，当日仅 OUT 方向）。**三键关联被证明无误**
+（VALID 100% 命中）；WAITING 单确无以处方号为键的当日行——若药房确已扫码，则以其他键
+写入或未到达 MED_TRACE_RECORD，需 DBA 按[当日全量切片 SQL](../operations/drug-trace-sjzc-verify-20261027/sql-for-user.md)
+（CREATE_TIME 无索引，建议窗口跑）比对实际写入单号与数量；缺失按小时 08–14 点 17–20%、
+15–17 点近零（非单一中断窗）。[复核记录](../operations/drug-trace-sjzc-verify-20261027/README.md)。
+累计只读 SELECT 约 160 条（READY_HIS），源写入 0、上传 0。
+交接：[session](sessions/DTR-SJZC-VERIFY-20261027.md)。
+
+## 最新：缺码核查已执行——样本内源库零扫码记录，交药学部定因（2026-10-27 晚，DTR-SJZC-VERIFY-20261027 授权执行，ZCode/GLM-5.3）
+
+用户指令「授权执行」后按 10-23 同通道（<relay-jump> 容器只读连接器，身份 READY_HIS@his，本机不读凭据）跑完
+30 张样本（无码门诊 20/260、住院 7/1079、退药 3/3）×SQL01/02+零行加跑 SQL03（±24h）：
+**SQL01 全部主单唯一且在 10-26 发药日；SQL02 精确三键全部 0 行；SQL03 同单号 ±24h 全部 0 行**——
+按处置表归因为「样本内源库无任何扫码记录」，排除迟到码/关联不一致/仅F-S 或删除码三类技术原因。
+[结果与边界](../operations/drug-trace-sjzc-verify-20261027/README.md)：94 条只读 SELECT 共 0.43s 零错误
+（首轮 60 条因 SQL 注释被连接器客户端拒绝未触库，回执保留）；住院/退药分支同样无码，
+佐证属口径决策非数据缺失。**判读边界：不上升为全部 260 张/全天未扫码；「为何无扫码」须药学部/HIS 厂家
+裁定（050102 占 68% 为首选核查点）**。其余三项结论不变（205 已证数据平台不可判定、通道登记现状已确认、
+205 等人工材料）。<prod-host> 仅只读事务；源写入 0、上传 0。
+交接：[session](sessions/DTR-SJZC-VERIFY-20261027.md)。
+
+## 最新：sjzc 四项核查结论已定，缺码核查待通道授权/DBA（2026-10-27 晚，DTR-SJZC-VERIFY-20261027，ZCode/GLM-5.3）
+
+[四项结论](../operations/drug-trace-sjzc-verify-20261027/README.md)：①205 历史未知**已证**数据资产平台无法判定
+（ODS 关键词追溯/上报/码上放心 0 命中），只能人工 Excel/平台记录比对，维持不盲重发；②只读通道现状**已确认**
+（仍仅 his_source_<his_host_id>、write_policy=medical_dict_push、无同地址 readonly 源、相关列值域无 confirmed）；
+③缺码 260/住院 1079/退药 3 的源表核查：3 条 SQL+**30 张样本三键已备**
+（20/7/3 分层，计数与 260/1079/3 完全吻合；键值在 `.ai/private/drug-trace-sjzc-verify-20261027/` 受限 ACL），
+HIS live 维持 BLOCKED——授权问询未获答复，按 HIS 只读技能门禁未执行（business_source_calls=0）；
+[DBA 执行单](../operations/drug-trace-sjzc-verify-20261027/dba-package.md)已备。
+**新增线索：缺码 260 张 68% 集中于 050102 药房（176 张）**。<prod-host> 仅只读事务零写入。
+后续二选一：用户当次授权→按 10-23 READY_HIS 同通道由 AI 执行；或 DBA 按执行单跑回传结果。
+交接：[session](sessions/DTR-SJZC-VERIFY-20261027.md)。
+
+<!-- DTR-RECOVERY-STABILITY-20261027:BEGIN -->
+## 最新：本批全部确认、旧41已回写、看板与驱动已升级（2026-10-27 15:31）
+
+[实现、证据与恢复说明](../operations/drug-trace-recovery-stability-20261027/README.md)：<prod-host>当前发行stability-20261027T064000Z-r3，采集25张分页让出、Oracle每页会话复用/耗时、独立续租/进度心跳、失租整页回滚与driver阶段错误已修复。r2应用全量562通过/7跳过，新增单TOP7维护保护另26通过；Linux镜像实测Python3.14.8。13:57稳定性版升级exit0，一致性备份20261027T055526Z；六容器健康，页面/7个源码/镜像/宿主driver SHA一致，timer active/waiting。该次维护间旧246摘要、配额3843和断点80均未变。
+
+截至2026-10-27 15:31，10-26 VALID 1995张：1995确认、0受理、0未发送、0发送中、0未知。10:20原恢复在12:00第1019次遇HTTP200/TOP7后安全停止；1018已确认，1张经5次NOT_FOUND及13:59新鲜完整NOT_FOUND后，只重试一次受理，14:01已确认。原失败timer及中止恢复证据保留，14:00按同DONE窗口继续976张，不新采集、不重发已确认/受理/未知。旧41经新鲜官方查询全部3/51，已由原服务回写CONFIRMED；零上传、未重置12轮，原205 UNKNOWN摘要/配额/attempt数一致。当前累计4613确认/205未知，额度4820/80000。
+
+日报展示与宿主驱动预算补强亦已部署stability-20261027T064000Z-r3，失败记录不再把未知候选冒充0，详情直显采集原因/回执进度；前端7项与18项合成浏览器通过、零业务POST，worker/API源码与r2相同。宿主driver另补排队/冷却/执行等待统一总预算，局部55通过。UI/driver升级间4818条提交、旧205、配额/断点不变。
+最终驱动/应用全量：595通过/7跳过/0失败/0错误，实际退出0。
+
+待核查1342=正常门诊无码260+原1/0分支1079+原0/2分支3；不是1342次平台失败。expected_code_count仍全NULL。HIS补充核查只完成<relay-jump>元数据，登记write_policy仍medical_dict_push，sjzc live未执行；已准备3条绑定单据键的只读SQL及有限执行计划。旧205不盲重发，住院/退药/拆零及迟到码需独立来源规则；码级对账、管理电脑IP SAN/浏览器、次日日批耗时和07:30SLA未验收。发送授权到北京时间11-22 00:00，需到期前续批；不能把业务窗口11-23结束当证据到期。后续按[交接](sessions/DTR-RECOVERY-STABILITY-20261027.md)处理，勿重复启动本批runner。
+<!-- DTR-RECOVERY-STABILITY-20261027:END -->
+
+## 最新：10-27日批已超时失败，后台仍采集（2026-10-27 09:19）
+
+[详细现状、问题和修复顺序](../operations/drug-trace-report-review-20261027/README.md)：06:10启动的10-26窗09:10:31 collect_timeout/exit3，FAILED日报已入库；09:19后台RUNNING，3000张=1773 VALID+1227 WAITING，新增提交/发送0，断点76/16:39。1227无有效码：979住院原始1/0、3退药0/2尚未批准分支，另245正常门诊0/1缺码，未查HIS不能断言源库没扫码。
+当前驱动已退出，采集完成只会自动prepare、不自动send；明天默认只处理10-27，需后续受控恢复失败10-26窗。同步长collect阻塞outbox3000条，heartbeat约11355s/worker unhealthy、租约06:12过期；进程和采集仍推进，勿贸然重启或加worker。现场源码SHA一致，Oracle读取逐单明细+头复核、每次fetch新建/关闭连接，是需计时优化的明确点，未拿到Oracle慢SQL不能断言具体耗时占比。
+累计2577确认/41受理/205未知、配额2824不变；旧41平台已成功待回写、205未补发，246均耗尽12轮。FAILED日报collection空/candidate0缺采集原因；已确认单下8077码项仍PENDING，不等同平台未收到，缺码级闭环。3000张应有码数均NULL，VALID不能证明无码遗漏。
+内外NTP正常、DMZ active，今日转发/拒绝0；本轮只读应用库和系统日志，HIS/平台请求、业务写入、补发、重启0。修复尚未执行，详见优先级表。[交接](sessions/DTR-REPORT-REVIEW-20261027.md)。
+
+
+## 最新：10-27日批尚未完成，仍在采集（2026-10-27 08:31）
+
+[只读核查与证据](../operations/drug-trace-daily-health-20261027/README.md)：06:10:29启动，处理10-26业务窗；08:31采集RUNNING，快照2200张（1273 VALID/927 WAITING），较08:29增加100，断点67→68、游标14:03→14:14。今天新增提交/尝试/查询0，日报文件暂0字节/数据库日报未生成；原07:30日报目标尚未达到，不能称正常完成。
+全库仍2577确认/41受理/205未知、额度2824，均为旧结果。927 WAITING均缺有效码，716另有分类未知/未完成/批准分支问题，规则重叠不相加。5容器healthy；worker进程running但heartbeat约8433s未刷新而unhealthy，源码为同步tick结束后才刷新；断点持续推进，不判停机。collect租约未续期也须后续评估，勿现场贸然重启。
+驱动采集等待上限3h，约09:10仍未完成会超时；尚未进入发送，不能归因新平台限流。下一棒看采集终态/summary、日批退出码和正式平台终态；本轮没有访问HIS/平台、补发、改配置或业务写入。[交接](sessions/DTR-DAILY-HEALTH-20261027.md)。
+
+
+## 最新：历史一张重发测试成功（2026-10-26 22:08）
+
+[真实闭环与维护证据](../operations/drug-trace-history-retry-20261026/README.md)：用户明确授权历史重发测试，选择原HTTP429且仅1条码的历史单；新鲜完整查询NOT_FOUND、配置/源/授权/租户/范围/空在途复核后，ManualDecision+审计+精确CAS仅恢复该张，再走原perform_send。22:05:49唯一一次POST返回HTTP200 ACCEPTED；22:07:57正式查3/51 CONFIRMED并由原服务落账，22:08最终查库确认。
+本地现2577确认/41受理/205未知，配额2824/80000，断点46不变；原attempt1的429保留，新attempt2受理，12代查询job未删除/重置。其他246张状态/版本摘要、目标冻结digest均未变。六容器healthy、原timer active/waiting，没有改应用镜像/HIS/视图/字典/定时范围；维护保护专项24通过，未重跑应用全量。
+这是一张固定目标的维护例外，不是批量恢复：剩205张未知未发送；旧41平台已成功应核查回写，勿重发。剩余清单保留原核查时间，不称刚查询过。首个新流程完整日批与07:30SLA仍待观察。[交接](sessions/DTR-HISTORY-RETRY-20261026.md)。
+
+
+## 最新：上传与限流处理已改进上线（2026-10-26 21:32）
+
+[实现、证据及恢复说明](../operations/drug-trace-upload-flow-20261026/README.md)：<prod-host>与DMZ均已切换flow-20261026T132000Z；六容器healthy、前置机active/config校验0、正式mTLS健康200、原timer active/waiting。新增跨进程持久节奏和TOP7/HTTP429共享冷却，保留脱敏子错误/等待秒数；真实受理首查120s、未知300s、后续指数错峰、重叠日期窗去重。只在明确本次未触网时复用原job延后，不增加查询代次；宿主driver同时适配等待。没有改视图r10、冻结payload/批准字典或发送授权。
+全量522通过/7跳过/0失败，局部69通过1跳过、API/driver54通过、实际隔离PG1通过；一次正式已成功单只读查询返回3/51 CONFIRMED。没有新增真实上传或HIS访问，维护间旧247摘要、配额2823与断点46均不变；旧41仍待受控回写，206不得盲重发。
+下一步观察首个完整日批的积压、冷却收尾与07:30日报；平台实际阈值/共享NAT仍待确认。旧247轮询预算没有重置，管理电脑TLS/IP SAN和真实浏览器验收也不因本轮自动完成。[交接](sessions/DTR-UPLOAD-FLOW-20261026.md)。
+
+## 最新：限流原因已分层定位（2026-10-26 20:30:23）
+
+[原因实证与后续整改](../operations/drug-trace-rate-limit-cause-20261026/README.md)：10-25的HTTP429来自DMZ本地per-IP 60/min、burst10；固定失败窗6903次请求/3679本地拒绝，峰194/min、14/s。旧247共2964查询job放大请求量，旧transport无pacing；本地限速已于10-25修复，当前1.5s/40min并HTTP429冷却，修复后固定窗0本地429。
+10-26的HTTP200/TOP7为平台返回accesscontrol.limited-by-api-access-count。官方通用解释是该API所有应用共享的秒/分钟总频率限制，**不能据此断言本院AppKey日额度耗尽**；前一棒建议查应用额度只是待确认方向，现按子码应优先确认平台接口总流控。具体阈值/禁用秒数/医药业务覆盖策略未获确认。
+当前缺口实测源码确认：transport只因HTTP429立即冷却，TOP7未建立跨单据共享冷却；query解析未留sub_code/sub_msg；QUERY_ERROR统一120s退避/12轮、进程内预算不跨维护进程共享。建议独立整改，**本轮未修改或部署**。DMZ来源均<relay-net-host>，NAT是否还共享其他系统未核实，不把全量请求都归于<prod-host>。
+本轮仅SSH日志聚合/应用库只读SELECT及官方文档检索，平台请求/HIS/发送/业务写入0。既有41平台成功/206 NOT_FOUND仍未本地回写或补报。[交接](sessions/DTR-RATE-LIMIT-CAUSE-20261026.md)。
+
+## 最新：平台人工查询完成，41受理已在平台成功（2026-10-26 18:18:41）
+
+[实际核查与边界](../operations/drug-trace-unknown-check-20261026/README.md)：用户要求看平台是否收到，按冻结身份/类型/业务和上传日期覆盖查询旧247笔。去重结果{'UNKNOWN->NOT_FOUND': 206, 'ACCEPTED->CONFIRMED': 41}，已知成功单作正对照正常；不是mock。
+旧206 UNKNOWN原发送205次HTTP429、1次FileNotFoundError；历史查询126仍429/80未找到，41受理历史查询也429且均12轮耗尽。下午r1—r3遇TOP7/调用次数限制已停并保留143未找到/63未核实的部分报告；用户随后要求继续，18:12单笔实测额度恢复且NOT_FOUND，r4以4.5秒间隔完成剩余62笔，未重复核已查清记录。未猜平台精确额度或恢复周期。
+本次只读独立证据，不改业务状态/轮询预算、不发新单、不读HIS。生产本地仍2576确认/41受理/206未知，额度2823/80000、断点46不变；**41笔平台确认不等于看板已经回写**。逐笔UUID及结果CSV在任务目录，无患者/原始码/凭据。
+下一步：受控人工核查回写41笔并保留平台证据；206按NOT_FOUND名单比对历史人工上报及身份后制定恢复清单，禁止盲重发；平台TOP7退避/子错误保存、轮询耗尽人工入口、明细分页仍待完善。[交接](sessions/DTR-UNKNOWN-CHECK-20261026.md)。
+
+## 最新：平台核查184笔有结论，63笔受API额度限制（2026-10-26 15:49:14）
+
+[实测核查与证据](../operations/drug-trace-unknown-check-20261026/README.md)：旧41 ACCEPTED全部在平台查到result_type=3/sub_process_flag=51；旧206 UNKNOWN中143完整查询NOT_FOUND，剩余63未核实（1笔平台拒查、62笔未查）。不能称206全未收到或247全核清。
+独立只读查询首批及r2/r3三次遇平台HTTP200内TOP7，最后留存App Call Limited/accesscontrol.limited-by-api-access-count；冷却且降至4.5秒仍拒绝，已停止。正对照仍成功，精确配额周期/恢复时间须平台确认，不猜“每日额度”。
+本次没有上报/重发、没有读HIS、没有业务写入或清12轮预算。看板本地仍2576确认/41受理/206未知；配额2823、断点46不变。平台已确认的41笔尚未回写；NOT_FOUND限定同企业/类型/单据号和日期覆盖，不能排除历史换单号/人工上传。
+下一步：平台方查当前AppKey该查询接口调用次数额度及恢复时间；恢复后按CSV中QUERY_ERROR/NOT_CHECKED的63笔继续，不查已核清184笔；受控回写41成功，再核对143未找到与后续63笔的人工历史，不能盲重发。精确清单与平台错误证据已存，本轮无遗留活动探针。[交接](sessions/DTR-UNKNOWN-CHECK-20261026.md)。
+
+## 最新：药品追溯界面已优化上线（2026-10-26 14:50:17）
+
+[使用说明与证据](../operations/drug-trace-ui-clarity-20261026/README.md)：生产ui-clarity-20261026T063000Z，默认四状态卡、进度、趋势和需关注事项；分总览/上报记录/单据与追溯码/对账核查/接入与授权五入口。英文状态改中文，技术信息折叠；受理与最终成功分开，失败统计不显示虚假零，最多200笔明细边界明确提示。
+前端4文件变更，后端/依赖/数据库迁移不变；构建exit0、辅助测试5通过、合成浏览器13项通过且零业务POST。生产六容器healthy、UI与资产200且SHA一致、原授权scope200、timer已恢复active/waiting；服务器验证成功，当前管理电脑TLS/正式IP SAN和生产浏览器验收仍未解决，未启用HTTP或绕过SSH转发策略。
+本轮等原批准补发自然结束后才升级，未中断/重跑driver。两个窗口均OK，结束汇总以final.json为准；当前{'CONFIRMED': 2576, 'ACCEPTED': 41, 'UNKNOWN': 206}，used=2823/80000。旧41受理/206未知摘要、源断点46与升级间额度均不变；旧247仍须平台核对，未因界面上线变成已处理。
+一致性备份<prod-path>/backups/20261026T064714Z/；私有维护日志/root/blyb-maintenance-backups/upgrade-ui-clarity-20261026T063000Z/。回退上一auth发行，不恢复旧业务库。访问仍https://<prod-host>/ui/#/drugtrace，admin及原独立密码不变，Ctrl+F5刷新。[交接](sessions/DTR-UI-CLARITY-20261026.md)。
+
+## 最新：网页登录已改用户名/密码并上线（2026-10-26 12:50:36）
+
+[实现与部署实录](../operations/username-password-login-20261026/README.md)：生产auth-20261026T043500Z，迁移013仅新增账号/会话表，六容器healthy。生产登录页改为用户名/密码；账号admin对应console-admin，实际密码仅存本机受限文件，位置见实录，不使用root/HIS密码。
+密码加盐PBKDF2，8h会话/退出撤销/改密撤销全部会话/5次失败暂锁15min；原自动化Bearer不轮换。专项17通过，PG并发补验1通过，全量499通过/7跳过/0失败；本机合成浏览器登录、刷新、改密、退出通过，nginx真实限流401→429通过。
+生产实际密码登录200、错误401、跨storage200、退出200后旧会话401，原令牌scope200；旧247摘要/配额/源断点在维护期间不变。服务器UI与JS/CSS均200；当前电脑443 TLS仍未验收，跳板明确禁止direct-tcpip，未绕过；生产浏览器验证受阻，本轮未启用HTTP或替换证书。
+12:44在发送排空后暂停旧补发runner并留维护中断证据，完成一致性备份/升级；12:49已按原driver/相同两日窗口恢复到blyb-mapping-recovery-auth-20261026，日志/var/log/blyb/mapping-recovery-auth-20261026/。当前仍RUNNING，旧41受理/206未知未重发；旧runner的failed/SIGKILL是计划维护历史，不是新增业务发送失败。每日timer已恢复enabled/waiting；NTP仍选中<intranet-host>。
+下一棒只读check.py app status或上述final.json核对补发终态，勿重跑旧launcher/另开driver。正式看板访问、旧247平台核查、outcomes筛选边界仍待办。[交接](sessions/AUTH-PASSWORD-20261026.md)。
+
+## 最新：两药房映射与内网NTP已修复，补发运行中（2026-10-26 12:11:52）
+
+[本轮运维实录](../operations/drug-trace-mapping-ntp-20261026/README.md)：用户确认050121、050116属于本院，新增批准ref_ent_id字典hospital-pharmacies-20261026-r1，旧字典/历史payload未改。未来日批可使用两药房映射。
+<prod-host>已改为<intranet-host> UDP123，选中^*、Reach377、Leap Normal、chronyd enabled/active；DMZ仍用正常的<relay-net-host>。旧“待确认药房归属”和“<prod-host>校时未通”已由本轮证据解决。
+上午567 PREPARED恢复已结束：567全部HTTP200受理，原回执因782缺映射为PARTIAL_FAILURE。现单独blyb-mapping-recovery-20261026按10-25（782张）→10-24（815张）顺序恢复，只复用DONE采集；当前22受理/16确认，仍RUNNING，不称1597张完成。旧41受理/206未知及断点46均不变，配额不重置，普通每日timer保持enabled。
+观察<prod-host> /var/log/blyb/mapping-recovery-20261026/progress.json、final.json、error.json；用本轮check.py app status实时核验。窗口driver完成不等于所有平台终态确认；日报send为本次调用计数。
+看板https://<prod-host>/ui/#/drugtrace使用访问令牌，无独立用户名/密码；用户所需令牌已存本机ACL受限文件，路径见运维实录。当前电脑443仍TLS握手失败、80未开，本轮未启用HTTP；HTTP可另行作为院内同源入口，但明文传输令牌，平台/DMZ HTTPS/mTLS仍保留。
+本轮无应用源码/镜像/表结构更改，语法检查与API登录/字典实际查找/NTP/补发实测；未重跑全量回归。旧247平台核对、看板证书与访问、outcomes先limit后筛问题仍待办。[交接](sessions/DTR-MAPPING-NTP-20261026.md)。
+
+## 最新：排队超时已修复部署，10-25恢复运行中（2026-10-26 09:09）
+
+[修复与三类缺项说明](../operations/drug-trace-queue-repair-20261026/README.md)：生产queue-20261026T010000Z-r2已上线，六容器healthy；发送/查询priority50/60、每5槽保留1个后台槽，排队1800s/执行180s分开等待原job，不重投递。
+driver过滤已12轮耗尽/在途查询，看板分开展示发送/查询错误和耗尽；未改证据、scope、配额或批准字典。最终局部47通过，**全量482通过/7跳过/0失败**，同源构建与离线依赖一致。
+09:01:52按原unit恢复10-25窗口，复用DONE采集和567 PREPARED；09:09:14已新增71次HTTP200受理、65确认，余496PREPARED，**仍RUNNING，不能称整批完成**。全库477确认/47受理/206未知，used730；旧41+206状态版本摘要及源断点46均未变。
+4h只读观察器blyb-queue-observe-20261026.service每分钟写/var/log/blyb/queue-recovery-20261026/latest.json，结束写final.json，超时写observer-timeout.json；无平台/HIS请求或业务写入。回执20261026-090152.json在活动期间0字节属预期，原061029失败回执保留。
+旧815缺映射是10-24快照（050121=810/050116=5），10-25最终另782（775/7）；两药房是否共用已登记医院ref_ent_id等待用户答复，未猜值批准。旧41/206预算耗尽仍待平台核对，过滤无效查询不等于业务已核清。
+新增未修明细边界：submission-outcomes先limit200再筛问题，可能漏掉较旧UNKNOWN；聚合统计为准，问题列表0不等于已清零。NTP/正式证书/TLS仍为原外部事项。
+下一棒只读看恢复final/日报/终态，再按确认处理药房字典及旧单核对；不要另开driver/worker或重跑一次性部署脚本。交接：[本任务](sessions/DTR-QUEUE-REPAIR-20261026.md)。下方日批失败是本次恢复前的真实历史。
+
+## 最新：10-26日批部分失败，只发3张；发送排队触发90秒保护（2026-10-26 08:32）
+
+[只读实测与修复重点](../operations/drug-trace-daily-health-20261026/README.md)：06:10:29触发，处理10-25窗口；08:19采集DONE2059单（VALID1352/WAITING707），08:31:05驱动exit1/PARTIAL_FAILURE，timer日报已入库。
+新增3次HTTP200/ACCEPTED，其中2CONFIRMED、1ACCEPTED；无新429/UNKNOWN。第三个send排队近164秒才结束，超过驱动90秒等待，触发SEND_WORKER_TIMEOUT停止后续新发送；不是平台拒绝。之后247次历史query因12轮耗尽返回HTTP412，约9分钟后结束。
+截至08:31:37，407 PREPARED未发；另404 prepare待处理+1执行中；537次prepare FAILED（050121缺企业映射530、050116缺映射7），仍在增长。全库411CONFIRMED/42ACCEPTED/206UNKNOWN，quota659。worker继续准备不等于driver继续发送。
+六容器healthy，日报GET/详情/stats/scope均200；DMZ NTP Normal，<prod-host>仍未同步。下次10-27 06:10只处理10-26，不自动补今日失败窗口。旧文“VERSION_CONFLICT=409”纠正为项目实际HTTP412。
+P0：修发送排队/等待与积压公平性、过滤查询轮次耗尽及在途job、确认批准两药房企业字典；验证后幂等恢复10-25，不能重发已受理/UNKNOWN或重置配额。日报还需覆盖后台prepare和query失败。
+本轮未重启、未改远程/业务代码、未补跑或新增平台调用，只读证据已存；待修复不能用六容器healthy或日报入库成功替代业务验收。交接：[本任务](sessions/DTR-DAILY-HEALTH-20261026.md)。
+
+## 最新：看板已升级，限流已修复；<prod-host> NTP仍待UDP放通（2026-10-25）
+
+用户授权后完成生产`ui-20261025T140000Z`升级、迁移012、宿主驱动和日报开关1，六容器healthy；timer下一次10-26 06:10。
+[现场实录/网络要求/回退](../operations/drug-trace-ntp-dashboard-20261025/README.md)：上传与每次查询统一40/min，429后仅冷却后续请求、不重放。
+DMZ修复后226次200转发、0次拒绝；修复前3679次429。采集DONE2414单，VALID1470；全库409 CONFIRMED/41 ACCEPTED/206 UNKNOWN、used656。
+10-24窗口408确认+41受理+206未知，另815张缺050121/050116批准ref_ent_id映射；没有盲补字典、重发UNKNOWN或重置额度。
+已补入10-24 **manual/PARTIAL_FAILURE**重建日报，654是实际尝试数不是成功数；原timer中断回执仍保留，不能说全天正常。
+DMZ chronyd选中<relay-net-host>且Normal；<prod-host>已开机启用并64—256秒持续轮询，**UDP123仍无响应、未同步**（动态源端口与固定123均测）。试验中继无效已撤回。
+服务器页面/资产和看板API均200；现有UI证书缺IP SAN，本机到443 TLS EOF，**浏览器未验收**。
+最终局部38通过、传输45通过/1跳过；全量467通过/1旧断言失败/7跳过，该旧断言已在当前局部及单项复验通过，未称单次全绿。
+最终22:01查询队列已排空；41 ACCEPTED和206 UNKNOWN均已用完12轮预算，须人工核对/受控复查，不称仍在自动处理。下一步：NTP ACL/回程及白名单、管理入口证书/TLS策略、2药房映射、247个非终态核对、10-26完整日批及原07:30日报SLA观察。
+交接：[DTR-NTP-DASHBOARD-20261025](sessions/DTR-NTP-DASHBOARD-20261025.md)。下方为旧时点，TUI-08“未部署”及“采集仍RUNNING”等不能覆盖本轮证据。
+
+## 最新：定时故障已修复部署，全天恢复仍在运行（2026-10-25）
+
+用户明确要求修复。[本轮修复/回执/其他问题](../operations/drug-trace-timer-repair-20261025/README.md)：unit %%s、GET形状/失败JSON、UNKNOWN只查询、PREPARED续发、--date补跑均落实；等待3h/unit6h/节奏2.2s，原件备份在<prod-host> /root/blyb-timer-backups/。六容器未重启，r10/审批/冻结包/配额未改。
+**真实worker新增1单HTTP200→平台3/51→CONFIRMED，累计3单成功。** 本轮最初临时验证误用core执行handler，因worker专属凭据不可见形成1单UNKNOWN；已改worker预检并查得NOT_FOUND，保留查询/人工复核，未重发或清额度。used=4/80000（含该失败保守计1），不能说4单成功。
+10-24全天同一collect job和断点已恢复，仍RUNNING；18:29已持久化500单，不是全部发送完成。新只读观察器active，每分钟记录/var/log/blyb/repair-observe-20261025/latest.json，业务退出后写final.json，最长6h，无重试/发送。
+最终局部30/0；全量450/11/7后修本机UTF8环境，对全部失败项复验11/0，未宣称单次全量全绿。其他待跟踪：<prod-host> NTP未同步、TUI-08/日报表未部署（当前日报开关0）、全天性能/最终收尾与1条UNKNOWN人工核查。交接：[本任务](sessions/DTR-TIMER-REPAIR-20261025.md)。下方首跑失败为修复前历史，现不能继续要求重复修%s，但也不能提前标全天成功。
+
+
+## 最新：首个自动日批失败，尚未正常推送（2026-10-25，只读实测）
+
+用户要求核查已开启的定时任务。[现场报告与最小修订候选](../operations/drug-trace-timer-health-20261025/README.md)：timer于10-25 06:10:29触发，但service同秒failed/exit1，回执0字节；今日新增采集/提交/尝试/job均0，仍仅此前2单CONFIRMED+1单PREPARED，used=2/80000，六容器healthy。
+**根因已证实：unit的printf %s未转义为%%s，systemd有效格式变成/bin/sh，容器stdin收到错误令牌；驱动又未检查GET错误响应类型，在第65行str.get异常，未落有效JSON。** 正确令牌的两个只读GET均200/list，非HIS或阿里平台网络超时证据。
+已准备仅修转义的service候选，源文件SHA与现场unit一致；尚未部署/补跑。下一棒优先修unit及驱动错误回执，再监督恢复10-24日批，不能只等10-26自动处理10-25而漏过失败日。现timer仍enabled/waiting，原故障未修。
+生产仍src-20261022T103000Z/v1驱动，日报表不存在，TUI-08仍未部署；本地界面测试不等于生产看板可用。整单CONFIRMED下5个明细PENDING仍为既有A05边界，不冒充码级确认。
+本次HIS/平台业务调用0、手动发送0、远程修改0。交接：[DTR-TIMER-HEALTH-20261025](sessions/DTR-TIMER-HEALTH-20261025.md)。下列“已上线”仅说明定时器安装，不能覆盖本次首跑失败实测。
+
+
+## 最新：TUI 复核修复完成，仅余生产部署待窗口（2026-10-24，DTR-TIMED-UI-FIX-20261024，ZCode/GLM-5.3）
+
+按[修复执行书](../development/drug-trace-timed-ui-plan-20261024/FIX_TASK.md)一次完成 FIX-00—09（G1—G10 全修），
+[RESULT 复核修复节](../development/drug-trace-timed-ui-plan-20261024/RESULT.md)：
+**upload-stats IN 规模缺陷已除**（两条分组 SQL+ROW_NUMBER 窗口，端点内无 .in_()；35k 规模回归锁过）、
+outcomes 批量化（窗口子查询 LEFT JOIN+单号一次批量）、日报窗口序 422、每日实际「其他」列+UTC/GMT+8 脚注、
+streak 按日期连续性、面板错误提示/查询按钮 operator 显隐/删死代码/横幅加载态；四类实施文档补齐。
+实测：新增 4 集成测试（35k/clamp/窗口序/PG 端到端）；局部五文件 56/0；**全量回归 448/7/0**
+（上轮 444+4，JUnit var/tui-fix-regression.xml）；npm build ✓（173.06 kB）；浏览器四项复验过
+（fix-01/03/04.png）。**F-A07 禁改清单 30 文件哈希比对零改动**。**TUI-08 生产部署仍 BLOCKED**
+（须用户在场+避开每日 06:00–08:30，就绪清单 RESULT §五）；本轮未触生产/<prod-host>/HIS/平台。
+交接：[session](sessions/DTR-TIMED-UI-FIX-20261024.md)。
+
+## 最新：TUI 复核完成，修复执行书待执行（2026-10-24，DTR-TIMED-UI-FIXPLAN-20261024，ZCode/GLM-5.3）
+
+对 DTR-TIMED-UI 交付逐项复核（实验证实，非印象）：契约/幂等/门禁零改动/全量 444/7/0 均成立；发现 G1—G10：
+**upload-stats IN 参数规模缺陷**（SQLite 32766/PG 65535 实测上限，生产 ~2000 单/日 days=90 约33天数据后必 500）、
+四类实施文档欠账、每日实际「其他」列与 UTC/GMT+8 口径脚注、streak 日期连续性、面板吞错/按钮显隐/死代码/横幅加载态、
+窗口序校验、outcomes 批量化、测试缺口。已交[修复执行书](../development/drug-trace-timed-ui-plan-20261024/FIX_TASK.md)
+（FIX-00—09、F-A01—08、禁改清单、35k 规模+PG 端到端测试规格）；**顺序：先 FIX 修复再 TUI-08 部署**。
+本轮纯复核+执行书零代码改动。交接：[session](sessions/DTR-TIMED-UI-FIXPLAN-20261024.md)。
+
+## 最新：定时上报可视化已本地交付，生产部署待窗口（2026-10-24，DTR-TIMED-UI-20261024，ZCode/GLM-5.3）
+
+按[执行书](../development/drug-trace-timed-ui-plan-20261024/EXECUTION_TASK.md)完成 TUI-00—07+09，[RESULT](../development/drug-trace-timed-ui-plan-20261024/RESULT.md)：
+**迁移012日报表**（SQLite+隔离PG up/down/up 幂等）、**4组6个新API**（daily-reports upsert/列表/单日、upload-stats、send-scope、submission-outcomes；均 tenant 隔离、只读或仅新增日报数据）、
+**驱动v2**（跑完POST日报，失败仅记report_push，退出码/文件回执语义与v1一致；fatal路径best-effort推FAILED日报）、
+**前端「定时上报」面板**（授权/健康§5.4/日报下钻/平台终态/异常提交）+**页顶横幅动态化**（MOCK/正式链路/未启用）。
+实测：新增9集成测试（含Docker隔离PG迁移环与驱动端到端）；浏览器合成栈截图3张（面板四区/下钻/横幅切换/空态）；
+**全量回归 444/7/0**（首轮2失败=旧迁移名单断言，补012后复跑全绿）；**A07门禁零改动**（service/quality/ingest等文件mtime均早于本会话，仅models/plugin/routes三文件追加）。
+**TUI-08 生产部署 BLOCKED**（须用户在场且避开每日06:00–08:30；就绪清单在RESULT §五）；生产<prod-host>未动、定时器仍v1驱动照跑。交接：[session](sessions/DTR-TIMED-UI-20261024.md)。
+
+## 最新：定时上报可视化长任务计划已交付（2026-10-24，DTR-TIMED-UI-PLAN-20261024，ZCode/GLM-5.3）
+
+应用户要求编制[完整开发执行书](../development/drug-trace-timed-ui-plan-20261024/EXECUTION_TASK.md)（TUI-00—09、API契约§5、验收A01—A08）与[可复制提示词](../development/drug-trace-timed-ui-plan-20261024/NEXT_AI_PROMPT.md)，交其他AI执行：管理界面新增"定时上报"面板（授权/配额、健康、日报下钻、平台终态统计、异常提交）+日报入库（迁移012）+三个新查询API+驱动v2末尾上报+页顶横幅动态化。
+差距分析与设计决策已定（日报入库不读文件、健康纯数据推导、零门禁改动、生产部署避开06:00–08:30须用户在场）。本轮纯计划零代码改动；未执行任何生产操作。交接：[session](sessions/DTR-TIMED-UI-PLAN-20261024.md)。
+
+## 最新：定时上报已上线（2026-10-24，DTR-TIMED-REPORT-20261024，ZCode/GLM-5.3）
+
+用户授权后完成剩余待办核查+定时上报落地，[结果](../development/drug-trace-timed-report-20261024/RESULT.md)。
+**<prod-host> systemd 定时器 `blyb-daily-upload.timer` 已 active**（每日06:10 Asia/Shanghai，首跑2026-10-25处理10-24全天）：幂等采集昨日窗口→VALID门诊单串行发送（≤40/min遵DMZ限流）→查询补进→回执落/var/log/blyb/daily-upload/。
+**发送授权standing scope**（证据0eb0b906，可revoke即停）：窗口2026-10-24→11-23、5药房白名单、max 80000、used保留计数；**10-12..23缺口不发送**（E08'待院方确认）；CONFIRMED永不重发。
+**实测**：监督采集51单幂等0重复；冒烟发送1单HTTP200→**CONFIRMED（真实成功累计2单）**；配额2/80000；四类证据APPROVED。E06'/E07'三时点零迁移拦截维持。
+风险如实：<prod-host> NTP未同步（错钟=显性失败可查）；全量日批明晨首跑未测；拆零流/缺口补报待院方。运维/回滚见[任务README](../development/drug-trace-timed-report-20261024/README.md)。交接：[session](sessions/DTR-TIMED-REPORT-20261024.md)。
+
+## 最新：源表核查执行完毕，5077条根因闭环（2026-10-23 晚）
+
+用户授权后任务 DTR-HISTORY-SOURCE-AUDIT-20261023（ZCode/GLM-5.3）经<relay-jump>受控连接器以平台只读账号READY_HIS执行源表SELECT约181条（约23秒，走既有索引、限量分批）：源写0、上传0、生产改动0。
+**根因闭环**：5077条未匹配全部U02＝药房050121的**拆零（SPLIT_FLAG=1）OUT扫码流**，其20位单号不在处方主单编号空间（主单PRESC_NO仅1—5位；050121是最大药房排除药房失配；S01-S03按号+日期查主单0行）——r10三键JOIN按设计不可命中，**非正常门诊漏报，r10不改不并入**；是否覆盖待院方确认后另立来源revision。**31组重复＝1小时内真实双扫**（SPLIT_FLAG=0、每组恰2条、JOIN命中），11张整单保持INVALID/QD-DUP-CODE。逐日覆盖81天：主单245794张、142080张有OUT码484567行≈r1视图484539行（交叉一致，视图未丢已JOIN记录）；住院主单窗口内零OUT码。T侧全量JOIN_MISS/CREATE_TIME反向未做（无索引，SQL06实证）。
+r2b工作簿与全部原始行在本机受限目录（ACL仅当前用户+SYSTEM）；共享证据无原码泄漏（扫描通过）。剩余外部项收敛为E05'—E08'。交接：[DTR-HISTORY-SOURCE-AUDIT-20261023](sessions/DTR-HISTORY-SOURCE-AUDIT-20261023.md)、[结果](../development/drug-trace-history-rootcause-r2/RESULT.md)。
+
+## 最新接力：rootcause-r2 历史核查已执行（2026-10-23）
+
+按用户 NEXT_AI_PROMPT 执行完 Q00—Q06：[结果](../development/drug-trace-history-rootcause-r2/RESULT.md)。
+37 条受控 SELECT（仅两视图、BLYB_DRUGTRACE 再证不变、0.876 秒零错误）；源表查询 0、写 0、上传 0、生产改动 0。
+**要点**：r10 定义/身份与 r1 完全一致可继续；5077 未匹配视图侧两时点零变化、全部暂记 U05（源端待 DBA SQL01—04；2330 行"同码同日异标识"为最强提示非证明）；1396 UNKNOWN 三态零迁移拦截保留；31 组重复实为 **11 张主单、全部 INVALID/QD-DUP-CODE（整单双扫模式）**；同 CREATE_TIME 反向审计如实标未完成（SQL05/06 已备）；持续自动推送不具备条件（A03 未实现、A02 恒空、A05 部分）。
+S01—S03 样本、531 码/4974 旧单绑定包与新 r2 工作簿在本机受限目录（ACL 仅当前用户+SYSTEM）；六条 DBA SQL 静态校验通过均未执行，最小外部清单 [E01—E07](../development/drug-trace-history-rootcause-r2/EXTERNAL_INPUTS.md)。交接：[DTR-HISTORY-ROOTCAUSE-R2](sessions/DTR-HISTORY-ROOTCAUSE-R2.md)。原表根因未闭环、同窗口反向未做，均如实标注。
+
+## 最新接力任务：详细核查执行包已交付（2026-10-23）
+
+按用户要求已编写[完整说明与Q00—Q06执行任务书](../development/drug-trace-history-live-compare-20261023/EXECUTION_TASK.md)和[可复制给下一AI的提示词](../development/drug-trace-history-live-compare-20261023/NEXT_AI_PROMPT.md)，细化5077条查源/主单JOIN、1396退款状态、31组整单、同CREATE_TIME反向核对、候选修订及A01—A05检查，含CHK-01—10验收与受限交付格式。
+现有SQL01/02精确旧键查不到时，新增SQL03按原码查源上下文；三条SQL均未执行，需已批准原表审计身份或DBA。原reader仍只两视图，不扩大权限；旧r1证据/工作簿不覆盖，下一AI应使用rootcause-r2新任务目录。
+本次只是任务书与静态校验，HIS/平台访问0、生产改动0、新上传0；不改变下列972条SELECT实测结论，不宣布根因已全部闭环。交接：[本任务记录](sessions/DTR-HISTORY-CHECK-TASK-20261023.md)。
+
+
+## 最新：历史清单已与HIS两视图实际核查（2026-10-23）
+
+用户已明确批准当前白天只读核查；本次授权解决此前待窗口问题。全部489613行对应473614个码、489582个旧明细号＋码组合已查询，实际972条受控SELECT，无触顶/查询错误。
+[实测报告](../development/drug-trace-history-live-compare-20261023/README.md)：484536行同键且次数一致；5077行另一格式历史单号未匹配，不能直接判漏报。1396条当前UNKNOWN已查到全退/退费原始状态；31组同单同码为真实多源记录，整单样本触发QD-DUP-CODE。
+**正常门诊r10及退费拦截保留；先由DBA小样核查5077条的原记录和三键主单JOIN，再按证据决定是否新增业务来源revision。** 两条限量SELECT已写，未执行，无需重建当前用户。完整差异Excel在仓库外受限目录，6535行标识回读/原25文件摘要/ACL验证通过。
+[下一步L01—L06](../development/drug-trace-history-live-compare-20261023/MODIFICATION_PLAN.md)：查未匹配来源、确认业务覆盖、退款/实物退药分离、重复码原因、CREATE_TIME同口径审计/齐套晚到、历史防重。DBA源表权限及真实业务解释尚待落实；现reader仅两视图，不绕过权限。
+HIS写入0、生产改动0、新上传0。尚无同CREATE_TIME区间全视图反向核查或每码平台成功终态。既有1单4码成功保留不重发。
+本次交接：[DTR-HISTORY-LIVE-COMPARE-20261023](sessions/DTR-HISTORY-LIVE-COMPARE-20261023.md)。下列旧窗口/离线/待时段记录仅是历史，不能覆盖本次实测。
+
+## 用户纠正：任务误发窗口，已移交其他窗口（2026-10-23）
+
+用户明确说明“历史上报与视图比对”误发到qywx窗口，改由另一个窗口核查。**本窗口已停止此任务，从qywx后续工作范围排除；此前异步白天查询问题不再由本窗口等待或执行，也不构成任何实时查询批准。**
+已做内容仅为25份Excel离线统计、仓库外受限核对表和SQL计划。原文件未改，HIS连接0、平台访问0、上传0、生产/产品代码修改0；尚无真实视图一致性结论。已生成资料保留供接手，不删除原始文件或撤销其他人的改动。
+接手入口：[离线结果与范围](../development/drug-trace-history-compare-20261023/README.md)、[原任务记录](sessions/DTR-HISTORY-COMPARE-20261023.md)。下方“待白天窗口”是原分析阶段记录；后续执行和授权由用户指定的另一窗口处理。
+
+## 历史上报与两视图比对（2026-10-23，实时核查待窗口）
+
+[历史清单离线检查与比对计划](../development/drug-trace-history-compare-20261023/README.md)：25份Excel已全读，489613行、205334个历史单号、473614个不同码，覆盖7月23日—10月11日；追溯码均为完整20位文本。完全重复行0；同单同码再次出现31次（62行），14个单号有不同时间，3562个码跨历史单号，均待结合业务核对，不先判错报。
+已输出仓库外受限Excel，按原文件/行号定位。原历史SQL单号/时间与现主单/发药时间口径不同，明细号探针SQL已静态PASS，尚未执行。
+**HIS实时视图访问0、真实平台访问0、上传0、生产改动0；当前不能判定两边一致。** 仅白天live窗口待用户确认；目标与比对请求已有授权，不再索要已登记凭据。后续先3键小样确认映射，再限量分批，保留次数及未覆盖范围。
+
+## 各上报业务目录导航与强制维护约定（2026-10-23）
+
+[数据上报总索引](../../数据上报/README.md)已建立；码上放心目录README串联原始文档、官方快照、代码/两视图、部署/真实回执/复核/NTP及受限凭据位置。医保材料、既有病理插件和历史资料均补就近README；未将材料存在当成业务实现或真实验收。
+根AGENTS、AI_START、项目README、START_HERE和统一启动文档已约定：**每个上报项目在数据上报/<编号、业务名>/README.md维护项目目录说明，接口/代码/SQL/部署/证据路径变化同步更新**，并维护总索引；状态仍统一共享记录。
+[本轮维护与验证](../maintenance/reporting-directory-guides-20261023/README.md)。本轮纯文档，无远程连接/数据库访问/上传；既有NTP与单笔试报事实不变。
+
+## 最新：院内NTP配置已执行（2026-10-23）
+
+用户明确授权修改同步时间，[两机配置/备份/实测](../deployment/drug-trace-ntp-20261023/README.md)。
+两台/etc/chrony.conf均已持久使用`server <relay-net-host> iburst`，原公网pool注释保留，各只重启一次chronyd、active/enabled。
+**DMZ <relay-net-host>已同步：^*该源/Leap Normal/stratum2，约两分钟复查仍正常、Reach77，直接偏差约0.01毫秒。**
+**<prod-host>已配置但仍未同步：^?/Reach0/Not synchronised，实际UDP123继续超时。** 余项为<prod-host>→<relay-net-host> UDP123及会话回包/服务端ACL，网络恢复后复测；不能笼统宣称双机NTP全通过。
+DMZ转发PID5174/Java14438未变，<prod-host>六容器healthy；业务服务重启0、HIS访问0、上传0。
+原配置分别保存在两机/root/blyb-ntp-backups/20261023-…/chrony.conf，精确路径见本轮报告。上轮“仅探测/未配置”的描述为历史状态。
+
+## 院内NTP候选源实测（2026-10-22 23:08）
+
+用户纠正时钟服务器为**<relay-net-host>**，未测试误填的<relay-net-host>。
+[双机实际UDP123探测](../deployment/drug-trace-ntp-20261022/README.md)：DMZ <relay-net-host>三次有效NTP v4/stratum1响应，较该源慢约2.144秒；<prod-host>三次均超时。
+两台已有chronyd但当前均未同步；本轮仅探测，无时间/配置修改或服务重启、上传0。NTP源地址已提供，剩余是<prod-host>跨区UDP123/回包或服务ACL核通，以及后续持久配置及持续同步验收；不得再把“待提供NTP IP”列为缺项。
+
+## 最新：官方指南与HIS视图只读复核（2026-10-22）
+
+[核查报告与A01—A05完善任务](../development/drug-trace-official-view-audit-20261022/README.md)：重新获取语雀正文HTTP200，规范标题后与旧快照一致；正常门诊零售五必填/method/321/3+51匹配。
+HIS专用reader27条SELECT成功，视图VALID/17+18列、定义与r10一致；30头/100码样本、8张整单11条有效码未见主从版本/时间/重复异常。
+**现存需完善：100条明细修改晚于发药20～251秒；主单updated_at=发药时间、expected_code_count恒空，连续自动齐套/变更尚未认证。**
+现表单未传ignore_part_success_flag（缺省允许部分解析）；新revision完善整单解析策略及失败码流程。包装父子/人工历史完整性与4条明细PENDING显示仍待解决。
+正常完成门诊batch可用，不能扩为全历史/退药/住院/拆零全面验收。本轮HIS写0、线上改0、上传0；既有一笔真实3/51成功不变、不撤销不重发。
+
+## 追溯码链路及人工记录核查资料（2026-10-22）
+
+[清晰流程说明](../operations/drug-trace-flow-20261022/README.md)已整理：视图/取数服务器/前置机/官方接口及人工记录比对方法；附空白Excel文本模板。
+完整密码与AppSecret仅在本机受限`.ai/private/drug-trace-flow-20261022/推送流程及账号密码_仅本机.md`，只允许当前用户和SYSTEM，Git忽略；未输出到共享文档或聊天。
+此资料整理无远程连接/业务变更/上传；既有真实试报1单4码CONFIRMED不变。后续人工文件只读核查，不自动补报或重发。
+
+## 最新：首张真实上传已成功（2026-10-22）
+
+**真实上传1张/4码，平台result_type=3、sub_process_flag=51（处理成功/全部成功），本地CONFIRMED。**
+发送attempt仅1次/HTTP200/ACCEPTED，两次查询由处理中推进终态；quota used=1/max_bills=1。
+用户已明确延期前述生产要求，并要求不用撤销。本轮通过原API登记USER_SINGLE_BILL_EXCEPTION，
+保留延期事实和UNKNOWN，不伪称正式CA/NTP/旧厂商未报已验证；固定单据窗口/药房/配置/额度1。
+**目的地ENABLED，DMZ允许query+uploadretail、库存关闭；配置和审批未主动撤销，未开自动批量**。
+审批默认有效至北京时间2026-10-22 23:18:32，已有到期机制保留；后续需新范围/额度时由用户另行安排，不复位已用计数。
+原“上传0/send MISSING/DMZ仅query”均为前轮历史事实；该AppKey/医院的uploadretail和321本笔已实测有效。
+HIS写0、业务源码无改动。正式链/持续NTP/历史去重/扩展业务留为后续完善，不能阻止承认本次实测成功。
+[结果及完整证据](../development/drug-trace-one-bill-trial-20261022/README.md)。
+
+## 单笔测试条件修订（2026-10-22，用户要求非必需先忽略）
+
+正式CA、持续NTP验收和平台书面回执后移，不再把这些材料一律当成单笔测试前提。
+现有mTLS严格校验和发前准确时钟保留；uploadretail实际权限必需，可由受控调用响应验证，321沿用已有批准映射。
+历史全量对账延期，测试单本身优先作范围内重复核对；未核实仍UNKNOWN，不能伪称已未报。
+[分类及下一步边界](../development/drug-trace-trial-prerequisites-20261022/README.md)。**本轮仅改文档，未改线上门禁或发送；线上仍send MISSING/目的地DRAFT/DMZ仅query。**
+下一AI如继续单笔试报，需实现/使用明确trial路径记录延期，保留一单额度/固定配置/时钟与TLS实测/幂等，不能伪填生产证据。
+
+核对日期：2026-10-22。基线：**v0.4**。业务源码：`implementation/`。
+这是共享的当前摘要。详细证据仍在实施文档和 `implementation/var/` 的 log/XML。
+
+## 已执行到哪里
+
+| 工作 | 当前证据状态 |
+|---|---|
+| 2026-10-22 来源接入与真实整单建包（DTR-SOURCE-DELIVERY-20261022，Codex/unknown） | **已实际部署src-20261022T103000Z/六healthy**；专用reader经worker登录、仅两视图SELECT；两类Oracle空游标修复已生效。新r10独立来源PUBLISHED/ENABLED（batch），三字典新revision正常API批准并保留旧项；collect证据按实证登记1天。**真实采集1张4码，DONE/VALID，冻结PREPARED，五必填DRY_RUN通过，attempt/quota/send_job均0**；新worker经mTLS平台查询成功。132相关测试通过；全量首轮424/8/7，UTF8后受影响两文件25/0复验通过。恢复路径保护修复，16运维测试与现场validate-only过；备份20261022T095541Z。**真实上传0，send仍MISSING/目的地DRAFT/DMZ仅query**；正式链/NTP/平台upload权限与321口径/未报首单仍待落实。见[本轮实施与下一步](../development/drug-trace-source-deploy-20261022/README.md) |
+| 2026-10-22 r10执行后复核（DTR-R10-UPLOAD-READINESS-20261022，Codex/unknown） | **用户执行的r10已实际生效**：两视图VALID，定义与草案token一致；20头样本15正常已完成/5住院UNKNOWN，一单1头4码按实际质量函数VALID、0阻断（层级警告）。**视图无需重改**。现网仍fb-20261021T164800Z、首屏修复未部署、DSN空/来源DRAFT、医院药房映射空、目的地DRAFT；DMZ仅query，collect/send缺、采集/submission/配额0。正式worker查询与DMZ官方HEAD成功，首轮SSH拒绝后r2成功。上传0/HIS写0/现场改0，见[当前卡点与接续](../development/drug-trace-r10-readiness-20261022/README.md) |
+| 2026-10-22 上传内容契约收口（DTR-UPLOAD-CONTENT-CONTRACT-20261022，Codex/unknown） | **零售5必填来源已明确**：稳定bill_code、M发药时间、沿用拟321、已存医院ref_ent_id、T小码列表；数量/药名/患者证件非本期必填。现库注释DUMP解码确认SOURCE0门诊/1住院、FLAG1正常2全退3部分退、REFUND1退费0/null未退；形成门诊正常且有发药时间/未退费r10草案，未批准/未执行DDL。5条HIS SELECT成功、两草案零行解析过、12候选反例检查过。现场只读字典查实：当前仅PATIENT_DISPENSE源code，需新revision补原始状态→321/A及药房→医院映射。见[上传内容确定单/修订SQL](../development/drug-trace-content-contract-20261022/README.md)。程序部署/来源启用/未报首张仍待落实，上传0、HIS写0 |
+| 2026-10-22 Oracle首屏修复（DTR-ORACLE-FIRST-PAGE-20261022，Codex/unknown） | **本地已修复，110通过/0失败/0跳过；真实Oracle单据4码分页2/2/0全部读出**。新增12回归修复前10失败/2通过，保留反例；局部首轮WSL环境失败已通过进程PATH使用既有Git工具复验。业务质量门禁未改。**未构建/部署新发行，<prod-host>仍旧模板**；账号/PHARMACY视图此前已实测，业务UNKNOWN/finalized空、来源DSN/药房映射/启用及首张范围尚待落实，上传0。见[本轮修复与接续](../development/drug-trace-oracle-first-page-20261022/README.md) |
+| 2026-10-22 用户建视图后实测（DTR-VIEW-VERIFY-FIRSTBILL-20261022，Codex/unknown） | **新账号BLYB_DRUGTRACE实际登录成功；实际owner为PHARMACY，两个视图VALID、17+18列、仅两视图SELECT及登录权限**；密码已本机DPAPI保存。当天20头/100码样本正常形状，一张1头4码关联一致；但kind=UNKNOWN/finalized空，真实4码在旧首屏SQL读0、NULL安全读4，部署worker也未修复。来源仍DRAFT/DSN空、目的地DRAFT、药房映射空，DMZ仅query；正式worker只读查询成功，时钟仍接近官方Date。**实际上传0、HIS写0、远端配置改0**。见[本轮核验/接续](../development/drug-trace-view-verify-20261022/README.md)，无需重建用户/视图，旧r8 owner拟定以本轮实测为准 |
+| 2026-10-22 HIS执行包与DMZ实际校时（DTR-HIS-DDL-DMZ-CLOCK-20261022，Codex/unknown） | 用户知晓登记差异后明确追加本次核查授权，**实际HIS连接成功**：服务his，5条字典SELECT成功，目标账号未见；r8两视图SELECT零行解析通过。交付[建用户/视图/授权/验证执行包](../deployment/his-ddl-clock-20261022/README.md)，DDL由用户执行，尚未创建。另发现Oracle首屏空游标必漏读码，DUAL证明，源码未改，见NEXT_AI_SOURCE_FIX。**DMZ已按授权向前校正1946.3秒，校后差0.57秒、14分钟后仍<1秒；mTLS verify0、转发/Java进程不变**。仅一次校时，NTP长期同步仍未恢复。HIS写0、上传0 |
+| 2026-10-22 资料重核与实际只读测试（DTR-INPUT-RECHECK-20261022，Codex/unknown） | **正式worker链路查询再成功，基础版服务期实测至2028-12-31**，服务有效期待提供项已消除；AppKey/Secret/HIS/SSH账号已提供不重索。当前fb-20261021T164800Z/6healthy、签名True、真实配置PUBLISHED；目的地对象仍DRAFT、来源DRAFT/无active config、DSN空、医院药房映射空，单据/采集/submission/配额0；query/reconcile APPROVED、collect/send MISSING。平台HIS登记仍medical_dict_push，视图元数据0（不等于活库不存在），本轮HIS活库0。DMZ TEST-ONLY/NTP未同步慢32分/仅query；上传0、现场配置零改动。见[实测与剩余说明](../development/drug-trace-input-recheck-20261022/README.md) |
+| 2026-10-22 FB轮执行（DTR-FIRSTBILL-EXEC-20261021，ZCode/GLM-5.3） | **开发/部署/真实配置/签名/链路查询完成；首张上传0（外部输入阻断）**。FB-00—07 执行：动态就绪统一（CLI/API/UI 同源+配置发布API/CLI，14测试）；EXT-07 签名资格按批准修订闭合（官方C#向量+官方PyPI SDK移植对照+**平台受理本实现签名**实测；SIGNATURE_VERIFIED=True 随发行）；官方2026.01指南取证落码（321=使用出库、0/1/3/4+51/52、空结果解析修复）；新发行 **fb-20261021T164800Z** 升级（备份20261021T165233Z+restore演练过）；经API发布**真实目的地配置 PUBLISHED rev1**（is_mock=False）+官方字典（321/A）+EXT-09 query/reconcile 证据 APPROVED；**正式链路只读查询 SUCCESS**（worker→mTLS→DMZ→平台 found=true/total_num=0；DMZ allow_ips 加跨区NAT出口<relay-net-host> 实证）；<prod-host> 时钟与平台差≤10s。全量回归 **405/7/0**。真实上传0：HIS视图/账号（DBA）、正式CA、NTP源、uploadretail权限、321/323消歧、首张scope 均待外部。见[执行报告](../development/drug-trace-firstbill-exec-20261021/EXECUTION-REPORT.md) |
+| 2026-10-21 首张上传长任务交付（DTR-FIRSTBILL-LONGTASK-20261021） | 已编制[下一AI执行提示词](../development/drug-trace-push-review-20261021/NEXT_AI_PROMPT.md)：FB-00—07、29项验收、外部输入回执及交付物，涵盖动态readiness/签名/生产只读来源/校时证书/配置与证据发布/正式链路查询/首张max_bills=1。仅文档交付，未新增现场操作或真实上传；当前运行事实仍以下一行现场复核为准 |
+| 2026-10-21 23:29 部署后推送复核（DTR-PUSH-REVIEW-20261021，Codex/unknown） | **现场确认服务与网络就绪，真实上传仍阻断**。两机实际发行与上棒一致；6容器healthy、迁移001—011；worker→DMZ严格mTLS health200、DMZ→平台HEAD200/TLS0、<prod-host>→HIS1521 TCP成功。直接只读查询first-hospital：来源DRAFT/无active config、目的地Mock DRAFT/无revision、destination配置0、字典draft-1、单据/采集/证据/配额/submission全0；worker DSN空、真实签名断言CapabilityError、DMZ仅query.billstatus。时钟约慢32分钟未同步。现场零配置修改/HIS查询0/上传0。见[复核与接续步骤](../development/drug-trace-push-review-20261021/README.md) |
+| 2026-10-21 现场部署执行（DTR-DEPLOY-20261021，ZCode/GLM-5.3） | **L1 安装启动完成（DEPLOYED_TEST_ONLY，禁发）**。安装前修复 P01—P05 全落地（oracledb 3.4.2+Thick 一次初始化+IC19.32 入镜像并容器内实测；lib.sh BLYB_DRUGTRACE_ENABLED 统一 compose 闭包；certs.sh 根 CA 扩展修复；DMZ 安装器 ss 解析+systemd219 兼容；init --tenant）。新发行：app **dpl-20261021T111000Z**（148 文件）、DMZ **20261021T113750Z**（首装 110326Z 后升级）。现场：DMZ 443 socket 持有/非 root blyb-dmz/真实 mTLS health 200 UP/无证书拒绝/8001=java 不变/重启保持/上游 OK；<prod-host> 备份 20261021T111644Z（含对象）→升级→迁移 001—011→6 容器 healthy→worker UID10001 证书可读不可写/Thick 19.32 实测/AppSecret 仅 worker→**<prod-host>→DMZ 真实 worker mTLS health SUCCESS**→init 草稿（--tenant first-hospital）→UI 200/路由 401→restore --validate-only 通过。禁发：DMZ 仅 query.billstatus、DSN 空、上传 0。全量回归 380/2/7（2 失败=R22 旧 fake，补齐后 56/0）。见[执行报告](../deployment/drug-trace-install-20261021/EXECUTION-REPORT.md) |
+| 2026-10-21 安装与启用执行单（DTR-INSTALL-RUNBOOK-20261021） | 已交[部署执行单/下一AI提示词](../deployment/drug-trace-install-20261021/README.md)，L1服务/L2采集/L3推送分开。材料147/14条SHA匹配；核实旧包缺Oracle驱动/Thick初始化、统一compose未纳药品覆盖、DMZ证书SAN不含真实IP等安装前置，要求下一AI补修重打包后安装。仅编制与材料审计，现场未改；执行任务DTR-DEPLOY-20261021**已完成（见上行）** |
+| 2026-10-21 网络调整复测（DTR-NETWORK-RETEST-20261021） | **DMZ→官方HTTPS443已通，且从DMZ真实签名只读查询SUCCESS**。<prod-host>→DMZ443/HIS1521 TCP均通；院内HTTPS health仍exit35、DMZ转发unit/socket未安装、<prod-host>仍旧发行。真实上传0，现场零改动。见[本轮实测](../development/drug-trace-network-20261021/README.md)；旧“DMZ出口443仍超时”已被更新，不整体关闭部署/来源/字典/首批范围缺项 |
+| 2026-10-20 收尾执行（DTR-FINALIZE-20261020，ZCode/GLM-5.3） | FIN-00—09 可离线项完成：DMZ 转发器 v2（socket 激活/全阶段预算/连接限额/日志脱敏/诊断 CLI/严格配置校验）、219 兼容 unit+socket、安装器 v2（manifest 哈希/原子切换/严格 verify/完整回退）、私有运行时 cpython-3.11.9（官方 sha256 核对+centos:7 实测）、r7 视图契约+SQL 草案、业务分支适配层（未批准→等待）、批次/增量两模式、查询日期默认双窗口、session 可选端到端、init_drug_trace 幂等工具、compose worker 密钥隔离、readiness 分层（API+UI）、clientAuth 证书工具、旧系统 DNS/NTP 诊断。**全量 373/7/0**（380 cases，740.61s，var/dtr-finalize-full.xml）。两发行包已构建（<prod-host> fin-20261020T130011Z；DMZ 20261020T130019Z）。**现场未部署**（无维护窗口委托）：两台零改动、真实上传 0。systemd239 PID1 容器实测全生命周期+DMZ 只读版本探测（Anolis7.9/219/glibc2.17/无 python3/8001=java）。见[session](sessions/DTR-FINALIZE-20261020.md) |
+| 2026-10-20 剩余开发与部署收尾任务书（DTR-FINALIZATION-PLAN-20261020） | 已编制[完整任务包](../development/drug-trace-finalization-20261020/README.md)：FIN-00—11、FIN-A01—38、网络/资料回执及下一AI提示词。覆盖旧systemd/socket兼容、严格安装/回退、HIS r7、签名/历史查询日期、配置注入与禁发部署。仅计划交付，未执行这些开发/部署；非网络输入仍需落实，不能宣称只剩网络 |
+| 2026-10-20 真实平台联调（PLATFORM-LIVE-TEST-20261020） | 两项真实只读调用SUCCESS：状态查询＋医院企业目录（名称/标识一致）。正式链路实测仍阻断：<prod-host>仍旧发行，DMZ443/8443无监听、出口HTTPS超时；真实上传0。修复TOP空值签名，局部80 passed/1 skipped，正式签名门禁未关闭。见[实测与接续计划](../development/platform-live-test-20261020/README.md) |
+| 2026-10-20 平台凭证登记（PLATFORM-CREDENTIALS-20261020） | 用户已提供AppKey/AppSecret/ref_ent_id/医院名称，DPAPI加密＋受限ACL保存在本机私有目录，后续AI按[登记说明](../development/platform-credentials-20261020/README.md)获取。登记阶段仅本地解密/SecretRef/环境恢复等验证；后续真实只读联调见上一行；EXT-06部分资料已收，权限/有效期/医院绑定/授权模式待确认。医院ent_id已由后续企业查询保存，库存场景仍需批准映射；当前retail不因此阻断 |
+| 2026-10-19 HIS活库核查（HIS-LIVE-VERIFY-20261019） | 用户追加当次只读授权后，sjzc实际连接成功，服务名his；真实主键/索引/字段/注释已核实，8条OUT记录与处方主单和复合明细键唯一关联，6条拆零、一明细可多码。已建立来源r2、上传字段清单与后续计划；生产采集/发送仍关闭。见[最新核查](../development/his-live-20261019/README.md)。局部32 passed/1 skipped；无源库写入或真实发送 |
+| 2026-10-19 首轮sjzc/HIS来源接入（HIS-SJZC-BIND-20261019，历史阶段） | 当时仅平台元数据：40条源登记、追溯表30列；因medical_dict_push登记未执行live。r1为PLATFORM_METADATA_ONLY，局部31 passed/1 skipped、5条SQL静态通过。随后用户追加当次授权完成活库续接，见上一行；[首轮证据](../development/his-sjzc-20261019/README.md)保留 |
+| 第1—3轮与真实栈功能测试 | 既有记录。功能测试后回归 191/6，43 项复核通过 |
+| 第4轮本地收尾（2026-10-02） | 216 passed / 6 skipped（var/round4-final-regression2.log）；T12 拖拽未做 |
+| 2026-10-05 部署修订 | 内网卷隔离+令牌强制+端口退出（T14 两项 2 passed） |
+| 2026-10-16 Linux 生产部署修订（REPORTING-LINUX-DEPLOY-20261016） | Git基线b7fda30起；§5部署修订落地；既有隔离23/23、全量229 passed / 6 skipped / 0 failed；<prod-host>最终发行 **20261016T114735Z**，部署任务已handed_off |
+| 2026-10-16 部署复核与药品开发规划（REPORTING-DRUGTRACE-PLAN-20261016） | 22:29现场复核：发行哈希通过、6服务healthy、宿主22/443、迁移001—008；业务connector/destination/job等均0。发现TLS名称不符、备份/恢复静态缺口；新开发计划与用户SQL审查已交付，业务代码未改。见[本轮交接](sessions/REPORTING-DRUGTRACE-PLAN-20261016.md) |
+| 2026-10-16 药品追溯离线开发（DTR-IMPLEMENT-20261016，ZCode/GLM-5.3） | 已交领域/009迁移/合成采集/Mock适配器/DMZ代码/API/UI及历史回归 **277 passed/6 skipped/0 failed**（283 cases）。旧“W01—W09全部完成、签名硬阻断、三方对账”结论已被10-17代码反例限制，须先整改；原交接保留 |
+| 2026-10-17 二次代码复核（DTR-REVIEW2-20261017） | Git0ca47c6；原4组局部测试重跑 **47 passed/0 failed/0 skipped**，另16个离线反例均复现问题：TOP字段/响应、部分误确认、签名豁免、配置未固定、Oracle类型/游标、UNKNOWN重发/暂停失效、查询不再执行、无远端的对账。无远程登录/业务源码改动，正式上报不可启用。见[复核与完善计划](../development/drug-trace-20261016/review-2-20261017/README.md) |
+| 2026-10-17 药品追溯第二轮整改（DTR-FIX2-20261017，ZCode/GLM-5.3） | FIX2-00—08全部可离线项完成：官方协议两profile/证据精确绑定+EXT-05/10/12门禁/Mock类型隔离/Oracle规范化+持久重取/停发CAS+查询代次+回执历史/平台快照对账/DMZ白名单与材料口径/备份全写入口+恢复路径保护/父子码+tenant隔离/UI修复；迁移010（真实隔离PG验证）。新增反例转换测试26项+转发器2项；全量回归见fix2-20261017/evidence/full-regression.log。EXT-01—12未齐，正式上报仍阻断。见[整改交付](../development/drug-trace-20261016/fix2-20261017/README.md) |
+
+| 2026-10-17 第三次复核（DTR-REVIEW3-20261017） | FIX2工作区按实际字节复核：局部33/0/0，14个独立反例复现；已确认若干R2修复，但R3-01—07仍影响正式上报。详见[最新复核包](../development/drug-trace-20261016/review-3-20261017/README.md)，无业务源码/远程改动 |
+| 2026-10-18 第三轮整改（DTR-FIX3-20261017，ZCode/GLM-5.3） | R3-01—07全部修复（FIX3-01—06）：企业双ID/查询选择器、逐字段keyset+页级原子采集+独立会话安全点、受理自动查询+QUERY_ERROR分类+满页推进、完整EXT-12 scope/配额台账/配置换代闭包、对账全分页复用UNVERIFIED、迁移011复合tenant FK+真实隔离PG backup→restore演练+transport/DMZ慢流硬顶+浏览器禁发闭环。新增G3测试29项；全量回归 **334/6/0**（340 cases）。EXT-01—12未变，正式上报仍阻断。见[整改交付](../development/drug-trace-20261016/fix3-20261017/README.md) |
+
+**最近全量自动回归为 DTR-FIRSTBILL-EXEC-20261021 的 405 passed / 7 skipped / 0 failed**（412 cases，565.59s，2026-10-21；JUnit XML implementation/var/fb-final-regression.xml；7 skipped=真PG/live栈/Windows fd/B01·B05真实DSN×2/50GB 环境依赖项，理由在测试执行记录）。覆盖 DPL 轮 380/7/2（其 2 个 R22 fake 失败已不复现）。历史通过不能抵消新缺陷，也不等于真实上报通过。
+期间修复四个真实缺陷：PG迁移建表拓扑序、compose 未把注册令牌传给 core（默认密钥漏洞）、
+postgres initdb 健康竞态、bootstrap 测试进程污染（详见 docs/…/测试执行记录.md）。
+
+## 可以部署的形态
+
+- Windows 单机（SQLite）：`implementation/deploy/intranet/start.ps1`（旧路径，仍有效）。
+- **Linux Compose 生产形态（新增，已隔离验证）**：发行包构建
+  `implementation/deploy/release/build_release.py`；目标机安装
+  `implementation/deploy/linux/install.sh`（含离线 Docker 材料 docker-offline/）；
+  唯一入口 nginx TLS 443，后端 8000/8001/8002 不发布宿主机端口。
+- <prod-host>基础栈已部署并升级至 `/opt/blyb/releases/fb-20261021T164800Z`（2026-10-22 DTR-FIRSTBILL-EXEC：动态就绪/签名资格/配置发布API；**真实目的地配置已发布 PUBLISHED rev1、EXT-09 已批、正式链路只读查询实测通过**；send 仍 fail-closed：send 证据未登记、配额0、DMZ 仅 query、DSN 空）。DMZ <relay-net-host> 转发器 20261021T113750Z 运行（TEST-ONLY 链；allow_ips 含跨区NAT出口 <relay-net-host>）。
+
+## 尚未满足的条件
+
+- **截至2026-10-22 15:44的真实剩余**：用户执行r8视图/账号脚本后验收、新受限只读登记和业务规则、Oracle码明细首屏NULL游标兼容修复、医院药房映射及来源/目的地启用、正式证书、长期NTP时间源、上传权限/321-323及未报scope。DMZ系统时间已纠正，长期NTP仍未同步。基础版服务截止日已实测2028-12-31，不再索要；签名/真实配置已完成。
+
+- HIS于10-19及10-22用户追加即时授权后分别做过有限活库只读核验，服务名his。10-22仅字典/零行解析/DUAL，原登记仍medical_dict_push；不作为生产readonly验收或未来任意探查批准。r1/r2及r7原件保留，新r8脚本尚待用户执行；EXT-01/02、业务规则/晚到变更仍未关闭。入口见[sjzc](../startup/DATABASE_ACCESS.md)，已有密码不重索。
+- 真实HIS/PIS/扫描仪/医保（B01—B09）及药品各项生产证据不得整体标绿。FIX3验收保留；<prod-host>/DMZ升级、真实目的地配置发布和签名资格已实测。query/reconcile按现行租户/目的地规则APPROVED，本轮collect凭实证APPROVED有效1天，send仍MISSING；不得伪造来源/发送证据或扩大首批范围。
+- 药品新发行/DMZ443/mTLS及PHARMACY r10两视图、BLYB_DRUGTRACE受限账号均已现场验证；10-22本轮已完成worker绑定、正常来源发布及单张真实采集冻结。旧r8“用户/视图未见”和“仅零行解析”是历史结果，不再作为当前阻断。
+- mTLS仍TEST-ONLY，待正式院方链；管理UI证书需另验。DMZ于15:29:49实际校正系统时间，校后<1秒、verify通过，NTP仍无可达源，不能把当前准时说成自动同步已恢复。
+- 本机Docker隔离PG的backup→restore全链路演练已于FIX3完成；DTR-DEPLOY已完成生产升级前含对象备份和restore --validate-only、Anolis实机安装验证。生产实际恢复/异机备份尚未演练，不把只读校验当成实际恢复成功。
+- 2026-10-16 22:34历史复测：DMZ可登录、无443/8443转发监听，强制IPv4平台HTTPS443超时、HTTP80通。10-20复测仍无监听/HTTPS超时，未重测HTTP80；时钟约慢32分钟，NTP状态因旧命令不兼容未取得。HIS当时仅1521 TCP通；现已按10-19新增证据确认实际服务his和原表只读查询成功，生产受限绑定仍待落实。
+- 用户MED_TRACE_RECORD原SQL的单据粒度/时间/变更发现问题仍在；活库已确认RECORD_ID为主键，故更正旧“MAX必然吞不同记录码”的判断。已进行限量活库核验，未执行原始全期SQL；见[最新来源与上传字段](../development/his-live-20261019/README.md)。
+- T12 受限画布拖拽未做。
+
+- FB轮遗留回执见[原报告](../development/drug-trace-firstbill-exec-20261021/EXTERNAL-RECEIPT.md)，其“服务期待提供”由本轮接口证据更新；不能把“软件已交付”当成来源/目的地启用及真实整单编排已现场验收。目的地status仍DRAFT，plugin采集事件只为ENABLED目的地排PREPARE。后续通过既有受控流程补齐，不因有密码而绕过HIS策略或生成单据/证据。
+
+## 维护方法
+
+新的已验证结果写到本文件，并链到 session 和 log/XML。Git 已建立（main 分支）；
+凭据/运行库/患者文件不入库（.gitignore/.gitattributes 已约束）。

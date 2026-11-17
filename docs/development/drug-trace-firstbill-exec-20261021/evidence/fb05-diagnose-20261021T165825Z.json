@@ -1,0 +1,12 @@
+{
+  "captured_at": "2026-10-21T16:58:08.281983+00:00",
+  "route": "<prod-host>_worker->mTLS->DMZ_forwarder->platform",
+  "method": "query.billstatus",
+  "uploads": 0,
+  "status": "ERROR",
+  "output": "\rThe authenticity of host '<prod-host> (<prod-host>)' can't be established.\nED25519 key fingerprint is SHA256:IjK9PN01og2d/fsSjUy4rlsyRBqOiZZycBN6j46shQc.\nThis key is not known by any other names\nAre you sure you want to continue connecting (yes/no/[fingerprint])? yes\nWarning: Permanently added '<prod-host>' (ED25519) to the list of known hosts.\r\n\nAuthorized users only. All activities may be monitored and reported.\n\rroot@<prod-host>'s password: \nTraceback (most recent call last):\n  File \"<stdin>\", line 4, in <module>\nPermissionError: [Errno 13] Permission denied: '/tmp/fb05-diag-args.json'\nDIAG_RC=1\nConnection to <prod-host> closed.\r\n",
+  "dmz_platform_date_probe": {
+    "rc": 0,
+    "out": "2026-10-21T16:26:02Z\nDate: Wed, 21 Oct 2026 16:58:26 GMT"
+  }
+}

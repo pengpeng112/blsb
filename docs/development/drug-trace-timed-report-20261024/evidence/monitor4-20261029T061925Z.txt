@@ -1,0 +1,27 @@
+The authenticity of host '<prod-host> (<prod-host>)' can't be established.
+ED25519 key fingerprint is SHA256:IjK9PN01og2d/fsSjUy4rlsyRBqOiZZycBN6j46shQc.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '<prod-host>' (ED25519) to the list of known hosts.
+
+Authorized users only. All activities may be monitored and reported.
+root@<prod-host>'s password: 
+===SERVICE===
+activating
+===HOST TIME===
+2026-10-29 14:19:27 +0800
+===RECEIPTS===
+-rw-------. 1 root root  1034 Oct 29 10:10 20261029-061029.json
+-rw-------. 1 root root     0 Oct 29 10:15 20261029-101514.json
+-rw-------. 1 root root     0 Oct 29 10:15 last-error.log
+===CATCHUP RECEIPT===
+
+===QUOTA===
+6071|2026-10-29 06:19:20.34634
+===SUBS 10-28 WINDOW NOW===
+ERROR:  column reference "state" is ambiguous
+LINE 1: SELECT state, count(*) FROM submission s JOIN package_revisi...
+               ^
+===LAST-ERROR===
+0 /var/log/blyb/daily-upload/last-error.log
+Connection to <prod-host> closed.

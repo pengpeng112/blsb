@@ -1,0 +1,13 @@
+{
+  "task": "REPORTING-DRUGTRACE-PLAN-20261016",
+  "started_at_utc": "2026-10-16T14:28:07.351804+00:00",
+  "mode": "read_only_inventory_no_database_source_login_no_business_post",
+  "target": {
+    "route": "ordinary_second_hop_ssh",
+    "authenticated": false,
+    "exit_code": 255,
+    "network": null,
+    "diagnostic": "ssh: connect to host <prod-host> port 22: Connection refused\r\r\n"
+  },
+  "finished_at_utc": "2026-10-16T14:28:07.772676+00:00"
+}

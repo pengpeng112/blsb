@@ -1,0 +1,45 @@
+{
+  "host": "app",
+  "phase": "api_shapes",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T06:42:00.497481+00:00",
+  "result": {
+    "checks": {
+      "readiness": {
+        "http": 200,
+        "type": "dict",
+        "rows": null
+      },
+      "send-scope?profile=alihealth_yljg_retail_v1": {
+        "http": 200,
+        "type": "dict",
+        "rows": null
+      },
+      "daily-reports?limit=30": {
+        "http": 200,
+        "type": "list",
+        "rows": 2
+      },
+      "upload-stats?days=14": {
+        "http": 200,
+        "type": "dict",
+        "rows": null
+      },
+      "submission-outcomes?days=14": {
+        "http": 200,
+        "type": "list",
+        "rows": 200
+      },
+      "submission-outcomes?days=14&only=problem": {
+        "http": 200,
+        "type": "list",
+        "rows": 0
+      }
+    },
+    "methods": [
+      "GET"
+    ],
+    "real_platform_requests": 0,
+    "his_requests": 0
+  }
+}

@@ -1,0 +1,29 @@
+{
+ "code": "RIS_PACS",
+ "root": "input",
+ "length_unit": "UNCONFIRMED",
+ "nodes": [
+  {
+   "code": "risStudyId",
+   "name": "检查唯一\n标识符",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec_csv",
+   "source_row": "2"
+  },
+  {
+   "code": "studyUid",
+   "name": "Study唯一号",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec_csv",
+   "source_row": "3"
+  }
+ ]
+}

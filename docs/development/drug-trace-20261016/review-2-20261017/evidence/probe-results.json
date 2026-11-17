@@ -1,0 +1,170 @@
+{
+  "at_utc": "2026-10-17T06:33:52.785887+00:00",
+  "mode": "offline_counterexamples",
+  "remote_changes": false,
+  "business_uploads": 0,
+  "observations": [
+    {
+      "id": "R2-01",
+      "issue_reproduced": true,
+      "detail": {
+        "missing_inout_parameters": [
+          "bill_time",
+          "client_type",
+          "from_user_id",
+          "physic_type",
+          "ref_user_id",
+          "to_user_id"
+        ],
+        "unexpected_doc_parameter": true
+      }
+    },
+    {
+      "id": "R2-02-upload",
+      "issue_reproduced": true,
+      "detail": {
+        "official_shape_outcome": "UNKNOWN"
+      }
+    },
+    {
+      "id": "R2-02-query",
+      "issue_reproduced": true,
+      "detail": {
+        "official_shape_classification": {
+          "state": "MANUAL_REVIEW",
+          "reason": "matched 0 entries for bill_code; not guessing"
+        }
+      }
+    },
+    {
+      "id": "R2-03",
+      "issue_reproduced": true,
+      "detail": {
+        "partial_success_classification": {
+          "state": "CONFIRMED",
+          "result_type": "3",
+          "sub_process_flag": "52"
+        }
+      }
+    },
+    {
+      "id": "R2-04-signature",
+      "issue_reproduced": true,
+      "detail": {
+        "signature_verified_flag": false,
+        "real_transport_stub_called": true,
+        "network_used": false
+      }
+    },
+    {
+      "id": "R2-05-config",
+      "issue_reproduced": true,
+      "detail": {
+        "mismatched_release_status": "APPROVED",
+        "send_evidence_keys": [
+          "EXT-03",
+          "EXT-04",
+          "EXT-06",
+          "EXT-07",
+          "EXT-08"
+        ]
+      }
+    },
+    {
+      "id": "R2-07-case",
+      "issue_reproduced": true,
+      "detail": {
+        "oracle_column_keys": [
+          "BILL_TIME",
+          "FINALIZED",
+          "IS_VOID",
+          "SOURCE_BILL_ID"
+        ]
+      }
+    },
+    {
+      "id": "R2-07-date",
+      "issue_reproduced": true,
+      "detail": {
+        "datetime_snapshot_error": "TypeError"
+      }
+    },
+    {
+      "id": "R2-07-bool",
+      "issue_reproduced": true,
+      "detail": {
+        "bool_of_oracle_zero_string": true
+      }
+    },
+    {
+      "id": "R2-08-cursor",
+      "issue_reproduced": true,
+      "detail": {
+        "sql_key": "YF01|PATIENT_DISPENSE|B1",
+        "python_cursor": "HIS|YF01|PATIENT_DISPENSE|B1",
+        "same_tail_row_qualifies_again": true,
+        "scope": "same_timestamp_SQL_predicate_counterexample"
+      }
+    },
+    {
+      "id": "R2-06-unknown",
+      "issue_reproduced": true,
+      "detail": {
+        "direct_UNKNOWN_resend_outcome": "ACCEPTED",
+        "transport": "mock"
+      }
+    },
+    {
+      "id": "R2-06-dryrun",
+      "issue_reproduced": true,
+      "detail": {
+        "attempts_before": 1,
+        "attempts_after": 2,
+        "confirmed_state_after_dryrun": "PREPARED"
+      }
+    },
+    {
+      "id": "R2-10-reconcile",
+      "issue_reproduced": true,
+      "detail": {
+        "platform_client_calls": 0,
+        "summary": {
+          "missing_local": 0,
+          "missing_remote": 0,
+          "state_mismatch": 0,
+          "matched": 1,
+          "count_mismatch": 0
+        }
+      }
+    },
+    {
+      "id": "R2-09-stop",
+      "issue_reproduced": true,
+      "detail": {
+        "paused_run_no_collect_evidence_after_worker": "DONE",
+        "source_used": "empty_synthetic_stub_not_HIS"
+      }
+    },
+    {
+      "id": "R2-06-poll",
+      "issue_reproduced": true,
+      "detail": {
+        "query_job_reused_as_completed": true,
+        "state_after_manual_requery": "SUCCEEDED"
+      }
+    },
+    {
+      "id": "R2-06-receipt",
+      "issue_reproduced": true,
+      "detail": {
+        "stored_first_receipt": {
+          "state": "PROCESSING",
+          "result_type": "1",
+          "sub_process_flag": "51"
+        },
+        "current_submission_state": "CONFIRMED",
+        "receipt_rows": 1
+      }
+    }
+  ]
+}

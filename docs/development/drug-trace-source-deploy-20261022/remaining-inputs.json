@@ -1,0 +1,21 @@
+{
+  "status": "PRODUCTION_UPLOAD_BLOCKED",
+  "actual_uploads": 0,
+  "source_ready": true,
+  "frozen_submission_id": "7ed95aaa-ee66-4510-b80d-630f6c9dc381",
+  "candidate_prior_uploaded": "UNCONFIRMED",
+  "open": [
+    "EXT-04 formal CA / SAN / clientAuth",
+    "EXT-05 reachable sustained NTP",
+    "EXT-06 uploadretail hospital permission / EXT-08 321 vs 323 confirmation",
+    "EXT-10/12 confirmed unreported bill and pharmacy/window/max_bills=1 scope"
+  ],
+  "already_provided": [
+    "SSH credentials",
+    "HIS dedicated reader and r10 views",
+    "AppKey/AppSecret/ref_ent_id",
+    "platform service expiry evidence"
+  ],
+  "send_enabled": false,
+  "continuous_enabled": false
+}

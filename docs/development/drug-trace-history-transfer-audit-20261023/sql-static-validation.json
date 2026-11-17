@@ -1,0 +1,35 @@
+{
+  "checks": [
+    {
+      "file": "probe_by_code_r1.sql",
+      "errors": []
+    },
+    {
+      "query": "SELECT USER AS LOGIN_USER,SYS_CONTEXT('USERENV','SERVICE_NAME') AS SERVICE_NAME FROM DUAL",
+      "errors": []
+    },
+    {
+      "query": "SELECT PRIVILEGE FROM SESSION_PRIVS ORDER BY PRIVILEGE",
+      "errors": []
+    },
+    {
+      "query": "SELECT ROLE FROM SESSION_ROLES ORDER BY ROLE",
+      "errors": []
+    },
+    {
+      "query": "SELECT OWNER,TABLE_NAME,PRIVILEGE,GRANTABLE FROM USER_TAB_PRIVS_RECD ORDER BY OWNER,TABLE_NAME,PRIVILEGE",
+      "errors": []
+    },
+    {
+      "query": "SELECT VIEW_NAME,TEXT FROM ALL_VIEWS WHERE OWNER='PHARMACY' AND VIEW_NAME IN ('V_DRUG_TRACE_CODE','V_DRUG_TRACE_BILL') ORDER BY VIEW_NAME",
+      "errors": []
+    },
+    {
+      "query": "SELECT business_kind,finalized,is_void,bill_time,expected_code_count FROM PHARMACY.V_DRUG_TRACE_BILL WHERE source_system=:ss AND pharmacy_code=:pharmacy AND business_kind=:kind AND source_bill_id=:bid AND ((:bt IS NULL AND bill_time IS NULL) OR bill_time=:bt) AND ROWNUM<=3",
+      "errors": []
+    }
+  ],
+  "passed": true,
+  "live_executed": false,
+  "daytime_permission_pending": true
+}

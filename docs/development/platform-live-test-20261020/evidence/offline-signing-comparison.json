@@ -1,0 +1,36 @@
+{
+  "real_credentials_used": false,
+  "network_requests": 0,
+  "official_sdk_binary_used": false,
+  "production_signing_gate_changed": false,
+  "signature_verified_constant": false,
+  "comparisons": [
+    {
+      "id": "official_article_example",
+      "official_CSharp_reference": "AF4396FC8B32007A83FAEB5695A4F354",
+      "existing_Python": "AF4396FC8B32007A83FAEB5695A4F354",
+      "matches": true
+    },
+    {
+      "id": "unicode_and_leading_zeros",
+      "official_CSharp_reference": "F12B20840B0B0C27FAFE1890E45BEE5C",
+      "existing_Python": "F12B20840B0B0C27FAFE1890E45BEE5C",
+      "matches": true
+    },
+    {
+      "id": "empty_optional_value",
+      "official_CSharp_reference": "310951910AF4CB9086BB3E3C9F07DC19",
+      "existing_Python": "E96845A9F4C3FF04AC37F390E3430577",
+      "matches": false
+    },
+    {
+      "id": "empty_parameter_name",
+      "official_CSharp_reference": "80F8E573B2B94C172CDC093CB36FD69A",
+      "existing_Python": "C5AC2BF8647FB697799EF44A851F79BC",
+      "matches": false
+    }
+  ],
+  "article_example_declared": "66987CB115214E59E6EC978214934FB8",
+  "declared_example_matches_reference": false,
+  "reference_html_sha256": "84fec9017336bf5dad7e470f72ec58f35111dc2c3d24145b1fba763f8de3aa99"
+}

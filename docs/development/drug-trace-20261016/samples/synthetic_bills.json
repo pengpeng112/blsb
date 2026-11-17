@@ -1,0 +1,67 @@
+[
+  {
+    "source_system": "HIS",
+    "source_bill_id": "SYN-B001",
+    "source_bill_no": "SYN-B001",
+    "source_revision": "20261012080000000",
+    "business_kind": "PATIENT_DISPENSE",
+    "pharmacy_code": "YF01",
+    "bill_time": "2026-10-12T07:55:00+08:00",
+    "updated_at": "2026-10-12T08:00:00+08:00",
+    "finalized": true,
+    "is_void": false,
+    "source_bill_kind_raw": "323",
+    "expected_code_count": 3
+  },
+  {
+    "source_system": "HIS",
+    "source_bill_id": "SYN-B002",
+    "source_bill_no": "SYN-B002",
+    "source_revision": "20261012090000000",
+    "business_kind": "UNKNOWN",
+    "pharmacy_code": "YF01",
+    "bill_time": "2026-10-12T08:40:00+08:00",
+    "updated_at": "2026-10-12T09:00:00+08:00",
+    "finalized": true,
+    "is_void": false
+  },
+  {
+    "source_system": "HIS",
+    "source_bill_id": "SYN-B003",
+    "source_bill_no": "SYN-B003",
+    "source_revision": "20261012100000000",
+    "business_kind": "SUPPLIER_IN",
+    "pharmacy_code": "CK01",
+    "warehouse_code": "CK01",
+    "supplier_code": "SUP-0091",
+    "bill_time": "2026-10-12T09:30:00+08:00",
+    "updated_at": "2026-10-12T10:00:00+08:00",
+    "finalized": true,
+    "is_void": false,
+    "source_bill_kind_raw": "101"
+  },
+  {
+    "source_system": "HIS",
+    "source_bill_id": "SYN-B001",
+    "source_bill_no": "SYN-B001",
+    "source_revision": "20261012083000000",
+    "business_kind": "PATIENT_DISPENSE",
+    "pharmacy_code": "YF02",
+    "bill_time": "2026-10-12T08:10:00+08:00",
+    "updated_at": "2026-10-12T08:30:00+08:00",
+    "finalized": true,
+    "is_void": false
+  },
+  {
+    "source_system": "HIS",
+    "source_bill_id": "SYN-B004",
+    "source_bill_no": "SYN-B004",
+    "source_revision": "20261012110000000",
+    "business_kind": "PATIENT_DISPENSE",
+    "pharmacy_code": "YF01",
+    "bill_time": "2026-10-12T10:50:00+08:00",
+    "updated_at": "2026-10-12T11:00:00+08:00",
+    "finalized": false,
+    "is_void": false
+  }
+]

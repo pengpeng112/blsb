@@ -1,0 +1,19 @@
+{
+  "host": "app",
+  "phase": "progress4",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T10:16:34.523125+00:00",
+  "result": {
+    "checked": 41,
+    "pairs": {
+      "CONFIRMED->CONFIRMED": 1,
+      "UNKNOWN->NOT_FOUND": 40
+    },
+    "platform_calls": 41,
+    "last_checked_utc": "2026-10-26T10:16:36.857350+00:00",
+    "http": {
+      "200": 41
+    },
+    "final": null
+  }
+}

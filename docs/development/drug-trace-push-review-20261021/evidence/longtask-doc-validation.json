@@ -1,0 +1,23 @@
+{
+  "phase_ids": [
+    "FB-00",
+    "FB-01",
+    "FB-02",
+    "FB-03",
+    "FB-04",
+    "FB-05",
+    "FB-06",
+    "FB-07"
+  ],
+  "expected_phases": true,
+  "acceptance_count": 29,
+  "expected_acceptance": true,
+  "local_links_checked": 23,
+  "broken_links": [],
+  "private_key_marker_present": false,
+  "prompt_sha256": "54dacc5523ddb955aa2c4e3f761fbb10d8f879e7d6accd8ead6051487ed9863c",
+  "business_tests_run": false,
+  "remote_operations": 0,
+  "real_uploads": 0,
+  "status": "PASS"
+}

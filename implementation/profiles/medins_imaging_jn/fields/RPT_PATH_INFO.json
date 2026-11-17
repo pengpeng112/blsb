@@ -1,0 +1,62 @@
+{
+ "code": "RPT_PATH_INFO",
+ "root": "input",
+ "length_unit": "UNCONFIRMED",
+ "nodes": [
+  {
+   "code": "recordNum",
+   "name": "流水号\n（访问号）",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec_csv",
+   "source_row": "2"
+  },
+  {
+   "code": "reportCode",
+   "name": "检查报告单\n编号",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec_csv",
+   "source_row": "3"
+  },
+  {
+   "code": "snapshotSeriesNumber",
+   "name": "报告快照\n顺序号",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec_csv",
+   "source_row": "4"
+  },
+  {
+   "code": "snapshotPath",
+   "name": "介质中报告快照保存路径",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec_csv",
+   "source_row": "5"
+  },
+  {
+   "code": "hostId",
+   "name": "RIS介质\n服务器ID",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec_csv",
+   "source_row": "6"
+  }
+ ]
+}

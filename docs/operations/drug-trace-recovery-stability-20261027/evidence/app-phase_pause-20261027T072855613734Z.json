@@ -1,0 +1,32 @@
+{
+  "host": "app",
+  "phase": "phase_pause",
+  "exit_code": 0,
+  "captured_at": "2026-10-27T07:28:55.613684+00:00",
+  "result": {
+    "outcome": "DRAINED_AFTER_RECOVERY",
+    "baseline": {
+      "states": {
+        "UNKNOWN": 205,
+        "CONFIRMED": 4613
+      },
+      "protected_old_hash": "7a691905901917167cf999c3d8f4c202",
+      "ledger_hash": "3f9a428652f7044f3754a5f0ef9144d4",
+      "quota": [
+        {
+          "used": 4820,
+          "max_bills": 80000
+        }
+      ],
+      "checkpoint": [
+        {
+          "row_version": 80,
+          "since_time": "2026-10-27T00:00:00"
+        }
+      ],
+      "active_jobs": 0,
+      "inflight": 0
+    },
+    "utc": "2026-10-27T07:28:58.188650+00:00"
+  }
+}

@@ -1,0 +1,325 @@
+--- before/plugins/sources/db_view/drug_trace.py
++++ after/plugins/sources/db_view/drug_trace.py
+@@ -38,7 +38,7 @@
+             " is_void, expected_code_count, patient_ref, encounter_ref,"
+             " source_bill_kind_raw FROM {bill_view}"
+             " WHERE updated_at >= :begin_time AND updated_at < :end_time"
+-            " AND (updated_at > :since_time OR (updated_at = :since_time AND ("
++            " AND (:since_ss IS NULL OR updated_at > :since_time OR (updated_at = :since_time AND ("
+             "      source_system > :since_ss OR (source_system = :since_ss AND ("
+             "       pharmacy_code > :since_pc OR (pharmacy_code = :since_pc AND ("
+             "        business_kind > :since_bk OR (business_kind = :since_bk AND"
+@@ -251,10 +251,12 @@
+     _IDENT_RE = None  # compiled lazily (module-level import kept local)
+ 
+     def __init__(self, connection_factory=None, *, dsn: str = "",
+-                 timeout_seconds: float = 30.0, objects: dict | None = None):
++                 timeout_seconds: float = 30.0, objects: dict | None = None,
++                 expected_user: str = ""):
+         self._conn_factory = connection_factory
+         self._dsn = dsn or None
+         self._timeout_ms = int(timeout_seconds * 1000)
++        self._expected_user = expected_user
+         self._bill_view = DRUG_TRACE_OBJECTS["bill_view"]
+         self._code_view = DRUG_TRACE_OBJECTS["code_view"]
+         if objects:
+@@ -305,6 +307,10 @@
+         try:
+             conn = self._conn_factory() if self._conn_factory else __import__(
+                 "oracledb").connect(self._dsn)
++            if self._expected_user and str(getattr(conn, "username", "")).upper() \
++                    != self._expected_user.upper():
++                raise CapabilityError("SOURCE_PROFILE_UNVERIFIED",
++                                      "Oracle reader does not match source profile")
+             try:
+                 conn.call_timeout = self._timeout_ms
+             except Exception:  # noqa: BLE001 —— fake驱动可不支持
+--- before/plugins/sources/db_view/source_profiles.py
++++ after/plugins/sources/db_view/source_profiles.py
+@@ -26,8 +26,13 @@
+     columns: tuple[tuple[str, str], ...]
+     unresolved: tuple[str, ...]
+     evidence_ref: str
+-
+-    def require_runtime_ready(self) -> None:
++    collection_modes: tuple[str, ...] = ("batch", "continuous")
++    reader: str = ""
++    objects: tuple[tuple[str, str], ...] = ()
++    dsn_env: str = ""
++    limitations: tuple[str, ...] = ()
++
++    def require_runtime_ready(self, *, config: dict | None = None) -> None:
+         # Registration facts alone cannot authorize production collection.
+         if (self.registered_write_policy != "readonly"
+                 or self.evidence_level != "LIVE_CONTRACT_VERIFIED"
+@@ -38,6 +43,15 @@
+                 "SOURCE_PROFILE_UNVERIFIED",
+                 f"source profile {self.key} {reason}; collection blocked: "
+                 + ", ".join(self.unresolved))
++        if self.reader:
++            cfg = config or {}
++            if (cfg.get("collection_mode", "batch") not in self.collection_modes
++                    or cfg.get("dsn_env") != self.dsn_env
++                    or cfg.get("objects") != dict(self.objects)):
++                raise CapabilityError(
++                    "SOURCE_PROFILE_UNVERIFIED",
++                    "verified view profile requires its exact reader binding, "
++                    "objects and supported collection mode")
+ 
+ 
+ HIS_TRACE_20261019_R1 = SourceProfile(
+@@ -155,7 +169,32 @@
+ )
+ 
+ 
++# Separate app-owned restricted source. The broad sjzc registration remains
++# medical_dict_push; r1/r2/r7 facts are deliberately unchanged.
++HIS_VIEWS_20261022_R10 = SourceProfile(
++    key="blyb_drugtrace_views@20261022-r10",
++    source_code="blyb_drugtrace_views", metadata_system="HIS",
++    host="<his-host>", port=1521, registered_service="his",
++    service_mode="service_name", registered_write_policy="readonly",
++    evidence_level="LIVE_CONTRACT_VERIFIED",
++    captured_at="2026-10-22T09:26:00+00:00",
++    candidate_object="PHARMACY.V_DRUG_TRACE_BILL",
++    columns=(), unresolved=(),
++    evidence_ref="docs/development/drug-trace-r10-readiness-20261022/README.md",
++    collection_modes=("batch",), reader="BLYB_DRUGTRACE",
++    objects=(("bill_view", "PHARMACY.V_DRUG_TRACE_BILL"),
++             ("code_view", "PHARMACY.V_DRUG_TRACE_CODE")),
++    dsn_env="BLYB_DRUGTRACE_ORACLE_DSN",
++    limitations=("Only normal completed outpatient branch is classified",
++                 "Unknown branches remain quality waiting",
++                 "No continuous late-change discovery certification",
++                 "No send permission or prior-upload reconciliation"),
++)
++
++
+ def get_source_profile(key: str) -> SourceProfile:
++    if key == HIS_VIEWS_20261022_R10.key:
++        return HIS_VIEWS_20261022_R10
+     if key == HIS_TRACE_20261019_R1.key:
+         return HIS_TRACE_20261019_R1
+     if key == HIS_TRACE_20261019_R2.key:
+--- before/plugins/domains/drug_trace/service.py
++++ after/plugins/domains/drug_trace/service.py
+@@ -319,7 +319,7 @@
+         if mode != "oracle":
+             raise CapabilityError(
+                 "CAPABILITY_UNSUPPORTED", "source_profile requires oracle mode")
+-        get_source_profile(str(cfg["source_profile"])).require_runtime_ready()
++        get_source_profile(str(cfg["source_profile"])).require_runtime_ready(config=cfg)
+     if mode == "synthetic":
+         from sources.db_view.drug_trace import SyntheticDrugTraceWarehouse
+         return SyntheticDrugTraceWarehouse(
+@@ -334,8 +334,12 @@
+                 f"oracle mode requires {dsn_env} for this connector (EXT-01; "
+                 "per-connector restricted readonly binding)")
+         from sources.db_view.drug_trace import OracleDrugTraceWarehouse
++        expected_user = ""
++        if cfg.get("source_profile"):
++            expected_user = get_source_profile(str(cfg["source_profile"])).reader
+         return OracleDrugTraceWarehouse(
+-            dsn=dsn, objects=cfg.get("objects") or None)
++            dsn=dsn, objects=cfg.get("objects") or None,
++            expected_user=expected_user)
+     raise CapabilityError("CAPABILITY_UNSUPPORTED", f"unknown warehouse mode {mode}")
+ 
+ 
+--- before/plugins/domains/drug_trace/routes.py
++++ after/plugins/domains/drug_trace/routes.py
+@@ -87,6 +87,17 @@
+     dry_run: bool = False          # 只校验+预览，不写库
+ 
+ 
++class SourceConfigBody(BaseModel):
++    content: dict
++    publish: bool = False
++    enable: bool = False
++    dry_run: bool = False
++
++
++class ActivationBody(BaseModel):
++    enabled: bool
++
++
+ def _mask_code(code: str) -> str:
+     if not code:
+         return ""
+@@ -97,6 +108,52 @@
+ 
+ def register(app, sf, auth, registry):
+     svc = registry.capability("drug_trace.service") if registry is not None else S
++
++    @app.post("/api/v1/drug-trace/sources/{connector_id}/config-revisions")
++    def source_config(connector_id: str, body: SourceConfigBody, ctx=Depends(auth)):
++        from . import source_config as sc
++        p = ctx.require_principal()
++        p.require_any_role(ROLE_CONFIG_EDITOR, ROLE_PLATFORM_ADMIN)
++        if body.publish or body.enable:
++            p.require_any_role(ROLE_PLATFORM_ADMIN)
++        with sf() as db:
++            sc.connector(db, p.tenant_id, connector_id)
++            if body.dry_run:
++                problems = sc.validate(body.content)
++                return ok({"dry_run": True, "valid": not problems,
++                           "problems": problems}, ctx.request_id)
++            result = sc.publish(db, p.tenant_id, connector_id, body.content,
++                                publish=body.publish, enable=body.enable,
++                                actor=p.subject_code)
++            audit(db, p, "drug_trace.source.config", f"connector:{connector_id}",
++                  new_ref=result)
++            db.commit()
++            return ok(result, ctx.request_id)
++
++    @app.post("/api/v1/drug-trace/sources/{connector_id}/disable")
++    def disable_source(connector_id: str, ctx=Depends(auth)):
++        from . import source_config as sc
++        p = ctx.require_principal()
++        p.require_any_role(ROLE_PLATFORM_ADMIN)
++        with sf() as db:
++            obj = sc.connector(db, p.tenant_id, connector_id)
++            obj.status = "DISABLED"
++            audit(db, p, "drug_trace.source.disable", f"connector:{connector_id}")
++            db.commit()
++            return ok({"status": obj.status}, ctx.request_id)
++
++    @app.post("/api/v1/drug-trace/destinations/{dest_id}/activation")
++    def destination_activation(dest_id: str, body: ActivationBody, ctx=Depends(auth)):
++        from . import source_config as sc
++        p = ctx.require_principal()
++        p.require_any_role(ROLE_PLATFORM_ADMIN)
++        with sf() as db:
++            result = sc.activate_destination(db, p.tenant_id, dest_id,
++                                             enabled=body.enabled)
++            audit(db, p, "drug_trace.destination.activation",
++                  f"destination:{dest_id}", new_ref=result)
++            db.commit()
++            return ok(result, ctx.request_id)
+ 
+     # ============================================================ 总览/单据
+     @app.get("/api/v1/drug-trace/overview")
+--- before/plugins/domains/drug_trace/source_config.py
++++ after/plugins/domains/drug_trace/source_config.py
+@@ -0,0 +1,104 @@
++"""Audited, versioned source configuration; credentials stay in worker env."""
++from contracts import ApiError, new_uuid
++from contracts.api import digest_of
++from core_db.models import ConfigRevision, ConnectorInstance, Destination
++
++from . import contracts as C
++from . import service as S
++
++
++def validate(content: dict) -> list[str]:
++    from connector_sdk import CapabilityError
++    from sources.db_view.source_profiles import get_source_profile
++    if not isinstance(content, dict):
++        return ["content must be an object"]
++    allowed = {"mode", "source_profile", "dsn_env", "objects",
++               "collection_mode", "namespace"}
++    if set(content) - allowed:
++        return ["unsupported source configuration fields (credentials forbidden)"]
++    if content.get("mode") == "synthetic":
++        if set(content) - {"mode", "namespace", "collection_mode"}:
++            return ["synthetic source cannot bind Oracle credentials or objects"]
++        if content.get("collection_mode", "batch") != "batch":
++            return ["synthetic source supports batch only"]
++        return []
++    if content.get("mode") != "oracle":
++        return ["mode must be synthetic or oracle"]
++    try:
++        profile = get_source_profile(str(content.get("source_profile", "")))
++        profile.require_runtime_ready(config=content)
++    except CapabilityError as exc:
++        return [exc.code + ": " + exc.message]
++    return []
++
++
++def connector(db, tenant_id, connector_id):
++    obj = db.get(ConnectorInstance, connector_id)
++    if obj is None or obj.tenant_id != tenant_id:
++        raise ApiError("NOT_FOUND", "source connector not found")
++    if obj.direction != "source" or obj.plugin_id != "sources.db_view.drug_trace":
++        raise ApiError("CAPABILITY_UNSUPPORTED", "not a drug trace source")
++    return obj
++
++
++def publish(db, tenant_id, connector_id, content, *, publish=False,
++            enable=False, actor=""):
++    obj = connector(db, tenant_id, connector_id)
++    problems = validate(content)
++    if problems:
++        raise ApiError("VALIDATION_FAILED", "; ".join(problems))
++    if enable and not publish:
++        raise ApiError("VALIDATION_FAILED", "enable requires publish")
++    if enable and content["mode"] == "oracle":
++        S.require_production_evidence(db, tenant_id, profile=C.PROFILE_RETAIL,
++                                      capability="collect")
++    revisions = (db.query(ConfigRevision).filter_by(
++        tenant_id=tenant_id, config_type="connector", owner_id=obj.id)
++        .order_by(ConfigRevision.revision.desc()).all())
++    digest = digest_of(content)
++    cr = next((r for r in revisions if r.digest == digest and
++               (r.state == "DRAFT" or (r.state == "PUBLISHED" and
++                                       obj.active_config_revision == r.id))), None)
++    created = cr is None
++    if cr is None:
++        cr = ConfigRevision(id=new_uuid(), tenant_id=tenant_id,
++                            config_type="connector", owner_id=obj.id,
++                            revision=(revisions[0].revision + 1 if revisions else 1),
++                            content_json=content, digest=digest, state="DRAFT",
++                            created_by=actor)
++        db.add(cr)
++    if publish:
++        for old in revisions:
++            if old.id != cr.id and old.state == "PUBLISHED":
++                old.state = "RETIRED"
++        cr.state = "PUBLISHED"
++        obj.active_config_revision = cr.id
++        # Publishing alone does not silently enable collection.
++        obj.status = "ENABLED" if enable else "DRAFT"
++    db.flush()
++    return {"config_revision_id": cr.id, "revision": cr.revision,
++            "state": cr.state, "connector_status": obj.status, "created": created}
++
++
++def activate_destination(db, tenant_id, dest_id, *, enabled):
++    obj = db.get(Destination, dest_id)
++    if obj is None or obj.tenant_id != tenant_id:
++        raise ApiError("NOT_FOUND", "destination not found")
++    profile = (obj.profile_revision or "").split("@")[0]
++    if profile not in C.PROFILES:
++        raise ApiError("CAPABILITY_UNSUPPORTED", "not a drug trace destination")
++    if enabled:
++        if not obj.config_revision:
++            raise ApiError("PRECONDITION_REQUIRED", "published config required")
++        cfg = S._load_config_revision(db, tenant_id, obj.config_revision,
++                                      owner_id=obj.id)
++        problems = S.validate_destination_config(cfg.content_json, is_mock=obj.is_mock)
++        if problems:
++            raise ApiError("VALIDATION_FAILED", "; ".join(problems))
++        if not obj.is_mock:
++            S.require_production_evidence(
++                db, tenant_id, profile=profile, capability="send",
++                destination_id=obj.id, config_release_id=obj.config_revision)
++    obj.status = "ENABLED" if enabled else "DISABLED"
++    db.flush()
++    return {"destination_id": obj.id, "status": obj.status}
+--- before/deploy/linux/restore.sh
++++ after/deploy/linux/restore.sh
+@@ -100,9 +100,11 @@
+     [ -n "$p" ] || continue
+     rp="$(realpath -m "$p" 2>/dev/null)" || continue
+     rt="$(realpath -m "$t" 2>/dev/null)" || continue
+-    if [ "$rt" = "$rp" ] || [ "$rt" = "$rp"/* ] || [ "$rp" = "$rt"/* ]; then
+-      return 0
+-    fi
++    # case patterns never undergo filesystem glob expansion. The former
++    # [ "$rt" = "$rp"/* ] expanded existing directories into multiple test
++    # arguments, errored and could silently miss a production overlap.
++    case "$rt/" in "$rp/"*) return 0;; esac
++    case "$rp/" in "$rt/"*) return 0;; esac
+   done
+   return 1
+ }

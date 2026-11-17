@@ -1,0 +1,17 @@
+{
+  "secret_plaintext_matches": [],
+  "task_broken_links": [],
+  "all_repository_broken_links": 233,
+  "source_or_archive_hash_errors": [],
+  "git_diff_check_exit": 0,
+  "private_directory_ignored": true,
+  "pytest_cases": 81,
+  "pytest_failures": 0,
+  "pytest_errors": 0,
+  "pytest_skipped": 1,
+  "real_query_count": 2,
+  "real_upload_count": 0,
+  "query_success": true,
+  "hospital_directory_matches": true,
+  "network_or_business_requests_in_this_verification": 0
+}

@@ -1,0 +1,13 @@
+{
+ "input": {
+  "hospitalCode": "合成hospitalCo",
+  "hospitalName": "合成hospitalNa",
+  "systemId": "合成systemId",
+  "docName": "合成docName",
+  "docHosCode": "合成docHosCode",
+  "docMedNo": "合成docMedNo",
+  "docIdCard": "合成docIdCard",
+  "lastChangeTime": "2026-02-01 08:00:00",
+  "disableFlag": 1
+ }
+}

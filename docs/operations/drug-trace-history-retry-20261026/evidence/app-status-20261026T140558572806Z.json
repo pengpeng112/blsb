@@ -1,0 +1,122 @@
+{
+  "host": "app",
+  "phase": "status",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T14:05:58.572726+00:00",
+  "result": {
+    "runner": {
+      "exit_code": 0,
+      "result": {
+        "task": "DTR-HISTORY-RETRY-20261026",
+        "target": "9b19170e-5ceb-4da4-99bb-7478c77d9695",
+        "started_utc": "2026-10-26T14:05:45.810576+00:00",
+        "stage": "sent",
+        "upload_calls": 1,
+        "lookup": {
+          "submission_id": "9b19170e-5ceb-4da4-99bb-7478c77d9695",
+          "bill_hash": "c59321aefc1d98e5246f1d622e1af4f3e86af2e85246d0d79e26162c167d618c",
+          "state": "NOT_FOUND",
+          "query_status": "OK",
+          "checked_utc": "2026-10-26T14:05:49.246437+00:00",
+          "pages": 1,
+          "windows": 1
+        },
+        "candidate": {
+          "submission_id": "9b19170e-5ceb-4da4-99bb-7478c77d9695",
+          "state": "UNKNOWN",
+          "revision": 3,
+          "attempts": 1,
+          "last_http_status": 429,
+          "bill_hash": "c59321aefc1d98e5246f1d622e1af4f3e86af2e85246d0d79e26162c167d618c",
+          "codes_count": 1,
+          "same_config": true,
+          "same_source": true,
+          "same_tenant": true,
+          "snapshot_matches": true,
+          "destination_enabled": true,
+          "real_destination": true,
+          "active_jobs": 0,
+          "inflight": 0,
+          "send_approved": true,
+          "in_scope": true,
+          "profile": "alihealth_yljg_retail_v1",
+          "bill_type": "321",
+          "query_bill_type": "A"
+        },
+        "before": {
+          "state": "UNKNOWN",
+          "revision": 3,
+          "attempts": 1,
+          "snapshot_digest": "6c9c68a54439d062129ab32d66759c5f684763d311176524239865a3da9a2c4a",
+          "query_generations": 12,
+          "bill_hash": "c59321aefc1d98e5246f1d622e1af4f3e86af2e85246d0d79e26162c167d618c"
+        },
+        "decision_id": "94184837-4fc8-50e8-b9c6-c499c3415e33",
+        "sent_utc": "2026-10-26T14:05:49.787429+00:00",
+        "result": {
+          "outcome": "ACCEPTED",
+          "http_status": 200
+        },
+        "local_state": "ACCEPTED",
+        "attempts": 2,
+        "manual_queries": 0
+      }
+    },
+    "container_exit": 0,
+    "progress": {
+      "task": "DTR-HISTORY-RETRY-20261026",
+      "target": "9b19170e-5ceb-4da4-99bb-7478c77d9695",
+      "started_utc": "2026-10-26T14:05:45.810576+00:00",
+      "stage": "sent",
+      "upload_calls": 1,
+      "lookup": {
+        "submission_id": "9b19170e-5ceb-4da4-99bb-7478c77d9695",
+        "bill_hash": "c59321aefc1d98e5246f1d622e1af4f3e86af2e85246d0d79e26162c167d618c",
+        "state": "NOT_FOUND",
+        "query_status": "OK",
+        "checked_utc": "2026-10-26T14:05:49.246437+00:00",
+        "pages": 1,
+        "windows": 1
+      },
+      "candidate": {
+        "submission_id": "9b19170e-5ceb-4da4-99bb-7478c77d9695",
+        "state": "UNKNOWN",
+        "revision": 3,
+        "attempts": 1,
+        "last_http_status": 429,
+        "bill_hash": "c59321aefc1d98e5246f1d622e1af4f3e86af2e85246d0d79e26162c167d618c",
+        "codes_count": 1,
+        "same_config": true,
+        "same_source": true,
+        "same_tenant": true,
+        "snapshot_matches": true,
+        "destination_enabled": true,
+        "real_destination": true,
+        "active_jobs": 0,
+        "inflight": 0,
+        "send_approved": true,
+        "in_scope": true,
+        "profile": "alihealth_yljg_retail_v1",
+        "bill_type": "321",
+        "query_bill_type": "A"
+      },
+      "before": {
+        "state": "UNKNOWN",
+        "revision": 3,
+        "attempts": 1,
+        "snapshot_digest": "6c9c68a54439d062129ab32d66759c5f684763d311176524239865a3da9a2c4a",
+        "query_generations": 12,
+        "bill_hash": "c59321aefc1d98e5246f1d622e1af4f3e86af2e85246d0d79e26162c167d618c"
+      },
+      "decision_id": "94184837-4fc8-50e8-b9c6-c499c3415e33",
+      "sent_utc": "2026-10-26T14:05:49.787429+00:00",
+      "result": {
+        "outcome": "ACCEPTED",
+        "http_status": 200
+      },
+      "local_state": "ACCEPTED",
+      "attempts": 2,
+      "manual_queries": 0
+    }
+  }
+}

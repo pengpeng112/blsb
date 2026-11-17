@@ -1,0 +1,42 @@
+{
+  "captured_at": "2026-10-22T09:28:23.602535+00:00",
+  "upload_requests": 0,
+  "remote_config_changes": 0,
+  "source_writes": 0,
+  "result": {
+    "ssh_exit_code": 0,
+    "inventory": {
+      "clock_epoch": 1792661308.5175993,
+      "release": "/opt/blyb-dmz/releases/20261021T113750Z",
+      "config": {
+        "listen_host": "<relay-net-host>",
+        "listen_port": 443,
+        "allow_ips": [
+          "<prod-host>",
+          "<relay-net-host>"
+        ],
+        "allowed_top_methods": [
+          "alibaba.alihealth.drugtrace.top.yljg.query.billstatus"
+        ],
+        "enable_inout_upload": false
+      },
+      "ntp": {
+        "exit_code": 0,
+        "stdout": "      Local time: 四 2026-10-22 17:28:28 CST\n  Universal time: 四 2026-10-22 09:28:28 UTC\n        RTC time: 四 2026-10-22 09:28:29\n       Time zone: Asia/Shanghai (CST, +0800)\n     NTP enabled: yes\nNTP synchronized: no\n RTC in local TZ: no\n      DST active: n/a\n"
+      },
+      "ntp_sources": {
+        "exit_code": 0,
+        "stdout": "210 Number of sources = 1\nMS Name/IP address         Stratum Poll Reach LastRx Last sample               \n===============================================================================\n^? 203.107.6.88                  0  10     0     -     +0ns[   +0ns] +/-    0ns\n"
+      },
+      "upstream_date": {
+        "exit_code": 0,
+        "stdout": "HTTP/1.1 200 OK\nDate: Thu, 22 Oct 2026 09:28:29 GMT"
+      },
+      "cert": {
+        "exit_code": 0,
+        "stdout": "subject= /C=CN/O=BLYB-TEST-ONLY/CN=<relay-net-host>\nissuer= /C=CN/O=BLYB-TEST-ONLY/CN=BLYB Test Root CA (NOT FOR PRODUCTION)\nnotBefore=Oct 21 09:42:30 2026 GMT\nnotAfter=Jan 19 11:42:30 2027 GMT\n"
+      }
+    }
+  },
+  "status": "CAPTURED"
+}

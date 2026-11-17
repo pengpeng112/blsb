@@ -1,0 +1,158 @@
+{
+  "host": "app",
+  "phase": "inspect",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T04:04:19.784075+00:00",
+  "result": {
+    "dictionaries": [
+      {
+        "id": "8b84fcb5-7f85-43d8-8635-af7f013ca583",
+        "namespace": "drugtrace.ref_ent_id",
+        "version": "draft-1",
+        "source": "target",
+        "items": [],
+        "approved_by": ""
+      },
+      {
+        "id": "e9219d75-ddf2-4adb-bea0-97174a918d44",
+        "namespace": "drugtrace.ref_ent_id",
+        "version": "r10-normal-20261022-r1",
+        "source": "target",
+        "items": [
+          {
+            "code": "050102",
+            "target": "fe733fbb355241b1b63faa3543ab5b4a",
+            "label": "r10 verified normal outpatient mapping; official platform dictionary governs numeric values",
+            "evidence": "docs/development/drug-trace-r10-readiness-20261022/README.md; docs/development/drug-trace-firstbill-exec-20261021/reference/official-guide-202601.md"
+          }
+        ],
+        "approved_by": "bootstrap-admin"
+      }
+    ],
+    "scope": {
+      "profile": "alihealth_yljg_retail_v1",
+      "evidence": {
+        "evidence_id": "0eb0b906-3a3d-497b-abba-62117dd1e672",
+        "status": "APPROVED",
+        "valid_until": "2026-11-21T16:00:00",
+        "config_release_id": "2e138e50-2be7-4574-8e48-61264be8946d"
+      },
+      "scope": {
+        "window_begin": "2026-10-24T00:00:00+08:00",
+        "window_end": "2026-11-23T00:00:00+08:00",
+        "pharmacies": [
+          "050121",
+          "050102",
+          "050101",
+          "050116",
+          "050117"
+        ],
+        "max_bills": 80000
+      },
+      "quota": {
+        "used": 1226,
+        "max_bills": 80000
+      },
+      "destination": {
+        "id": "345df8f4-410e-4c89-a258-a34957eb4151",
+        "code": "alihealth-drugtrace-retail",
+        "status": "ENABLED",
+        "is_mock": false
+      },
+      "ambiguous": false
+    },
+    "ntp": {
+      "sha256": "d166ea688284c4e6c2fc0e6f3594bc196f6859d0cad48b93ae56802888b8a241",
+      "sources": [
+        "makestep 1.0 3",
+        "server <relay-net-host> iburst minpoll 6 maxpoll 8"
+      ],
+      "version": "chronyd (chrony) version 4.1 (+CMDMON +NTP +REFCLOCK +RTC +PRIVDROP +SCFILTER +SIGND +ASYNCDNS +NTS +SECHASH +IPV6 +DEBUG)",
+      "tracking": "Reference ID    : 00000000 ()\nStratum         : 0\nRef time (UTC)  : Thu Jan 01 00:00:00 1970\nSystem time     : 0.000000000 seconds fast of NTP time\nLast offset     : +0.000000000 seconds\nRMS offset      : 0.000000000 seconds\nFrequency       : 0.000 ppm slow\nResidual freq   : +0.000 ppm\nSkew            : 0.000 ppm\nRoot delay      : 1.000000000 seconds\nRoot dispersion : 1.000000000 seconds\nUpdate interval : 0.0 seconds\nLeap status     : Not synchronised"
+    },
+    "units": "ExecMainStatus=1\nActiveState=failed\nSubState=failed",
+    "recovery_final": {
+      "captured_utc": "2026-10-26T02:02:56.292850+00:00",
+      "unit": {
+        "ExecMainStartTimestamp": "Mon 2026-10-26 09:01:52 CST",
+        "ExecMainExitTimestamp": "Mon 2026-10-26 10:02:03 CST",
+        "ExecMainStatus": "1",
+        "ActiveState": "failed",
+        "SubState": "failed"
+      },
+      "data": {
+        "states": {
+          "CONFIRMED": 977,
+          "ACCEPTED": 43,
+          "UNKNOWN": 206
+        },
+        "new_attempts": [
+          {
+            "http_status": 200,
+            "outcome": "ACCEPTED",
+            "n": 567
+          }
+        ],
+        "inflight_attempts": 0,
+        "confirmed_recovered": 565,
+        "quota": [
+          {
+            "used": 1226,
+            "max_bills": 80000
+          }
+        ],
+        "pending_jobs": [
+          {
+            "job_type": "drug_trace.query_status",
+            "state": "LEASED",
+            "n": 1
+          },
+          {
+            "job_type": "drug_trace.query_status",
+            "state": "PENDING",
+            "n": 1
+          }
+        ],
+        "checkpoint": [
+          {
+            "row_version": 46,
+            "since_time": "2026-10-26T00:00:00"
+          }
+        ],
+        "old_nonterminal_unchanged": true,
+        "checkpoint_unchanged": true
+      },
+      "receipt_file": "/var/log/blyb/daily-upload/20261026-090152.json",
+      "receipt_bytes": 90611,
+      "receipt": {
+        "window": [
+          "2026-10-25T00:00:00",
+          "2026-10-26T00:00:00"
+        ],
+        "candidate_count": 1352,
+        "outcome": "PARTIAL_FAILURE",
+        "elapsed_seconds": 3610.8,
+        "report_push": {
+          "ok": true
+        },
+        "send": {
+          "sent": 567,
+          "skipped_terminal": 3,
+          "resumed": 567,
+          "prepared_new": 0,
+          "aborted_reason": ""
+        },
+        "send_errors": {
+          "DICTIONARY_UNMAPPED": 782
+        },
+        "query": {
+          "queried": 0,
+          "skipped_exhausted": 247,
+          "skipped_inflight": 3
+        },
+        "query_error_count": 0
+      }
+    },
+    "containers": "blyb-nginx-1 Up 3 hours (healthy)\n<worker-container> Up 3 hours (healthy)\nblyb-storage-1 Up 3 hours (healthy)\nblyb-core-1 Up 3 hours (healthy)\nblyb-exchange-1 Up 3 hours (healthy)\nblyb-db-1 Up 3 hours (healthy)"
+  }
+}

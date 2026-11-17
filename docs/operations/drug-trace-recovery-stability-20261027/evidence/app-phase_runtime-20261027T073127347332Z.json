@@ -1,0 +1,22 @@
+{
+  "host": "app",
+  "phase": "phase_runtime",
+  "exit_code": 0,
+  "captured_at": "2026-10-27T07:31:27.347287+00:00",
+  "result": {
+    "release": "stability-20261027T064000Z-r3",
+    "core_runtime_unchanged": true,
+    "containers": {
+      "blyb-core-1": {
+        "ten_files_match": true,
+        "image": "sha256:555a462460c1431560a71bf73a81f630a1f93b64e87fa23ef0a87b4e703e2244"
+      },
+      "<worker-container>": {
+        "ten_files_match": true,
+        "image": "sha256:555a462460c1431560a71bf73a81f630a1f93b64e87fa23ef0a87b4e703e2244"
+      }
+    },
+    "driver_sha256": "adbc32b1cec4de368884c97df77285825ee4cfc6b5a50a97d4d03a3d80432314",
+    "utc": "2026-10-27T07:31:29.933027+00:00"
+  }
+}

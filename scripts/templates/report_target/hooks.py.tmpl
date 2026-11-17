@@ -1,0 +1,32 @@
+"""$name 钩子（脚手架骨架；只读返回 data_source=none/未认领——不伪造数据）。
+
+ledger_search/ledger_detail 返回 None=本插件不认领台账（真实实现后按
+HOOK_LEDGER_SEARCH/LEDGER_DETAIL 契约与 tenant+target 绑定规则扩展）。
+"""
+from __future__ import annotations
+
+
+def target_summary(db, tenant_id: str, target_code: str, days: int):
+    if target_code != "$code":
+        return None
+    from plugins.domain_hooks import TargetSummary
+    from contracts import REPORT_BUCKETS
+    return TargetSummary(
+        target_code=target_code, window_days=days,
+        buckets={b: 0 for b in REPORT_BUCKETS}, data_source="none",
+        note="骨架：取数未实现（接入指南步骤4/5）")
+
+
+def ledger_search(db, tenant_id: str, target_code: str, filters,
+                  cursor, limit: int):
+    """占位：不认领（None——其他插件/通用台账兜底；不伪造台账行）。"""
+    if target_code != "$code":
+        return None
+    return None
+
+
+def ledger_detail(db, tenant_id: str, target_code: str, submission_id: str):
+    """占位：不认领（None；详情绑定校验在真实实现中补齐）。"""
+    if target_code != "$code":
+        return None
+    return None

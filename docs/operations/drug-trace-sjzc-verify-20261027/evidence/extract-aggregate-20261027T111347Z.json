@@ -1,0 +1,82 @@
+{
+  "captured_gmt8": "2026-10-27T19:13:47.860534+08:00",
+  "transport": "jump+nested 固定指纹 SSH（deploy_fb05 通道），应用库只读事务",
+  "group_counts": {
+    "orig_0_2": 3,
+    "normal_no_code": 260,
+    "orig_1_0": 1079
+  },
+  "sample_counts": {
+    "normal_no_code": 20,
+    "orig_0_2": 3,
+    "orig_1_0": 7
+  },
+  "pharmacy_dist": [
+    {
+      "grp": "normal_no_code",
+      "pharmacy_code": "050101",
+      "n": 62
+    },
+    {
+      "grp": "normal_no_code",
+      "pharmacy_code": "050102",
+      "n": 176
+    },
+    {
+      "grp": "normal_no_code",
+      "pharmacy_code": "050116",
+      "n": 1
+    },
+    {
+      "grp": "normal_no_code",
+      "pharmacy_code": "050117",
+      "n": 2
+    },
+    {
+      "grp": "normal_no_code",
+      "pharmacy_code": "050121",
+      "n": 19
+    },
+    {
+      "grp": "orig_0_2",
+      "pharmacy_code": "050121",
+      "n": 3
+    },
+    {
+      "grp": "orig_1_0",
+      "pharmacy_code": "050101",
+      "n": 41
+    },
+    {
+      "grp": "orig_1_0",
+      "pharmacy_code": "050102",
+      "n": 5
+    },
+    {
+      "grp": "orig_1_0",
+      "pharmacy_code": "050103",
+      "n": 401
+    },
+    {
+      "grp": "orig_1_0",
+      "pharmacy_code": "050107",
+      "n": 334
+    },
+    {
+      "grp": "orig_1_0",
+      "pharmacy_code": "050109",
+      "n": 42
+    },
+    {
+      "grp": "orig_1_0",
+      "pharmacy_code": "050110",
+      "n": 63
+    },
+    {
+      "grp": "orig_1_0",
+      "pharmacy_code": "050121",
+      "n": 193
+    }
+  ],
+  "keys_location": ".ai/private/drug-trace-sjzc-verify-20261027/ (受限)"
+}

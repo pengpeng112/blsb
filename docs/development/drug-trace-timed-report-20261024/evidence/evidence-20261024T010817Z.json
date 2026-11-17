@@ -1,0 +1,24 @@
+{
+  "exit_code": 0,
+  "result": {
+    "calls": [
+      {
+        "method": "POST",
+        "path": "/drug-trace/evidence",
+        "status": 200
+      },
+      {
+        "method": "POST",
+        "path": "/drug-trace/evidence",
+        "status": 404,
+        "error": "NOT_FOUND"
+      }
+    ],
+    "collect": {
+      "evidence_id": "3bb034bb-3798-4ead-9d7d-05c8de2ff539",
+      "status": "APPROVED"
+    },
+    "ok": false,
+    "error": "API rejected /drug-trace/evidence: NOT_FOUND destination not found"
+  }
+}

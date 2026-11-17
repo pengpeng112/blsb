@@ -1,0 +1,34 @@
+{
+  "host": "app",
+  "phase": "verify",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T04:48:44.198684+00:00",
+  "result": {
+    "legacy_scope_status": 200,
+    "evidence_status": "APPROVED",
+    "quota": {
+      "used": 1572,
+      "max_bills": 80000
+    },
+    "password_module_sha256": "baad1a2be1de64d202b789d4bd7a5a9c4ef0d09ae2a0e8e37beea7c0345edec3",
+    "old_247_unchanged": true,
+    "checkpoint_unchanged": true,
+    "quota_unchanged": true,
+    "auth_migration": 1,
+    "nginx_config": "",
+    "ui": {
+      "status": 200,
+      "assets": [
+        "/ui/assets/index-CEozikQj.js",
+        "/ui/assets/index-C8EkVutg.css"
+      ],
+      "asset_statuses": [
+        200,
+        200
+      ],
+      "trust": "existing explicit certificate trust and CN; IP SAN and management network still not accepted"
+    },
+    "containers": "blyb-nginx-1 Up 2 minutes (healthy)\n<worker-container> Up 2 minutes (healthy)\nblyb-exchange-1 Up 2 minutes (healthy)\nblyb-storage-1 Up 2 minutes (healthy)\nblyb-core-1 Up 2 minutes (healthy)\nblyb-db-1 Up 3 minutes (healthy)",
+    "utc": "2026-10-26T04:48:46.087134+00:00"
+  }
+}

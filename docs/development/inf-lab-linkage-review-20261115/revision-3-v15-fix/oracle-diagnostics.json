@@ -1,0 +1,66 @@
+{
+  "compile_errors": {
+    "ok": true,
+    "source": "ods_internal",
+    "db_type": "oracle",
+    "row_count": 1,
+    "rows": [
+      {
+        "OWNER": "ODS",
+        "NAME": "V_INF_EX_LAB",
+        "TYPE": "VIEW",
+        "SEQUENCE": "1",
+        "LINE": "0",
+        "POSITION": "0",
+        "TEXT": "ORA-00904: \"ACTV\".\"CLINIC_NO\": 标识符无效\n"
+      }
+    ]
+  },
+  "object_status": {
+    "ok": true,
+    "source": "ods_internal",
+    "db_type": "oracle",
+    "row_count": 3,
+    "rows": [
+      {
+        "OWNER": "ODS",
+        "OBJECT_NAME": "M_INF_FXHIS_ACTIVITY_V15",
+        "STATUS": "VALID"
+      },
+      {
+        "OWNER": "ODS",
+        "OBJECT_NAME": "V_INF_EX_LAB",
+        "STATUS": "INVALID"
+      },
+      {
+        "OWNER": "ODS",
+        "OBJECT_NAME": "V_INF_EX_LAB_ITEM",
+        "STATUS": "VALID"
+      }
+    ]
+  },
+  "v15_columns": {
+    "ok": true,
+    "source": "ods_internal",
+    "db_type": "oracle",
+    "row_count": 4,
+    "rows": [
+      {
+        "COLUMN_NAME": "SERIAL_NUMBER",
+        "DATA_TYPE": "VARCHAR2"
+      },
+      {
+        "COLUMN_NAME": "ACTIVITY_TYPE_CODE",
+        "DATA_TYPE": "CHAR"
+      },
+      {
+        "COLUMN_NAME": "PATIENT_ID",
+        "DATA_TYPE": "VARCHAR2"
+      },
+      {
+        "COLUMN_NAME": "OPERATION_TIME",
+        "DATA_TYPE": "DATE"
+      }
+    ]
+  }
+}

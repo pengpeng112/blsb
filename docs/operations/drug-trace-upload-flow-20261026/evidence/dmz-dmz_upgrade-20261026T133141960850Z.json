@@ -1,0 +1,14 @@
+{
+  "host": "dmz",
+  "phase": "dmz_upgrade",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T13:31:41.960785+00:00",
+  "result": {
+    "release": "flow-20261026T132000Z",
+    "previous": "20261021T113750Z",
+    "active": true,
+    "config_check": 0,
+    "forwarder_sha256": "748df3d089d6175a6ca7f07fe0e2dc2847c1d2ddea1af077408989ff3a194324",
+    "upstream_calls": 0
+  }
+}

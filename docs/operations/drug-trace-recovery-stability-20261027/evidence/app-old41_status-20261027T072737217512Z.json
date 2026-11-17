@@ -1,0 +1,60 @@
+{
+  "host": "app",
+  "phase": "old41_status",
+  "exit_code": 0,
+  "captured_at": "2026-10-27T07:27:37.217445+00:00",
+  "result": {
+    "result.json": {
+      "exit_code": 0,
+      "result": {
+        "task": "DTR-RECOVERY-STABILITY-20261027",
+        "started_utc": "2026-10-27T07:24:38.153506+00:00",
+        "uploads": 0,
+        "query_budget_reset": false,
+        "updated_utc": "2026-10-27T07:27:39.071583+00:00",
+        "outcome": "ALL_41_CONFIRMED",
+        "before": {
+          "quota": 4820,
+          "attempts": 4820,
+          "unknown_hash": "7a691905901917167cf999c3d8f4c202"
+        },
+        "after": {
+          "quota": 4820,
+          "attempts": 4820,
+          "unknown_hash": "7a691905901917167cf999c3d8f4c202"
+        },
+        "finished_utc": "2026-10-27T07:27:39.077849+00:00",
+        "rows_count": 41,
+        "row_states": {
+          "CONFIRMED": 41
+        },
+        "platform_results": {
+          "3/51": 41
+        },
+        "max_calls": 1,
+        "query_generations_unchanged": true
+      }
+    },
+    "progress.json": {
+      "task": "DTR-RECOVERY-STABILITY-20261027",
+      "started_utc": "2026-10-27T07:24:38.153506+00:00",
+      "uploads": 0,
+      "query_budget_reset": false,
+      "updated_utc": "2026-10-27T07:27:39.071583+00:00",
+      "outcome": "ALL_41_CONFIRMED",
+      "before": {
+        "quota": 4820,
+        "attempts": 4820,
+        "unknown_hash": "7a691905901917167cf999c3d8f4c202"
+      },
+      "after": {
+        "quota": 4820,
+        "attempts": 4820,
+        "unknown_hash": "7a691905901917167cf999c3d8f4c202"
+      },
+      "finished_utc": "2026-10-27T07:27:39.077849+00:00",
+      "rows_count": 41
+    },
+    "unit": "ExecMainStatus=0\nActiveState=inactive\nSubState=dead"
+  }
+}

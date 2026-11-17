@@ -1,0 +1,32 @@
+# 发行白名单（DEP-A13；build_release.py 按此打包并做闸门检查）。
+# 语义：`+` 包含、`-` 排除（后匹配优先）；以 / 结尾按目录前缀匹配，其余按 glob。
+# 未列出的内容一律不进发行包；闸门再对包含结果做 var/SQLite/凭据/node_modules 扫描。
++Dockerfile
++.dockerignore
++_bootstrap.py
++requirements.txt
++requirements-linux.txt
++apps/
++packages/
++plugins/
++profiles/
++migrations/
++deploy/compose/
++deploy/linux/
++deploy/dmz/
++deploy/release/build_release.py
++deploy/release/whitelist.txt
+-apps/admin_web/node_modules/
+-apps/admin_web/dist/
+-__pycache__/
+-.pytest_cache/
+-var/
+-*.pyc
+-*.sqlite3
+-*.sqlite3-wal
+-*.sqlite3-shm
+-.env
+-.env.*
+-agent-config.json
+-*.log
+-deploy/compose/test-certs/

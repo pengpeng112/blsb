@@ -1,0 +1,67 @@
+{
+  "pack_key": "first-hospital-review-draft",
+  "revision": 1,
+  "production_enabled": false,
+  "evidence_status": "SECOND_PARTY_REPORT_NOT_INDEPENDENTLY_VERIFIED",
+  "sources": {
+    "pis": {
+      "plugin": "pis.pitaya.sqlserver",
+      "host": "pis.example.invalid",
+      "secret_ref": "UNBOUND",
+      "database_candidate": "PITAYA",
+      "database_approved": false,
+      "other_database_candidate": "QPIS",
+      "schema": "dbo",
+      "objects": [
+        "Pitaya",
+        "Pitaya_Slice",
+        "Pitaya_Specimen",
+        "Pitaya_Material"
+      ],
+      "stable_keys": {
+        "slide": [
+          "Id"
+        ],
+        "case": null
+      },
+      "key_status": "VERIFY_BEFORE_PRODUCTION",
+      "barcode_field": "qptmh"
+    },
+    "his": {
+      "plugin": "his.medrec.oracle",
+      "host": "his.example.invalid",
+      "secret_ref": "UNBOUND",
+      "service_name": null,
+      "schema": "MEDREC",
+      "objects": [
+        "PAT_MASTER_INDEX",
+        "PAT_VISIT"
+      ],
+      "visit_key": [
+        "PATIENT_ID",
+        "VISIT_ID"
+      ],
+      "pis_visit_bridge": null
+    }
+  },
+  "identity_policy": {
+    "checksum_only_auto_assign_type": false,
+    "fallback_enabled": false,
+    "approved_dictionary_ref": null,
+    "conflict_action": "WAITING_HUMAN"
+  },
+  "clinical_policy": {
+    "application_time_authoritative_field": null,
+    "application_category_dictionary": null,
+    "clinical_status_dictionary": null,
+    "report_organization_mapping": null,
+    "missing_required_action": "WAIT"
+  },
+  "collection_policy": {
+    "created_time_scope": "INSERT_DISCOVERY_ONLY",
+    "verified_update_field": null,
+    "partition_reconciliation_required": true,
+    "automatic_missing_row_tombstone": false
+  },
+  "note": "我方拟议HospitalPack配置形态；不代表完整Pack Schema或厂商接口。待确认字段不能据此启用生产。"
+}

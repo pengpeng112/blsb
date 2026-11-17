@@ -1,0 +1,28 @@
+# P2 隔离验证专用 override（构建机/Docker Desktop；不用于目标机发行）。
+# - 绑定挂载 → 命名卷：规避 Windows bind-mount 属主语义差异（镜像内 /data 已由
+#   UID 10001 预建并继承属主，语义与目标机一致）；数据卷用后随项目删除。
+# - nginx 入口改 127.0.0.1:8443，不与真实 443 冲突。
+# - 证书指向 ./test-certs（一次性自签测试证书，仅隔离验证；正式环境必须院方证书）。
+# 依赖 Compose >=2.24 的 !override 标签（序列整体替换而非合并）。
+services:
+  db:
+    volumes: !override ["blybtest_pgdata:/var/lib/postgresql/data"]
+  bootstrap:
+    volumes: !override ["blybtest_volume1:/data/volume1"]
+  core:
+    volumes: !override ["blybtest_exchange:/data/exchange"]
+  storage:
+    volumes: !override ["blybtest_volume1:/data/volume1"]
+  exchange:
+    volumes: !override ["blybtest_exchange:/data/exchange", "blybtest_volume1:/data/volume1:ro"]
+  worker:
+    volumes: !override ["blybtest_volume1:/data/volume1", "blybtest_exchange:/data/exchange"]
+  nginx:
+    ports: !override ["127.0.0.1:8443:443"]
+    volumes: !override
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./test-certs:/etc/blyb/certs:ro
+volumes:
+  blybtest_pgdata:
+  blybtest_volume1:
+  blybtest_exchange:

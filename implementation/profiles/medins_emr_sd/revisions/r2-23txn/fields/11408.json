@@ -1,0 +1,778 @@
+{
+ "code": "11408",
+ "schema_version": 2,
+ "envelope_ref": "fields/_envelope.json",
+ "root": "input",
+ "length_unit": "UNCONFIRMED",
+ "children": [
+  {
+   "code": "consultationinfo",
+   "type": "object",
+   "children": [
+    {
+     "code": "mdtrt_sn",
+     "name": "就医流水号",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 31,
+      "row": 2
+     },
+     "notes": "医院产生唯一就医流水号"
+    },
+    {
+     "code": "mdtrt_id",
+     "name": "就诊ID",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 31,
+      "row": 3
+     },
+     "notes": "医保返回唯一流水号"
+    },
+    {
+     "code": "medins_file_no",
+     "name": "医院内部档案号",
+     "type": "string",
+     "max_len": 64,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 31,
+      "row": 4
+     },
+     "notes": "指医院内部患者唯一的索引号"
+    },
+    {
+     "code": "med_mdtrt_type",
+     "name": "医疗就诊类型",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 31,
+      "row": 5
+     },
+     "notes": "参照“医疗就诊类型med_mdtrt_type"
+    },
+    {
+     "code": "gend",
+     "name": "性别",
+     "type": "string",
+     "max_len": 3,
+     "dict": null,
+     "has_code_dict": true,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 31,
+      "row": 6
+     },
+     "notes": "参照“性别gend”"
+    },
+    {
+     "code": "psn_name",
+     "name": "人员姓名",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 31,
+      "row": 7
+     }
+    },
+    {
+     "code": "age",
+     "name": "年龄",
+     "type": "number",
+     "max_len": 4,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 31,
+      "row": 8
+     }
+    },
+    {
+     "code": "consult_sn",
+     "name": "会诊记录单编号",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 31,
+      "row": 9
+     },
+     "notes": "标识此次会诊的唯一编号，可以是此次会诊记录流水号"
+    },
+    {
+     "code": "appy_cslt_time",
+     "name": "申请会诊时间",
+     "type": "datetime",
+     "max_len": null,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 31,
+      "row": 10
+     }
+    },
+    {
+     "code": "patn_dept_code",
+     "name": "患者所在科室代码",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": true,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 31,
+      "row": 11
+     },
+     "notes": "参照caty"
+    },
+    {
+     "code": "patn_dept_name",
+     "name": "患者所在科室名称",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 31,
+      "row": 12
+     }
+    },
+    {
+     "code": "appy_cslt_dr_code",
+     "name": "申请会诊医师代码",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 31,
+      "row": 13
+     },
+     "notes": "按国家局编码规范填写"
+    },
+    {
+     "code": "appy_cslt_dr_name",
+     "name": "申请会诊医师名称",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 31,
+      "row": 14
+     }
+    },
+    {
+     "code": "cslt_dr_dept_code",
+     "name": "会诊医师科室代码",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": true,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 31,
+      "row": 15
+     },
+     "notes": "参照caty"
+    },
+    {
+     "code": "cslt_dr_dept_name",
+     "name": "会诊医师科室名称",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 31,
+      "row": 16
+     }
+    },
+    {
+     "code": "diag_code",
+     "name": "诊断代码",
+     "type": "string",
+     "max_len": 200,
+     "dict": null,
+     "has_code_dict": true,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 31,
+      "row": 17
+     },
+     "notes": "采用疾病分类代码国家临床版2.0疾病诊断编码（ICD-10）"
+    },
+    {
+     "code": "diag_name",
+     "name": "诊断名称",
+     "type": "string",
+     "max_len": 600,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 31,
+      "row": 18
+     },
+     "notes": "采用疾病分类代码国家临床版2.0疾病诊断编码（ICD-10）与编码对应的诊断名称"
+    },
+    {
+     "code": "medrcd_abst",
+     "name": "病历摘要",
+     "type": "string",
+     "max_len": 1000,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 31,
+      "row": 19
+     }
+    },
+    {
+     "code": "asst_exam_rslt",
+     "name": "辅助检查结果",
+     "type": "string",
+     "max_len": 1000,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 31,
+      "row": 20
+     }
+    },
+    {
+     "code": "cslt_type_code",
+     "name": "会诊类型代码",
+     "type": "string",
+     "max_len": 3,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 31,
+      "row": 21
+     },
+     "notes": "参照“会诊类型代码cslt_type_code”"
+    },
+    {
+     "code": "cslt_rea",
+     "name": "会诊原因",
+     "type": "string",
+     "max_len": 500,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 31,
+      "row": 22
+     }
+    },
+    {
+     "code": "cslt_pup",
+     "name": "会诊目的",
+     "type": "string",
+     "max_len": 500,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 31,
+      "row": 23
+     }
+    },
+    {
+     "code": "cslt_opnn",
+     "name": "会诊意见",
+     "type": "string",
+     "max_len": 2000,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 31,
+      "row": 24
+     }
+    },
+    {
+     "code": "cslt_ccls",
+     "name": "会诊结论",
+     "type": "string",
+     "max_len": 1000,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 31,
+      "row": 25
+     }
+    },
+    {
+     "code": "vali_flag",
+     "name": "有效标志",
+     "type": "string",
+     "max_len": 3,
+     "dict": null,
+     "has_code_dict": true,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 31,
+      "row": 26
+     },
+     "notes": "参考dic_flag"
+    }
+   ]
+  },
+  {
+   "code": "consultationdoc",
+   "type": "array",
+   "items": {
+    "code": "consultationdoc",
+    "type": "object",
+    "children": [
+     {
+      "code": "consult_sn",
+      "name": "会诊记录单编号",
+      "type": "string",
+      "max_len": 50,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 32,
+       "row": 2
+      },
+      "notes": "与会诊基本信息表的会诊的唯一编号对应"
+     },
+     {
+      "code": "consult_date",
+      "name": "会诊日期时间",
+      "type": "datetime",
+      "max_len": null,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 32,
+       "row": 3
+      },
+      "notes": "yyyy-MM-dd HH:mm:ss"
+     },
+     {
+      "code": "consult_ad",
+      "name": "会诊意见",
+      "type": "string",
+      "max_len": 2000,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 32,
+       "row": 4
+      }
+     },
+     {
+      "code": "cslt_dr_code",
+      "name": "会诊医师代码",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 32,
+       "row": 5
+      },
+      "notes": "按国家局编码规范填写"
+     },
+     {
+      "code": "cslt_dr_name",
+      "name": "会诊医师姓名",
+      "type": "string",
+      "max_len": 50,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": true,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 32,
+       "row": 6
+      }
+     },
+     {
+      "code": "cslt_dr_dept_code",
+      "name": "会诊医师科室代码",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": true,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 32,
+       "row": 7
+      },
+      "notes": "参照caty"
+     },
+     {
+      "code": "cslt_dr_dept_name",
+      "name": "会诊医师科室名称",
+      "type": "string",
+      "max_len": 50,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 32,
+       "row": 8
+      }
+     },
+     {
+      "code": "csltdr_medins_code",
+      "name": "会诊医师机构编码",
+      "type": "string",
+      "max_len": 50,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 32,
+       "row": 9
+      }
+     },
+     {
+      "code": "csltdr_medins_name",
+      "name": "会诊医师机构名称",
+      "type": "string",
+      "max_len": 100,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 32,
+       "row": 10
+      }
+     },
+     {
+      "code": "vali_flag",
+      "name": "有效标志",
+      "type": "string",
+      "max_len": 3,
+      "dict": null,
+      "has_code_dict": true,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 32,
+       "row": 11
+      },
+      "notes": "参照dic_flag"
+     }
+    ]
+   }
+  }
+ ]
+}

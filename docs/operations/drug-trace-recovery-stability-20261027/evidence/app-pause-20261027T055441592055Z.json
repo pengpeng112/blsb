@@ -1,0 +1,134 @@
+{
+  "host": "app",
+  "phase": "pause",
+  "exit_code": 0,
+  "captured_at": "2026-10-27T05:54:41.591975+00:00",
+  "result": {
+    "outcome": "INTERRUPTED_FOR_STABILITY_UPGRADE",
+    "utc": "2026-10-27T05:54:43.931592+00:00",
+    "before": {
+      "states": {
+        "PREPARED": 976,
+        "CONFIRMED": 3595,
+        "ACCEPTED": 41,
+        "UNKNOWN": 206
+      },
+      "sending": 0,
+      "inflight": 0,
+      "pending_sends": 0,
+      "protected_old_hash": "b6cff3ef40515622c29a8f5379963643",
+      "quota": [
+        {
+          "used": 3843,
+          "max_bills": 80000
+        }
+      ],
+      "checkpoint": [
+        {
+          "row_version": 80,
+          "since_time": "2026-10-27T00:00:00"
+        }
+      ]
+    },
+    "drained": {
+      "states": {
+        "PREPARED": 976,
+        "CONFIRMED": 3595,
+        "ACCEPTED": 41,
+        "UNKNOWN": 206
+      },
+      "sending": 0,
+      "inflight": 0,
+      "pending_sends": 0,
+      "protected_old_hash": "b6cff3ef40515622c29a8f5379963643",
+      "quota": [
+        {
+          "used": 3843,
+          "max_bills": 80000
+        }
+      ],
+      "checkpoint": [
+        {
+          "row_version": 80,
+          "since_time": "2026-10-27T00:00:00"
+        }
+      ]
+    },
+    "after": {
+      "states": {
+        "PREPARED": 976,
+        "CONFIRMED": 3595,
+        "ACCEPTED": 41,
+        "UNKNOWN": 206
+      },
+      "sending": 0,
+      "inflight": 0,
+      "pending_sends": 0,
+      "protected_old_hash": "b6cff3ef40515622c29a8f5379963643",
+      "quota": [
+        {
+          "used": 3843,
+          "max_bills": 80000
+        }
+      ],
+      "checkpoint": [
+        {
+          "row_version": 80,
+          "since_time": "2026-10-27T00:00:00"
+        }
+      ]
+    },
+    "driver_core_pids": [],
+    "old_246_unchanged": true,
+    "checkpoint_unchanged": true,
+    "reason": "Planned collection/lease stability upgrade; completed sends retained, resume with normal guarded driver. Original incomplete receipts are preserved, not claimed successful.",
+    "previous_progress": {
+      "started_utc": "2026-10-27T02:20:45.139128+00:00",
+      "outcome": "RUNNING",
+      "business_date": "2026-10-26",
+      "source": "manual",
+      "expected_valid": 1995,
+      "new_collection_allowed": false,
+      "driver_sha256": "6a0bb73d73eefd7150315a6ba0d5de8de5adfae2925089cca7242a9ce68d3e15",
+      "updated_utc": "2026-10-27T03:59:58.327431+00:00",
+      "snapshot": {
+        "states": {
+          "PREPARED": 236,
+          "CONFIRMED": 3570,
+          "ACCEPTED": 66,
+          "UNKNOWN": 205
+        },
+        "window_states": {
+          "PREPARED": 236,
+          "CONFIRMED": 993,
+          "ACCEPTED": 25
+        },
+        "protected_old_hash": "b6cff3ef40515622c29a8f5379963643",
+        "quota": [
+          {
+            "used": 3842,
+            "max_bills": 80000
+          }
+        ],
+        "checkpoint": [
+          {
+            "row_version": 80,
+            "since_time": "2026-10-27T00:00:00"
+          }
+        ],
+        "inflight": 0,
+        "pending_sends": 0,
+        "pending_prepares": 741,
+        "window_attempts": [
+          {
+            "http_status": 200,
+            "outcome": "ACCEPTED",
+            "n": 1018
+          }
+        ]
+      },
+      "old_246_unchanged": true,
+      "checkpoint_unchanged": true
+    }
+  }
+}

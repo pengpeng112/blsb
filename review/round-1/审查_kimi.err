@@ -1,0 +1,370 @@
+• The user wants a read-only review of review/round-1/方案.md against two documents: docs/deployment/reporting-20261015/execution-plan.md and view-contract.md. Let me read all three files first.
+
+• Now I need to understand the user's actual need. The user's original need (embedded in 方案.md §0) is: 「docs/deployment/reporting-20261015/execution-plan.md docs/deployment/reporting-20261015/view-contract.md 进行核查」 — i.e., the user asked to **review/audit** these two documents. The multi-review skill adds: read-only review, independent evidence, disclose absences, human final review for conflicts/high-risk/irreversible.
+
+  So the 待审方案 (review/round-1/方案.md) is a review of the two docs. I need to check:
+  1. Does the 方案 cover the user's need faithfully? The user's need was "进行核查" (review the two docs). The 方案... wait. Let me re-read. The 方案.md contains §0 user need, §1 scope, §2 full text of doc A, §3 full text of doc B, §4 review hints. But — where is the actual review/analysis? The 方案.md seems to be ONLY the review setup: it embeds the requirement and the two documents, plus review hints. It does NOT contain any review findings itself!
+
+  Hmm, this is interesting. The user's request to me says: "待审方案：review/round-1/方案.md（首节内嵌该需求原文，并逐字嵌入两份待审文档全文）". So the 方案 is the reviewer's output? Or is it the input package for reviewers?
+
+  Looking at it: "方案（待审对象：两份部署/契约文档）· multi-review round-1". This is the round-1 review packet. The user's need was to 核查 the two documents. The 方案.md appears to be the setup/context packet for multi-review — it embeds the requirement and the docs verbatim, and §4 gives review hints ("条数/篇幅/维度不限...独立署名"). So the 方案 is the review brief, and I (this session) am being asked to act as one of the reviewers — to "自由核查" and "给出你的独立结论".
+
+  Wait, re-reading the user's request to me: "请你自由核查：①方案对用户需求的覆盖度与忠实度（有无遗漏/偏离/私自加戏）；②你自发发现的一切问题". So I need to evaluate the 方案 itself for coverage/fidelity to the user need, AND find any problems myself.
+
+  So the 方案 is the object under review. Let me assess:
+
+  Coverage/fidelity of 方案 to user need:
+  - User need: review the two docs. The 方案 embeds the need verbatim (§0), identifies the two objects (§1), embeds both docs verbatim (§2, §3), provides review hints (§4). 
+  - Key question: does the 方案 actually perform the review? It seems NO — it contains no review findings. It's a review brief, not a review. But wait — is the 方案 supposed to be the reviewer's deliverable? The user to me says "待审方案" (the plan under review). So the 方案 is what I'm reviewing. Its coverage: it covers the two objects, embeds them. But if the user need was "进行核查" and the 方案 is the deliverable responding to that need, then the 方案 contains zero actual 核查结论 — that would be a major coverage gap.
+
+  But actually, maybe the 方案 is intentionally a "review packet" created by the multi-review skill orchestrator to distribute to reviewers, and the actual reviews come from individual reviewers (like me). In that case the 方案 faithfully sets up the review. Hmm. The user's request to me says ①方案对用户需求的覆盖度与忠实度 — so I must judge this.
+
+  Let me also verify the "逐字嵌入" claim — I should diff the embedded texts against the originals. From my reading, the embedded execution-plan claims "264行" but the actual file is 263 lines. Let me check: 方案 says "execution-plan.md（264行，逐字）" but actual file total is 263 lines. That's a factual inaccuracy in the 方案. And view-contract claims "135行" but actual is 134 lines. Both off by one. Also I should verify verbatim embedding — compare content. From reading both, they look identical in content. But I should do a systematic check. Since I can't modify files, I can use Bash diff with process substitution — that's read-only. Let me extract the embedded sections and diff.
+
+  Actually the embedded docs are inside <details> blocks in 方案.md lines 27-290 (execution-plan) and 298-431 (view-contract). Let me diff carefully with sed — read-only.
+
+  Also I need to check factual claims in the two docs against the repo — that's what the review should do, and since the 方案 has no findings, my own spontaneous findings (②) become the substance. The user asks: ②你自发发现的一切问题（技术/安全/可行性/一致性等任何维度）— about what? About the 方案 and/or the two docs? "可自由读取仓库内你需要的参考文件（含 docs/deployment/reporting-20261015/ 目录原始文件），但结论必须自有依据。" I think ② means problems I find in the 方案 (and since the 方案 is a review packet of the two docs, verifying the docs' claims against the repo is part of judging the 方案's adequacy). Actually — the deeper reading: the real user need is 核查两份文档. The 方案 is round-1 of multi-review. My job as independent reviewer: check whether the 方案 (as a review artifact) covers the need, and produce my own findings on the two documents.
+
+  Hmm, but the 方案 contains no findings at all. So my review should note: as a response to "进行核查", the 方案 delivers scope setup and verbatim embedding but zero substantive findings — unless the intent is that the 方案 is the packet and reviewers (me) produce findings. Given §4 "核查提示（不构成限制）...独立署名", the 方案 is clearly a packet inviting reviewers to produce findings. So the 方案 itself is the orchestrator's artifact, not a review. Coverage assessment: it faithfully embeds the need and objects; but as the "round-1" deliverable it defers all actual findings to reviewers.
+
+  Let me verify:
+  1. Line count claims (264 vs 263, 135 vs 134).
+  2. Verbatim fidelity — diff embedded vs original.
+  3. Check claims in the docs against repo (this serves ②): e.g., 
+     - `TEST-20261012` running record claim — check `python scripts/ai_session.py status` (read-only command).
+     - requirements.lock.txt lacks psycopg — check implementation/requirements files.
+     - Dockerfile uses 3.12-slim — check implementation Dockerfile.
+     - Compose file exists at implementation/deploy/compose/docker-compose.yml.
+     - exchange /health returns UP only.
+     - Frontend defaults 127.0.0.1:8000/8001.
+     - get_app factory.
+     - dev token defaults.
+     - The 3500 limit claim and result_type=3/sub_process_flag 51/52 — external API docs, can't verify offline; note as unverifiable.
+     - Check docs/deployment/reporting-20261015/ directory for README/connection-report/NEXT_AI_PROMPT/SESSION.
+
+  This is a substantial investigation. I could delegate verification of repo claims to an explore subagent. Given the size, let me do targeted checks myself plus maybe one explore agent for the repo-claims verification. Actually many checks are quick greps. Let me do them directly in parallel batches.
+
+  First batch:
+  - List docs/deployment/reporting-20261015/
+  - Run `python scripts/ai_session.py status` (read-only? It just prints status — yes read-only)
+  - Grep for psycopg in implementation requirements
+  - Grep Dockerfile python version
+  - Check compose file exists
+  - Diff embedded vs original
+
+  Let me start. For the diff, extract lines 27-290 of 方案.md (content between the summary line and </details>), i.e., lines 28-290? Line 25 is <details><summary>, line 27 starts "# 医院数据归集...", ends line 290, line 291 blank, 292 </details>. Actually embedded content lines 27-290 (264 lines claimed). Original file 263 lines. So embedded has 264 lines — one extra, likely a trailing blank line. Let me diff: `sed -n '27,290p' 方案.md > /tmp/embedded-a.md` wait — can't write files? "只读，禁止修改任何文件" — writing to /tmp is outside working dir and it's a temp file for comparison... The constraint says 禁止修改任何文件 — creating temp files is technically writing files. To be safe, use process substitution: `diff <(sed -n '27,290p' 方案.md) docs/.../execution-plan.md`. Process substitution uses /dev/fd, no files created. Good.
+
+  For view-contract: embedded lines 298-431 in 方案.md (298 starts "# 码上放心", 430 ends "...通用AI交接包。", 431 blank, 432 </details>). Claimed 135 lines: 431-298+1 = 134... let me count: 298 to 431 inclusive = 134 lines. Hmm claimed 135. Actual file 134 lines. Whatever, diff will tell.
+
+  For execution-plan: 27 to 290 = 264 lines; actual 263. So embedded includes one trailing blank line (line 290 blank?). Line 291 in 方案 is blank, 292 </details>. From the read: line 290 is blank (after line 289 text), 291 blank, 292 </details>. Actually read shows line 289 "实施时重新核对...", 290 blank? The original file line 263 is "实施时重新核对文档版本..." and no trailing blank shown but file may end with newline. So embedded has an extra blank line. diff will show.
+
+  Let me run checks.
+
+264d263
+< 
+B: IDENTICAL
+NEXT_AI_PROMPT.md
+README.md
+SESSION.md
+__pycache__
+connection-evidence-20261015T112626688193Z.json
+connection-evidence.json
+connection-report.md
+execution-plan.md
+final-verification.json
+jump-network-evidence.json
+manifest.json
+probe-run.log
+probe_ssh.py
+verification.json
+view-contract.md
+  263 docs/deployment/reporting-20261015/execution-plan.md
+  134 docs/deployment/reporting-20261015/view-contract.md
+  439 review/round-1/方案.md
+  836 total
+[
+  {
+    "session_id": "20261002T134716Z-ad39ad5e",
+    "task": "DOC-20261002",
+    "tool": "Codex",
+    "model": "unknown",
+    "scopes": [
+      ".gitignore",
+      "00_ai复核入口.md",
+      "agents.md",
+      "ai_start.md",
+      "claude.md",
+      "docs",
+      "implementation/agents.md",
+      "implementation/claude.md",
+      "implementation/docs",
+      "implementation/readme.md",
+      "project.ps1",
+      "readme.md",
+      "scripts",
+      "交接提示词_深度核查续做.md",
+      "医院数据归集与上报平台总体方案_v0.3.md",
+      "归档",
+      "设计交付v0.3/readme.md",
+      "项目独立复核与详细整改计划_2026-10-01.md"
+    ],
+    "status": "completed",
+    "started_at": "2026-10-02T13:47:16.917107+00:00",
+    "updated_at": "2026-10-02T14:02:23.304266+00:00",
+    "summary": "Document organization completed: 18 maintenance checks, 11 launcher dry-runs, zero broken links and verified source/archive hashes. Round4 business work remains.",
+    "handoff": "docs/ai/sessions/DOC-20261002.md",
+    "history": [
+      {
+        "at": "2026-10-02T14:02:23.304266+00:00",
+        "summary": "Document organization completed: 18 maintenance checks, 11 launcher dry-runs, zero broken links and verified source/archive hashes. Round4 business work remains.",
+        "result": "completed",
+        "handoff": "docs/ai/sessions/DOC-20261002.md"
+      }
+    ],
+    "ended_at": "2026-10-02T14:02:23.304266+00:00"
+• The diff for A shows "264d263 < " — meaning the embedded version has one extra blank line (line 264 in the extracted range is blank, original doesn't have it). Actually sed -n '27,290p' gives 264 lines; the original is 263 lines. The diff says line 264 of embedded (a blank line) should be deleted. So the content is verbatim except for one extra trailing blank line. Good enough — but the claim "264行" is wrong (file is 263 lines); the extra line is just the blank before </details>. Minor.
+
+  B: IDENTICAL — good, and claimed "135行" but file is 134 lines. Claim off by one.
+
+  Now ai_session.py status output — I only got the head. I need to check for TEST-20261012 running record. Let me grep the full output.    "session_id": "20261002T134716Z-ad39ad5e",
+    "task": "DOC-20261002",
+    "tool": "Codex",
+    "model": "unknown",
+    "status": "completed",
+    "session_id": "20261005T030301Z-13ef86df",
+    "task": "DEPLOY-20261005",
+    "tool": "grok",
+    "model": "grok-4.7",
+    "status": "handed_off",
+    "session_id": "20261012T035733Z-512ed4d7",
+    "task": "TEST-20261012",
+    "tool": "grok",
+    "model": "grok-4.7",
+    "status": "running",
+    "session_id": "20261015T103731Z-22b0f95f",
+    "task": "REPORTING-DEPLOY-20261015",
+    "tool": "Codex",
+    "model": "unknown",
+    "status": "completed",
+TEST-20261012 status is "running" — doc claim confirmed. Also REPORTING-DEPLOY-20261015 (Codex) exists as completed — matches 方案 §1 claim that docs came from Codex session.
+
+  Now check repo facts claimed in execution-plan §5:
+  - psycopg in requirements
+  - Dockerfile python version
+  - compose file
+  - exchange /health
+  - frontend defaults
+  - get_app factory
+  - dev token defaults
+
+  Let me grep.Interesting — psycopg IS in `implementation/deploy/offline/dist/requirements.lock.txt`. The execution-plan §5 claims "URL 使用 postgresql+psycopg，但 requirements 未列 psycopg". Let me check which requirements files exist and whether the main one lacks psycopg. Maybe there are multiple requirements files. Let me glob them and check.Compose file facts:
+  - `postgresql+psycopg://` URL — confirmed (line 19).
+  - Main `requirements.txt` — need to check if psycopg is listed there. The lock file has it, but the plan claims "requirements 未列 psycopg". Let me read implementation/requirements.txt.
+  - `get_app` without `--factory` — confirmed (lines 26, 38, 47 use `apps.core_api.app:get_app` without --factory).
+  - Postgres 16 — confirmed (line 5), matches plan §4.3 claim.
+  - No restart policies for core/storage/exchange/worker — confirmed (only migrate has restart: "no").
+  - Healthcheck only on db and core; core's healthcheck is /health. No nginx service in compose at all! The plan's §4.1 table includes nginx as a service, but the current compose has no nginx — the plan says these are gaps to fix, so that's consistent (plan says compose is reference material needing revision). But note: plan's table presents nginx as part of "部署服务" for the planned topology, fine.
+  - No mock service in current compose; plan lists mock as "仅验收用模拟平台...独立验收 profile" — planned, fine.
+  - storage volume1:/data/volume1, exchange has volume1:ro — matches "exchange 只读授权对象" claim direction.
+
+  Check requirements.txt for psycopg.Confirmed:
+  - `implementation/requirements.txt` does NOT list psycopg — plan §5 claim "requirements 未列 psycopg" is correct for the main requirements.txt. However note the lock file `deploy/offline/dist/requirements.lock.txt` DOES contain psycopg==3.3.4, psycopg-binary, psycopg2, psycopg2-binary. The plan §4.3 says the lock "混有构建机其他库，不能直接作为 Linux 最小生产锁" — consistent (it has both psycopg and psycopg2, likely build machine cruft). So the plan's claim is accurate but slightly imprecise: "requirements 未列 psycopg" — the dev requirements.txt lacks it; the offline lock has it (4 variants). A reviewer might note the plan could have acknowledged the lock already contains psycopg, but since plan says lock is unusable as minimal production lock, it's fine.
+
+  - get_app is a factory function (def get_app()) — confirmed. Compose invokes without --factory. Confirmed gap.
+
+  Next checks:
+  - exchange /health returns only UP.
+  - Frontend defaults 127.0.0.1:8000/8001.
+  - dev token / dev-enroll-token defaults.
+  - storage embedded worker flag (BLYB_STORAGE_EMBEDDED_WORKER exists in compose — set to "0" already; plan says "storage 内嵌 worker 关闭" as P2 verification item — compose already sets it; fine).
+  - PYTHONPATH issue: plan claims uvicorn/worker modules import contracts/core_db at module import time and need PYTHONPATH=/app:/app/packages:/app/plugins. Check Dockerfile for PYTHONPATH and imports.
+  - seed content with demo destinations.
+
+  Also check connection-report.md to verify §3 network facts, and README/NEXT_AI_PROMPT in the package. And the 方案 §1 claim "同目录有 README/connection-report/NEXT_AI_PROMPT/SESSION 等参考文件" — confirmed by ls.
+
+  Let me batch: read Dockerfile, grep dev token, grep 127.0.0.1 in frontend, grep health in exchange app.Confirmed:
+  - Frontend build defaults 127.0.0.1:8000/8001 in prod mode (api.ts:4,7) — plan §5 claim confirmed. And vite dev proxy already uses /core and /storage prefixes — so the plan's proposed "/storage 前缀" aligns with existing dev convention.
+  - Dev tokens: `dev-enroll-token` default exists (README, start.ps1 "不设则仍是 dev-enroll-token"). Plan §5 claim confirmed.
+  - Dockerfile: 3.12-slim confirmed; BLYB_FACTORY=1 set as env. Interesting — the Dockerfile sets `BLYB_FACTORY=1` env var. The plan says "get_app 是工厂，Compose 未显式 --factory". Compose command is `python -m uvicorn apps.core_api.app:get_app` without --factory. But maybe the app module reads BLYB_FACTORY? Let me check whether get_app factory is handled — e.g., `apps/core_api/app.py` might expose `app = get_app()` when BLYB_FACTORY... Actually uvicorn `module:get_app` without --factory would treat get_app as an ASGI app (callable) — get_app() is a function taking no args returning app; uvicorn would call it with (scope, receive, send)? That would fail. Unless BLYB_FACTORY env triggers module-level `app = get_app()`. Let me check how uvicorn handles it. Actually with BLYB_FACTORY=1, maybe there's a wrapper. Let me check app.py around get_app and any module-level app exposure. Also check _bootstrap import behavior.
+
+  Also plan §5: "uvicorn/worker 模块在部分入口先导入 contracts/core_db" — need PYTHONPATH. Dockerfile copies _bootstrap.py and comment says "_bootstrap 接管 sys.path". Does `python -m uvicorn apps.core_api.app:get_app` trigger _bootstrap? Only if apps/__init__ or the app module imports _bootstrap. Let me check.
+
+  Also exchange /health returns only UP — check.
+
+  Also seed demo destinations.
+
+  Also verify plan §3 network facts against connection-report.md — quick read.
+
+  Let me batch reads/greps.connection-report confirms plan §3 facts. Note: connection-report says 前置机系统 "openEuler 22.03 LTS-SP2, x86_64, Linux 5.10" — plan says "openEuler 22.03 x86_64" — consistent.
+
+  Now check:
+  1. `app = None` at core_api/app.py:2193 and `def get_app()` at 2196 — so uvicorn `apps.core_api.app:get_app` without `--factory` would pass get_app function as ASGI app. When a request comes, uvicorn calls get_app(scope, receive, send)? Actually uvicorn treats `app` attribute; if it's a class/function it may instantiate... Without --factory, uvicorn uses the object directly as ASGI callable. get_app() takes no args → TypeError when called with (scope, receive, send). But Dockerfile sets BLYB_FACTORY=1 — does any code path check that? Let me check around line 2193 and search BLYB_FACTORY usage. Actually my grep for BLYB_FACTORY in app.py found nothing (only "app = None" matched). Let me grep BLYB_FACTORY across implementation.
+
+  2. Also check _bootstrap import in apps modules (PYTHONPATH claim).
+
+  3. Check seed demo destinations claim.
+
+  4. Check whether the 方案 missed anything: the multi-review skill mention — 方案 §0 says "按 multi-review Skill v5 执行". Is there a multi-review skill in the repo? The current skill listing shows only built-in skills. Not critical.
+
+  Let me also verify the 3500 / result_type=3 / sub_process_flag claims — those are about external Alibaba docs; offline, can't verify. I could try WebSearch but the AGENTS.md says round-4 offline requirements... that's for round-4 tasks. This is a review; web search is allowed by user ("可自由读取仓库内你需要的参考文件") — user said repo files, didn't prohibit web. But the docs themselves say the mapping is unconfirmed. I can note that these numeric claims (3500, result_type=3, 51/52, 321/323) cannot be verified from the repo and rest on the Codex session's reading of external docs; the docs themselves appropriately flag uncertainty. Maybe check if 数据上报/1、码上放心平台/ has local copies. Let me look quickly.
+
+  Also check README.md and NEXT_AI_PROMPT.md in the reporting package for consistency (e.g., do they contradict the plan?). And SESSION.md.
+
+  Let me batch: grep BLYB_FACTORY, grep _bootstrap imports in apps, read package README/NEXT_AI_PROMPT/SESSION briefly, ls 数据上报 dir.(260721)需求确认单-码上放心平台HIS对接出库销售上传(1).docx
+关于印发《山东省药品经营使用环节全品种信息化追溯体系建设及药品追溯码采集应用工作方案》的通知(1).pdf
+接口地址.txt
+哈希.md
+审查_grok.err
+审查_grok.raw
+审查_kimi.err
+审查_kimi.raw
+审查_zcode.md
+方案.md
+检查_codex.err
+检查_codex.md
+检查_codex.rc
+Key findings so far:
+
+  1. **BLYB_FACTORY=1 is set in Dockerfile but NO code reads it** — grep found only the Dockerfile itself. So the env var is dead. The plan's claim "get_app 是工厂，Compose 未显式 --factory" is confirmed and even worse: `uvicorn apps.core_api.app:get_app` without --factory will break at request time (get_app takes no args; uvicorn will treat the function as ASGI app... actually uvicorn checks if the attribute is a class or function? Without --factory, uvicorn loads `get_app` and uses it as the ASGI app object. When a request arrives it calls get_app(scope, receive, send) → TypeError since get_app() takes 0 args). So plan's P2 verification item is real. Good — plan accurate.
+
+  2. **_bootstrap imports**: `apps/core_api/app.py` — does it import _bootstrap? My grep on apps/ found migrate.py, run_metrics_only.py, seed.py, edge_agent, worker/engine.py importing _bootstrap — but NOT core_api/app.py, storage_service/app.py, exchange_gateway/app.py. So `python -m uvicorn apps.core_api.app:get_app` → imports apps.core_api.app → if that module imports `contracts`/`core_db` (top-level packages under packages/ or plugins?), without _bootstrap having run, sys.path won't include /app/packages — ImportError. Unless uvicorn's working dir... /app is cwd; packages is at /app/packages; `import contracts` needs /app/packages in sys.path. So the plan's claim about PYTHONPATH/_bootstrap is plausible. Let me verify that core_api/app.py imports contracts or core_db at module level.
+
+  3. review/round-1/ contains other reviewers' outputs: 审查_grok.raw, 审查_kimi.raw, 审查_zcode.md, 检查_codex.md etc. So this is a multi-review where 方案.md is the packet and reviewers produce 审查_*/检查_* files. This confirms: 方案.md is the orchestrator's review packet, not itself a review. So for "①方案对用户需求的覆盖度与忠实度": the 方案's role is to set up the review; it embeds the requirement verbatim and the two docs verbatim. That's faithful to its function. But note: the user's need was "进行核查" — the 方案 defers the actual findings to reviewers; as the round-1 packet it covers setup, not conclusions. I should state this clearly.
+
+  4. The 数据上报 dir has 接口地址.txt and a 需求确认单 docx — local original materials. The docs' claims about 321/323 confusion could be checked against 接口地址.txt. Let me read it.
+
+  Also check core_api/app.py imports.Confirmed: `apps/core_api/app.py` line 15, 20, 31 import `contracts`, `core_db`, `workflow_core` at module top level, and it does NOT import `_bootstrap`. So `python -m uvicorn apps.core_api.app:get_app` from /app without PYTHONPATH including /app/packages would fail with ModuleNotFoundError — plan's gap claim is confirmed (assuming contracts/core_db/workflow_core live under packages/). Let me verify quickly where contracts lives. Also `app = None` at line 2193 with `def get_app()` at 2196 — uvicorn without --factory: it will get attribute `get_app` which is a function; uvicorn without --factory treats it as the app instance directly. Actually, uvicorn does check: if the loaded attribute is a class or function and not an ASGI app... No — without --factory, uvicorn uses it as-is as the ASGI callable. get_app(scope, receive, send) → TypeError. So the compose deployment would indeed break. Confirmed gap.
+
+  Wait — but does uvicorn maybe auto-detect? No, uvicorn requires --factory flag for factory functions; otherwise it treats the object as the app. There's a subtlety: uvicorn checks `isinstance` — if it's a function it may still call it? Let me not overstate; the plan itself says "用显式 factory 启动并验证实际可请求，不能仅依赖 Uvicorn 自动猜测" — which is a cautious correct statement. Good.
+
+  Check where contracts package lives.packages/:
+connector_sdk
+contracts
+core_db
+mapping_engine
+storage_backend
+var
+workflow_core
+
+plugins/:
+__pycache__
+app_runtime.py
+core_handlers.py
+destinations
+domains
+formats
+plugin_registry.py
+sources
+__init__.py
+__pycache__
+api.py
+Good. `packages/contracts`, `packages/core_db`, `packages/workflow_core` confirmed — so `import contracts` requires packages/ on sys.path, and core_api/app.py does not import _bootstrap. Plan's PYTHONPATH gap confirmed. NEXT_AI_PROMPT is consistent with the plan.
+
+  Now, remaining verifications worth doing:
+
+  1. Check README.md and SESSION.md of the package for anything contradicting.
+  2. Check the claim "本机历史实测为 CPython 3.14" — requirements.txt comment says "Python 3.14 实测安装" — confirmed.
+  3. Check claim about Dockerfile COPY packages bringing runtime DB risk: Dockerfile copies `apps/ packages/ plugins/ profiles/ migrations/` — note `packages/var` exists! `ls packages/` showed a `var` directory inside packages/. So COPY packages/ would include packages/var — plan's claim "Dockerfile COPY packages 会带入运行数据库的风险" is confirmed and there's actual evidence (packages/var exists). Let me check what's in packages/var.
+  4. Check seed demo destinations claim — seed.py contains demo destinations. Quick grep.
+  5. Check "CPython 3.14 wheelhouse cp314-win_amd64" — check deploy/offline for wheelhouse naming.
+  6. Verify the exchange /health only returns UP — confirmed (line 48-50).
+  7. Check the 方案's own claims: §1 says "同目录有 README/connection-report/NEXT_AI_PROMPT/SESSION 等参考文件" — confirmed by ls.
+
+  Also potential issues in the two docs themselves (② findings):
+
+  - execution-plan §7 P3 example uses `-f deploy/compose/docker-compose.yml` relative to `/opt/blyb/releases/<release-id>/implementation` — matches repo layout. OK.
+  - Plan §6 directory layout: `/data/blyb/exchange/` for exchange SQLite — but Dockerfile VOLUME declares `/data/exchange` and compose uses named volume `exchange:/data/exchange`. The plan's proposed host directory layout (/data/blyb/exchange/) differs from the container-internal path (/data/exchange) — that's fine as host bind mount mapping, not a contradiction, but the plan doesn't explicitly map host dir → container path. Minor.
+  - Plan §4.1 says core "容器内部 8000，不默认映射宿主机公网端口" but current compose maps 8000:8000, 8001:8001, 8002:8002 to host. The plan flags compose as reference material needing revision — but does the plan explicitly flag "compose currently publishes 8000/8001/8002 on all host interfaces" as a gap? Looking at §5 gap table — it does NOT list the port publishing gap! §4.1's target topology says core/storage shouldn't be host-mapped, but the §5 gap list omits "compose publishes 8000-8002 directly, bypassing nginx". That's a real omission in the plan: the current compose exposes all three services on 0.0.0.0, contradicting the planned nginx-only ingress, yet the gap table doesn't call it out. Good finding.
+  - Also compose has no nginx service at all — the plan's table §4.1 includes nginx but §5 gaps don't say "compose缺nginx同源入口服务". The gap "前端构建版默认 127.0.0.1:8000/8001 → 增量支持部署时同源默认" implies nginx but never lists "添加 nginx 服务与 TLS 配置" as a work item. Partially covered by §4.1 topology, but the gap list is the "执行前必须修订" inventory — missing the ingress proxy item is a real gap in the work list.
+  - view-contract: claims about TOP API (3500 limit, result_type=3, sub_process_flag 51/52, "不需要授权" semantics) cannot be verified offline; docs appropriately mark 321/323 and yljg/lsyd as unconfirmed. But result_type=3/51/52 are stated as fact without a "待确认" marker — risk: if Codex misread the docs, these flow into implementation. The contract says "实施时重核版本" at the end which partially covers. Moderate note.
+  - view-contract §4: "ignore_part_success_flag 首期建议1，表示整单解析策略" — the naming suggests "ignore part success"=1 means ignore partial success i.e. treat partial as failure? The doc explains "不等于远端最终处理必成功". OK.
+  - Security: execution-plan §3 says credentials only from DPAPI clixml in original Windows user context — good. But P0 step: "先保留已知主机密钥和旧证据再复测" fine.
+  - One inconsistency: execution-plan §1 says "当前用户要求本次记录、连通性检查和计划，实际部署拟交给另一 AI" — fine.
+  - 方案 §0 note: "本入口不授权提交、部署、SQL、共享环境修改或从历史需求复用授权" — consistent with AGENTS.md.
+  - 方案 §4 says "独立署名" — the 方案 asks reviewers to sign independently.
+
+  Now about ① 方案对用户需求的覆盖度与忠实度：
+
+  User need: "对两份文档进行核查" via multi-review skill v5 (multi-party cross-check, read-only, independent evidence, disclose absences, human final review for conflicts/high-risk/irreversible).
+
+  方案 coverage:
+  - §0 embeds requirement verbatim ✓ (matches user's quoted original)
+  - §1 identifies objects, provenance, review basis ✓
+  - §2/§3 embed both docs verbatim — verified: view-contract identical; execution-plan identical except one extra trailing blank line; line counts in the summaries are wrong (claims 264行/135行; actual 263/134). Minor factual error.
+  - §4 review hints.
+  - What's missing: the 方案 contains no actual review findings — it's a review packet, not a review. If the user expects 方案.md to be the deliverable "核查结论", coverage is 0% on substance. But given round-1 multi-review structure (审查_grok, 审查_kimi, 检查_codex files exist alongside), the 方案 is the orchestrator's packet and the findings come from reviewers. I should state both readings. Also note: §0 mentions "multi-review Skill v5" — I should check if such a skill exists in the repo to verify fidelity. Let me look for it: maybe .ai/ or scripts. Quick glob.
+
+  - 遗漏/偏离/加戏 check: Does 方案 add anything not in the requirement? §1 adds provenance info ("两文档由 Codex 会话产出") — verified true via ai_session status (REPORTING-DEPLOY-20261015, Codex, completed). §1 also states review basis — reasonable operationalization, not 加戏. §4 "核查提示（不构成限制）" — explicitly non-limiting. So fidelity is good overall.
+
+  Potential issue: §0 says user arguments 原话 「...进行核查」 — matches what the user told me verbatim. ✓
+
+  Let me also quickly check packages/var contents and seed demo destinations, and look for multi-review skill definition.blyb.sqlite3
+blyb.sqlite3-shm
+blyb.sqlite3-wal
+packages/var/blyb.sqlite3
+packages/var/blyb.sqlite3-shm
+packages/var/blyb.sqlite3-wal
+Confirmed:
+  - `packages/var/blyb.sqlite3` (plus -shm/-wal) exists — a live runtime SQLite DB inside packages/, which `Dockerfile COPY packages/ /app/packages/` would bake into the image. Plan §5's claim "Dockerfile COPY packages 会带入运行数据库的风险" is not just a risk — it's an actual present exposure. Confirmed, and plan understates it slightly (says "风险", reality: an actual DB file is currently present).
+  - seed.py contains demo dictionaries/destinations — plan's claim about demo seed content confirmed.
+  - No multi-review skill found in the repo (glob no match) — the skill may be user-scope (zcode). Not verifiable from repo; note it.
+
+  One more check: the wheelhouse claim "Windows 的 cp314-win_amd64 wheelhouse" — check deploy/offline for wheelhouse dir. And check the storage embedded worker default (BLYB_STORAGE_EMBEDDED_WORKER) — compose sets "0" already. Fine.
+
+  Also verify claim "本机历史实测为 CPython 3.14" — requirements.txt comment confirms.
+
+  Also worth checking: does exchange service in compose mount volume1 read-only (`volume1:/data/volume1:ro`) — yes line 55. Plan's "exchange 只读授权对象" aligns.
+
+  Potential issues in the docs to report (②):
+
+  A. execution-plan:
+  1. §5 gap table omits the fact that current compose publishes core:8000, storage:8001, exchange:8002 directly on all host interfaces (`ports: ["8000:8000"]` etc.), which contradicts §4.1's planned nginx-only ingress. The gap list covers front-end same-origin but never lists "移除直接端口映射/新增 nginx 服务" as work items. Risk: next AI fixes listed gaps but ships compose that still bypasses nginx, exposing core/storage/exchange on the hospital LAN without TLS. Medium-high.
+  2. §5 gap "Dockerfile COPY packages 会带入运行数据库的风险" understates: packages/var/blyb.sqlite3 (+wal/shm) actually exists in the repo right now; a build today would bake a real runtime DB into the image. Not just risk — current state. Also .dockerignore — check if one exists. Let me check.
+  3. Dockerfile ENV BLYB_FACTORY=1 is dead code — nothing reads it (grep found only Dockerfile). The plan's gap on --factory is right; but the plan doesn't mention the misleading dead env var. Minor.
+  4. §7 P3 example: `docker compose ... run --rm migrate` — migrate service has `restart: "no"` and depends_on db healthy; `run --rm migrate` would work but the compose migrate service also requires BLYB_DATABASE_URL env with ${BLYB_DB_PASSWORD} — env-file provides. OK. But note: compose `run` doesn't wait for depends_on conditions by default in v2? Actually `docker compose run` does start dependencies but does NOT respect `condition: service_healthy` (depends_on conditions are ignored by `run` in some versions — actually compose v2 `run` starts linked services but doesn't wait for healthy conditions). So `run --rm migrate` could race against db readiness. The plan's own example could fail intermittently; the plan demands "失败迁移禁止拉起" elsewhere. Worth flagging as a technical nit: the example should use `up -d db` (they do) then wait for health before `run --rm migrate`, or use `docker compose up migrate --wait`? They do `up -d db` first, then run migrate — db might not be healthy yet when migrate runs. Minor race in the example. Given the plan says the example is illustrative ("例如"), low-medium.
+  5. §4.3: "优先验证现有 3.14 版本线" vs Dockerfile 3.12-slim — the plan wants to prefer 3.14 on Linux, but many deps (pydantic 2.13, sqlalchemy) support 3.14? pydantic ≥2.13 does support 3.14. Reasonable. Not an issue, though "优先验证现有 3.14" slightly conflicts with "现有 Dockerfile 使用 3.12-slim" — it says verify 3.14 first but the existing artifact is 3.12; either way it requires verification. Fine.
+  6. §3: "前置机 `<frontend-host>4:<ssh-port>` 可 SSH 登录" — connection-report confirms. Plan §3 says "openEuler 22.03 x86_64" — report says 22.03 LTS-SP2. Consistent.
+  7. Plan §11 外部输入清单 — consistent with connection-report.
+  8. Plan §8 matrix: A04 "恰好一个任务执行器" — good. B01-B05 numbered but note clashes with project's external blocker list B01-B09 — the plan explicitly disclaims this. Good.
+  9. One more: §7 P1 "尚无 Git 时先创建...再初始化 Git" — repo: does .git exist? Root listing shows no .git but hidden dirs not shown. There's .gitignore in root. Let me check git status quickly (read-only). Actually `git rev-parse` is read-only.
+
+  B. view-contract:
+  1. §5 states as fact: "文档 result_type=3 表示处理成功；sub_process_flag=51为全部成功，52为部分成功" and §4 "列表长度上限为3500" — these are unverifiable from the repo; local copies in 数据上报/ include a docx 需求确认单 and PDFs. The contract itself flags 321/323 and yljg/lsyd as unconfirmed but presents result_type/51/52/3500 without the same caution marker. §7 does say "实施时重核版本". Moderate residual risk.
+  2. §4 bill_time "明确GMT+8/来源时区转换" — TOP protocol timestamp format is typically "yyyy-MM-dd HH:mm:ss" in GMT+8; fine.
+  3. §2.1: `source_event_seq 单调序号，可选` — good. `expected_code_count` — good.
+  4. Consistency between the two docs: execution-plan §12 & view-contract §1 both give the same gateway/method — consistent. execution-plan §8 B01-B05 vs view-contract §6 离线验收清单 — the contract's list includes "3500边界、父子包装码..." which maps to B03; B01 视图增量 maps; coverage coherent. One mismatch: plan's acceptance matrix has no item for 对账 (reconciliation) explicitly — B02/B04 partially cover; view-contract §6 对账 （数量→单据号→码集合） has no corresponding acceptance number in the plan's matrix. Actually B04 状态处理 and the P4/P6 mention 对账. The matrix lacks an explicit "对账演练" acceptance (comparing counts/bills/codes against platform). P4 mentions "回执与对账" in worker职责 but acceptance matrix B-items don't include reconciliation verification. Minor gap.
+  5. view-contract §6 "指南列有 billcount/searchbill 等方法" — again external, unverifiable offline, but flagged with "必须核实后再使用". Good.
+
+  C. 方案.md itself (①):
+  1. 行数声明错误： §2 claims execution-plan 264行 (actual 263); §3 claims view-contract 135行 (actual 134). Both off by one — because the embed includes the trailing blank line. Trivial but it's a factual error in a document whose core claim is "逐字嵌入". The content itself is verbatim (diff confirms; A has one extra blank line, B identical).
+  2. 覆盖度： 方案 faithfully embeds requirement and both docs, identifies provenance (verified: Codex/REPORTING-DEPLOY-20261015 completed session exists), states review basis. As a review packet it's complete. But if judged as the answer to "进行核查", it contains zero findings — the actual review is delegated to reviewers (审查_*.md files in the same dir). I should report this structural fact: 方案本身不含核查结论； round-1 的结论在 审查_grok.raw/审查_kimi.raw/审查_zcode.md/检查_codex.md 等文件。Whether that's a "遗漏" depends on the intended division of labor. The user to me explicitly frames 方案.md as 待审方案 and asks me to check coverage/fidelity — so I note: 方案对需求的覆盖是"搭建审查框架"，不含实质核查结论； 若用户预期方案本身给出核查结论，则覆盖不足； 若方案仅是 multi-review 的分发包，则忠实。
+  3. 加戏 check: §0's 命令入口附注 adds constraints ("本入口不授权提交、部署、SQL...") — presented as skill-rule restatement, consistent with AGENTS.md spirit; not contradicting user. §1 adds provenance/basis — grounded. No significant 加戏.
+  4. 方案 §1 says "两文档由 Codex 会话（任务 REPORTING-DEPLOY-20261015）产出" — verified via ai_session status. ✓
+  5. §4 "核查提示" says 独立署名 etc. — fine.
+
+  One more check — .dockerignore existence, and git presence. Also check whether compose's `ports` truly bind 0.0.0.0 (yes, "8000:8000" binds all interfaces by default).
+
+  Let me do the final quick checks.
+
+Dockerfile
+---
+README.md
+build_offline.py
+dist
+---
+fatal: not a git repository (or any of the parent directories): .git
+• Confirmed:
+  - No `.dockerignore` in implementation/ (only Dockerfile matched grep -i docker in ls -a). So plan's claim about needing .dockerignore is confirmed — and combined with packages/var/blyb.sqlite3 present, a docker build today would bake a real runtime SQLite DB into the image.
+  - Repo root is NOT a git repository — plan P1's "尚无 Git 时先创建...再初始化 Git" matches reality.
+  - deploy/offline/ has build_offline.py and dist — no visible wheelhouse dir at that level; wheelhouse may be under dist. Not critical; the plan's claim about cp314-win_amd64 wheelhouse — let me skip; requirements.txt comment "Python 3.14 实测安装" supports the 3.14 claim, and deploy/offline/dist/requirements.lock.txt exists (which the plan says is polluted with build-machine libs — it has both psycopg and psycopg2, consistent).
+
+  I have enough evidence. Now write the review. Structure:
+
+  一、结论摘要
+  二、① 方案对需求的覆盖度与忠实度（逐条）
+  三、② 自发发现的问题（对方案、对两份待审文档），分级
+  四、未能核实项（披露缺席）
+
+  Keep it in Chinese, cite section numbers and evidence. Be candid about what's verified vs not.
+
+To resume this session: kimi -r session_cc3e3c75-3efa-4f83-9b7f-6b22e10f156d

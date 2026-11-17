@@ -1,0 +1,40 @@
+{
+  "at_utc": "2026-10-16T23:04:29.893548+00:00",
+  "protected_baseline_files": 256,
+  "unexpected_original_changes": [],
+  "local_links_checked": 46,
+  "broken_links": [],
+  "script_syntax": [
+    "probe_review.py",
+    "run_local_tests.py",
+    "verify_review.py"
+  ],
+  "local_original_tests_rerun": {
+    "tests": 47,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 47
+  },
+  "initial_environment_run": {
+    "tests": 47,
+    "failures": 12,
+    "errors": 0,
+    "skipped": 5,
+    "passed": 30
+  },
+  "historical_full_regression_not_rerun": {
+    "tests": 283,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 6,
+    "passed": 277
+  },
+  "offline_observations": 16,
+  "issues_reproduced": 16,
+  "diff_check_exit_code": 0,
+  "private_key_markers_in_deliverables": [],
+  "credentials_read_this_task": false,
+  "remote_access_this_task": false,
+  "passed": true
+}

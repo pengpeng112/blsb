@@ -1,0 +1,59 @@
+{
+  "release_id": "src-20261022T103000Z",
+  "built_at": "2026-10-22T09:58:53.022185+00:00",
+  "images": {
+    "backend": "sha256:269792e1fc1b1f500a8dd66fb28990d5eb938743f38a43d4601c62ae91c06fbe",
+    "nginx": "sha256:65645c7bb6a0661892a8b03b89d0743208a18dd2f3f17a54ef4b76fb8e2f2a10",
+    "pg": "sha256:a902560563d3a5661228585f53474c5065e7f273b21ffd77e555a8b5682c5690"
+  },
+  "image_tags": {
+    "backend": "blyb/backend:src-20261022T103000Z",
+    "nginx": "blyb/nginx:src-20261022T103000Z",
+    "pg": "blyb/pg:src-20261022T103000Z"
+  },
+  "backend": {
+    "tag": "blyb/backend:src-20261022T103000Z",
+    "base_image": "sha256:432318a225333ca51cc3b0d52a828a5a3ba6b89f8a9ee4e772defda39004dbd6",
+    "digest": "sha256:269792e1fc1b1f500a8dd66fb28990d5eb938743f38a43d4601c62ae91c06fbe",
+    "pip_freeze": [
+      "SQLAlchemy==2.0.49",
+      "annotated-doc==0.0.5",
+      "annotated-types==0.8.0",
+      "anyio==4.15.1",
+      "certifi==2026.10.19",
+      "cffi==2.1.1",
+      "click==8.5.0",
+      "cryptography==50.0.2",
+      "fastapi==0.136.0",
+      "greenlet==3.5.6",
+      "h11==0.16.0",
+      "httpcore==1.0.9",
+      "httpx==0.28.1",
+      "idna==3.20",
+      "oracledb==3.4.2",
+      "psycopg-binary==3.3.4",
+      "psycopg==3.3.4",
+      "pycparser==3.11",
+      "pydantic==2.13.2",
+      "pydantic_core==2.46.2",
+      "starlette==1.9.0",
+      "typing-inspection==0.4.4",
+      "typing_extensions==4.16.0",
+      "uvicorn==0.44.0"
+    ]
+  },
+  "runtime_lock": "见 backend.pip_freeze（容器内 pip freeze，Linux x86_64）",
+  "acceptance": "DEP-A01—A13（基础）；DEP-B01—B06（离线功能另测）",
+  "delta": {
+    "base_release": "fb-20261021T164800Z",
+    "files": [
+      "plugins/sources/db_view/drug_trace.py",
+      "plugins/sources/db_view/source_profiles.py",
+      "plugins/domains/drug_trace/service.py",
+      "plugins/domains/drug_trace/routes.py",
+      "plugins/domains/drug_trace/source_config.py",
+      "deploy/linux/restore.sh"
+    ],
+    "dependencies_changed": false
+  }
+}

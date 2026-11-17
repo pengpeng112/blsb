@@ -1,0 +1,63 @@
+{
+  "inventory_exit": 0,
+  "project_docs_check_exit": 1,
+  "broken_links_before": 1271,
+  "broken_links_after": 1271,
+  "new_broken_links_since_task_start": [],
+  "removed_broken_links": 0,
+  "source_or_archive_hash_mismatches": [],
+  "protected_files_checked": 27,
+  "protected_hash_mismatches": [],
+  "baseline_snapshot_hash_mismatches": [],
+  "original_task_bodies": [
+    {
+      "file": "docs/development/platform-rectification-20261111/README.md",
+      "original_body_preserved": true
+    },
+    {
+      "file": "docs/development/platform-rectification-20261111/DAILY_PROMPTS.md",
+      "original_body_preserved": true
+    },
+    {
+      "file": "docs/development/platform-rectification-20261111/RT-03-调度状态机与告警中心深修.md",
+      "original_body_preserved": true
+    },
+    {
+      "file": "docs/development/platform-rectification-20261111/RT-04-传染病真影子与医保嵌套契约.md",
+      "original_body_preserved": true
+    },
+    {
+      "file": "docs/development/platform-rectification-20261111/RT-05-运营写闭环与遗留页全面升级.md",
+      "original_body_preserved": true
+    },
+    {
+      "file": "docs/development/platform-rectification-20261111/RT-06-多业务扩展与全栈端到端终验.md",
+      "original_body_preserved": true
+    }
+  ],
+  "revision_markdown_files": {
+    "DAILY_PROMPTS.md": 107,
+    "EXECUTION_CONTRACT.md": 128,
+    "README.md": 63,
+    "RT-03.md": 156,
+    "RT-04.md": 206,
+    "RT-05.md": 163,
+    "RT-06.md": 180,
+    "SOURCE_REVIEW.md": 93
+  },
+  "backend_local": {
+    "passed": 100,
+    "skipped": 1,
+    "exit": 0
+  },
+  "independent_probes": {
+    "passed": 43,
+    "exit": 0
+  },
+  "frontend": {
+    "passed": 87,
+    "exit": 0,
+    "build_exit": 0
+  },
+  "backend_full_regression_this_task": "not_run"
+}

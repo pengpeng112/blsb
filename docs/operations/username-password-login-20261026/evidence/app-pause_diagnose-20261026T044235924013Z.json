@@ -1,0 +1,25 @@
+{
+  "host": "app",
+  "phase": "pause_diagnose",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T04:42:35.923963+00:00",
+  "result": {
+    "units": {
+      "exit_code": 0,
+      "summary": "MainPID=1966953\nId=blyb-mapping-recovery-20261026.service\nActiveState=active\nSubState=running\n\nId=blyb-daily-upload.timer\nActiveState=active\nSubState=waiting\n"
+    },
+    "children": {
+      "exit_code": 0,
+      "summary": "[{\"pid\": 7943, \"state\": \"State:\\tS (sleeping)\"}]\n"
+    },
+    "folder_exists": true,
+    "files": [],
+    "interruption_exists": false,
+    "runner_states": [
+      {
+        "pid": 1966953,
+        "state": "State:\tS (sleeping)"
+      }
+    ]
+  }
+}

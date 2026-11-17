@@ -1,0 +1,340 @@
+{
+ "code": "12604",
+ "schema_version": 2,
+ "envelope_ref": "fields/_envelope.json",
+ "root": "input",
+ "length_unit": "UNCONFIRMED",
+ "children": [
+  {
+   "code": "data",
+   "type": "array",
+   "items": {
+    "code": "data",
+    "type": "object",
+    "children": [
+     {
+      "code": "rcd_id",
+      "name": "记录ID",
+      "type": "string",
+      "max_len": 50,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 48,
+       "row": 2
+      },
+      "notes": "本表唯一性标识"
+     },
+     {
+      "code": "med_chrgitm_type",
+      "name": "医疗收费项目类别",
+      "type": "string",
+      "max_len": 6,
+      "dict": null,
+      "has_code_dict": true,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 48,
+       "row": 3
+      },
+      "notes": "参照“医疗收费项目类别med_chrgitm_type”"
+     },
+     {
+      "code": "inhosp_chrgitm_id",
+      "name": "院内收费项目ID",
+      "type": "string",
+      "max_len": 50,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 48,
+       "row": 4
+      }
+     },
+     {
+      "code": "inhosp_chrgitm_name",
+      "name": "院内收费项目名称",
+      "type": "string",
+      "max_len": 255,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 48,
+       "row": 5
+      }
+     },
+     {
+      "code": "hilist_type",
+      "name": "医保目录类型",
+      "type": "string",
+      "max_len": 3,
+      "dict": null,
+      "has_code_dict": true,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 48,
+       "row": 6
+      },
+      "notes": "药品、耗材、服务"
+     },
+     {
+      "code": "hilist_code",
+      "name": "医保目录编码",
+      "type": "string",
+      "max_len": 50,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 48,
+       "row": 7
+      },
+      "notes": "应符合国家医保局关于药品、耗材和服务的编码规则"
+     },
+     {
+      "code": "hilist_name",
+      "name": "医保项目名称",
+      "type": "string",
+      "max_len": 200,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 48,
+       "row": 8
+      }
+     },
+     {
+      "code": "spec",
+      "name": "规格",
+      "type": "string",
+      "max_len": 200,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 48,
+       "row": 9
+      }
+     },
+     {
+      "code": "mol",
+      "name": "型号",
+      "type": "string",
+      "max_len": 255,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 48,
+       "row": 10
+      }
+     },
+     {
+      "code": "dosform",
+      "name": "剂型",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 48,
+       "row": 11
+      }
+     },
+     {
+      "code": "unt",
+      "name": "单位",
+      "type": "string",
+      "max_len": 100,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 48,
+       "row": 12
+      },
+      "notes": "包装单位、最小计价单位"
+     },
+     {
+      "code": "lmtpric",
+      "name": "限价",
+      "type": "number",
+      "max_len": 16,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 48,
+       "row": 13
+      }
+     },
+     {
+      "code": "begn_date",
+      "name": "开始日期",
+      "type": "date",
+      "max_len": null,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 48,
+       "row": 14
+      }
+     },
+     {
+      "code": "end_date",
+      "name": "终止日期",
+      "type": "date",
+      "max_len": null,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 48,
+       "row": 15
+      }
+     },
+     {
+      "code": "vali_flag",
+      "name": "有效标志",
+      "type": "string",
+      "max_len": 3,
+      "dict": null,
+      "has_code_dict": true,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 48,
+       "row": 16
+      },
+      "notes": "参照“dic_flag”"
+     }
+    ]
+   }
+  }
+ ]
+}

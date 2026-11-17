@@ -1,0 +1,20 @@
+{
+ "input": {
+  "hospitalCode": "合成hospitalCo",
+  "hospitalName": "合成hospitalNa",
+  "hospitalAdmdvs": "合成hospitalAd",
+  "fixHospitalCode": "合成fixHospita",
+  "fixHospitalName": "合成fixHospita",
+  "systemId": "合成systemId",
+  "medInsPsnNo": "合成medInsPsnN",
+  "visitNumber": "合成visitNumbe",
+  "setlType": 1,
+  "hospitalSetNo": "合成hospitalSe",
+  "medSetNo": "合成medSetNo",
+  "setlId": "合成setlId",
+  "refundFlag": 1,
+  "refundHospitalSetNo": "合成refundHosp",
+  "lastChangeTime": "2026-02-01 08:00:00",
+  "disableFlag": 1
+ }
+}

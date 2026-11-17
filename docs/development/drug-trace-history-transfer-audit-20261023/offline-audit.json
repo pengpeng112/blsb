@@ -1,0 +1,253 @@
+{
+  "captured_at": "2026-10-23T02:42:45.988013+00:00",
+  "files": [
+    {
+      "file": "part_1.xlsx",
+      "rows": 20000,
+      "expected_rows": 20000,
+      "source_matches_recorded_sha256": true,
+      "source_unchanged_during_audit": true,
+      "sqlite_row_content_and_locations_match": true
+    },
+    {
+      "file": "part_2.xlsx",
+      "rows": 20000,
+      "expected_rows": 20000,
+      "source_matches_recorded_sha256": true,
+      "source_unchanged_during_audit": true,
+      "sqlite_row_content_and_locations_match": true
+    },
+    {
+      "file": "part_3.xlsx",
+      "rows": 20000,
+      "expected_rows": 20000,
+      "source_matches_recorded_sha256": true,
+      "source_unchanged_during_audit": true,
+      "sqlite_row_content_and_locations_match": true
+    },
+    {
+      "file": "part_4.xlsx",
+      "rows": 20000,
+      "expected_rows": 20000,
+      "source_matches_recorded_sha256": true,
+      "source_unchanged_during_audit": true,
+      "sqlite_row_content_and_locations_match": true
+    },
+    {
+      "file": "part_5.xlsx",
+      "rows": 20000,
+      "expected_rows": 20000,
+      "source_matches_recorded_sha256": true,
+      "source_unchanged_during_audit": true,
+      "sqlite_row_content_and_locations_match": true
+    },
+    {
+      "file": "part_6.xlsx",
+      "rows": 20000,
+      "expected_rows": 20000,
+      "source_matches_recorded_sha256": true,
+      "source_unchanged_during_audit": true,
+      "sqlite_row_content_and_locations_match": true
+    },
+    {
+      "file": "part_7.xlsx",
+      "rows": 20000,
+      "expected_rows": 20000,
+      "source_matches_recorded_sha256": true,
+      "source_unchanged_during_audit": true,
+      "sqlite_row_content_and_locations_match": true
+    },
+    {
+      "file": "part_8.xlsx",
+      "rows": 20000,
+      "expected_rows": 20000,
+      "source_matches_recorded_sha256": true,
+      "source_unchanged_during_audit": true,
+      "sqlite_row_content_and_locations_match": true
+    },
+    {
+      "file": "part_9.xlsx",
+      "rows": 20000,
+      "expected_rows": 20000,
+      "source_matches_recorded_sha256": true,
+      "source_unchanged_during_audit": true,
+      "sqlite_row_content_and_locations_match": true
+    },
+    {
+      "file": "part_10.xlsx",
+      "rows": 20000,
+      "expected_rows": 20000,
+      "source_matches_recorded_sha256": true,
+      "source_unchanged_during_audit": true,
+      "sqlite_row_content_and_locations_match": true
+    },
+    {
+      "file": "part_11.xlsx",
+      "rows": 20000,
+      "expected_rows": 20000,
+      "source_matches_recorded_sha256": true,
+      "source_unchanged_during_audit": true,
+      "sqlite_row_content_and_locations_match": true
+    },
+    {
+      "file": "part_12.xlsx",
+      "rows": 20000,
+      "expected_rows": 20000,
+      "source_matches_recorded_sha256": true,
+      "source_unchanged_during_audit": true,
+      "sqlite_row_content_and_locations_match": true
+    },
+    {
+      "file": "part_13.xlsx",
+      "rows": 20000,
+      "expected_rows": 20000,
+      "source_matches_recorded_sha256": true,
+      "source_unchanged_during_audit": true,
+      "sqlite_row_content_and_locations_match": true
+    },
+    {
+      "file": "part_14.xlsx",
+      "rows": 20000,
+      "expected_rows": 20000,
+      "source_matches_recorded_sha256": true,
+      "source_unchanged_during_audit": true,
+      "sqlite_row_content_and_locations_match": true
+    },
+    {
+      "file": "part_15.xlsx",
+      "rows": 20000,
+      "expected_rows": 20000,
+      "source_matches_recorded_sha256": true,
+      "source_unchanged_during_audit": true,
+      "sqlite_row_content_and_locations_match": true
+    },
+    {
+      "file": "part_16.xlsx",
+      "rows": 20000,
+      "expected_rows": 20000,
+      "source_matches_recorded_sha256": true,
+      "source_unchanged_during_audit": true,
+      "sqlite_row_content_and_locations_match": true
+    },
+    {
+      "file": "part_17.xlsx",
+      "rows": 20000,
+      "expected_rows": 20000,
+      "source_matches_recorded_sha256": true,
+      "source_unchanged_during_audit": true,
+      "sqlite_row_content_and_locations_match": true
+    },
+    {
+      "file": "part_18.xlsx",
+      "rows": 20000,
+      "expected_rows": 20000,
+      "source_matches_recorded_sha256": true,
+      "source_unchanged_during_audit": true,
+      "sqlite_row_content_and_locations_match": true
+    },
+    {
+      "file": "part_19.xlsx",
+      "rows": 20000,
+      "expected_rows": 20000,
+      "source_matches_recorded_sha256": true,
+      "source_unchanged_during_audit": true,
+      "sqlite_row_content_and_locations_match": true
+    },
+    {
+      "file": "part_20.xlsx",
+      "rows": 20000,
+      "expected_rows": 20000,
+      "source_matches_recorded_sha256": true,
+      "source_unchanged_during_audit": true,
+      "sqlite_row_content_and_locations_match": true
+    },
+    {
+      "file": "part_21.xlsx",
+      "rows": 20000,
+      "expected_rows": 20000,
+      "source_matches_recorded_sha256": true,
+      "source_unchanged_during_audit": true,
+      "sqlite_row_content_and_locations_match": true
+    },
+    {
+      "file": "part_22.xlsx",
+      "rows": 20000,
+      "expected_rows": 20000,
+      "source_matches_recorded_sha256": true,
+      "source_unchanged_during_audit": true,
+      "sqlite_row_content_and_locations_match": true
+    },
+    {
+      "file": "part_23.xlsx",
+      "rows": 20000,
+      "expected_rows": 20000,
+      "source_matches_recorded_sha256": true,
+      "source_unchanged_during_audit": true,
+      "sqlite_row_content_and_locations_match": true
+    },
+    {
+      "file": "part_24.xlsx",
+      "rows": 20000,
+      "expected_rows": 20000,
+      "source_matches_recorded_sha256": true,
+      "source_unchanged_during_audit": true,
+      "sqlite_row_content_and_locations_match": true
+    },
+    {
+      "file": "part_25.xlsx",
+      "rows": 9613,
+      "expected_rows": 9613,
+      "source_matches_recorded_sha256": true,
+      "source_unchanged_during_audit": true,
+      "sqlite_row_content_and_locations_match": true
+    }
+  ],
+  "originals_modified": false,
+  "previous_database_modified": false,
+  "business_keys_or_codes_returned": false,
+  "live_queries": 0,
+  "uploads": 0,
+  "summary": {
+    "rows": 489613,
+    "unique_bills": 205334,
+    "unique_codes": 473614,
+    "unique_bill_code_pairs": 489582,
+    "unique_exact_rows": 489613,
+    "bills_with_multiple_times": 14,
+    "codes_with_multiple_bills": 3562,
+    "bill_time_min": "2026-07-23 00:02:14",
+    "bill_time_max": "2026-10-11 23:52:04",
+    "repeated_bill_code_rows": 31,
+    "repeated_exact_rows": 0,
+    "numeric_code_cells": 0
+  },
+  "previous_summary_matches": {
+    "rows": true,
+    "unique_bills": true,
+    "unique_codes": true,
+    "unique_bill_code_pairs": true,
+    "unique_exact_rows": true,
+    "bills_with_multiple_times": true,
+    "codes_with_multiple_bills": true,
+    "bill_time_min": true,
+    "bill_time_max": true,
+    "repeated_bill_code_rows": true,
+    "repeated_exact_rows": true,
+    "numeric_code_cells": true
+  },
+  "per_day_matches": true,
+  "per_month_matches": true,
+  "validation_issues": {},
+  "rows_streamed_independently": 489613,
+  "workbook_sheet_counts_match": true,
+  "workbook_sheet_counts": {
+    "核对说明": 15,
+    "逐文件": 25,
+    "逐日分布": 81,
+    "同单同码再次出现": 62,
+    "同单号多个时间": 62,
+    "同码跨单待核": 3562
+  },
+  "passed": true,
+  "elapsed_seconds": 36.44
+}

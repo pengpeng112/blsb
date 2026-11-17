@@ -1,0 +1,24 @@
+/* LT-02 设计令牌（任务书 §步骤2 命名，全站唯一取值来源）。
+   用法：<any style="color: var(--c-primary)">；新组件一律用变量，不再写死色值。 */
+:root {
+  --c-primary: #1f6feb;  --c-primary-weak: #e8f0fe;
+  --c-success: #1a7f37;  --c-success-weak: #e6f4ea;
+  --c-warning: #b45309;  --c-warning-weak: #fef3c7;
+  --c-danger:  #c62828;  --c-danger-weak:  #fde8e8;
+  --c-info:    #0e7490;  --c-info-weak:    #e0f2f1;
+  --c-mock:    #7c3aed;  --c-mock-weak:    #f3e8ff;   /* Mock 数据专用色，醒目 */
+  --c-text: #1f2328; --c-text-2: #57606a; --c-text-3: #8c959f;
+  --c-border: #d0d7de; --c-bg: #f6f8fa; --c-surface: #ffffff;
+  --radius: 6px; --radius-lg: 10px;
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 24px; --space-6: 32px;
+  --font: "Microsoft YaHei", "PingFang SC", system-ui, sans-serif;
+  --font-mono: Consolas, "Courier New", monospace;
+  --shadow-1: 0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.08);
+  --sidebar-w: 220px; --topbar-h: 52px;
+  /* RT-01 兼容别名：LT-06B/07 新页面已用的变量名统一指回 LT-02 令牌，
+     消除未定义变量回退默认值导致的样式漂移。 */
+  --border: var(--c-border);
+  --card: var(--c-surface);
+  --muted: var(--c-text-2);
+  --bg-alt: var(--c-bg);
+}

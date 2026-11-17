@@ -1,0 +1,11 @@
+{
+  "exit_code": 0,
+  "result": {
+    "allowed_top_methods": [
+      "alibaba.alihealth.drugtrace.top.yljg.query.billstatus",
+      "alibaba.alihealth.drugtrace.top.yljg.uploadretail"
+    ],
+    "inventory_enabled": false,
+    "retained_per_user": true
+  }
+}

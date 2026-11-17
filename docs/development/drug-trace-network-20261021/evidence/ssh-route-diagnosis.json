@@ -1,0 +1,12 @@
+{
+  "source": "<frontend-host>4",
+  "destination": "<prod-host>:22",
+  "read_only": true,
+  "exit_code": 0,
+  "stdout": "__BLYB_ROUTE__\n<prod-host> dev ens9 src <frontend-host>4 uid 0 \n    cache \n__BLYB_SSH22__\n{\"connected\": true, \"banner\": \"SSH-2.0-OpenSSH_8.8\"}\n",
+  "stderr": "",
+  "local_direct_ssh_tcp": {
+    "connected": false,
+    "error_type": "ConnectionRefusedError"
+  }
+}

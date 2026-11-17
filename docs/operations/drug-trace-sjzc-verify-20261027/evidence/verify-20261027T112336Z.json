@@ -1,0 +1,1119 @@
+{
+  "authorization": "User explicit authorization 2026-10-27 ('授权执行') read-only verification via sjzc controlled connector (READY_HIS precedent 2026-10-23)",
+  "budget_seconds": 300,
+  "per_query_timeout_seconds": 15,
+  "source_writes": 0,
+  "uploads": 0,
+  "tables_accessed": [
+    "PHARMACY.DRUG_PRESC_MASTER",
+    "DRUG_USER.MED_TRACE_RECORD"
+  ],
+  "identity": {
+    "ok": true,
+    "rows": [
+      {
+        "LOGIN_USER": "READY_HIS",
+        "SERVICE_NAME": "his"
+      }
+    ],
+    "seconds": 0.1233
+  },
+  "trace_index": {
+    "ok": true,
+    "rows": [
+      {
+        "INDEX_NAME": "med_trace_record_trace_billno",
+        "COLUMN_NAME": "TRACE_BILLNO",
+        "COLUMN_POSITION": 1
+      }
+    ],
+    "seconds": 0.0022
+  },
+  "results": [
+    {
+      "grp": "normal_no_code",
+      "tile": 1,
+      "sql01": {
+        "ok": true,
+        "rows": [
+          {
+            "MASTER_ROWS": 1,
+            "PRESC_SOURCE_RAW": 0,
+            "FLAG_RAW": 1,
+            "REFUND_FLAG_RAW": null,
+            "IN_AUTHORIZED_DAY": 1
+          }
+        ],
+        "seconds": 0.0056
+      },
+      "sql02": {
+        "ok": true,
+        "rows": [],
+        "seconds": 0.0054
+      },
+      "sql03": {
+        "ok": true,
+        "rows": [
+          {
+            "EXAMINED_ROWS": 0,
+            "MAY_BE_TRUNCATED": 0,
+            "EXACT_KEY_ROWS": null,
+            "OTHER_DATE_ROWS": null,
+            "OTHER_STORE_ROWS": null,
+            "NONEMPTY_T_ROWS": null
+          }
+        ],
+        "seconds": 0.0057
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 2,
+      "sql01": {
+        "ok": true,
+        "rows": [
+          {
+            "MASTER_ROWS": 1,
+            "PRESC_SOURCE_RAW": 0,
+            "FLAG_RAW": 1,
+            "REFUND_FLAG_RAW": null,
+            "IN_AUTHORIZED_DAY": 1
+          }
+        ],
+        "seconds": 0.0059
+      },
+      "sql02": {
+        "ok": true,
+        "rows": [],
+        "seconds": 0.008
+      },
+      "sql03": {
+        "ok": true,
+        "rows": [
+          {
+            "EXAMINED_ROWS": 0,
+            "MAY_BE_TRUNCATED": 0,
+            "EXACT_KEY_ROWS": null,
+            "OTHER_DATE_ROWS": null,
+            "OTHER_STORE_ROWS": null,
+            "NONEMPTY_T_ROWS": null
+          }
+        ],
+        "seconds": 0.006
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 3,
+      "sql01": {
+        "ok": true,
+        "rows": [
+          {
+            "MASTER_ROWS": 1,
+            "PRESC_SOURCE_RAW": 0,
+            "FLAG_RAW": 1,
+            "REFUND_FLAG_RAW": null,
+            "IN_AUTHORIZED_DAY": 1
+          }
+        ],
+        "seconds": 0.0051
+      },
+      "sql02": {
+        "ok": true,
+        "rows": [],
+        "seconds": 0.0068
+      },
+      "sql03": {
+        "ok": true,
+        "rows": [
+          {
+            "EXAMINED_ROWS": 0,
+            "MAY_BE_TRUNCATED": 0,
+            "EXACT_KEY_ROWS": null,
+            "OTHER_DATE_ROWS": null,
+            "OTHER_STORE_ROWS": null,
+            "NONEMPTY_T_ROWS": null
+          }
+        ],
+        "seconds": 0.0039
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 4,
+      "sql01": {
+        "ok": true,
+        "rows": [
+          {
+            "MASTER_ROWS": 1,
+            "PRESC_SOURCE_RAW": 0,
+            "FLAG_RAW": 1,
+            "REFUND_FLAG_RAW": null,
+            "IN_AUTHORIZED_DAY": 1
+          }
+        ],
+        "seconds": 0.0067
+      },
+      "sql02": {
+        "ok": true,
+        "rows": [],
+        "seconds": 0.0053
+      },
+      "sql03": {
+        "ok": true,
+        "rows": [
+          {
+            "EXAMINED_ROWS": 0,
+            "MAY_BE_TRUNCATED": 0,
+            "EXACT_KEY_ROWS": null,
+            "OTHER_DATE_ROWS": null,
+            "OTHER_STORE_ROWS": null,
+            "NONEMPTY_T_ROWS": null
+          }
+        ],
+        "seconds": 0.0042
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 5,
+      "sql01": {
+        "ok": true,
+        "rows": [
+          {
+            "MASTER_ROWS": 1,
+            "PRESC_SOURCE_RAW": 0,
+            "FLAG_RAW": 1,
+            "REFUND_FLAG_RAW": null,
+            "IN_AUTHORIZED_DAY": 1
+          }
+        ],
+        "seconds": 0.0097
+      },
+      "sql02": {
+        "ok": true,
+        "rows": [],
+        "seconds": 0.005
+      },
+      "sql03": {
+        "ok": true,
+        "rows": [
+          {
+            "EXAMINED_ROWS": 0,
+            "MAY_BE_TRUNCATED": 0,
+            "EXACT_KEY_ROWS": null,
+            "OTHER_DATE_ROWS": null,
+            "OTHER_STORE_ROWS": null,
+            "NONEMPTY_T_ROWS": null
+          }
+        ],
+        "seconds": 0.0091
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 6,
+      "sql01": {
+        "ok": true,
+        "rows": [
+          {
+            "MASTER_ROWS": 1,
+            "PRESC_SOURCE_RAW": 0,
+            "FLAG_RAW": 1,
+            "REFUND_FLAG_RAW": null,
+            "IN_AUTHORIZED_DAY": 1
+          }
+        ],
+        "seconds": 0.0039
+      },
+      "sql02": {
+        "ok": true,
+        "rows": [],
+        "seconds": 0.012
+      },
+      "sql03": {
+        "ok": true,
+        "rows": [
+          {
+            "EXAMINED_ROWS": 0,
+            "MAY_BE_TRUNCATED": 0,
+            "EXACT_KEY_ROWS": null,
+            "OTHER_DATE_ROWS": null,
+            "OTHER_STORE_ROWS": null,
+            "NONEMPTY_T_ROWS": null
+          }
+        ],
+        "seconds": 0.0039
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 7,
+      "sql01": {
+        "ok": true,
+        "rows": [
+          {
+            "MASTER_ROWS": 1,
+            "PRESC_SOURCE_RAW": 0,
+            "FLAG_RAW": 1,
+            "REFUND_FLAG_RAW": null,
+            "IN_AUTHORIZED_DAY": 1
+          }
+        ],
+        "seconds": 0.0049
+      },
+      "sql02": {
+        "ok": true,
+        "rows": [],
+        "seconds": 0.009
+      },
+      "sql03": {
+        "ok": true,
+        "rows": [
+          {
+            "EXAMINED_ROWS": 0,
+            "MAY_BE_TRUNCATED": 0,
+            "EXACT_KEY_ROWS": null,
+            "OTHER_DATE_ROWS": null,
+            "OTHER_STORE_ROWS": null,
+            "NONEMPTY_T_ROWS": null
+          }
+        ],
+        "seconds": 0.0039
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 8,
+      "sql01": {
+        "ok": true,
+        "rows": [
+          {
+            "MASTER_ROWS": 1,
+            "PRESC_SOURCE_RAW": 0,
+            "FLAG_RAW": 1,
+            "REFUND_FLAG_RAW": null,
+            "IN_AUTHORIZED_DAY": 1
+          }
+        ],
+        "seconds": 0.0049
+      },
+      "sql02": {
+        "ok": true,
+        "rows": [],
+        "seconds": 0.0043
+      },
+      "sql03": {
+        "ok": true,
+        "rows": [
+          {
+            "EXAMINED_ROWS": 0,
+            "MAY_BE_TRUNCATED": 0,
+            "EXACT_KEY_ROWS": null,
+            "OTHER_DATE_ROWS": null,
+            "OTHER_STORE_ROWS": null,
+            "NONEMPTY_T_ROWS": null
+          }
+        ],
+        "seconds": 0.0057
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 9,
+      "sql01": {
+        "ok": true,
+        "rows": [
+          {
+            "MASTER_ROWS": 1,
+            "PRESC_SOURCE_RAW": 0,
+            "FLAG_RAW": 1,
+            "REFUND_FLAG_RAW": null,
+            "IN_AUTHORIZED_DAY": 1
+          }
+        ],
+        "seconds": 0.007
+      },
+      "sql02": {
+        "ok": true,
+        "rows": [],
+        "seconds": 0.0061
+      },
+      "sql03": {
+        "ok": true,
+        "rows": [
+          {
+            "EXAMINED_ROWS": 0,
+            "MAY_BE_TRUNCATED": 0,
+            "EXACT_KEY_ROWS": null,
+            "OTHER_DATE_ROWS": null,
+            "OTHER_STORE_ROWS": null,
+            "NONEMPTY_T_ROWS": null
+          }
+        ],
+        "seconds": 0.0068
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 10,
+      "sql01": {
+        "ok": true,
+        "rows": [
+          {
+            "MASTER_ROWS": 1,
+            "PRESC_SOURCE_RAW": 0,
+            "FLAG_RAW": 1,
+            "REFUND_FLAG_RAW": null,
+            "IN_AUTHORIZED_DAY": 1
+          }
+        ],
+        "seconds": 0.007
+      },
+      "sql02": {
+        "ok": true,
+        "rows": [],
+        "seconds": 0.0059
+      },
+      "sql03": {
+        "ok": true,
+        "rows": [
+          {
+            "EXAMINED_ROWS": 0,
+            "MAY_BE_TRUNCATED": 0,
+            "EXACT_KEY_ROWS": null,
+            "OTHER_DATE_ROWS": null,
+            "OTHER_STORE_ROWS": null,
+            "NONEMPTY_T_ROWS": null
+          }
+        ],
+        "seconds": 0.005
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 11,
+      "sql01": {
+        "ok": true,
+        "rows": [
+          {
+            "MASTER_ROWS": 1,
+            "PRESC_SOURCE_RAW": 0,
+            "FLAG_RAW": 1,
+            "REFUND_FLAG_RAW": null,
+            "IN_AUTHORIZED_DAY": 1
+          }
+        ],
+        "seconds": 0.0079
+      },
+      "sql02": {
+        "ok": true,
+        "rows": [],
+        "seconds": 0.0131
+      },
+      "sql03": {
+        "ok": true,
+        "rows": [
+          {
+            "EXAMINED_ROWS": 0,
+            "MAY_BE_TRUNCATED": 0,
+            "EXACT_KEY_ROWS": null,
+            "OTHER_DATE_ROWS": null,
+            "OTHER_STORE_ROWS": null,
+            "NONEMPTY_T_ROWS": null
+          }
+        ],
+        "seconds": 0.0079
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 12,
+      "sql01": {
+        "ok": true,
+        "rows": [
+          {
+            "MASTER_ROWS": 1,
+            "PRESC_SOURCE_RAW": 0,
+            "FLAG_RAW": 1,
+            "REFUND_FLAG_RAW": null,
+            "IN_AUTHORIZED_DAY": 1
+          }
+        ],
+        "seconds": 0.008
+      },
+      "sql02": {
+        "ok": true,
+        "rows": [],
+        "seconds": 0.0014
+      },
+      "sql03": {
+        "ok": true,
+        "rows": [
+          {
+            "EXAMINED_ROWS": 0,
+            "MAY_BE_TRUNCATED": 0,
+            "EXACT_KEY_ROWS": null,
+            "OTHER_DATE_ROWS": null,
+            "OTHER_STORE_ROWS": null,
+            "NONEMPTY_T_ROWS": null
+          }
+        ],
+        "seconds": 0.0015
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 13,
+      "sql01": {
+        "ok": true,
+        "rows": [
+          {
+            "MASTER_ROWS": 1,
+            "PRESC_SOURCE_RAW": 0,
+            "FLAG_RAW": 1,
+            "REFUND_FLAG_RAW": null,
+            "IN_AUTHORIZED_DAY": 1
+          }
+        ],
+        "seconds": 0.0011
+      },
+      "sql02": {
+        "ok": true,
+        "rows": [],
+        "seconds": 0.0018
+      },
+      "sql03": {
+        "ok": true,
+        "rows": [
+          {
+            "EXAMINED_ROWS": 0,
+            "MAY_BE_TRUNCATED": 0,
+            "EXACT_KEY_ROWS": null,
+            "OTHER_DATE_ROWS": null,
+            "OTHER_STORE_ROWS": null,
+            "NONEMPTY_T_ROWS": null
+          }
+        ],
+        "seconds": 0.0017
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 14,
+      "sql01": {
+        "ok": true,
+        "rows": [
+          {
+            "MASTER_ROWS": 1,
+            "PRESC_SOURCE_RAW": 0,
+            "FLAG_RAW": 1,
+            "REFUND_FLAG_RAW": null,
+            "IN_AUTHORIZED_DAY": 1
+          }
+        ],
+        "seconds": 0.0011
+      },
+      "sql02": {
+        "ok": true,
+        "rows": [],
+        "seconds": 0.0016
+      },
+      "sql03": {
+        "ok": true,
+        "rows": [
+          {
+            "EXAMINED_ROWS": 0,
+            "MAY_BE_TRUNCATED": 0,
+            "EXACT_KEY_ROWS": null,
+            "OTHER_DATE_ROWS": null,
+            "OTHER_STORE_ROWS": null,
+            "NONEMPTY_T_ROWS": null
+          }
+        ],
+        "seconds": 0.0014
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 15,
+      "sql01": {
+        "ok": true,
+        "rows": [
+          {
+            "MASTER_ROWS": 1,
+            "PRESC_SOURCE_RAW": 0,
+            "FLAG_RAW": 1,
+            "REFUND_FLAG_RAW": null,
+            "IN_AUTHORIZED_DAY": 1
+          }
+        ],
+        "seconds": 0.0012
+      },
+      "sql02": {
+        "ok": true,
+        "rows": [],
+        "seconds": 0.0015
+      },
+      "sql03": {
+        "ok": true,
+        "rows": [
+          {
+            "EXAMINED_ROWS": 0,
+            "MAY_BE_TRUNCATED": 0,
+            "EXACT_KEY_ROWS": null,
+            "OTHER_DATE_ROWS": null,
+            "OTHER_STORE_ROWS": null,
+            "NONEMPTY_T_ROWS": null
+          }
+        ],
+        "seconds": 0.0014
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 16,
+      "sql01": {
+        "ok": true,
+        "rows": [
+          {
+            "MASTER_ROWS": 1,
+            "PRESC_SOURCE_RAW": 0,
+            "FLAG_RAW": 1,
+            "REFUND_FLAG_RAW": null,
+            "IN_AUTHORIZED_DAY": 1
+          }
+        ],
+        "seconds": 0.0011
+      },
+      "sql02": {
+        "ok": true,
+        "rows": [],
+        "seconds": 0.0014
+      },
+      "sql03": {
+        "ok": true,
+        "rows": [
+          {
+            "EXAMINED_ROWS": 0,
+            "MAY_BE_TRUNCATED": 0,
+            "EXACT_KEY_ROWS": null,
+            "OTHER_DATE_ROWS": null,
+            "OTHER_STORE_ROWS": null,
+            "NONEMPTY_T_ROWS": null
+          }
+        ],
+        "seconds": 0.0013
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 17,
+      "sql01": {
+        "ok": true,
+        "rows": [
+          {
+            "MASTER_ROWS": 1,
+            "PRESC_SOURCE_RAW": 0,
+            "FLAG_RAW": 1,
+            "REFUND_FLAG_RAW": null,
+            "IN_AUTHORIZED_DAY": 1
+          }
+        ],
+        "seconds": 0.0011
+      },
+      "sql02": {
+        "ok": true,
+        "rows": [],
+        "seconds": 0.0014
+      },
+      "sql03": {
+        "ok": true,
+        "rows": [
+          {
+            "EXAMINED_ROWS": 0,
+            "MAY_BE_TRUNCATED": 0,
+            "EXACT_KEY_ROWS": null,
+            "OTHER_DATE_ROWS": null,
+            "OTHER_STORE_ROWS": null,
+            "NONEMPTY_T_ROWS": null
+          }
+        ],
+        "seconds": 0.0012
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 18,
+      "sql01": {
+        "ok": true,
+        "rows": [
+          {
+            "MASTER_ROWS": 1,
+            "PRESC_SOURCE_RAW": 0,
+            "FLAG_RAW": 1,
+            "REFUND_FLAG_RAW": null,
+            "IN_AUTHORIZED_DAY": 1
+          }
+        ],
+        "seconds": 0.0014
+      },
+      "sql02": {
+        "ok": true,
+        "rows": [],
+        "seconds": 0.0033
+      },
+      "sql03": {
+        "ok": true,
+        "rows": [
+          {
+            "EXAMINED_ROWS": 0,
+            "MAY_BE_TRUNCATED": 0,
+            "EXACT_KEY_ROWS": null,
+            "OTHER_DATE_ROWS": null,
+            "OTHER_STORE_ROWS": null,
+            "NONEMPTY_T_ROWS": null
+          }
+        ],
+        "seconds": 0.0017
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 19,
+      "sql01": {
+        "ok": true,
+        "rows": [
+          {
+            "MASTER_ROWS": 1,
+            "PRESC_SOURCE_RAW": 0,
+            "FLAG_RAW": 1,
+            "REFUND_FLAG_RAW": null,
+            "IN_AUTHORIZED_DAY": 1
+          }
+        ],
+        "seconds": 0.0012
+      },
+      "sql02": {
+        "ok": true,
+        "rows": [],
+        "seconds": 0.0012
+      },
+      "sql03": {
+        "ok": true,
+        "rows": [
+          {
+            "EXAMINED_ROWS": 0,
+            "MAY_BE_TRUNCATED": 0,
+            "EXACT_KEY_ROWS": null,
+            "OTHER_DATE_ROWS": null,
+            "OTHER_STORE_ROWS": null,
+            "NONEMPTY_T_ROWS": null
+          }
+        ],
+        "seconds": 0.0014
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 20,
+      "sql01": {
+        "ok": true,
+        "rows": [
+          {
+            "MASTER_ROWS": 1,
+            "PRESC_SOURCE_RAW": 0,
+            "FLAG_RAW": 1,
+            "REFUND_FLAG_RAW": null,
+            "IN_AUTHORIZED_DAY": 1
+          }
+        ],
+        "seconds": 0.0011
+      },
+      "sql02": {
+        "ok": true,
+        "rows": [],
+        "seconds": 0.0013
+      },
+      "sql03": {
+        "ok": true,
+        "rows": [
+          {
+            "EXAMINED_ROWS": 0,
+            "MAY_BE_TRUNCATED": 0,
+            "EXACT_KEY_ROWS": null,
+            "OTHER_DATE_ROWS": null,
+            "OTHER_STORE_ROWS": null,
+            "NONEMPTY_T_ROWS": null
+          }
+        ],
+        "seconds": 0.0014
+      }
+    },
+    {
+      "grp": "orig_0_2",
+      "tile": 1,
+      "sql01": {
+        "ok": true,
+        "rows": [
+          {
+            "MASTER_ROWS": 1,
+            "PRESC_SOURCE_RAW": 0,
+            "FLAG_RAW": 2,
+            "REFUND_FLAG_RAW": null,
+            "IN_AUTHORIZED_DAY": 1
+          }
+        ],
+        "seconds": 0.001
+      },
+      "sql02": {
+        "ok": true,
+        "rows": [],
+        "seconds": 0.0013
+      },
+      "sql03": {
+        "ok": true,
+        "rows": [
+          {
+            "EXAMINED_ROWS": 0,
+            "MAY_BE_TRUNCATED": 0,
+            "EXACT_KEY_ROWS": null,
+            "OTHER_DATE_ROWS": null,
+            "OTHER_STORE_ROWS": null,
+            "NONEMPTY_T_ROWS": null
+          }
+        ],
+        "seconds": 0.0013
+      }
+    },
+    {
+      "grp": "orig_0_2",
+      "tile": 2,
+      "sql01": {
+        "ok": true,
+        "rows": [
+          {
+            "MASTER_ROWS": 1,
+            "PRESC_SOURCE_RAW": 0,
+            "FLAG_RAW": 2,
+            "REFUND_FLAG_RAW": null,
+            "IN_AUTHORIZED_DAY": 1
+          }
+        ],
+        "seconds": 0.001
+      },
+      "sql02": {
+        "ok": true,
+        "rows": [],
+        "seconds": 0.0011
+      },
+      "sql03": {
+        "ok": true,
+        "rows": [
+          {
+            "EXAMINED_ROWS": 0,
+            "MAY_BE_TRUNCATED": 0,
+            "EXACT_KEY_ROWS": null,
+            "OTHER_DATE_ROWS": null,
+            "OTHER_STORE_ROWS": null,
+            "NONEMPTY_T_ROWS": null
+          }
+        ],
+        "seconds": 0.0011
+      }
+    },
+    {
+      "grp": "orig_0_2",
+      "tile": 3,
+      "sql01": {
+        "ok": true,
+        "rows": [
+          {
+            "MASTER_ROWS": 1,
+            "PRESC_SOURCE_RAW": 0,
+            "FLAG_RAW": 2,
+            "REFUND_FLAG_RAW": null,
+            "IN_AUTHORIZED_DAY": 1
+          }
+        ],
+        "seconds": 0.0009
+      },
+      "sql02": {
+        "ok": true,
+        "rows": [],
+        "seconds": 0.001
+      },
+      "sql03": {
+        "ok": true,
+        "rows": [
+          {
+            "EXAMINED_ROWS": 0,
+            "MAY_BE_TRUNCATED": 0,
+            "EXACT_KEY_ROWS": null,
+            "OTHER_DATE_ROWS": null,
+            "OTHER_STORE_ROWS": null,
+            "NONEMPTY_T_ROWS": null
+          }
+        ],
+        "seconds": 0.0011
+      }
+    },
+    {
+      "grp": "orig_1_0",
+      "tile": 1,
+      "sql01": {
+        "ok": true,
+        "rows": [
+          {
+            "MASTER_ROWS": 1,
+            "PRESC_SOURCE_RAW": 1,
+            "FLAG_RAW": 0,
+            "REFUND_FLAG_RAW": null,
+            "IN_AUTHORIZED_DAY": 1
+          }
+        ],
+        "seconds": 0.0009
+      },
+      "sql02": {
+        "ok": true,
+        "rows": [],
+        "seconds": 0.0038
+      },
+      "sql03": {
+        "ok": true,
+        "rows": [
+          {
+            "EXAMINED_ROWS": 0,
+            "MAY_BE_TRUNCATED": 0,
+            "EXACT_KEY_ROWS": null,
+            "OTHER_DATE_ROWS": null,
+            "OTHER_STORE_ROWS": null,
+            "NONEMPTY_T_ROWS": null
+          }
+        ],
+        "seconds": 0.0034
+      }
+    },
+    {
+      "grp": "orig_1_0",
+      "tile": 2,
+      "sql01": {
+        "ok": true,
+        "rows": [
+          {
+            "MASTER_ROWS": 1,
+            "PRESC_SOURCE_RAW": 1,
+            "FLAG_RAW": 0,
+            "REFUND_FLAG_RAW": null,
+            "IN_AUTHORIZED_DAY": 1
+          }
+        ],
+        "seconds": 0.0012
+      },
+      "sql02": {
+        "ok": true,
+        "rows": [],
+        "seconds": 0.0014
+      },
+      "sql03": {
+        "ok": true,
+        "rows": [
+          {
+            "EXAMINED_ROWS": 0,
+            "MAY_BE_TRUNCATED": 0,
+            "EXACT_KEY_ROWS": null,
+            "OTHER_DATE_ROWS": null,
+            "OTHER_STORE_ROWS": null,
+            "NONEMPTY_T_ROWS": null
+          }
+        ],
+        "seconds": 0.0014
+      }
+    },
+    {
+      "grp": "orig_1_0",
+      "tile": 3,
+      "sql01": {
+        "ok": true,
+        "rows": [
+          {
+            "MASTER_ROWS": 1,
+            "PRESC_SOURCE_RAW": 1,
+            "FLAG_RAW": 0,
+            "REFUND_FLAG_RAW": null,
+            "IN_AUTHORIZED_DAY": 1
+          }
+        ],
+        "seconds": 0.0012
+      },
+      "sql02": {
+        "ok": true,
+        "rows": [],
+        "seconds": 0.0013
+      },
+      "sql03": {
+        "ok": true,
+        "rows": [
+          {
+            "EXAMINED_ROWS": 0,
+            "MAY_BE_TRUNCATED": 0,
+            "EXACT_KEY_ROWS": null,
+            "OTHER_DATE_ROWS": null,
+            "OTHER_STORE_ROWS": null,
+            "NONEMPTY_T_ROWS": null
+          }
+        ],
+        "seconds": 0.0014
+      }
+    },
+    {
+      "grp": "orig_1_0",
+      "tile": 4,
+      "sql01": {
+        "ok": true,
+        "rows": [
+          {
+            "MASTER_ROWS": 1,
+            "PRESC_SOURCE_RAW": 1,
+            "FLAG_RAW": 0,
+            "REFUND_FLAG_RAW": null,
+            "IN_AUTHORIZED_DAY": 1
+          }
+        ],
+        "seconds": 0.001
+      },
+      "sql02": {
+        "ok": true,
+        "rows": [],
+        "seconds": 0.0026
+      },
+      "sql03": {
+        "ok": true,
+        "rows": [
+          {
+            "EXAMINED_ROWS": 0,
+            "MAY_BE_TRUNCATED": 0,
+            "EXACT_KEY_ROWS": null,
+            "OTHER_DATE_ROWS": null,
+            "OTHER_STORE_ROWS": null,
+            "NONEMPTY_T_ROWS": null
+          }
+        ],
+        "seconds": 0.0022
+      }
+    },
+    {
+      "grp": "orig_1_0",
+      "tile": 5,
+      "sql01": {
+        "ok": true,
+        "rows": [
+          {
+            "MASTER_ROWS": 1,
+            "PRESC_SOURCE_RAW": 1,
+            "FLAG_RAW": 0,
+            "REFUND_FLAG_RAW": null,
+            "IN_AUTHORIZED_DAY": 1
+          }
+        ],
+        "seconds": 0.0011
+      },
+      "sql02": {
+        "ok": true,
+        "rows": [],
+        "seconds": 0.0014
+      },
+      "sql03": {
+        "ok": true,
+        "rows": [
+          {
+            "EXAMINED_ROWS": 0,
+            "MAY_BE_TRUNCATED": 0,
+            "EXACT_KEY_ROWS": null,
+            "OTHER_DATE_ROWS": null,
+            "OTHER_STORE_ROWS": null,
+            "NONEMPTY_T_ROWS": null
+          }
+        ],
+        "seconds": 0.0013
+      }
+    },
+    {
+      "grp": "orig_1_0",
+      "tile": 6,
+      "sql01": {
+        "ok": true,
+        "rows": [
+          {
+            "MASTER_ROWS": 1,
+            "PRESC_SOURCE_RAW": 1,
+            "FLAG_RAW": 0,
+            "REFUND_FLAG_RAW": null,
+            "IN_AUTHORIZED_DAY": 1
+          }
+        ],
+        "seconds": 0.001
+      },
+      "sql02": {
+        "ok": true,
+        "rows": [],
+        "seconds": 0.0013
+      },
+      "sql03": {
+        "ok": true,
+        "rows": [
+          {
+            "EXAMINED_ROWS": 0,
+            "MAY_BE_TRUNCATED": 0,
+            "EXACT_KEY_ROWS": null,
+            "OTHER_DATE_ROWS": null,
+            "OTHER_STORE_ROWS": null,
+            "NONEMPTY_T_ROWS": null
+          }
+        ],
+        "seconds": 0.0013
+      }
+    },
+    {
+      "grp": "orig_1_0",
+      "tile": 7,
+      "sql01": {
+        "ok": true,
+        "rows": [
+          {
+            "MASTER_ROWS": 1,
+            "PRESC_SOURCE_RAW": 1,
+            "FLAG_RAW": 0,
+            "REFUND_FLAG_RAW": null,
+            "IN_AUTHORIZED_DAY": 1
+          }
+        ],
+        "seconds": 0.0011
+      },
+      "sql02": {
+        "ok": true,
+        "rows": [],
+        "seconds": 0.0012
+      },
+      "sql03": {
+        "ok": true,
+        "rows": [
+          {
+            "EXAMINED_ROWS": 0,
+            "MAY_BE_TRUNCATED": 0,
+            "EXACT_KEY_ROWS": null,
+            "OTHER_DATE_ROWS": null,
+            "OTHER_STORE_ROWS": null,
+            "NONEMPTY_T_ROWS": null
+          }
+        ],
+        "seconds": 0.0011
+      }
+    }
+  ],
+  "run_completed": true,
+  "samples_done": 30,
+  "elapsed_seconds": 0.43,
+  "captured_at": "2026-10-27T11:23:38.900570+00:00",
+  "authorization_local_record": "用户 2026-10-27 会话明确指令『授权执行』；范围限本业务只读核查"
+}

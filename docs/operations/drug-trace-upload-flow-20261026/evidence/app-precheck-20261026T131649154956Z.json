@@ -1,0 +1,31 @@
+{
+  "host": "app",
+  "phase": "precheck",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T13:16:49.154911+00:00",
+  "result": {
+    "release": "ui-clarity-20261026T063000Z",
+    "db": {
+      "states": {
+        "CONFIRMED": 2576,
+        "ACCEPTED": 41,
+        "UNKNOWN": 206
+      },
+      "inflight": 0,
+      "active_jobs": 0,
+      "quota": [
+        {
+          "used": 2823,
+          "max_bills": 80000
+        }
+      ],
+      "checkpoint": [
+        {
+          "row_version": 46,
+          "since_time": "2026-10-26T00:00:00"
+        }
+      ]
+    },
+    "driver_sha256": "1d1862d93ca36449fa8658b7295b0b9a857d8b902059057ee25f9a68a1cd8c46"
+  }
+}

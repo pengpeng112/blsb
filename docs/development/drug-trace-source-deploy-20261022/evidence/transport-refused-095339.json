@@ -1,0 +1,4 @@
+{
+  "exit_code": 255,
+  "retry": "once; TCP only"
+}

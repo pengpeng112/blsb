@@ -1,0 +1,15 @@
+# Linux x86_64 最小生产运行锁（W14修订：发行镜像专用，execution-plan §4.3）。
+# 直接依赖按本机已验证版本锁定（CPython 3.14.4 实测：fastapi 0.136.0 / uvicorn 0.44.0 /
+# SQLAlchemy 2.0.49 / pydantic 2.13.2 / httpx 0.28.1 / psycopg 3.3.4）；
+# 传递依赖在发行构建时以容器内 pip freeze 固化进 release manifest，不作为放宽依据。
+# 测试工具（pytest 等）不进运行镜像；Windows cp314 wheelhouse 不得装进 Linux。
+fastapi==0.136.0
+uvicorn==0.44.0
+SQLAlchemy==2.0.49
+pydantic==2.13.2
+httpx==0.28.1
+psycopg[binary]==3.3.4
+# DPL-P01：HIS 为旧 Oracle 11g → python-oracledb 3.4.2（cp314 manylinux wheel）
+# 必须 Thick 模式 + Instant Client 19c（镜像内 /opt/oracle/instantclient）。
+# Thin 仅支持 12.1+，不适用于本 HIS；缺 Client 时采集来源阻断（不回退 Thin）。
+oracledb==3.4.2

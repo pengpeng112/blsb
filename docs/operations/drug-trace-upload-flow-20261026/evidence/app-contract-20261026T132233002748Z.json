@@ -1,0 +1,36 @@
+{
+  "host": "app",
+  "phase": "contract",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T13:22:33.002678+00:00",
+  "result": {
+    "frozen_contract_groups": [
+      {
+        "profile": "alihealth_yljg_retail_v1",
+        "bill_type": "321",
+        "query_bill_type": "A",
+        "ignore_part_success_flag": null,
+        "state": "UNKNOWN",
+        "n": 206
+      },
+      {
+        "profile": "alihealth_yljg_retail_v1",
+        "bill_type": "321",
+        "query_bill_type": "A",
+        "ignore_part_success_flag": null,
+        "state": "CONFIRMED",
+        "n": 2576
+      },
+      {
+        "profile": "alihealth_yljg_retail_v1",
+        "bill_type": "321",
+        "query_bill_type": "A",
+        "ignore_part_success_flag": null,
+        "state": "ACCEPTED",
+        "n": 41
+      }
+    ],
+    "business_writes": 0,
+    "platform_calls": 0
+  }
+}

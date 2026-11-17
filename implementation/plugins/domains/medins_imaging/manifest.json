@@ -1,0 +1,9 @@
+{
+  "key": "medins_imaging",
+  "module": "domains.medins_imaging.plugin",
+  "domain": "medins_imaging",
+  "capabilities": ["debug_console"],
+  "description": "济南医保影像云索引（脚手架骨架；取数/发送未实现）",
+  "report_targets": ["medins_imaging_jn"],
+  "ui": {"route": "/targets/medins_imaging_jn", "menu_group": "上报业务", "menu_label": "济南医保影像云索引"}
+}

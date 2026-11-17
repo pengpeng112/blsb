@@ -1,0 +1,10 @@
+{
+  "zero_row_oracle_parse": {
+    "ok": false,
+    "oracle_errors": [],
+    "note": "Raw output not retained.",
+    "elapsed_seconds": 1.69,
+    "sql_sha256": "48c0d1b8a74ae1c95e68ceedd5c076abfb9093b461bd70e476360d82d5216d95",
+    "static_validation": "PASS_BEFORE_EXECUTION"
+  }
+}

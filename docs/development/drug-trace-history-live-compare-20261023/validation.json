@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "private_identifier_rows_verified": 6535,
+  "identifiers_text_and_20_digit_codes": true,
+  "private_acl_user_system_only": true,
+  "original_xlsx_hashes_unchanged": 25,
+  "python_scripts_ast_passed": 5,
+  "dba_sql": {
+    "01-dba-legacy-raw-check.sql": {
+      "static_passed": true,
+      "executed": false
+    },
+    "02-dba-legacy-master-link.sql": {
+      "static_passed": true,
+      "executed": false
+    }
+  },
+  "actual_readonly_selects": 972,
+  "all_historical_key_batches_completed": true,
+  "same_create_time_bidirectional_audit": false,
+  "source_writes": 0,
+  "uploads": 0,
+  "production_changes": 0
+}

@@ -1,0 +1,42 @@
+{
+  "ok": true,
+  "source": "ods_internal",
+  "db_type": "oracle",
+  "row_count": 3,
+  "rows": [
+    {
+      "REPORT_LABEL": "P3",
+      "SOURCE_ITEMS": "27",
+      "ELIGIBLE_ITEMS": "27",
+      "UNIQUE_ITEM_IDS": "27",
+      "PARENT_VIEW_ROWS": "1",
+      "CHILD_VIEW_ROWS": "27",
+      "FULL_ACTIVITY_KEY_HITS": "0"
+    },
+    {
+      "REPORT_LABEL": "P1",
+      "SOURCE_ITEMS": "4",
+      "ELIGIBLE_ITEMS": "4",
+      "UNIQUE_ITEM_IDS": "4",
+      "PARENT_VIEW_ROWS": "1",
+      "CHILD_VIEW_ROWS": "4",
+      "FULL_ACTIVITY_KEY_HITS": "0"
+    },
+    {
+      "REPORT_LABEL": "P2",
+      "SOURCE_ITEMS": "7",
+      "ELIGIBLE_ITEMS": "7",
+      "UNIQUE_ITEM_IDS": "7",
+      "PARENT_VIEW_ROWS": "1",
+      "CHILD_VIEW_ROWS": "7",
+      "FULL_ACTIVITY_KEY_HITS": "0"
+    }
+  ],
+  "mode": "READ_ONLY_AGGREGATE_NO_SEND",
+  "elapsed_seconds": 3.36,
+  "sql_sha256": "8db183875d13f34fbd223182e149a9eb541463a3b6456186e473944ddb5e7fe5",
+  "static_validation": "PASS_BEFORE_EXECUTION",
+  "source_registration": "ods_internal|t|readonly",
+  "sql_redacted_template": "SELECT CASE a.TEST_NO WHEN :report_1 THEN 'P1' WHEN :report_2 THEN 'P2' WHEN :report_3 THEN 'P3' END AS REPORT_LABEL,\n      (SELECT COUNT(*) FROM HIS.LAB_RESULT c WHERE c.TEST_NO=a.TEST_NO) AS SOURCE_ITEMS,\n      (SELECT COUNT(*) FROM HIS.LAB_TEST_ITEMS b JOIN HIS.LAB_RESULT c ON c.TEST_NO=b.TEST_NO AND c.ITEM_NO=b.ITEM_NO WHERE b.TEST_NO=a.TEST_NO AND c.REPORT_ID IS NOT NULL) AS ELIGIBLE_ITEMS,\n      (SELECT COUNT(DISTINCT c.TEST_NO||c.PRINT_ORDER) FROM HIS.LAB_TEST_ITEMS b JOIN HIS.LAB_RESULT c ON c.TEST_NO=b.TEST_NO AND c.ITEM_NO=b.ITEM_NO WHERE b.TEST_NO=a.TEST_NO AND c.REPORT_ID IS NOT NULL) AS UNIQUE_ITEM_IDS,\n      (SELECT COUNT(*) FROM ODS.V_INF_EX_LAB p WHERE p.ID=a.TEST_NO) AS PARENT_VIEW_ROWS,\n      (SELECT COUNT(*) FROM ODS.V_INF_EX_LAB_ITEM i WHERE i.EX_LAB_ID=a.TEST_NO) AS CHILD_VIEW_ROWS,\n      (SELECT COUNT(*) FROM ODS.V_INF_EX_LAB p JOIN ODS.M_INF_FXHIS_ACTIVITY act ON act.PATIENT_ID=p.PATIENT_ID AND act.SERIAL_NUMBER=p.SERIAL_NUMBER AND act.ACTIVITY_TYPE_CODE=p.ACTIVITY_TYPE_CODE WHERE p.ID=a.TEST_NO) AS FULL_ACTIVITY_KEY_HITS\n      FROM HIS.LAB_TEST_MASTER a WHERE a.TEST_NO IN (:report_1,:report_2,:report_3)",
+  "template_note": "Only a mechanically redacted template; bind values come from the user case document and are not copied into this artifact."
+}

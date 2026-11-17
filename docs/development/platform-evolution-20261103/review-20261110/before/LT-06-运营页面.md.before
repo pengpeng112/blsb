@@ -1,0 +1,160 @@
+# LT-06 运营页面：驾驶舱 / 上报业务中心 / 调度 / 告警 / 台账 / 用户角色 / 审计
+
+> 预计：1 个执行日（页面多，按优先级 P1→P3 做，做不完 handed_off 次日续）。
+> 依赖：LT-02（外壳与组件）、LT-01/03/04/05（后端 API）。某个后端 API 缺失时该页面显示 ErrorState 并在交接登记，**不得前端伪造数据**。
+> 动生产：否。迁移：018（账号的业务范围授权）。
+> 先读 [README §五 通则](README.md#五所有长任务通用的执行通则执行-ai-必读每个-lt-文件都引用本节)。
+
+## 0. 为什么做
+
+业务人员与信息科每天要回答的问题是："**今天四个上报都正常吗？哪里有积压/未知/失败？下一班什么时候跑？谁在处理？**"
+现前端回答不了（只有药品追溯页能看自己）。本任务交付面向运营的页面，并补齐"用户与角色管理""审计检索导出"两项 v0.4 §7.1/§7 要求。
+
+## 1. 交付物（按优先级）
+
+| 优先级 | 页面 | 路由 | 后端依赖 |
+|---|---|---|---|
+| P1 | 上报驾驶舱（新首页） | `/dashboard`（`/` 重定向改到这里；旧 `/overview` 改名"平台运行指标"保留） | LT-01 overview、LT-04 alerts/digest/schedules |
+| P1 | 上报业务列表 + 业务详情 | `/targets`、`/targets/:code` | LT-01、03、04、05 |
+| P1 | 提交与回执检索 | `/ledger` | LT-03 |
+| P2 | 调度任务 | `/schedules`、`/schedules/:id` | LT-04 |
+| P2 | 告警中心（告警/规则/通道/通知日志/晨报 5 个 tab） | `/alerts` | LT-04 |
+| P2 | 传染病业务详情专属区块（外部台账导入、按文书类型统计） | `/targets/inf_cdc_frontend` | LT-05 |
+| P3 | 用户与角色 | `/system/users` | **本任务新增后端** |
+| P3 | 审计检索与导出 | `/audit`（改造） | **本任务扩展后端** |
+
+另：前端测试（纯函数）≥15；后端新增测试 ≥20；`npm run build` 通过。
+
+## 2. 修改范围
+
+```
+implementation/apps/admin_web/src/views/{Dashboard,Targets,TargetDetail,Ledger,Schedules,ScheduleDetail,Alerts,Users,Audit}.vue
+implementation/apps/admin_web/src/views/target/**          （业务详情的子区块组件）
+implementation/apps/admin_web/src/api/{reportCenter,ops,system}.ts
+implementation/apps/admin_web/src/router/menu.ts
+implementation/apps/admin_web/src/utils/**                 （追加）
+implementation/apps/admin_web/tests/**                     （新增）
+implementation/packages/core_db/models.py / migrate.py     （018）
+implementation/apps/core_api/system_routes.py              （新建：用户/角色/审计）
+implementation/apps/core_api/app.py                        （挂载；/api/v1/audit 扩展需保持兼容）
+implementation/tests/integration/test_system_users*.py test_audit_search*.py （新建）
+四类实施文档 + docs/ai/*
+```
+**DrugTrace.vue 三件套仍只读**。药品业务详情页通过链接跳转到 `/drugtrace`，不复制它的功能。
+
+## 3. 页面规格（照做，字段名以后端实际返回为准）
+
+### 3.1 上报驾驶舱 `/dashboard`
+
+布局（从上到下）：
+1. **顶部条**：标题"上报驾驶舱"、数据时间（TimeText，取请求时间）、时间范围切换（今天 / 近 7 天 / 近 30 天，对应 days=1/7/30）、刷新按钮、自动刷新开关（默认关，开启后每 60 秒）。
+2. **待办条**（红/黄横幅，最多 5 条，可点击跳转）：数据来自 ①OPEN 的 CRITICAL/WARN 告警（→`/alerts`）；②各业务 UNKNOWN>0（→`/ledger?target=x&bucket=UNKNOWN`）；③DATE_EXPIRY 类告警（如"药品发送授权 2026-11-22 到期，剩 N 天"）；④sole_pusher=CONFLICT 的业务（"码上放心存在双上报风险，待确认"→业务详情）。
+3. **业务卡片网格**（每个 ReportTarget 一张，按 lifecycle 排序：PRODUCTION→PILOT→MOCK_ONLY→DEVELOPING→PLANNED）：
+   - 卡头：业务名、生命周期标签（StatusTag，MOCK_ONLY 用紫色 Mock 色）、运行形态小字（平台/外部程序/人工）。
+   - 主数字：已确认数；副数字：被拒、未知（未知>0 红色加粗）、积压。
+   - 成功率：用 `successRate()`，null 显示"—"并悬停提示"无可计算样本"；**UNKNOWN 不计入成功**。
+   - 最近成功时间（相对时间 + 悬停绝对时间）；下一次调度时间（来自 schedules，镜像调度 enabled=False 时显示"由宿主定时执行（平台未接管）"）。
+   - 数据来源角标：platform / external_ledger（"来自导入副本，截至 xx"）/ none（"暂无数据"灰卡）。
+   - 卡片 summary 返回 error 时卡片显示 ErrorState 不影响其他卡。
+   - 点击卡片 → `/targets/:code`。
+4. **趋势图**：堆叠柱状图（BarChart stacked），x=日期，系列=CONFIRMED/REJECTED/UNKNOWN，可选业务下拉（默认全部合计）。
+5. **右侧栏**（宽屏）/ 底部（窄屏）：今日晨报（`/api/v1/alerts/digest/latest`，纯文本 pre 显示，折叠）；最近 10 次调度运行（任意 schedule，状态彩色）。
+
+### 3.2 上报业务列表 `/targets` 与详情 `/targets/:code`
+
+列表：DataTable（编码、名称、类别、主管单位、生命周期、运行形态、唯一推送方确认、负责科室、更新时间），右上"新建"（platform_admin 可见）。
+
+详情（Tabs，`syncQuery`）：
+- **概况**：与驾驶舱卡片同数据的放大版 + 14 天折线图 + 状态桶 Donut + `unmapped_states` 非空时黄色提示"存在未映射状态"。
+- **提交台账**：嵌入 3.3 的台账组件（target 固定）。药品：顶部提示"药品追溯明细请在专页查看"并给跳转按钮，同时仍展示 ledger_search 结果。
+- **调度**：该 target 的 schedules 列表与最近运行（复用 3.4 组件）。
+- **告警**：该 target 的告警与规则（复用 3.5 组件）。
+- **配置**：只读展示 ReportTarget 全字段、关联 Destination（plugin_id、is_mock、base_url 只显示 host:port、receipt_rules 用 JsonViewer）、规范文件列表（`spec_docs`，显示路径文本，不提供下载）、README 路径。platform_admin/config_editor 可点"编辑"打开 Drawer 表单（lifecycle/runtime_kind/sole_pusher 用下拉，提交带 revision，409 时提示"已被他人修改，请刷新"）。
+  修改 lifecycle 为 PILOT/PRODUCTION 时 ConfirmDialog(requireReason) 并提示"这将允许真实发送（仍受各插件门禁约束）"。
+- **外部导入**（仅 runtime_kind=EXTERNAL 显示）：导入批次表 + "上传副本"按钮（选择多个 .jsonl/.json 文件 → base64 → LT-05 导入 API；先 dry-run 展示统计，再确认正式导入）。
+- 传染病额外：按 business_type/文书类型分组的统计表（death/admission/... 对应中文：死亡记录/入院记录/检查报告/首次病程/日常病程——以 LT-05 README 对照为准）。
+
+### 3.3 提交与回执检索 `/ledger`
+
+FilterBar：业务（必选下拉，默认第一个 PRODUCTION 业务）、状态桶（多选或单选，按后端能力）、日期起止、关键字（单号/提交 ID）。
+DataTable 列：业务单号、状态（StatusTag）、原始状态（小字灰色）、尝试次数、最后错误码、最后错误（截断 40 字，悬停全文）、创建/更新时间（TimeText）、操作（详情）。
+"加载更多"游标分页；**不得做前端过滤**（全部条件传后端）。
+详情 Drawer：通用 Submission 显示 attempts 时间线与 receipts（JsonViewer）；UNKNOWN 时显示"人工处置"按钮（business_reviewer），表单：处置结果（已确认/被拒/允许重发）、理由（≥5 字）、证据引用（文本）→ LT-03 manual-resolution；药品显示"前往药品追溯专页"。
+URL query 与过滤条件双向同步（便于从驾驶舱深链）。
+
+### 3.4 调度任务 `/schedules`
+
+列表：名称、编码、业务、cron（悬停显示"未来 5 次触发时间"，调用 preview）、启用开关（切换需 ConfirmDialog requireReason）、最近运行状态、下次触发、维护窗口、并发策略。
+镜像调度（note 含"镜像"）行首加灰色"镜像"标签，启用开关点击时 ConfirmDialog 文案强调："该业务现由宿主定时执行，平台启用后可能**重复执行**。仅在完成切换流程后启用。"——并要求输入理由。
+详情：基本信息（编辑表单：cron 输入框实时调 preview 显示未来 5 次，非法时显示后端中文错误）、运行记录表（状态彩色、耗时、迟到标记 late、错误）、"立即运行"按钮（理由必填，返回 warning 时 toast 显示）。
+
+### 3.5 告警中心 `/alerts`
+
+Tabs：
+- **告警**：过滤（状态 OPEN/ACKED/RESOLVED、级别、业务）；列：级别色条、标题、业务、首次/最近出现、次数、状态、处理人；操作：确认（理由）、关闭（仅人工类）。CRITICAL 未确认的行浅红底。
+- **规则**：列表 + 编辑 Drawer（kind 下拉；params 按 kind 动态表单：hours/threshold/rate/date 等，**不要让用户手写 JSON**；通道多选；冷却分钟）。
+- **通道**：列表 + 新建/编辑（type 切换表单：file 路径 / smtp host、port、ssl、user、password_env、from、to 多值 / webhook url_env、模板）；"测试发送"按钮；password_env 等输入框旁提示"填写环境变量名，不要填写密码本身"。
+- **通知日志**：时间、通道、类型、成功与否、错误。
+- **晨报**：最近一次晨报全文。
+
+### 3.6 用户与角色 `/system/users`（P3，含后端）
+
+后端（`system_routes.py`，均 platform_admin，写操作全部审计）：
+
+| 方法 | 路径 | 说明 |
+|---|---|---|
+| GET | /api/v1/system/users | 列表：username、角色、业务范围、锁定状态、最近改密时间、创建时间（**不返回 hash**） |
+| POST | /api/v1/system/users | 新建：username（3—32 位字母数字下划线）、初始密码（≥12 位，复用现有改密校验函数）、roles（⊆ ALL_ROLES 且不允许分配 `service`）、target_scopes |
+| PUT | /api/v1/system/users/{username}/roles | 修改角色与业务范围（不能移除最后一个 platform_admin → 409） |
+| POST | /api/v1/system/users/{username}/reset-password | 重置为管理员输入的新密码，撤销该用户全部会话 |
+| POST | /api/v1/system/users/{username}/lock · /unlock | 锁定=locked_until 设为远期并撤销会话 |
+
+先读 `apps/core_api/app.py` 中 `/api/v1/auth/login`、`/api/v1/auth/password` 及 013 迁移，**复用**其密码哈希/会话撤销函数，不要另写一套。账号与角色的关系存在 `auth_subject`（看模型实际字段 roles 存哪里）。
+
+迁移 018：为账号（或 auth_subject）增加 `target_scopes` JSON（默认 `["*"]` 表示全部业务）。
+**范围授权本期只做"展示与登记 + 台账/驾驶舱按范围过滤"**：`/api/v1/report-center/*` 与 `/api/v1/report-targets` 列表按当前用户 target_scopes 过滤（`*` 不过滤）；
+业务写操作（如药品专页）暂不按范围拦截——在交接与"接口与设计差异"里写明这是部分实现。
+
+前端：用户表 + 新建 Drawer + 角色多选（中文名）+ 业务范围多选（来自 report-targets）+ 重置密码/锁定（ConfirmDialog）。
+
+### 3.7 审计检索与导出 `/audit`（P3，含后端）
+
+扩展 `GET /api/v1/audit`：新增可选参数 `actor`、`action`（前缀匹配）、`target`（前缀）、`at_from`、`at_to`、`cursor`、`limit`(≤200)；**不带新参数时行为与旧版完全一致**（旧测试必须不改通过）。
+新增 `GET /api/v1/audit/export?...`（auditor、platform_admin）：同过滤条件，返回 CSV（UTF-8 BOM，便于 Excel），最多 10,000 行，超出返回 400 提示缩小范围；导出动作本身写一条审计 `audit.export`。
+`old_ref/new_ref` 在列表中不返回全文，详情接口 `GET /api/v1/audit/{id}` 返回。
+前端：FilterBar + DataTable + 详情 Drawer（old/new 两个 JsonViewer 并排）+ 导出按钮（auditor 可见）。
+
+## 4. 菜单更新（menu.ts 追加）
+
+| 分组 | 新菜单 | roles |
+|---|---|---|
+| 工作台 | /dashboard 上报驾驶舱（置顶）；/overview 改名"平台运行指标" | 空 |
+| 上报业务 | /targets 上报业务目录（置顶）；/targets/inf_cdc_frontend 传染病上报；/targets/medins_emr_sd 医保电子病历（LT-07 后有内容） | 空 |
+| 运行监控 | /ledger 提交与回执；/schedules 调度任务；/alerts 告警中心（菜单项显示 OPEN 告警数红点，每 60 秒拉一次计数） | 空 |
+| 系统 | /system/users 用户与角色 | platform_admin |
+
+## 5. 前端工具函数与测试（≥15）
+
+`utils/dashboard.ts`：`sortTargets(targets)`（lifecycle 排序）、`buildTodos(alerts, summaries, targets)`（待办条生成，最多 5 条，CRITICAL 优先）、`stackDaily(summaries)`（合并多业务 daily）、`describeSchedule(schedule)`（镜像/停用/下次触发文案）。
+`utils/params.ts`：告警规则 kind→表单字段定义、表单值→params 对象（含数值校验）。
+全部写单测。
+
+## 6. 后端测试（≥20）
+
+用户管理：权限、用户名校验、弱密码拒绝、禁止分配 service、移除最后管理员 409、重置密码撤销会话（旧 token 401）、锁定后登录失败、审计写入、不返回 hash。
+范围过滤：scopes=["drug_trace_alihealth"] 的用户在 report-targets 列表只看到 1 条、对其他 target 的 summary/ledger 返回 403。
+审计：旧调用兼容（与改前返回逐字段相同的用例）、各过滤参数、游标、导出 CSV 头与 BOM、超 10,000 行 400、导出被审计。
+
+## 7. 验收清单
+
+- [ ] `npm run build` exit 0；`node --test tests/` 全过（新增 ≥15）
+- [ ] 后端新增 ≥20 全过；全量不新增失败；探针一致
+- [ ] 驾驶舱在"某业务 summary 报错"时其他卡片正常（用浏览器或组件逻辑测试证明，二者择一并写明）
+- [ ] 全部新页面有 loading/空态/错误态；无前端伪造数据（`Select-String -Pattern "mock|fake|假数据" src/views` 结果逐条解释）
+- [ ] 若可运行 dev：每个新页面截图存 `evidence/LT-06/`（用合成库数据），否则注明未目视
+- [ ] 四类实施文档、04-API 矩阵（用户 5 个、审计 2 个端点）已更新
+
+## 8. 停止条件
+
+- P1 未完成不得开始 P3。时间不足时 P3 整体顺延（handed_off）。
+- 若 LT-04/05 未完成导致后端缺 API：对应页面/tab 显示"后端能力未就绪（LT-0x）"占位并登记，继续其他页面。

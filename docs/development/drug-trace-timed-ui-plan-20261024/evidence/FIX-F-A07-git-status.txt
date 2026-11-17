@@ -1,0 +1,156 @@
+ M .gitignore
+ M AGENTS.md
+ M AI_START.md
+ M README.md
+ M docs/README.md
+ M docs/ai/BACKLOG.md
+ M docs/ai/HANDOFF.md
+ M docs/ai/START_HERE.md
+ M docs/ai/STATE.md
+ M docs/catalog.json
+ M docs/development/drug-trace-20261016/EXTERNAL_INPUTS.md
+ M docs/startup/README.md
+ M implementation/Dockerfile
+ M implementation/apps/admin_web/src/App.vue
+ M implementation/apps/admin_web/src/views/DrugTrace.vue
+ M implementation/apps/admin_web/src/views/Login.vue
+ M implementation/deploy/dmz/README.md
+ M implementation/deploy/dmz/blyb-dmz-forwarder.service
+ M implementation/deploy/dmz/config.template.json
+ M implementation/deploy/dmz/forwarder.py
+ M implementation/deploy/dmz/install.sh
+ M implementation/deploy/linux/backup.sh
+ M implementation/deploy/linux/certs.sh
+ M implementation/deploy/linux/lib.sh
+ M implementation/deploy/linux/restore.sh
+ M implementation/docs/04-API目录对照矩阵.md
+ M implementation/docs/外部阻断清单.md
+ M implementation/docs/实施状态矩阵.md
+ M implementation/docs/接口与设计差异.md
+ M implementation/docs/测试执行记录.md
+ M implementation/plugins/destinations/alihealth_drugtrace/client.py
+ M implementation/plugins/destinations/alihealth_drugtrace/protocol.py
+ M implementation/plugins/destinations/alihealth_drugtrace/transport.py
+ M implementation/plugins/domains/drug_trace/contracts.py
+ M implementation/plugins/domains/drug_trace/ingest.py
+ M implementation/plugins/domains/drug_trace/models.py
+ M implementation/plugins/domains/drug_trace/payload.py
+ M implementation/plugins/domains/drug_trace/plugin.py
+ M implementation/plugins/domains/drug_trace/quality.py
+ M implementation/plugins/domains/drug_trace/routes.py
+ M implementation/plugins/domains/drug_trace/service.py
+ M implementation/plugins/sources/db_view/drug_trace.py
+ M implementation/plugins/sources/db_view/warehouse.py
+ M implementation/requirements-linux.txt
+ M implementation/tests/e2e/serve_drug_trace_ui.py
+ M implementation/tests/integration/test_dmz_forwarder.py
+ M implementation/tests/integration/test_drug_trace_api.py
+ M implementation/tests/integration/test_drug_trace_domain.py
+ M implementation/tests/integration/test_drug_trace_ops.py
+ M implementation/tests/integration/test_drug_trace_pg.py
+ M implementation/tests/integration/test_remediation_round2.py
+ M implementation/tests/integration/test_remediation_round2b.py
+?? docs/ai/sessions/DTR-DEPLOY-20261021.md
+?? docs/ai/sessions/DTR-FINALIZATION-PLAN-20261020.md
+?? docs/ai/sessions/DTR-FINALIZE-20261020.md
+?? docs/ai/sessions/DTR-FIRSTBILL-EXEC-20261021.md
+?? docs/ai/sessions/DTR-FIRSTBILL-LONGTASK-20261021.md
+?? docs/ai/sessions/DTR-FIX2-20261017.md
+?? docs/ai/sessions/DTR-FIX3-20261017.md
+?? docs/ai/sessions/DTR-FLOW-COMPARISON-GUIDE-20261022.md
+?? docs/ai/sessions/DTR-HIS-DDL-DMZ-CLOCK-20261022.md
+?? docs/ai/sessions/DTR-HISTORY-CHECK-TASK-20261023.md
+?? docs/ai/sessions/DTR-HISTORY-COMPARE-20261023.md
+?? docs/ai/sessions/DTR-HISTORY-LIVE-COMPARE-20261023.md
+?? docs/ai/sessions/DTR-HISTORY-ROOTCAUSE-R2.md
+?? docs/ai/sessions/DTR-HISTORY-SOURCE-AUDIT-20261023.md
+?? docs/ai/sessions/DTR-HISTORY-TRANSFER-AUDIT-20261023.md
+?? docs/ai/sessions/DTR-HISTORY-WINDOW-TRANSFER-20261023.md
+?? docs/ai/sessions/DTR-INPUT-RECHECK-20261022.md
+?? docs/ai/sessions/DTR-INSTALL-RUNBOOK-20261021.md
+?? docs/ai/sessions/DTR-NETWORK-RETEST-20261021.md
+?? docs/ai/sessions/DTR-NTP-CONFIGURE-20261023.md
+?? docs/ai/sessions/DTR-NTP-PROBE-20261022.md
+?? docs/ai/sessions/DTR-OFFICIAL-VIEW-AUDIT-20261022.md
+?? docs/ai/sessions/DTR-ONE-BILL-TRIAL-20261022.md
+?? docs/ai/sessions/DTR-ORACLE-FIRST-PAGE-20261022.md
+?? docs/ai/sessions/DTR-PUSH-REVIEW-20261021.md
+?? docs/ai/sessions/DTR-R10-UPLOAD-READINESS-20261022.md
+?? docs/ai/sessions/DTR-RESTORE-PATH-GUARD-20261022.md
+?? docs/ai/sessions/DTR-REVIEW2-20261017.md
+?? docs/ai/sessions/DTR-REVIEW3-20261017.md
+?? docs/ai/sessions/DTR-SOURCE-DELIVERY-20261022.md
+?? docs/ai/sessions/DTR-SOURCE-DEPLOY-20261022.md
+?? docs/ai/sessions/DTR-TIMED-REPORT-20261024.md
+?? docs/ai/sessions/DTR-TIMED-UI-20261024.md
+?? docs/ai/sessions/DTR-TIMED-UI-FIXPLAN-20261024.md
+?? docs/ai/sessions/DTR-TIMED-UI-PLAN-20261024.md
+?? docs/ai/sessions/DTR-TRIAL-PREREQUISITES-20261022.md
+?? docs/ai/sessions/DTR-UPLOAD-CONTENT-CONTRACT-20261022.md
+?? docs/ai/sessions/DTR-VIEW-VERIFY-FIRSTBILL-20261022.md
+?? docs/ai/sessions/HIS-LIVE-VERIFY-20261019.md
+?? docs/ai/sessions/HIS-SJZC-BIND-20261019.md
+?? docs/ai/sessions/PLATFORM-CREDENTIALS-20261020.md
+?? docs/ai/sessions/PLATFORM-LIVE-TEST-20261020.md
+?? docs/ai/sessions/REPORTING-DIRECTORY-GUIDES-20261023.md
+?? docs/deployment/drug-trace-install-20261021/
+?? docs/deployment/drug-trace-ntp-20261022/
+?? docs/deployment/drug-trace-ntp-20261023/
+?? docs/deployment/his-ddl-clock-20261022/
+?? docs/deployment/reporting-20261015/sql-r7/
+?? docs/deployment/reporting-20261015/view-contract-r6.md
+?? docs/deployment/reporting-20261015/view-contract-r7.md
+?? docs/development/drug-trace-20261016/fix2-20261017/
+?? docs/development/drug-trace-20261016/fix3-20261017/
+?? docs/development/drug-trace-20261016/review-2-20261017/
+?? docs/development/drug-trace-20261016/review-3-20261017/
+?? docs/development/drug-trace-content-contract-20261022/
+?? docs/development/drug-trace-finalization-20261020/
+?? docs/development/drug-trace-firstbill-exec-20261021/
+?? docs/development/drug-trace-history-compare-20261023/
+?? docs/development/drug-trace-history-live-compare-20261023/
+?? docs/development/drug-trace-history-rootcause-r2/
+?? docs/development/drug-trace-history-transfer-audit-20261023/
+?? docs/development/drug-trace-input-recheck-20261022/
+?? docs/development/drug-trace-network-20261021/
+?? docs/development/drug-trace-official-view-audit-20261022/
+?? docs/development/drug-trace-one-bill-trial-20261022/
+?? docs/development/drug-trace-oracle-first-page-20261022/
+?? docs/development/drug-trace-push-review-20261021/
+?? docs/development/drug-trace-r10-readiness-20261022/
+?? docs/development/drug-trace-source-deploy-20261022/
+?? docs/development/drug-trace-timed-report-20261024/
+?? docs/development/drug-trace-timed-ui-plan-20261024/
+?? docs/development/drug-trace-trial-prerequisites-20261022/
+?? docs/development/drug-trace-view-verify-20261022/
+?? docs/development/his-live-20261019/
+?? docs/development/his-sjzc-20261019/
+?? docs/development/platform-credentials-20261020/
+?? docs/development/platform-live-test-20261020/
+?? docs/maintenance/reporting-directory-guides-20261023/
+?? docs/operations/
+?? docs/startup/DATABASE_ACCESS.md
+?? implementation/apps/init_drug_trace.py
+?? implementation/apps/publish_drug_trace_config.py
+?? implementation/deploy/compose/drug-trace.override.yml
+?? implementation/deploy/dmz/README.socket.md
+?? implementation/deploy/dmz/blyb-dmz-forwarder.socket
+?? implementation/deploy/dmz/pack_dmz_release.py
+?? implementation/deploy/linux/diag_time_dns.sh
+?? implementation/deploy/oracle/
+?? implementation/plugins/domains/drug_trace/business_rules.py
+?? implementation/plugins/domains/drug_trace/readiness.py
+?? implementation/plugins/domains/drug_trace/source_config.py
+?? implementation/plugins/sources/db_view/oracle_client.py
+?? implementation/plugins/sources/db_view/source_profiles.py
+?? implementation/tests/integration/test_dpl_deploy.py
+?? implementation/tests/integration/test_drug_trace_fb02_official.py
+?? implementation/tests/integration/test_drug_trace_fix2.py
+?? implementation/tests/integration/test_drug_trace_fix3.py
+?? implementation/tests/integration/test_drug_trace_oracle_first_page.py
+?? implementation/tests/integration/test_drug_trace_pg_fix3.py
+?? implementation/tests/integration/test_drug_trace_readiness_fb.py
+?? implementation/tests/integration/test_drug_trace_timed_ui.py
+?? implementation/tests/integration/test_fin_finalize.py
+?? implementation/tests/integration/test_his_source_profile.py
+?? implementation/tests/integration/test_top_official_reference.py

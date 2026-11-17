@@ -1,0 +1,32 @@
+[
+  {
+    "sql": "01-connection.sql",
+    "exit_code": 0,
+    "output": "PASS: static HIS read-only checks passed; SQL was not executed",
+    "executed_on_source": false
+  },
+  {
+    "sql": "02-columns.sql",
+    "exit_code": 0,
+    "output": "PASS: static HIS read-only checks passed; SQL was not executed",
+    "executed_on_source": false
+  },
+  {
+    "sql": "03-indexes.sql",
+    "exit_code": 0,
+    "output": "PASS: static HIS read-only checks passed; SQL was not executed",
+    "executed_on_source": false
+  },
+  {
+    "sql": "04-contract-views.sql",
+    "exit_code": 0,
+    "output": "PASS: static HIS read-only checks passed; SQL was not executed",
+    "executed_on_source": false
+  },
+  {
+    "sql": "05-sample-summary.sql",
+    "exit_code": 0,
+    "output": "PASS: static HIS read-only checks passed; SQL was not executed",
+    "executed_on_source": false
+  }
+]

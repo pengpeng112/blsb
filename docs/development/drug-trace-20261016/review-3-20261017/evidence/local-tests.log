@@ -1,0 +1,13 @@
+.................................                                        [100%]
+============================== warnings summary ===============================
+tests/integration/test_drug_trace_fix2.py: 1260 warnings
+  F:\python\blyb\implementation\packages\core_db\migrate.py:42: SADeprecationWarning: Table.tometadata() is renamed to Table.to_metadata() (deprecated since: 1.4)
+    t.tometadata(md)
+
+tests/integration/test_drug_trace_fix2.py: 189 warnings
+  C:\Users\Administrator\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py:952: DeprecationWarning: The default datetime adapter is deprecated as of Python 3.12; see the sqlite3 documentation for suggested replacement recipes
+    cursor.execute(statement, parameters)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+33 passed, 1449 warnings in 19.78s
+

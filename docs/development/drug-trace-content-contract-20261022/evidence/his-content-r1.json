@@ -1,0 +1,203 @@
+{
+  "captured_at": "2026-10-22T09:04:03.522147+00:00",
+  "authorization": "Ongoing user-requested readonly HIS reporting-content analysis; bounded same-day samples",
+  "source_writes": 0,
+  "registration_changes": 0,
+  "uploads": 0,
+  "channel": "sjzc/<relay-jump>/data-asset-api/execute_readonly",
+  "queries": {
+    "source_comments": {
+      "sql": "SELECT OWNER,TABLE_NAME,COLUMN_NAME,DUMP(COMMENTS,16) AS COMMENT_BYTES\nFROM ALL_COL_COMMENTS\nWHERE (OWNER='PHARMACY' AND TABLE_NAME='DRUG_PRESC_MASTER'\n       AND COLUMN_NAME IN ('PRESC_DATE','PRESC_NO','DISPENSARY','PRESC_SOURCE',\n          'DISPENSING_DATETIME','FLAG','REFUND_FLAG','TRACE_STATUS'))\n   OR (OWNER='DRUG_USER' AND TABLE_NAME='MED_TRACE_RECORD'\n       AND COLUMN_NAME IN ('RECORD_ID','PRESC_DETAILID','CREATE_TIME','T_TRACE_CODE',\n          'IN_OUT_TYPE','IS_DELETED','SPLIT_FLAG','TRACES_SUM'))\nORDER BY OWNER,TABLE_NAME,COLUMN_NAME",
+      "sha256": "de6231e5ef2f138b3b49a9813c07efe632db3d813d87b0b594590fd0233c469e",
+      "result": {
+        "ok": true,
+        "source": "his_source_<his_host_id>",
+        "db_type": "oracle",
+        "row_count": 16,
+        "rows": [
+          {
+            "OWNER": "DRUG_USER",
+            "TABLE_NAME": "MED_TRACE_RECORD",
+            "COLUMN_NAME": "CREATE_TIME",
+            "COMMENT_BYTES": "Typ=1 Len=8: b4,b4,bd,a8,c8,d5,c6,da",
+            "COMMENT_DECODED_GBK": "创建日期"
+          },
+          {
+            "OWNER": "DRUG_USER",
+            "TABLE_NAME": "MED_TRACE_RECORD",
+            "COLUMN_NAME": "IN_OUT_TYPE",
+            "COMMENT_BYTES": "Typ=1 Len=27: b3,f6,c8,eb,bf,e2,c0,e0,d0,cd,20,49,4e,20,c8,eb,bf,e2,20,4f,55,54,20,b3,f6,bf,e2",
+            "COMMENT_DECODED_GBK": "出入库类型 IN 入库 OUT 出库"
+          },
+          {
+            "OWNER": "DRUG_USER",
+            "TABLE_NAME": "MED_TRACE_RECORD",
+            "COLUMN_NAME": "IS_DELETED",
+            "COMMENT_BYTES": "Typ=1 Len=22: c9,be,b3,fd,b1,ea,ca,b6,30,ce,b4,c9,be,b3,fd,20,20,31,c9,be,b3,fd",
+            "COMMENT_DECODED_GBK": "删除标识0未删除  1删除"
+          },
+          {
+            "OWNER": "DRUG_USER",
+            "TABLE_NAME": "MED_TRACE_RECORD",
+            "COLUMN_NAME": "PRESC_DETAILID",
+            "COMMENT_BYTES": "Typ=1 Len=12: b4,a6,b7,bd,c3,f7,cf,b8,ba,c5,c2,eb",
+            "COMMENT_DECODED_GBK": "处方明细号码"
+          },
+          {
+            "OWNER": "DRUG_USER",
+            "TABLE_NAME": "MED_TRACE_RECORD",
+            "COLUMN_NAME": "RECORD_ID",
+            "COMMENT_BYTES": "Typ=1 Len=8: bc,c7,c2,bc,d0,f2,ba,c5",
+            "COMMENT_DECODED_GBK": "记录序号"
+          },
+          {
+            "OWNER": "DRUG_USER",
+            "TABLE_NAME": "MED_TRACE_RECORD",
+            "COLUMN_NAME": "SPLIT_FLAG",
+            "COMMENT_BYTES": "Typ=1 Len=30: ca,c7,b7,f1,b2,f0,c1,e3,b1,ea,d6,be,20,30,a1,a2,b7,f1,28,c4,ac,c8,cf,29,20,31,a1,a2,ca,c7",
+            "COMMENT_DECODED_GBK": "是否拆零标志 0、否(默认) 1、是"
+          },
+          {
+            "OWNER": "DRUG_USER",
+            "TABLE_NAME": "MED_TRACE_RECORD",
+            "COLUMN_NAME": "TRACES_SUM",
+            "COMMENT_BYTES": "Typ=1 Len=28: d7,b7,cb,dd,c2,eb,d0,c5,cf,a2,a3,a8,c8,fd,bc,b6,d7,b7,cb,dd,c2,eb,a3,a9,ca,fd,c1,bf",
+            "COMMENT_DECODED_GBK": "追溯码信息（三级追溯码）数量"
+          },
+          {
+            "OWNER": "DRUG_USER",
+            "TABLE_NAME": "MED_TRACE_RECORD",
+            "COLUMN_NAME": "T_TRACE_CODE",
+            "COMMENT_BYTES": "Typ=1 Len=15: c8,fd,bc,b6,d7,b7,cb,dd,c2,eb,20,d0,a1,c2,eb",
+            "COMMENT_DECODED_GBK": "三级追溯码 小码"
+          },
+          {
+            "OWNER": "PHARMACY",
+            "TABLE_NAME": "DRUG_PRESC_MASTER",
+            "COLUMN_NAME": "DISPENSARY",
+            "COMMENT_BYTES": "Typ=1 Len=8: b7,a2,d2,a9,d2,a9,be,d6",
+            "COMMENT_DECODED_GBK": "发药药局"
+          },
+          {
+            "OWNER": "PHARMACY",
+            "TABLE_NAME": "DRUG_PRESC_MASTER",
+            "COLUMN_NAME": "DISPENSING_DATETIME",
+            "COMMENT_BYTES": "Typ=1 Len=8: b7,a2,d2,a9,c8,d5,c6,da",
+            "COMMENT_DECODED_GBK": "发药日期"
+          },
+          {
+            "OWNER": "PHARMACY",
+            "TABLE_NAME": "DRUG_PRESC_MASTER",
+            "COLUMN_NAME": "FLAG",
+            "COMMENT_BYTES": "Typ=1 Len=35: cd,cb,d2,a9,b1,ea,d6,be,2e,31,2c,d5,fd,b3,a3,b7,a2,d2,a9,3b,32,2c,c8,ab,cd,cb,3b,33,2c,b2,bf,b7,d6,cd,cb",
+            "COMMENT_DECODED_GBK": "退药标志.1,正常发药;2,全退;3,部分退"
+          },
+          {
+            "OWNER": "PHARMACY",
+            "TABLE_NAME": "DRUG_PRESC_MASTER",
+            "COLUMN_NAME": "PRESC_DATE",
+            "COMMENT_BYTES": "Typ=1 Len=8: b4,a6,b7,bd,c8,d5,c6,da",
+            "COMMENT_DECODED_GBK": "处方日期"
+          },
+          {
+            "OWNER": "PHARMACY",
+            "TABLE_NAME": "DRUG_PRESC_MASTER",
+            "COLUMN_NAME": "PRESC_NO",
+            "COMMENT_BYTES": "Typ=1 Len=6: b4,a6,b7,bd,ba,c5",
+            "COMMENT_DECODED_GBK": "处方号"
+          },
+          {
+            "OWNER": "PHARMACY",
+            "TABLE_NAME": "DRUG_PRESC_MASTER",
+            "COLUMN_NAME": "PRESC_SOURCE",
+            "COMMENT_BYTES": "Typ=1 Len=26: b4,a6,b7,bd,c0,b4,d4,b4,a3,bb,30,a3,ac,c3,c5,d5,ef,a1,a3,31,a3,ac,d7,a1,d4,ba",
+            "COMMENT_DECODED_GBK": "处方来源；0，门诊。1，住院"
+          },
+          {
+            "OWNER": "PHARMACY",
+            "TABLE_NAME": "DRUG_PRESC_MASTER",
+            "COLUMN_NAME": "REFUND_FLAG",
+            "COMMENT_BYTES": "Typ=1 Len=31: ca,c7,b7,f1,d2,d1,cd,cb,b7,d1,31,a3,ba,d2,d1,cd,cb,a3,ac,30,2f,6e,75,6c,6c,a3,ba,ce,b4,cd,cb",
+            "COMMENT_DECODED_GBK": "是否已退费1：已退，0/null：未退"
+          },
+          {
+            "OWNER": "PHARMACY",
+            "TABLE_NAME": "DRUG_PRESC_MASTER",
+            "COLUMN_NAME": "TRACE_STATUS",
+            "COMMENT_BYTES": "NULL"
+          }
+        ]
+      }
+    },
+    "normal_scope_sample": {
+      "sql": "SELECT PRESC_SOURCE,FLAG,REFUND_FLAG,TRACE_STATUS,COUNT(*) AS SAMPLE_BILLS\nFROM (\n    SELECT M.PRESC_SOURCE,M.FLAG,M.REFUND_FLAG,M.TRACE_STATUS\n    FROM PHARMACY.DRUG_PRESC_MASTER M\n    WHERE M.DISPENSING_DATETIME>=TO_DATE('2026-10-22','yyyy-mm-dd')\n      AND M.DISPENSING_DATETIME<TO_DATE('2026-10-23','yyyy-mm-dd')\n      AND ROWNUM<=100\n)\nGROUP BY PRESC_SOURCE,FLAG,REFUND_FLAG,TRACE_STATUS",
+      "sha256": "034236888b55a5d357d7378aa0bb3c3333597d1774c344ec4e646f36ae203436",
+      "result": {
+        "ok": true,
+        "source": "his_source_<his_host_id>",
+        "db_type": "oracle",
+        "row_count": 2,
+        "rows": [
+          {
+            "PRESC_SOURCE": "0",
+            "FLAG": "1",
+            "REFUND_FLAG": "None",
+            "TRACE_STATUS": "None",
+            "SAMPLE_BILLS": "41"
+          },
+          {
+            "PRESC_SOURCE": "1",
+            "FLAG": "0",
+            "REFUND_FLAG": "None",
+            "TRACE_STATUS": "None",
+            "SAMPLE_BILLS": "59"
+          }
+        ]
+      }
+    },
+    "normal_trace_sample": {
+      "sql": "SELECT HEADER_SOURCE,HEADER_FLAG,REFUND_FLAG,IN_OUT_TYPE,IS_DELETED,SPLIT_FLAG,\n       COUNT(*) AS SAMPLE_RECORDS,\n       SUM(CASE WHEN LENGTH(T_TRACE_CODE)=20\n                 AND REGEXP_LIKE(T_TRACE_CODE,'^[0-9]+$') THEN 1 ELSE 0 END) AS CODES_20_DIGITS,\n       SUM(CASE WHEN PRESC_DETAILID IS NULL THEN 1 ELSE 0 END) AS MISSING_DETAIL_ID,\n       SUM(CASE WHEN TRACES_SUM>1 THEN 1 ELSE 0 END) AS TRACES_SUM_GT_1\nFROM (\n    SELECT M.PRESC_SOURCE AS HEADER_SOURCE,M.FLAG AS HEADER_FLAG,M.REFUND_FLAG,\n           T.IN_OUT_TYPE,T.IS_DELETED,T.SPLIT_FLAG,T.T_TRACE_CODE,T.PRESC_DETAILID,T.TRACES_SUM\n    FROM (\n        SELECT PRESC_DATE,PRESC_NO,DISPENSARY,PRESC_SOURCE,FLAG,REFUND_FLAG\n        FROM PHARMACY.DRUG_PRESC_MASTER\n        WHERE DISPENSING_DATETIME>=TO_DATE('2026-10-22','yyyy-mm-dd')\n          AND DISPENSING_DATETIME<TO_DATE('2026-10-23','yyyy-mm-dd')\n          AND ROWNUM<=20\n    ) M\n    JOIN DRUG_USER.MED_TRACE_RECORD T\n      ON T.TRACE_BILLNO=TO_CHAR(M.PRESC_NO)\n     AND T.PRESC_DATE=M.PRESC_DATE\n     AND T.STORE_CODE=M.DISPENSARY\n    WHERE ROWNUM<=100\n)\nGROUP BY HEADER_SOURCE,HEADER_FLAG,REFUND_FLAG,IN_OUT_TYPE,IS_DELETED,SPLIT_FLAG",
+      "sha256": "151a9c0ac9a115a07e47bdbee8809bc87fd38bbb17bb13b8e1fef867f3192d59",
+      "result": {
+        "ok": true,
+        "source": "his_source_<his_host_id>",
+        "db_type": "oracle",
+        "row_count": 2,
+        "rows": [
+          {
+            "HEADER_SOURCE": "0",
+            "HEADER_FLAG": "1",
+            "REFUND_FLAG": "None",
+            "IN_OUT_TYPE": "OUT",
+            "IS_DELETED": "0",
+            "SPLIT_FLAG": "0",
+            "SAMPLE_RECORDS": "13",
+            "CODES_20_DIGITS": "13",
+            "MISSING_DETAIL_ID": "0",
+            "TRACES_SUM_GT_1": "0"
+          },
+          {
+            "HEADER_SOURCE": "0",
+            "HEADER_FLAG": "1",
+            "REFUND_FLAG": "None",
+            "IN_OUT_TYPE": "OUT",
+            "IS_DELETED": "0",
+            "SPLIT_FLAG": "1",
+            "SAMPLE_RECORDS": "7",
+            "CODES_20_DIGITS": "7",
+            "MISSING_DETAIL_ID": "0",
+            "TRACES_SUM_GT_1": "0"
+          }
+        ]
+      }
+    }
+  },
+  "registration": {
+    "source_code": "his_source_<his_host_id>",
+    "target_host": "<his-host>",
+    "port": 1521,
+    "service_name": "his",
+    "enabled": true,
+    "write_policy": "medical_dict_push"
+  }
+}

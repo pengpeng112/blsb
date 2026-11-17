@@ -1,0 +1,46 @@
+{
+  "host": "app",
+  "phase": "recover",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T01:01:54.518268+00:00",
+  "result": {
+    "started": true,
+    "business_date": "2026-10-25",
+    "normal_unit": true,
+    "baseline_file": "/root/blyb-maintenance-backups/queue-recovery-20261026/baseline.json",
+    "preflight": {
+      "eligible_query_count": 0,
+      "query": {
+        "queried": 0,
+        "errors": [],
+        "skipped_exhausted": 247
+      },
+      "queue_wait_seconds": 1800,
+      "execution_wait_seconds": 180,
+      "fair_background_slots": true
+    },
+    "baseline": {
+      "states": {
+        "PREPARED": 567,
+        "CONFIRMED": 412,
+        "ACCEPTED": 41,
+        "UNKNOWN": 206
+      },
+      "protected_old_rows": "a58f26edbe1551aada8aafc05dc464e3",
+      "quota": [
+        {
+          "used": 659,
+          "max_bills": 80000
+        }
+      ],
+      "checkpoint": [
+        {
+          "row_version": 46,
+          "since_time": "2026-10-26T00:00:00"
+        }
+      ]
+    },
+    "approvals_or_quota_reset": false,
+    "unknowns_reuploaded": false
+  }
+}

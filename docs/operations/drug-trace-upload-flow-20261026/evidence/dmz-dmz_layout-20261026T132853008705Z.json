@@ -1,0 +1,15 @@
+{
+  "host": "dmz",
+  "phase": "dmz_layout",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T13:28:53.008632+00:00",
+  "result": {
+    "current": "/opt/blyb-dmz/releases/20261021T113750Z",
+    "parent": "/opt/blyb-dmz/releases",
+    "sha": "ef5db6fc93d4f5317a14b696226c39d1e32160fd5283f7325321dbfc15c09ec9",
+    "candidate_exists": false,
+    "maintenance_folder_exists": false,
+    "active": "active",
+    "probe": 0
+  }
+}

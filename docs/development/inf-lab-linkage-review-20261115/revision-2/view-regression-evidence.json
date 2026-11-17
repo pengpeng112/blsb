@@ -1,0 +1,79 @@
+{
+  "current_types_and_result_codes": {
+    "ok": true,
+    "source": "ods_internal",
+    "db_type": "oracle",
+    "row_count": 4,
+    "rows": [
+      {
+        "LAYER": "PARENT_TYPE",
+        "CODE": "1",
+        "N": "3"
+      },
+      {
+        "LAYER": "ITEM_CODE",
+        "CODE": "(NULL)",
+        "N": "33"
+      },
+      {
+        "LAYER": "ITEM_CODE",
+        "CODE": "12",
+        "N": "3"
+      },
+      {
+        "LAYER": "ITEM_CODE",
+        "CODE": "10",
+        "N": "2"
+      }
+    ],
+    "elapsed_seconds": 2.59,
+    "sql_sha256": "5a941f69c660dac08aec3b9aaa513b4aa7b869e18f2e34ce92e3ea6e256c9db4",
+    "static_validation": "PASS_BEFORE_EXECUTION",
+    "sql_redacted_template": "SELECT 'PARENT_TYPE' AS LAYER, ACTIVITY_TYPE_CODE AS CODE, COUNT(*) AS N FROM ODS.V_INF_EX_LAB WHERE ID IN (:key_1,:key_2,:key_3) GROUP BY ACTIVITY_TYPE_CODE UNION ALL SELECT 'ITEM_CODE', NVL(EXAMINATION_RESULT_CODE,'(NULL)'), COUNT(*) FROM ODS.V_INF_EX_LAB_ITEM WHERE EX_LAB_ID IN (:key_1,:key_2,:key_3) GROUP BY EXAMINATION_RESULT_CODE"
+  },
+  "v13_join_multiplication": {
+    "ok": true,
+    "source": "ods_internal",
+    "db_type": "oracle",
+    "row_count": 3,
+    "rows": [
+      {
+        "REPORT_LABEL": "P1",
+        "V13_REJOIN_ROWS": "3",
+        "DECLARED_CANDIDATES": "1"
+      },
+      {
+        "REPORT_LABEL": "P3",
+        "V13_REJOIN_ROWS": "3",
+        "DECLARED_CANDIDATES": "1"
+      },
+      {
+        "REPORT_LABEL": "P2",
+        "V13_REJOIN_ROWS": "3",
+        "DECLARED_CANDIDATES": "1"
+      }
+    ],
+    "elapsed_seconds": 2.3,
+    "sql_sha256": "bf3902b117a10a470212f535bbe451c15d9db6bb115f7f8ff202d72c7d21fe4e",
+    "static_validation": "PASS_BEFORE_EXECUTION",
+    "sql_redacted_template": "SELECT CASE p.ID WHEN :key_1 THEN 'P1' WHEN :key_2 THEN 'P2' WHEN :key_3 THEN 'P3' END AS REPORT_LABEL, COUNT(*) AS V13_REJOIN_ROWS, MAX(b.CAND_CNT) AS DECLARED_CANDIDATES FROM ODS.V_INF_EX_LAB p JOIN ODS.M_INF_FXHIS_ACTIVITY_V13 b ON b.SERIAL_NUMBER=p.SERIAL_NUMBER WHERE p.ID IN (:key_1,:key_2,:key_3) GROUP BY p.ID"
+  },
+  "operator_department_fallback": {
+    "ok": true,
+    "source": "ods_internal",
+    "db_type": "oracle",
+    "row_count": 1,
+    "rows": [
+      {
+        "TARGET_REPORTS": "6",
+        "NO_TRANSCRIPTIONIST": "6",
+        "DEPT_HITS": "6",
+        "STAFF_HITS": "0"
+      }
+    ],
+    "elapsed_seconds": 3.35,
+    "sql_sha256": "2a9d51f509fdcd9ef7a8c730bb79a9909ae6a6390c2f845a8a0f5cf14f1266f9",
+    "static_validation": "PASS_BEFORE_EXECUTION",
+    "sql_redacted_template": "SELECT COUNT(*) AS TARGET_REPORTS, SUM(CASE WHEN a.TRANSCRIPTIONIST IS NULL THEN 1 ELSE 0 END) AS NO_TRANSCRIPTIONIST, SUM(CASE WHEN EXISTS (SELECT 1 FROM HIS.DEPT_DICT d WHERE d.DEPT_CODE=TO_CHAR(a.PERFORMED_BY)) THEN 1 ELSE 0 END) AS DEPT_HITS, SUM(CASE WHEN EXISTS (SELECT 1 FROM HIS.STAFF_DICT s WHERE s.EMP_NO=TO_CHAR(a.PERFORMED_BY)) THEN 1 ELSE 0 END) AS STAFF_HITS FROM HIS.LAB_TEST_MASTER a WHERE a.TEST_NO IN (:key_4,:key_5,:key_6,:key_7,:key_8,:key_9)"
+  }
+}

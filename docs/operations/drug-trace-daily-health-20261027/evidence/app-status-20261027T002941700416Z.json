@@ -1,0 +1,164 @@
+{
+  "host": "app",
+  "phase": "status",
+  "exit_code": 0,
+  "captured_at": "2026-10-27T00:29:41.700280+00:00",
+  "result": {
+    "captured_gmt8": "2026-10-27T08:29:42.910888+08:00",
+    "business_window": [
+      "2026-10-26",
+      "2026-10-27"
+    ],
+    "current_release": "/opt/blyb/releases/flow-20261026T132000Z",
+    "blyb-daily-upload.service": {
+      "exit_code": 0,
+      "properties": {
+        "TimeoutStartUSec": "6h",
+        "Result": "success",
+        "ExecMainStartTimestamp": "Tue 2026-10-27 06:10:29 CST",
+        "ExecMainExitTimestamp": "n/a",
+        "ExecMainStatus": "0",
+        "ActiveState": "activating",
+        "SubState": "start"
+      }
+    },
+    "blyb-daily-upload.timer": {
+      "exit_code": 0,
+      "properties": {
+        "NextElapseUSecRealtime": "",
+        "Result": "success",
+        "ActiveState": "active",
+        "SubState": "running"
+      }
+    },
+    "containers": {
+      "exit_code": 0,
+      "status": "blyb-nginx-1 Up 11 hours (healthy)\n<worker-container> Up 11 hours (unhealthy)\nblyb-storage-1 Up 11 hours (healthy)\nblyb-exchange-1 Up 11 hours (healthy)\nblyb-core-1 Up 11 hours (healthy)\nblyb-db-1 Up 11 hours (healthy)"
+    },
+    "receipts": [
+      {
+        "file": "20261027-061029.json",
+        "bytes": 0
+      }
+    ],
+    "driver_stderr": {
+      "bytes": 0,
+      "exception_types": [],
+      "oracle_codes": []
+    },
+    "database_exit_code": 0,
+    "database": {
+      "collections": [
+        {
+          "state": "RUNNING",
+          "window_begin": "2026-10-26 00:00:00",
+          "window_end": "2026-10-27 00:00:00",
+          "created_at": "2026-10-26 22:10:29.811014",
+          "finished_at": null,
+          "summary": {}
+        },
+        {
+          "state": "DONE",
+          "window_begin": "2026-10-25 00:00:00",
+          "window_end": "2026-10-26 00:00:00",
+          "created_at": "2026-10-25 22:10:29.797302",
+          "finished_at": "2026-10-26 00:19:16.394601",
+          "summary": {
+            "bills_seen": 2059,
+            "revisions_created": 2059,
+            "idempotent": 0,
+            "waiting": 707,
+            "valid": 1352,
+            "invalid": 0,
+            "conflicts": 0,
+            "version_rereads": 0,
+            "skipped_version_changing": 0,
+            "retried_ok": 0,
+            "retried_failed": 0
+          }
+        },
+        {
+          "state": "DONE",
+          "window_begin": "2026-10-24 00:00:00",
+          "window_end": "2026-10-25 00:00:00",
+          "created_at": "2026-10-25 09:57:41.976462",
+          "finished_at": "2026-10-25 12:28:46.67042",
+          "summary": {
+            "bills_seen": 2414,
+            "revisions_created": 2363,
+            "idempotent": 51,
+            "waiting": 944,
+            "valid": 1470,
+            "invalid": 0,
+            "conflicts": 0,
+            "version_rereads": 0,
+            "skipped_version_changing": 0,
+            "retried_ok": 0,
+            "retried_failed": 0
+          }
+        }
+      ],
+      "quality": [
+        {
+          "business_kind": "PATIENT_DISPENSE",
+          "quality_state": "VALID",
+          "n": 1233
+        },
+        {
+          "business_kind": "UNKNOWN",
+          "quality_state": "WAITING",
+          "n": 709
+        },
+        {
+          "business_kind": "PATIENT_DISPENSE",
+          "quality_state": "WAITING",
+          "n": 158
+        }
+      ],
+      "all_states": {
+        "CONFIRMED": 2577,
+        "ACCEPTED": 41,
+        "UNKNOWN": 205
+      },
+      "today_created_states": null,
+      "today_jobs": [
+        {
+          "job_type": "drug_trace.collect",
+          "state": "LEASED",
+          "n": 1,
+          "oldest": "2026-10-26 22:10:29.820198",
+          "lease_until": "2026-10-26 22:12:29.846456"
+        }
+      ],
+      "today_job_errors": null,
+      "today_attempts": null,
+      "today_queries": null,
+      "quota": [
+        {
+          "used": 2824,
+          "max_bills": 80000
+        }
+      ],
+      "checkpoint": [
+        {
+          "partition": "r10-batch-daily",
+          "row_version": 67,
+          "since_time": "2026-10-26T14:03:03",
+          "completed_window": "false"
+        }
+      ]
+    },
+    "ntp_sources": {
+      "exit_code": 0,
+      "status": "MS Name/IP address         Stratum Poll Reach LastRx Last sample               \n===============================================================================\n^* <intranet-host>                  1   8   377   169    -11us[  -12us] +/- 1685us"
+    },
+    "ntp_tracking": {
+      "exit_code": 0,
+      "status": "Reference ID    : 0A0A0A6F (<intranet-host>)\nStratum         : 2\nRef time (UTC)  : Tue Oct 27 00:26:54 2026\nSystem time     : 0.000000706 seconds slow of NTP time\nLast offset     : -0.000000713 seconds\nRMS offset      : 0.000006679 seconds\nFrequency       : 1.843 ppm slow\nResidual freq   : -0.000 ppm\nSkew            : 0.008 ppm\nRoot delay      : 0.002223370 seconds\nRoot dispersion : 0.000672417 seconds\nUpdate interval : 259.9 seconds\nLeap status     : Normal"
+    },
+    "ntp_unit": {
+      "exit_code": 0,
+      "status": "ActiveState=active\nUnitFileState=enabled"
+    }
+  }
+}

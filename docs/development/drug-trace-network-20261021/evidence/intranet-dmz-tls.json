@@ -1,0 +1,14 @@
+{
+  "captured_at": "2026-10-21T05:03:55.452887+00:00",
+  "source": "<prod-host>",
+  "destination": "<relay-net-host>:443",
+  "url": "https://<relay-net-host>/health",
+  "read_only": true,
+  "real_uploads": 0,
+  "tls_verification_bypassed": false,
+  "client_certificate_presented": false,
+  "remote_changes": 0,
+  "ssh_exit_code": 0,
+  "output": "\ncurl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to <relay-net-host>:443 \nhttp_code=000 remote_ip=<relay-net-host> remote_port=443 ssl_verify_result=1 time_total=0.012373\n__CURL_EXIT__35\n",
+  "probe_complete": true
+}

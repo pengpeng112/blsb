@@ -1,0 +1,154 @@
+{
+  "revision": "drugtrace-upload-content-20261022-r10",
+  "status": "DRAFT_FOR_HOSPITAL_REVIEW",
+  "runtime_approved": false,
+  "installed": false,
+  "generated_at": "2026-10-22T09:09:38.431589+00:00",
+  "source": {
+    "host": "<his-host>",
+    "port": 1521,
+    "service_name": "his",
+    "reader": "BLYB_DRUGTRACE",
+    "views": [
+      "PHARMACY.V_DRUG_TRACE_BILL",
+      "PHARMACY.V_DRUG_TRACE_CODE"
+    ],
+    "credential_ref": ".ai/private/drug-trace-view-verify-20261022/his-reader.credential.clixml"
+  },
+  "profile": "alihealth_yljg_retail_v1",
+  "method": "alibaba.alihealth.drugtrace.top.yljg.uploadretail",
+  "required_business_form_fields": {
+    "bill_code": {
+      "origin": "existing ensure_bill_code mapping, not LISTAGG(PRESC_DETAILID)",
+      "rule": "DTRT- plus existing composite-key SHA1 prefix; persistent mapping wins",
+      "business_key": [
+        "source_system",
+        "pharmacy_code",
+        "business_kind",
+        "source_bill_id"
+      ],
+      "source_bill_id": "full-second PRESC_DATE|PRESC_NO|DISPENSARY",
+      "legacy_bill_code_compatibility": "UNCONFIRMED; no historical replay"
+    },
+    "bill_time": {
+      "origin": "PHARMACY.DRUG_PRESC_MASTER.DISPENSING_DATETIME",
+      "format": "YYYY-MM-DD HH24:MI:SS",
+      "timezone": "Asia/Shanghai business wall-clock",
+      "scan_create_time_is_same_field": false
+    },
+    "bill_type": {
+      "proposed_value": "321",
+      "basis": "existing approved official-202601-r1 dictionary and 2026.01 guide",
+      "official_api_description_conflict": "API page description also says 323; not independently resolved"
+    },
+    "ref_user_id": {
+      "origin": "already recorded hospital ref_ent_id, not ent_id and not HIS ORG_CODE",
+      "value_ref": ".ai/private/alihealth-drugtrace-20261020/profile.json#ref_ent_id",
+      "requires_pharmacy_mapping": true
+    },
+    "trace_codes": {
+      "origin": "DRUG_USER.MED_TRACE_RECORD.T_TRACE_CODE",
+      "wire_format": "comma-joined original string values for the whole bill",
+      "record_identity": "RECORD_ID VARCHAR2(32)",
+      "no_numeric_cast": true,
+      "no_distinct_or_max_repair": true,
+      "same_bill_duplicates": "BLOCK",
+      "parent_child_codes_in_same_bill": "BLOCK",
+      "max_code_count_guard": "retain current configured guard; official documentation governs"
+    }
+  },
+  "optional_not_required_for_minimum_retail": [
+    "physic_type",
+    "from_user_id",
+    "oper_ic_code",
+    "oper_ic_name",
+    "customer_id_type",
+    "customer_id"
+  ],
+  "internal_not_form_parameters": [
+    "quantity",
+    "unit",
+    "code_level",
+    "patient_ref",
+    "encounter_ref",
+    "expected_code_count"
+  ],
+  "patient_fields_policy": "omit from minimal retail upload",
+  "normal_outpatient_candidate": {
+    "predicate": "M.PRESC_SOURCE = 0 AND M.FLAG = 1 AND M.DISPENSING_DATETIME IS NOT NULL AND NVL(M.REFUND_FLAG, 0) = 0",
+    "business_kind": "PATIENT_DISPENSE",
+    "finalized": 1,
+    "is_void": 0,
+    "approval_status": "NOT_APPROVED",
+    "all_other_states": {
+      "business_kind": "UNKNOWN",
+      "finalized": null,
+      "is_void": null
+    },
+    "source_comment_evidence": "evidence/his-content-r1.json",
+    "documented_source_values": {
+      "PRESC_SOURCE": {
+        "0": "outpatient",
+        "1": "inpatient"
+      },
+      "FLAG": {
+        "1": "normal dispensing",
+        "2": "full return",
+        "3": "partial return"
+      },
+      "REFUND_FLAG": {
+        "1": "refunded",
+        "0": "not refunded",
+        "NULL": "not refunded"
+      }
+    }
+  },
+  "join": {
+    "conditions": [
+      "T.TRACE_BILLNO=TO_CHAR(M.PRESC_NO)",
+      "T.PRESC_DATE=M.PRESC_DATE",
+      "T.STORE_CODE=M.DISPENSARY"
+    ],
+    "qualification": "bounded live sample evidence, not a published formal relation",
+    "presc_detailid_equals_legacy_item_no": false
+  },
+  "dictionary_draft": [
+    {
+      "namespace": "drugtrace.bill_type",
+      "source_code": "PRESC_SOURCE=0;FLAG=1",
+      "target": "321",
+      "approve": false
+    },
+    {
+      "namespace": "drugtrace.query_bill_type",
+      "source_code": "PRESC_SOURCE=0;FLAG=1",
+      "target": "A",
+      "approve": false
+    },
+    {
+      "namespace": "drugtrace.ref_ent_id",
+      "source_code": "explicit selected pharmacy code",
+      "target_ref": "existing hospital ref_ent_id",
+      "approve": false
+    }
+  ],
+  "collection_mode": "batch",
+  "continuous_collection_approved": false,
+  "first_bill_scope": {
+    "max_bills": 1,
+    "entire_bill_required": true,
+    "proposed_initial_subset": "normal outpatient, no refund, all selected active rows IS_DELETED=0 and SPLIT_FLAG=0; unknowns wait",
+    "unreported_status": "not determinable from TRACE_STATUS; requires legacy/platform reconciliation",
+    "specific_bill_selected": false
+  },
+  "deployment_remaining": [
+    "deploy previously tested Oracle NULL-cursor fix",
+    "securely bind new reader to worker",
+    "approve source/status contract",
+    "publish source and correct dictionary revisions",
+    "enable source/destination normally",
+    "close real send evidence/scope and allow required DMZ upload method",
+    "one-bill send and terminal/each-code verification"
+  ],
+  "real_uploads": 0
+}

@@ -1,0 +1,154 @@
+{
+  "host": "app",
+  "phase": "recovery_status",
+  "exit_code": 0,
+  "captured_at": "2026-10-27T05:49:56.133401+00:00",
+  "result": {
+    "baseline.json": {
+      "states": {
+        "PREPARED": 719,
+        "CONFIRMED": 2577,
+        "ACCEPTED": 41,
+        "UNKNOWN": 205
+      },
+      "window_states": {
+        "PREPARED": 719
+      },
+      "protected_old_hash": "b6cff3ef40515622c29a8f5379963643",
+      "quota": [
+        {
+          "used": 2824,
+          "max_bills": 80000
+        }
+      ],
+      "checkpoint": [
+        {
+          "row_version": 80,
+          "since_time": "2026-10-27T00:00:00"
+        }
+      ],
+      "inflight": 0,
+      "pending_sends": 0,
+      "pending_prepares": 1276,
+      "window_attempts": null
+    },
+    "progress.json": {
+      "started_utc": "2026-10-27T02:20:45.139128+00:00",
+      "outcome": "RUNNING",
+      "business_date": "2026-10-26",
+      "source": "manual",
+      "expected_valid": 1995,
+      "new_collection_allowed": false,
+      "driver_sha256": "6a0bb73d73eefd7150315a6ba0d5de8de5adfae2925089cca7242a9ce68d3e15",
+      "updated_utc": "2026-10-27T03:59:58.327431+00:00",
+      "snapshot": {
+        "states": {
+          "PREPARED": 236,
+          "CONFIRMED": 3570,
+          "ACCEPTED": 66,
+          "UNKNOWN": 205
+        },
+        "window_states": {
+          "PREPARED": 236,
+          "CONFIRMED": 993,
+          "ACCEPTED": 25
+        },
+        "protected_old_hash": "b6cff3ef40515622c29a8f5379963643",
+        "quota": [
+          {
+            "used": 3842,
+            "max_bills": 80000
+          }
+        ],
+        "checkpoint": [
+          {
+            "row_version": 80,
+            "since_time": "2026-10-27T00:00:00"
+          }
+        ],
+        "inflight": 0,
+        "pending_sends": 0,
+        "pending_prepares": 741,
+        "window_attempts": [
+          {
+            "http_status": 200,
+            "outcome": "ACCEPTED",
+            "n": 1018
+          }
+        ]
+      },
+      "old_246_unchanged": true,
+      "checkpoint_unchanged": true
+    },
+    "final.json": {
+      "started_utc": "2026-10-27T02:20:45.139128+00:00",
+      "outcome": "PARTIAL_FAILURE",
+      "business_date": "2026-10-26",
+      "source": "manual",
+      "expected_valid": 1995,
+      "new_collection_allowed": false,
+      "driver_sha256": "6a0bb73d73eefd7150315a6ba0d5de8de5adfae2925089cca7242a9ce68d3e15",
+      "updated_utc": "2026-10-27T03:59:58.327431+00:00",
+      "snapshot": {
+        "states": {
+          "PREPARED": 237,
+          "CONFIRMED": 3577,
+          "ACCEPTED": 59,
+          "UNKNOWN": 206
+        },
+        "window_states": {
+          "PREPARED": 237,
+          "CONFIRMED": 1000,
+          "ACCEPTED": 18,
+          "UNKNOWN": 1
+        },
+        "protected_old_hash": "b6cff3ef40515622c29a8f5379963643",
+        "quota": [
+          {
+            "used": 3843,
+            "max_bills": 80000
+          }
+        ],
+        "checkpoint": [
+          {
+            "row_version": 80,
+            "since_time": "2026-10-27T00:00:00"
+          }
+        ],
+        "inflight": 0,
+        "pending_sends": 0,
+        "pending_prepares": 739,
+        "window_attempts": [
+          {
+            "http_status": 200,
+            "outcome": "ACCEPTED",
+            "n": 1018
+          },
+          {
+            "http_status": 200,
+            "outcome": "UNKNOWN",
+            "n": 1
+          }
+        ]
+      },
+      "old_246_unchanged": true,
+      "checkpoint_unchanged": true,
+      "finished_utc": "2026-10-27T04:00:28.544591+00:00",
+      "exit_code": 1,
+      "send": {
+        "sent": 1019,
+        "skipped_terminal": 0,
+        "resumed": 1019,
+        "prepared_new": 0,
+        "aborted_reason": "SEND_RESULT_UNKNOWN"
+      },
+      "send_error_count": 1,
+      "query_error_count": 0
+    },
+    "error.json": {
+      "error_type": "SystemExit",
+      "utc": "2026-10-27T04:00:28.545479+00:00"
+    },
+    "unit": "ExecMainStatus=1\nActiveState=failed\nSubState=failed"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "host": "app",
+  "phase": "top7_send",
+  "exit_code": 0,
+  "captured_at": "2026-10-27T05:59:13.882966+00:00",
+  "result": {
+    "launched": true,
+    "pid": 3141178,
+    "max_uploads": 1,
+    "target": "8528553c-c9db-4548-bffd-d610ce876e41"
+  }
+}

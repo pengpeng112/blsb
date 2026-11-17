@@ -1,0 +1,15 @@
+{
+  "production": true,
+  "transport": "pinned SSH jump TCP forwarding + server-specific SPKI trust",
+  "direct_management_tls_accepted": false,
+  "business_actions": 0,
+  "rendered": false,
+  "error_type": "Error",
+  "stage": "browser_navigation",
+  "browser_error_codes": [
+    "ERR_CONNECTION_CLOSED"
+  ],
+  "forward_error_types": [
+    "ChannelException"
+  ]
+}

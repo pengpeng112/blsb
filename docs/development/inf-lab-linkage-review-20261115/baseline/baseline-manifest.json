@@ -1,0 +1,14 @@
+{
+ "date": "2026-11-15",
+ "sha256": {
+  "M_INF_FXHIS_ACTIVITY": "66d241689dc9256b76ecedce82a93ccd002e9742b430bc12e470a4266daae19b",
+  "V_INF_EX_LAB": "25ac347bae17d292bfebf071af09fd2d5a4a4b2c899821edd2a5eba98c2ea478",
+  "V_INF_EX_LAB_ITEM": "b2ce204ec69e58664ff9209ff2170fcfa281cce11ea185710a47de0624e6b601",
+  "pusher_files": {
+   "pusher.py": "8fb068d309d0d0840a4273d4b627421fb1a72bb322f31aaa5df71bce601f551b",
+   "tables.py": "50ddcdac930b483f2fe56a61212b58a5ee6d4d5384b2411a28231499d3338241",
+   "run.sh": "4d44a89c05bc771c237483d1abbd13563a7f041447037596e0916cabec0f9d03",
+   "selftest.py": "ffe0a0352035095bedccbf2c3c75b1602d679d7e434249eaee198a671b30abd2"
+  }
+ }
+}

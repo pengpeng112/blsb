@@ -1,0 +1,27 @@
+{
+  "status": "REAL_SINGLE_BILL_CONFIRMED",
+  "user_authorized_deferrals": true,
+  "user_requested_retention": true,
+  "submission_id": "7ed95aaa-ee66-4510-b80d-630f6c9dc381",
+  "bill_count": 1,
+  "code_count": 4,
+  "upload_attempts": 1,
+  "platform_result_type": "3",
+  "platform_sub_process_flag": "51",
+  "local_state": "CONFIRMED",
+  "quota": {
+    "used": 1,
+    "max_bills": 1
+  },
+  "approval_revoked": false,
+  "approval_valid_until_utc": "2026-10-22 15:18:32.454834",
+  "dmz_allowed_upload": "uploadretail only",
+  "inventory_enabled": false,
+  "continuous_or_bulk_enabled": false,
+  "source_writes": 0,
+  "source_code_changes": false,
+  "independent_code_level_reconciliation": false,
+  "local_item_states": {
+    "PENDING": 4
+  }
+}

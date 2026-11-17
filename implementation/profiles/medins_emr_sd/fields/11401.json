@@ -1,0 +1,5268 @@
+{
+ "code": "11401",
+ "envelope_ref": "fields/_envelope.json",
+ "root": "input",
+ "length_unit": "UNCONFIRMED",
+ "nodes": [
+  {
+   "code": "mdtrt_sn",
+   "name": "就医流水号",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "mdtrt_id",
+   "name": "就诊ID",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "medins_file_no",
+   "name": "医院内部档案号",
+   "type": "string",
+   "max_len": 64,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "psn_no",
+   "name": "人员编号",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "patn_ipt_cnt",
+   "name": "患者住院次数",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "ipt_no",
+   "name": "住院号",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "medcasno",
+   "name": "病案号",
+   "type": "string",
+   "max_len": 40,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "psn_name",
+   "name": "人员姓名",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": true,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "gend",
+   "name": "性别",
+   "type": "string",
+   "max_len": 6,
+   "dict": "Y",
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "brdy",
+   "name": "出生日期",
+   "type": "datetime",
+   "max_len": null,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "ntly",
+   "name": "国籍",
+   "type": "string",
+   "max_len": 6,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "ntly_name",
+   "name": "国籍名称",
+   "type": "string",
+   "max_len": 70,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "nwb_bir_wt",
+   "name": "新生儿出生体重",
+   "type": "number",
+   "max_len": 6,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "nwb_adm_wt",
+   "name": "新生儿入院体重",
+   "type": "number",
+   "max_len": 6,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "birplc",
+   "name": "出生地",
+   "type": "string",
+   "max_len": 200,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "napl",
+   "name": "籍贯",
+   "type": "string",
+   "max_len": 100,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "naty_name",
+   "name": "民族名称",
+   "type": "string",
+   "max_len": 100,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "naty",
+   "name": "民族",
+   "type": "string",
+   "max_len": 3,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "certno",
+   "name": "证件号码",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": true,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "psn_cert_type",
+   "name": "人员证件类型",
+   "type": "string",
+   "max_len": 6,
+   "dict": "Y",
+   "required": true,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "mdtrt_setl_type",
+   "name": "就诊结算类型",
+   "type": "string",
+   "max_len": 6,
+   "dict": "Y",
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "prfs",
+   "name": "职业",
+   "type": "string",
+   "max_len": 6,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "mrg_stas",
+   "name": "婚姻状态",
+   "type": "string",
+   "max_len": 3,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "curr_addr_poscode",
+   "name": "现住址-邮政编码",
+   "type": "string",
+   "max_len": 6,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "curr_addr",
+   "name": "现住址",
+   "type": "string",
+   "max_len": 200,
+   "dict": null,
+   "required": true,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "psn_tel",
+   "name": "个人联系电话",
+   "type": "string",
+   "max_len": 70,
+   "dict": null,
+   "required": true,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "resd_addr_prov",
+   "name": "户口地址-省（自治区、直辖市）",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "resd_addr_city",
+   "name": "户口地址-市（地区）",
+   "type": "string",
+   "max_len": 500,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "resd_addr_coty",
+   "name": "户口地址-县（区）",
+   "type": "string",
+   "max_len": 500,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "resd_addr_subd",
+   "name": "户口地址-乡（镇、街道办事处）",
+   "type": "string",
+   "max_len": 500,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "resd_addr_vil",
+   "name": "户口地址-村（街、路、弄等）",
+   "type": "string",
+   "max_len": 500,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "resd_addr_housnum",
+   "name": "户口地址-门牌号码",
+   "type": "string",
+   "max_len": 200,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "resd_addr_poscode",
+   "name": "户口地址- 邮政编码",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "resd_addr",
+   "name": "户口地址",
+   "type": "string",
+   "max_len": 200,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "empr_tel",
+   "name": "工作单位联系电话",
+   "type": "string",
+   "max_len": 20,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "empr_poscode",
+   "name": "工作单位- 邮政编码",
+   "type": "string",
+   "max_len": 6,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "empr_addr",
+   "name": "工作单位及地址",
+   "type": "string",
+   "max_len": 200,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "coner_tel",
+   "name": "联系人电话",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "coner_name",
+   "name": "联系人姓名",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "coner_addr",
+   "name": "联系人地址",
+   "type": "string",
+   "max_len": 200,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "coner_rlts_code",
+   "name": "与联系人关系代码",
+   "type": "string",
+   "max_len": 20,
+   "dict": "Y",
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "adm_way_name",
+   "name": "入院途径名称",
+   "type": "string",
+   "max_len": 300,
+   "dict": null,
+   "required": true,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "adm_way_code",
+   "name": "入院途径代码",
+   "type": "string",
+   "max_len": 3,
+   "dict": "Y",
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "trt_type_name",
+   "name": "治疗类别名称",
+   "type": "string",
+   "max_len": 300,
+   "dict": null,
+   "required": true,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "trt_type",
+   "name": "治疗类别",
+   "type": "string",
+   "max_len": 3,
+   "dict": "Y",
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "adm_dept_codg",
+   "name": "入院科室编码",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "adm_dept_name",
+   "name": "入院科室名称",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": true,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "adm_caty",
+   "name": "入院科别",
+   "type": "string",
+   "max_len": 6,
+   "dict": "Y",
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "adm_ward",
+   "name": "入院病房",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "adm_date",
+   "name": "入院日期",
+   "type": "datetime",
+   "max_len": null,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "dscg_date",
+   "name": "出院日期",
+   "type": "datetime",
+   "max_len": null,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "dscg_dept_codg",
+   "name": "出院科室编码",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "dscg_dept_name",
+   "name": "出院科室名称",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": true,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "dscg_caty",
+   "name": "出院科别",
+   "type": "string",
+   "max_len": 6,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "refl_dept_codg",
+   "name": "转科科室编码",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "refl_dept_name",
+   "name": "转科科室名称",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "refldept_caty_name",
+   "name": "转科科别名称",
+   "type": "string",
+   "max_len": 50,
+   "dict": "Y",
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "dscg_ward",
+   "name": "出院病房",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "ipt_days",
+   "name": "住院天数",
+   "type": "number",
+   "max_len": 4,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "drug_dicm_flag",
+   "name": "过敏标志",
+   "type": "string",
+   "max_len": 30,
+   "dict": "Y",
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "dicm_drug_name",
+   "name": "过敏物名称",
+   "type": "string",
+   "max_len": 200,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "die_autp_flag",
+   "name": "死亡患者尸检标志",
+   "type": "string",
+   "max_len": 30,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "abo_code",
+   "name": "ABO血型代码",
+   "type": "string",
+   "max_len": 30,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "abo_name",
+   "name": "ABO血型名称",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "rh_code",
+   "name": "Rh血型代码",
+   "type": "string",
+   "max_len": 30,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "rh_name",
+   "name": "RH血型",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "die_flag",
+   "name": "死亡标志",
+   "type": "string",
+   "max_len": 3,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "deptdrt_code",
+   "name": "科主任编码",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "deptdrt_name",
+   "name": "科主任姓名",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": true,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "chfdr_code",
+   "name": "主任( 副主任)医师编码",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "chfdr_name",
+   "name": "主任( 副主任)医师姓名",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": true,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "atddr_code",
+   "name": "主治医生编码",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "atddr_name",
+   "name": "主治医生姓名",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": true,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "chfpdr_code",
+   "name": "主诊医师编码",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "chfpdr_name",
+   "name": "主诊医师姓名",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": true,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "ipt_dr_code",
+   "name": "住院医师编码",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "ipt_dr_name",
+   "name": "住院医师姓名",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": true,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "resp_nurs_code",
+   "name": "责任护士编码",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "resp_nurs_name",
+   "name": "责任护士姓名",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "train_dr_no",
+   "name": "进修医师编码",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "train_dr_name",
+   "name": "进修医师姓名",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "intn_dr_no",
+   "name": "实习医师编码",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "intn_dr_name",
+   "name": "实习医师姓名",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "codr_no",
+   "name": "编码员编码",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "codr_name",
+   "name": "编码员姓名",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "qltctrl_dr_code",
+   "name": "质控医师编编码",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "qltctrl_dr_name",
+   "name": "质控医师姓名",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "qltctrl_nurs_code",
+   "name": "质控护士编码",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "qltctrl_nurs_name",
+   "name": "质控护士姓名",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "medcas_qlt_name",
+   "name": "病案质量名称",
+   "type": "string",
+   "max_len": 100,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "medcas_qlt_code",
+   "name": "病案质量代码",
+   "type": "string",
+   "max_len": 30,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "qltctrl_date",
+   "name": "质控日期",
+   "type": "datetime",
+   "max_len": null,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "dscg_way_name",
+   "name": "离院方式名称",
+   "type": "string",
+   "max_len": 200,
+   "dict": null,
+   "required": true,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "dscg_way",
+   "name": "离院方式",
+   "type": "string",
+   "max_len": 3,
+   "dict": "Y",
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "acp_medins_code",
+   "name": "拟接收医疗机构代码",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "acp_medins_name",
+   "name": "拟接收医疗机构名称",
+   "type": "string",
+   "max_len": 500,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "dscg_31days_rinp_flag",
+   "name": "出院 31天内再住院计划标志",
+   "type": "string",
+   "max_len": 3,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "dscg_31days_rinp_pup",
+   "name": "出院31天内再住院目的",
+   "type": "string",
+   "max_len": 200,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "damg_intx_ext_rea",
+   "name": "损伤、中毒的外部原因",
+   "type": "string",
+   "max_len": 1000,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "damg_intx_ext_rea_disecode",
+   "name": "损伤、中毒的外部原因疾病编码",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "brn_damg_bfadm_coma_dura",
+   "name": "颅脑损伤患者入院前昏迷时长",
+   "type": "string",
+   "max_len": 10,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "brn_damg_afadm_coma_dura",
+   "name": "颅脑损伤患者入院后昏迷时长",
+   "type": "string",
+   "max_len": 10,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "vent_used_dura",
+   "name": "呼吸机使用时长",
+   "type": "string",
+   "max_len": 10,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "cnfm_date",
+   "name": "确诊日期",
+   "type": "datetime",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "patn_dise_diag_crsp",
+   "name": "患者疾病诊断对照",
+   "type": "string",
+   "max_len": 20,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "patn_dise_diag_crsp_code",
+   "name": "住院患者疾病诊断对照代码",
+   "type": "string",
+   "max_len": 3,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "ipt_patn_diag_inscp",
+   "name": "住院患者诊断符合情况",
+   "type": "string",
+   "max_len": 20,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "ipt_patn_diag_inscp_code",
+   "name": "住院患者诊断符合情况代码",
+   "type": "string",
+   "max_len": 1,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "dscg_trt_rslt",
+   "name": "出院治疗结果",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "dscg_trt_rslt_code",
+   "name": "出院治疗结果代码",
+   "type": "string",
+   "max_len": 4,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "medins_orgcode",
+   "name": "医疗机构组织机构代码",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "age",
+   "name": "年龄",
+   "type": "number",
+   "max_len": 4,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "aise",
+   "name": "过敏源",
+   "type": "string",
+   "max_len": 30,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "pote_intn_dr_name",
+   "name": "研究生实习医师姓名",
+   "type": "string",
+   "max_len": 50,
+   "dict": "Y",
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "hbsag",
+   "name": "乙肝表面抗原（HBsAg）",
+   "type": "string",
+   "max_len": 30,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "hcvab",
+   "name": "丙型肝炎抗体\n（HCV-Ab）",
+   "type": "string",
+   "max_len": 30,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "hivab",
+   "name": "艾滋病毒抗体（hiv-ab）",
+   "type": "string",
+   "max_len": 30,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "resc_cnt",
+   "name": "抢救次数",
+   "type": "number",
+   "max_len": 3,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "resc_succ_cnt",
+   "name": "抢救成功次数",
+   "type": "number",
+   "max_len": 3,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "hosp_dise_fsttime",
+   "name": "手术、治疗、检查、诊断为本院第一例",
+   "type": "string",
+   "max_len": 30,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "hif_pay_way_name",
+   "name": "医保基金付费方式名称",
+   "type": "string",
+   "max_len": 20,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "hif_pay_way_code",
+   "name": "医保基金付费方式代码",
+   "type": "string",
+   "max_len": 2,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "med_fee_paymtd_name",
+   "name": "医疗费用支付方式名称",
+   "type": "string",
+   "max_len": 200,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "medfee_paymtd_code",
+   "name": "医疗费用支付方式代码",
+   "type": "string",
+   "max_len": 3,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "selfpay_amt",
+   "name": "自付金额",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "medfee_sumamt",
+   "name": "医疗费总额",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "ordn_med_servfee",
+   "name": "一般医疗服务费",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "ordn_trt_oprt_fee",
+   "name": "一般治疗操作费",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "nurs_fee",
+   "name": "护理费",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "com_med_serv_oth_fee",
+   "name": "综合医疗服务类其他费用",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "palg_diag_fee",
+   "name": "病理诊断费",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "lab_diag_fee",
+   "name": "实验室诊断费",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "rdhy_diag_fee",
+   "name": "影像学诊断费",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "clnc_dise_fee",
+   "name": "临床诊断项目费",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "nsrgtrt_item_fee",
+   "name": "非手术治疗项目费",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "clnc_phys_trt_fee",
+   "name": "临床物理治疗费",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "oprn_trt_fee",
+   "name": "手术治疗费",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "anst_fee",
+   "name": "麻醉费",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "oprn_fee",
+   "name": "手术费",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "rhab_fee",
+   "name": "康复费",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "tcm_diag_fee",
+   "name": "中医诊断费",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "tcm_trt_fee",
+   "name": "中医治疗费",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "tcm_boninj_fee",
+   "name": "中医骨伤费",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "tcm_acup_mox_fee",
+   "name": "中医针刺与灸法费",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "tcm_masg_fee",
+   "name": "中医推拿治疗费",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "tcm_ano_trt_fee",
+   "name": "中医肛肠治疗费",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "tcm_sp_trt_fee",
+   "name": "中医特殊治疗费",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "tcm_oth_fee",
+   "name": "中医其他费",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "tcm_sp_dspe_mix_fee",
+   "name": "中医特殊调配加工费",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "tcm_synddiff_diet_fee",
+   "name": "中医辨证施膳费",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "wmfee",
+   "name": "西药费",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "abtl_medn_fee",
+   "name": "抗菌药物费用",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "tcmpat_fee",
+   "name": "中成药费",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "tcmherb_fee",
+   "name": "中草药费",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "blo_fee",
+   "name": "血费",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "albu_fee",
+   "name": "白蛋白类制品费",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "glon_fee",
+   "name": "球蛋白类制品费",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "clotfac_fee",
+   "name": "凝血因子类制品费",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "cyki_fee",
+   "name": "细胞因子类制品费",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "exam_dspo_matl_fee",
+   "name": "检查用一次性医用材料费",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "trt_dspo_matl_fee",
+   "name": "治疗用一次性医用材料费",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "oprn_dspo_matl_fee",
+   "name": "手术用一次性医用材料费",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "oth_fee",
+   "name": "其他费",
+   "type": "number",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "vali_flag",
+   "name": "有效标志",
+   "type": "string",
+   "max_len": 3,
+   "dict": "Y",
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "fixmedins_code",
+   "name": "定点医药机构编号",
+   "type": "string",
+   "max_len": 12,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "palg_no",
+   "name": "病理号",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "diag_seq",
+   "name": "诊断序列号",
+   "type": "string",
+   "max_len": 3,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "ipt_patn_disediag_type_code",
+   "name": "住院患者疾病诊断类型代码",
+   "type": "string",
+   "max_len": 30,
+   "dict": "Y",
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "disediag_type",
+   "name": "疾病诊断类型",
+   "type": "string",
+   "max_len": 100,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "maindiag_flag",
+   "name": "主诊断标志",
+   "type": "string",
+   "max_len": 3,
+   "dict": "Y",
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "diag_code",
+   "name": "诊断代码",
+   "type": "string",
+   "max_len": 30,
+   "dict": "Y",
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "diag_name",
+   "name": "诊断名称",
+   "type": "string",
+   "max_len": 500,
+   "dict": null,
+   "required": true,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "hi_diag_code",
+   "name": "医保诊断编码",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "hi_diag_name",
+   "name": "医保诊断名称",
+   "type": "string",
+   "max_len": 500,
+   "dict": null,
+   "required": true,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "inhosp_diag_code",
+   "name": "院内诊断代码",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "inhosp_diag_name",
+   "name": "院内诊断名称",
+   "type": "string",
+   "max_len": 100,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "adm_dise_cond_name",
+   "name": "入院疾病病情名称",
+   "type": "string",
+   "max_len": 300,
+   "dict": null,
+   "required": true,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "adm_dise_cond_code",
+   "name": "入院疾病病情代码",
+   "type": "string",
+   "max_len": 20,
+   "dict": "Y",
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "adm_cond",
+   "name": "入院病情",
+   "type": "string",
+   "max_len": 500,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "adm_cond_code",
+   "name": "入院时病情代码",
+   "type": "string",
+   "max_len": 3,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "high_diag_evid",
+   "name": "最高诊断依据",
+   "type": "string",
+   "max_len": 30,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "bkup_deg",
+   "name": "分化程度",
+   "type": "string",
+   "max_len": 16,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "bkup_deg_code",
+   "name": "分化程度代码",
+   "type": "string",
+   "max_len": 30,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "vali_flag",
+   "name": "有效标志",
+   "type": "string",
+   "max_len": 3,
+   "dict": "Y",
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "mdtrt_sn",
+   "name": "就医流水号",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "fixmedins_code",
+   "name": "定点医药机构编号",
+   "type": "string",
+   "max_len": 12,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "medins_file_no",
+   "name": "医院内部档案号",
+   "type": "string",
+   "max_len": 64,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "oprn_oprt_date",
+   "name": "手术操作日期",
+   "type": "datetime",
+   "max_len": null,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "oprn_oprt_name",
+   "name": "手术操作名称",
+   "type": "string",
+   "max_len": 500,
+   "dict": null,
+   "required": true,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "oprn_oprt_code",
+   "name": "手术操作代码",
+   "type": "string",
+   "max_len": 200,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "oprn_oprt_sn",
+   "name": "手术操作序列号",
+   "type": "string",
+   "max_len": 16,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "oprn_lv_code",
+   "name": "手术级别代码",
+   "type": "string",
+   "max_len": 50,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "oprn_lv_name",
+   "name": "手术级别名称",
+   "type": "string",
+   "max_len": 300,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "oper_no",
+   "name": "手术者编码",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "oper_name",
+   "name": "手术者姓名",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": true,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "asit1_no",
+   "name": "助手Ⅰ编码",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "asit1_name",
+   "name": "助手Ⅰ姓名",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "asit2_no",
+   "name": "助手Ⅱ编码",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "asit2_name",
+   "name": "助手Ⅱ姓名",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "sinc_heal_lv",
+   "name": "手术切口愈合等级",
+   "type": "string",
+   "max_len": 5,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "sinc_heal_lv_code",
+   "name": "手术切口愈合等级代码",
+   "type": "string",
+   "max_len": 30,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "anst_mtd_name",
+   "name": "麻醉-方法名称",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "anst_mtd_code",
+   "name": "麻醉-方法代码",
+   "type": "string",
+   "max_len": 5,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "anst_dr_code",
+   "name": "麻醉医师编号",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "anst_dr_name",
+   "name": "麻醉医师姓名",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "oprn_oper_part",
+   "name": "手术操作部位",
+   "type": "string",
+   "max_len": 10,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "oprn_oper_part_code",
+   "name": "手术操作部位代码",
+   "type": "string",
+   "max_len": 30,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "oprn_con_time",
+   "name": "手术持续时间",
+   "type": "string",
+   "max_len": 4,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "anst_lv_name",
+   "name": "麻醉分级名称",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "anst_lv_code",
+   "name": "麻醉分级代码",
+   "type": "string",
+   "max_len": 30,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "oprn_patn_type",
+   "name": "手术患者类型",
+   "type": "string",
+   "max_len": 100,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "oprn_patn_type _code",
+   "name": "手术患者类型代码",
+   "type": "string",
+   "max_len": 30,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "main_oprn_flag",
+   "name": "主要手术标志",
+   "type": "string",
+   "max_len": 30,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "anst_asa_lv_code",
+   "name": "麻醉ASA分级代码",
+   "type": "string",
+   "max_len": 50,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "anst_asa_lv_name",
+   "name": "麻醉ASA分级名称",
+   "type": "string",
+   "max_len": 100,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "anst_medn_code",
+   "name": "麻醉药物代码",
+   "type": "string",
+   "max_len": 50,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "anst_medn_name",
+   "name": "麻醉药物名称",
+   "type": "string",
+   "max_len": 100,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "anst_medn_dos",
+   "name": "麻醉药物剂量",
+   "type": "string",
+   "max_len": 20,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "unt",
+   "name": "计量单位",
+   "type": "string",
+   "max_len": 10,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "anst_begntime",
+   "name": "麻醉开始时间",
+   "type": "datetime",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "anst_endtime",
+   "name": "麻醉结束时间",
+   "type": "datetime",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "anst_copn_code",
+   "name": "麻醉合并症代码",
+   "type": "string",
+   "max_len": 30,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "anst_copn_name",
+   "name": "麻醉合并症名称",
+   "type": "string",
+   "max_len": 100,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "anst_copn_dscr",
+   "name": "麻醉合并症描述",
+   "type": "string",
+   "max_len": 1000,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "pacu_begntime",
+   "name": "复苏室开始时间",
+   "type": "datetime",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "pacu_endtime",
+   "name": "复苏室结束时间",
+   "type": "datetime",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "canc_oprn_flag",
+   "name": "取消手术标志",
+   "type": "string",
+   "max_len": 3,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "vali_flag",
+   "name": "有效标志",
+   "type": "string",
+   "max_len": 3,
+   "dict": "Y",
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "mdtrt_sn",
+   "name": "就医流水号",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "medins_file_no",
+   "name": "医院内部档案号",
+   "type": "string",
+   "max_len": 64,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "icu_code",
+   "name": "重症监护室代码",
+   "type": "string",
+   "max_len": 10,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "inpool_icu_time",
+   "name": "进入监护室时间",
+   "type": "datetime",
+   "max_len": null,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "out_icu_time",
+   "name": "退出监护室时间",
+   "type": "datetime",
+   "max_len": null,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "medins_orgcode",
+   "name": "医疗机构组织机构代码",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "nurscare_lv_code",
+   "name": "护理等级代码",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "nurscare_lv_name",
+   "name": "护理等级名称",
+   "type": "string",
+   "max_len": 100,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "nurscare_days",
+   "name": "护理小时",
+   "type": "number",
+   "max_len": 3,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "back_icu",
+   "name": "重返重症监护室标志",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "vali_flag",
+   "name": "有效标志",
+   "type": "string",
+   "max_len": 3,
+   "dict": "Y",
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "mdtrt_sn",
+   "name": "就医流水号",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "fixmedins_code",
+   "name": "定点医药机构编号",
+   "type": "string",
+   "max_len": 12,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "medins_file_no",
+   "name": "医院内部档案号",
+   "type": "string",
+   "max_len": 64,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "cainfo",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "dev_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "dev_safe_info",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "inf_time",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "info",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "infver",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.abo_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.abo_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.abtl_medn_fee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.acp_medins_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.acp_medins_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.adm_caty",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.adm_date",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.adm_dept_codg",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.adm_dept_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.adm_ward",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.adm_way_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.adm_way_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.age",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.aise",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.albu_fee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.anst_fee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.atddr_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.atddr_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.birplc",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.blo_fee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.brdy",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.brn_damg_afadm_coma_dura",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.brn_damg_bfadm_coma_dura",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.certno",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.chfdr_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.chfdr_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.chfpdr_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.chfpdr_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.clnc_dise_fee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.clnc_phys_trt_fee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.clotfac_fee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.cnfm_date",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.codr_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.codr_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.com_med_serv_oth_fee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.coner_addr",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.coner_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.coner_rlts_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.coner_tel",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.curr_addr",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.curr_addr_poscode",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.cyki_fee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.damg_intx_ext_rea",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.damg_intx_ext_rea_disecode",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.deptdrt_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.deptdrt_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.dicm_drug_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.die_autp_flag",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.die_flag",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.drug_dicm_flag",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.dscg_31days_rinp_flag",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.dscg_31days_rinp_pup",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.dscg_caty",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.dscg_date",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.dscg_dept_codg",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.dscg_dept_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.dscg_trt_rslt",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.dscg_trt_rslt_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.dscg_ward",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.dscg_way",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.dscg_way_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.empr_addr",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.empr_poscode",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.empr_tel",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.exam_dspo_matl_fee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.fixmedins_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.gend",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.glon_fee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.hbsag",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.hcvab",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.hif_pay_way_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.hif_pay_way_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.hivab",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.hosp_dise_fsttime",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.intn_dr_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.intn_dr_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.ipt_days",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.ipt_dr_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.ipt_dr_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.ipt_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.ipt_patn_diag_inscp",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.ipt_patn_diag_inscp_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.lab_diag_fee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.mdtrt_id",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.mdtrt_setl_type",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.mdtrt_sn",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.med_fee_paymtd_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.medcas_qlt_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.medcas_qlt_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.medcasno",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.medfee_paymtd_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.medfee_sumamt",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.medins_file_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.medins_orgcode",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.mrg_stas",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.napl",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.naty",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.naty_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.nsrgtrt_item_fee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.ntly",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.ntly_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.nurs_fee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.nwb_adm_wt",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.nwb_bir_wt",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.oprn_dspo_matl_fee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.oprn_fee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.oprn_trt_fee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.ordn_med_servfee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.ordn_trt_oprt_fee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.oth_fee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.palg_diag_fee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.patn_dise_diag_crsp",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.patn_dise_diag_crsp_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.patn_ipt_cnt",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.pote_intn_dr_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.prfs",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.psn_cert_type",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.psn_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.psn_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.psn_tel",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.qltctrl_date",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.qltctrl_dr_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.qltctrl_dr_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.qltctrl_nurs_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.qltctrl_nurs_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.rdhy_diag_fee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.refl_dept_codg",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.refl_dept_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.refldept_caty_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.resc_cnt",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.resc_succ_cnt",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.resd_addr",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.resd_addr_city",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.resd_addr_coty",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.resd_addr_housnum",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.resd_addr_poscode",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.resd_addr_prov",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.resd_addr_subd",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.resd_addr_vil",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.resp_nurs_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.resp_nurs_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.rh_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.rh_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.rhab_fee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.selfpay_amt",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.tcm_acup_mox_fee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.tcm_ano_trt_fee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.tcm_boninj_fee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.tcm_diag_fee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.tcm_masg_fee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.tcm_oth_fee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.tcm_sp_dspe_mix_fee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.tcm_sp_trt_fee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.tcm_synddiff_diet_fee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.tcm_trt_fee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.tcmherb_fee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.tcmpat_fee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.train_dr_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.train_dr_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.trt_dspo_matl_fee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.trt_type",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.trt_type_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.vali_flag",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.vent_used_dura",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.baseinfo.wmfee",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[0].adm_cond",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[0].adm_cond_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[0].adm_dise_cond_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[0].adm_dise_cond_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[0].bkup_deg",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[0].bkup_deg_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[0].diag_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[0].diag_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[0].diag_seq",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[0].disediag_type",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[0].fixmedins_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[0].hi_diag_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[0].hi_diag_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[0].high_diag_evid",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[0].inhosp_diag_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[0].inhosp_diag_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[0].ipt_patn_disediag_type_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[0].maindiag_flag",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[0].mdtrt_sn",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[0].medins_file_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[0].palg_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[0].vali_flag",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[1].adm_cond",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[1].adm_cond_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[1].adm_dise_cond_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[1].adm_dise_cond_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[1].bkup_deg",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[1].bkup_deg_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[1].diag_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[1].diag_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[1].diag_seq",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[1].disediag_type",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[1].fixmedins_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[1].hi_diag_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[1].hi_diag_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[1].high_diag_evid",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[1].inhosp_diag_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[1].inhosp_diag_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[1].ipt_patn_disediag_type_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[1].maindiag_flag",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[1].mdtrt_sn",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[1].medins_file_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[1].palg_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.diseinfo[1].vali_flag",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.icuinfo",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.icuinfo[0].back_icu",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.icuinfo[0].fixmedins_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.icuinfo[0].icu_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.icuinfo[0].inpool_icu_time",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.icuinfo[0].mdtrt_sn",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.icuinfo[0].medins_file_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.icuinfo[0].medins_orgcode",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.icuinfo[0].nurscare_days",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.icuinfo[0].nurscare_lv_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.icuinfo[0].nurscare_lv_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.icuinfo[0].out_icu_time",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.icuinfo[0].vali_flag",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].anst_asa_lv_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].anst_asa_lv_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].anst_begntime",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].anst_copn_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].anst_copn_dscr",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].anst_copn_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].anst_dr_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].anst_dr_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].anst_endtime",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].anst_lv_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].anst_lv_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].anst_medn_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].anst_medn_dos",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].anst_medn_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].anst_mtd_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].anst_mtd_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].asit1_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].asit1_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].asit2_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].asit2_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].canc_oprn_flag",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].main_oprn_flag",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].mdtrt_sn",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].medins_file_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].oper_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].oper_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].oprn_con_time",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].oprn_lv_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].oprn_lv_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].oprn_oper_part",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].oprn_oper_part_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].oprn_oprt_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].oprn_oprt_date",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].oprn_oprt_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].oprn_oprt_sn",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].oprn_patn_type",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].oprn_patn_type_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].pacu_begntime",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].pacu_endtime",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].sinc_heal_lv",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].sinc_heal_lv_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].unt",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.oprninfo[0].vali_flag",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "insuplc_admdvs",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "mdtrtarea_admvs",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "msgid",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "opter",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "opter_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "opter_type",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "recer_sys_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "sign_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "signtype",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  }
+ ]
+}

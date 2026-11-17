@@ -1,0 +1,12 @@
+{
+  "host": "app",
+  "phase": "upgrade",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T04:44:38.041857+00:00",
+  "result": {
+    "launched": true,
+    "pid": 1994260,
+    "release": "auth-20261026T043500Z",
+    "logs": "/root/blyb-maintenance-backups/upgrade-auth-20261026T043500Z"
+  }
+}

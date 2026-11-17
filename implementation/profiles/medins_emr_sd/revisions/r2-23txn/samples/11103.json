@@ -1,0 +1,43 @@
+{
+ "info": "11103",
+ "msgid": "合成msgid",
+ "mdtrtarea_admvs": "合成mdtr",
+ "recer_sys_code": "合成recer_sy",
+ "infver": "合成infv",
+ "opter_type": "1",
+ "opter": "合成opter",
+ "opter_name": "合成敏感值占位",
+ "inf_time": "2026-02-01 08:00:00",
+ "fixmedins_code": "合成fixmedin",
+ "input": {
+  "setlinfo": {
+   "mdtrt_sn": "合成mdtrt_sn",
+   "medins_file_no": "合成敏感值占位",
+   "invono": "合成invono",
+   "refd_setl_flag": "合成r",
+   "adm_date": "2026-02-01 08:00:00",
+   "dscg_date": "2026-02-01 08:00:00",
+   "setl_time": "2026-02-01 08:00:00",
+   "medfee_sumamt": 1,
+   "psn_pay": 1,
+   "setl_type": "合成s",
+   "opter_id": "合成opter_id",
+   "opter_name": "合成敏感值占位",
+   "opt_time": "2026-02-01 08:00:00",
+   "nurs_fee": 1,
+   "oprn_fee": 1,
+   "wmfee": 1,
+   "tcmpat_fee": 1,
+   "tcmherb_fee": 1,
+   "oth_fee": 1,
+   "bed_fee": 1,
+   "diag_fee": 1,
+   "check_fee": 1,
+   "asy_fee": 1,
+   "trt_fee": 1,
+   "hc_matl_fee": 1,
+   "ordn_trt_fee": 1,
+   "rgst_fee": 1
+  }
+ }
+}

@@ -1,0 +1,4 @@
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+305 passed, 6 skipped, 16765 warnings in 519.52s (0:08:39)
+EXIT=0

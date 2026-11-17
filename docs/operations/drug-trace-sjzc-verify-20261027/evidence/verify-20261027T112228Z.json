@@ -1,0 +1,459 @@
+{
+  "authorization": "User explicit authorization 2026-10-27 ('授权执行') read-only verification via sjzc controlled connector (READY_HIS precedent 2026-10-23)",
+  "budget_seconds": 300,
+  "per_query_timeout_seconds": 15,
+  "source_writes": 0,
+  "uploads": 0,
+  "tables_accessed": [
+    "PHARMACY.DRUG_PRESC_MASTER",
+    "DRUG_USER.MED_TRACE_RECORD"
+  ],
+  "identity": {
+    "ok": true,
+    "rows": [
+      {
+        "LOGIN_USER": "READY_HIS",
+        "SERVICE_NAME": "his"
+      }
+    ],
+    "seconds": 0.1488
+  },
+  "trace_index": {
+    "ok": true,
+    "rows": [
+      {
+        "INDEX_NAME": "med_trace_record_trace_billno",
+        "COLUMN_NAME": "TRACE_BILLNO",
+        "COLUMN_POSITION": 1
+      }
+    ],
+    "seconds": 0.0222
+  },
+  "results": [
+    {
+      "grp": "normal_no_code",
+      "tile": 1,
+      "sql01": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      },
+      "sql02": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 2,
+      "sql01": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      },
+      "sql02": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 3,
+      "sql01": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      },
+      "sql02": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 4,
+      "sql01": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      },
+      "sql02": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 5,
+      "sql01": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      },
+      "sql02": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 6,
+      "sql01": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      },
+      "sql02": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 7,
+      "sql01": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      },
+      "sql02": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 8,
+      "sql01": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      },
+      "sql02": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 9,
+      "sql01": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      },
+      "sql02": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 10,
+      "sql01": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      },
+      "sql02": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 11,
+      "sql01": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      },
+      "sql02": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 12,
+      "sql01": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      },
+      "sql02": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 13,
+      "sql01": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      },
+      "sql02": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 14,
+      "sql01": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      },
+      "sql02": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 15,
+      "sql01": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      },
+      "sql02": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 16,
+      "sql01": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      },
+      "sql02": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 17,
+      "sql01": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      },
+      "sql02": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 18,
+      "sql01": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      },
+      "sql02": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 19,
+      "sql01": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      },
+      "sql02": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      }
+    },
+    {
+      "grp": "normal_no_code",
+      "tile": 20,
+      "sql01": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      },
+      "sql02": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      }
+    },
+    {
+      "grp": "orig_0_2",
+      "tile": 1,
+      "sql01": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      },
+      "sql02": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      }
+    },
+    {
+      "grp": "orig_0_2",
+      "tile": 2,
+      "sql01": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      },
+      "sql02": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      }
+    },
+    {
+      "grp": "orig_0_2",
+      "tile": 3,
+      "sql01": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      },
+      "sql02": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      }
+    },
+    {
+      "grp": "orig_1_0",
+      "tile": 1,
+      "sql01": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      },
+      "sql02": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      }
+    },
+    {
+      "grp": "orig_1_0",
+      "tile": 2,
+      "sql01": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      },
+      "sql02": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      }
+    },
+    {
+      "grp": "orig_1_0",
+      "tile": 3,
+      "sql01": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      },
+      "sql02": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      }
+    },
+    {
+      "grp": "orig_1_0",
+      "tile": 4,
+      "sql01": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      },
+      "sql02": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      }
+    },
+    {
+      "grp": "orig_1_0",
+      "tile": 5,
+      "sql01": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      },
+      "sql02": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      }
+    },
+    {
+      "grp": "orig_1_0",
+      "tile": 6,
+      "sql01": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      },
+      "sql02": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      }
+    },
+    {
+      "grp": "orig_1_0",
+      "tile": 7,
+      "sql01": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      },
+      "sql02": {
+        "ok": false,
+        "error": "ValueError: readonly SQL comments are not allowed",
+        "codes": []
+      }
+    }
+  ],
+  "run_completed": true,
+  "samples_done": 30,
+  "elapsed_seconds": 0.17,
+  "captured_at": "2026-10-27T11:22:30.530892+00:00",
+  "authorization_local_record": "用户 2026-10-27 会话明确指令『授权执行』；范围限本业务只读核查"
+}

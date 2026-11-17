@@ -1,0 +1,99 @@
+{
+  "host": "app",
+  "phase": "progress",
+  "exit_code": 0,
+  "captured_at": "2026-10-27T01:19:42.651610+00:00",
+  "result": {
+    "captured_gmt8": "2026-10-27T09:19:44.010970+08:00",
+    "database": {
+      "progress": {
+        "row_version": 76,
+        "since_time": "2026-10-26T16:39:05",
+        "completed_window": "false"
+      },
+      "quality": [
+        {
+          "business_kind": "PATIENT_DISPENSE",
+          "quality_state": "VALID",
+          "n": 1773,
+          "latest_revision_utc": "2026-10-27 01:19:22.771134"
+        },
+        {
+          "business_kind": "UNKNOWN",
+          "quality_state": "WAITING",
+          "n": 982,
+          "latest_revision_utc": "2026-10-27 01:19:20.413233"
+        },
+        {
+          "business_kind": "PATIENT_DISPENSE",
+          "quality_state": "WAITING",
+          "n": 245,
+          "latest_revision_utc": "2026-10-27 01:15:25.934295"
+        }
+      ],
+      "waiting_rules": [
+        {
+          "rule": "QD-NOT-FINALIZED",
+          "n": 982
+        },
+        {
+          "rule": "QD-KIND-UNKNOWN",
+          "n": 982
+        },
+        {
+          "rule": "QD-BRANCH-UNAPPROVED",
+          "n": 982
+        },
+        {
+          "rule": "QD-NO-CODES",
+          "n": 1227
+        }
+      ],
+      "today_attempts": 0,
+      "collection": {
+        "state": "RUNNING",
+        "created_utc": "2026-10-26T22:10:29.811014",
+        "finished_utc": null
+      },
+      "reports": [
+        {
+          "report_date": "2026-10-26",
+          "source": "timer",
+          "outcome": "FAILED",
+          "candidate_count": 0,
+          "updated_at": "2026-10-27 01:10:31.049782"
+        }
+      ]
+    },
+    "worker": {
+      "running": true,
+      "status": "running",
+      "started_at": "2026-10-26T13:27:21.288471876Z",
+      "health_status": "unhealthy",
+      "failing_streak": 749,
+      "recent_health_checks": [
+        {
+          "end": "2026-10-27T09:18:41.047074254+08:00",
+          "exit_code": 1
+        },
+        {
+          "end": "2026-10-27T09:18:56.133681507+08:00",
+          "exit_code": 1
+        },
+        {
+          "end": "2026-10-27T09:19:11.225263088+08:00",
+          "exit_code": 1
+        },
+        {
+          "end": "2026-10-27T09:19:26.316400436+08:00",
+          "exit_code": 1
+        },
+        {
+          "end": "2026-10-27T09:19:41.40417089+08:00",
+          "exit_code": 1
+        }
+      ],
+      "heartbeat_age_seconds": 11355.3
+    }
+  }
+}

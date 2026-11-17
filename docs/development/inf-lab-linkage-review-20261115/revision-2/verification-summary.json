@@ -1,0 +1,9 @@
+{
+  "audit_scripts_syntax_ok": true,
+  "code_matches_production": true,
+  "original_files_drift": [],
+  "exact_child_id_sets_match": true,
+  "evidence_assertions_ok": true,
+  "local_links_checked": 13,
+  "checked_at_utc": "2026-11-15T12:40:19.480616+00:00"
+}

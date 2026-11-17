@@ -1,0 +1,30 @@
+{
+  "host": "app",
+  "phase": "report_snapshot",
+  "exit_code": 0,
+  "captured_at": "2026-10-25T13:51:33.875053+00:00",
+  "result": {
+    "exit_code": 0,
+    "api": {
+      "status": 200,
+      "data": {
+        "report_date": "2026-10-24",
+        "source": "manual",
+        "outcome": "PARTIAL_FAILURE",
+        "created": true
+      }
+    },
+    "candidate_count": 1470,
+    "scoped_states": {
+      "CONFIRMED": 408,
+      "UNKNOWN": 206,
+      "ACCEPTED": 41
+    },
+    "scoped_attempts": 654,
+    "prepare_errors": 815,
+    "source": "manual",
+    "outcome": "PARTIAL_FAILURE",
+    "no_uploads": true,
+    "receipt": "/var/log/blyb/daily-upload/20261025-maintenance-reconstruction.json"
+  }
+}

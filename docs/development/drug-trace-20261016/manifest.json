@@ -1,0 +1,27 @@
+{
+  "algorithm": "sha256",
+  "scope": "planning package excluding this manifest and Python cache",
+  "files": {
+    "ACCEPTANCE.md": "ba11cac350632c7a6d18d16a942f48cd47eae54d0b0de47af75e6ac352a473dc",
+    "DEPLOYMENT_REVIEW.md": "16aae3b723772941b70b998fdb86e0543f8187bbd9eddf077ed2a21488e22a77",
+    "DEVELOPMENT_PLAN.md": "0794e77336bb75aa19e0ffdc6b04893480f6fcdd3bede78cb17b78fb7588f7f1",
+    "evidence/audit_dmz.py": "7cf199ab5998555b711456b81e18f603f07ccba9ad2fffb87ae6e28d049ac4dd",
+    "evidence/audit_runtime.py": "de0e15b03a9d2ec29449ed8182c77e1002ce0275fdb38e3353f280d60e8843b9",
+    "evidence/baseline-hashes.json": "2f6232e28d94bb04dbe9536d989b41a9618b84d056012013cd351fb717a1d316",
+    "evidence/before-BACKLOG.md": "99645739a128d6daa7c983c2180c28961dad99719bf7dc469cb17455635f5169",
+    "evidence/before-HANDOFF.md": "1cf4d92ad98f55995b85fff9675abcd7a43d92ba38245696ab9c1cd8081eb581",
+    "evidence/before-README.md": "134d3b1a92d8a4e1d1889765dbb167185705ceb902cf41cc5ed6f185bf5e9a2e",
+    "evidence/before-STATE.md": "db745dfdc440b0ef16eb65e6d6851bd575f25e7bbbf4361123284fcb5c5bd737",
+    "evidence/dmz-evidence-20261016T143339Z.json": "40bb366cbd2dc4d7761e359cfa0d44a8988baf635ac1904c76d2510679cf4803",
+    "evidence/dmz-evidence-20261016T143409Z.json": "394c8b7ba834589a980d3c4ceacb59d7d54bdabd1f036490e828901d81894567",
+    "evidence/management-connectivity.json": "8c0c6778e9b6309b06050f50f4a8c76cae796e124b27388ad4a619b4e7ebcd0b",
+    "evidence/runtime-20261016T142807Z.json": "4bfd1b213d9c125bebef30e35694dcc5e8aeda3b68f741d71de652189308fe58",
+    "evidence/runtime-20261016T142915Z.json": "2d887aacd60cca4854509bfe88d796910a7fc015aecb2c9f7c029d01727a7fdc",
+    "evidence/verification.json": "7b7c00288fb8b241b3f904e38de6d27e398eb5ab14a15e6f44f33c63c1429384",
+    "evidence/verify_plan.py": "54a65426059a5eac44bc53dbb1f17d17ad062dddae71840fe8bab76239d14921",
+    "EXTERNAL_INPUTS.md": "542c5ab7347d1f7e703395aa07281905799d54bf3bb9d0b701c96649e1c5e9fe",
+    "NEXT_AI_PROMPT.md": "bc4ae6c6b6df22c955a56e8fa0a2c69c40e0b58293a7071fb400cda6b0c57169",
+    "README.md": "71c3af40d88eb84d95902f39555c4a1baf1d7d3b869f216a1caf92c7ee1df147",
+    "SQL_REVIEW.md": "3efbd3f3021a20f833cd422a805ec2832fa95ddef5541af21bae71efbe79b331"
+  }
+}

@@ -1,0 +1,698 @@
+{
+ "code": "12501",
+ "envelope_ref": "fields/_envelope.json",
+ "root": "input",
+ "length_unit": "UNCONFIRMED",
+ "nodes": [
+  {
+   "code": "mdtrt_sn",
+   "name": "就医流水号",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "mdtrt_id",
+   "name": "就诊ID",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "medins_file_no",
+   "name": "医院内部档案号",
+   "type": "string",
+   "max_len": 64,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "psn_no",
+   "name": "人员编号",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "abo_code",
+   "name": "ABO血型代码",
+   "type": "string",
+   "max_len": 3,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "rh_code",
+   "name": "Rh血型代码",
+   "type": "string",
+   "max_len": 3,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "bld_natu_code",
+   "name": "输血性质代码",
+   "type": "string",
+   "max_len": 3,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "bld_abo_code",
+   "name": "输血 ABO血型代码",
+   "type": "string",
+   "max_len": 3,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "bld_rh_code",
+   "name": "输血Rh血型代码",
+   "type": "string",
+   "max_len": 3,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "bld_cat_code",
+   "name": "输血品种代码",
+   "type": "string",
+   "max_len": 3,
+   "dict": "Y",
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "bld_amt",
+   "name": "输血量",
+   "type": "number",
+   "max_len": 8,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "bld_amt_unt",
+   "name": "输血量计量单位",
+   "type": "string",
+   "max_len": 10,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "bld_defs_type_code",
+   "name": "输血反应类型代码",
+   "type": "string",
+   "max_len": 3,
+   "dict": "Y",
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "bld_cnt",
+   "name": "输血次数",
+   "type": "number",
+   "max_len": 2,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "bld_time",
+   "name": "输血时间",
+   "type": "datetime",
+   "max_len": null,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "bld_rea",
+   "name": "输血原因",
+   "type": "string",
+   "max_len": 100,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "vali_flag",
+   "name": "有效标志",
+   "type": "string",
+   "max_len": 3,
+   "dict": "Y",
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "cainfo",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "dev_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "dev_safe_info",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "fixmedins_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "inf_time",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "info",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "infver",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[0].abo_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[0].bld_abo_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[0].bld_amt",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[0].bld_amt_unt",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[0].bld_cat_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[0].bld_cnt",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[0].bld_defs_type_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[0].bld_natu_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[0].bld_rea",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[0].bld_rh_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[0].bld_time",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[0].mdtrt_id",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[0].mdtrt_sn",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[0].medins_file_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[0].psn_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[0].rh_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[0].vali_flag",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[1].abo_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[1].bld_abo_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[1].bld_amt",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[1].bld_amt_unt",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[1].bld_cat_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[1].bld_cnt",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[1].bld_defs_type_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[1].bld_natu_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[1].bld_rea",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[1].bld_rh_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[1].bld_time",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[1].mdtrt_id",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[1].mdtrt_sn",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[1].medins_file_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[1].psn_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[1].rh_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[1].vali_flag",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "insuplc_admdvs",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "mdtrtarea_admvs",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "msgid",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "opter",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "opter_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "opter_type",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "recer_sys_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "sign_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "signtype",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  }
+ ]
+}

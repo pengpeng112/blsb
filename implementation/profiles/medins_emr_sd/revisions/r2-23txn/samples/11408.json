@@ -1,0 +1,55 @@
+{
+ "info": "11408",
+ "msgid": "合成msgid",
+ "mdtrtarea_admvs": "合成mdtr",
+ "recer_sys_code": "合成recer_sy",
+ "infver": "合成infv",
+ "opter_type": "1",
+ "opter": "合成opter",
+ "opter_name": "合成敏感值占位",
+ "inf_time": "2026-02-01 08:00:00",
+ "fixmedins_code": "合成fixmedin",
+ "input": {
+  "consultationinfo": {
+   "mdtrt_sn": "合成mdtrt_sn",
+   "mdtrt_id": "合成mdtrt_id",
+   "medins_file_no": "合成敏感值占位",
+   "med_mdtrt_type": "合成med_mdtr",
+   "gend": "合成g",
+   "psn_name": "合成敏感值占位",
+   "age": 1,
+   "consult_sn": "合成consult_",
+   "appy_cslt_time": "2026-02-01 08:00:00",
+   "patn_dept_code": "合成patn_dep",
+   "patn_dept_name": "合成patn_dep",
+   "appy_cslt_dr_code": "合成appy_csl",
+   "appy_cslt_dr_name": "合成appy_csl",
+   "cslt_dr_dept_code": "合成cslt_dr_",
+   "cslt_dr_dept_name": "合成cslt_dr_",
+   "diag_code": "合成diag_cod",
+   "diag_name": "合成diag_nam",
+   "medrcd_abst": "合成medrcd_a",
+   "asst_exam_rslt": "合成asst_exa",
+   "cslt_type_code": "合成c",
+   "cslt_rea": "合成cslt_rea",
+   "cslt_pup": "合成cslt_pup",
+   "cslt_opnn": "合成cslt_opn",
+   "cslt_ccls": "合成cslt_ccl",
+   "vali_flag": "合成v"
+  },
+  "consultationdoc": [
+   {
+    "consult_sn": "合成consult_",
+    "consult_date": "2026-02-01 08:00:00",
+    "consult_ad": "合成consult_",
+    "cslt_dr_code": "合成cslt_dr_",
+    "cslt_dr_name": "合成敏感值占位",
+    "cslt_dr_dept_code": "合成cslt_dr_",
+    "cslt_dr_dept_name": "合成cslt_dr_",
+    "csltdr_medins_code": "合成csltdr_m",
+    "csltdr_medins_name": "合成csltdr_m",
+    "vali_flag": "合成v"
+   }
+  ]
+ }
+}

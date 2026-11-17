@@ -1,0 +1,198 @@
+{
+  "exit_code": 0,
+  "result": {
+    "calls": [
+      {
+        "method": "POST",
+        "path": "/drug-trace/collection-runs",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/drug-trace/collection-runs?limit=10",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/drug-trace/collection-runs?limit=10",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/drug-trace/collection-runs?limit=10",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/drug-trace/collection-runs?limit=10",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/drug-trace/collection-runs?limit=10",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/drug-trace/collection-runs?limit=10",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/drug-trace/collection-runs?limit=10",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/drug-trace/collection-runs?limit=10",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/drug-trace/collection-runs?limit=10",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/drug-trace/collection-runs?limit=10",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/drug-trace/collection-runs?limit=10",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/drug-trace/collection-runs?limit=10",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/drug-trace/collection-runs?limit=10",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/drug-trace/collection-runs?limit=10",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/drug-trace/collection-runs?limit=10",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/drug-trace/collection-runs?limit=10",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/drug-trace/collection-runs?limit=10",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/drug-trace/collection-runs?limit=10",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/drug-trace/collection-runs?limit=10",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/drug-trace/collection-runs?limit=10",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/drug-trace/collection-runs?limit=10",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/drug-trace/collection-runs?limit=10",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/drug-trace/collection-runs?limit=10",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/drug-trace/collection-runs?limit=10",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/drug-trace/collection-runs?limit=10",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/drug-trace/collection-runs?limit=10",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/drug-trace/collection-runs?limit=10",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/drug-trace/collection-runs?limit=10",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/drug-trace/collection-runs?limit=10",
+        "status": 200
+      }
+    ],
+    "window": [
+      "2026-10-24T07:00:00",
+      "2026-10-24T08:00:00"
+    ],
+    "run_id": "38f4b6cd-b4e0-4bf1-83e2-d0fe855b8b1d",
+    "collection": {
+      "id": "38f4b6cd-b4e0-4bf1-83e2-d0fe855b8b1d",
+      "state": "DONE",
+      "window": [
+        "2026-10-24T07:00:00",
+        "2026-10-24T08:00:00"
+      ],
+      "summary": {
+        "bills_seen": 51,
+        "revisions_created": 0,
+        "idempotent": 51,
+        "waiting": 49,
+        "valid": 2,
+        "invalid": 0,
+        "conflicts": 0,
+        "version_rereads": 0,
+        "skipped_version_changing": 0,
+        "retried_ok": 0,
+        "retried_failed": 0
+      },
+      "created_at": "2026-10-24T01:14:47.807142"
+    },
+    "bills": [
+      {
+        "business_kind": "UNKNOWN",
+        "quality_state": "WAITING",
+        "n": 49
+      },
+      {
+        "business_kind": "PATIENT_DISPENSE",
+        "quality_state": "VALID",
+        "n": 2
+      }
+    ],
+    "ok": false,
+    "error": "(psycopg.errors.UndefinedColumn) column i.rule does not exist\nLINE 2:             SELECT i.rule, count(*) n FROM quality_issue i\n                           ^\n[SQL: \n            SELECT i.rule, count(*) n FROM quality_issue i\n            WHERE i.tenant_id=%(t)s AND i.state='OPEN'\n              AND i.created_at > now() - interval '30 minutes'\n            GROUP BY 1 ORDER BY 2 DESC LIMIT 10]\n[paramete"
+  }
+}

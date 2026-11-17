@@ -1,0 +1,185 @@
+# LT-02 前端外壳与组件库重建（不引入新依赖）
+
+> 预计：1 个执行日。依赖：无（可与 LT-01 互换顺序）。动生产：否。迁移：无。
+> 先读 [README §五 通则](README.md#五所有长任务通用的执行通则执行-ai-必读每个-lt-文件都引用本节)。
+
+## 0. 为什么做
+
+现前端（`implementation/apps/admin_web/`）只有 Vue 3.5 + vue-router 4.5，没有任何 UI 库、组件目录、状态管理；
+19 个菜单平铺不分组不按角色；样式全挤在 `App.vue`；页面普遍 `JSON.stringify` 直出、请求失败无提示。
+后续 LT-06/07 要加十几个页面，**必须先有统一外壳和可复用组件**，否则会再堆出十几个各写各的页面。
+
+**硬约束：不得 `npm install` 任何新包**（离线、不引新依赖）。所有组件、图表手写（Vue SFC + CSS + SVG）。
+
+## 1. 交付物
+
+1. 设计令牌与全局样式：`src/styles/tokens.css`、`base.css`、`components.css`，`App.vue` 中的全局样式迁出。
+2. 组件库 `src/components/`（≥16 个，清单见步骤 3），每个组件顶部注释写用法示例。
+3. 类型化 API 层 `src/api/`：`http.ts`（含 PUT/DELETE、统一错误对象、可取消）、`types.ts`、按领域拆分的端点模块；**旧 `src/api.ts` 保留并改为从新层 re-export**，保证 DrugTrace 等旧页面零修改可用。
+4. 新布局：分组侧栏（可折叠）+ 顶栏（当前用户、角色、改密、退出、环境标识）+ 面包屑 + 内容区；窄屏（<900px）侧栏抽屉化。
+5. 路由重构：菜单配置集中在 `src/router/menu.ts`（分组、图标字符、角色、是否 Mock 标识）；路由守卫（未登录→登录页；角色不足→403 页）；404 页。
+6. 用新组件改造 8 个简单页面（清单见步骤 6），**不改它们调用的 API**。
+7. `DrugTrace.vue` 不改内部，只保证在新布局里样式正常。
+8. 前端单元测试：用 `node --test` 测纯 TS 工具函数（时间格式、字节格式、状态映射、菜单角色过滤），≥20 个用例。
+9. `npm run build` 退出码 0；`node --test tests/` 全过。
+
+## 2. 修改范围
+
+```
+implementation/apps/admin_web/src/**            （除 views/DrugTrace.vue、views/drugTrace.css、views/drugTraceDisplay.ts 只读）
+implementation/apps/admin_web/tests/**          （只新增文件，已有 drugTraceDisplay.test.mjs 不改）
+implementation/apps/admin_web/index.html        （如需改 title/字体）
+implementation/docs/实施状态矩阵.md 测试执行记录.md
+docs/ai/STATE.md BACKLOG.md HANDOFF.md docs/ai/sessions/LT-02-*.md
+```
+
+**不改**：`package.json` 的 dependencies/devDependencies、`vite.config.ts` 的 base 与代理、`DrugTrace.vue` 三件套、
+`docs/operations/drug-trace-ui-clarity-20261026/**`（它的生成脚本依赖 DrugTrace 模板）。
+
+## 3. 步骤
+
+### 步骤 1：基线与阅读（30 分钟）
+
+```powershell
+cd F:\python\blyb\implementation\apps\admin_web
+npm run build            # 记录退出码和产物大小（dist/assets/*.js 字节数）
+node --test tests/       # 记录通过数
+```
+阅读：`src/main.ts`、`src/App.vue`、`src/api.ts`、`src/views/Login.vue`、`src/views/Overview.vue`、`src/views/Audit.vue`、
+`src/views/DrugTrace.vue` 前 60 行（只看它用了哪些全局 class，如 `.card` `.kpi` `.tag` `.btn`——**这些 class 名在新全局样式里必须继续存在且视觉相近**，否则药品页会走样）。
+把 DrugTrace 用到的全局 class 列表写进交接"兼容 class 清单"。
+
+### 步骤 2：设计令牌与样式拆分
+
+`src/styles/tokens.css`（CSS 变量，照此命名）：
+
+```css
+:root {
+  --c-primary: #1f6feb;  --c-primary-weak: #e8f0fe;
+  --c-success: #1a7f37;  --c-success-weak: #e6f4ea;
+  --c-warning: #b45309;  --c-warning-weak: #fef3c7;
+  --c-danger:  #c62828;  --c-danger-weak:  #fde8e8;
+  --c-info:    #0e7490;  --c-info-weak:    #e0f2f1;
+  --c-mock:    #7c3aed;  --c-mock-weak:    #f3e8ff;   /* Mock 数据专用色，醒目 */
+  --c-text: #1f2328; --c-text-2: #57606a; --c-text-3: #8c959f;
+  --c-border: #d0d7de; --c-bg: #f6f8fa; --c-surface: #ffffff;
+  --radius: 6px; --radius-lg: 10px;
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 24px; --space-6: 32px;
+  --font: "Microsoft YaHei", "PingFang SC", system-ui, sans-serif;
+  --font-mono: Consolas, "Courier New", monospace;
+  --shadow-1: 0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.08);
+  --sidebar-w: 220px; --topbar-h: 52px;
+}
+```
+
+`base.css`：reset、body 字体、链接、表格基础、滚动条。`components.css`：**把 App.vue 现有 `<style>` 里所有选择器原样搬过来**，
+再把颜色/间距替换为变量。`main.ts` 顶部 `import './styles/tokens.css'` 等三行；App.vue 删掉被搬走的样式。
+完成后立刻 `npm run build`，并用 `npm run dev` 打开 `#/drugtrace` 与 `#/overview` 目视（若无法打开浏览器，在交接注明"未目视"）。
+
+### 步骤 3：组件库（`src/components/`，全部 `<script setup lang="ts">`）
+
+| 组件 | 职责 / 必须支持的 props |
+|---|---|
+| `AppLayout.vue` | 侧栏+顶栏+面包屑+`<slot/>`；props：`menu`、`user`、`roles`；emit `logout` `change-password` |
+| `SideMenu.vue` | 分组、折叠记忆（localStorage `blyb.menu.collapsed`）、当前路由高亮、Mock 角标 |
+| `PageHeader.vue` | title、subtitle、`actions` 插槽、`mock` 布尔（为真时显示紫色"Mock 数据"徽标） |
+| `StatCard.vue` | label、value（number/string/null→显示"—"）、unit、trend（+/-%）、tone（success/warning/danger/info）、`to`（可点击下钻路由） |
+| `StatusTag.vue` | `bucket`（REPORT_BUCKETS 之一）或 `state`+`map`；颜色与中文标签由 `src/utils/status.ts` 提供 |
+| `DataTable.vue` | columns（key、title、width、align、formatter、slot 名）、rows、loading、error、emptyText、`rowKey`；`hasMore` + emit `load-more`（游标分页）；表头固定；行点击 emit |
+| `FilterBar.vue` | 用 slot 放过滤控件，提供"查询""重置"按钮，回车触发查询 |
+| `Drawer.vue` | 右侧抽屉，v-model:open，title，宽度，Esc 关闭 |
+| `Modal.vue` | 居中弹窗，同上 |
+| `ConfirmDialog.vue` | 危险操作确认：标题、影响说明、`requireReason`（为真时必须输入 ≥5 字理由才能确认）、`confirmText`；返回 Promise |
+| `JsonViewer.vue` | 折叠树形展示对象；默认展开 2 层；"复制"按钮；超长字符串截断+展开 |
+| `Toast.ts` + `ToastHost.vue` | `toast.success/error/info(msg)`，右上角堆叠，4 秒消失；error 不自动消失 |
+| `EmptyState.vue` / `ErrorState.vue` / `LoadingBlock.vue` | 统一空态/错误态（带"重试"emit）/骨架加载 |
+| `TimeText.vue` | 输入 ISO 字符串，显示院内时间 `YYYY-MM-DD HH:mm:ss`（固定 UTC+8），`title` 悬停显示原始值 |
+| `BytesText.vue` | 显示 KB/MB/GB，`title` 显示原始字节数（v0.4 §7.5 要求） |
+| `Tabs.vue` | v-model 当前 tab，tabs 数组，支持路由 query 同步（`syncQuery` prop） |
+| `charts/LineChart.vue` | SVG 折线：series[{name,color,points:[{x:label,y:number}]}]、高度、y 轴自动刻度、悬停提示；无数据显示 EmptyState |
+| `charts/BarChart.vue` | SVG 柱状/堆叠柱（stacked prop），同上 |
+| `charts/Donut.vue` | SVG 环形图，中心显示总数 |
+
+每个组件：①无业务 API 调用；②props 有 TS 类型；③文件顶部注释含最小用法示例。
+
+### 步骤 4：工具函数 `src/utils/`（这些要写单测）
+
+- `time.ts`：`formatHospitalTime(iso)`（固定 +08:00，不依赖浏览器时区；非法输入返回 "—"）、`relativeTime(iso, now)`（"3 分钟前"）、`daysAgoRange(n)`。
+- `bytes.ts`：`formatBytes(n)`（1024 进制，保留 1 位小数，null→"—"）。
+- `status.ts`：`BUCKET_LABEL`、`BUCKET_TONE`（与后端 `REPORT_BUCKETS` 一一对应：PENDING→info、SENDING→info、ACCEPTED→warning、CONFIRMED→success、PARTIAL→warning、REJECTED→danger、UNKNOWN→danger、NOT_REPORTABLE→muted），`lifecycleLabel()`（PLANNED 已登记 / DEVELOPING 开发中 / MOCK_ONLY 仅 Mock / PILOT 试点 / PRODUCTION 正式 / SUSPENDED 暂停 / RETIRED 下线）。
+- `menu.ts` 中的 `filterMenuByRoles(menu, roles)`：`platform_admin` 看全部；其余按 item.roles 交集；空分组隐藏。
+- `rate.ts`：`successRate(buckets)` = CONFIRMED / (CONFIRMED+REJECTED+PARTIAL+UNKNOWN)，**分母为 0 返回 null（显示"—"），绝不显示 100%**；UNKNOWN 单列。
+
+测试放 `tests/utils.test.mjs`。因为 node 不能直接跑 TS：把这几个 utils 写成**不依赖 Vue 的纯 TS**，
+测试前用已有依赖编译——做法二选一并在交接写明：
+(a) 测试文件里用 `import { transform } from 'esbuild'`（esbuild 是 vite 的依赖，`node_modules/esbuild` 已存在则可用；先 `Test-Path node_modules/esbuild` 确认）即时转译后 `import()`；
+(b) 参照现有 `tests/drugTraceDisplay.test.mjs` 是怎么测 `drugTraceDisplay.ts` 的，照同一方式。**优先 (b)**。
+
+### 步骤 5：API 层 `src/api/`
+
+```
+src/api/http.ts     # request(method, base, path, {body, query, idemKey, signal}) → data；
+                    # 错误统一抛 ApiError{status, code, message, requestId}；401 行为与旧 req 完全一致（clearLogin + 派发 blyb:unauthorized）
+                    # 导出 core.get/post/put/del、storage.get/post；query 对象自动拼接并跳过 undefined/''
+src/api/types.ts    # ReportTarget、TargetSummary、Bucket、Paged<T>{items, next_cursor} 等类型（字段名与 LT-01 后端一致）
+src/api/auth.ts     # login/logout/me/changePassword（从旧 api.ts 搬）
+src/api/reportCenter.ts  # listTargets/getTarget/updateTarget/targetSummary/centerOverview（LT-01 端点；后端没有时页面显示 ErrorState，不要伪造数据）
+src/api/index.ts    # 汇总导出
+```
+旧 `src/api.ts`：保留所有导出名（`api`、`token`、`setToken`、`clearLogin`、`savedBackends`、`setBackends`、`login`、`loginWithToken`、`currentUser`、`logout`、`changePassword`），
+内部改为调用新层。**用 `Select-String -Path src -Recurse -Pattern "from '../api'|from './api'"` 列出所有引用方，逐个确认仍能编译。**
+
+### 步骤 6：路由、菜单、布局与页面改造
+
+`src/router/menu.ts`（分组与角色**照此表**，路径保持旧路径不变，避免书签失效）：
+
+| 分组 | 菜单（路径 → 标签） | roles（空=所有登录用户） |
+|---|---|---|
+| 工作台 | /overview 平台总览 | 空 |
+| 上报业务 | /drugtrace 码上放心；/cases 病理工作台（mock 标识） | 空 |
+| 运行监控 | /submissions 发布与上报（mock）；/publications 视图发布；/reconciliations 对账 | 空 |
+| 数据治理 | /quality 质量队列；/review 关联复核；/blockers 外部阻断 | 空 |
+| 接入配置 | /connectors 连接器；/mapping 字段映射；/lineage 字段血缘；/workflows 流程编排；/pack 医院配置包；/metrics 指标导入（mock） | platform_admin, config_editor |
+| 资产与设备 | /devices 设备采集；/files 文件资产；/storage 存储管理 | platform_admin, operator |
+| 系统 | /audit 系统审计 | platform_admin, auditor |
+
+（LT-06 会再往"工作台/上报业务/运行监控/系统"里加新菜单，所以 menu.ts 要做成纯数据数组，新增一项只加一行。）
+
+- `src/router/index.ts`：由 menu 生成路由 + `/login`（可选，若保留 App.vue v-if 方式也行，但守卫必须生效）+ `/403` + `/:pathMatch(.*)*` → 404。
+  `beforeEach`：无 token → 显示登录；`meta.roles` 不满足 → `/403`。
+- `App.vue`：只保留登录态判断 + `<AppLayout>` + `<router-view/>` + `<ToastHost/>`；改密弹窗用 `Modal`。
+- 顶栏显示：用户名、角色中文名（platform_admin 平台管理员 / config_editor 配置编辑 / business_reviewer 业务复核 / operator 运维操作 / auditor 审计员 / service 服务账号）、环境标识（`import.meta.env.DEV` 时显示黄色"开发环境"）。
+
+用新组件改造以下 8 页（**只换展示层，API 调用与参数不变**）：
+`Overview.vue`（StatCard 网格 + Donut 展示 submissions_by_state + BarChart 展示 quality_open_by_rule；页面头标 mock）、
+`Audit.vue`（DataTable + TimeText + JsonViewer 抽屉看详情）、`Blockers.vue`、`Storage.vue`（BytesText）、`Files.vue`、
+`Devices.vue`、`Submissions.vue`（JsonViewer 替代 JSON 直出；"更正(新版本)"改用 ConfirmDialog requireReason，**把用户输入的理由传给后端，替换写死的"人工更正"**——后端已接受 reason 字段的话；若后端字段名不同以后端为准）、`Reconciliations.vue`。
+每页都要有 loading / 空态 / 错误态（错误态带重试）。
+
+### 步骤 7：验证
+
+```powershell
+cd F:\python\blyb\implementation\apps\admin_web
+npm run build              # 必须 exit 0（含 vue-tsc 类型检查；不得用 build-fast 冒充）
+node --test tests/         # 旧 5 项 + 新 ≥20 项全过
+```
+若本机可运行 `npm run dev`：逐页点开 19 个菜单，确认无白屏、无控制台报错；`#/drugtrace` 五个 tab 外观与改前一致（改前后各截一张图存到
+`docs/development/platform-evolution-20261103/evidence/LT-02/`）。不能运行浏览器则在交接写"未目视验证"。
+
+若存在 `docs/operations/drug-trace-ui-clarity-20261026/browser_review.py` 且本机有可用的 playwright（`python -c "import playwright"` 成功），
+按其说明对 dev 服务器运行一次（**它只做 GET，零业务 POST**；先读脚本确认这一点再运行），结果附交接；否则注明未运行。
+
+## 4. 验收清单
+
+- [ ] `package.json` 未变（`git diff --stat package.json` 为空）
+- [ ] `npm run build` exit 0，贴最后 10 行输出及产物大小（与基线对比，增长 < 150KB 原始 JS）
+- [ ] `node --test tests/` 全过，新增 ≥20
+- [ ] DrugTrace 三件套 diff 为空
+- [ ] 菜单按角色过滤：用 operator 角色登录（或在测试里对 `filterMenuByRoles` 断言）看不到"接入配置"
+- [ ] 8 个改造页面无 `JSON.stringify(` 直出（`Select-String` 结果贴交接；JsonViewer 内部使用不算）
+- [ ] successRate 分母 0 返回 null 的单测存在
+
+## 5. 停止条件
+
+- 样式迁移后 DrugTrace 页明显走样且 1 小时内修不好：恢复 App.vue 原样式块（保留新组件和新页面），交接注明。
+- vue-tsc 类型错误超过 30 个难以收敛：允许在**新文件**中局部使用 `any` 并加 `// TODO(LT-02 类型)` 注释，不得关闭 vue-tsc。

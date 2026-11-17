@@ -1,0 +1,345 @@
+﻿dataset,source_table_index,source_row,data_element,label,field,type,length,requirement,notes,status
+APPLY_INFO,3,2,DE08.10.052.00,采集医疗机构代码,hospitalCode,字符串,22,必填,优先写入统一社会信用代码，若无则写入医疗机构编码,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,3,-,"采集医疗
+机构名称",hospitalName,字符串,70,必填,经《医疗机构执业许可证》登记的医疗机构名称，此处指发起检查申请的医疗机构组织机构名称,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,4,-,定点医药机构编号,fixhospitalCode,字符串,12,必填,对接的医疗机构医保定点编号，采用12位的H码,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,5,-,信息系统院内唯一ID,systemId,字符串,36,必填,信息系统在医疗机构的唯一ID，该字段用来解决同一家医疗机构不同系统中RIS_STUDY_ID相同的问题。建议从pacs01开始,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,6,-,"检查申请
+唯一ID",applyId,字符串,36,必填,检查申请的唯一ID,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,7,DE01.00.008.00,检查申请单编号,applyNum,字符串,20,必填,按照某一特定编码规则赋予检查申请单的顺序号，多个申请单号以英文逗号隔开合并,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,8,-,"院内患者
+主索引",hospitalEmpi,字符串,36,必填,医疗机构内患者的唯一索引(个人标识号),EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,9,-,区域（省内）患者主索引,organGlobalEmpi,字符串,36,,区域（省内）患者的唯一索引,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,10,DE02.01.031.00,"证件类别
+代码",cardType,字符串,2,必填,WS/T 364.1-2023《卫生健康信息数据元值域代码第3部分:人口学及社会经济学特征》CV02.01.101 身份证件类别代码，表5.5身份证件类别代码,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,11,DE02.01.030.00,证件号码,cardNo,字符串,18,必填,患者的身份证件上的唯一法定标识符（新生儿用妈妈的身份信息），默认值为“000000000000000000”（18个0）,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,12,-,就诊卡类型,medCardType,字符串,16,必填,就诊卡类型，表5.6就诊卡类型,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,13,-,就诊卡号,medCardNo,字符串,64,必填,就诊卡号,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,14,DE02.01.039.00,病人姓名,patName,字符串,50,必填,个体在公安管理部门正式登记注册的姓氏和名称，此处指患者的姓名,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,15,DE02.01.040.00,性别,patSex,数字,1,必填,"GB/T 2261.1-2003《个人基本信息分类与代码 第1部分:人的性别代码》人的性别代码表。
+0：未知性别 1：男性  2：女性 9：未说明的性别",EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,16,DE02.01.005.01,出生日期,patBirthday,日期,-,必填,个体出生当日的公元纪年日期，此处指患者的出生日期，默认值为“1700-01-01”,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,17,DE02.01.026.00,年龄,patAge,字符串,16,必填,院内系统患者年龄，默认值为“-1”,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,18,-,职业,prfs,字符串,60,,患者职业,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,19,DE02.01.009.02,家庭地址,patAdd,字符串,128,,患者家庭地址,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,20,-,邮政编码,postCode,字符串,40,,患者户口所在地邮政编码,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,21,DE02.01.018.00,婚姻状况,patMaritalStatus,字符串,2,,GB/T 2261.2-2003《个人基本信息分类与代码 第2部分: 婚姻状况代码》婚姻状况代码表，表5.9,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,22,DE02.01.025.00,民族,patNation,字符串,2,,GB/T 3304-1991《中国各民族名称的罗马字母拼写法和代码》,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,23,DE2.01.015.00,国籍,patNationality,字符串,10,,GB/T 2659.3-2023《世界各国和地区及其行政区划名称代码 第3部分：原先使用的国家和地区代码》原先使用的国家和地区名称及代码,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,24,DE02.01.010.00,联系电话,patTelephone,字符串,24,必填,个体的手机号码，默认值为“00000000000”（11个0）,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,25,DE02.01.060.00,病人类型,patType,数字,1,必填,WS/T 364.17—2023《卫生健康信息数据元值域代码 第 17 部分：卫生健康管理》CV09.00.404 患者类型代码表,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,26,-,就诊流水号,visitNumber,字符串,36,必填,就诊流水号,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,27,-,病员号,inPatientId,字符串,36,必填,患者编码，如患者的门诊号、住院号等，若没有，则填写 “0000000000”（10个0）,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,28,-,病人ID,patnId,字符串,64,,医疗信息系统中用于唯一标识患者身份的ID,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,29,-,病区编码,wardCode,字符串,36,,患者当前所在病区的编码,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,30,DE08.10.054.00,病区名称,ward,字符串,32,,患者当前所在病区的名称,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,31,DE01.00.026.00,床号,bunkId,字符串,10,,患者住院期间，所住床位对应的编号,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,32,-,申请单类型,applyType,数字,1,必填,"申请单的类型。1：扫描申请单
+2：电子申请单3：其它",EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,33,-,申请单照片文件路径,applyPath,字符串,256,,申请单照片文件的路径，如果是扫描申请单，该字段为必填字段,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,34,-,申请单照片所属介质服务器ID,hostId,字符串,20,,申请单照片所属介质服务器ID，如果是扫描申请单，该字段为必填字段，内容指向RIS_HOST_INFO表中的HOST_ID,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,35,-,"申请检查的医疗机构
+代码",applyOrganCode,字符串,22,必填,申请检查的医疗机构代码,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,36,-,"申请检查的医疗机构
+名称",applyOrganName,字符串,70,必填,申请检查的医疗机构名称,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,37,-,申请检查的医疗机构医保区划,applyOrganAdmdvs,字符串,20,必填,医疗机构所属医保区划,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,38,-,互联网申请标志,intMark,数字,1,,0、否，1、是,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,39,DE08.10.025.00,"申请科室
+编码",deptNum,字符串,64,必填,标识患者所在科室在特定编码体系中的代码,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,40,DE08.10.026.00,"申请科室
+名称",deptName,字符串,76,必填,申请检查的科室名称,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,41,-,申请医生身份标识号码,applyDocHosId,字符串,36,必填,医疗机构院内系统医生ID，该ID必须跟“医生信息数据集”中的“医生院内编码”保持一致。,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,42,DE02.01.039.00,"申请医生
+名称",applyDoctorName,字符串,50,必填,个体在公安管理部门正式登记注册的姓氏和名称，此处指申请医生的姓名,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,43,-,"检查申请
+日期时间",applyTime,日期时间,-,必填,医生在系统中发起检查申请的日期时间，时间格式为“1700-01-01 00:00:00”,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,44,-,申请备注,applyRemark,字符串,256,,医生在系统中发起检查申请时填写的备注,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,45,-,疾病分类编码,disClassCode,字符串,60,,,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,46,-,临床诊断,diagnosis,字符串,1000,,,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,47,-,诊断时间,diagTime,日期时间,,,临床医生根据病人症状下初步诊断的时间,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,48,DE04.01.117.00,电子病史摘要,clinicalHistory,字符串,2000,必填,对患者当前所患疾病情况的详细描述,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,49,DE04.01.119.00,主诉,subjComplaint,字符串,1024,必填,对患者本次疾病相关的主要症状及其持续时间的描述，一般由患者本人或监护人描述,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,50,-,过敏史,allergyHistory,字符串,1024,,受检者曾经发生过的过敏情况的描述,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,51,DE04.50.134.00,标本类型,sampleType,字符串,20,,对标本类型的描述,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,52,DE04.30.019.00,检查项目院内编码,itemNum,字符串,200,必填,患者检查项目在医疗机构中的编码，多值用英文逗号隔开合并,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,53,-,"检查项目
+院内名称",itemName,字符串,1000,必填,患者检查项目在医疗机构中的名称，多值用英文逗号隔开合并,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,54,-,"检查部位
+编码",categoryCode,字符串,1024,必填,检查(含病理)的人体部位编码，多值用英文逗号隔开合并,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,55,-,"检查部位
+名称",categoryName,字符串,1024,必填,检查(含病理)的人体部位名称，多值用英文逗号隔开合并,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,56,DE02.10.027.00,检查方式,checkType,字符串,100,必填,患者接受医学检查项目所采取的检查方式名称，1-平扫:2-增强: 9-其它；多值以英文逗号分隔，以数字形式返回即可,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,57,-,检查费用,charge,数字,,必填,患者本次检查的检查费用总和,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,58,-,"影像检查
+类别",dep,字符串,10,必填,表5.4设备类型代码表,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,59,DE06.00.221.00,"症状开始
+日期时间",symptomStartTime,日期时间,-,,当次症状开始发生时的公元纪年日期和时间的完整描述，时间格式为“1700-01-01 00:00:00”,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,60,DE06.00.218.00,"症状停止
+日期时间",symptomStopTime,日期时间,-,,当次症状停止时的公元纪年日期和时间的 完整描述，时间格式为“1700-01-01 00:00:00”,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,61,DE04.01.117.00,症状描述,symptomDes,字符串,2000,,对患者出现症状的详细描述,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,62,DE02.01.079.00,"特殊检査
+标志",sepcialiChkFlag,数字,1,,标识患者有无特殊检査操作经历的标志。1：是  0：否,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,63,-,"检查记录
+最后变更
+时间",lastChangeTime,日期时间,-,必填,数据最后修改日期时间，时间格式为“1700-01-01 00:00:00”,EXTRACTED_NOT_APPROVED
+APPLY_INFO,3,64,-,删除标记,disableFlag,数字,1,必填,"记录数据是否进行逻辑删除的标识，逻辑删除后该数据无效。1：删除
+0：未删除",EXTRACTED_NOT_APPROVED
+CHK_INFO,4,2,DE08.10.052.00,采集医疗机构代码,hospitalCode,字符串,22,必填,优先写入统一社会信用代码，若无则写入医疗机构编码,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,3,-,采集医疗机构名称,hospitalName,字符串,70,必填,经《医疗机构执业许可证》登记的医疗机构名称，此处指进行检查的医疗机构组织机构名称,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,4,-,信息系统院内唯一ID,systemId,字符串,36,必填,信息系统在医疗机构的唯一ID，该字段用来解决同一家医疗机构不同系统中risStudyId相同的问题，建议从pacs01开始,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,5,-,检查唯一标识符,risStudyId,字符串,36,必填,检查系统中某次检查中生成的检查唯一标识符,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,6,-,病人ID,patId,字符串,36,必填,医疗机构RIS系统内患者唯一编号,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,7,DE01.00.008.00,检查申请单编号,applyNum,字符串,20,必填,"按照某一特定编码规则赋予检查申请单的顺序号，多个申请单号以英文逗号隔开合并,与结算明细信息和申请信息中的保持一致",EXTRACTED_NOT_APPROVED
+CHK_INFO,4,8,DE02.01.031.00,证件类别代码,cardType,字符串,2,必填,WS/T 364.1-2023《卫生健康信息数据元值域代码第3部分:人口学及社会经济学特征》CV02.01.101 身份证件类别代码,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,9,DE02.01.030.00,证件号码,cardNo,字符串,18,必填,患者的身份证件上的唯一法定标识符（新生儿用妈妈的身份信息），默认值为“000000000000000000”（18个0）,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,10,-,医保卡号,medCardNo,字符串,30,,患者的医保卡上的唯一法定标识符,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,11,DE02.01.039.00,病人姓名,patName,字符串,50,必填,个体在公安管理部门正式登记注册的姓氏和名称，此处指患者的姓名,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,12,-,姓名拼音,patSpellName,字符串,50,,个体在公安管理部门正式登记注册的姓氏和名称的拼音，此处指患者的拼音姓名,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,13,DE02.01.040.00,性别,patSex,数字,1,必填,"GB/T 2261.1-2003《个人基本信息分类与代码 第1部分:人的性别代码》人的性别代码表。
+0：未知性别 1：男性  2：女性 9：未说明的性别",EXTRACTED_NOT_APPROVED
+CHK_INFO,4,14,DE02.01.005.01,出生日期,patBirthday,日期,-,必填,个体出生当日的公元纪年日期，此处指患者的出生日期，默认值为“1700-01-01”,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,15,DE02.01.026.00,年龄,patAge,字符串,16,必填,院内系统患者年龄,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,16,DE02.01.009.02,家庭地址,patAdd,字符串,128,,患者家庭地址,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,17,DE02.01.018.00,婚姻状况,patMaritalStatus,字符串,2,,GB/T 2261.2-2003《个人基本信息分类与代码 第2部分: 婚姻状况代码》婚姻状况代码表,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,18,DE02.01.025.00,民族,patNation,字符串,2,,GB/T 3304-1991《中国各民族名称的罗马字母拼写法和代码》,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,19,DE2.01.015.00,国籍,patNationality,字符串,10,,GB/T 2659.3-2023《世界各国和地区及其行政区划名称代码 第3部分：原先使用的国家和地区代码》原先使用的国家和地区名称及代码,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,20,DE02.01.010.00,联系电话,patTelephone,字符串,24,必填,个体的手机号码，默认值为“00000000000”（11个0）,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,21,DE02.01.060.00,病人类型,patType,数字,1,必填,WS/T 364.17—2023《卫生健康信息数据元值域代码 第 17 部分：卫生健康管理》CV09.00.404 患者类型代码表,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,22,-,病员号,inPatientId,字符串,36,必填,患者编码，如患者的门诊号、住院号等，若没有，则填写 “0000000000”（10个0）,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,23,-,登记时间,registerDate,日期时间,-,必填,患者登记的日期和时间，时间格式为“1700-01-01 00:00:00”,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,24,-,登记医生身份标识号码,registerDocHosId,字符串,36,,医疗机构院内系统医生ID，该ID必须跟“医生信息数据集”中的“医生院内编码”保持一致。,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,25,-,登记医生姓名,registerDocName,字符串,50,必填,个体在公安管理部门正式登记注册的姓氏和名称，此处指登记医生的姓名,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,26,DE04.50.137.00,标本采样日期时间,sampleSamplingTime,日期时间,-,,采集标本时的日期和时间的完整描述，时间格式为“1700-01-01 00:00:00”,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,27,DE04.50.141.00,患者到检时间/接收标本日期时间,arriveTime,日期时间,-,必填,检查科室实际接收标本或者患者到检的日期和时间的完整描述，时间格式为“1700-01-01 00:00:00”,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,28,DE04.30.019.00,检查项目院内编码,itemNum,字符串,200,必填,患者检查项目在医疗机构中的编码，多值用英文逗号隔开合并,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,29,-,检查项目院内名称,itemName,字符串,1000,必填,患者检查项目在医疗机构中的名称，多值用英文逗号隔开合并,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,30,-,检查项目标准编码,projNum,字符串,200,放射类项目必填,WS/T 364.8-2023《卫生健康信息数据元值域代码第8部分：临床辅助检查》CV04.30.002 常用放射诊断检查技术编码表。,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,31,-,检查部位编码,categoryCode,字符串,1024,必填,检查(含病理)的人体部位编码，多值用英文逗号隔开合并,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,32,-,检查部位名称,categoryName,字符串,1024,必填,检查(含病理)的人体部位名称，多值用英文逗号隔开合并,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,33,DE02.10.027.00,检查方式,checkType,字符串,100,必填,患者接受医学检查项目所采取的检查方式名称，1-平扫:2-增强: 9-其它；多值以英文逗号分隔，以数字形式返回即可,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,34,,检查费用,charge,数字,,,检查费用,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,35,-,检查医疗机构代码,checkOrganCode,字符串,22,必填,患者检查所在医疗机构代码,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,36,-,检查医疗机构名称,checkOrganName,字符串,70,必填,患者检查所在医疗机构名称,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,37,-,检查医疗机构等级,checkOrganLv,字符串,6,必填,表5.8医疗结构等级字典,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,38,DE08.10.025.00,检查科室编码,checkDeptNum,字符串,64,必填,患者检查所在科室在特定编码体系中的代码，详见国家科室分类代码表,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,39,DE08.10.026.00,检查科室名称,checkDeptName,字符串,76,必填,接收受检者进行影像检查的科室名称,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,40,-,设备房间,devRoom,字符串,32,必填,设备在医疗机构存放的房间名称,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,41,,检查设备编码,instrCode,字符串,32,必填,机构内设备的编码，多值以英文逗号分隔,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,42,-,检查设备名称,instrName,字符串,64,必填,机构内设备的名称，多值以英文逗号分隔,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,43,-,影像检查类别,dep,字符串,10,必填,表5.4设备类型代码表,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,44,-,检查项目描述,checkDesc,字符串,2000,必填,检查所涉及的项目的详细描述,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,45,-,检查状态,checkStatus,数字,2,必填,表5.1检查及报告状态代码表,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,46,DE04.50.140.00,检查时间,checkDate,日期时间,-,必填,检查项目执行当日的公元纪年日期的完整描述，时间格式为“1700-01-01 00:00:00”,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,47,-,检查技师身份标识号码,checkDocHosId,字符串,36,放射类检查必填,医疗机构院内系统医生ID，该ID必须跟“医生信息数据集”中的“医生院内编码”保持一致。,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,48,DE02.01.039.00,检查技师姓名,checkDocName,字符串,50,放射类检查必填,影像检查科室的技师在公安管理部门正式登记注册的姓氏和名称，此处指影像检查科室技师的姓名。,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,49,-,检查中的图像数,studyImageCount,数字,5,必填,检查所包含的图像总数量,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,50,DE06.00.093.00,操作编码,optNum,字符串,80,,为患者实施的检查操作在特定编码体系中的编码,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,51,DE06.00.094.00,操作名称,optName,字符串,80,,按照ICD-9-CM-3的名称,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,52,DE08.50.037.00,介入物名称,intObjectName,字符串,100,,实施手术操作时使用/放置的材料/药物的名称,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,53,DE06.00.251.00,操作方法描述,optMethodDes,字符串,2000,,操作方法的详细描述,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,54,DE06.00.250.00,操作次数,optCount,字符串,3,,实施操作的次数,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,55,DE06.00.095.00,操作日期时间,optTime,日期时间,-,,对患者实施的操作结束时的公元纪年日期和时间的完整描述，时间格式为“1700-01-01 00:00:00”,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,56,DE06.00.073.00,麻醉方法代码,aneMethodCode,字符串,2,,WS/T 364.12—2023《卫生健康信息数据元值域代码 第 12 部分：计划与干预》CV06.00.103 麻醉方法代码表,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,57,DE02.10.028.00,麻醉观察结果,aneObsResult,字符串,1000,,多个麻醉观察项目结果的详细描述,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,58,DE06.00.307.00,麻醉中西医标识代码,aneCawCode,字符串,1,,麻醉方法的中西医类别的分类代码。1：西医麻醉2：中医麻醉,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,59,DE02.01.039.00,麻醉医生签名,aneName,字符串,50,,对患者实施麻醉的麻醉医师签署的在公安户籍管理部门正式登记注册的姓氏和名称,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,60,DE06.00.296.00,诊疗过程描述,diagProDes,字符串,2000,,对患者诊疗过程的详细描述,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,61,DE01.00.003.00,检查标本号,checkSampleNo,字符串,20,,按照某一特定编码规则赋予检査标本的顺序号,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,62,DE04.50.135.00,标本状态,sampleStatus,字符串,20,,对受检标本状态的描述,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,63,DE08.50.027.00,标本固定液名称,sampleStaName,字符串,50,,用于标本固定的液体的名称,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,64,-,胶片类型,filmType,数字,1,必填,"胶片类型。1：物理胶片2：电子胶片
+3:  物理胶片+电子胶片",EXTRACTED_NOT_APPROVED
+CHK_INFO,4,65,-,检查记录最后变更时间,lastChangeTime,日期时间,-,必填,数据最后修改日期时间，时间格式为“1700-01-01 00:00:00”,EXTRACTED_NOT_APPROVED
+CHK_INFO,4,66,-,删除标记,disableFlag,数字,1,必填,"记录数据是否进行逻辑删除的标识，逻辑删除后该数据无效。1：删除
+0：未删除",EXTRACTED_NOT_APPROVED
+SERIES_INFO,5,2,-,Study唯一号,studyUid,字符串,128,必填,某次检查中影像设备在PACS系统中生成的检查唯一标识符,EXTRACTED_NOT_APPROVED
+SERIES_INFO,5,3,-,PACS检查实例UID,studyInstanceUid,字符串,64,必填,PACS系统中检查实例的UID,EXTRACTED_NOT_APPROVED
+SERIES_INFO,5,4,-,序列唯一标识符,pacsSeriesId,字符串,128,必填,某次检查中影像检查设备为某个序列生成的唯一标识符,EXTRACTED_NOT_APPROVED
+SERIES_INFO,5,5,-,序列实例UID,seriesInstanceUid,字符串,128,必填,序列实例UID,EXTRACTED_NOT_APPROVED
+SERIES_INFO,5,6,-,序列号,seriesNumber,字符串,64,必填,序列号,EXTRACTED_NOT_APPROVED
+SERIES_INFO,5,7,-,序列中的图像数量,seriesImageCount,数字,4,必填,单个检查序列中所包含的影像数量,EXTRACTED_NOT_APPROVED
+SERIES_INFO,5,8,DE04.30.019.00,影像检查类别,dep,字符串,10,必填,表5.4设备类型代码表,EXTRACTED_NOT_APPROVED
+SERIES_INFO,5,9,-,序列路径,seriesPath,字符串,256,必填,序列文件的存储路径,EXTRACTED_NOT_APPROVED
+SERIES_INFO,5,10,-,删除标记,disableFlag,数字,1,必填,记录数据是否进行逻辑删除的标识，逻辑删除后该数据无效。1：删除0：未删除,EXTRACTED_NOT_APPROVED
+IMAGE_INFO,6,2,-,Study唯一号,studyUid,字符串,128,必填,某次检查中影像设备在PACS系统中生成的检查唯一标识符,EXTRACTED_NOT_APPROVED
+IMAGE_INFO,6,3,-,序列唯一标识符,pacsSeriesId,字符串,128,必填,某次检查中影像检查设备为某个序列生成的唯一标识符,EXTRACTED_NOT_APPROVED
+IMAGE_INFO,6,4,-,图片唯一标识符,sopInstanceUid,字符串,64,必填,"某次检查中影像检查设备为每张图片生成的唯一标识符，DICOM影像文件取影像文件唯一标识TAG（0008,0018）；非DICOM文件有的话提供文件唯一标识，没有则取文件名",EXTRACTED_NOT_APPROVED
+IMAGE_INFO,6,5,-,关键图标记,keyImageFlag,数字,1,必填,医师对影像中关键图像进行的标记。1：为关键图0：非关键图,EXTRACTED_NOT_APPROVED
+IMAGE_INFO,6,6,-,影像序列中图片顺序号,instanceNumber,数字,6,必填,"某个影像检查序列中图片的顺序号，DICOM影像文件取影像文件唯一标识TAG（0020,0013）；非DICOM文件则取图像顺序号",EXTRACTED_NOT_APPROVED
+IMAGE_INFO,6,7,-,RIS系统图像获取日期时间,acquistionTime,日期时间,-,必填,图像产生后，RIS系统获取到图像的时间，时间格式为“1700-01-01 00:00:00”,EXTRACTED_NOT_APPROVED
+IMAGE_INFO,6,8,-,图像在介质服务器的相对路径,imagePath,字符串,256,必填,文件在介质服务器的相对路径，如：图像、视频等,EXTRACTED_NOT_APPROVED
+IMAGE_INFO,6,9,-,PACS介质服务器ID,hostId,字符串,20,必填,PACS介质服务器ID，内容指向PACS_HOST_INFO表中的hostId,EXTRACTED_NOT_APPROVED
+IMAGE_INFO,6,10,-,图像类型,imageType,数字,3,必填,表5.3图像类型代码表,EXTRACTED_NOT_APPROVED
+IMAGE_INFO,6,11,-,删除标记,disableFlag,数字,1,必填,"记录数据是否进行逻辑删除的标识，逻辑删除后该数据无效。1：删除
+0：未删除",EXTRACTED_NOT_APPROVED
+PACS_HOST_INFO,7,2,-,存储服务器地址,hostPath,字符串,256,,存储服务器路径,EXTRACTED_NOT_APPROVED
+PACS_HOST_INFO,7,3,-,PACS存储服务器登陆用户名,userName,字符串,32,,PACS存储服务器登陆用户名,EXTRACTED_NOT_APPROVED
+PACS_HOST_INFO,7,4,-,PACS存储服务器登陆密码,userPassword,字符串,32,,PACS存储服务器登陆密码,EXTRACTED_NOT_APPROVED
+PACS_HOST_INFO,7,5,-,PACS存储服务器IP,hostIp,字符串,16,,PACS存储服务器IP,EXTRACTED_NOT_APPROVED
+PACS_HOST_INFO,7,6,-,PACS存储服务器端口号,hostPort,字符串,8,,PPACS存储服务器端口号,EXTRACTED_NOT_APPROVED
+PACS_HOST_INFO,7,7,-,AE名称,aeTitle,字符串,32,,PPACS QR服务AE Title显示的值,EXTRACTED_NOT_APPROVED
+PACS_HOST_INFO,7,8,-,存储类型,storageType,字符串,8,必填,表5.2存储类型代码表,EXTRACTED_NOT_APPROVED
+PACS_HOST_INFO,7,9,-,"PACS介质
+服务器ID",hostId,字符串,20,必填,PACS介质服务器ID，内容指向PACS_HOST_INFO表中的hostId,EXTRACTED_NOT_APPROVED
+PACS_HOST_INFO,7,10,-,删除标记,disableFlag,数字,1,必填,"记录数据是否进行逻辑删除的标识，逻辑删除后该数据无效1：删除
+0：未删除",EXTRACTED_NOT_APPROVED
+RIS_HOST_INFO,8,2,-,存储服务器路径,hostPath,字符串,256,,存储服务器路径,EXTRACTED_NOT_APPROVED
+RIS_HOST_INFO,8,3,-,RIS存储服务器用户名,userName,字符串,32,,RIS存储服务器用户名,EXTRACTED_NOT_APPROVED
+RIS_HOST_INFO,8,4,-,RIS存储服务器密码,userPassword,字符串,32,,RIS存储服务器密码,EXTRACTED_NOT_APPROVED
+RIS_HOST_INFO,8,5,-,RIS存储服务器IP地址,hostIp,字符串,16,,RIS存储服务器IP地址,EXTRACTED_NOT_APPROVED
+RIS_HOST_INFO,8,6,-,RIS存储服务器端口号,hostPort,字符串,8,,RIS存储服务器端口号,EXTRACTED_NOT_APPROVED
+RIS_HOST_INFO,8,7,-,数据存储的介质类型,storageType,字符串,8,必填,表5.2存储类型代码表,EXTRACTED_NOT_APPROVED
+RIS_HOST_INFO,8,8,-,RIS介质服务器ID,hostId,字符串,20,必填,RIS介质服务器ID，内容指向RIS_HOST_INFO表中的hostId,EXTRACTED_NOT_APPROVED
+RIS_HOST_INFO,8,9,-,删除标记,disableFlag,数字,1,必填,"记录数据是否进行逻辑删除的标识，逻辑删除后该数据无效1：删除
+0：未删除",EXTRACTED_NOT_APPROVED
+RIS_PACS,9,2,-,"检查唯一
+标识符",risStudyId,字符串,36,必填,检查系统中某次检查中生成的检查唯一标识符,EXTRACTED_NOT_APPROVED
+RIS_PACS,9,3,-,Study唯一号,studyUid,字符串,128,必填,某次检查中影像设备在PACS系统中生成的检查唯一标识符,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,2,DE08.10.052.00,采集医疗机构代码,hospitalCode,字符串,22,必填,优先写入统一社会信用代码，若无则写入医疗机构编码,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,3,-,采集医疗机构名称,hospitalName,字符串,70,必填,经《医疗机构执业许可证》登记的医疗机构名称，此处指出具报告的医疗机构组织机构名称,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,4,-,信息系统院内唯一ID,systemId,字符串,36,必填,信息系统在医疗机构的唯一ID，该字段用来解决同一家医疗机构不同系统中risStudyId相同的问题。建议从pacs01开始,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,5,DE01.00.017.00,"检查唯一
+标识符",risStudyId,字符串,36,必填,检查系统中某次检查中生成的检查唯一标识符,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,6,-,报告类型,reportDisease,字符串,32,必填,报告的类型，如：普放、CT等,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,7,-,"流水号
+（访问号）",recordNum,字符串,36,必填,检查报告单系统内唯一ID,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,8,-,"检查报告单
+编号",reportCode,字符串,36,必填,按照某一特定编码规则赋予检查报告单的顺序号,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,9,-,报告状态,reportStatus,数字,2,必填,表5.1检查及报告状态代码表,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,10,,"检查项目标准
+编码",projNum,字符串,200,放射类项目必填,WS/T 364.8-2023《卫生健康信息数据元值域代码第8部分：临床辅助检查》，表5.7临床辅助检查字典。,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,11,DE04.30.019.00,检查项目院内编码,itemNum,字符串,200,必填,患者检查项目在医疗机构中的编码，多值用英文逗号隔开合并,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,12,-,检查项目院内名称,itemName,字符串,1000,必填,患者检查项目在医疗机构中的名称，多值用英文逗号隔开合并,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,13,,检查部位编码,categoryCode,字符串,1024,必填,检查(含病理)的人体部位编码，多值用英文逗号隔开合并,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,14,DE06.00.186.00,检查部位名称,categoryName,字符串,1024,必填,检查(含病理)的人体部位名称，多值用英文逗号隔开合并,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,15,DE01.00.008.00,"检查申请单
+编号",applyNum,字符串,20,必填,按照某一特定编码规则赋予检查申请单的顺序号，多个申请单号以英文逗号隔开合并,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,16,DE08.10.052.00,出具报告医疗机构组织机构代码,reportOrganCode,字符串,22,必填,优先写入统一社会信用代码，若无则写入医疗机构编码,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,17,DE08.10.013.00,出具报告医疗机构名称,reportOrganName,字符串,70,必填,经《医疗机构执业许可证》登记的医疗机构名称，此处指出具报告的医疗机构组织机构名称,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,18,-,报告科室编码,reportNum,字符串,36,,出具报告的科室编码,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,19,DE08.10.026.00,报告科室名称,reportDeptName,字符串,50,,出具报告的科室名称,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,20,-,报告医生身份标识号码,reportDoctorHosId,字符串,36,,医疗机构院内系统医生ID，该ID必须跟“医生信息数据集”中的“医生院内编码”保持一致。,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,21,DE02.01.039.00,报告医生姓名,reportDoctorName,字符串,50,必填,个体在公安管理部门正式登记注册的姓氏和名称，此处指出具报告医生的姓名,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,22,DE04.50.133.00,报告时间,reportDate,日期时间,-,必填,检查报告当日的工作纪年日期的完整描述，时间格式为“1700-01-01 00:00:00”,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,23,-,报告审核医疗机构组织机构代码,rvOrganCode,字符串,22,必填,优先写入统一社会信用代码，若无则写入医疗机构编码,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,24,-,审核医生身份标识号码,rvDoctorHosId,字符串,36,,医疗机构院内系统医生ID，该ID必须跟“医生信息数据集”中的“医生院内编码”保持一致。,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,25,DE02.01.039.00,审核医生姓名,confirmDoctorName,字符串,50,必填,个体在公安管理部门正式登记注册的姓氏和名称，此处指审核报告医生的姓名,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,26,-,审核时间,confirmDate,日期时间,-,必填,审核医师完成报告审核的时间，时间格式为“1700-01-01 00:00:00”,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,27,-,二次审核医疗机构组织机构代码,rv2OrganCode,字符串,22,,优先写入统一社会信用代码，若无则写入医疗机构编码,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,28,-,二次审核医生身份标识号码,rv2DoctorHosId,字符串,36,,医疗机构院内系统医生ID，该ID必须跟“医生信息数据集”中的“医生院内编码”保持一致。,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,29,DE02.01.039.00,二次审核医生姓名,confirm2DoctorName,字符串,50,,个体在公安管理部门正式登记注册的姓氏和名称，此处指审核报告医生的姓名,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,30,-,二次审核时间,confirm2Date,日期时间,-,,审核医师完成报告审核的时间，时间格式为“1700-01-01 00:00:00”,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,31,-,检查阳性标记,checkPositiveMark,数字,1,,"患者检查结果的分类1：阴性
+2：阳性 3：不确定",EXTRACTED_NOT_APPROVED
+RPT_INFO,10,32,-,影像所见,findings,字符串,4000,必填,检查项目结果报告的客观说明，默认值为“无”,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,33,-,诊断结论,inspectExamResult,字符串,1024,必填,检查项目结果报告的主观说明,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,34,-,建议,remark,字符串,512,,关于报告的其他描述,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,35,-,检查报告发布日期时间,reportPubTime,日期时间,-,必填,检查报告发布的工作纪年日期的完整描述，时间格式为“1700-01-01 00:00:00”,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,36,-,危急值,criticalValues,字符串,256,,报告中对危急值的详细描述，默认值为“无”,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,37,-,报告快照数量,snapshotCount,数字,4,必填,报告生成的快照的数量,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,38,-,图文报告图像数量,reportImageCount,数字,4,必填,图文报告中包含的图像数量,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,39,-,报告互认结果,hrFlag,数字,1,,报告互认结果，检查结果互认共享标记。1：互认项目0：非互认项目,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,40,-,检查数据最后变更时间,lastChangeTime,日期时间,-,必填,数据最后修改日期时间，时间格式为“1700-01-01 00:00:00”,EXTRACTED_NOT_APPROVED
+RPT_INFO,10,41,-,删除标记,disableFlag,数字,1,必填,"记录数据是否进行逻辑删除的标识，逻辑删除后该数据无效1：删除
+0：未删除",EXTRACTED_NOT_APPROVED
+RPT_INFO_DETAILS,11,2,DE08.10.052.00,采集医疗机构代码,hospitalCode,字符串,22,必填,优先写入统一社会信用代码，若无则写入医疗机构编码,EXTRACTED_NOT_APPROVED
+RPT_INFO_DETAILS,11,3,-,信息系统院内唯一ID,systemId,字符串,36,必填,信息系统在医疗机构的唯一ID，该字段用来解决同一家医疗机构不同系统中risStudyId相同的问题。建议从pacs01开始,EXTRACTED_NOT_APPROVED
+RPT_INFO_DETAILS,11,4,DE01.00.017.00,检查唯一标识符,risStudyId,字符串,36,必填,检查系统中某次检查中生成的检查唯一标识符,EXTRACTED_NOT_APPROVED
+RPT_INFO_DETAILS,11,5,-,"流水号
+（访问号）",recordNum,字符串,36,必填,检查报告单系统内唯一ID,EXTRACTED_NOT_APPROVED
+RPT_INFO_DETAILS,11,6,-,"检查报告单
+编号",reportCode,字符串,36,必填,按照某一特定编码规则赋予检查报告单的顺序号,EXTRACTED_NOT_APPROVED
+RPT_INFO_DETAILS,11,7,-,指标ID,detailsId,字符串,36,必填,报告中各个指标的具体代码,EXTRACTED_NOT_APPROVED
+RPT_INFO_DETAILS,11,8,-,指标顺序号,detailsNumber,数字,4,必填,报告中各个指标的顺序号,EXTRACTED_NOT_APPROVED
+RPT_INFO_DETAILS,11,9,-,指标类型,detailsType,数字,1,必填,"报告中指标的所属类型。1：数字型
+2：阴阳型 3：字符型",EXTRACTED_NOT_APPROVED
+RPT_INFO_DETAILS,11,10,-,指标名称,detailsName,字符串,32,必填,报告中指标的名称,EXTRACTED_NOT_APPROVED
+RPT_INFO_DETAILS,11,11,-,检查定量结果,detailsValue,字符串,32,必填,患者检查结果值,EXTRACTED_NOT_APPROVED
+RPT_INFO_DETAILS,11,12,-,检查定量结果计量单位,detailsUnit,字符串,32,,患者检查结果值的计量单位,EXTRACTED_NOT_APPROVED
+RPT_INFO_DETAILS,11,13,-,删除标记,disableFlag,数字,1,必填,"记录数据是否进行逻辑删除的标识，逻辑删除后该数据无效1：删除
+0：未删除",EXTRACTED_NOT_APPROVED
+RPT_PATH_INFO,12,2,-,"流水号
+（访问号）",recordNum,字符串,36,必填,检查报告单系统内唯一ID,EXTRACTED_NOT_APPROVED
+RPT_PATH_INFO,12,3,-,"检查报告单
+编号",reportCode,字符串,36,必填,按照某一特定编码规则赋予检查报告单的顺序号,EXTRACTED_NOT_APPROVED
+RPT_PATH_INFO,12,4,-,"报告快照
+顺序号",snapshotSeriesNumber,数字,4,必填,报告快照的顺序号,EXTRACTED_NOT_APPROVED
+RPT_PATH_INFO,12,5,-,介质中报告快照保存路径,snapshotPath,字符串,256,必填,介质中报告快照保存路径,EXTRACTED_NOT_APPROVED
+RPT_PATH_INFO,12,6,-,"RIS介质
+服务器ID",hostId,字符串,20,必填,RIS介质服务器ID，内容指向RIS_HOST_INFO表中的hostId,EXTRACTED_NOT_APPROVED
+RPT_IMAGE,13,2,-,"流水号
+（访问号）",recordNum,字符串,36,必填,检查报告单系统内唯一ID,EXTRACTED_NOT_APPROVED
+RPT_IMAGE,13,3,-,"检查报告单
+编号",reportCode,字符串,36,必填,按照某一特定编码规则赋予检查报告单的顺序号,EXTRACTED_NOT_APPROVED
+RPT_IMAGE,13,4,-,图文报告图像顺序号,imageSeriesNumber,字符串,4,必填,图文报告中图像的顺序号,EXTRACTED_NOT_APPROVED
+RPT_IMAGE,13,5,-,"图像在介质服务器的相对
+路径",imagePath,字符串,256,必填,文件在介质服务器的相对路径，如：图像、视频等,EXTRACTED_NOT_APPROVED
+RPT_IMAGE,13,6,-,RIS介质服务器ID,hostId,字符串,20,必填,RIS介质服务器ID，内容指向RIS_HOST_INFO表中的hostId,EXTRACTED_NOT_APPROVED
+SETL_INFO,14,2,DE08.10.052.00,采集医疗机构代码,hospitalCode,字符串,22,必填,优先写入统一社会信用代码，若无则写入医疗机构编码,EXTRACTED_NOT_APPROVED
+SETL_INFO,14,3,-,"采集医疗
+机构名称",hospitalName,字符串,70,必填,经《医疗机构执业许可证》登记的医疗机构名称,EXTRACTED_NOT_APPROVED
+SETL_INFO,14,4,-,采集医疗机构医保区划,hospitalAdmdvs,字符串,20,必填,医疗机构所属医保区划,EXTRACTED_NOT_APPROVED
+SETL_INFO,14,5,-,定点医药机构编号,fixHospitalCode,字符串,12,必填,对接的医疗机构医保定点编号，采用12位的H码,EXTRACTED_NOT_APPROVED
+SETL_INFO,14,6,-,定点医药机构名称,fixHospitalName,字符串,200,必填,定点医药机构名称,EXTRACTED_NOT_APPROVED
+SETL_INFO,14,7,-,信息系统院内唯一ID,systemId,字符串,36,必填,信息系统在医疗机构的唯一ID，该字段用来解决同一家医疗机构有多个系统，造成部分ID重复问题，建议从HIS01开始。,EXTRACTED_NOT_APPROVED
+SETL_INFO,14,8,-,医保人员编号,medInsPsnNo,字符串,36,医保结算必填,国家医保信息平台人员管理码。,EXTRACTED_NOT_APPROVED
+SETL_INFO,14,9,-,就诊凭证类型,mdtrtCertType,字符串,3,,病人就诊凭证类型：01、02、03,EXTRACTED_NOT_APPROVED
+SETL_INFO,14,10,-,就诊凭证编号,mdtrtCertNo,字符串,500,,凭证类型为“01”时填写“电子凭证令牌”；为“02”时填写“身份证号码”；为“03”时填写“社会保障卡卡号”；为“04”时填写“证件号码”,EXTRACTED_NOT_APPROVED
+SETL_INFO,14,11,-,就诊流水号,visitNumber,字符串,36,必填,就诊流水号,EXTRACTED_NOT_APPROVED
+SETL_INFO,14,12,-,结算类型,setlType,数字,1,必填,病人结算种类，1：自费、2：本地医保、3：异地医保,EXTRACTED_NOT_APPROVED
+SETL_INFO,14,13,-,院内结算流水号,hospitalSetNo,字符串,60,必填,院内结算唯一ID,EXTRACTED_NOT_APPROVED
+SETL_INFO,14,14,-,医保结算流水号,medSetNo,字符串,60,医保结算必填,国家医保信息平台结算唯一ID。,EXTRACTED_NOT_APPROVED
+SETL_INFO,14,15,-,医保就诊ID,setlId,字符串,36,医保结算必填,医保就诊ID。,EXTRACTED_NOT_APPROVED
+SETL_INFO,14,16,-,退费标志,refundFlag,数字,1,必填,记录结算数据是否取消的标识，1：取消、0：正常,EXTRACTED_NOT_APPROVED
+SETL_INFO,14,17,,被退费院内结算流水号,refundHospitalSetNo,字符串,60,退费必填,被退费院内结算流水号,EXTRACTED_NOT_APPROVED
+SETL_INFO,14,18,-,检查数据最后变更时间,lastChangeTime,日期时间,-,必填,数据最后修改日期时间，时间格式为“1700-01-01 00:00:00”,EXTRACTED_NOT_APPROVED
+SETL_INFO,14,19,-,删除标记,disableFlag,数字,1,必填,"记录数据是否进行逻辑删除的标识，逻辑删除后该数据无效1：删除
+0：未删除",EXTRACTED_NOT_APPROVED
+SETL_DETAIL_INFO,15,2,-,院内费用明细流水号,feedetlHosSn,字符串,30,主键必填,院内的费用明细流水号,EXTRACTED_NOT_APPROVED
+SETL_DETAIL_INFO,15,3,-,医保费用明细流水号,feedetlSn,字符串,30,医保付费必填,医保平台返回的费用明细流水号,EXTRACTED_NOT_APPROVED
+SETL_DETAIL_INFO,15,4,,院内结算流水号,hospitalSetNo,字符串,36,必填,院内结算唯一ID,EXTRACTED_NOT_APPROVED
+SETL_DETAIL_INFO,15,5,DE01.00.008.00,检查申请单编号,applyNum,字符串,20,必填,按照某一特定编码规则赋予检查申请单的顺序号,EXTRACTED_NOT_APPROVED
+SETL_DETAIL_INFO,15,6,DE04.30.019.00,检查项目院内编码,itemNum,字符串,200,必填,患者检查项目在医疗机构中的编码，与申请单中的信息保持一致,EXTRACTED_NOT_APPROVED
+SETL_DETAIL_INFO,15,7,-,检查项目名称,itemName,字符串,1000,必填,检查项目在医疗机构中的名称，必须包含检查类型、检查部位和检查方法（或体位）这三要素信息，例如CT颅脑平扫。,EXTRACTED_NOT_APPROVED
+SETL_DETAIL_INFO,15,8,,检查项目医保编码,medicalItemCode,字符串,100,医保项目必填,医疗服务项目在医保目录中对应的编码。,EXTRACTED_NOT_APPROVED
+SETL_DETAIL_INFO,15,9,,检查项目医保名称,medicalItemName,字符串,200,医保项目必填,医疗服务项目在医保目录中对应的名称,EXTRACTED_NOT_APPROVED
+SETL_DETAIL_INFO,15,10,,检查项目物价编码,priceItemCode,字符串,200,必填,医疗服务项目在物价目录中对应的编码,EXTRACTED_NOT_APPROVED
+SETL_DETAIL_INFO,15,11,,检查项目物价名称,priceItemName,字符串,200,必填,医疗服务项目在物价目录中对应的名称,EXTRACTED_NOT_APPROVED
+SETL_DETAIL_INFO,15,12,,收费项目医保分类,medItemType,数字,1,医保项目必填,1、甲类； 2、乙类 ；3、丙类,EXTRACTED_NOT_APPROVED
+SETL_DETAIL_INFO,15,13,,项目单价（元）,itemUp,数字,10.2,,项目单价（元）,EXTRACTED_NOT_APPROVED
+SETL_DETAIL_INFO,15,14,,项目数量,itemAmt,数字,10.2,必填,项目数量,EXTRACTED_NOT_APPROVED
+APPLY_ITEM_INFO,17,2,DE08.10.052.00,采集医疗机构代码,hospitalCode,字符串,22,必填,优先写入统一社会信用代码，若无则写入医疗机构编码,EXTRACTED_NOT_APPROVED
+APPLY_ITEM_INFO,17,3,-,"采集医疗
+机构名称",hospitalName,字符串,70,必填,经《医疗机构执业许可证》登记的医疗机构名称,EXTRACTED_NOT_APPROVED
+APPLY_ITEM_INFO,17,4,-,检查项目编码,itemNum,字符串,200,必填,检查项目在医疗机构中的编码,EXTRACTED_NOT_APPROVED
+APPLY_ITEM_INFO,17,5,-,检查项目名称,itemName,字符串,1000,必填,检查项目在医疗机构中的名称，必须包含检查类型、检查部位和检查方法（或体位）这三要素信息，例如CT颅脑平扫。,EXTRACTED_NOT_APPROVED
+APPLY_ITEM_INFO,17,6,-,检查类型,dep,字符串,40,必填,表5.4设备类型代码表,EXTRACTED_NOT_APPROVED
+APPLY_ITEM_INFO,17,7,-,检查数据最后变更时间,lastChangeTime,日期时间,-,必填,数据最后修改日期时间，时间格式为“1700-01-01 00:00:00”,EXTRACTED_NOT_APPROVED
+APPLY_ITEM_INFO,17,8,-,删除标记,disableFlag,数字,1,必填,"记录数据是否进行逻辑删除的标识，逻辑删除后该数据无效1：删除
+0：未删除",EXTRACTED_NOT_APPROVED
+DOC_INFO,18,2,DE08.10.052.00,采集医疗机构代码,hospitalCode,字符串,22,必填,优先写入统一社会信用代码，若无则写入医疗机构编码,EXTRACTED_NOT_APPROVED
+DOC_INFO,18,3,-,"采集医疗
+机构名称",hospitalName,字符串,70,必填,经《医疗机构执业许可证》登记的医疗机构名称,EXTRACTED_NOT_APPROVED
+DOC_INFO,18,4,-,信息系统院内唯一ID,systemId,字符串,36,必填,信息系统在医疗机构的唯一ID，该字段用来解决同一家医疗机构有多个系统，造成部分ID重复问题，建议从HIS01开始。,EXTRACTED_NOT_APPROVED
+DOC_INFO,18,5,-,医生姓名,docName,字符串,50,必填,个体在公安管理部门正式登记注册的姓氏和名称，此处指医生的姓名,EXTRACTED_NOT_APPROVED
+DOC_INFO,18,6,-,医生院内编码,docHosCode,字符串,60,必填,医疗人员在院内系统中的唯一ID,EXTRACTED_NOT_APPROVED
+DOC_INFO,18,7,-,医生医保编号,docMedNo,字符串,100,必填,医保系统中的医疗人员编码(D码),EXTRACTED_NOT_APPROVED
+DOC_INFO,18,8,-,医生身份证号,docIdCard,字符串,18,必填,医疗人员的身份证件号码,EXTRACTED_NOT_APPROVED
+DOC_INFO,18,9,-,数据最后变更时间,lastChangeTime,日期时间,-,必填,数据最后修改日期时间，时间格式为“1700-01-01 00:00:00”,EXTRACTED_NOT_APPROVED
+DOC_INFO,18,10,-,删除标记,disableFlag,数字,1,必填,"记录数据是否进行逻辑删除的标识，逻辑删除后该数据无效1：删除
+0：未删除",EXTRACTED_NOT_APPROVED
+BOOK_INFO,19,2,DE08.10.052.00,采集医疗机构代码,hospitalCode,字符串,22,必填,优先写入统一社会信用代码，若无则写入医疗机构编码,EXTRACTED_NOT_APPROVED
+BOOK_INFO,19,3,-,"采集医疗
+机构名称",hospitalName,字符串,70,必填,经《医疗机构执业许可证》登记的医疗机构名称,EXTRACTED_NOT_APPROVED
+BOOK_INFO,19,4,-,信息系统院内唯一ID,systemId,字符串,36,必填,信息系统在医疗机构的唯一ID，该字段用来解决同一家医疗机构有多个系统，造成部分ID重复问题，建议从HIS01开始。,EXTRACTED_NOT_APPROVED
+BOOK_INFO,19,5,DE02.01.039.00,病人姓名,patName,字符串,50,必填,个体在公安管理部门正式登记注册的姓氏和名称，此处指患者的姓名,EXTRACTED_NOT_APPROVED
+BOOK_INFO,19,6,DE02.01.031.00,证件类别代码,cardType,字符串,2,必填,WS/T 364.1-2023《卫生健康信息数据元值域代码第3部分:人口学及社会经济学特征》CV02.01.101 身份证件类别代码,EXTRACTED_NOT_APPROVED
+BOOK_INFO,19,7,DE02.01.030.00,证件号码,cardNo,字符串,18,必填,患者的身份证件上的唯一法定标识符（新生儿用妈妈的身份信息）,EXTRACTED_NOT_APPROVED
+BOOK_INFO,19,8,-,预约时间,bookDate,日期时间,-,必填,预约时间的完整描述，时间格式为“1700-01-01 00:00:00”,EXTRACTED_NOT_APPROVED
+BOOK_INFO,19,9,-,预约医生代码,bookDocHosId,字符串,36,必填,医疗机构院内系统医生ID，该ID必须跟“医生信息数据集”中的“医生院内编码”保持一致。,EXTRACTED_NOT_APPROVED
+BOOK_INFO,19,10,-,预约医生名称,bookDocName,字符串,50,必填,个体在公安管理部门正式登记注册的姓氏和名称，此处指出具报告医生的姓名,EXTRACTED_NOT_APPROVED
+BOOK_INFO,19,11,-,预约科室代码,bookDeptCode,字符串,64,必填,标识患者预约的科室在特定编码体系中的代码,EXTRACTED_NOT_APPROVED
+BOOK_INFO,19,12,-,预约科室名称,bookDpetName,字符串,76,必填,标识患者预约的科室的名称,EXTRACTED_NOT_APPROVED
+BOOK_INFO,19,13,-,数据最后变更时间,lastChangeTime,日期时间,-,必填,数据最后修改日期时间，时间格式为“1700-01-01 00:00:00”,EXTRACTED_NOT_APPROVED
+BOOK_INFO,19,14,-,删除标记,disableFlag,数字,1,必填,"记录数据是否进行逻辑删除的标识，逻辑删除后该数据无效1：删除
+0：未删除",EXTRACTED_NOT_APPROVED

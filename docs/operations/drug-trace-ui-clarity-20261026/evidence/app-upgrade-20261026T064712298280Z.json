@@ -1,0 +1,13 @@
+{
+  "host": "app",
+  "phase": "upgrade",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T06:47:12.298236+00:00",
+  "result": {
+    "launched": true,
+    "pid": 2090905,
+    "release": "ui-clarity-20261026T063000Z",
+    "logs": "/root/blyb-maintenance-backups/upgrade-ui-clarity-20261026T063000Z",
+    "recovery_finished_naturally": true
+  }
+}

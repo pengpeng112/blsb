@@ -1,0 +1,16 @@
+{
+  "result_list_present": true,
+  "response_success": true,
+  "model_fields": [
+    {
+      "field": "result_list",
+      "type": "PSCustomObject"
+    },
+    {
+      "field": "total_num",
+      "type": "Int64"
+    }
+  ],
+  "total_num": 0,
+  "raw_response_exposed": false
+}

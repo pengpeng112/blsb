@@ -1,0 +1,14 @@
+{
+ "input": {
+  "studyUid": "合成studyUid",
+  "pacsSeriesId": "合成pacsSeries",
+  "sopInstanceUid": "合成sopInstanc",
+  "keyImageFlag": 1,
+  "instanceNumber": 1,
+  "acquistionTime": "2026-02-01 08:00:00",
+  "imagePath": "合成imagePath",
+  "hostId": "合成hostId",
+  "imageType": 1,
+  "disableFlag": 1
+ }
+}

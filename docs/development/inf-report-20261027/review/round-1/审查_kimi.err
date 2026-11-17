@@ -1,0 +1,74 @@
+• The user asks me to do a read-only review. But they say "请你调用 codex" — but I don't have a codex tool. Actually the user wants me to review... "调用 codex,让他指挥后看看" — seems like they want me to act as another reviewer. I'll just do the review myself. Read-only.
+
+  Let me read the key files: 方案.md and 审查_zcode.md in docs/development/inf-report-20261027/review/round-1/. Also check 数据上报 README index, other report projects, and architecture docs.
+
+  This is a substantial exploration task. I should read the two main files first, then possibly delegate exploration of other projects to explore agents. Let me start.
+
+• Now I need to check references: FIELD_MAPPING.md, the SQL files, the business README, drug_trace domain plugin skeleton, and other projects' READMEs. This is substantial read-only exploration. I can delegate to explore agents in parallel to conserve context, or read directly. The key files:
+
+  1. docs/development/inf-report-20261027/FIELD_MAPPING.md (probably long)
+  2. 数据上报/4、传染病病历数据上报/README.md
+  3. 数据上报/1、2、3 READMEs (conflict check)
+  4. implementation/plugins/domains/drug_trace/ structure
+  5. sql/01-06 files
+
+  Let me delegate parallel exploration to two explore agents: one on other report projects (1,2,3 READMEs + 病理 plugin + 互联互通 references), one on drug_trace skeleton + project README for project 4. Meanwhile I read FIELD_MAPPING myself since it's the core evidence for claims.
+
+  Actually, FIELD_MAPPING might be long. Let me read it directly (paged) and launch explore agents in parallel.
+
+• I have good evidence. Also there's a 检查_codex.md and err files — the user asked "请你调用 codex" — the round-1 dir already has 检查_codex.md (1.8KB) + err (4.4KB), suggesting codex was already invoked and maybe errored. Let me read 检查_codex.md and its err to see what happened — relevant context since user asked to "调用 codex". Also read 哈希.md maybe. Let me read those small files.
+
+• Codex failed due to missing host exe — it couldn't do real review. The user's instruction "请你调用 codex" — codex CLI is broken (missing codex-code-mode-host.exe). I cannot fix that (read-only constraint; also installing is forbidden). So I must report codex invocation failed and provide my own independent review (Kimi), signed independently, which is what user ultimately wants ("结论必须自有依据、独立署名").
+
+  Now compose the review: ①需求覆盖度 ②冲突 ③架构完善点 ④对GLM初审的质疑. Each with reasons/risks, citing 方案节号 or file quotes. Independent signature: Kimi (Kimi Code CLI).
+
+  Let me structure my findings:
+
+  **①需求覆盖度**
+  - 视图层覆盖5类文书、实测全绿（方案§二.2, FIELD_MAPPING §12）— 覆盖良好。
+  - 推送器0%（方案§二.6）— 外部阻断用户已接受。
+  - 覆盖缺口我发现的：
+    - 死亡信息触发条件：规范是"病例诊断含传染病相关诊断，医生填写死亡信息后当天"（附件2 txt:226-253），方案全量死亡推送。规范层面是超范围推送——前置机自筛应该可行，但方案未明示该口径差异，且D8的"传染病死亡必填死因恒空"风险实际上被放大：如果按规范只推传染病相关死亡，那319例中真正需要的可能很少；反之全量推死亡信息而死因恒空，质控"必填率"会被拉低。这点GLM没提。
+    - 门急诊诊断99.8%说明0.2%缺失，但非阻断。
+    - 用户需求说"基于三甲复审视图参考"——已做。
+
+  **②冲突**
+  - 确认GLM的：ODS负载（低）、视图治理边界、JHEMR授权先例、drug_trace方向不冲突但worker运维面+1。
+  - 我补充/核实：
+    - V_INF_* 无同名冲突（全仓Grep仅本项目文档引用，implementation零命中）。
+    - drug_trace 实际数据源是 PHARMACY schema 视图 + BLYB_DRUGTRACE 账号（<his-host>），非方案§四说的 "BLYB_RO 视图"——方案描述与仓库README不符（1、码上放心平台/README.md:147-156）。这是方案§四的事实性错误，虽不影响冲突结论。
+    - worker 0<prod-host> 共用：drug_trace 06:10采集/07:30 SLA，维护避开06:00-08:30；传染病T+0日批若也在早上跑会叠加——错峰建议具体化：传染病批应排在08:30后或午间。
+    - ODS 8.216 是数据中心管辖：三甲复审月末"删当月+插当月"——注意"删+插"如果涉及的是三甲自己的中间表而非V_EMR_视图则无锁冲突；但同库月末大批时段IO/undo压力真实存在。
+    - CDA.CDA_DICTIONARY 与 CDA.TT_ESBHL_DEATH_ROD 属互联互通共享文档区——传染病视图每天轮询会读CDA字典41978条映射，若数管中心对CDA区做变更/下线，传染病视图会静默退化（映射落空）——这是方案D1"数据源集中ODS"未覆盖的跨项目依赖：传染病实际依赖三个 schema（HIS镜像、JHEMR、CDA），其中CDA区归互联互通项目，变更通知链缺失。
+    - 医保电子病历上报完成度未核实（README:3）——若其未来也走前置机/专线，凭据与机构身份可能与本项目共用国家/省平台机构代码，需防冲突；当前无证据冲突。
+
+  **③架构完善点**
+  - 增量水位缺陷（GLM C6）：我核实SQL——01水位=DISCHARGE_DATE_TIME，首页出院后改诊断水位不动→漏推，真实缺陷，同意GLM，且规范支持按ID更新（txt:4997）所以修复成本低（每日重推T-1/T-N窗口幂等更新）。
+  - serial_number（D3）：规范原文"请使用可以唯一标识患者一次诊疗活动的编号 必填"（txt:506-513）——GLM说"最大硬伤"我支持，但GLM的修法①"INP_NO-VISIT_ID拼接"有风险：前置机可能拿serial_number与医院其他系统上报（如传报卡、哨点）交叉核对，拼接口径是院级口径决策。另外注意06子表无serial_number列，主子表靠EX_CLINICAL_ID关联，规范质控要求"主子表关联"（质控txt:131-140）——需确认前置机侧关联键是ID而非serial_number。
+  - 伴生表（D4）：GLM判断"必然撞墙"——我部分质疑：规范txt里base_user/base_dept/emr_patient_info/emr_activity_info没有"必传"字样，质控是"关联一致性"指标（可能是扣分而非拒收）；必填校验针对的是表内必填字段。dept_code/operator_id是5类文书表内字段，其值域锚在base表字典——若不传base表，前置机无法校验值域，可能"校验警告"而非"拒收"。所以GLM的"必然拒收"可能过重，但"质控扣分/关联一致性不达标"几乎必然。建议仍应期前做，但理由要修正。
+  - D5 在院首页：规范触发"保存后当天"——同意GLM。
+  - D7 截断：15.5%触顶（§11）比"长文书截断"更具体；同意推送器记录截断率。
+  - D8 死亡死因恒空+全量死亡推送叠加：质控风险最大点之一。
+  - D10 推送器骨架复用：drug_trace骨架实际上比我预想的更重（六任务类型+三方对账），GLM建议砍三段门禁合理；但注意drug_trace的证据门/配置revision闭包是AGENTS.md约定（配置revision固定、dry-run零副作用、租户owner隔离）——这些不能砍，GLM说"简化为发送→回执入库→失败重试"不能理解为绕过证据门/幂等/CAS，否则违反工作区约定。这是对GLM C5的重要限定。
+  - 我新增：
+    - 幂等键设计：02/03的ID含FILE_UNIQUE_ID，医生补改病程若产生新FILE_UNIQUE_ID会变新增而非更新→前置机侧重复文书。需核实嘉和修改是原地更新还是新版本行。FIELD_MAPPING未见此核查（可能我没看到——子代理没提）。作为待核查项。
+    - 无鉴权HTTP（方案§二.4）：内网直连无鉴权，推送器需至少做出口白名单/固定目标校验，防止配置错误把病历正文发到错误主机——dry-run零真实副作用约定下，MOCK先行正确。
+    - org_code占位替换（D9）：6张视图常量替换是DDL变更，走谁的工单？与治理边界问题联动；建议在视图里改为从一张参数表读取或至少在替换时一次DDL脚本+回滚脚本。
+    - 文档一致性债务：SQL头注释"未部署"过时、README:43/45停在设计阶段口径、README:19路径描述不准、FIELD_MAPPING §3残留3900字旧值与§11的2000不一致——按AGENTS.md"同步维护README"约定，这些是本轮就该修的文档债（但我本轮只读，不修改）。
+    - 方案§四 drug_trace "BLYB_RO视图直连"描述错误（实为PHARMACY schema + BLYB_DRUGTRACE账号），方案作为审查底稿的事实错误应更正。
+
+  **④对GLM初审的质疑**
+  1. GLM B.1说"日批量~2万行级"——实测7天：1396+1131+1341+6081+5947+319≈16215/7天≈2300行/日，不是2万/日。GLM高估约一个数量级（除非把检查项目按更细粒度算）。负载结论方向不变但数字错误。
+  2. GLM C.2"必然拒收"过重（见上，规范无必传字样，质控指标是扣分制）——但结论方向（期前做）我同意。
+  3. GLM C.1修法①拼接serial_number——反对在未核实前置机关联逻辑前给倾向；且"全院口径变更需病案科确认"与其"我倾向①"存在立场超前。应先做只读验证：查PMI.INP_NO是否含visit区分、查病案科口径。
+  4. GLM C.5"砍掉三段门禁"——需限定：证据门/revision闭包/幂等是AGENTS.md强制约定，不可砍；砍的是业务三段式流程，不是治理门禁。GLM表述有歧义风险。
+  5. GLM D"反对搬独立schema"——我同意，但补充：D9 org_code替换+未来可能的视图修订都走DDL，治理问题不会因不搬schema而消失，登记责任人即可。
+  6. GLM未发现的：死亡信息规范触发条件（传染病相关诊断）与全量推送的口径差；serial_number在06子表缺失的主子表关联键问题；CDA共享区变更通知链；方案§四 drug_trace数据源描述错误。说明GLM初审主要基于方案文档，对规范txt原文和SQL逐字段核对不足。
+
+  Also coverage assessment ①. And note codex invocation failed (err log) — I could not invoke codex because its host exe is missing; I'm Kimi doing the review independently. Actually the user said "请你调用 codex" — should I try invoking codex myself? The .err file shows it was already tried at 2026-10-28T00:14 (just now, this session start time 00:13:51) and failed twice with missing codex-code-mode-host.exe. Read-only constraint forbids fixing installation. I could try running codex once more? The failure is environmental (missing vendor binary). Retrying would likely fail the same. I could try `codex --version` quickly? It already ran (printed version) — the CLI starts but its read-only tool host fails, so codex cannot read files. Not worth retrying; report it.
+
+  Signature: 独立署名 — Kimi（Kimi Code CLI）.
+
+  Keep the reply organized but not overly long. It's a review report — the user asked for detailed items with reasons and citations. Write in Chinese. This will be a longer reply, justified.
+
+To resume this session: kimi -r session_d028299f-6d49-42af-8185-b895ccdc9ebf

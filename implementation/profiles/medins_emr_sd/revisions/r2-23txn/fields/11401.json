@@ -1,0 +1,5229 @@
+{
+ "code": "11401",
+ "schema_version": 2,
+ "envelope_ref": "fields/_envelope.json",
+ "root": "input",
+ "length_unit": "UNCONFIRMED",
+ "children": [
+  {
+   "code": "baseinfo",
+   "type": "object",
+   "children": [
+    {
+     "code": "mdtrt_sn",
+     "name": "就医流水号",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 2
+     },
+     "notes": "医院产生唯一就医流水号"
+    },
+    {
+     "code": "mdtrt_id",
+     "name": "就诊ID",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 3
+     },
+     "notes": "医保返回唯一流水号"
+    },
+    {
+     "code": "medins_file_no",
+     "name": "医院内部档案号",
+     "type": "string",
+     "max_len": 64,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 4
+     },
+     "notes": "医院内部患者唯一的索引号"
+    },
+    {
+     "code": "psn_no",
+     "name": "人员编号",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 5
+     },
+     "notes": "医保病人必填"
+    },
+    {
+     "code": "patn_ipt_cnt",
+     "name": "患者住院次数",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 6
+     }
+    },
+    {
+     "code": "ipt_no",
+     "name": "住院号",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 7
+     }
+    },
+    {
+     "code": "medcasno",
+     "name": "病案号",
+     "type": "string",
+     "max_len": 40,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 8
+     }
+    },
+    {
+     "code": "psn_name",
+     "name": "人员姓名",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 9
+     }
+    },
+    {
+     "code": "gend",
+     "name": "性别",
+     "type": "string",
+     "max_len": 6,
+     "dict": null,
+     "has_code_dict": true,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 10
+     },
+     "notes": "参照“性别gend”"
+    },
+    {
+     "code": "brdy",
+     "name": "出生日期",
+     "type": "date",
+     "max_len": null,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 11
+     },
+     "notes": "yyyy-MM-dd"
+    },
+    {
+     "code": "ntly",
+     "name": "国籍",
+     "type": "string",
+     "max_len": 6,
+     "dict": null,
+     "has_code_dict": true,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 12
+     }
+    },
+    {
+     "code": "ntly_name",
+     "name": "国籍名称",
+     "type": "string",
+     "max_len": 70,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 13
+     }
+    },
+    {
+     "code": "nwb_bir_wt",
+     "name": "新生儿出生体重",
+     "type": "number",
+     "max_len": 6,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 14
+     },
+     "notes": "非新生儿无需必填"
+    },
+    {
+     "code": "nwb_adm_wt",
+     "name": "新生儿入院体重",
+     "type": "number",
+     "max_len": 6,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 15
+     },
+     "notes": "非新生儿无需必填"
+    },
+    {
+     "code": "birplc",
+     "name": "出生地",
+     "type": "string",
+     "max_len": 200,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 16
+     }
+    },
+    {
+     "code": "napl",
+     "name": "籍贯",
+     "type": "string",
+     "max_len": 100,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 17
+     }
+    },
+    {
+     "code": "naty_name",
+     "name": "民族名称",
+     "type": "string",
+     "max_len": 100,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 18
+     },
+     "notes": "参照“民族naty”"
+    },
+    {
+     "code": "naty",
+     "name": "民族",
+     "type": "string",
+     "max_len": 3,
+     "dict": null,
+     "has_code_dict": true,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 19
+     },
+     "notes": "参照“民族naty”"
+    },
+    {
+     "code": "certno",
+     "name": "证件号码",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 20
+     }
+    },
+    {
+     "code": "psn_cert_type",
+     "name": "人员证件类型",
+     "type": "string",
+     "max_len": 6,
+     "dict": null,
+     "has_code_dict": true,
+     "required": true,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 21
+     },
+     "notes": "参照“人员证件类型psn_cert_type”"
+    },
+    {
+     "code": "mdtrt_setl_type",
+     "name": "就诊结算类型",
+     "type": "string",
+     "max_len": 6,
+     "dict": null,
+     "has_code_dict": true,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 22
+     },
+     "notes": "参照mdtrt_setl_type"
+    },
+    {
+     "code": "prfs",
+     "name": "职业",
+     "type": "string",
+     "max_len": 6,
+     "dict": null,
+     "has_code_dict": true,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 23
+     },
+     "notes": "参照“职业prfs”"
+    },
+    {
+     "code": "mrg_stas",
+     "name": "婚姻状态",
+     "type": "string",
+     "max_len": 3,
+     "dict": null,
+     "has_code_dict": true,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 24
+     },
+     "notes": "参照“婚姻状态MRG_STAS”"
+    },
+    {
+     "code": "curr_addr_poscode",
+     "name": "现住址-邮政编码",
+     "type": "string",
+     "max_len": 6,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 25
+     }
+    },
+    {
+     "code": "curr_addr",
+     "name": "现住址",
+     "type": "string",
+     "max_len": 200,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 26
+     }
+    },
+    {
+     "code": "psn_tel",
+     "name": "个人联系电话",
+     "type": "string",
+     "max_len": 70,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 27
+     }
+    },
+    {
+     "code": "resd_addr_prov",
+     "name": "户口地址-省（自治区、直辖市）",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 28
+     }
+    },
+    {
+     "code": "resd_addr_city",
+     "name": "户口地址-市（地区）",
+     "type": "string",
+     "max_len": 500,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 29
+     }
+    },
+    {
+     "code": "resd_addr_coty",
+     "name": "户口地址-县（区）",
+     "type": "string",
+     "max_len": 500,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 30
+     }
+    },
+    {
+     "code": "resd_addr_subd",
+     "name": "户口地址-乡（镇、街道办事处）",
+     "type": "string",
+     "max_len": 500,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 31
+     }
+    },
+    {
+     "code": "resd_addr_vil",
+     "name": "户口地址-村（街、路、弄等）",
+     "type": "string",
+     "max_len": 500,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 32
+     }
+    },
+    {
+     "code": "resd_addr_housnum",
+     "name": "户口地址-门牌号码",
+     "type": "string",
+     "max_len": 200,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 33
+     }
+    },
+    {
+     "code": "resd_addr_poscode",
+     "name": "户口地址- 邮政编码",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 34
+     }
+    },
+    {
+     "code": "resd_addr",
+     "name": "户口地址",
+     "type": "string",
+     "max_len": 200,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 35
+     }
+    },
+    {
+     "code": "empr_tel",
+     "name": "工作单位联系电话",
+     "type": "string",
+     "max_len": 20,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 36
+     }
+    },
+    {
+     "code": "empr_poscode",
+     "name": "工作单位- 邮政编码",
+     "type": "string",
+     "max_len": 6,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 37
+     }
+    },
+    {
+     "code": "empr_addr",
+     "name": "工作单位及地址",
+     "type": "string",
+     "max_len": 200,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 38
+     }
+    },
+    {
+     "code": "coner_tel",
+     "name": "联系人电话",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 39
+     }
+    },
+    {
+     "code": "coner_name",
+     "name": "联系人姓名",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 40
+     }
+    },
+    {
+     "code": "coner_addr",
+     "name": "联系人地址",
+     "type": "string",
+     "max_len": 200,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 41
+     }
+    },
+    {
+     "code": "coner_rlts_code",
+     "name": "与联系人关系代码",
+     "type": "string",
+     "max_len": 20,
+     "dict": null,
+     "has_code_dict": true,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 42
+     },
+     "notes": "参照“与患者关系patn_rlts”"
+    },
+    {
+     "code": "adm_way_name",
+     "name": "入院途径名称",
+     "type": "string",
+     "max_len": 300,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 43
+     },
+     "notes": "参照“入院途径adm_way”"
+    },
+    {
+     "code": "adm_way_code",
+     "name": "入院途径代码",
+     "type": "string",
+     "max_len": 3,
+     "dict": null,
+     "has_code_dict": true,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 44
+     },
+     "notes": "参照“入院途径adm_way”"
+    },
+    {
+     "code": "trt_type_name",
+     "name": "治疗类别名称",
+     "type": "string",
+     "max_len": 300,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 45
+     }
+    },
+    {
+     "code": "trt_type",
+     "name": "治疗类别",
+     "type": "string",
+     "max_len": 3,
+     "dict": null,
+     "has_code_dict": true,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 46
+     },
+     "notes": "参照“治疗类别trt_type”"
+    },
+    {
+     "code": "adm_dept_codg",
+     "name": "入院科室编码",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 47
+     }
+    },
+    {
+     "code": "adm_dept_name",
+     "name": "入院科室名称",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 48
+     }
+    },
+    {
+     "code": "adm_caty",
+     "name": "入院科别",
+     "type": "string",
+     "max_len": 6,
+     "dict": null,
+     "has_code_dict": true,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 49
+     },
+     "notes": "参照“科别caty”"
+    },
+    {
+     "code": "adm_ward",
+     "name": "入院病房",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 50
+     }
+    },
+    {
+     "code": "adm_date",
+     "name": "入院日期",
+     "type": "date",
+     "max_len": null,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 51
+     },
+     "notes": "yyyy-MM-dd HH:mm:ss"
+    },
+    {
+     "code": "dscg_date",
+     "name": "出院日期",
+     "type": "date",
+     "max_len": null,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 52
+     },
+     "notes": "yyyy-MM-dd HH:mm:ss"
+    },
+    {
+     "code": "dscg_dept_codg",
+     "name": "出院科室编码",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 53
+     }
+    },
+    {
+     "code": "dscg_dept_name",
+     "name": "出院科室名称",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 54
+     }
+    },
+    {
+     "code": "dscg_caty",
+     "name": "出院科别",
+     "type": "string",
+     "max_len": 6,
+     "dict": null,
+     "has_code_dict": true,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 55
+     },
+     "notes": "参照“科别caty”"
+    },
+    {
+     "code": "refl_dept_codg",
+     "name": "转科科室编码",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 56
+     }
+    },
+    {
+     "code": "refl_dept_name",
+     "name": "转科科室名称",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 57
+     }
+    },
+    {
+     "code": "refldept_caty_name",
+     "name": "转科科别名称",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": true,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 58
+     },
+     "notes": "参照“科别caty”"
+    },
+    {
+     "code": "dscg_ward",
+     "name": "出院病房",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 59
+     }
+    },
+    {
+     "code": "ipt_days",
+     "name": "住院天数",
+     "type": "number",
+     "max_len": 4,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 60
+     }
+    },
+    {
+     "code": "drug_dicm_flag",
+     "name": "过敏标志",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": true,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 61
+     },
+     "notes": "0不过敏，1过敏"
+    },
+    {
+     "code": "dicm_drug_name",
+     "name": "过敏物名称",
+     "type": "string",
+     "max_len": 200,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 62
+     },
+     "notes": "药物过敏标志填1时，需填写此项"
+    },
+    {
+     "code": "die_autp_flag",
+     "name": "死亡患者尸检标志",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": true,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 63
+     },
+     "notes": "0未尸检1已尸检"
+    },
+    {
+     "code": "abo_code",
+     "name": "ABO血型代码",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": true,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 64
+     },
+     "notes": "参照“血型代码blotype_abo”"
+    },
+    {
+     "code": "abo_name",
+     "name": "ABO血型名称",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 65
+     },
+     "notes": "参照“血型代码blotype_abo”"
+    },
+    {
+     "code": "rh_code",
+     "name": "Rh血型代码",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": true,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 66
+     },
+     "notes": "参照“血型代码blotype_rh”"
+    },
+    {
+     "code": "rh_name",
+     "name": "RH血型",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 67
+     },
+     "notes": "参照“血型代码blotype_rh”"
+    },
+    {
+     "code": "die_flag",
+     "name": "死亡标志",
+     "type": "string",
+     "max_len": 3,
+     "dict": null,
+     "has_code_dict": true,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 68
+     },
+     "notes": "0否，1是"
+    },
+    {
+     "code": "deptdrt_code",
+     "name": "科主任编码",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 69
+     },
+     "notes": "按国家局编码规范填写"
+    },
+    {
+     "code": "deptdrt_name",
+     "name": "科主任姓名",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 70
+     }
+    },
+    {
+     "code": "chfdr_code",
+     "name": "主任( 副主任)医师编码",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 71
+     },
+     "notes": "按国家局编码规范填写"
+    },
+    {
+     "code": "chfdr_name",
+     "name": "主任( 副主任)医师姓名",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 72
+     }
+    },
+    {
+     "code": "atddr_code",
+     "name": "主治医生编码",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 73
+     },
+     "notes": "按国家局编码规范填写"
+    },
+    {
+     "code": "atddr_name",
+     "name": "主治医生姓名",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 74
+     }
+    },
+    {
+     "code": "chfpdr_code",
+     "name": "主诊医师编码",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 75
+     },
+     "notes": "按国家局编码规范填写"
+    },
+    {
+     "code": "chfpdr_name",
+     "name": "主诊医师姓名",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 76
+     }
+    },
+    {
+     "code": "ipt_dr_code",
+     "name": "住院医师编码",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 77
+     },
+     "notes": "按国家局编码规范填写"
+    },
+    {
+     "code": "ipt_dr_name",
+     "name": "住院医师姓名",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 78
+     }
+    },
+    {
+     "code": "resp_nurs_code",
+     "name": "责任护士编码",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 79
+     },
+     "notes": "按国家局编码规范填写"
+    },
+    {
+     "code": "resp_nurs_name",
+     "name": "责任护士姓名",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 80
+     }
+    },
+    {
+     "code": "train_dr_no",
+     "name": "进修医师编码",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 81
+     }
+    },
+    {
+     "code": "train_dr_name",
+     "name": "进修医师姓名",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 82
+     }
+    },
+    {
+     "code": "intn_dr_no",
+     "name": "实习医师编码",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 83
+     }
+    },
+    {
+     "code": "intn_dr_name",
+     "name": "实习医师姓名",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 84
+     }
+    },
+    {
+     "code": "codr_no",
+     "name": "编码员编码",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 85
+     }
+    },
+    {
+     "code": "codr_name",
+     "name": "编码员姓名",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 86
+     }
+    },
+    {
+     "code": "qltctrl_dr_code",
+     "name": "质控医师编编码",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 87
+     }
+    },
+    {
+     "code": "qltctrl_dr_name",
+     "name": "质控医师姓名",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 88
+     }
+    },
+    {
+     "code": "qltctrl_nurs_code",
+     "name": "质控护士编码",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 89
+     }
+    },
+    {
+     "code": "qltctrl_nurs_name",
+     "name": "质控护士姓名",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 90
+     }
+    },
+    {
+     "code": "medcas_qlt_name",
+     "name": "病案质量名称",
+     "type": "string",
+     "max_len": 100,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 91
+     },
+     "notes": "参照“病案质量medcas_qlt_code”"
+    },
+    {
+     "code": "medcas_qlt_code",
+     "name": "病案质量代码",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": true,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 92
+     },
+     "notes": "参照“病案质量medcas_qlt_code”"
+    },
+    {
+     "code": "qltctrl_date",
+     "name": "质控日期",
+     "type": "date",
+     "max_len": null,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 93
+     },
+     "notes": "yyyy-MM-dd HH:mm:ss"
+    },
+    {
+     "code": "dscg_way_name",
+     "name": "离院方式名称",
+     "type": "string",
+     "max_len": 200,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 94
+     }
+    },
+    {
+     "code": "dscg_way",
+     "name": "离院方式",
+     "type": "string",
+     "max_len": 3,
+     "dict": null,
+     "has_code_dict": true,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 95
+     },
+     "notes": "参照“离院方式dscg_way”"
+    },
+    {
+     "code": "acp_medins_code",
+     "name": "拟接收医疗机构代码",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 96
+     },
+     "notes": "“离院方式”填2和3时，需填写此项"
+    },
+    {
+     "code": "acp_medins_name",
+     "name": "拟接收医疗机构名称",
+     "type": "string",
+     "max_len": 500,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 97
+     },
+     "notes": "“离院方式”填2和3时，需填写此项"
+    },
+    {
+     "code": "dscg_31days_rinp_flag",
+     "name": "出院 31天内再住院计划标志",
+     "type": "string",
+     "max_len": 3,
+     "dict": null,
+     "has_code_dict": true,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 98
+     },
+     "notes": "参照“出院 31天内再住院计划标志days_rinp_flag_31”"
+    },
+    {
+     "code": "dscg_31days_rinp_pup",
+     "name": "出院31天内再住院目的",
+     "type": "string",
+     "max_len": 200,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 99
+     }
+    },
+    {
+     "code": "damg_intx_ext_rea",
+     "name": "损伤、中毒的外部原因",
+     "type": "string",
+     "max_len": 1000,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 100
+     },
+     "notes": "国家标准"
+    },
+    {
+     "code": "damg_intx_ext_rea_disecode",
+     "name": "损伤、中毒的外部原因疾病编码",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 101
+     },
+     "notes": "国家标准"
+    },
+    {
+     "code": "brn_damg_bfadm_coma_dura",
+     "name": "颅脑损伤患者入院前昏迷时长",
+     "type": "string",
+     "max_len": 10,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 102
+     },
+     "notes": "格式：天数/小时数/分钟数\n例：1/13/24"
+    },
+    {
+     "code": "brn_damg_afadm_coma_dura",
+     "name": "颅脑损伤患者入院后昏迷时长",
+     "type": "string",
+     "max_len": 10,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 103
+     },
+     "notes": "格式：天数/小时数/分钟数\n例：1/13/24"
+    },
+    {
+     "code": "vent_used_dura",
+     "name": "呼吸机使用时长",
+     "type": "string",
+     "max_len": 10,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 104
+     },
+     "notes": "格式：天数/小时数/分钟数\n例：1/13/24"
+    },
+    {
+     "code": "cnfm_date",
+     "name": "确诊日期",
+     "type": "date",
+     "max_len": null,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 105
+     },
+     "notes": "yyyy-MM-dd HH:mm:ss"
+    },
+    {
+     "code": "patn_dise_diag_crsp",
+     "name": "患者疾病诊断对照",
+     "type": "string",
+     "max_len": 20,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 106
+     },
+     "notes": "参照“住院患者疾病诊断对照代码ipt_dise_crsp”"
+    },
+    {
+     "code": "patn_dise_diag_crsp_code",
+     "name": "住院患者疾病诊断对照代码",
+     "type": "string",
+     "max_len": 3,
+     "dict": null,
+     "has_code_dict": true,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 107
+     },
+     "notes": "参照“住院患者疾病诊断对照代码ipt_dise_crsp”"
+    },
+    {
+     "code": "ipt_patn_diag_inscp",
+     "name": "住院患者诊断符合情况",
+     "type": "string",
+     "max_len": 20,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 108
+     },
+     "notes": "参照“住院患者诊断符合情况代码ipt_dise_inscp_code”"
+    },
+    {
+     "code": "ipt_patn_diag_inscp_code",
+     "name": "住院患者诊断符合情况代码",
+     "type": "string",
+     "max_len": 1,
+     "dict": null,
+     "has_code_dict": true,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 109
+     },
+     "notes": "参照“住院患者诊断符合情况代码ipt_dise_inscp_code”"
+    },
+    {
+     "code": "dscg_trt_rslt",
+     "name": "出院治疗结果",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 110
+     },
+     "notes": "参照“出院治疗结果代码dscg_trt_rslt_code”"
+    },
+    {
+     "code": "dscg_trt_rslt_code",
+     "name": "出院治疗结果代码",
+     "type": "string",
+     "max_len": 4,
+     "dict": null,
+     "has_code_dict": true,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 111
+     },
+     "notes": "参照“出院治疗结果代码dscg_trt_rslt_code”"
+    },
+    {
+     "code": "medins_orgcode",
+     "name": "医疗机构组织机构代码",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 112
+     }
+    },
+    {
+     "code": "age",
+     "name": "年龄",
+     "type": "number",
+     "max_len": 4,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 113
+     }
+    },
+    {
+     "code": "aise",
+     "name": "过敏源",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": true,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 114
+     },
+     "notes": "参照“过敏源代码aise_code”"
+    },
+    {
+     "code": "pote_intn_dr_name",
+     "name": "研究生实习医师姓名",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": true,
+     "required": false,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 115
+     }
+    },
+    {
+     "code": "hbsag",
+     "name": "乙肝表面抗原（HBsAg）",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": true,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 116
+     },
+     "notes": "参照“乙肝表面抗原hbsag”"
+    },
+    {
+     "code": "hcvab",
+     "name": "丙型肝炎抗体\n（HCV-Ab）",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": true,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 117
+     },
+     "notes": "参照“丙型肝炎抗体hcv-ab”"
+    },
+    {
+     "code": "hivab",
+     "name": "艾滋病毒抗体（hiv-ab）",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": true,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 118
+     },
+     "notes": "参照“艾滋病毒抗体hiv-ab”"
+    },
+    {
+     "code": "resc_cnt",
+     "name": "抢救次数",
+     "type": "number",
+     "max_len": 3,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 119
+     }
+    },
+    {
+     "code": "resc_succ_cnt",
+     "name": "抢救成功次数",
+     "type": "number",
+     "max_len": 3,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 120
+     }
+    },
+    {
+     "code": "hosp_dise_fsttime",
+     "name": "手术、治疗、检查、诊断为本院第一例",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": true,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 121
+     },
+     "notes": "0否，1是"
+    },
+    {
+     "code": "hif_pay_way_name",
+     "name": "医保基金付费方式名称",
+     "type": "string",
+     "max_len": 20,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 122
+     },
+     "notes": "参照“医保付费方式代码hif_pay_code”"
+    },
+    {
+     "code": "hif_pay_way_code",
+     "name": "医保基金付费方式代码",
+     "type": "string",
+     "max_len": 2,
+     "dict": null,
+     "has_code_dict": true,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 123
+     },
+     "notes": "参照“医保付费方式代码hif_pay_code”"
+    },
+    {
+     "code": "med_fee_paymtd_name",
+     "name": "医疗费用支付方式名称",
+     "type": "string",
+     "max_len": 200,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 124
+     },
+     "notes": "参照“医疗费用支付方式代码medfee_paymtd_code”"
+    },
+    {
+     "code": "medfee_paymtd_code",
+     "name": "医疗费用支付方式代码",
+     "type": "string",
+     "max_len": 3,
+     "dict": null,
+     "has_code_dict": true,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 125
+     },
+     "notes": "参照“医疗费用支付方式代码medfee_paymtd_code”"
+    },
+    {
+     "code": "selfpay_amt",
+     "name": "自付金额",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 126
+     }
+    },
+    {
+     "code": "medfee_sumamt",
+     "name": "医疗费总额",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 127
+     },
+     "notes": "医疗费总额需大于等于所有费用的加和"
+    },
+    {
+     "code": "ordn_med_servfee",
+     "name": "一般医疗服务费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 128
+     }
+    },
+    {
+     "code": "ordn_trt_oprt_fee",
+     "name": "一般治疗操作费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 129
+     }
+    },
+    {
+     "code": "nurs_fee",
+     "name": "护理费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 130
+     }
+    },
+    {
+     "code": "com_med_serv_oth_fee",
+     "name": "综合医疗服务类其他费用",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 131
+     }
+    },
+    {
+     "code": "palg_diag_fee",
+     "name": "病理诊断费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 132
+     }
+    },
+    {
+     "code": "lab_diag_fee",
+     "name": "实验室诊断费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 133
+     }
+    },
+    {
+     "code": "rdhy_diag_fee",
+     "name": "影像学诊断费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 134
+     }
+    },
+    {
+     "code": "clnc_dise_fee",
+     "name": "临床诊断项目费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 135
+     }
+    },
+    {
+     "code": "nsrgtrt_item_fee",
+     "name": "非手术治疗项目费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 136
+     }
+    },
+    {
+     "code": "clnc_phys_trt_fee",
+     "name": "临床物理治疗费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 137
+     }
+    },
+    {
+     "code": "oprn_trt_fee",
+     "name": "手术治疗费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 138
+     }
+    },
+    {
+     "code": "anst_fee",
+     "name": "麻醉费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 139
+     }
+    },
+    {
+     "code": "oprn_fee",
+     "name": "手术费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 140
+     }
+    },
+    {
+     "code": "rhab_fee",
+     "name": "康复费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 141
+     }
+    },
+    {
+     "code": "tcm_diag_fee",
+     "name": "中医诊断费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 142
+     },
+     "notes": "兼容中医病案首页"
+    },
+    {
+     "code": "tcm_trt_fee",
+     "name": "中医治疗费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 143
+     }
+    },
+    {
+     "code": "tcm_boninj_fee",
+     "name": "中医骨伤费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 144
+     }
+    },
+    {
+     "code": "tcm_acup_mox_fee",
+     "name": "中医针刺与灸法费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 145
+     }
+    },
+    {
+     "code": "tcm_masg_fee",
+     "name": "中医推拿治疗费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 146
+     }
+    },
+    {
+     "code": "tcm_ano_trt_fee",
+     "name": "中医肛肠治疗费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 147
+     }
+    },
+    {
+     "code": "tcm_sp_trt_fee",
+     "name": "中医特殊治疗费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 148
+     }
+    },
+    {
+     "code": "tcm_oth_fee",
+     "name": "中医其他费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 149
+     }
+    },
+    {
+     "code": "tcm_sp_dspe_mix_fee",
+     "name": "中医特殊调配加工费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 150
+     }
+    },
+    {
+     "code": "tcm_synddiff_diet_fee",
+     "name": "中医辨证施膳费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 151
+     }
+    },
+    {
+     "code": "wmfee",
+     "name": "西药费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 152
+     }
+    },
+    {
+     "code": "abtl_medn_fee",
+     "name": "抗菌药物费用",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 153
+     }
+    },
+    {
+     "code": "tcmpat_fee",
+     "name": "中成药费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 154
+     }
+    },
+    {
+     "code": "tcmherb_fee",
+     "name": "中草药费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 155
+     }
+    },
+    {
+     "code": "blo_fee",
+     "name": "血费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 156
+     }
+    },
+    {
+     "code": "albu_fee",
+     "name": "白蛋白类制品费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 157
+     }
+    },
+    {
+     "code": "glon_fee",
+     "name": "球蛋白类制品费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 158
+     }
+    },
+    {
+     "code": "clotfac_fee",
+     "name": "凝血因子类制品费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 159
+     }
+    },
+    {
+     "code": "cyki_fee",
+     "name": "细胞因子类制品费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 160
+     }
+    },
+    {
+     "code": "exam_dspo_matl_fee",
+     "name": "检查用一次性医用材料费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 161
+     }
+    },
+    {
+     "code": "trt_dspo_matl_fee",
+     "name": "治疗用一次性医用材料费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 162
+     }
+    },
+    {
+     "code": "oprn_dspo_matl_fee",
+     "name": "手术用一次性医用材料费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 163
+     }
+    },
+    {
+     "code": "oth_fee",
+     "name": "其他费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 164
+     }
+    },
+    {
+     "code": "vali_flag",
+     "name": "有效标志",
+     "type": "string",
+     "max_len": 3,
+     "dict": null,
+     "has_code_dict": true,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 165
+     },
+     "notes": "参考dic_flag"
+    },
+    {
+     "code": "fixmedins_code",
+     "name": "定点医药机构编号",
+     "type": "string",
+     "max_len": 12,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 10,
+      "row": 166
+     }
+    }
+   ]
+  },
+  {
+   "code": "diseinfo",
+   "type": "array",
+   "items": {
+    "code": "diseinfo",
+    "type": "object",
+    "children": [
+     {
+      "code": "palg_no",
+      "name": "病理号",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 11,
+       "row": 2
+      }
+     },
+     {
+      "code": "diag_seq",
+      "name": "诊断序列号",
+      "type": "string",
+      "max_len": 3,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 11,
+       "row": 3
+      }
+     },
+     {
+      "code": "ipt_patn_disediag_type_code",
+      "name": "住院患者疾病诊断类型代码",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": true,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 11,
+       "row": 4
+      },
+      "notes": "参照“住院患者疾病诊断类型代码ipt_dise_type_code”"
+     },
+     {
+      "code": "disediag_type",
+      "name": "疾病诊断类型",
+      "type": "string",
+      "max_len": 100,
+      "dict": null,
+      "has_code_dict": true,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 11,
+       "row": 5
+      },
+      "notes": "参考diag_type"
+     },
+     {
+      "code": "maindiag_flag",
+      "name": "主诊断标志",
+      "type": "string",
+      "max_len": 3,
+      "dict": null,
+      "has_code_dict": true,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 11,
+       "row": 6
+      },
+      "notes": "0否，1是"
+     },
+     {
+      "code": "diag_code",
+      "name": "诊断代码",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": true,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 11,
+       "row": 7
+      },
+      "notes": "采用疾病分类代码国家临床版2.0疾病诊断编码（ICD-10）"
+     },
+     {
+      "code": "diag_name",
+      "name": "诊断名称",
+      "type": "string",
+      "max_len": 500,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 11,
+       "row": 8
+      },
+      "notes": "采用疾病分类代码国家临床版2.0疾病诊断编码（ICD-10）与编码对应的诊断名称"
+     },
+     {
+      "code": "hi_diag_code",
+      "name": "医保诊断编码",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 11,
+       "row": 9
+      },
+      "notes": "医保诊断目录"
+     },
+     {
+      "code": "hi_diag_name",
+      "name": "医保诊断名称",
+      "type": "string",
+      "max_len": 500,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 11,
+       "row": 10
+      }
+     },
+     {
+      "code": "inhosp_diag_code",
+      "name": "院内诊断代码",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 11,
+       "row": 11
+      }
+     },
+     {
+      "code": "inhosp_diag_name",
+      "name": "院内诊断名称",
+      "type": "string",
+      "max_len": 100,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 11,
+       "row": 12
+      }
+     },
+     {
+      "code": "adm_dise_cond_name",
+      "name": "入院疾病病情名称",
+      "type": "string",
+      "max_len": 300,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 11,
+       "row": 13
+      },
+      "notes": "参照“入院疾病病情代码adm_dise_cond_code”"
+     },
+     {
+      "code": "adm_dise_cond_code",
+      "name": "入院疾病病情代码",
+      "type": "string",
+      "max_len": 20,
+      "dict": null,
+      "has_code_dict": true,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 11,
+       "row": 14
+      },
+      "notes": "参照“入院疾病病情代码adm_dise_cond_code”"
+     },
+     {
+      "code": "adm_cond",
+      "name": "入院病情",
+      "type": "string",
+      "max_len": 500,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 11,
+       "row": 15
+      },
+      "notes": "参照“入院时情况代码adm_cond_code”"
+     },
+     {
+      "code": "adm_cond_code",
+      "name": "入院时病情代码",
+      "type": "string",
+      "max_len": 3,
+      "dict": null,
+      "has_code_dict": true,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 11,
+       "row": 16
+      },
+      "notes": "参照“入院时情况代码adm_cond_code”"
+     },
+     {
+      "code": "high_diag_evid",
+      "name": "最高诊断依据",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": true,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 11,
+       "row": 17
+      },
+      "notes": "1临床诊断2病理诊断"
+     },
+     {
+      "code": "bkup_deg",
+      "name": "分化程度",
+      "type": "string",
+      "max_len": 16,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 11,
+       "row": 18
+      }
+     },
+     {
+      "code": "bkup_deg_code",
+      "name": "分化程度代码",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": true,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 11,
+       "row": 19
+      },
+      "notes": "参照“分化程度代码bkup_deg_code”"
+     },
+     {
+      "code": "vali_flag",
+      "name": "有效标志",
+      "type": "string",
+      "max_len": 3,
+      "dict": null,
+      "has_code_dict": true,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 11,
+       "row": 20
+      }
+     },
+     {
+      "code": "mdtrt_sn",
+      "name": "就医流水号",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 11,
+       "row": 21
+      },
+      "notes": "医院产生唯一就医流水号"
+     },
+     {
+      "code": "fixmedins_code",
+      "name": "定点医药机构编号",
+      "type": "string",
+      "max_len": 12,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 11,
+       "row": 22
+      }
+     },
+     {
+      "code": "medins_file_no",
+      "name": "医院内部档案号",
+      "type": "string",
+      "max_len": 64,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": true,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 11,
+       "row": 23
+      },
+      "notes": "指医院内部患者唯一的索引号"
+     }
+    ]
+   }
+  },
+  {
+   "code": "oprninfo",
+   "type": "array",
+   "items": {
+    "code": "oprninfo",
+    "type": "object",
+    "children": [
+     {
+      "code": "oprn_oprt_date",
+      "name": "手术操作日期",
+      "type": "date",
+      "max_len": null,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 2
+      },
+      "notes": "yyyy-MM-dd HH:mm:ss"
+     },
+     {
+      "code": "oprn_oprt_name",
+      "name": "手术操作名称",
+      "type": "string",
+      "max_len": 500,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 3
+      },
+      "notes": "采用手术操作分类代码国家临床版2.0手术操作编码（ICD-9-CM3）对应的名称"
+     },
+     {
+      "code": "oprn_oprt_code",
+      "name": "手术操作代码",
+      "type": "string",
+      "max_len": 200,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 4
+      },
+      "notes": "采用手术操作分类代码国家临床版2.0手术操作编码（ICD-9-CM3）"
+     },
+     {
+      "code": "oprn_oprt_sn",
+      "name": "手术操作序列号",
+      "type": "string",
+      "max_len": 16,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 5
+      }
+     },
+     {
+      "code": "oprn_lv_code",
+      "name": "手术级别代码",
+      "type": "string",
+      "max_len": 50,
+      "dict": null,
+      "has_code_dict": true,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 6
+      },
+      "notes": "参照“手术级别代码oprn_oprt_lv_code”"
+     },
+     {
+      "code": "oprn_lv_name",
+      "name": "手术级别名称",
+      "type": "string",
+      "max_len": 300,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 7
+      },
+      "notes": "参照“手术级别代码oprn_oprt_lv_code”"
+     },
+     {
+      "code": "oper_no",
+      "name": "手术者编码",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 8
+      },
+      "notes": "按国家局编码规范填写"
+     },
+     {
+      "code": "oper_name",
+      "name": "手术者姓名",
+      "type": "string",
+      "max_len": 50,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": true,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 9
+      }
+     },
+     {
+      "code": "asit1_no",
+      "name": "助手Ⅰ编码",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 10
+      },
+      "notes": "按国家局编码规范填写"
+     },
+     {
+      "code": "asit1_name",
+      "name": "助手Ⅰ姓名",
+      "type": "string",
+      "max_len": 50,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": true,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 11
+      }
+     },
+     {
+      "code": "asit2_no",
+      "name": "助手Ⅱ编码",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 12
+      },
+      "notes": "按国家局编码规范填写"
+     },
+     {
+      "code": "asit2_name",
+      "name": "助手Ⅱ姓名",
+      "type": "string",
+      "max_len": 50,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": true,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 13
+      }
+     },
+     {
+      "code": "sinc_heal_lv",
+      "name": "手术切口愈合等级",
+      "type": "string",
+      "max_len": 5,
+      "dict": null,
+      "has_code_dict": true,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 14
+      },
+      "notes": "参照“手术切口愈合等级代码sinc_heal_lv_code”"
+     },
+     {
+      "code": "sinc_heal_lv_code",
+      "name": "手术切口愈合等级代码",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": true,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 15
+      },
+      "notes": "参照“手术切口愈合等级代码sinc_heal_lv_code”"
+     },
+     {
+      "code": "anst_mtd_name",
+      "name": "麻醉-方法名称",
+      "type": "string",
+      "max_len": 50,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 16
+      },
+      "notes": "参照“麻醉-方法代码anst_mtd_code”"
+     },
+     {
+      "code": "anst_mtd_code",
+      "name": "麻醉-方法代码",
+      "type": "string",
+      "max_len": 5,
+      "dict": null,
+      "has_code_dict": true,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 17
+      },
+      "notes": "参照“麻醉-方法代码anst_mtd_code”"
+     },
+     {
+      "code": "anst_dr_code",
+      "name": "麻醉医师编号",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 18
+      },
+      "notes": "按国家局编码规范填写"
+     },
+     {
+      "code": "anst_dr_name",
+      "name": "麻醉医师姓名",
+      "type": "string",
+      "max_len": 50,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": true,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 19
+      }
+     },
+     {
+      "code": "oprn_oper_part",
+      "name": "手术操作部位",
+      "type": "string",
+      "max_len": 10,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 20
+      },
+      "notes": "参照“手术操作部位代码oprn_oper_part_code”"
+     },
+     {
+      "code": "oprn_oper_part_code",
+      "name": "手术操作部位代码",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": true,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 21
+      },
+      "notes": "参照“手术操作部位代码oprn_oper_part_code”参照“”"
+     },
+     {
+      "code": "oprn_con_time",
+      "name": "手术持续时间",
+      "type": "string",
+      "max_len": 4,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 22
+      },
+      "notes": "分钟"
+     },
+     {
+      "code": "anst_lv_name",
+      "name": "麻醉分级名称",
+      "type": "string",
+      "max_len": 50,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 23
+      },
+      "notes": "参照“麻醉分级代码anst_lv_code”"
+     },
+     {
+      "code": "anst_lv_code",
+      "name": "麻醉分级代码",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": true,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 24
+      },
+      "notes": "参照“麻醉分级代码anst_lv_code”"
+     },
+     {
+      "code": "oprn_patn_type",
+      "name": "手术患者类型",
+      "type": "string",
+      "max_len": 100,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 25
+      },
+      "notes": "参照“手术患者类型oprn_patn_type_code”"
+     },
+     {
+      "code": "main_oprn_flag",
+      "name": "主要手术标志",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": true,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 27
+      },
+      "notes": "0否1是"
+     },
+     {
+      "code": "anst_asa_lv_code",
+      "name": "麻醉ASA分级代码",
+      "type": "string",
+      "max_len": 50,
+      "dict": null,
+      "has_code_dict": true,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 28
+      },
+      "notes": "参照国家卫生健康委下发的麻醉 ASA分级代码"
+     },
+     {
+      "code": "anst_asa_lv_name",
+      "name": "麻醉ASA分级名称",
+      "type": "string",
+      "max_len": 100,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 29
+      }
+     },
+     {
+      "code": "anst_medn_code",
+      "name": "麻醉药物代码",
+      "type": "string",
+      "max_len": 50,
+      "dict": null,
+      "has_code_dict": true,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 30
+      },
+      "notes": "参照国家卫生健康委下发的麻醉药物代码"
+     },
+     {
+      "code": "anst_medn_name",
+      "name": "麻醉药物名称",
+      "type": "string",
+      "max_len": 100,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 31
+      }
+     },
+     {
+      "code": "anst_medn_dos",
+      "name": "麻醉药物剂量",
+      "type": "string",
+      "max_len": 20,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 32
+      }
+     },
+     {
+      "code": "unt",
+      "name": "计量单位",
+      "type": "string",
+      "max_len": 10,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 33
+      }
+     },
+     {
+      "code": "anst_begntime",
+      "name": "麻醉开始时间",
+      "type": "date",
+      "max_len": null,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 34
+      },
+      "notes": "yyyy-MM-dd HH:mm:ss"
+     },
+     {
+      "code": "anst_endtime",
+      "name": "麻醉结束时间",
+      "type": "date",
+      "max_len": null,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 35
+      },
+      "notes": "yyyy-MM-dd HH:mm:ss"
+     },
+     {
+      "code": "anst_copn_code",
+      "name": "麻醉合并症代码",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": true,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 36
+      },
+      "notes": "参照国家卫生健康委下发的麻醉合并症代码"
+     },
+     {
+      "code": "anst_copn_name",
+      "name": "麻醉合并症名称",
+      "type": "string",
+      "max_len": 100,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 37
+      }
+     },
+     {
+      "code": "anst_copn_dscr",
+      "name": "麻醉合并症描述",
+      "type": "string",
+      "max_len": 1000,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 38
+      }
+     },
+     {
+      "code": "pacu_begntime",
+      "name": "复苏室开始时间",
+      "type": "date",
+      "max_len": null,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 39
+      },
+      "notes": "yyyy-MM-dd HH:mm:ss"
+     },
+     {
+      "code": "pacu_endtime",
+      "name": "复苏室结束时间",
+      "type": "date",
+      "max_len": null,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 40
+      },
+      "notes": "yyyy-MM-dd HH:mm:ss"
+     },
+     {
+      "code": "canc_oprn_flag",
+      "name": "取消手术标志",
+      "type": "string",
+      "max_len": 3,
+      "dict": null,
+      "has_code_dict": true,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 41
+      },
+      "notes": "参考dic_flag"
+     },
+     {
+      "code": "vali_flag",
+      "name": "有效标志",
+      "type": "string",
+      "max_len": 3,
+      "dict": null,
+      "has_code_dict": true,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 42
+      }
+     },
+     {
+      "code": "mdtrt_sn",
+      "name": "就医流水号",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 43
+      },
+      "notes": "医院产生唯一就医流水号"
+     },
+     {
+      "code": "medins_file_no",
+      "name": "医院内部档案号",
+      "type": "string",
+      "max_len": 64,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": true,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 12,
+       "row": 44
+      },
+      "notes": "指医院内部患者唯一的索引号"
+     }
+    ]
+   }
+  },
+  {
+   "code": "icuinfo",
+   "type": "array",
+   "items": {
+    "code": "icuinfo",
+    "type": "object",
+    "children": [
+     {
+      "code": "icu_code",
+      "name": "重症监护室代码",
+      "type": "string",
+      "max_len": 10,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 13,
+       "row": 2
+      },
+      "notes": "院内重症监护室代码"
+     },
+     {
+      "code": "inpool_icu_time",
+      "name": "进入监护室时间",
+      "type": "datetime",
+      "max_len": null,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 13,
+       "row": 3
+      },
+      "notes": "yyyy-MM-dd HH:mm:ss"
+     },
+     {
+      "code": "out_icu_time",
+      "name": "退出监护室时间",
+      "type": "datetime",
+      "max_len": null,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 13,
+       "row": 4
+      },
+      "notes": "yyyy-MM-dd HH:mm:ss"
+     },
+     {
+      "code": "medins_orgcode",
+      "name": "医疗机构组织机构代码",
+      "type": "string",
+      "max_len": 50,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 13,
+       "row": 5
+      },
+      "notes": "参照医院组织机构代码"
+     },
+     {
+      "code": "nurscare_lv_code",
+      "name": "护理等级代码",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 13,
+       "row": 6
+      },
+      "notes": "参照“护理等级代码nurscare_lv_code”"
+     },
+     {
+      "code": "nurscare_lv_name",
+      "name": "护理等级名称",
+      "type": "string",
+      "max_len": 100,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 13,
+       "row": 7
+      },
+      "notes": "参照“护理等级代码nurscare_lv_code”"
+     },
+     {
+      "code": "nurscare_days",
+      "name": "护理小时",
+      "type": "number",
+      "max_len": 3,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 13,
+       "row": 8
+      },
+      "notes": "医保物价最新的重症监护按小时计费"
+     },
+     {
+      "code": "back_icu",
+      "name": "重返重症监护室标志",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 13,
+       "row": 9
+      },
+      "notes": "0否1是"
+     },
+     {
+      "code": "vali_flag",
+      "name": "有效标志",
+      "type": "string",
+      "max_len": 3,
+      "dict": null,
+      "has_code_dict": true,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 13,
+       "row": 10
+      },
+      "notes": "参考dic_flag"
+     },
+     {
+      "code": "mdtrt_sn",
+      "name": "就医流水号",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 13,
+       "row": 11
+      },
+      "notes": "医院产生唯一就医流水号"
+     },
+     {
+      "code": "fixmedins_code",
+      "name": "定点医药机构编号",
+      "type": "string",
+      "max_len": 12,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 13,
+       "row": 12
+      }
+     },
+     {
+      "code": "medins_file_no",
+      "name": "医院内部档案号",
+      "type": "string",
+      "max_len": 64,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": true,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 13,
+       "row": 13
+      },
+      "notes": "指医院内部患者唯一的索引号"
+     }
+    ]
+   }
+  }
+ ]
+}

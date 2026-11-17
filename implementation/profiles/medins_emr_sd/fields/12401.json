@@ -1,0 +1,778 @@
+{
+ "code": "12401",
+ "envelope_ref": "fields/_envelope.json",
+ "root": "input",
+ "length_unit": "UNCONFIRMED",
+ "nodes": [
+  {
+   "code": "mdtrt_sn",
+   "name": "就医流水号",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "mdtrt_id",
+   "name": "就诊ID",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "medins_file_no",
+   "name": "医院内部档案号",
+   "type": "string",
+   "max_len": 64,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "psn_no",
+   "name": "人员编号",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "palg_no",
+   "name": "病理号",
+   "type": "string",
+   "max_len": 18,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "frez_no",
+   "name": "冰冻号",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "cma_dept",
+   "name": "送检科室",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "cma_date",
+   "name": "送检日期",
+   "type": "datetime",
+   "max_len": null,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "rpt_date",
+   "name": "报告日期",
+   "type": "datetime",
+   "max_len": null,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "exam_way",
+   "name": "检查方式",
+   "type": "string",
+   "max_len": 1,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "cma_matl",
+   "name": "送检材料",
+   "type": "string",
+   "max_len": 200,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "clnc_diag",
+   "name": "临床诊断",
+   "type": "string",
+   "max_len": 1000,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "exam_fnd",
+   "name": "检查所见",
+   "type": "string",
+   "max_len": 1000,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "sabc",
+   "name": "免疫组化结果",
+   "type": "string",
+   "max_len": 1000,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "palg_diag",
+   "name": "病理诊断",
+   "type": "string",
+   "max_len": 4000,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "rpot_doc_code",
+   "name": "报告医师代码",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "rpot_doc",
+   "name": "报告医师",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "vali_flag",
+   "name": "有效标志",
+   "type": "string",
+   "max_len": 3,
+   "dict": "Y",
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "etip_flag",
+   "name": "外检标志",
+   "type": "string",
+   "max_len": 3,
+   "dict": "Y",
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "trt_servitem_code",
+   "name": "诊疗服务项目编码",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "rx_id",
+   "name": "处方ID",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "etip_org_code",
+   "name": "外检机构代码",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "etip_org_name",
+   "name": "外检机构名称",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "cainfo",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "dev_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "dev_safe_info",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "fixmedins_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "inf_time",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "info",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "infver",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[0].clnc_diag",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[0].cma_date",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[0].cma_dept",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[0].cma_matl",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[0].exam_fnd",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[0].exam_way",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[0].frez_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[0].mdtrt_id",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[0].mdtrt_sn",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[0].medins_file_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[0].palg_diag",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[0].palg_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[0].psn_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[0].rpot_doc",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[0].rpot_doc_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[0].rpt_date",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[0].sabc",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[0].vali_flag",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[1].clnc_diag",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[1].cma_date",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[1].cma_dept",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[1].cma_matl",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[1].exam_fnd",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[1].exam_way",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[1].frez_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[1].mdtrt_id",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[1].mdtrt_sn",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[1].medins_file_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[1].palg_diag",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[1].palg_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[1].psn_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[1].rpot_doc",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[1].rpot_doc_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[1].rpt_date",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[1].sabc",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "input.data[1].vali_flag",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "insuplc_admdvs",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "mdtrtarea_admvs",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "msgid",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "opter",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "opter_name",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": true,
+   "source": "sample_only"
+  },
+  {
+   "code": "opter_type",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "recer_sys_code",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "sign_no",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  },
+  {
+   "code": "signtype",
+   "name": "",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "sample_only"
+  }
+ ]
+}

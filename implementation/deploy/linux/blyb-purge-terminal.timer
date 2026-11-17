@@ -1,0 +1,11 @@
+[Unit]
+Description=Run BLYB terminal-row purge daily 12:30 Beijing (DTR-BATCH-FIX Fix5)
+
+[Timer]
+OnCalendar=*-*-* 12:30 Asia/Shanghai
+Persistent=true
+AccuracySec=5min
+Unit=blyb-purge-terminal.service
+
+[Install]
+WantedBy=timers.target

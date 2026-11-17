@@ -1,0 +1,25 @@
+{
+  "host": "app",
+  "phase": "final",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T13:36:31.443581+00:00",
+  "result": {
+    "runtime_source_hashes": {
+      "apps/worker/engine.py": true,
+      "packages/connector_sdk/__init__.py": true,
+      "packages/workflow_core/jobs.py": true,
+      "plugins/destinations/alihealth_drugtrace/client.py": true,
+      "plugins/destinations/alihealth_drugtrace/protocol.py": true,
+      "plugins/destinations/alihealth_drugtrace/rate_control.py": true,
+      "plugins/destinations/alihealth_drugtrace/transport.py": true,
+      "plugins/domains/drug_trace/plugin.py": true,
+      "plugins/domains/drug_trace/service.py": true
+    },
+    "driver_sha256": "cf967102e68c4978cc17ba4739af6860de60344404727f6cc8eedf1b4a851c39",
+    "states": {
+      "CONFIRMED": 2576,
+      "ACCEPTED": 41,
+      "UNKNOWN": 206
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "read_only": true,
+  "source": "<frontend-host>4",
+  "destination": "<prod-host>:22",
+  "exit_code": 0,
+  "authenticated": true,
+  "diagnostic": "\rThe authenticity of host '<prod-host> (<prod-host>)' can't be established.\r\nED25519 key fingerprint is SHA256:IjK9PN01og2d/fsSjUy4rlsyRBqOiZZycBN6j46shQc.\r\nThis key is not known by any other names\r\nAre you sure you want to continue connecting (yes/no/[fingerprint])? yes\r\nWarning: Permanently added '<prod-host>' (ED25519) to the list of known hosts.\r\r\n\r\nAuthorized users only. All activities may be monitored and reported.\r\n\rroot@<prod-host>'s password: \r\nBLYB_TARGET_AUTH_OKConnection to <prod-host> closed.\r\r\n"
+}

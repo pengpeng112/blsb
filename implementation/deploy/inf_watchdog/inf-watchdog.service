@@ -1,0 +1,12 @@
+[Unit]
+Description=BLYB inf pusher watchdog (C1-C10 read-only checks + alerts, plan 20261103)
+After=network.target docker.service
+
+[Service]
+Type=oneshot
+# 红线5：unit 内一律绝对路径；无环境继承假设。退出码 0=HEALTHY 1=degraded 2=自身错误
+EnvironmentFile=-<prod-path>/exchange/inf-watchdog/relay.env
+# PT-02：relay secret 经环境文件注入（宿主 600）；TimeoutStartSec=12min——2026-11-16 放量日全量解析曾拖过 5min 被反复杀死（守护停摆两天根因之一）
+ExecStart=/usr/bin/python3 <prod-path>/exchange/inf-watchdog/watchdog.py --config <prod-path>/exchange/inf-watchdog/config.json check
+TimeoutStartSec=12min
+

@@ -1,0 +1,98 @@
+# 给用户/DBA 的明细核查 SQL（DTR-SJZC-VERIFY-20261027，2026-10-27 晚）
+
+背景：050102/050121 两药房 10-26 发药日，VALID 单 100% 有当日扫码行、WAITING 单
+（无码/住院/退药分支）0% 有（同号历史行=号码复用，日期在 2025-07~2026-10 间）。
+下一步要回答："药房确实扫了码的话，扫码行写到了哪里、用什么键"。以下 SQL 全部只读。
+
+## SQL-1 单号全局明细（立即可跑，走 TRACE_BILLNO 索引）
+
+把 :no 换成处方号（如 48649、57370）。看该号码全部行——验证"号码复用"，
+并确认是否任何行的 PRESC_DATE 落在 2026-10-25~27。
+
+```sql
+SELECT T.TRACE_BILLNO,
+       TO_CHAR(T.PRESC_DATE,'YYYY-MM-DD HH24:MI:SS') PRESC_DATE,
+       T.STORE_CODE, T.IN_OUT_TYPE, T.IS_DELETED, T.SPLIT_FLAG,
+       TO_CHAR(T.CREATE_TIME,'YYYY-MM-DD HH24:MI:SS') CREATE_TIME,
+       TO_CHAR(T.MODIFY_TIME,'YYYY-MM-DD HH24:MI:SS') MODIFY_TIME
+FROM DRUG_USER.MED_TRACE_RECORD T
+WHERE T.TRACE_BILLNO = :no
+ORDER BY T.CREATE_TIME;
+```
+
+## SQL-2 当日药房全量切片（关键；CREATE_TIME 无索引=全表扫，建议 DBA 窗口执行）
+
+目的：拿到 10-26 当天扫码表在该药房实际写入的**全部单号**。对照下方 181/215 张
+缺失处方号清单：若出现其他格式单号（流水号/20 位复合号/收费号）→ 即扫码真实键；
+若总行数 < 药房扫码量 → 上传丢失。
+
+```sql
+SELECT T.TRACE_BILLNO,
+       TO_CHAR(T.PRESC_DATE,'YYYY-MM-DD HH24:MI:SS') PRESC_DATE,
+       T.STORE_CODE, T.IN_OUT_TYPE, T.IS_DELETED, T.SPLIT_FLAG,
+       COUNT(*) N,
+       TO_CHAR(MIN(T.CREATE_TIME),'YYYY-MM-DD HH24:MI:SS') MIN_CREATE,
+       TO_CHAR(MAX(T.CREATE_TIME),'YYYY-MM-DD HH24:MI:SS') MAX_CREATE
+FROM DRUG_USER.MED_TRACE_RECORD T
+WHERE T.CREATE_TIME >= DATE '2026-10-26'
+  AND T.CREATE_TIME <  DATE '2026-10-27'
+  AND T.STORE_CODE = '050102'          -- 退药查 050121
+GROUP BY T.TRACE_BILLNO, T.PRESC_DATE, T.STORE_CODE,
+         T.IN_OUT_TYPE, T.IS_DELETED, T.SPLIT_FLAG
+ORDER BY T.TRACE_BILLNO;
+```
+
+## SQL-3 主单侧反连接（复现"无码"清单；走主单时间索引+码表单号索引）
+
+```sql
+SELECT M.PRESC_NO,
+       TO_CHAR(M.PRESC_DATE,'YYYY-MM-DD HH24:MI:SS') PRESC_DATE,
+       M.DISPENSARY, M.PRESC_SOURCE, M.FLAG, M.REFUND_FLAG,
+       TO_CHAR(M.DISPENSING_DATETIME,'YYYY-MM-DD HH24:MI:SS') DISPENSED_AT
+FROM PHARMACY.DRUG_PRESC_MASTER M
+WHERE M.DISPENSING_DATETIME >= DATE '2026-10-26'
+  AND M.DISPENSING_DATETIME <  DATE '2026-10-27'
+  AND M.DISPENSARY = '050102'
+  AND M.PRESC_SOURCE = 0 AND M.FLAG = 1
+  AND NOT EXISTS (
+      SELECT 1 FROM DRUG_USER.MED_TRACE_RECORD T
+      WHERE T.TRACE_BILLNO = TO_CHAR(M.PRESC_NO)
+        AND T.PRESC_DATE = M.PRESC_DATE
+        AND T.STORE_CODE = M.DISPENSARY)
+ORDER BY M.PRESC_NO;
+```
+
+## SQL-4 退药专项（050121；IN_OUT_TYPE 取值以已批准字典为准，不猜）
+
+10-26 当日 050121 在我们 1303 个处方号下只有 OUT 方向行（4117+26 拆零）。
+退药扫码若是入库方向或挂在退药单号下，用日切片看：
+
+```sql
+SELECT T.TRACE_BILLNO, TO_CHAR(T.PRESC_DATE,'YYYY-MM-DD HH24:MI:SS') PRESC_DATE,
+       T.STORE_CODE, T.IN_OUT_TYPE, T.IS_DELETED, T.SPLIT_FLAG, COUNT(*) N,
+       TO_CHAR(MIN(T.CREATE_TIME),'YYYY-MM-DD HH24:MI:SS') MIN_CREATE
+FROM DRUG_USER.MED_TRACE_RECORD T
+WHERE T.CREATE_TIME >= DATE '2026-10-26'
+  AND T.CREATE_TIME <  DATE '2026-10-27'
+  AND T.STORE_CODE = '050121'
+GROUP BY T.TRACE_BILLNO, T.PRESC_DATE, T.STORE_CODE,
+         T.IN_OUT_TYPE, T.IS_DELETED, T.SPLIT_FLAG
+HAVING COUNT(*) > 0
+ORDER BY MIN_CREATE;
+```
+
+## 对照清单（我侧实测）
+
+- 050102：10-26 发药 1085 张 = 904 VALID（全部有当日行）+ 181 WAITING（全部无）。
+- 050121：1303 张 = 1088 VALID（全有）+ 215 WAITING（全无，含退药 57370/57371/57372）。
+- 30 张抽样明细（无码 20/住院 7/退药 3）见任务 README 表；完整键值联表在本机
+  受限目录 `.ai/private/drug-trace-sjzc-verify-20261027/`。
+- 前导零变体、20 位复合号（日期+处方号前缀）两种格式假设已实测零命中。
+
+## 判读表
+
+| SQL-2 结果 | 结论 |
+|---|---|
+| 出现 181 张之外的其他单号格式行 | 扫码真实键≠处方号 → 关联规则需按真实键改（另立来源 revision） |
+| 行数明显少于药房扫码量 | 扫码终端→MED_TRACE_RECORD 上传丢失 → HIS 厂家查扫码网关日志 |
+| 行数与扫码量一致且全是处方号 | 这些处方确实没扫（业务环节） → 药学部按明细核对 |

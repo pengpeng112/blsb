@@ -1,0 +1,27 @@
+{
+  "captured_at": "2026-10-22T10:09:26.274501+00:00",
+  "dmz_mutations": 0,
+  "uploads": 0,
+  "checks": {
+    "service": {
+      "exit_code": 0,
+      "stdout": "active\nUser=blyb-dmz\nSubState=running",
+      "stderr": ""
+    },
+    "time_sync": {
+      "exit_code": 0,
+      "stdout": "Reference ID    : 00000000 ()\nStratum         : 0\nRef time (UTC)  : Thu Jan 01 00:00:00 1970\nSystem time     : 0.000000000 seconds fast of NTP time\nLast offset     : +0.000000000 seconds\nRMS offset      : 0.000000000 seconds\nFrequency       : 0.000 ppm slow\nResidual freq   : +0.000 ppm\nSkew            : 0.000 ppm\nRoot delay      : 1.000000000 seconds\nRoot dispersion : 1.000000000 seconds\nUpdate interval : 0.0 seconds\nLeap status     : Not synchronised\n210 Number of sources = 1\nMS Name/IP address         Stratum Poll Reach LastRx Last sample               \n===============================================================================\n^? 203.107.6.88                  0  10     0     -     +0ns[   +0ns] +/-    0ns",
+      "stderr": ""
+    },
+    "platform": {
+      "exit_code": 0,
+      "stdout": "2026-10-22T10:09:28Z\nHTTP/1.1 200 OK\r\nDate: Thu, 22 Oct 2026 10:09:29 GMT\r\nContent-Type: text/xml;charset=UTF-8\r\nContent-Length: 241\r\nConnection: keep-alive\r\nVary: Accept-Encoding\r\nServer: Tengine\r\nApplication-Host: 33.79.137.49\r\nLocation-Host: top033079137049.center.na610\r\nUps-Target-Key: outgw.api.taobao.com",
+      "stderr": ""
+    },
+    "policy": {
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nFileNotFoundError: [Errno 2] No such file or directory: '/etc/blyb-dmz/config.json'"
+    }
+  }
+}

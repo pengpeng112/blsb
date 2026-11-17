@@ -1,0 +1,126 @@
+{
+  "kind": "IMPLEMENTATION_ACCEPTANCE_SPEC_NOT_TEST_RESULTS",
+  "synthetic_only": true,
+  "cases": [
+    {
+      "id": "F01",
+      "scenario": "manifest仅barcode_raw=900001，PIS唯一命中9000001",
+      "expected": "文件先归集，服务端关联；Agent无病理号也工作",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "id": "F02",
+      "scenario": "条码0候选，随后补入PIS",
+      "expected": "等待→事件唤醒→关联，不重传已AVAILABLE字节",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "id": "F03",
+      "scenario": "同条码两条源记录/跨库候选",
+      "expected": "不取第一条；限定已批准来源仍多条则人工",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "id": "F04",
+      "scenario": "090001与90001、病理号6/7/8位",
+      "expected": "原值字符串不丢零，不按七位硬编码",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "id": "F05",
+      "scenario": "文件名提示病理号与PIS不一致",
+      "expected": "归集可完成，身份冲突阻断自动绑定",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "id": "F06",
+      "scenario": "一患者两住院、没有已确认VISIT_ID",
+      "expected": "患者可关联，就诊等待，不选最新",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "id": "F07",
+      "scenario": "PIS证件校验通过但HIS有冲突",
+      "expected": "人工复核，不优先PIS、不自动111",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "id": "F08",
+      "scenario": "HIS类型空/脏值，只有格式正确号码",
+      "expected": "候选建议，默认仍等待；批准回退后另测适用边界",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "id": "F09",
+      "scenario": "未来申请时间、错误日期、仅CreateTime",
+      "expected": "质量阻断，不从申请号或当前时间纠正",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "id": "F10",
+      "scenario": "边界时钟容差、出生未知、外院会诊原报告",
+      "expected": "固定评估时间；只应用语义相符规则，不拼造生日",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "id": "F11",
+      "scenario": "类别'--'、FreezingID存在但规则未批准",
+      "expected": "等待，不默认常规，不自行推断类别",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "id": "F12",
+      "scenario": "医保机构码缺失、扫描/报告机构不同",
+      "expected": "等待或使用批准报告机构映射，不套扫描单位",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "id": "F13",
+      "scenario": "打印状态为0/512等未知值",
+      "expected": "不认定已扫描、报告审核完成或病例齐套",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "id": "F14",
+      "scenario": "旧病例报告变化但CreateTime不变",
+      "expected": "分区盘点发现新修订；增量覆盖不虚报完整",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "id": "F15",
+      "scenario": "盘点中断、权限异常、一页缺行",
+      "expected": "不误删；完整覆盖标记不可生成",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "id": "F16",
+      "scenario": "经确认源作废及追加报告",
+      "expected": "新版本/墓碑候选，历史冻结内容不变",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "id": "F17",
+      "scenario": "只有V_PIS_IMAGE JPG及报告URL",
+      "expected": "不宣称WSI已取得；附件role正确",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "id": "F18",
+      "scenario": "QPIS/PITAYA同键及来源迁移",
+      "expected": "不双读合并；namespace映射与迁移审计",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "id": "F19",
+      "scenario": "UI更正与另一个操作者并发、历史提交已存在",
+      "expected": "If-Match冲突；授权决定与新包可追溯",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "id": "F20",
+      "scenario": "仅安装metrics插件及CSV输入",
+      "expected": "病理字段非核心必填，HTTP Mock可闭环",
+      "status": "NOT_EXECUTED"
+    }
+  ]
+}

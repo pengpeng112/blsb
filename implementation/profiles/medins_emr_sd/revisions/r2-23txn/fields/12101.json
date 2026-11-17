@@ -1,0 +1,1009 @@
+{
+ "code": "12101",
+ "schema_version": 2,
+ "envelope_ref": "fields/_envelope.json",
+ "root": "input",
+ "length_unit": "UNCONFIRMED",
+ "children": [
+  {
+   "code": "labinfo",
+   "type": "object",
+   "children": [
+    {
+     "code": "mdtrt_sn",
+     "name": "就医流水号",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 33,
+      "row": 2
+     },
+     "notes": "医院产生唯一就医流水号"
+    },
+    {
+     "code": "mdtrt_id",
+     "name": "就诊ID",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 33,
+      "row": 3
+     },
+     "notes": "医保返回唯一流水号"
+    },
+    {
+     "code": "medins_file_no",
+     "name": "医院内部档案号",
+     "type": "string",
+     "max_len": 64,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 33,
+      "row": 4
+     },
+     "notes": "指医院内部患者唯一的索引号"
+    },
+    {
+     "code": "psn_no",
+     "name": "人员编号",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 33,
+      "row": 5
+     },
+     "notes": "医保病人必填"
+    },
+    {
+     "code": "appy_no",
+     "name": "申请单号",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 33,
+      "row": 6
+     }
+    },
+    {
+     "code": "appy_org_code",
+     "name": "申请机构代码",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 33,
+      "row": 7
+     }
+    },
+    {
+     "code": "appy_org_name",
+     "name": "申请机构名称",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 33,
+      "row": 8
+     }
+    },
+    {
+     "code": "bilg_dr_codg",
+     "name": "开单医生代码",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 33,
+      "row": 9
+     },
+     "notes": "按国家局编码规范填写"
+    },
+    {
+     "code": "bilg_dr_name",
+     "name": "开单医生姓名",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 33,
+      "row": 10
+     }
+    },
+    {
+     "code": "exam_org_code",
+     "name": "检验机构代码",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 33,
+      "row": 11
+     }
+    },
+    {
+     "code": "exam_org_name",
+     "name": "检验机构名称",
+     "type": "string",
+     "max_len": 700,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 33,
+      "row": 12
+     }
+    },
+    {
+     "code": "appy_dept_code",
+     "name": "申请科室代码",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": true,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 33,
+      "row": 13
+     },
+     "notes": "参照科室代码（caty）"
+    },
+    {
+     "code": "appy_dept_name",
+     "name": "申请科室名称",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 33,
+      "row": 14
+     }
+    },
+    {
+     "code": "exam_dept_code",
+     "name": "检查科室代码",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": true,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 33,
+      "row": 15
+     },
+     "notes": "参照科室代码（caty）"
+    },
+    {
+     "code": "exam_dept_name",
+     "name": "检查科室名称",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 33,
+      "row": 16
+     }
+    },
+    {
+     "code": "exam_mtd",
+     "name": "检验方法",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 33,
+      "row": 17
+     },
+     "notes": "如：“化学法”"
+    },
+    {
+     "code": "rpotc_no",
+     "name": "报告单号",
+     "type": "string",
+     "max_len": 64,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 33,
+      "row": 18
+     },
+     "notes": "在同一家医院内，“检验报告单号+报告日期”唯一标识了一份检验报告"
+    },
+    {
+     "code": "rpotc_type_name",
+     "name": "报告单类别名称",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 33,
+      "row": 19
+     },
+     "notes": "必填写中文。如“血常规”、“尿常规”等行业常识的名称"
+    },
+    {
+     "code": "exam_item_code",
+     "name": "检验 - 项目代码",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 33,
+      "row": 20
+     },
+     "notes": "医保目录，如没有填无，（多项目参照上面用“|”隔开）"
+    },
+    {
+     "code": "exam_item_name",
+     "name": "检验 - 项目名称",
+     "type": "string",
+     "max_len": 300,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 33,
+      "row": 21
+     },
+     "notes": "医保名称，如没有填无，（多项目参照上面用“|”隔开）"
+    },
+    {
+     "code": "inhosp_exam_item_code",
+     "name": "院内检验-项目代码",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 33,
+      "row": 22
+     },
+     "notes": "项目代码，按本院实际代码传（多项目参照上面用“|”隔开）"
+    },
+    {
+     "code": "inhosp_exam_item_name",
+     "name": "院内检验-项目名称",
+     "type": "string",
+     "max_len": 300,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 33,
+      "row": 23
+     },
+     "notes": "项目名称，按本院实际代码传（多项目参照上面用“|”隔开）"
+    },
+    {
+     "code": "rpt_date",
+     "name": "报告日期",
+     "type": "date",
+     "max_len": null,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 33,
+      "row": 24
+     },
+     "notes": "yyyy-MM-dd"
+    },
+    {
+     "code": "rpot_doc_code",
+     "name": "报告医师代码",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 33,
+      "row": 25
+     },
+     "notes": "外检标志为1时上传外检医师代码；外检标志为0时上传国家局医师编码"
+    },
+    {
+     "code": "rpot_doc",
+     "name": "报告医师",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 33,
+      "row": 26
+     },
+     "notes": "外检标志为1时上传外检医师名称；外检标志为0时上传国家局医师名称"
+    },
+    {
+     "code": "exam_charge",
+     "name": "检查费用",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 33,
+      "row": 27
+     }
+    },
+    {
+     "code": "vali_flag",
+     "name": "有效标志",
+     "type": "string",
+     "max_len": 3,
+     "dict": null,
+     "has_code_dict": true,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 33,
+      "row": 28
+     },
+     "notes": "参照dic_flag"
+    }
+   ]
+  },
+  {
+   "code": "iteminfo",
+   "type": "array",
+   "items": {
+    "code": "iteminfo",
+    "type": "object",
+    "children": [
+     {
+      "code": "rpotc_no",
+      "name": "报告单号",
+      "type": "string",
+      "max_len": 50,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 34,
+       "row": 2
+      }
+     },
+     {
+      "code": "appy_no",
+      "name": "申请单号",
+      "type": "string",
+      "max_len": 50,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 34,
+       "row": 3
+      }
+     },
+     {
+      "code": "exam_kpi_sn",
+      "name": "检验指标流水号",
+      "type": "string",
+      "max_len": null,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 34,
+       "row": 4
+      },
+      "notes": "医疗机构内部唯一标示此检验指标记录的一个序号，必须保证在本医疗机构内不重复。如医疗机构内的序号是循环使用的，可以采用在前面加日期的方式避免重复（格式：YYYYMMDD）"
+     },
+     {
+      "code": "exam_item_detl_code",
+      "name": "检验 - 项目明细代码",
+      "type": "string",
+      "max_len": 50,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 34,
+       "row": 5
+      },
+      "notes": "编码。医疗机构可按实际情况填写，可填写通用的英文简称（如：“红细胞计数”的英文缩写为RBC）"
+     },
+     {
+      "code": "exam_item_detl_name",
+      "name": "检验 - 项目明细名称",
+      "type": "string",
+      "max_len": 300,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 34,
+       "row": 6
+      },
+      "notes": "如：“红细胞压积”"
+     },
+     {
+      "code": "exam_mtd",
+      "name": "检验方法",
+      "type": "string",
+      "max_len": 50,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 34,
+       "row": 7
+      },
+      "notes": "如：“化学法”"
+     },
+     {
+      "code": "ref_val",
+      "name": "参考值",
+      "type": "string",
+      "max_len": 200,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 34,
+       "row": 8
+      }
+     },
+     {
+      "code": "ref_val_ul",
+      "name": "参考值（上限）",
+      "type": "string",
+      "max_len": 100,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 34,
+       "row": 9
+      },
+      "notes": "如果参考值固定，则上下限填写相同的值"
+     },
+     {
+      "code": "ref_val_ll",
+      "name": "参考值（下限）",
+      "type": "string",
+      "max_len": 100,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 34,
+       "row": 10
+      },
+      "notes": "如果参考值固定，则上下限填写相同的值"
+     },
+     {
+      "code": "exam_unt",
+      "name": "检验-计量单位",
+      "type": "string",
+      "max_len": 200,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 34,
+       "row": 11
+      },
+      "notes": "患者检验结果测量值的计量单位"
+     },
+     {
+      "code": "exam_rslt_val",
+      "name": "检验-结果(数值)",
+      "type": "number",
+      "max_len": 16,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 34,
+       "row": 12
+      }
+     },
+     {
+      "code": "exam_rslt_dicm",
+      "name": "检验 - 结果(定性)",
+      "type": "string",
+      "max_len": 2000,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 34,
+       "row": 13
+      },
+      "notes": "量化结果或定性结果；例如：“阴性”或“+”，以及描述性文字。参考卫生健康信息数据元值域代码第 9 部分：实验室检查。"
+     },
+     {
+      "code": "exam_rslt_abn",
+      "name": "检查 / 检验结果异常标识",
+      "type": "string",
+      "max_len": 10,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 34,
+       "row": 14
+      },
+      "notes": "1：正常； 2：异常偏高；3：异常偏低；4：危急；5、无法识别的异常。"
+     }
+    ]
+   }
+  },
+  {
+   "code": "sampleinfo",
+   "type": "array",
+   "items": {
+    "code": "sampleinfo",
+    "type": "object",
+    "children": [
+     {
+      "code": "rpotc_no",
+      "name": "报告单号",
+      "type": "string",
+      "max_len": 50,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 35,
+       "row": 2
+      }
+     },
+     {
+      "code": "appy_no",
+      "name": "申请单号",
+      "type": "string",
+      "max_len": 50,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 35,
+       "row": 3
+      }
+     },
+     {
+      "code": "sapl_date",
+      "name": "采样日期",
+      "type": "date",
+      "max_len": null,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 35,
+       "row": 4
+      },
+      "notes": "yyyy-MM-dd"
+     },
+     {
+      "code": "spcm_no",
+      "name": "标本号",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 35,
+       "row": 5
+      }
+     },
+     {
+      "code": "spcm_name",
+      "name": "标本名称",
+      "type": "string",
+      "max_len": 64,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 35,
+       "row": 6
+      },
+      "notes": "必填写具体的标本名称。"
+     }
+    ]
+   }
+  }
+ ]
+}

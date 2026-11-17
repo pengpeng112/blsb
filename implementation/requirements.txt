@@ -1,0 +1,15 @@
+# 本地开发/测试依赖（Python 3.14 实测安装；生产以兼容性验证后锁定版本）
+fastapi>=0.136
+uvicorn>=0.34
+sqlalchemy>=2.0.49
+pydantic>=2.13
+httpx>=0.28
+pytest>=8
+
+# 可选：真实源库驱动。缺失时对应适配器显式返回 DRIVER_UNAVAILABLE，
+# 不影响合成仓储合同测试（见 docs/接口与设计差异.md）。
+# pyodbc        # SQL Server（需本机 ODBC Driver）
+# oracledb      # Oracle
+# W14修订：Linux 生产 Compose 的 URL 用 postgresql+psycopg；驱动进入运行锁
+# （requirements-linux.txt）。本地已装 3.3.4，无需联网即可满足本条。
+psycopg[binary]>=3.3

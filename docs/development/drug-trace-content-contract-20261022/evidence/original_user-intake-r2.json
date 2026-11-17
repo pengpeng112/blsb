@@ -1,0 +1,17 @@
+{
+  "source_sql_sha256": "f6663f36cc261b2be20b68a87b02c82c36b84230c981693399c20ff762fe1af4",
+  "source_file": "docs\\development\\drug-trace-content-contract-20261022\\sql\\original_user.sql",
+  "system_code": "HIS_SOURCE",
+  "dialect": "oracle",
+  "tables": [
+    "MED_TRACE_RECORD"
+  ],
+  "aliases": {
+    "MED_TRACE_RECORD": "MED_TRACE_RECORD"
+  },
+  "candidates": [],
+  "warnings": [],
+  "formal_assets_modified": false,
+  "existing_relation_lookup_note": "Current platform target relation search=0; legacy CSV target relations=0. Legacy CSV format incompatible with parser load_existing, manually filtered target records instead.",
+  "resolved_source_table": "DRUG_USER.MED_TRACE_RECORD"
+}

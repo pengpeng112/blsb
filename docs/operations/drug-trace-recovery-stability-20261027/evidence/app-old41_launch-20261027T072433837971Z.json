@@ -1,0 +1,11 @@
+{
+  "host": "app",
+  "phase": "old41_launch",
+  "exit_code": 0,
+  "captured_at": "2026-10-27T07:24:33.837929+00:00",
+  "result": {
+    "launched": true,
+    "targets": 41,
+    "uploads_allowed": false
+  }
+}

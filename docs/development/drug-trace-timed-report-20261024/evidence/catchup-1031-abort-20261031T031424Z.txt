@@ -1,0 +1,21 @@
+The authenticity of host '<prod-host> (<prod-host>)' can't be established.
+ED25519 key fingerprint is SHA256:IjK9PN01og2d/fsSjUy4rlsyRBqOiZZycBN6j46shQc.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '<prod-host>' (ED25519) to the list of known hosts.
+
+Authorized users only. All activities may be monitored and reported.
+root@<prod-host>'s password: 
+===FULL RECEIPT (errors/query)===
+errors: [{"submission": "3df545b7-69b8-404b-9e63-47324d1f9f17", "step": "send_worker", "res": {"error_code": "BUSINESS_REJECTED"}}, {"submission": "4ded59cb-8ab2-4c27-afae-6e177ae6c928", "step": "send_worker", "res": {"error_code": "SEND_RESULT_UNKNOWN"}}]
+query: {"queried": 0, "errors": [], "skipped_exhausted": 796, "skipped_inflight": 35}
+lookback: {"ok": false, "enabled": true, "keys": 887, "runs": [], "sent": 0, "prepared_new": 0, "skipped_terminal": 0, "errors": [], "error_code": "LOOKBACK_RUN_TIMEOUT", "error_step": "wait_runs"}
+===UNKNOWN SUB NOW===
+4ded59cb-8ab2-4c27-afae-6e177ae6c928|UNKNOWN
+===ATTEMPTS LAST 2H BY OUTCOME===
+ACCEPTED|200|323
+REJECTED|200|1
+UNKNOWN|200|1
+===REJECTED SUB===
+3df545b7-69b8-404b-9e63-47324d1f9f17|REJECTED
+Connection to <prod-host> closed.

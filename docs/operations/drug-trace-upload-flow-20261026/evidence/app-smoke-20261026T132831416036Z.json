@@ -1,0 +1,26 @@
+{
+  "host": "app",
+  "phase": "smoke",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T13:28:31.415989+00:00",
+  "result": {
+    "shared_state_directory": "/data/exchange/drugtrace-rate",
+    "synthetic_top7_blocks_next_request": true,
+    "real_known_bill_query": {
+      "classification": {
+        "state": "CONFIRMED",
+        "result_type": "3",
+        "sub_process_flag": "51"
+      },
+      "pages": 1,
+      "windows": 1,
+      "query_status": "OK"
+    },
+    "upstream_confirmed": true,
+    "business_writes": 0,
+    "uploads": 0,
+    "his_calls": 0,
+    "persistent_state_created": true,
+    "state_directory_mode": "0o700"
+  }
+}

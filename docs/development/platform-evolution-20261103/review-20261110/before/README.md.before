@@ -1,0 +1,228 @@
+# 平台演进：现状分析与长任务路线图（2026-11-03）
+
+> 编制：Antigravity / claude-opus-5.5，任务 `PLATFORM-EVOLUTION-PLAN-20261103`。
+> 性质：**分析 + 执行计划**，本目录只写文档，没有修改任何代码、部署或生产环境。
+> 读者：①用户（决定执行顺序）；②每天执行一个长任务的外部 AI（下称"执行 AI"）。
+
+---
+
+## 一、一句话结论
+
+系统已经**真正跑起来了两个上报**（码上放心药品追溯、传染病前置机），但它们是**两种完全不同的形态**：
+码上放心走平台插件+宿主驱动脚本，传染病是平台外的独立脚本+crontab+文件台账；医保电子病历一行代码都没有；
+病理只在 Mock 里闭环。v0.4 设计的"通用内核 + 插件 + Profile + Pack"骨架**已经有了，但没被贯彻**：
+核心里还写死着病理逻辑，没有"上报业务"这个一级概念，没有平台级调度、告警、统一台账，
+前端 19 个页面里只有药品追溯一页能给业务人员用。
+
+**改进主线**：先补"上报业务目录 + 统一推送/回执 + 调度告警"三块通用底座，再把传染病、医保电子病历按同一标准
+挂进来，同时重做前端外壳和运营页面。全程**不动正在生产运行的链路**（新能力先 Mock/影子/默认停用），
+生产切换另行由用户在场决定。
+
+---
+
+## 二、现状分析（证据来自代码与 STATE/BACKLOG，2026-11-03）
+
+### 2.1 四个上报业务的真实形态
+
+| 业务 | 目标平台 / 通道 | 代码位置 | 运行形态 | 状态 |
+|---|---|---|---|---|
+| 1 码上放心（药品追溯） | 阿里健康 TOP API，<prod-host>→DMZ <relay-net-host> mTLS 转发 | `implementation/plugins/domains/drug_trace/`、`destinations/alihealth_drugtrace/` | 平台插件 + **宿主 systemd 驱动脚本**（`docs/development/drug-trace-timed-report-20261024/daily_upload_driver.py`，不在 implementation 里） | 生产，仅门诊；住院/退药 fail-closed |
+| 2 医保电子病历（山东） | 山东省医保平台 V2.0，网关/签名未核实 | **无** | — | 未开始（说明.txt：只需"调试通发送成功"） |
+| 3 病理（医保病理云） | 协议 B09 未发布 | `domains/pathology/` 等 | 平台插件，仅 Mock / 视图发布 | 本地合成闭环，B01—B09 全 OPEN |
+| 4 传染病（国家前置软件） | <frontend-host> HTTP JSON | `implementation/deploy/inf_pusher/`、`deploy/inf_watchdog/` | **平台外独立脚本**，cron + `state/*.jsonl` 文件台账，watchdog 只落文件 | 生产，住院 5 类文书 |
+| （潜在）医保影像云 PACS | 济南医保影像云 V2.0 | 仅病理 chk_info/asset_info 投影 | — | 16 数据集/288 字段已提取，未实现 |
+
+### 2.2 后端架构问题（按影响排序）
+
+1. **没有"上报业务（ReportTarget）"一级实体**。现在只有 Destination（发往哪）和插件（怎么处理），
+   回答不了"本院一共要报几个、各自负责人、唯一推送方、生命周期、今天报得怎么样"。
+2. **插件注册写死**：`plugins/app_runtime.py` 的 `PLUGIN_MANIFESTS` 是硬编码字典；
+   `PluginRegistry.build_runtime` 写死 `pathology.build_runtime`；`load_registry` 基线写死
+   `profile.pathology_internal_v1`。`core_api/app.py`（2263 行、65 路由）约 62 处病理引用
+   （overview、connector test、manual-decisions、publications、field-lineage）；
+   `worker/engine.py` 硬编码 `pathology.*` 事件与 drug_trace 优先级。
+3. **推送/回执不通用**：通用层只有 `destination.mock_http`、`destination.view_publication`；
+   `core_handlers.register_destination_adapter` 已留了口子但只有药品追溯私用；回执查询/对账写在
+   `drug_trace/service.py`；传染病回执是 jsonl 文件。
+4. **没有平台调度器**：药品追溯靠宿主 timer+文档目录里的驱动，传染病靠宿主 crontab，worker 只有 0.2s 轮询。
+   历史事故全部与此相关：systemd `%` 转义、cron 缺 PATH、容器 UTC 日界、collect_timeout、
+   **取数挂起抱锁 71 小时无人知晓**。
+5. **没有平台告警**：`alert_event` 表与 `/alerts` 接口存在，但无规则、无外发；inf_watchdog 自成一套且 file-only。
+6. **字段映射/Profile 未落地**：`implementation/profiles/`、`hospital_packs/example`、`migrations/core` 都是空目录；
+   取数 SQL 与报文拼装写死在各插件代码里。
+7. **RBAC 粗**：6 个固定角色，没有"按上报业务授权"；前端菜单不按角色过滤；审计只能看最近 200 条。
+8. 技术债：`plugin_registry.py` 旧兼容层与 `BLYB_PLUGINS` 双路径并存（未设变量时不加载 drug_trace）；
+   `deploy/release/dist` 留有整份旧代码快照易误读；`connector_sdk` 数据类全是病理语义。
+
+### 2.3 前端问题
+
+- Vue 3.5 + vue-router + Vite，**无 UI 库、无状态管理、无图表、无组件目录（0 个复用组件）**；
+  全局样式写在 `App.vue`；普遍 `any`，无统一加载/空态/错误处理，大量 `JSON.stringify` 直出。
+- 19 个菜单平铺不分组、不按角色；无路由守卫。
+- **只有 `DrugTrace.vue`（635 行，由脚本生成、已上线打磨）可给业务人员用**；传染病、医保电子病历零界面；
+  病理页面面向 Mock。
+- 缺：跨业务驾驶舱、上报业务中心、调度任务、告警中心、提交/回执检索、用户角色管理、审计检索导出、联调工具台。
+
+### 2.4 反复出现、应产品化解决的运维痛点
+
+| 痛点 | 历史证据 | 由哪个长任务解决 |
+|---|---|---|
+| 定时靠宿主 cron/timer，配置坑多 | %%s 转义、PATH、UTC 日界 | LT-04 调度 |
+| 挂起/超时无人知晓 | 71h 抱锁、collect_timeout、心跳 11355s | LT-04 运行治理 + 告警 |
+| UNKNOWN/ACCEPTED 积压需人工核查 | 205/206 UNKNOWN、12 轮耗尽 | LT-03 台账 + 处置 |
+| 列表先 limit 后筛选漏异常 | submission-outcomes 200 条 | LT-03 统一台账（先筛后限） |
+| 双上报风险 | 原厂家程序、crbsb | LT-01 唯一推送方登记 |
+| 状态分散、看不见 | 传染病只有 jsonl | LT-05 外部台账导入 + LT-06 页面 |
+| 授权/证书到期 | 发送授权 11-22 到期 | LT-04 到期类告警 + LT-06 待办 |
+| 采集每单 ~11s 非查询开销 | DTR-FBI-VERIFY | LT-08 |
+
+---
+
+## 三、目标形态
+
+```mermaid
+flowchart TD
+  subgraph Console["管理控制台（重做外壳+运营页）"]
+    D1["驾驶舱"] --- D2["上报业务中心"] --- D3["调度/告警/台账"] --- D4["联调台/配置/系统"]
+  end
+  subgraph Core["通用内核"]
+    RT["ReportTarget 上报业务目录"]
+    SCH["Scheduler 调度+运行治理"]
+    ALR["Alert 规则+通道+晨报"]
+    LED["统一提交台账/回执分类"]
+    DST["DestinationAdapter 协议"]
+  end
+  subgraph Plugins["业务插件（manifest 声明）"]
+    P1["drug_trace 码上放心"]
+    P2["infectious 传染病（先影子）"]
+    P3["medins_emr 医保电子病历（联调）"]
+    P4["pathology 病理"]
+  end
+  Console --> Core
+  Core --> Plugins
+  Plugins --> DST
+  DST --> T1["alihealth"] & T2["generic_http_json"] & T3["mock_http"]
+```
+
+---
+
+## 四、长任务清单（每个约一个执行日）
+
+| 顺序 | 任务 | 文件 | 依赖 | 动生产？ |
+|---|---|---|---|---|
+| 第1天 | **LT-08 药品追溯采集管道性能排查（优先）** | [LT-08](LT-08-药品追溯采集性能.md) | 无（独立） | 否（不部署） |
+| 第2天 | **LT-01 上报业务目录与插件内核整治** | [LT-01](LT-01-上报业务目录与插件内核.md) | 无 | 否 |
+| 第3天 | **LT-02 前端外壳与组件库重建** | [LT-02](LT-02-前端外壳与组件库.md) | 无（可与 LT-01 互换） | 否 |
+| 第4天 | **LT-03 统一推送适配器与提交台账** | [LT-03](LT-03-统一推送与提交台账.md) | LT-01 | 否 |
+| 第5天 | **LT-04 平台调度、运行治理与告警中心** | [LT-04](LT-04-调度运行治理与告警.md) | LT-01、LT-03 | 否（默认停用） |
+| 第6天 | **LT-05 传染病上报纳入平台（只读台账+影子插件）** | [LT-05](LT-05-传染病纳管.md) | LT-01、03、04 | 否（Mock/只读） |
+| 第7天 | **LT-06 运营页面：驾驶舱/业务中心/调度/告警/台账/用户/审计** | [LT-06](LT-06-运营页面.md) | LT-02~05 | 否 |
+| 第8天 | **LT-07 医保电子病历：规范契约化与联调工具台** | [LT-07](LT-07-医保电子病历联调台.md) | LT-01、03、06 | 否（Mock） |
+| 第9天 | **LT-09 标准化收尾：接入脚手架、影像云 Profile、全量回归与发布包** | [LT-09](LT-09-标准化收尾与发布准备.md) | 全部 | 否（只出 runbook） |
+
+> [!IMPORTANT]
+> 每个长任务**必须独立可交付**：当天做不完时按"停止条件"收尾为 `handed_off`，写清已完成/未完成，
+> 第二天同一任务续做，**不要跳到下一个任务**。顺序可由用户调整，但依赖列必须满足。
+
+执行 AI 的开场提示词见 [NEXT_AI_PROMPT.md](NEXT_AI_PROMPT.md)，每天只需改任务编号。
+
+---
+
+## 五、所有长任务通用的执行通则（执行 AI 必读，每个 LT 文件都引用本节）
+
+### 5.1 开工四步（每天都做）
+
+```powershell
+cd F:\python\blyb
+# 1) 读约定与状态（不用全读历史，只读这几份 + 当天 LT 文件）
+#    AGENTS.md, docs/ai/STATE.md 前 60 行, docs/ai/BACKLOG.md 前 40 行,
+#    docs/development/platform-evolution-20261103/README.md（本文件）, 当天 LT-xx 文件
+# 2) 看有没有别人占用你要改的文件
+python scripts/ai_session.py status
+# 3) 登记（TOOL/MODEL 写你真实的工具和模型，不知道就写 unknown）
+python scripts/ai_session.py start --task LT-0X-YYYYMMDD --tool TOOL --model MODEL --scope <LT 文件"修改范围"里列的每个路径>
+# 4) 跑一次基线测试并把结果写进交接文件（之后对比用）
+cd implementation
+python -m pytest tests -q -ra -p no:cacheprovider 2>&1 | Select-Object -Last 15
+```
+
+基线若已有失败：**记录下来，不要去修与本任务无关的失败**，验收时只要求"不新增失败"。
+
+### 5.2 全局红线（违反任何一条 = 任务失败）
+
+1. **不连接任何真实系统**：不 SSH 到 <prod-host>/<relay-jump>/DMZ，不连 HIS/EMR/ODS/PIS Oracle 或 SQL Server，
+   不向 <frontend-host>、阿里健康、山东医保发任何请求。需要外部数据时用合成数据或用户手工拷贝来的脱敏文件。
+2. **不联网安装依赖**：不 `pip install`、不 `npm install <新包>`。只用 `requirements.txt` 已有包、
+   Python 标准库、`package.json` 已有依赖。缺什么就自己写一个最小实现。
+3. **禁改清单**（只读，可以参考、复制思路，不能改）：
+   - `implementation/deploy/inf_pusher/**`、`implementation/deploy/inf_watchdog/**`（传染病生产代码）
+   - `docs/development/drug-trace-timed-report-20261024/daily_upload_driver.py` 及同目录脚本（药品生产驱动）
+   - `implementation/plugins/destinations/alihealth_drugtrace/**` 的发送/限速语义
+   - `DrugTraceProductionEvidence` 发送门禁、药品追溯 `bill_type`/字典批准逻辑
+   - 已存在的迁移 001—013 的内容（只能新增编号迁移）
+   - `设计交付v0.4/`、`归档/`、`数据上报/**` 下的原始规范/样例文件（可读，新文件另存）
+   - `implementation/deploy/release/dist/**`（旧快照，不要读它当现行代码，也不要删）
+4. **不删/弱化测试断言、不加 xfail、不改测试去适配错误行为**。
+5. **新能力默认安全**：新目的地默认 `is_mock=True`；新调度默认 `enabled=False`；
+   任何"真实发送"路径都必须经过 LT-01 定义的 `ReportTarget` 生产闸门，否则抛 `CAPABILITY_UNSUPPORTED`/`PROFILE_UNAPPROVED`。
+6. **不写密码/密钥/患者信息**到代码、文档、测试夹具。凭据只用"引用名"（如环境变量名 `INF_SMTP_PASSWORD`）。
+   合成数据的人名用"测试患者001"、证件号用明显假的 `000000199001010000` 格式。
+7. **病理不变量不能放松**：0/1/N 候选、前导零、患者/就诊分离、质量等待、配置 revision 固定、dry-run 零副作用、租户隔离。
+
+### 5.3 迁移编号规则
+
+当前最新全局迁移号 **013**（`packages/core_db/migrate.py`），插件迁移与核心迁移共用一个编号序列
+（病理=2，药品=9—12）。各长任务**预留**编号如下，使用前先 grep 确认未被占用：
+
+| 编号 | 用途 | 任务 |
+|---|---|---|
+| 014 | report_target 上报业务目录 | LT-01 |
+| 015 | schedule / schedule_run | LT-04 |
+| 016 | alert_rule / notification_channel / notification_log + alert_event 扩列 | LT-04 |
+| 017 | external_submission_record 外部台账 | LT-05 |
+| 018 | console 账号角色范围（按业务授权） | LT-06 |
+| 019 | debug_exchange 联调记录 | LT-07 |
+
+```powershell
+cd implementation
+Select-String -Path packages/core_db/migrate.py,plugins/domains/*/models.py -Pattern "@register\(|register\(\s*1[0-9]"
+```
+
+若编号已被占用：用下一个空号，并在交接文件和本表旁写明实际编号。每个迁移都要写 downgrade 或在注释说明为何只前进
+（参照 012/013 的写法），并在 SQLite 与 PostgreSQL 方言下都可执行（避免 PG 专属语法；JSON 列用现有模型中的同类写法）。
+
+### 5.4 测试与验收命令
+
+```powershell
+# 后端局部（每完成一步就跑相关的）
+cd F:\python\blyb\implementation
+python -m pytest tests/<你新增或相关的文件> -q -ra -p no:cacheprovider
+# 后端全量（收尾必须跑，结果写进交接）
+python -m pytest tests -q -ra -p no:cacheprovider --junitxml=../var/<任务ID>-regression.xml
+# 复核探针（收尾必须跑）
+python ../docs/audit/2026-10-01/test_review_probes.py
+# 前端（动了前端就必须跑）
+cd apps/admin_web
+npm run build
+node --test tests/
+```
+
+**完成报告必须分三类写**：实测通过（附命令+退出码+通过数）、实现未测（为什么没测）、外部阻断（等谁）。
+没跑过的测试不能写"通过"。
+
+### 5.5 收尾四步（每天都做）
+
+1. 写交接文件 `docs/ai/sessions/<任务ID>.md`：改了哪些文件、新增迁移号、真实命令及结果、未完成项、下一步。
+2. 更新 `docs/ai/STATE.md` 顶部加一节（≤10 行，带日期+任务ID+交接链接），`docs/ai/BACKLOG.md` 顶部加剩余项。
+   **不要改写旧节**。`docs/ai/HANDOFF.md` 顶部更新"上一任务/下一步"。
+3. 业务/API/状态变化同步四类实施文档：`implementation/docs/实施状态矩阵.md`、`04-API目录对照矩阵.md`、
+   `接口与设计差异.md`、`测试执行记录.md`。涉及某上报业务的，同步 `数据上报/<业务>/README.md` 与 `数据上报/README.md` 索引。
+   新增文档后运行 `python scripts/project_docs.py inventory`。
+4. `python scripts/ai_session.py end --session <ID> --result completed|handed_off --summary "..." --handoff docs/ai/sessions/<任务ID>.md`
+   （没全部完成只能 `handed_off`）。
+
+### 5.6 卡住时怎么办
+
+- 同一个错误尝试 3 次仍失败：停下，把错误原文、你试过的方法写入交接文件，转 `handed_off`，不要绕过。
+- 发现计划与代码实际不符（如函数名变了）：以代码为准，在交接文件"计划偏差"一节记录，继续。
+- 需要用户决策的（如真实通道参数、是否切换生产）：记录到 BACKLOG"待用户"，用 Mock/默认停用继续完成其余部分。

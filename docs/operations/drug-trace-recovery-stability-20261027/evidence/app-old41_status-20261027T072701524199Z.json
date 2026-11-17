@@ -1,0 +1,17 @@
+{
+  "host": "app",
+  "phase": "old41_status",
+  "exit_code": 0,
+  "captured_at": "2026-10-27T07:27:01.524152+00:00",
+  "result": {
+    "progress.json": {
+      "task": "DTR-RECOVERY-STABILITY-20261027",
+      "started_utc": "2026-10-27T07:24:38.153506+00:00",
+      "uploads": 0,
+      "query_budget_reset": false,
+      "updated_utc": "2026-10-27T07:27:03.332748+00:00",
+      "rows_count": 33
+    },
+    "unit": "ExecMainStatus=0\nActiveState=active\nSubState=running"
+  }
+}

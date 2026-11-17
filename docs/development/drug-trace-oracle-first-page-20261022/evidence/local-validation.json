@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "checks": {
+    "live_verify.py_compile": true,
+    "drug_trace.py_compile": true,
+    "test_drug_trace_oracle_first_page.py_compile": true,
+    "live_template_digest_matches_current_code": true,
+    "live_oracle_all_checks_pass": true,
+    "final_related_tests_110_pass_no_skip": true,
+    "regression_failed_before_fix": true,
+    "only_intended_predicate_changed": true,
+    "no_production_deployment_or_upload_claim": true,
+    "task_links_valid": true
+  },
+  "link_count": 8,
+  "broken_links": [],
+  "application_deployed": false,
+  "uploads": 0,
+  "source_writes": 0,
+  "related_tests": 110,
+  "full_suite_run": false
+}

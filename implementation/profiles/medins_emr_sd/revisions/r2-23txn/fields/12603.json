@@ -1,0 +1,253 @@
+{
+ "code": "12603",
+ "schema_version": 2,
+ "envelope_ref": "fields/_envelope.json",
+ "root": "input",
+ "length_unit": "UNCONFIRMED",
+ "children": [
+  {
+   "code": "data",
+   "type": "array",
+   "items": {
+    "code": "data",
+    "type": "object",
+    "children": [
+     {
+      "code": "list_id",
+      "name": "目录ID",
+      "type": "string",
+      "max_len": 50,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 47,
+       "row": 2
+      },
+      "notes": "该表的唯一性标识"
+     },
+     {
+      "code": "med_serv_id",
+      "name": "诊疗服务ID",
+      "type": "string",
+      "max_len": 50,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 47,
+       "row": 3
+      },
+      "notes": "如果是非组套项目，则传递诊疗服务项目ID"
+     },
+     {
+      "code": "med_serv_name",
+      "name": "诊疗服务名称",
+      "type": "string",
+      "max_len": 255,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 47,
+       "row": 4
+      }
+     },
+     {
+      "code": "trt_servitem_id",
+      "name": "诊疗服务项目ID",
+      "type": "string",
+      "max_len": 50,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 47,
+       "row": 5
+      }
+     },
+     {
+      "code": "trt_servitem_name",
+      "name": "诊疗服务项目名称",
+      "type": "string",
+      "max_len": 255,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 47,
+       "row": 6
+      }
+     },
+     {
+      "code": "pric",
+      "name": "单价",
+      "type": "number",
+      "max_len": 16,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 47,
+       "row": 7
+      }
+     },
+     {
+      "code": "prcunt",
+      "name": "计价单位",
+      "type": "string",
+      "max_len": 100,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 47,
+       "row": 8
+      }
+     },
+     {
+      "code": "memo",
+      "name": "备注",
+      "type": "string",
+      "max_len": 255,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 47,
+       "row": 9
+      }
+     },
+     {
+      "code": "begn_date",
+      "name": "开始日期",
+      "type": "date",
+      "max_len": null,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 47,
+       "row": 10
+      }
+     },
+     {
+      "code": "end_date",
+      "name": "终止日期",
+      "type": "date",
+      "max_len": null,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 47,
+       "row": 11
+      }
+     },
+     {
+      "code": "vali_flag",
+      "name": "有效标志",
+      "type": "string",
+      "max_len": 3,
+      "dict": null,
+      "has_code_dict": true,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 47,
+       "row": 12
+      },
+      "notes": "参照“dic_flag”"
+     }
+    ]
+   }
+  }
+ ]
+}

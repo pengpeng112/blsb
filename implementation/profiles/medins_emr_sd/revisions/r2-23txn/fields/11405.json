@@ -1,0 +1,442 @@
+{
+ "code": "11405",
+ "schema_version": 2,
+ "envelope_ref": "fields/_envelope.json",
+ "root": "input",
+ "length_unit": "UNCONFIRMED",
+ "children": [
+  {
+   "code": "oprninfo",
+   "type": "array",
+   "items": {
+    "code": "oprninfo",
+    "type": "object",
+    "children": [
+     {
+      "code": "mdtrt_sn",
+      "name": "就医流水号",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 27,
+       "row": 2
+      },
+      "notes": "医院产生唯一就医流水号"
+     },
+     {
+      "code": "mdtrt_id",
+      "name": "就诊ID",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 27,
+       "row": 3
+      },
+      "notes": "医保返回唯一流水号"
+     },
+     {
+      "code": "medins_file_no",
+      "name": "医院内部档案号",
+      "type": "string",
+      "max_len": 64,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": true,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 27,
+       "row": 4
+      },
+      "notes": "指医院内部患者唯一的索引号"
+     },
+     {
+      "code": "psn_no",
+      "name": "人员编号",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": true,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 27,
+       "row": 5
+      },
+      "notes": "医保病人必填"
+     },
+     {
+      "code": "medrcdno",
+      "name": "病历号",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 27,
+       "row": 6
+      }
+     },
+     {
+      "code": "oprn_oprt_sn",
+      "name": "手术操作序号",
+      "type": "number",
+      "max_len": 16,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 27,
+       "row": 7
+      }
+     },
+     {
+      "code": "oprn_oprt_code",
+      "name": "手术操作代码",
+      "type": "string",
+      "max_len": 200,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 27,
+       "row": 8
+      },
+      "notes": "采用手术操作分类代码国家临床版2.0手术操作编码（ICD-9-CM3）"
+     },
+     {
+      "code": "oprn_oprt_name",
+      "name": "手术操作名称",
+      "type": "string",
+      "max_len": 500,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 27,
+       "row": 9
+      },
+      "notes": "采用手术操作分类代码国家临床版2.0手术操作编码（ICD-9-CM3）对应的名称"
+     },
+     {
+      "code": "itvt_name",
+      "name": "介入物名称",
+      "type": "string",
+      "max_len": 100,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 27,
+       "row": 11
+      }
+     },
+     {
+      "code": "oprn_oprt_cnt",
+      "name": "手术及操作次数",
+      "type": "number",
+      "max_len": 3,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 27,
+       "row": 13
+      }
+     },
+     {
+      "code": "oprn_oprt_time",
+      "name": "手术及操作时间",
+      "type": "datetime",
+      "max_len": null,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 27,
+       "row": 14
+      },
+      "notes": "yyyy-MM-dd HH:mm:ss"
+     },
+     {
+      "code": "vali_flag",
+      "name": "有效标志",
+      "type": "string",
+      "max_len": 3,
+      "dict": null,
+      "has_code_dict": true,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 27,
+       "row": 15
+      },
+      "notes": "参考dic_flag"
+     }
+    ]
+   }
+  },
+  {
+   "code": "rescinfo",
+   "type": "array",
+   "items": {
+    "code": "rescinfo",
+    "type": "object",
+    "children": [
+     {
+      "code": "resc_begntime",
+      "name": "抢救开始时间",
+      "type": "datetime",
+      "max_len": null,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 28,
+       "row": 2
+      },
+      "notes": "yyyy-MM-dd HH:mm:ss"
+     },
+     {
+      "code": "resc_endtime",
+      "name": "抢救结束时间",
+      "type": "datetime",
+      "max_len": null,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 28,
+       "row": 3
+      },
+      "notes": "yyyy-MM-dd HH:mm:ss"
+     },
+     {
+      "code": "er_resc_rec",
+      "name": "急诊抢救记录",
+      "type": "string",
+      "max_len": 2000,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 28,
+       "row": 4
+      }
+     },
+     {
+      "code": "resc_psn_list",
+      "name": "参加抢救人员名单",
+      "type": "string",
+      "max_len": 500,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 28,
+       "row": 5
+      },
+      "notes": "人员使用全角“，”分隔"
+     },
+     {
+      "code": "vali_flag",
+      "name": "有效标志",
+      "type": "string",
+      "max_len": 3,
+      "dict": null,
+      "has_code_dict": true,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 28,
+       "row": 6
+      },
+      "notes": "参考dic_flag"
+     },
+     {
+      "code": "resc_id",
+      "name": "抢救流水号",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 28,
+       "row": 7
+      },
+      "notes": "每次抢救唯一"
+     },
+     {
+      "code": "cond_outc_code",
+      "name": "病情转归代码",
+      "type": "string",
+      "max_len": 3,
+      "dict": null,
+      "has_code_dict": true,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入"
+       ],
+       "table_index": 28,
+       "row": 8
+      },
+      "notes": "参照“病情转归标志codse_code”"
+     }
+    ]
+   }
+  }
+ ]
+}

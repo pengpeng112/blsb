@@ -1,0 +1,13 @@
+{
+  "host": "app",
+  "phase": "upgrade",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T13:25:41.855022+00:00",
+  "result": {
+    "launched": true,
+    "pid": 2391415,
+    "release": "flow-20261026T132000Z",
+    "logs": "/root/blyb-maintenance-backups/upgrade-flow-20261026T132000Z",
+    "recovery_finished_naturally": true
+  }
+}

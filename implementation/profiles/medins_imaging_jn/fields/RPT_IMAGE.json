@@ -1,0 +1,62 @@
+{
+ "code": "RPT_IMAGE",
+ "root": "input",
+ "length_unit": "UNCONFIRMED",
+ "nodes": [
+  {
+   "code": "recordNum",
+   "name": "流水号\n（访问号）",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec_csv",
+   "source_row": "2"
+  },
+  {
+   "code": "reportCode",
+   "name": "检查报告单\n编号",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec_csv",
+   "source_row": "3"
+  },
+  {
+   "code": "imageSeriesNumber",
+   "name": "图文报告图像顺序号",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec_csv",
+   "source_row": "4"
+  },
+  {
+   "code": "imagePath",
+   "name": "图像在介质服务器的相对\n路径",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec_csv",
+   "source_row": "5"
+  },
+  {
+   "code": "hostId",
+   "name": "RIS介质服务器ID",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec_csv",
+   "source_row": "6"
+  }
+ ]
+}

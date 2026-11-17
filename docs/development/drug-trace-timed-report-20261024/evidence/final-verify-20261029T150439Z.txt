@@ -1,0 +1,26 @@
+The authenticity of host '<prod-host> (<prod-host>)' can't be established.
+ED25519 key fingerprint is SHA256:IjK9PN01og2d/fsSjUy4rlsyRBqOiZZycBN6j46shQc.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '<prod-host>' (ED25519) to the list of known hosts.
+
+Authorized users only. All activities may be monitored and reported.
+root@<prod-host>'s password: 
+===DAILY REPORT ROWS===
+2026-10-28|timer|OK|1801|1801|0
+2026-10-27|timer|FAILED|0|0|0
+2026-10-26|manual|OK|1995|976|0
+2026-10-26|timer|FAILED|0|0|0
+2026-10-25|timer|OK|1352|436|0
+2026-10-24|timer|OK|1470|815|0
+2026-10-24|manual|PARTIAL_FAILURE|1470|654|50
+===WINDOW 10-27 FINAL STATES===
+ACCEPTED|939
+CONFIRMED|852
+PARTIAL|1
+===WINDOW 10-28 FINAL STATES===
+CONFIRMED|1800
+PARTIAL|1
+===PREPARED LEFT===
+0
+Connection to <prod-host> closed.

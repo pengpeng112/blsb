@@ -1,0 +1,36 @@
+{
+ "authorization": "2026-10-29 read-only view tuning diagnostics",
+ "source_writes": 0,
+ "A_view": {
+  "ok": true,
+  "n": 0,
+  "s": 0.122
+ },
+ "B_branch1": {
+  "ok": true,
+  "n": 25,
+  "s": 0.006
+ },
+ "C_branch2_current": {
+  "ok": true,
+  "n": 0,
+  "s": 0.005
+ },
+ "D_branch2_in": {
+  "ok": true,
+  "n": 0,
+  "s": 0.081
+ },
+ "E_rows_b1": {
+  "ok": true,
+  "n": 1,
+  "s": 0.002
+ },
+ "E_rows_view": {
+  "ok": true,
+  "n": 1,
+  "s": 12.299
+ },
+ "elapsed": 6258213.9,
+ "captured_at": "2026-10-28T23:16:38.526335+00:00"
+}

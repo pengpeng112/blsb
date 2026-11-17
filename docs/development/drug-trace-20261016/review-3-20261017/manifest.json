@@ -1,0 +1,22 @@
+{
+  "algorithm": "sha256",
+  "files": {
+    "evidence/baseline-hashes.json": "a011a257c886181d3249fc19b5770126740e037f8142d9c41dd96c6280a21f63",
+    "evidence/before-BACKLOG.md": "c22a67d94a18e4a97fcb7440354c72ab5b251f3f3b66ada81edc499366965da1",
+    "evidence/before-HANDOFF.md": "a1224c02bfe85a6ea4005f0f10b9723faa8a21027ccad020b0b57aac848b9369",
+    "evidence/before-STATE.md": "0bf376253b5d4e751c6bfb7b0c6b8151bb07a43c189609ccebbb25dbee70a596",
+    "evidence/global-diff-check.txt": "e7c25c87dbe2906040a8aa2f4ffac28536d264171596c542a183e4b4e4ded82e",
+    "evidence/initial-git-status.txt": "5ee4f469abd6418df1beba2749f2e247ad3c6338675037cbe54dd9d7b6863fc6",
+    "evidence/local-tests.log": "493a72e1a61bd2559a0c2b121f8b3068f2e797e5c27ba9be7868148896d331b2",
+    "evidence/local-tests.xml": "7cc6949ea2b999156bee410cc5a66ca6f0da91b50e668651feacba32a175957f",
+    "evidence/probe-results.json": "876e62f3a050190d56971538bc7b7e0e4a33db0cabb39f6cc06a4e16e372e821",
+    "evidence/probe_review3.py": "52d80cfa1449576d18a3087e0178b8e791bae3a510934a25fbbb94a8d849f716",
+    "evidence/run_local_tests.py": "7961cb61328c5df4b23ee3ed780b23c4ff432a0c6f7cb4c7e944ab78b8b50c53",
+    "evidence/test-command.json": "080b6cf4f94f87a989b213fd79e2a23f76865d24002af4d27c1ac25b1c282d18",
+    "evidence/verification.json": "c2446373cec0c6a94b8e0fe36dbe7cbd6ddb35edacee3b6cdaf56cab886b8d09",
+    "evidence/verify_review.py": "c38f274e4b67931fb7f32345d29a4f5152516ae91fc41cf2c477eed6a133ecd3",
+    "NEXT_AI_PROMPT.md": "0d82b2352cd0f1bcfe53c5440b22128805b476a675bc4768d6273489ea4667f4",
+    "README.md": "0389b408070ccf3e96feb51976c73d710697b5f90147c2fee33fea3b30f88c52",
+    "REVIEW.md": "bef272dbdf9d0ff241c68e327ed055c053c598818cf567e8c335b22d8b22d52c"
+  }
+}

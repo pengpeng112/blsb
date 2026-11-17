@@ -1,0 +1,94 @@
+{
+  "mode": "SYNTHETIC_NO_NETWORK",
+  "passed": 2,
+  "failed": 10,
+  "total": 12,
+  "release_ready": false,
+  "note": "12个行为场景，非原R2-A编号逐项替代；与Oracle视图核验分开。",
+  "rows": [
+    {
+      "case": "normal_pair",
+      "requirement": "正常父子流程发送1条子项",
+      "expected": 1,
+      "observed": 1,
+      "status": "PASS"
+    },
+    {
+      "case": "parent_rejected_without_history",
+      "requirement": "父04失败且无旧成功时子HTTP为0",
+      "expected": 0,
+      "observed": 0,
+      "status": "PASS"
+    },
+    {
+      "case": "prior_day_accepted_parent_new_child",
+      "requirement": "同版本历史父跨日可复用，新子应发送",
+      "expected": 1,
+      "observed": 0,
+      "status": "FAIL"
+    },
+    {
+      "case": "same_day_old_parent_current_rejected",
+      "requirement": "当前父未成功，旧成功或其他表同ID不得放行子项",
+      "expected": 0,
+      "observed": 1,
+      "status": "FAIL"
+    },
+    {
+      "case": "other_table_id_bypasses_parent",
+      "requirement": "当前父未成功，旧成功或其他表同ID不得放行子项",
+      "expected": 0,
+      "observed": 1,
+      "status": "FAIL"
+    },
+    {
+      "case": "reconcile_stale_parent_current_rejected",
+      "requirement": "当前父未成功，旧成功或其他表同ID不得放行子项",
+      "expected": 0,
+      "observed": 1,
+      "status": "FAIL"
+    },
+    {
+      "case": "manifest_expired_wrong_target_bad_digest",
+      "requirement": "错误目标/过期/摘要错清单HTTP为0",
+      "expected": 0,
+      "observed": 1,
+      "status": "FAIL"
+    },
+    {
+      "case": "same_manifest_applied_twice",
+      "requirement": "同清单两次应用只执行一个成功项",
+      "expected": 1,
+      "observed": 2,
+      "status": "FAIL"
+    },
+    {
+      "case": "manifest_missing_target_not_reported",
+      "requirement": "清单目标不存在不得静默成功",
+      "expected": false,
+      "observed": true,
+      "status": "FAIL"
+    },
+    {
+      "case": "reconcile_manifest_without_apply",
+      "requirement": "对账+重放无apply时HTTP为0",
+      "expected": 0,
+      "observed": 2,
+      "status": "FAIL"
+    },
+    {
+      "case": "waiting_row_lost_outside_overlap",
+      "requirement": "等待项越水位重启且父恢复后可补回",
+      "expected": true,
+      "observed": false,
+      "status": "FAIL"
+    },
+    {
+      "case": "order_historical_parent_new_child",
+      "requirement": "医嘱历史父同版本可复用，新条目发送",
+      "expected": 1,
+      "observed": 0,
+      "status": "FAIL"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "host": "app",
+  "phase": "runtime",
+  "exit_code": 0,
+  "captured_at": "2026-10-27T07:27:58.126071+00:00",
+  "result": {
+    "release": "stability-20261027T030000Z-r2",
+    "runtime_files": {
+      "blyb-core-1": {
+        "seven_files_match": true,
+        "image": "sha256:a9ed87ebb53a1c3f1dcf7981865be3a373956059cdf59cda27630fb93bb8a6f8"
+      },
+      "<worker-container>": {
+        "seven_files_match": true,
+        "image": "sha256:a9ed87ebb53a1c3f1dcf7981865be3a373956059cdf59cda27630fb93bb8a6f8"
+      }
+    },
+    "driver_sha256": "470b4bcca8dc28fee9d990a0d77a28e070baf8f156d5fae38b65a2014863213d",
+    "python": "Python 3.14.8",
+    "ntp": "Reference ID    : 0A0A0A6F (<intranet-host>)\nStratum         : 2\nRef time (UTC)  : Tue Oct 27 07:25:01 2026\nSystem time     : 0.000000164 seconds fast of NTP time\nLast offset     : +0.000004337 seconds\nRMS offset      : 0.000013514 seconds\nFrequency       : 1.872 ppm slow\nResidual freq   : +0.000 ppm\nSkew            : 0.013 ppm\nRoot delay      : 0.002275091 seconds\nRoot dispersion : 0.000682314 seconds\nUpdate interval : 257.8 seconds\nLeap status     : Normal",
+    "utc": "2026-10-27T07:28:00.682768+00:00"
+  }
+}

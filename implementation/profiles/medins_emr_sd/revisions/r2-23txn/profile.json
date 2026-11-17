@@ -1,0 +1,79 @@
+{
+ "target_code": "medins_emr_sd",
+ "name": "山东医保电子病历上报",
+ "spec_version": "V2.0",
+ "revision": "r2-23txn",
+ "schema_version": 2,
+ "spec_source": [
+  {
+   "path": "山东省医疗保障信息平台定点医疗机构医保电子病历接口规范V2.0(1)(2).docx",
+   "sha256": "14c03954e4ef1387f50941fc5b58be3cf9691da3610599a1b736910c28951b16"
+  }
+ ],
+ "extracted_at": "2026-11-14T09:11:56.537962+00:00",
+ "extractor_version": "spec_extract/2.0-tree",
+ "status": "DRAFT",
+ "transactions_count": 23,
+ "txn_source": {
+  "list_table": [
+   "11101",
+   "11102",
+   "11103",
+   "11301",
+   "11401",
+   "11402",
+   "11403",
+   "11404",
+   "11405",
+   "11406",
+   "11407",
+   "11408",
+   "12101",
+   "12102",
+   "12103",
+   "12104",
+   "12201",
+   "12401",
+   "12501"
+  ],
+  "body_headings": [
+   "11101",
+   "11102",
+   "11103",
+   "11301",
+   "11401",
+   "11402",
+   "11403",
+   "11404",
+   "11405",
+   "11406",
+   "11407",
+   "11408",
+   "12101",
+   "12102",
+   "12103",
+   "12104",
+   "12201",
+   "12401",
+   "12501",
+   "12601",
+   "12602",
+   "12603",
+   "12604"
+  ],
+  "union_rule": "清单表 ∪ 正文交易标题 = 原19 + 12601~12604"
+ },
+ "msgid_rule": {
+  "confirmed": true,
+  "rule": "定点医药机构编号(12)+时间(14,yyyyMMddHHmmss)+顺序号(4)",
+  "length": 30,
+  "unique": true,
+  "source": "spec:公共报文头表 msgid 行说明"
+ },
+ "signature": {
+  "confirmed": false,
+  "reason": "规范定义 cainfo/signtype 字段但未给出算法与向量"
+ },
+ "length_unit": "UNCONFIRMED",
+ "unresolved_total": 22
+}

@@ -1,0 +1,259 @@
+# LT-04 平台调度、运行治理与告警中心
+
+> 预计：1 个执行日（内容多，若当天做不完，按"分段交付"先交 A+B，C 次日续做）。
+> 依赖：LT-01（ReportTarget、钩子）、LT-03（台账/摘要钩子用于告警规则）。动生产：否（所有新调度默认 `enabled=False`）。迁移：015、016。
+> 先读 [README §五 通则](README.md#五所有长任务通用的执行通则执行-ai-必读每个-lt-文件都引用本节)。
+
+## 0. 为什么做
+
+历史事故几乎全部来自"平台外调度 + 无人知晓"：
+- systemd unit `%s` 未转义导致首个日批失败（10-25）；cron 缺 PATH 两班未跑（10-28）；容器 UTC 日界 off-by-one；
+- 药品 collect 6h 超驱动 4h 上限反复 collect_timeout；worker 心跳 11355s 未刷新；
+- **传染病取数挂起抱锁 71 小时、约 300 班被跳过，无人知晓**（11-03），之后才补了一个只落文件的 inf_watchdog。
+
+平台需要：**可视化的调度定义**（固定院内时区、维护窗口避让、禁止并发、错过策略）、**运行治理**（deadline、超时检测、卡死识别）、
+**告警中心**（规则 + 去重/冷却 + 恢复通知 + 晨报 + file/smtp/webhook 通道 + 脱敏）。
+inf_watchdog 已经验证过这套思路（C1—C10、防轰、恢复通知、白名单脱敏），本任务把它**平台化、通用化**，但**不替换、不修改** inf_watchdog 本身。
+
+> [!IMPORTANT]
+> **本任务不切换任何生产调度**。药品宿主 timer、传染病 crontab、inf_watchdog 原样保留。
+> 平台调度器里为它们建的"镜像调度"一律 `enabled=False`，仅用于展示和未来切换。切换是独立决策，须用户在场。
+
+## 1. 交付物（分三段）
+
+**A 段：调度器**
+1. 迁移 015：`schedule`、`schedule_run` 两表 + 模型。
+2. `packages/workflow_core/cron.py`：5 段 cron 解析器（标准库实现）+ 维护窗口判断，固定 UTC+8。
+3. 调度 tick：worker 每轮调用 `scheduler.tick(db, now)`，用条件 UPDATE 抢占触发（多 worker 安全），入队 `Job`。
+4. API：调度 CRUD/启停/立即运行/运行记录。
+
+**B 段：运行治理**
+5. `run_guard`：基于 `schedule_run.deadline_at` 与 Job 租约/心跳，识别 TIMED_OUT / STALLED，写 `schedule_run` 状态并产生告警事件（**只标记、只告警，不 kill、不改业务数据**）。
+
+**C 段：告警中心**
+6. 迁移 016：`alert_rule`、`notification_channel`、`notification_log`；`alert_event` 扩列（fingerprint/first_seen/last_seen/count/acked_by/acked_at/resolved_at/target_code/rule_code/detail JSON）。
+7. 告警评估器 `plugins/alerting/`：8 类规则 + 去重/冷却/恢复 + 晨报。
+8. 通道驱动：file / smtp（smtplib）/ webhook（urllib，企业微信/钉钉/通用 JSON 三种 payload 模板）。
+9. API：告警列表/确认/关闭、规则 CRUD、通道 CRUD + 测试发送、通知日志。
+10. 种子：为 5 个上报业务各建默认规则（enabled 视业务而定，见步骤 C4）；为药品/传染病建镜像调度（enabled=False）；系统调度 `alert.evaluate`（每 5 分钟）与 `alert.digest`（每天 08:00）——**这两个系统调度 enabled=True，因为它们只读**。
+11. 测试 ≥40。
+
+## 2. 修改范围
+
+```
+implementation/packages/core_db/models.py / migrate.py          （追加 015、016 与模型）
+implementation/packages/workflow_core/cron.py                   （新建）
+implementation/plugins/scheduling/**                            （新建：scheduler.py、run_guard.py、seeds.py）
+implementation/plugins/alerting/**                              （新建：rules.py、evaluator.py、channels.py、digest.py、redact.py、seeds.py）
+implementation/apps/worker/engine.py                            （tick 中追加调度/守护调用；新 job 类型路由）
+implementation/apps/core_api/ops_routes.py                      （新建：调度+告警路由）
+implementation/apps/core_api/app.py                             （挂载 ops_routes；原 /api/v1/alerts 保持兼容）
+implementation/tests/unit/test_cron*.py test_scheduler*.py test_run_guard*.py test_alert*.py （新建）
+implementation/tests/integration/test_ops_api*.py               （新建）
+四类实施文档 + docs/ai/*
+```
+
+**只读参考**：`implementation/deploy/inf_watchdog/watchdog.py`（第 215—700 行：`_f`、`check_c1..c10`、`dispatch`、恢复通知、驱动）。可以照抄函数思路，不能 import 它、不能改它。
+
+## 3. A 段：调度器
+
+### A1 阅读
+
+- `apps/worker/engine.py` 第 26—170 行：`tick()`、`_run_due_jobs`、drug_trace 优先级处理、job 类型如何路由到 `_j_*`、插件 job 如何经 registry 附件路由（搜 `capability_merged` 或 `jobs`）。
+- `packages/workflow_core/jobs.py`：`enqueue_job(db, tenant_id, job_type, dedup_key, payload, ...)` 的确切签名与 dedup 语义。
+
+### A2 迁移 015 与模型
+
+`schedule`：
+
+| 列 | 类型 | 说明 |
+|---|---|---|
+| id, tenant_id | | |
+| code | String(64)，(tenant_id, code) 唯一 | 如 `drug_trace.daily`、`system.alert_evaluate` |
+| name | String(128) | 中文名 |
+| target_code | String(64), default "" | 关联 ReportTarget，可空（系统调度） |
+| job_type | String(64) | 入队的 Job 类型，必须是已注册类型（创建时校验） |
+| payload_template | JSON | 入队 payload，支持占位 `{fire_date}`（院内日期 YYYY-MM-DD）、`{fire_date_minus_1}`、`{fire_time}` |
+| cron | String(64) | 5 段 cron，院内时间 |
+| enabled | Boolean, default False | |
+| misfire_policy | String(16) | `SKIP`（错过就跳过，记一条 MISSED）/ `RUN_ONCE`（补跑一次） |
+| concurrency | String(16) | `FORBID`（上次未结束则本次记 SKIPPED_OVERLAP）/ `ALLOW` |
+| max_runtime_seconds | Integer, default 3600 | 用于 deadline |
+| blackout | JSON, default list | 维护窗口，如 `[{"start":"06:00","end":"08:30"}]`，落在窗口内的触发记 SKIPPED_BLACKOUT |
+| next_fire_at | TS, nullable | UTC 存储 |
+| last_fire_at | TS, nullable | |
+| revision | Integer | 乐观锁 |
+| note | Text | 人读说明 |
+| created_at/updated_at/updated_by | | |
+
+`schedule_run`：id、tenant_id、schedule_id(index)、fire_time(UTC)、state（`QUEUED/RUNNING/SUCCEEDED/FAILED/TIMED_OUT/STALLED/SKIPPED_OVERLAP/SKIPPED_BLACKOUT/MISSED/CANCELLED`）、job_id、started_at、ended_at、deadline_at、duration_seconds、result_summary JSON、error_code、error_message（脱敏≤500）、trigger（`CRON/MANUAL`）、triggered_by。
+唯一约束 `(schedule_id, fire_time)` —— 天然防重复触发。
+
+### A3 cron 解析器 `workflow_core/cron.py`
+
+```python
+CST = timezone(timedelta(hours=8))   # 中国无夏令时，固定偏移，避免 Windows 缺 tzdata
+class CronExpr:
+    def __init__(self, expr: str): ...          # 解析失败 raise ValueError(中文说明)
+    def matches(self, dt_cst: datetime) -> bool
+    def next_after(self, dt_utc: datetime) -> datetime   # 返回 UTC；最多向后搜索 366 天，找不到 raise
+def in_blackout(dt_utc, blackout: list[dict]) -> bool    # 支持跨午夜窗口如 {"start":"23:30","end":"00:30"}
+def render_payload(template: dict, fire_utc: datetime) -> dict
+```
+支持：`*`、数字、`a-b`、`*/n`、`a-b/n`、逗号列表；字段：分 时 日 月 周（0 或 7 = 周日）；日与周同时受限时按 Vixie cron 语义"或"。
+单测（≥15）：`*/15 0-5,9-23 * * *`（传染病现行）、`0 1 * * *`（药品现行 01:00）、`58 23 * * *`、`5 0 * * *`、跨月 `0 0 31 * *`、周日 0/7、非法表达式中文报错、跨午夜 blackout、`render_payload` 的 `{fire_date_minus_1}` 在 CST 00:05 触发时等于前一天（**这就是 10-31 容器 UTC 日界 bug 的反例测试**）。
+
+### A4 调度 tick `plugins/scheduling/scheduler.py`
+
+```python
+def tick(db, now_utc: datetime, *, registry) -> dict:
+    # 1. 选出 enabled 且 next_fire_at <= now 的 schedule（next_fire_at 为空的先计算并保存，不触发）
+    # 2. 对每个：条件 UPDATE schedule SET next_fire_at=:new, last_fire_at=:fire WHERE id=:id AND next_fire_at=:old
+    #    影响 0 行 → 别的 worker 已抢到，跳过
+    # 3. 判断 misfire：now - fire_time > 2 * 60s 视为错过 → SKIP 记 MISSED；RUN_ONCE 只补最近一次
+    # 4. blackout → 记 SKIPPED_BLACKOUT
+    # 5. concurrency=FORBID 且存在同 schedule 的 QUEUED/RUNNING run → 记 SKIPPED_OVERLAP（并触发告警事件，见 C 段）
+    # 6. 否则 insert schedule_run(QUEUED, deadline_at=fire+max_runtime) → enqueue_job(dedup_key=f"sched:{schedule.id}:{fire_iso}", payload=render(...)+{"schedule_run_id": run.id})
+    # 返回 {"fired": n, "skipped": {...}}
+```
+Job 完成时更新 run：在 `engine._finalize_operation` 或 job 结束处（以代码实际位置为准）加一个**通用钩子**：若 `job.payload` 含 `schedule_run_id`，则更新对应 run 的 state/ended_at/duration/error。
+worker `tick()` 中每轮最多调一次 `scheduler.tick`（加节流：距上次 <10 秒不调）。
+
+新 Job 类型（通过 registry 附件或 engine 映射注册，照现有方式）：`system.alert_evaluate`、`system.alert_digest`、`system.run_guard`。
+
+### A5 API（`ops_routes.py`）
+
+| 方法 | 路径 | 角色 |
+|---|---|---|
+| GET | /api/v1/schedules?target= | 任意登录 |
+| POST | /api/v1/schedules | platform_admin |
+| PUT | /api/v1/schedules/{id}（带 revision） | platform_admin |
+| POST | /api/v1/schedules/{id}/enable · /disable（body: reason ≥5 字） | platform_admin, operator |
+| POST | /api/v1/schedules/{id}/run-now（body: reason；遵守 concurrency；**不受 blackout 限制但返回 warning 字段**） | platform_admin, operator |
+| GET | /api/v1/schedules/{id}/runs?cursor=&limit= | 任意登录 |
+| GET | /api/v1/schedules/preview?cron=&count=5 | 任意登录（返回未来 5 次院内触发时间，给前端校验表达式） |
+
+所有写操作写 AuditEvent。job_type 不在已注册列表 → 400 `JOB_TYPE_UNKNOWN`。
+
+## 4. B 段：运行治理 `plugins/scheduling/run_guard.py`
+
+`system.run_guard` 每分钟由系统调度触发（种子 enabled=True，只读+标记）：
+1. `schedule_run.state in (QUEUED,RUNNING)` 且 `now > deadline_at` → state=TIMED_OUT，生成告警事件 `RUN_TIMEOUT`。
+2. 对应 Job 的租约已过期且心跳（若 Job 有 heartbeat 列）超过 `max(300s, max_runtime*0.2)` 未刷新 → STALLED，告警 `RUN_STALLED`。
+3. **不取消 Job、不释放租约、不改业务表**（药品 collect 长任务有自己的续租逻辑，误杀会造成重复采集）。在代码注释与交接里写明。
+4. 若 Job 后来正常结束，A4 的完成钩子会把 run 从 TIMED_OUT 改为 SUCCEEDED/FAILED 并在 result_summary 记 `"late": true`，同时对应告警自动恢复。
+
+## 5. C 段：告警中心
+
+### C1 迁移 016
+
+- `alert_rule`：id、tenant_id、code（唯一）、name、target_code、kind、params JSON、severity（`INFO/WARN/CRITICAL`）、enabled、cooldown_minutes（默认 60）、notify_channels JSON（通道 code 列表）、revision、updated_by/at。
+- `notification_channel`：id、tenant_id、code（唯一）、type（`file/smtp/webhook`）、config JSON、enabled、updated_by/at。
+  config 中**禁止出现密码**：smtp 用 `password_env`（环境变量名）；webhook URL 中的 key 也视作秘密 → 用 `url_env`。创建/更新时若检测到 `password`/`secret`/`key=` 明文字段 → 400 `SECRET_INLINE_FORBIDDEN`。
+- `notification_log`：id、tenant_id、channel_code、alert_event_id、sent_at、ok、error（脱敏）、kind（ALERT/RECOVERED/DIGEST/TEST）。
+- `alert_event` 扩列（ALTER TABLE ADD COLUMN，全部可空或有默认值，保证旧数据兼容）：fingerprint(index)、rule_code、target_code、first_seen_at、last_seen_at、occurrences、acked_by、acked_at、resolved_at、detail JSON。
+  原 `/api/v1/alerts` 返回结构**保持兼容**（只增字段）。
+
+### C2 规则类型（`plugins/alerting/rules.py`）
+
+每类实现 `evaluate(db, tenant_id, rule, now) -> list[Finding]`，`Finding(fingerprint, severity, title, detail: dict, target_code)`；无问题返回空列表。
+
+| kind | params | 判定 | 数据来源 |
+|---|---|---|---|
+| `JOB_FAILED` | `{"schedule_code"}` | 最近一次 run 为 FAILED | schedule_run |
+| `RUN_TIMEOUT` / `RUN_STALLED` | `{}` | 存在 TIMED_OUT/STALLED 且未恢复 | schedule_run（由 B 段写入） |
+| `SCHEDULE_SKIPPED` | `{"schedule_code","consecutive":3}` | 连续 N 次 SKIPPED_OVERLAP/MISSED（**对应 71h 抱锁那种"班次全被跳过"**） | schedule_run |
+| `NO_SUCCESS_WITHIN` | `{"hours":26}` | target 的 `last_success_at` 距今超过 N 小时 | LT-01 `target_summary` 钩子 |
+| `BACKLOG_OVER` | `{"threshold":500}` | summary.backlog > 阈值 | 同上 |
+| `UNKNOWN_OVER` | `{"threshold":1}` | buckets.UNKNOWN ≥ 阈值 | 同上 |
+| `REJECT_RATE_OVER` | `{"rate":0.05,"min_total":50,"days":1}` | REJECTED/总数 超过比例（总数不足不判） | 同上 |
+| `DATE_EXPIRY` | `{"date":"2026-11-22","label":"药品发送授权","warn_days":7}` | 距到期 ≤ warn_days 天 WARN，已过期 CRITICAL | 规则参数本身 |
+
+钩子不可用（summary 返回 `data_source:"none"`）时：**不产生"正常"结论**，产生一条 INFO 级 `DATA_UNAVAILABLE` finding（指纹按 target），避免"没数据=没问题"。
+
+### C3 评估器 `evaluator.py`（照 inf_watchdog 的 dispatch 思路）
+
+```
+evaluate_all(db, tenant_id, now):
+  for rule in enabled rules:
+     findings = kind.evaluate(...)
+     for f in findings:
+        ev = alert_event where fingerprint=f.fp and resolved_at is null
+        if ev 不存在: 新建 OPEN 事件 → 通知（kind=ALERT）
+        else: last_seen=now, occurrences+=1；若距上次通知 ≥ cooldown → 再通知一次（标题前缀"[持续]"）
+     对该 rule 下"上次有、这次没有"的未解决事件: resolved_at=now, state=RESOLVED → 通知（kind=RECOVERED，标题前缀"[已恢复]"）
+  评估器自身异常: 记录一条 CRITICAL 事件 fingerprint="alerting.self" 并继续下一条规则（单规则异常隔离）
+```
+ACKED 的事件：仍更新 last_seen，但不再重复通知，恢复时照常发恢复通知。
+
+### C4 通道与脱敏
+
+- `channels.py`：`FileChannel(path)` 追加 JSONL（路径默认 `var/alerts/alerts-YYYYMMDD.jsonl`，可配置）；`SmtpChannel(host, port, ssl, user, password_env, from, to[])` 用 `smtplib`，超时 10s；`WebhookChannel(url_env, template: "wecom"|"dingtalk"|"generic")` 用 urllib POST JSON，超时 10s。所有发送失败写 notification_log ok=False，不抛出到评估器之外。
+- `redact.py`：告警正文**白名单字段**输出：规则名、target 名、计数、时间、阈值、错误码；错误消息经 LT-03 的 `redact_text`；**禁止**输出 payload、患者字段、SQL、URL 中的 query 串。单测覆盖。
+- 测试通道：`POST /api/v1/notification-channels/{code}/test` 发一条固定文本"BLYB 告警通道测试"。测试里 smtp 用 monkeypatch 替换 `smtplib.SMTP`，webhook 用本地 http.server 线程。
+
+### C5 晨报 `digest.py`
+
+`system.alert_digest`（每天 08:00 院内）：生成一段文本：①各上报业务昨日（院内自然日）summary（CONFIRMED/REJECTED/UNKNOWN/backlog/last_success）；②昨日新增/恢复/仍未解决告警数及前 10 条标题；③今日调度计划（enabled 的 schedule 今天触发时间）。发往规则 `digest` 配置的通道（默认 file）。同时写一条 kind=DIGEST 的 notification_log，正文存 detail 供前端展示"今日晨报"。
+
+### C6 种子 `alerting/seeds.py`、`scheduling/seeds.py`（幂等，只补缺）
+
+调度：
+
+| code | target | job_type | cron | enabled | 说明 |
+|---|---|---|---|---|---|
+| system.alert_evaluate | — | system.alert_evaluate | `*/5 * * * *` | True | 只读 |
+| system.alert_digest | — | system.alert_digest | `0 8 * * *` | True | 只读 |
+| system.run_guard | — | system.run_guard | `* * * * *` | True | 只读 |
+| drug_trace.daily_mirror | drug_trace_alihealth | （药品 collect 的现有 job 类型，以 plugin.py 为准） | `0 1 * * *` | **False** | note="镜像：现由宿主 blyb-daily-upload.timer 执行，切换须用户在场" |
+| inf.poll_mirror | inf_cdc_frontend | `inf.collect`（LT-05 才注册；此处若类型未注册则跳过创建并记日志） | `*/15 0-5,9-23 * * *` | **False** | note="镜像：现由 <worker-container> 容器 crontab 执行" |
+
+告警规则（通道默认 `file_default`）：
+
+| code | target | kind | params | enabled |
+|---|---|---|---|---|
+| dt.no_success | drug_trace_alihealth | NO_SUCCESS_WITHIN | hours=30 | True |
+| dt.unknown | drug_trace_alihealth | UNKNOWN_OVER | threshold=1 | True |
+| dt.backlog | drug_trace_alihealth | BACKLOG_OVER | threshold=500 | True |
+| dt.auth_expiry | drug_trace_alihealth | DATE_EXPIRY | date=2026-11-22, label=药品发送授权, warn_days=7 | True |
+| inf.no_success | inf_cdc_frontend | NO_SUCCESS_WITHIN | hours=2 | True（LT-05 导入台账前会产生 DATA_UNAVAILABLE INFO，属预期） |
+| sys.run_timeout | — | RUN_TIMEOUT | {} | True |
+| sys.run_stalled | — | RUN_STALLED | {} | True |
+
+通道：`file_default`（type=file，enabled=True）。smtp/webhook 不建（参数未提供）。
+
+### C7 API
+
+| 方法 | 路径 | 角色 |
+|---|---|---|
+| GET | /api/v1/alerts?state=&severity=&target=&cursor=&limit= | 任意登录（兼容旧调用：无参数时行为同旧） |
+| POST | /api/v1/alerts/{id}/ack（reason） · /resolve（reason，仅对 DATE_EXPIRY 等人工类允许） | operator, business_reviewer |
+| GET/POST/PUT | /api/v1/alert-rules[/{code}] | 读：任意；写：platform_admin |
+| GET/POST/PUT | /api/v1/notification-channels[/{code}] | platform_admin（GET 返回时 config 中 *_env 只显示变量名） |
+| POST | /api/v1/notification-channels/{code}/test | platform_admin |
+| GET | /api/v1/notification-logs?kind=&cursor= | platform_admin, auditor |
+| GET | /api/v1/alerts/digest/latest | 任意登录 |
+
+## 6. 测试（≥40）
+
+- cron 与 blackout、render_payload（≥15，见 A3）。
+- scheduler：两个 worker 并发 tick 只触发一次（同一 SQLite 文件两个 session 模拟）；FORBID 重叠跳过；blackout 跳过；misfire SKIP/RUN_ONCE；disabled 不触发；run-now 遵守 concurrency；Job 完成回写 run。
+- run_guard：超 deadline → TIMED_OUT；迟到完成 → SUCCEEDED+late；**不修改 Job 行**（断言 Job 前后字段相同）。
+- 规则 8 类各至少 1 正 1 反；DATA_UNAVAILABLE；单规则异常隔离。
+- 评估器：新建→通知；持续未到冷却不通知；超冷却再通知；恢复通知；ACK 后不重复通知但恢复照发。
+- 通道：file 写入；smtp monkeypatch 收到邮件；webhook 三种模板 payload 形状；发送失败落日志不抛出；内联秘密 400。
+- 脱敏：告警正文不含 18 位证件号/长数字/URL query。
+- API：权限矩阵、旧 `/api/v1/alerts` 兼容。
+
+## 7. 验收清单
+
+- [ ] 新测试 ≥40 全过；全量不新增失败；探针一致
+- [ ] 空库迁移到 016 成功、幂等；在含旧 alert_event 数据的库上迁移后旧行可读
+- [ ] 种子执行后：药品/传染病镜像调度 `enabled=False`（贴查询结果）
+- [ ] `git diff --stat` 中 `deploy/inf_watchdog`、`deploy/inf_pusher`、药品驱动无变化
+- [ ] 交接附"本地演示"：用 SQLite 开发库启动 core+worker（`run_dev.py`，先读其说明），手动 `run-now` 一个系统调度，贴 runs 列表与 file 通道生成的告警 JSONL 片段（脱敏）
+
+## 8. 分段交付与停止条件
+
+- 当天时间不够：A+B 完成且测试过 → `handed_off`，C 段次日以同一任务 ID 续做。**不要把 C 段做一半留在未测试状态**。
+- worker 改动导致既有 worker 测试失败 >3 个修不好：把调度 tick 改为独立入口 `python -m apps.scheduler_loop`（新文件），不挂入 engine，交接说明。

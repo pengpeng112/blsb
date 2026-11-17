@@ -1,0 +1,231 @@
+{
+  "host": "app",
+  "phase": "detail",
+  "exit_code": 0,
+  "captured_at": "2026-10-27T01:17:35.043682+00:00",
+  "result": {
+    "captured_gmt8": "2026-10-27T09:17:32.448362+08:00",
+    "database": {
+      "window_quality": [
+        {
+          "business_kind": "UNKNOWN",
+          "quality_state": "WAITING",
+          "n": 925
+        },
+        {
+          "business_kind": "PATIENT_DISPENSE",
+          "quality_state": "VALID",
+          "n": 1732
+        },
+        {
+          "business_kind": "PATIENT_DISPENSE",
+          "quality_state": "WAITING",
+          "n": 243
+        }
+      ],
+      "waiting_rules": [
+        {
+          "rule": "QD-BRANCH-UNAPPROVED",
+          "severity": "BLOCKING",
+          "n": 925
+        },
+        {
+          "rule": "QD-NO-CODES",
+          "severity": "BLOCKING",
+          "n": 1168
+        },
+        {
+          "rule": "QD-KIND-UNKNOWN",
+          "severity": "BLOCKING",
+          "n": 925
+        },
+        {
+          "rule": "QD-NOT-FINALIZED",
+          "severity": "BLOCKING",
+          "n": 925
+        }
+      ],
+      "raw_status_groups": [
+        {
+          "business_kind": "PATIENT_DISPENSE",
+          "quality_state": "VALID",
+          "presc_source": "0",
+          "flag": "1",
+          "n": 1732
+        },
+        {
+          "business_kind": "UNKNOWN",
+          "quality_state": "WAITING",
+          "presc_source": "1",
+          "flag": "0",
+          "n": 922
+        },
+        {
+          "business_kind": "UNKNOWN",
+          "quality_state": "WAITING",
+          "presc_source": "0",
+          "flag": "2",
+          "n": 3
+        },
+        {
+          "business_kind": "PATIENT_DISPENSE",
+          "quality_state": "WAITING",
+          "presc_source": "0",
+          "flag": "1",
+          "n": 243
+        }
+      ],
+      "pharmacies": [
+        {
+          "pharmacy_code": "050116",
+          "quality_state": "WAITING",
+          "n": 1
+        },
+        {
+          "pharmacy_code": "050116",
+          "quality_state": "VALID",
+          "n": 3
+        },
+        {
+          "pharmacy_code": "050103",
+          "quality_state": "WAITING",
+          "n": 321
+        },
+        {
+          "pharmacy_code": "050102",
+          "quality_state": "WAITING",
+          "n": 163
+        },
+        {
+          "pharmacy_code": "050101",
+          "quality_state": "WAITING",
+          "n": 96
+        },
+        {
+          "pharmacy_code": "050121",
+          "quality_state": "VALID",
+          "n": 1025
+        },
+        {
+          "pharmacy_code": "050109",
+          "quality_state": "WAITING",
+          "n": 39
+        },
+        {
+          "pharmacy_code": "050107",
+          "quality_state": "WAITING",
+          "n": 310
+        },
+        {
+          "pharmacy_code": "050121",
+          "quality_state": "WAITING",
+          "n": 179
+        },
+        {
+          "pharmacy_code": "050102",
+          "quality_state": "VALID",
+          "n": 704
+        },
+        {
+          "pharmacy_code": "050117",
+          "quality_state": "WAITING",
+          "n": 2
+        },
+        {
+          "pharmacy_code": "050110",
+          "quality_state": "WAITING",
+          "n": 57
+        }
+      ],
+      "completeness": {
+        "bills": 2900,
+        "expected_count_null": 2900,
+        "empty_code_rows": 1168
+      },
+      "submission_states_by_business_day": [
+        {
+          "business_date": "2026-10-22",
+          "state": "CONFIRMED",
+          "n": 1
+        },
+        {
+          "business_date": "2026-10-24",
+          "state": "ACCEPTED",
+          "n": 41
+        },
+        {
+          "business_date": "2026-10-24",
+          "state": "CONFIRMED",
+          "n": 1224
+        },
+        {
+          "business_date": "2026-10-24",
+          "state": "UNKNOWN",
+          "n": 205
+        },
+        {
+          "business_date": "2026-10-25",
+          "state": "CONFIRMED",
+          "n": 1352
+        }
+      ],
+      "window_submissions": 0,
+      "unpublished_today_events": [
+        {
+          "event_type": "drug_trace.bill.ingested",
+          "n": 2900
+        }
+      ],
+      "reports": [
+        {
+          "report_date": "2026-10-26",
+          "source": "timer",
+          "outcome": "FAILED",
+          "candidate_count": 0,
+          "collection": {},
+          "sent": "0",
+          "aborted_reason": "",
+          "send_errors_total": null,
+          "queried": "0",
+          "elapsed_seconds": 10801.3,
+          "updated_at": "2026-10-27 01:10:31.049782"
+        }
+      ],
+      "item_states_under_confirmed": [
+        {
+          "state": "PENDING",
+          "n": 8077
+        }
+      ],
+      "query_budget_exhausted": [
+        {
+          "state": "ACCEPTED",
+          "n": 41
+        },
+        {
+          "state": "UNKNOWN",
+          "n": 205
+        }
+      ],
+      "active_jobs": [
+        {
+          "job_type": "drug_trace.collect",
+          "state": "LEASED",
+          "n": 1,
+          "oldest_lease_utc": "2026-10-26 22:12:29.846456"
+        }
+      ],
+      "checkpoint": {
+        "row_version": 75,
+        "since_time": "2026-10-26T16:25:53",
+        "completed_window": "false"
+      }
+    },
+    "runtime_source_sha256": {
+      "plugins/sources/db_view/drug_trace.py": "2ce8244273cc0dcc9d2da211ddc1924eb30872689aa549a6879b6782f44d101c",
+      "plugins/domains/drug_trace/ingest.py": "70cb6e7b1d921a237d39718bcceaf7f9d79bf4046453913ac3bac1026401b5ff",
+      "apps/worker/engine.py": "6026ba086fb0a9a1a320fd0977097ff063ab21744c193140887787edab22caae"
+    },
+    "host_driver_sha256": "cf967102e68c4978cc17ba4739af6860de60344404727f6cc8eedf1b4a851c39"
+  }
+}

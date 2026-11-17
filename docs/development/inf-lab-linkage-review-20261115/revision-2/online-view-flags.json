@@ -1,0 +1,72 @@
+{
+  "ok": true,
+  "source": "ods_internal",
+  "rows": [
+    {
+      "view_name": "M_INF_FXHIS_ACTIVITY",
+      "chars": 1832,
+      "text_sha256": "66d241689dc9256b76ecedce82a93ccd002e9742b430bc12e470a4266daae19b",
+      "outpatient_filters": [
+        "VISIT_DATE >= DATE'2026-11-14'"
+      ],
+      "outpatient_literal_type": [],
+      "uses_v13_anchor": false,
+      "uses_max_clinic_no": false,
+      "high_maps_to_12": false,
+      "low_maps_to_10": false,
+      "operator_uses_performed_by": false,
+      "bound_group_includes_test_and_clinic": false,
+      "projection_only_serial_type_count": false
+    },
+    {
+      "view_name": "M_INF_FXHIS_ACTIVITY_V13",
+      "chars": 1028,
+      "text_sha256": "f513d07bd477bc1d2afea985d7d8c5740a51f01aee643b20476511a3c4c11de2",
+      "outpatient_filters": [
+        "RESULTS_RPT_DATE_TIME >= DATE'2026-11-14'"
+      ],
+      "outpatient_literal_type": [],
+      "uses_v13_anchor": false,
+      "uses_max_clinic_no": false,
+      "high_maps_to_12": false,
+      "low_maps_to_10": false,
+      "operator_uses_performed_by": false,
+      "bound_group_includes_test_and_clinic": true,
+      "projection_only_serial_type_count": true
+    },
+    {
+      "view_name": "V_INF_EX_LAB",
+      "chars": 6601,
+      "text_sha256": "d3b22cb2c1f82bdfac22fb46f75420622e61bab65f134302b66b21e71a90cced",
+      "outpatient_filters": [
+        "RESULTS_RPT_DATE_TIME >= DATE'2026-11-14'"
+      ],
+      "outpatient_literal_type": [
+        "'1' AS ACTIVITY_TYPE_CODE"
+      ],
+      "uses_v13_anchor": false,
+      "uses_max_clinic_no": false,
+      "high_maps_to_12": false,
+      "low_maps_to_10": false,
+      "operator_uses_performed_by": true,
+      "bound_group_includes_test_and_clinic": false,
+      "projection_only_serial_type_count": false
+    },
+    {
+      "view_name": "V_INF_EX_LAB_ITEM",
+      "chars": 7575,
+      "text_sha256": "195daf7956fca4c844819c1bbcf7168def0c1a787b4c2da1f2dde64b81ecc550",
+      "outpatient_filters": [
+        "RESULTS_RPT_DATE_TIME>=DATE'2026-11-14'"
+      ],
+      "outpatient_literal_type": [],
+      "uses_v13_anchor": false,
+      "uses_max_clinic_no": true,
+      "high_maps_to_12": true,
+      "low_maps_to_10": true,
+      "operator_uses_performed_by": false,
+      "bound_group_includes_test_and_clinic": false,
+      "projection_only_serial_type_count": false
+    }
+  ]
+}

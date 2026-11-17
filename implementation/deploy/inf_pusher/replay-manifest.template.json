@@ -1,0 +1,15 @@
+{
+  "_comment": "PT-01/R4 定向重放清单模板：复制为 replay-manifest.json 并按需修改。manifest_id 建议显式给稳定 ID（仅字母/数字/下划线/连字符，<=64）；不给则按 table+ids+force 派生 auto id。缺省即校验：table 必须与 --table 完全一致且不允许 all；target 仅允许 inf_cdc_frontend / <frontend-host>；source_instance 与 config 均存在时须一致；expires_at 过期立即拒绝；max_count 默认 5000（空清单/超量/重复 ID 拒绝）。items 可逐项带 expected_source_time（源视图 OPERATION_TIME 规范串）与 expected_digest（payload_version_digest 32 位）做逐行漂移核对；不依赖命令行 --since。无 --apply 时为 dry-run：零 HTTP、零状态文件改写。同清单加 --apply 二跑时已 SUCCEEDED 项零重复 HTTP（force 只绕 sent.jsonl 旧账，不绕完成账与父门禁）。",
+  "manifest_id": "example-exlab-fix-20261117",
+  "table": "ex_lab",
+  "target": "inf_cdc_frontend",
+  "source_instance": "ods_internal",
+  "expires_at": "2026-11-24T00:00:00Z",
+  "max_count": 100,
+  "force": true,
+  "items": [
+    { "id": "2611146864", "expected_source_time": "2026-11-14 19:27:00" },
+    { "id": "2611146863", "expected_source_time": "2026-11-14 19:27:00" },
+    { "id": "2611146871", "expected_source_time": "2026-11-14 19:27:00" }
+  ]
+}

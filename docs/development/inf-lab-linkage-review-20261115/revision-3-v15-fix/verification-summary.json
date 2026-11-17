@@ -1,0 +1,8 @@
+{
+  "checked_at_utc": "2026-11-15T13:24:39.616485+00:00",
+  "view_columns": 37,
+  "tested_select_hash_matches_final_package": true,
+  "links_checked": 9,
+  "baseline_source_drift": [],
+  "ddl_executed": false
+}

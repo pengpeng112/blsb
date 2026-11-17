@@ -1,0 +1,603 @@
+openapi: 3.1.0
+info:
+  title: 院内归集平台关键内部API设计草案
+  version: 0.3.0
+  description: 非医保/厂商协议；尚无服务实现。完整接口目录见04。
+servers:
+- url: https://reporting.example.invalid/api/v1
+security:
+- bearerAuth: []
+paths:
+  /acquisitions:
+    post:
+      operationId: registerAcquisition
+      description: tenant由认证推导；client_asset_id映射到服务端asset_id；重复请求返回同一资源。
+      responses:
+        '201':
+          description: 成功或异步受理；不代表医保业务确认
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AcquisitionResult'
+        default:
+          description: 结构化错误；依据code/retryable处理
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Manifest'
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 1
+  /upload-sessions:
+    post:
+      operationId: createUploadSession
+      description: ''
+      responses:
+        '201':
+          description: 成功或异步受理；不代表医保业务确认
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadSession'
+        default:
+          description: 结构化错误；依据code/retryable处理
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UploadCreate'
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 1
+  /upload-sessions/{session_id}:
+    get:
+      operationId: getUploadSession
+      description: ''
+      responses:
+        '200':
+          description: 成功或异步受理；不代表医保业务确认
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadSession'
+        default:
+          description: 结构化错误；依据code/retryable处理
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      parameters:
+      - name: session_id
+        in: path
+        required: true
+        schema: &id001
+          type: string
+          minLength: 1
+          format: uuid
+      - name: cursor
+        in: query
+        schema:
+          type: string
+          minLength: 1
+    delete:
+      operationId: abortUploadSession
+      description: ''
+      responses:
+        '202':
+          description: 成功或异步受理；不代表医保业务确认
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncResult'
+        default:
+          description: 结构化错误；依据code/retryable处理
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      parameters:
+      - name: session_id
+        in: path
+        required: true
+        schema: *id001
+  /upload-sessions/{session_id}/chunks/{index}:
+    put:
+      operationId: putUploadChunk
+      description: 固定分片索引决定偏移；同片同hash幂等，同片不同内容409；hash不符422；超大413；过期410；限流429。
+      responses:
+        '204':
+          description: 成功或异步受理；不代表医保业务确认
+        default:
+          description: 结构化错误；依据code/retryable处理
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      parameters:
+      - name: session_id
+        in: path
+        required: true
+        schema: *id001
+      - name: index
+        in: path
+        required: true
+        schema: &id004
+          type: integer
+          minimum: 0
+      - name: X-Chunk-SHA256
+        in: header
+        required: true
+        schema: &id005
+          type: string
+          minLength: 1
+          pattern: ^[a-f0-9]{64}$
+      - name: X-Session-Epoch
+        in: header
+        required: true
+        schema: &id002
+          type: integer
+          minimum: 1
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+  /upload-sessions/{session_id}/complete:
+    post:
+      operationId: completeUploadSession
+      description: 异步整文件校验；缺片409；重复complete返回同一operation。
+      responses:
+        '202':
+          description: 成功或异步受理；不代表医保业务确认
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncResult'
+        default:
+          description: 结构化错误；依据code/retryable处理
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      parameters:
+      - name: session_id
+        in: path
+        required: true
+        schema: *id001
+      - name: X-Session-Epoch
+        in: header
+        required: true
+        schema: *id002
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 1
+  /operations/{operation_id}:
+    get:
+      operationId: getOperation
+      description: ''
+      responses:
+        '200':
+          description: 成功或异步受理；不代表医保业务确认
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Operation'
+        default:
+          description: 结构化错误；依据code/retryable处理
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      parameters:
+      - name: operation_id
+        in: path
+        required: true
+        schema: *id001
+  /assets/{asset_id}/content:
+    get:
+      operationId: getAssetContent
+      parameters:
+      - name: asset_id
+        in: path
+        required: true
+        schema: *id001
+      - name: Range
+        in: header
+        schema:
+          type: string
+          minLength: 1
+      - name: If-Range
+        in: header
+        schema:
+          type: string
+          minLength: 1
+      responses:
+        '200':
+          description: 完整响应；HEAD无body
+        '206':
+          description: 单段Range内容
+        '416':
+          description: 范围不满足
+        default:
+          description: 授权或资源错误
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    head:
+      operationId: headAssetContent
+      parameters:
+      - name: asset_id
+        in: path
+        required: true
+        schema: *id001
+      - name: Range
+        in: header
+        schema:
+          type: string
+          minLength: 1
+      - name: If-Range
+        in: header
+        schema:
+          type: string
+          minLength: 1
+      responses:
+        '200':
+          description: 完整响应；HEAD无body
+        '206':
+          description: 单段Range内容
+        '416':
+          description: 范围不满足
+        default:
+          description: 授权或资源错误
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /publications:
+    post:
+      operationId: createPublication
+      description: 仅发布已验证快照；对方读取不是业务确认。
+      responses:
+        '202':
+          description: 成功或异步受理；不代表医保业务确认
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncResult'
+        default:
+          description: 结构化错误；依据code/retryable处理
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PublicationCreate'
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 1
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    Error:
+      type: object
+      additionalProperties: false
+      properties:
+        error:
+          type: object
+          additionalProperties: false
+          properties:
+            code:
+              type: string
+              minLength: 1
+            message:
+              type: string
+              minLength: 1
+            retryable:
+              type: boolean
+            field_errors:
+              type: array
+              items:
+                type: object
+              minItems: 0
+          required:
+          - code
+          - message
+          - retryable
+        request_id:
+          type: string
+          minLength: 1
+      required:
+      - error
+      - request_id
+    Manifest:
+      type: object
+      additionalProperties: false
+      properties:
+        schema_version:
+          const: '1.0'
+        event_id: *id001
+        agent_id: *id001
+        source_system_code:
+          type: string
+          minLength: 1
+        root_id:
+          type: string
+          minLength: 1
+        captured_at: &id003
+          type: string
+          minLength: 1
+          format: date-time
+        source_scan_id:
+          type: string
+          minLength: 1
+        source_revision:
+          type: string
+          minLength: 1
+        identity_hints:
+          type: object
+          additionalProperties: false
+          properties:
+            pathology_no:
+              type: string
+              minLength: 1
+            slide_id:
+              type: string
+              minLength: 1
+            barcode_raw:
+              type: string
+              minLength: 1
+          required: []
+        completion_evidence:
+          type: object
+          additionalProperties: false
+          properties:
+            method:
+              enum:
+              - vendor_api
+              - vendor_manifest
+              - manual_confirmation
+            confirmed_at: *id003
+            evidence_ref:
+              type: string
+              minLength: 1
+            source_immutable_assertion:
+              type: boolean
+          required:
+          - method
+          - confirmed_at
+          - evidence_ref
+          - source_immutable_assertion
+        files:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              client_asset_id: *id001
+              relative_path:
+                type: string
+                minLength: 1
+                maxLength: 1024
+              role:
+                enum:
+                - primary
+                - index
+                - tile_data
+                - label
+                - thumbnail
+                - metadata
+                - report
+                - other
+              size_bytes: *id004
+              sha256: *id005
+              media_type:
+                type: string
+                minLength: 1
+              format_hint:
+                type: string
+                minLength: 1
+            required:
+            - client_asset_id
+            - relative_path
+            - role
+            - size_bytes
+            - sha256
+          minItems: 1
+      required:
+      - schema_version
+      - event_id
+      - agent_id
+      - source_system_code
+      - root_id
+      - captured_at
+      - source_scan_id
+      - source_revision
+      - completion_evidence
+      - files
+      description: 我方拟议内部协议；服务端还须验证路径、重复ID、权限和完成证据。启发式候选不能直接提交为完成清单。
+    AcquisitionResult:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          properties:
+            acquisition_id: *id001
+            assets:
+              type: array
+              items:
+                type: object
+                additionalProperties: false
+                properties:
+                  client_asset_id: *id001
+                  asset_id: *id001
+                required:
+                - client_asset_id
+                - asset_id
+              minItems: 1
+          required:
+          - acquisition_id
+          - assets
+        request_id:
+          type: string
+          minLength: 1
+      required:
+      - data
+      - request_id
+    UploadCreate:
+      type: object
+      additionalProperties: false
+      properties:
+        acquisition_id: *id001
+        asset_id: *id001
+        size_bytes: *id004
+        sha256: *id005
+      required:
+      - acquisition_id
+      - asset_id
+      - size_bytes
+      - sha256
+    UploadSession:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          properties:
+            session_id: *id001
+            asset_id: *id001
+            state:
+              enum:
+              - CREATED
+              - RECEIVING
+              - VERIFYING
+              - COMPLETED
+              - FAILED
+              - ABORTED
+              - EXPIRED
+            chunk_size: *id002
+            chunk_count: *id004
+            epoch: *id002
+            expires_at: *id003
+            committed_chunks:
+              type: array
+              items: *id004
+              minItems: 0
+            next_cursor:
+              type:
+              - string
+              - 'null'
+          required:
+          - session_id
+          - asset_id
+          - state
+          - chunk_size
+          - chunk_count
+          - epoch
+          - expires_at
+          - committed_chunks
+          - next_cursor
+        request_id:
+          type: string
+          minLength: 1
+      required:
+      - data
+      - request_id
+    AsyncResult:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          properties:
+            operation_id: *id001
+          required:
+          - operation_id
+        request_id:
+          type: string
+          minLength: 1
+      required:
+      - data
+      - request_id
+    Operation:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          properties:
+            operation_id: *id001
+            state:
+              enum:
+              - PENDING
+              - RUNNING
+              - SUCCEEDED
+              - FAILED
+            result:
+              type:
+              - object
+              - 'null'
+            error_code:
+              type:
+              - string
+              - 'null'
+          required:
+          - operation_id
+          - state
+          - result
+          - error_code
+        request_id:
+          type: string
+          minLength: 1
+      required:
+      - data
+      - request_id
+    PublicationCreate:
+      type: object
+      additionalProperties: false
+      properties:
+        package_revision_id: *id001
+        destination_id: *id001
+      required:
+      - package_revision_id
+      - destination_id

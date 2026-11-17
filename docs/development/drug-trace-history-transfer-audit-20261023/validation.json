@@ -1,0 +1,13 @@
+{
+  "offline_audit_passed": true,
+  "python_scripts_parsed": 3,
+  "links_checked_in_files": 4,
+  "broken_links": [],
+  "sql_static_checks": 7,
+  "HIS_connections": 0,
+  "platform_calls": 0,
+  "uploads": 0,
+  "daytime_permission": "PENDING",
+  "live_probe_executed": false,
+  "original_files_or_private_workbook_overwritten": false
+}

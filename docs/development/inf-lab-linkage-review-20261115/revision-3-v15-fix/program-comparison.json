@@ -1,0 +1,9 @@
+{
+  "same_as_reviewed_r2": {
+    "pusher.py": true,
+    "tables.py": true,
+    "run.sh": true
+  },
+  "previous_probes": "../revision-2/implementation-probes.json",
+  "tests_repeated": false
+}

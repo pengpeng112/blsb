@@ -1,0 +1,182 @@
+{
+  "host": "app",
+  "phase": "progress",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T07:19:10.851920+00:00",
+  "result": {
+    "checked": 7,
+    "pairs": {
+      "CONFIRMED->CONFIRMED": 1,
+      "ACCEPTED->CONFIRMED": 5,
+      "ACCEPTED->QUERY_ERROR": 1
+    },
+    "platform_calls": 13,
+    "last_checked_utc": "2026-10-26T07:18:17.928260+00:00",
+    "http": {
+      "200": 13
+    },
+    "final": {
+      "exit_code": 1,
+      "summary": {
+        "ok": false,
+        "mode": "all",
+        "error_type": "RuntimeError",
+        "error_code": "UNVERIFIED_QUERY_STOP",
+        "completed": 7,
+        "uploads": 0,
+        "his_calls": 0,
+        "business_writes": 0
+      },
+      "finished_utc": "2026-10-26T07:18:18.242764+00:00"
+    },
+    "rows": [
+      {
+        "index": 0,
+        "submission_id": "7ed95aaa-ee66-4510-b80d-630f6c9dc381",
+        "local_state": "CONFIRMED",
+        "bill_code_sha256": "687fb9898a91441e66edc8d0cf49df73eba6866aa79030b7f0f88890877ef3a3",
+        "platform_state": "CONFIRMED",
+        "result_type": "3",
+        "sub_process_flag": "51",
+        "query_status": "OK",
+        "total_num": 1,
+        "pages": 1,
+        "windows": 1,
+        "reason": null,
+        "error_code": null,
+        "msg_code": null,
+        "platform_calls": 1,
+        "http": {
+          "200": 1
+        },
+        "checked_utc": "2026-10-26T07:17:59.820425+00:00"
+      },
+      {
+        "index": 1,
+        "submission_id": "0ec8390f-ef83-4247-9f85-9491d4761164",
+        "local_state": "ACCEPTED",
+        "bill_code_sha256": "54cf35463220c140d6e9ddd2acc0a4b421690346fa58be5469b983127a492caa",
+        "platform_state": "CONFIRMED",
+        "result_type": "3",
+        "sub_process_flag": "51",
+        "query_status": "OK",
+        "total_num": 1,
+        "pages": 2,
+        "windows": 2,
+        "reason": null,
+        "error_code": null,
+        "msg_code": null,
+        "platform_calls": 2,
+        "http": {
+          "200": 2
+        },
+        "checked_utc": "2026-10-26T07:18:02.876878+00:00"
+      },
+      {
+        "index": 2,
+        "submission_id": "9e5eb634-fd15-47bb-a49d-17dbce10e056",
+        "local_state": "ACCEPTED",
+        "bill_code_sha256": "ebe5c07ef790a769f592a2fad5983eaf2270089b982ba322d8b07f6de98c8d48",
+        "platform_state": "CONFIRMED",
+        "result_type": "3",
+        "sub_process_flag": "51",
+        "query_status": "OK",
+        "total_num": 1,
+        "pages": 2,
+        "windows": 2,
+        "reason": null,
+        "error_code": null,
+        "msg_code": null,
+        "platform_calls": 2,
+        "http": {
+          "200": 2
+        },
+        "checked_utc": "2026-10-26T07:18:05.807899+00:00"
+      },
+      {
+        "index": 3,
+        "submission_id": "ff1afbd0-b33f-41d1-9ae4-e0bebe6bc8b2",
+        "local_state": "ACCEPTED",
+        "bill_code_sha256": "4cc3697b6d3c4d66ccccc7ed6dd38e536ea6bcf14d216826f61f818b042a5897",
+        "platform_state": "CONFIRMED",
+        "result_type": "3",
+        "sub_process_flag": "51",
+        "query_status": "OK",
+        "total_num": 1,
+        "pages": 2,
+        "windows": 2,
+        "reason": null,
+        "error_code": null,
+        "msg_code": null,
+        "platform_calls": 2,
+        "http": {
+          "200": 2
+        },
+        "checked_utc": "2026-10-26T07:18:08.806488+00:00"
+      },
+      {
+        "index": 4,
+        "submission_id": "0653be8d-7e2d-43fc-9b6d-8e636d3347e8",
+        "local_state": "ACCEPTED",
+        "bill_code_sha256": "251a5517ec6c50cd7e850092c88cd67bdc593c0d2f413489715833937d67fdb7",
+        "platform_state": "CONFIRMED",
+        "result_type": "3",
+        "sub_process_flag": "51",
+        "query_status": "OK",
+        "total_num": 1,
+        "pages": 2,
+        "windows": 2,
+        "reason": null,
+        "error_code": null,
+        "msg_code": null,
+        "platform_calls": 2,
+        "http": {
+          "200": 2
+        },
+        "checked_utc": "2026-10-26T07:18:11.813269+00:00"
+      },
+      {
+        "index": 5,
+        "submission_id": "1509ee95-30cc-4f49-b9d3-cda7a61c41d9",
+        "local_state": "ACCEPTED",
+        "bill_code_sha256": "807ab0e0fa9a20857d9345d9d5589edc974ae8529e337bc4187bbf49168f6612",
+        "platform_state": "CONFIRMED",
+        "result_type": "3",
+        "sub_process_flag": "51",
+        "query_status": "OK",
+        "total_num": 1,
+        "pages": 2,
+        "windows": 2,
+        "reason": null,
+        "error_code": null,
+        "msg_code": null,
+        "platform_calls": 2,
+        "http": {
+          "200": 2
+        },
+        "checked_utc": "2026-10-26T07:18:14.816141+00:00"
+      },
+      {
+        "index": 6,
+        "submission_id": "5aaa9241-82f6-4bdb-b47a-608e55fd43ef",
+        "local_state": "ACCEPTED",
+        "bill_code_sha256": "4f29b2d732539b63a39a1a0e5d3011e4267c3c838405efdb6910e16d43ecc02f",
+        "platform_state": "QUERY_ERROR",
+        "result_type": null,
+        "sub_process_flag": null,
+        "query_status": "ERROR",
+        "total_num": null,
+        "pages": 1,
+        "windows": 2,
+        "reason": null,
+        "error_code": "7",
+        "msg_code": null,
+        "platform_calls": 2,
+        "http": {
+          "200": 2
+        },
+        "checked_utc": "2026-10-26T07:18:17.928260+00:00"
+      }
+    ]
+  }
+}

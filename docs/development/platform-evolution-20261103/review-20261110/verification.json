@@ -1,0 +1,28 @@
+{
+  "modified_existing_plan_documents": 11,
+  "new_review_document": 1,
+  "changed_documents_new_broken_links": [],
+  "changed_documents_preexisting_broken_links": [
+    {
+      "file": "docs/ai/BACKLOG.md",
+      "target": "../数据上报/4、传染病病历数据上报/plans/20261107-检查项目及时性修复执行计划.md"
+    }
+  ],
+  "protected_files_checked": 61,
+  "protected_hash_changes": [],
+  "LT08_report_unchanged": true,
+  "global_document_check_exit": 1,
+  "global_reported_broken": 1263,
+  "source_or_archive_hash_mismatches": [],
+  "frontend": {
+    "passed": 28,
+    "failed": 0,
+    "exit": 0
+  },
+  "probes": {
+    "collected": 43,
+    "executed": false,
+    "exit": 0
+  },
+  "implementation_modified_by_this_task": false
+}

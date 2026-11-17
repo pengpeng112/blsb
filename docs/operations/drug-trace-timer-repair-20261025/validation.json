@@ -1,0 +1,62 @@
+{
+  "python_ast_scripts": 12,
+  "tests": {
+    "timer-repair-env-confirm.xml": {
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 26.416
+    },
+    "timer-repair-local-final.xml": {
+      "tests": 30,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 19.955
+    },
+    "timer-repair-local.xml": {
+      "tests": 26,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 20.793
+    },
+    "timer-repair-regression-final.xml": {
+      "tests": 468,
+      "failures": 11,
+      "errors": 0,
+      "skipped": 7,
+      "seconds": 561.004
+    },
+    "timer-repair-regression-gitbash.xml": {
+      "tests": 13,
+      "failures": 0,
+      "errors": 1,
+      "skipped": 0,
+      "seconds": 73.594
+    },
+    "timer-repair-regression.xml": {
+      "tests": 468,
+      "failures": 19,
+      "errors": 0,
+      "skipped": 28,
+      "seconds": 500.362
+    }
+  },
+  "source_guard_files_unchanged": 20,
+  "deployed_hashes_match_local": true,
+  "new_broken_links": [],
+  "source_hash_errors": [],
+  "local_checks_passed": true,
+  "full_day_batch_complete": false,
+  "real_worker_new_confirmed": 1,
+  "verification_unknown_held": 1,
+  "quota_used_after_smoke": 4,
+  "source_writes": 0,
+  "business_containers_restarted": 0,
+  "observer_deployed": true,
+  "single_full_regression_green": false,
+  "scope": "driver/unit repair deployed and one real confirmation; full-day batch still asynchronous",
+  "documents_checked": 10
+}

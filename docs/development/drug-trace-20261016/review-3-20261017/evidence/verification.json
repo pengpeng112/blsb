@@ -1,0 +1,39 @@
+{
+  "at_utc": "2026-10-17T10:21:11.151913+00:00",
+  "protected_baseline_files": 187,
+  "unexpected_changes": [],
+  "local_links_checked": 45,
+  "broken_links": [],
+  "script_syntax": [
+    "probe_review3.py",
+    "run_local_tests.py",
+    "verify_review.py"
+  ],
+  "local_tests": {
+    "tests": 33,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0,
+    "passed": 33
+  },
+  "historical_full_regression_not_rerun": {
+    "tests": 311,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 6,
+    "passed": 305
+  },
+  "counterexamples": 14,
+  "reproduced": 14,
+  "confirmed_fixes": {
+    "partial_now_PARTIAL": true,
+    "official_upload_now_ACCEPTED": true,
+    "real_signature_still_disabled": true
+  },
+  "git_diff_check_exit_code": 2,
+  "review_scope_diff_check_exit_code": 0,
+  "global_diff_note": "Pre-existing modified implementation/docs/测试执行记录.md has new blank line at EOF; this review does not edit it.",
+  "credentials_read": false,
+  "remote_access": false,
+  "passed": true
+}

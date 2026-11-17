@@ -1,0 +1,24 @@
+{
+  "host": "app",
+  "phase": "pause_retry",
+  "exit_code": 1,
+  "captured_at": "2026-10-26T04:43:54.781720+00:00",
+  "result": {
+    "error_type": "RuntimeError",
+    "reason": "docker_EXIT_1: Traceback (most recent call last):\n  File \"<string>\", line 10, in <module>\n    for pid in matches:os.kill(pid,signal.SIGSTOP)\n                       ~~~~~~~^^^^^^^^^^^^^^^^^^^^\nPermissionError: [Errno 1] Operation not permitted\n",
+    "frames": [
+      [
+        "<module>",
+        2
+      ],
+      [
+        "<module>",
+        50
+      ],
+      [
+        "run",
+        8
+      ]
+    ]
+  }
+}

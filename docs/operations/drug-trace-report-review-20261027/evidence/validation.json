@@ -1,0 +1,18 @@
+{
+  "total": 3000,
+  "valid": 1773,
+  "waiting": 1227,
+  "inpatient_pending": 979,
+  "return_pending": 3,
+  "outpatient_no_codes": 245,
+  "new_uploads": 0,
+  "batch_complete": false,
+  "daily_driver_failed": true,
+  "links": 18,
+  "broken_links": [],
+  "runtime_hashes_match": true,
+  "his_calls": 0,
+  "platform_calls": 0,
+  "business_writes": 0,
+  "tests_run": false
+}

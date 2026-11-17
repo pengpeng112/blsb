@@ -1,0 +1,23 @@
+{
+  "host": "app",
+  "phase": "recheck_limit",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T10:12:52.209017+00:00",
+  "result": {
+    "exit_code": 0,
+    "summary": {
+      "classification": {
+        "state": "NOT_FOUND",
+        "reason": "complete platform query has no entry for bill_code"
+      },
+      "http": [
+        200,
+        200
+      ],
+      "top_errors": [],
+      "business_writes": 0,
+      "uploads": 0
+    },
+    "rows": []
+  }
+}

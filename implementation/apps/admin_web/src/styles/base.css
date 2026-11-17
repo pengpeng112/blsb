@@ -1,0 +1,16 @@
+/* LT-02 基础样式：reset / body / 链接 / 滚动条。
+   表格与按钮等内容样式在 components.css（自 App.vue 原样迁移，保 DrugTrace 兼容）。 */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font: 14px/1.5 var(--font);
+  background: var(--c-bg);
+  color: var(--c-text);
+}
+a { color: var(--c-primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: #c4cdd6; border-radius: 6px; border: 2px solid var(--c-bg); }
+::-webkit-scrollbar-track { background: transparent; }
+:focus-visible { outline: 2px solid var(--c-primary); outline-offset: 1px; }

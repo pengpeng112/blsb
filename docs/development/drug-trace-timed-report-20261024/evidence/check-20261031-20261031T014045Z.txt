@@ -1,0 +1,53 @@
+The authenticity of host '<prod-host> (<prod-host>)' can't be established.
+ED25519 key fingerprint is SHA256:IjK9PN01og2d/fsSjUy4rlsyRBqOiZZycBN6j46shQc.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '<prod-host>' (ED25519) to the list of known hosts.
+
+Authorized users only. All activities may be monitored and reported.
+root@<prod-host>'s password: 
+===HOST TIME===
+2026-10-31 09:40:46 +0800
+===TIMER===
+active
+Sun 2026-11-01 01:00:00 CST 15h left Sat 2026-10-31 01:00:29 CST 8h ago blyb-daily-upload.timer blyb-daily-upload.service
+===SERVICE===
+failed
+===RECEIPTS (since 10-30)===
+-rw-r--r--. 1 root root     0 Oct 29 15:46 20261029-154639-backfill-1027.err
+-rw-r--r--. 1 root root  1620 Oct 29 15:46 20261029-154639-backfill-1027.json
+-rw-r--r--. 1 root root  1252 Oct 29 22:37 20261029-backfill-1027-launch.log
+-rw-------. 1 root root  1049 Oct 30 02:29 20261030-010029.json
+-rw-------. 1 root root  1034 Oct 31 05:00 20261031-010029.json
+===RECEIPT PARSE===
+--- /var/log/blyb/daily-upload/20261030-010029.json
+ window: ['2026-10-29T00:00:00', '2026-10-30T00:00:00']
+ outcome: FAILED | fatal: collect_progress_stalled | elapsed: 5366.4
+ send: sent 0 skipped 0 errs 0 aborted: 
+ collect: RUNNING bills_seen 425 valid 172 completed False q_s 1415.5922834326047
+ lookback: None None
+--- /var/log/blyb/daily-upload/20261031-010029.json
+ window: ['2026-10-30T00:00:00', '2026-10-31T00:00:00']
+ outcome: FAILED | fatal: collect_timeout | elapsed: 14408.1
+ send: sent 0 skipped 0 errs 0 aborted: 
+ collect: RUNNING bills_seen 1700 valid 929 completed False q_s 5934.380570818204
+ lookback: None None
+===DAILY REPORT ROWS===
+2026-10-30|timer|FAILED|0|0|0
+2026-10-29|timer|FAILED|0|0|0
+2026-10-28|timer|OK|1801|1801|0
+2026-10-27|timer|FAILED|0|0|0
+2026-10-26|timer|FAILED|0|0|0
+2026-10-26|manual|OK|1995|976|0
+2026-10-25|timer|OK|1352|436|0
+2026-10-24|manual|PARTIAL_FAILURE|1470|654|50
+===QUOTA===
+8413|80000|2026-10-29 14:20:08.705092
+===SUBS LAST 48H BY STATE===
+PREPARED|3258
+CONFIRMED|809
+===PREPARED TOTAL===
+3258
+===LAST-ERROR===
+0 /var/log/blyb/daily-upload/last-error.log
+Connection to <prod-host> closed.

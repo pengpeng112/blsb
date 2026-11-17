@@ -1,0 +1,19 @@
+{
+  "synthetic": true,
+  "production_connection": false,
+  "nginx_config_exit": 0,
+  "statuses": [
+    401,
+    401,
+    401,
+    401,
+    401,
+    401,
+    429,
+    429,
+    429,
+    429
+  ],
+  "rate_limit_observed": true,
+  "tls_verified": true
+}

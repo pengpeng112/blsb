@@ -1,0 +1,21 @@
+{
+  "his_view_revision": "r10",
+  "status": "USER_EXECUTED_LIVE_VERIFIED",
+  "view_definition_match": {
+    "V_DRUG_TRACE_BILL": true,
+    "V_DRUG_TRACE_CODE": true
+  },
+  "view_owner": "PHARMACY",
+  "credential_ref": ".ai/private/drug-trace-view-verify-20261022/his-reader.credential.clixml",
+  "one_bill_quality": {
+    "state": "VALID",
+    "rule_codes": [
+      "QD-LEVEL-UNCONFIRMED"
+    ],
+    "blocking_rules": [],
+    "origin": "actual local quality function; data stays remote; no import or freeze"
+  },
+  "production_source_bound": false,
+  "upload_ready": false,
+  "real_uploads": 0
+}

@@ -1,0 +1,101 @@
+# LT-08 药品追溯采集管道"非查询开销"排查与优化（本地，不部署）
+
+> 预计：1 个执行日。依赖：无（与平台化任务独立，可插到任意一天）。动生产：**否**（只本地分析+修复+测试，部署另行由用户安排）。迁移：无（若确需索引，只写提案不实现）。
+> 先读 [README §五 通则](README.md#五所有长任务通用的执行通则执行-ai-必读每个-lt-文件都引用本节)。
+
+## 0. 背景（来自 STATE/BACKLOG 2026-11-01）
+
+DBA 建 FBI 后，HIS 视图单头/码明细查询已从 ~1.1s 降到毫秒级（夜间 1,479 次查询共 1.99s），但**夜间批次仍 `collect_progress_stalled` 失败**：
+10-31 窗口 1,509 单采集耗时 7,611s，STATE 记录"应用侧采集管道每单约 11s 非查询开销"（入库 / 质量处理 / 调度路径，此前被查询耗时掩盖）。
+日常模式因此变成"01:00 批次失败 → 值守/白天补跑"，这是药品业务当前最大的运行风险。
+
+**目标**：在本地用合成数据复现"每单开销"，定位前 3 大耗时点，做不改变业务语义的优化，使本地基准**每单非查询开销降低 ≥70%**（或给出证据说明瓶颈不在应用侧）。
+
+> [!CAUTION]
+> 不连 HIS、不 SSH <prod-host>、不改宿主驱动（`docs/development/drug-trace-timed-report-20261024/` 下脚本）。
+> **不得改变**：采集幂等语义、内容摘要 `content_digest` 算法（改了会导致历史单据被判"变化"而重新上报）、质量规则判定结果、
+> 0/1/N 与 fail-closed 门禁、租约/心跳续租行为、`NOT_REPORTABLE` 终态逻辑。所有优化必须由"优化前后输出逐行等价"的测试守护。
+
+## 1. 交付物
+
+1. 基准脚本 `implementation/tests/performance/bench_drug_trace_collect.py`：合成 N 单（默认 500，每单 1—20 码，含缺码/多行大处方/重复扫码/住院分支等分布），用 SQLite 与（若本机有）PostgreSQL 跑 `run_collection`，输出每单平均耗时、分阶段耗时、SQL 语句数。
+2. 分阶段计时：在采集管道关键阶段加**可开关**的计时（环境变量 `BLYB_DT_PROFILE=1` 才记录；关闭时零开销或可忽略），结果写入现有 `source_metrics`/collection summary 结构（先看现有字段，有则复用）。
+3. 分析报告 `docs/development/platform-evolution-20261103/LT-08-REPORT.md`：cProfile 前 30 函数、SQL 计数（按语句模板聚合）、阶段耗时表、根因结论、优化清单与收益。
+4. 优化实现（只改应用代码）+ 等价测试 + 基准前后对比。
+5. 部署建议（不执行）：变更文件清单、风险、回退、观察指标。
+
+## 2. 修改范围
+
+```
+implementation/plugins/domains/drug_trace/service.py     （仅 run_collection/_collect_gate/_progress/_rescan_one 等采集路径）
+implementation/plugins/domains/drug_trace/ingest.py
+implementation/plugins/domains/drug_trace/quality.py     （仅性能，不改判定）
+implementation/plugins/sources/db_view/drug_trace.py      （仅调用方式/批量化，不改 SQL 语义）
+implementation/apps/worker/engine.py                      （仅当证明调度路径是瓶颈时）
+implementation/tests/performance/**                       （新建）
+implementation/tests/integration/test_drug_trace_collect_equivalence.py （新建）
+docs/development/platform-evolution-20261103/LT-08-REPORT.md
+docs/ai/*、implementation/docs/测试执行记录.md
+```
+**不改** `payload.py`、`contracts.py`、`business_rules.py`、发送/查询函数、`alihealth_drugtrace/**`、迁移。
+
+## 3. 步骤
+
+### 步骤 1：读代码画出"每单路径"（60 分钟）
+
+从 `plugin.py` 找 collect job 入口 → `service.run_collection`（约第 404 行）→ 逐层跟进：`_collect_gate`、`_fresh_session_read`、`_progress`、`ingest.*`（`content_digest`、`composite_key`、入库函数）、`quality.*`、warehouse 的 `fetch_*`。
+在交接里画出调用链（缩进列表即可），对每一步标注：是否每单执行一次、是否 commit、是否新建 session/连接、是否额外 SELECT。
+重点怀疑点（逐条核实，不要假设）：
+1. **每单多次 commit**（`service.py` 中 run_collection 段落有多处 `db.commit()`；PG 上每次 commit 是一次 fsync 级往返）；
+2. **`_collect_gate` / `_fresh_session_read` 每单新开 session 读运行状态**（为了响应取消，但每单一次可能过密）；
+3. `_progress` 每单写进度/心跳；
+4. 质量规则每单多次查询（如查字典、查历史版本、查重复码）——N+1；
+5. 每单 `content_digest` 对大处方的规范化开销（理论上小，但要测）；
+6. 采集与 worker 的 job 调度交互（每页是否重新入队、是否 sleep/让出——见 BACKLOG"采集 25 张分页让出"）；
+7. 源端：每单 2 次查询在生产上虽然 SQL 执行毫秒，但**网络往返 + 游标打开/解析**可能每次数百毫秒——这部分本地测不出，在报告中作为"需生产计时验证"的假设，并给出批量化方案（按页一次取多单的头/码，`IN (...)` 或分解谓词）。
+
+### 步骤 2：基准与计时
+
+- 基准脚本用现有测试夹具风格构造合成 warehouse（看 `sources/db_view/fixtures.py` 与现有 drug_trace 集成测试是怎么造 fake warehouse 的，**复用**）。给 fake warehouse 加可配置延迟 `query_latency_ms`（默认 0；另跑一组 5ms 模拟网络往返）。
+- SQL 计数：用 SQLAlchemy `event.listen(engine, "before_cursor_execute", ...)` 统计语句数与模板（把字面量替换为 ?）。
+- cProfile：`python -m cProfile -o var/lt08.prof tests/performance/bench_drug_trace_collect.py --bills 500`，再用 `pstats` 打印前 30（按 cumtime）。
+- 输出写入 `var/lt08-baseline.json`（每单耗时、阶段耗时、SQL 数/单、commit 数/单）。
+
+### 步骤 3：等价测试（**先写测试再优化**）
+
+`test_drug_trace_collect_equivalence.py`：固定随机种子生成 200 单合成数据，跑一次采集，把以下结果序列化为"黄金快照"（按主键排序）：
+DrugTraceBill / BillRevision / CodeIndex 的业务列（不含时间戳与自增/uuid）、每单 content_digest、质量问题（rule_code+对象）、NOT_REPORTABLE/WAITING 分类、collection summary 中的计数字段。
+优化后再跑，断言与快照完全一致。另加：中途取消（gate 返回 cancel）时已入库数据与优化前行为一致；重复采集同窗口幂等（第二次零新 revision）。
+
+### 步骤 4：优化（按收益排序，逐项做、逐项跑等价测试与基准）
+
+候选（以步骤 1/2 证据为准，不是全部都要做）：
+- **批量提交**：每 K 单（如 25，与现有分页一致）一次 commit；取消检查与心跳按"每页"或"每 N 秒"而非每单。注意：失败回滚语义必须与现有"失租整页回滚"一致（BACKLOG 10-27 已实现整页回滚——保持该粒度）。
+- **gate 节流**：`_collect_gate` 改为距上次检查 ≥5 秒或每页一次；取消响应延迟上限写进注释与报告。
+- **质量规则批量预取**：把每单查询改为每页一次预取（字典、已存在 revision 摘要、重复码集合）。
+- **进度写入节流**：每页或每 10 秒写一次。
+- **源端批量化**（本地实现+测试，生产效果待验证）：warehouse 增加 `fetch_bills_batch(keys)`，按页一次取头和码；**SQL 必须保持走 FBI 的谓词形式**（参考 `docs/development/drug-trace-scope-dev-20261027/view-tuning-20261029/README.md` 的分解谓词结论），默认关闭（配置开关 `batch_fetch: false`），报告中写明开启前须 DBA EXPLAIN。
+
+每项优化完成后记录：基准每单耗时、SQL 数/单、commit 数/单的变化。
+
+### 步骤 5：报告与部署建议
+
+`LT-08-REPORT.md` 必含：
+1. 方法（合成数据分布、环境、命令）；
+2. 基线 vs 优化后表格（SQLite / PG 若有；0ms 与 5ms 源延迟两组）；
+3. 前 3 根因与证据（cProfile 片段、SQL 模板计数）；
+4. 本地无法复现的部分及生产验证方法（打开 `BLYB_DT_PROFILE=1` 跑一次白天补跑，看阶段耗时）；
+5. 部署建议：变更文件、风险（取消响应变慢 ≤5s、批量回滚粒度）、回退（回滚发行）、观察指标（collection summary 阶段耗时、每单平均、stalled 是否消失）、部署窗口避开 00:30–07:00 与药品 01:00 批次，**须用户在场**。
+
+## 4. 验收清单
+
+- [ ] 等价测试存在且优化后通过（快照未被"更新"——若快照需要改动，说明哪里语义变了并回退该优化）
+- [ ] 基准前后数字写入报告；目标每单开销降低 ≥70%，未达到则如实写明并给出原因
+- [ ] drug_trace 全部既有测试通过：`python -m pytest tests -q -k drug_trace`；全量不新增失败；探针一致
+- [ ] `BLYB_DT_PROFILE` 关闭时行为与输出与改前一致
+- [ ] `git diff --stat` 不含禁改文件
+
+## 5. 停止条件
+
+- 本地基准显示每单开销 <0.3s（即应用侧不是瓶颈）：不做优化，报告结论为"瓶颈在生产环境因素（网络往返/PG 配置/worker 调度争用）"，列出生产计时方案，任务 completed。
+- 任一优化导致等价测试失败且 30 分钟内无法定位：回退该项，继续下一项。

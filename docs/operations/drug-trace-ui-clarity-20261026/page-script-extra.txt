@@ -1,0 +1,132 @@
+const tabs = [
+  { id: 'overview', name: '总览' }, { id: 'reports', name: '上报记录' },
+  { id: 'bills', name: '单据与追溯码' }, { id: 'reconcile', name: '对账核查' }, { id: 'settings', name: '接入与授权' },
+]
+const activeTab = ref('overview')
+const autoRefresh = ref(true)
+const refreshing = ref(false)
+const timedBusy = ref(false)
+const clock = ref(new Date())
+const lastRefreshed = ref('')
+const sectionOk = ref<Record<string, boolean>>({ scope: false, reports: false, stats: false, outcomes: false })
+const recordRows = ref<any[]>([]), recordState = ref(''), recordSearch = ref('')
+const recordBusy = ref(false), recordError = ref('')
+const loadedTabs = new Set<string>()
+const canReview = computed(() => roles.includes('business_reviewer') || canApprove.value)
+const statsAvailable = computed(() => sectionOk.value.stats)
+const aggregate = computed(() => totals(statsDays.value))
+function count(state: string): number | null { return statsAvailable.value ? aggregate.value[state] || 0 : null }
+const failedCount = computed(() => (count('PARTIAL') || 0) + (count('REJECTED') || 0))
+const attentionCount = computed(() => statsAvailable.value ? (count('UNKNOWN') || 0) + failedCount.value : null)
+const metricCards = computed(() => [
+  { title: '已确认成功', state: 'CONFIRMED', count: count('CONFIRMED'), tone: 'success', symbol: '✓', note: '平台已确认处理成功' },
+  { title: '平台已受理', state: 'ACCEPTED', count: count('ACCEPTED'), tone: 'pending', symbol: '◷', note: '已收到，等待最终确认' },
+  { title: '结果待核查', state: 'UNKNOWN', count: count('UNKNOWN'), tone: 'unknown', symbol: '?', note: '先核查结果，不直接重发' },
+  { title: '退回 / 部分成功', state: 'problem', count: statsAvailable.value ? failedCount.value : null, tone: 'failed', symbol: '!', note: '核对平台反馈与业务数据' },
+])
+const confirmedPercent = computed(() => statsAvailable.value && aggregate.value.total ? ((aggregate.value.CONFIRMED || 0) / aggregate.value.total * 100).toFixed(1) : '0.0')
+const summaryTitle = computed(() => {
+  if (!statsAvailable.value) return timedBusy.value ? '正在读取上报进度…' : '暂无法判断当前进度'
+  if (!aggregate.value.total) return '所选时间范围内暂无提交'
+  if (attentionCount.value) return n(attentionCount.value) + ' 笔记录需要关注'
+  if (count('ACCEPTED')) return '已受理记录正在等待平台最终确认'
+  if ((count('CONFIRMED') || 0) === aggregate.value.total) return '所选范围内的提交均已确认成功'
+  return '请关注待发送及其他状态记录'
+})
+function parts(row: any) {
+  const states = row.by_state || {}, total = Number(row.total || 0)
+  const groups = [
+    { key: 'CONFIRMED', label: '确认成功', tone: 'success', value: Number(states.CONFIRMED || 0) },
+    { key: 'ACCEPTED', label: '平台受理', tone: 'pending', value: Number(states.ACCEPTED || 0) },
+    { key: 'UNKNOWN', label: '待核查', tone: 'unknown', value: Number(states.UNKNOWN || 0) },
+    { key: 'failed', label: '部分成功 / 退回', tone: 'failed', value: Number(states.PARTIAL || 0) + Number(states.REJECTED || 0) },
+  ]
+  groups.push({ key: 'other', label: '其他', tone: 'other', value: Math.max(0, total - groups.reduce((s, r) => s + r.value, 0)) })
+  return groups.map(r => ({ ...r, percent: total ? r.value / total * 100 : 0 }))
+}
+function dayParts(day: any) { return parts(day) }
+const progressParts = computed(() => statsAvailable.value ? parts({ total: aggregate.value.total, by_state: aggregate.value }) : [])
+const chartDays = computed(() => statsDays.value.slice(0, 7).reverse())
+const chartMax = computed(() => Math.max(1, ...chartDays.value.map(d => d.total || 0)))
+const flowSteps = computed(() => [
+  { name: '待发送', count: count('PREPARED'), note: '已准备好提交' },
+  { name: '发送中', count: count('SENDING'), note: '等待接口返回' },
+  { name: '平台已受理', count: count('ACCEPTED'), note: '等待最终确认' },
+  { name: '已确认成功', count: count('CONFIRMED'), note: '平台处理完成' },
+])
+const scopeApproved = computed(() => timedScope.value?.evidence?.status === 'APPROVED')
+const quotaPercent = computed(() => {
+  const q = timedScope.value?.quota
+  return q?.max_bills ? Math.min(100, q.used / q.max_bills * 100) : 0
+})
+const problemMismatch = computed(() => sectionOk.value.outcomes && !!attentionCount.value && problemSubs.value.length === 0)
+const filteredRecords = computed(() => {
+  const search = recordSearch.value.trim().toLocaleLowerCase()
+  return recordRows.value.filter(s => {
+    const stateMatches = !recordState.value || (recordState.value === 'problem'
+      ? ['PARTIAL', 'REJECTED'].includes(s.state) : s.state === recordState.value)
+    return stateMatches && (!search || [s.id, s.source_bill_no, s.bill_code].some(x => String(x || '').toLocaleLowerCase().includes(search)))
+  })
+})
+const recordIncomplete = computed(() => !recordBusy.value && !recordError.value && statsAvailable.value && !!attentionCount.value
+  && ['UNKNOWN','problem'].includes(recordState.value) && filteredRecords.value.length === 0)
+function tone(state: string) {
+  if (['CONFIRMED','VALID','OK','DONE','APPROVED'].includes(state)) return 'success'
+  if (state === 'ACCEPTED' || state === 'SENDING') return 'pending'
+  if (state === 'UNKNOWN') return 'unknown'
+  if (['REJECTED','PARTIAL','FAILED','INVALID'].includes(state)) return 'failed'
+  return 'neutral'
+}
+function kindLabel(kind: string) { return kind === 'UNKNOWN' ? '业务待确认' : label(kind) }
+function stepLabel(step: string) { return ({ prepare: '准备单据', send: '发送请求', send_worker: '等待发送结果', state: '检查状态' } as Record<string,string>)[step] || step }
+function errorText(value: any) {
+  const v = value?.error || value || {}, code = v.error_code || v.code || ''
+  const messages: Record<string,string> = {
+    DICTIONARY_UNMAPPED: '药房、企业或业务字典尚未完成映射', SEND_QUEUE_TIMEOUT: '发送排队等待超时',
+    SEND_EXECUTION_TIMEOUT: '接口执行等待超时', SEND_WORKER_TIMEOUT: '等待发送结果超时（旧版记录）',
+    SEND_RESULT_UNKNOWN: '发送结果未知，请先核对平台', PROFILE_UNAPPROVED: '发送授权或授权范围需要核查',
+    VERSION_CONFLICT: '状态或查询轮次已变化，需要核查', NOT_SENDABLE: '当前状态不允许发送',
+  }
+  return messages[code] || v.message || code || '请展开技术信息查看详细原因'
+}
+async function refreshDashboard() {
+  if (refreshing.value) return
+  refreshing.value = true
+  try { await Promise.allSettled([loadReadiness(), loadTimed()]) }
+  finally {
+    clock.value = new Date()
+    lastRefreshed.value = new Intl.DateTimeFormat('zh-CN', { timeZone: 'Asia/Shanghai', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }).format(clock.value)
+    refreshing.value = false
+  }
+}
+async function changeRange() { outcomesDays.value = statsDaysParam.value; await refreshDashboard() }
+async function loadRecordRows() {
+  if (recordBusy.value) return
+  recordBusy.value = true; recordError.value = ''
+  try { recordRows.value = await api.coreGet('/api/v1/drug-trace/submission-outcomes?days=' + statsDaysParam.value) || [] }
+  catch (e: any) { recordRows.value = []; recordError.value = '上报记录读取失败：' + (e.message || '请重试') }
+  finally { recordBusy.value = false }
+}
+async function switchTab(id: string) {
+  activeTab.value = id
+  if (id === 'reports') { await loadRecordRows(); return }
+  if (loadedTabs.has(id)) return
+  loadedTabs.add(id)
+  if (id === 'bills') await Promise.allSettled([loadConnectors(),loadRuns(),loadBills()])
+  if (id === 'reconcile') await loadRecon()
+  if (id === 'settings') await loadReadiness()
+}
+function openRecords(state: string) { recordState.value = state; void switchTab('reports') }
+let refreshTimer: ReturnType<typeof setInterval> | undefined
+onMounted(() => {
+  outcomesDays.value = statsDaysParam.value
+  void refreshDashboard()
+  refreshTimer = setInterval(() => {
+    clock.value = new Date()
+    if (autoRefresh.value && document.visibilityState !== 'hidden' && ['overview','reports'].includes(activeTab.value)) {
+      void refreshDashboard()
+      if (activeTab.value === 'reports') void loadRecordRows()
+    }
+  }, 60_000)
+})
+onUnmounted(() => { if (refreshTimer) clearInterval(refreshTimer) })

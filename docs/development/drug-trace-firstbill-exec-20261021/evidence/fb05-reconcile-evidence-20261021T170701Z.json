@@ -1,0 +1,10 @@
+{
+  "http": 200,
+  "body": {
+    "data": {
+      "evidence_id": "aa13c340-e854-4443-aadf-29a95571840b",
+      "status": "APPROVED"
+    },
+    "request_id": "a0c7f8f7-0868-463a-a441-8bd42347fe64"
+  }
+}

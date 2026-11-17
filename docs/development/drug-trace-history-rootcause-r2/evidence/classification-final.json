@@ -1,0 +1,116 @@
+{
+  "run_id": "20261023T141852Z",
+  "identity": {
+    "ok": true,
+    "user": "READY_HIS",
+    "service": "his"
+  },
+  "root_cause_5077": {
+    "u_class": "U02 (all 5077 rows, conservation OK)",
+    "finding": "every (code, legacy PRESC_DETAILID) record exists in DRUG_USER.MED_TRACE_RECORD",
+    "record_attributes": {
+      "IN_OUT_TYPE": "OUT (5077/5077)",
+      "IS_DELETED": "0 (5077/5077)",
+      "SPLIT_FLAG": "1 (5077/5077) - split dispensing flag",
+      "STORE_CODE": "single value '050121' (5077/5077)",
+      "TRACE_BILLNO": "20-digit numeric, 2963 distinct",
+      "CREATE_TIME": "spread 2026-07..2026-10 matching history export"
+    },
+    "master_side_discriminators": {
+      "e1_prescno_lengths_in_window": [
+        {
+          "LEN": 1,
+          "N": 97
+        },
+        {
+          "LEN": 2,
+          "N": 1002
+        },
+        {
+          "LEN": 3,
+          "N": 9121
+        },
+        {
+          "LEN": 4,
+          "N": 94325
+        },
+        {
+          "LEN": 5,
+          "N": 141249
+        }
+      ],
+      "e1_conclusion": "master PRESC_NO in window is 1-5 digits only; 20-digit numbers do not exist",
+      "e2_dispensary": [
+        {
+          "DISPENSARY": "050121",
+          "N": 102644
+        },
+        {
+          "DISPENSARY": "050102",
+          "N": 67629
+        },
+        {
+          "DISPENSARY": "050103",
+          "N": 38309
+        },
+        {
+          "DISPENSARY": "050107",
+          "N": 22170
+        },
+        {
+          "DISPENSARY": "050101",
+          "N": 7124
+        },
+        {
+          "DISPENSARY": "050110",
+          "N": 4204
+        },
+        {
+          "DISPENSARY": "050109",
+          "N": 2642
+        },
+        {
+          "DISPENSARY": "050116",
+          "N": 943
+        },
+        {
+          "DISPENSARY": "050117",
+          "N": 129
+        }
+      ],
+      "e2_conclusion": "pharmacy 050121 IS the largest master pharmacy (102644 rows) - not a store mismatch",
+      "e3": "S01-S03 master by (PRESC_NO, PRESC_DATE) without store: 0 rows - no master with that number at all"
+    },
+    "conclusion": "5077 rows are split-dispensing (SPLIT_FLAG=1) OUT scans of pharmacy 050121 whose 20-digit TRACE_BILLNO is outside the outpatient prescription number space; the r10 3-key INNER JOIN cannot match them by design. They are NOT missing uploads of normal prescriptions and NOT outpatient under-reporting; covering them requires a separate source revision after HIS/pharmacy confirms the split-dispensing business stream and its master table / bill semantics."
+  },
+  "dup_31_cause": {
+    "pairs": 31,
+    "distinct_main_bills": 11,
+    "whole_bill_quality": "INVALID x11 (QD-DUP-CODE)",
+    "per_pair_source_records": "exactly 2, both OUT, IS_DELETED=0, SPLIT_FLAG=0, master JOIN hit",
+    "create_time_span": "all 31 pairs < 1 hour (double scan), buckets lt1h=31",
+    "conclusion": "genuine double-scan (rescan within the hour), not split dispensing and not view duplication; keep QD-DUP-CODE block; correction/rescan rule needs pharmacy/HIS business decision (L04/C04) before any audited handling",
+    "side_note": "the same 31 codes also appear once each under other pharmacies (050106/050105) as normal SPLIT_FLAG=0 records - separate events, not part of the dup pairs"
+  },
+  "daily_coverage_master_driven": {
+    "days": 81,
+    "totals": {
+      "masters": 245794,
+      "masters_with_out": 142080,
+      "masters_no_out": 103714,
+      "out_rows_attached": 484567
+    },
+    "cross_check": "484567 OUT-attached rows by PRESC_DATE window vs r1 view 484539 rows within history dates by bill_time - consistent; view is not dropping joined rows",
+    "inpatient": "PRESC_SOURCE=1 masters (90024) have zero OUT scan records in window",
+    "limitation": "T-driven global JOIN_MISS count NOT run: MED_TRACE_RECORD has no PRESC_DATE/CREATE_TIME index (SQL06 confirmed); the 5077 U02 pairs are the only confirmed JOIN-miss population via exact-key evidence"
+  },
+  "conservation": {
+    "u02_rows": 5077,
+    "sum_check": "U02=5077 OK (U01/U03/U04/U05=0)"
+  },
+  "side_effects": {
+    "source_writes": 0,
+    "uploads": 0,
+    "production_changes": 0
+  }
+}

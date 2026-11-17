@@ -1,0 +1,11 @@
+{
+  "synthetic": true,
+  "production_connection": false,
+  "wrong_password_rejected": true,
+  "password_login": true,
+  "reload_session": true,
+  "password_change_requires_login": true,
+  "logout_revokes_session": true,
+  "console_errors": [],
+  "server_errors": []
+}

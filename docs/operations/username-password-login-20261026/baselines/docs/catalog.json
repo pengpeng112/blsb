@@ -1,0 +1,1617 @@
+{
+  "format_version": 1,
+  "baseline": "v0.4",
+  "documents": [
+    {
+      "path": "00_AI复核入口.md",
+      "category": "navigation_or_entry",
+      "title": "当前设计、复核与开发入口"
+    },
+    {
+      "path": "AGENTS.md",
+      "category": "navigation_or_entry",
+      "title": "BLYB · 所有开发工具和模型的共同约定"
+    },
+    {
+      "path": "AI_START.md",
+      "category": "navigation_or_entry",
+      "title": "给任何工具或模型的通用接手提示词"
+    },
+    {
+      "path": "AI复核报告_v0.3设计与真实库核验_2026-09-30.md",
+      "category": "historical_source_evidence",
+      "title": "AI 复核报告：医院数据归集与上报平台 v0.3（设计与真实库核验）"
+    },
+    {
+      "path": "CLAUDE.md",
+      "category": "navigation_or_entry",
+      "title": "BLYB · Claude 工具入口"
+    },
+    {
+      "path": "docs/ai/BACKLOG.md",
+      "category": "shared_ai_state",
+      "title": "当前剩余任务"
+    },
+    {
+      "path": "docs/ai/HANDOFF.md",
+      "category": "shared_ai_state",
+      "title": "当前交接"
+    },
+    {
+      "path": "docs/ai/SESSION_TEMPLATE.md",
+      "category": "shared_ai_state",
+      "title": "独立任务交接模板"
+    },
+    {
+      "path": "docs/ai/sessions/DEPLOY-20261005.md",
+      "category": "shared_ai_state",
+      "title": "DEPLOY-20261005 · 部署前修订"
+    },
+    {
+      "path": "docs/ai/sessions/DOC-20261002.md",
+      "category": "shared_ai_state",
+      "title": "DOC-20261002 · 文档与协作入口整理"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-DAILY-HEALTH-20261026.md",
+      "category": "shared_ai_state",
+      "title": "DTR-DAILY-HEALTH-20261026 交接"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-DEPLOY-20261021.md",
+      "category": "shared_ai_state",
+      "title": "DTR-DEPLOY-20261021 会话交接（ZCode / GLM-5.3）"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-FINALIZATION-PLAN-20261020.md",
+      "category": "shared_ai_state",
+      "title": "DTR-FINALIZATION-PLAN-20261020"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-FINALIZE-20261020.md",
+      "category": "shared_ai_state",
+      "title": "DTR-FINALIZE-20261020 交接（ZCode / GLM-5.3）"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-FIRSTBILL-EXEC-20261021.md",
+      "category": "shared_ai_state",
+      "title": "DTR-FIRSTBILL-EXEC-20261021 session"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-FIRSTBILL-LONGTASK-20261021.md",
+      "category": "shared_ai_state",
+      "title": "DTR-FIRSTBILL-LONGTASK-20261021"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-FIX2-20261017.md",
+      "category": "shared_ai_state",
+      "title": "DTR-FIX2-20261017 交接（药品追溯第二轮整改）"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-FIX3-20261017.md",
+      "category": "shared_ai_state",
+      "title": "DTR-FIX3-20261017 · 药品追溯第三轮整改交接"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-FLOW-COMPARISON-GUIDE-20261022.md",
+      "category": "shared_ai_state",
+      "title": "DTR-FLOW-COMPARISON-GUIDE-20261022"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-HIS-DDL-DMZ-CLOCK-20261022.md",
+      "category": "shared_ai_state",
+      "title": "DTR-HIS-DDL-DMZ-CLOCK-20261022"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-HISTORY-CHECK-TASK-20261023.md",
+      "category": "shared_ai_state",
+      "title": "历史核查完整执行任务书交接"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-HISTORY-COMPARE-20261023.md",
+      "category": "shared_ai_state",
+      "title": "DTR-HISTORY-COMPARE-20261023"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-HISTORY-LIVE-COMPARE-20261023.md",
+      "category": "shared_ai_state",
+      "title": "历史清单与两视图实时核查交接"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-HISTORY-ROOTCAUSE-R2.md",
+      "category": "shared_ai_state",
+      "title": "rootcause-r2 历史核查执行交接"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-HISTORY-SOURCE-AUDIT-20261023.md",
+      "category": "shared_ai_state",
+      "title": "源表核查执行交接（5077条根因闭环）"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-HISTORY-TRANSFER-AUDIT-20261023.md",
+      "category": "shared_ai_state",
+      "title": "DTR-HISTORY-TRANSFER-AUDIT-20261023"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-HISTORY-WINDOW-TRANSFER-20261023.md",
+      "category": "shared_ai_state",
+      "title": "历史核对任务窗口移交说明"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-IMPLEMENT-20261016.md",
+      "category": "shared_ai_state",
+      "title": "DTR-IMPLEMENT-20261016 · 药品追溯离线开发（W00—W09）"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-INPUT-RECHECK-20261022.md",
+      "category": "shared_ai_state",
+      "title": "DTR-INPUT-RECHECK-20261022"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-INSTALL-RUNBOOK-20261021.md",
+      "category": "shared_ai_state",
+      "title": "DTR-INSTALL-RUNBOOK-20261021"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-NETWORK-RETEST-20261021.md",
+      "category": "shared_ai_state",
+      "title": "DTR-NETWORK-RETEST-20261021"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-NTP-CONFIGURE-20261023.md",
+      "category": "shared_ai_state",
+      "title": "DTR-NTP-CONFIGURE-20261023"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-NTP-DASHBOARD-20261025.md",
+      "category": "shared_ai_state",
+      "title": "DTR-NTP-DASHBOARD-20261025 交接"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-NTP-PROBE-20261022.md",
+      "category": "shared_ai_state",
+      "title": "DTR-NTP-PROBE-20261022"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-OFFICIAL-VIEW-AUDIT-20261022.md",
+      "category": "shared_ai_state",
+      "title": "DTR-OFFICIAL-VIEW-AUDIT-20261022"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-ONE-BILL-TRIAL-20261022.md",
+      "category": "shared_ai_state",
+      "title": "DTR-ONE-BILL-TRIAL-20261022"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-ORACLE-FIRST-PAGE-20261022.md",
+      "category": "shared_ai_state",
+      "title": "DTR-ORACLE-FIRST-PAGE-20261022"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-PUSH-REVIEW-20261021.md",
+      "category": "shared_ai_state",
+      "title": "DTR-PUSH-REVIEW-20261021"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-QUEUE-REPAIR-20261026.md",
+      "category": "shared_ai_state",
+      "title": "DTR-QUEUE-REPAIR-20261026 交接"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-R10-UPLOAD-READINESS-20261022.md",
+      "category": "shared_ai_state",
+      "title": "DTR-R10-UPLOAD-READINESS-20261022"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-RESTORE-PATH-GUARD-20261022.md",
+      "category": "shared_ai_state",
+      "title": "DTR-RESTORE-PATH-GUARD-20261022"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-REVIEW2-20261017.md",
+      "category": "shared_ai_state",
+      "title": "DTR-REVIEW2-20261017 交接"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-REVIEW3-20261017.md",
+      "category": "shared_ai_state",
+      "title": "DTR-REVIEW3-20261017 交接"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-SOURCE-DELIVERY-20261022.md",
+      "category": "shared_ai_state",
+      "title": "DTR-SOURCE-DELIVERY-20261022"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-SOURCE-DEPLOY-20261022.md",
+      "category": "shared_ai_state",
+      "title": "Scope transition"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-TIMED-REPORT-20261024.md",
+      "category": "shared_ai_state",
+      "title": "定时上报执行交接"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-TIMED-UI-20261024.md",
+      "category": "shared_ai_state",
+      "title": "定时上报可视化执行交接"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-TIMED-UI-FIX-20261024.md",
+      "category": "shared_ai_state",
+      "title": "DTR-TIMED-UI-FIX-20261024 交接（定时上报可视化·复核修复）"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-TIMED-UI-FIXPLAN-20261024.md",
+      "category": "shared_ai_state",
+      "title": "TUI 复核与修复执行书编制交接"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-TIMED-UI-PLAN-20261024.md",
+      "category": "shared_ai_state",
+      "title": "定时上报可视化计划交接"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-TIMER-HEALTH-20261025.md",
+      "category": "shared_ai_state",
+      "title": "定时任务首跑只读检查交接"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-TIMER-REPAIR-20261025.md",
+      "category": "shared_ai_state",
+      "title": "定时驱动修复/部署/恢复交接"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-TRIAL-PREREQUISITES-20261022.md",
+      "category": "shared_ai_state",
+      "title": "DTR-TRIAL-PREREQUISITES-20261022"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-UPLOAD-CONTENT-CONTRACT-20261022.md",
+      "category": "shared_ai_state",
+      "title": "DTR-UPLOAD-CONTENT-CONTRACT-20261022"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-VIEW-VERIFY-FIRSTBILL-20261022.md",
+      "category": "shared_ai_state",
+      "title": "DTR-VIEW-VERIFY-FIRSTBILL-20261022"
+    },
+    {
+      "path": "docs/ai/sessions/HIS-LIVE-VERIFY-20261019.md",
+      "category": "shared_ai_state",
+      "title": "HIS-LIVE-VERIFY-20261019"
+    },
+    {
+      "path": "docs/ai/sessions/HIS-SJZC-BIND-20261019.md",
+      "category": "shared_ai_state",
+      "title": "HIS-SJZC-BIND-20261019"
+    },
+    {
+      "path": "docs/ai/sessions/PLATFORM-CREDENTIALS-20261020.md",
+      "category": "shared_ai_state",
+      "title": "PLATFORM-CREDENTIALS-20261020"
+    },
+    {
+      "path": "docs/ai/sessions/PLATFORM-LIVE-TEST-20261020.md",
+      "category": "shared_ai_state",
+      "title": "PLATFORM-LIVE-TEST-20261020"
+    },
+    {
+      "path": "docs/ai/sessions/REPORTING-DIRECTORY-GUIDES-20261023.md",
+      "category": "shared_ai_state",
+      "title": "REPORTING-DIRECTORY-GUIDES-20261023"
+    },
+    {
+      "path": "docs/ai/sessions/REPORTING-DRUGTRACE-PLAN-20261016.md",
+      "category": "shared_ai_state",
+      "title": "REPORTING-DRUGTRACE-PLAN-20261016 交接"
+    },
+    {
+      "path": "docs/ai/sessions/REPORTING-LINUX-DEPLOY-20261016.md",
+      "category": "shared_ai_state",
+      "title": "REPORTING-LINUX-DEPLOY-20261016 交接"
+    },
+    {
+      "path": "docs/ai/sessions/TEST-20261012.md",
+      "category": "shared_ai_state",
+      "title": "TEST-20261012 范围释放交接（由后继工具代写）"
+    },
+    {
+      "path": "docs/ai/START_HERE.md",
+      "category": "shared_ai_state",
+      "title": "AI 接手入口"
+    },
+    {
+      "path": "docs/ai/STATE.md",
+      "category": "shared_ai_state",
+      "title": "当前项目状态"
+    },
+    {
+      "path": "docs/ai/TOOL_ADAPTERS.md",
+      "category": "shared_ai_state",
+      "title": "工具与模型如何接入同一项目"
+    },
+    {
+      "path": "docs/CODE_MAP.md",
+      "category": "navigation_or_entry",
+      "title": "代码、启动、数据和生成文件地图"
+    },
+    {
+      "path": "docs/deployment/drug-trace-install-20261021/EXECUTION-REPORT.md",
+      "category": "navigation_or_entry",
+      "title": "DTR-DEPLOY-20261021 执行结果（2026-10-21）"
+    },
+    {
+      "path": "docs/deployment/drug-trace-install-20261021/NEXT_AI_DEPLOY.md",
+      "category": "navigation_or_entry",
+      "title": "可直接交给下一AI的部署提示词"
+    },
+    {
+      "path": "docs/deployment/drug-trace-install-20261021/README.md",
+      "category": "navigation_or_entry",
+      "title": "两台服务器一次部署与启用执行单（2026-10-21）"
+    },
+    {
+      "path": "docs/deployment/drug-trace-ntp-20261022/README.md",
+      "category": "navigation_or_entry",
+      "title": "院内时钟服务器实测：<relay-net-host>"
+    },
+    {
+      "path": "docs/deployment/drug-trace-ntp-20261023/README.md",
+      "category": "navigation_or_entry",
+      "title": "两台上报服务器时间同步配置（2026-10-23）"
+    },
+    {
+      "path": "docs/deployment/his-ddl-clock-20261022/NEXT_AI_SOURCE_FIX.md",
+      "category": "navigation_or_entry",
+      "title": "新视图建好后必须先补：Oracle码明细首屏空游标"
+    },
+    {
+      "path": "docs/deployment/his-ddl-clock-20261022/README.md",
+      "category": "navigation_or_entry",
+      "title": "HIS视图与只读用户执行包、DMZ校时结果"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/connection-report.md",
+      "category": "navigation_or_entry",
+      "title": "服务器、DMZ与平台出口只读检查 · revision 9"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/DMZ-CHECK-20261016.md",
+      "category": "navigation_or_entry",
+      "title": "DMZ登录与出口检查 · revision 7"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/execution-plan.md",
+      "category": "navigation_or_entry",
+      "title": "医院数据归集与上报平台详细执行计划"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/HIS-CHECK-20261016.md",
+      "category": "navigation_or_entry",
+      "title": "内网服务器与HIS复核、完整凭据交接 · revision 8"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/HIS-READONLY-20261016.md",
+      "category": "navigation_or_entry",
+      "title": "HIS只读分析与简表交接 · revision 9"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/NETWORK-RETEST-20261016.md",
+      "category": "navigation_or_entry",
+      "title": "网络开通后复测与任务交接 · revision 6"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/NEXT_AI_PROMPT.md",
+      "category": "navigation_or_entry",
+      "title": "可复制给下一 AI 的执行提示词"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/README.md",
+      "category": "navigation_or_entry",
+      "title": "医院上报平台部署交接包 · 2026-10-15"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/REVISION-2.md",
+      "category": "navigation_or_entry",
+      "title": "revision 2 · round-1处置与任务交接"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/REVISION-3.md",
+      "category": "navigation_or_entry",
+      "title": "revision 3 · 目标登录复测与DMZ/SDK接入交接"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/REVISION-4.md",
+      "category": "navigation_or_entry",
+      "title": "REPORTING-NETWORK-R4-20261016 交接"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/REVISION-5.md",
+      "category": "navigation_or_entry",
+      "title": "REPORTING-HANDOFF-R5-20261016 交接"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r1/connection-report.md",
+      "category": "navigation_or_entry",
+      "title": "服务器与平台出口只读检查"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r1/execution-plan.md",
+      "category": "navigation_or_entry",
+      "title": "医院数据归集与上报平台详细执行计划"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r1/NEXT_AI_PROMPT.md",
+      "category": "navigation_or_entry",
+      "title": "可复制给下一 AI 的执行提示词"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r1/README.md",
+      "category": "navigation_or_entry",
+      "title": "医院上报平台部署交接包 · 2026-10-15"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r1/SESSION.md",
+      "category": "navigation_or_entry",
+      "title": "REPORTING-DEPLOY-20261015 维护与交接记录"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r1/view-contract.md",
+      "category": "navigation_or_entry",
+      "title": "码上放心 HIS 视图与上报契约草案"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r2/connection-report.md",
+      "category": "navigation_or_entry",
+      "title": "服务器与平台出口只读检查"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r2/execution-plan.md",
+      "category": "navigation_or_entry",
+      "title": "医院数据归集与上报平台详细执行计划"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r2/NEXT_AI_PROMPT.md",
+      "category": "navigation_or_entry",
+      "title": "可复制给下一 AI 的执行提示词"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r2/README.md",
+      "category": "navigation_or_entry",
+      "title": "医院上报平台部署交接包 · 2026-10-15"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r2/REVISION-2.md",
+      "category": "navigation_or_entry",
+      "title": "revision 2 · round-1处置与任务交接"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r2/revisions/r1/connection-report.md",
+      "category": "navigation_or_entry",
+      "title": "服务器与平台出口只读检查"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r2/revisions/r1/execution-plan.md",
+      "category": "navigation_or_entry",
+      "title": "医院数据归集与上报平台详细执行计划"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r2/revisions/r1/NEXT_AI_PROMPT.md",
+      "category": "navigation_or_entry",
+      "title": "可复制给下一 AI 的执行提示词"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r2/revisions/r1/README.md",
+      "category": "navigation_or_entry",
+      "title": "医院上报平台部署交接包 · 2026-10-15"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r2/revisions/r1/SESSION.md",
+      "category": "navigation_or_entry",
+      "title": "REPORTING-DEPLOY-20261015 维护与交接记录"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r2/revisions/r1/view-contract.md",
+      "category": "navigation_or_entry",
+      "title": "码上放心 HIS 视图与上报契约草案"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r2/SESSION.md",
+      "category": "navigation_or_entry",
+      "title": "REPORTING-DEPLOY-20261015 维护与交接记录"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r2/view-contract.md",
+      "category": "navigation_or_entry",
+      "title": "码上放心 HIS 视图与上报契约草案"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r3/execution-plan.md",
+      "category": "navigation_or_entry",
+      "title": "医院数据归集与上报平台详细执行计划"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r3/NEXT_AI_PROMPT.md",
+      "category": "navigation_or_entry",
+      "title": "可复制给下一 AI 的执行提示词"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r3/README.md",
+      "category": "navigation_or_entry",
+      "title": "医院上报平台部署交接包 · 2026-10-15"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r3/view-contract.md",
+      "category": "navigation_or_entry",
+      "title": "码上放心 HIS 视图与上报契约草案"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r4/execution-plan.md",
+      "category": "navigation_or_entry",
+      "title": "医院数据归集与上报平台详细执行计划"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r4/NEXT_AI_PROMPT.md",
+      "category": "navigation_or_entry",
+      "title": "可复制给下一 AI 的执行提示词"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r4/README.md",
+      "category": "navigation_or_entry",
+      "title": "医院上报平台部署交接包 · 2026-10-15"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r5/connection-report.md",
+      "category": "navigation_or_entry",
+      "title": "服务器、DMZ与平台出口只读检查 · revision 3"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r5/execution-plan.md",
+      "category": "navigation_or_entry",
+      "title": "医院数据归集与上报平台详细执行计划"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r5/NEXT_AI_PROMPT.md",
+      "category": "navigation_or_entry",
+      "title": "可复制给下一 AI 的执行提示词"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r5/README.md",
+      "category": "navigation_or_entry",
+      "title": "医院上报平台部署交接包 · 2026-10-15"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r6/connection-report.md",
+      "category": "navigation_or_entry",
+      "title": "服务器、DMZ与平台出口只读检查 · revision 6"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r6/execution-plan.md",
+      "category": "navigation_or_entry",
+      "title": "医院数据归集与上报平台详细执行计划"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r6/NEXT_AI_PROMPT.md",
+      "category": "navigation_or_entry",
+      "title": "可复制给下一 AI 的执行提示词"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r6/README.md",
+      "category": "navigation_or_entry",
+      "title": "医院上报平台部署交接包 · 2026-10-15"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r7/connection-report.md",
+      "category": "navigation_or_entry",
+      "title": "服务器、DMZ与平台出口只读检查 · revision 7"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r7/execution-plan.md",
+      "category": "navigation_or_entry",
+      "title": "医院数据归集与上报平台详细执行计划"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r7/NEXT_AI_PROMPT.md",
+      "category": "navigation_or_entry",
+      "title": "可复制给下一 AI 的执行提示词"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r7/README.md",
+      "category": "navigation_or_entry",
+      "title": "医院上报平台部署交接包 · 2026-10-15"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r8/connection-report.md",
+      "category": "navigation_or_entry",
+      "title": "服务器、DMZ与平台出口只读检查 · revision 8"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r8/execution-plan.md",
+      "category": "navigation_or_entry",
+      "title": "医院数据归集与上报平台详细执行计划"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r8/NEXT_AI_PROMPT.md",
+      "category": "navigation_or_entry",
+      "title": "可复制给下一 AI 的执行提示词"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/revisions/r8/README.md",
+      "category": "navigation_or_entry",
+      "title": "医院上报平台部署交接包 · 2026-10-15"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/SESSION.md",
+      "category": "navigation_or_entry",
+      "title": "REPORTING-DEPLOY-20261015 维护与交接记录"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/view-contract-r5.md",
+      "category": "navigation_or_entry",
+      "title": "药品追溯只读视图契约 revision 5（草案）"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/view-contract-r6.md",
+      "category": "navigation_or_entry",
+      "title": "药品追溯只读视图契约 revision 6（草案）"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/view-contract-r7.md",
+      "category": "navigation_or_entry",
+      "title": "药品追溯来源视图契约 r7（2026-10-20 · DTR-FINALIZE-20261020 FIN-04）"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/view-contract.md",
+      "category": "navigation_or_entry",
+      "title": "码上放心 HIS 视图与上报契约草案"
+    },
+    {
+      "path": "docs/deployment/reporting-20261015/网络开通与接口资料协调单.md",
+      "category": "navigation_or_entry",
+      "title": "药品追溯上报：网络开通与接口资料协调单"
+    },
+    {
+      "path": "docs/development/drug-trace-20261016/ACCEPTANCE.md",
+      "category": "navigation_or_entry",
+      "title": "开发与现场验收矩阵"
+    },
+    {
+      "path": "docs/development/drug-trace-20261016/DEPLOYMENT_REVIEW.md",
+      "category": "navigation_or_entry",
+      "title": "基础部署复核与对接缺口"
+    },
+    {
+      "path": "docs/development/drug-trace-20261016/DEVELOPMENT_PLAN.md",
+      "category": "navigation_or_entry",
+      "title": "药品追溯模块详细开发计划"
+    },
+    {
+      "path": "docs/development/drug-trace-20261016/evidence/before-BACKLOG.md",
+      "category": "navigation_or_entry",
+      "title": "当前剩余任务"
+    },
+    {
+      "path": "docs/development/drug-trace-20261016/evidence/before-HANDOFF.md",
+      "category": "navigation_or_entry",
+      "title": "当前交接"
+    },
+    {
+      "path": "docs/development/drug-trace-20261016/evidence/before-README.md",
+      "category": "navigation_or_entry",
+      "title": "文档分类目录"
+    },
+    {
+      "path": "docs/development/drug-trace-20261016/evidence/before-STATE.md",
+      "category": "navigation_or_entry",
+      "title": "当前项目状态"
+    },
+    {
+      "path": "docs/development/drug-trace-20261016/EXTERNAL_INPUTS.md",
+      "category": "navigation_or_entry",
+      "title": "对接开发资料与协调单"
+    },
+    {
+      "path": "docs/development/drug-trace-20261016/fix2-20261017/README.md",
+      "category": "navigation_or_entry",
+      "title": "药品追溯第二轮整改实施（FIX2）"
+    },
+    {
+      "path": "docs/development/drug-trace-20261016/fix3-20261017/README.md",
+      "category": "navigation_or_entry",
+      "title": "FIX3 整改交付（第三次复核 7 组问题）"
+    },
+    {
+      "path": "docs/development/drug-trace-20261016/NEXT_AI_PROMPT.md",
+      "category": "navigation_or_entry",
+      "title": "下一AI一次性开发执行提示词"
+    },
+    {
+      "path": "docs/development/drug-trace-20261016/README.md",
+      "category": "navigation_or_entry",
+      "title": "药品追溯对接开发交付入口"
+    },
+    {
+      "path": "docs/development/drug-trace-20261016/review-2-20261017/evidence/before-BACKLOG.md",
+      "category": "navigation_or_entry",
+      "title": "当前剩余任务"
+    },
+    {
+      "path": "docs/development/drug-trace-20261016/review-2-20261017/evidence/before-HANDOFF.md",
+      "category": "navigation_or_entry",
+      "title": "当前交接"
+    },
+    {
+      "path": "docs/development/drug-trace-20261016/review-2-20261017/evidence/before-STATE.md",
+      "category": "navigation_or_entry",
+      "title": "当前项目状态"
+    },
+    {
+      "path": "docs/development/drug-trace-20261016/review-2-20261017/NEXT_AI_PROMPT.md",
+      "category": "navigation_or_entry",
+      "title": "下一AI执行提示词：修复真实对接缺口"
+    },
+    {
+      "path": "docs/development/drug-trace-20261016/review-2-20261017/README.md",
+      "category": "navigation_or_entry",
+      "title": "药品追溯第二次代码复核与完善计划"
+    },
+    {
+      "path": "docs/development/drug-trace-20261016/review-2-20261017/REMEDIATION_PLAN.md",
+      "category": "navigation_or_entry",
+      "title": "药品追溯第二轮详细完善计划"
+    },
+    {
+      "path": "docs/development/drug-trace-20261016/review-2-20261017/REVIEW.md",
+      "category": "navigation_or_entry",
+      "title": "药品追溯实现复核"
+    },
+    {
+      "path": "docs/development/drug-trace-20261016/review-3-20261017/evidence/before-BACKLOG.md",
+      "category": "navigation_or_entry",
+      "title": "当前剩余任务"
+    },
+    {
+      "path": "docs/development/drug-trace-20261016/review-3-20261017/evidence/before-HANDOFF.md",
+      "category": "navigation_or_entry",
+      "title": "当前交接"
+    },
+    {
+      "path": "docs/development/drug-trace-20261016/review-3-20261017/evidence/before-STATE.md",
+      "category": "navigation_or_entry",
+      "title": "当前项目状态"
+    },
+    {
+      "path": "docs/development/drug-trace-20261016/review-3-20261017/NEXT_AI_PROMPT.md",
+      "category": "navigation_or_entry",
+      "title": "下一AI：FIX3剩余链路修复"
+    },
+    {
+      "path": "docs/development/drug-trace-20261016/review-3-20261017/README.md",
+      "category": "navigation_or_entry",
+      "title": "FIX2后第三次复核"
+    },
+    {
+      "path": "docs/development/drug-trace-20261016/review-3-20261017/REVIEW.md",
+      "category": "navigation_or_entry",
+      "title": "FIX2整改后复核报告"
+    },
+    {
+      "path": "docs/development/drug-trace-20261016/SQL_REVIEW.md",
+      "category": "navigation_or_entry",
+      "title": "用户历史上报SQL复核与追加任务"
+    },
+    {
+      "path": "docs/development/drug-trace-content-contract-20261022/README.md",
+      "category": "navigation_or_entry",
+      "title": "追溯上报内容确定单（2026-10-22）"
+    },
+    {
+      "path": "docs/development/drug-trace-finalization-20261020/ACCEPTANCE.md",
+      "category": "navigation_or_entry",
+      "title": "FIN验收矩阵"
+    },
+    {
+      "path": "docs/development/drug-trace-finalization-20261020/EXTERNAL_INPUTS_AND_NETWORK.md",
+      "category": "navigation_or_entry",
+      "title": "网络开通与其余资料协调单"
+    },
+    {
+      "path": "docs/development/drug-trace-finalization-20261020/NEXT_AI_PROMPT.md",
+      "category": "navigation_or_entry",
+      "title": "下一AI可直接使用的执行提示词"
+    },
+    {
+      "path": "docs/development/drug-trace-finalization-20261020/README.md",
+      "category": "navigation_or_entry",
+      "title": "药品追溯剩余开发与部署收尾计划（2026-10-20）"
+    },
+    {
+      "path": "docs/development/drug-trace-firstbill-exec-20261021/ACCEPTANCE.md",
+      "category": "navigation_or_entry",
+      "title": "FB-A01—29 验收矩阵回填（DTR-FIRSTBILL-EXEC-20261021）"
+    },
+    {
+      "path": "docs/development/drug-trace-firstbill-exec-20261021/DBA-PACKAGE.md",
+      "category": "navigation_or_entry",
+      "title": "FB-03 DBA 交付包：HIS r7 视图 + 生产受限只读（DTR-FIRSTBILL-EXEC-20261021）"
+    },
+    {
+      "path": "docs/development/drug-trace-firstbill-exec-20261021/EXECUTION-REPORT.md",
+      "category": "navigation_or_entry",
+      "title": "DTR-FIRSTBILL-EXEC-20261021 执行报告"
+    },
+    {
+      "path": "docs/development/drug-trace-firstbill-exec-20261021/EXTERNAL-RECEIPT.md",
+      "category": "navigation_or_entry",
+      "title": "外部输入回执（DTR-FIRSTBILL-EXEC-20261021）"
+    },
+    {
+      "path": "docs/development/drug-trace-firstbill-exec-20261021/FIRST-BILL-RESULT.md",
+      "category": "navigation_or_entry",
+      "title": "FB-06 首张真实上传结果（DTR-FIRSTBILL-EXEC-20261021）"
+    },
+    {
+      "path": "docs/development/drug-trace-firstbill-exec-20261021/OPERATIONS.md",
+      "category": "navigation_or_entry",
+      "title": "运维手册（DTR-FIRSTBILL-EXEC-20261021 现场实态）"
+    },
+    {
+      "path": "docs/development/drug-trace-firstbill-exec-20261021/reference/official-guide-202601.md",
+      "category": "navigation_or_entry",
+      "title": "关于权限包的选择"
+    },
+    {
+      "path": "docs/development/drug-trace-firstbill-exec-20261021/SIGNATURE-QUALIFICATION.md",
+      "category": "navigation_or_entry",
+      "title": "FB-02 签名资格与官方契约对照报告（DTR-FIRSTBILL-EXEC-20261021）"
+    },
+    {
+      "path": "docs/development/drug-trace-history-compare-20261023/COMPARISON_PLAN.md",
+      "category": "navigation_or_entry",
+      "title": "历史上报与现视图比对计划"
+    },
+    {
+      "path": "docs/development/drug-trace-history-compare-20261023/README.md",
+      "category": "navigation_or_entry",
+      "title": "历史上报文件与药品追溯视图比对"
+    },
+    {
+      "path": "docs/development/drug-trace-history-live-compare-20261023/EXECUTION_TASK.md",
+      "category": "navigation_or_entry",
+      "title": "码上放心历史上报核查：下一AI完整执行任务书"
+    },
+    {
+      "path": "docs/development/drug-trace-history-live-compare-20261023/MODIFICATION_PLAN.md",
+      "category": "navigation_or_entry",
+      "title": "根据真实历史比对结果的完善计划"
+    },
+    {
+      "path": "docs/development/drug-trace-history-live-compare-20261023/NEXT_AI_PROMPT.md",
+      "category": "navigation_or_entry",
+      "title": "可直接复制给下一AI"
+    },
+    {
+      "path": "docs/development/drug-trace-history-live-compare-20261023/README.md",
+      "category": "navigation_or_entry",
+      "title": "历史清单与HIS两视图实际比对（2026-10-23）"
+    },
+    {
+      "path": "docs/development/drug-trace-history-rootcause-r2/CANDIDATE_CHANGES.md",
+      "category": "navigation_or_entry",
+      "title": "候选修订方案（rootcause-r2，2026-10-23）"
+    },
+    {
+      "path": "docs/development/drug-trace-history-rootcause-r2/EXTERNAL_INPUTS.md",
+      "category": "navigation_or_entry",
+      "title": "剩余外部缺项清单（r2b 源表核查后收敛，2026-10-23）"
+    },
+    {
+      "path": "docs/development/drug-trace-history-rootcause-r2/README.md",
+      "category": "navigation_or_entry",
+      "title": "码上放心历史核查 rootcause-r2（2026-10-23）"
+    },
+    {
+      "path": "docs/development/drug-trace-history-rootcause-r2/RESULT.md",
+      "category": "navigation_or_entry",
+      "title": "码上放心历史核查 rootcause-r2 结果（2026-10-23）"
+    },
+    {
+      "path": "docs/development/drug-trace-history-transfer-audit-20261023/README.md",
+      "category": "navigation_or_entry",
+      "title": "历史核对窗口移交的独立复核（2026-10-23）"
+    },
+    {
+      "path": "docs/development/drug-trace-input-recheck-20261022/README.md",
+      "category": "navigation_or_entry",
+      "title": "既有资料核对与真实只读实测（2026-10-22）"
+    },
+    {
+      "path": "docs/development/drug-trace-network-20261021/README.md",
+      "category": "navigation_or_entry",
+      "title": "网络调整后复测与推送判断（2026-10-21）"
+    },
+    {
+      "path": "docs/development/drug-trace-official-view-audit-20261022/official-guide-fresh.md",
+      "category": "navigation_or_entry",
+      "title": "official-guide-fresh"
+    },
+    {
+      "path": "docs/development/drug-trace-official-view-audit-20261022/README.md",
+      "category": "navigation_or_entry",
+      "title": "官方接口与HIS视图复核（2026-10-22）"
+    },
+    {
+      "path": "docs/development/drug-trace-one-bill-trial-20261022/README.md",
+      "category": "navigation_or_entry",
+      "title": "首张真实试报成功（2026-10-22）"
+    },
+    {
+      "path": "docs/development/drug-trace-oracle-first-page-20261022/README.md",
+      "category": "navigation_or_entry",
+      "title": "Oracle追溯码首屏修复（2026-10-22）"
+    },
+    {
+      "path": "docs/development/drug-trace-push-review-20261021/NEXT_AI_PROMPT.md",
+      "category": "navigation_or_entry",
+      "title": "下一AI长任务：药品追溯真实接入与首张上传"
+    },
+    {
+      "path": "docs/development/drug-trace-push-review-20261021/README.md",
+      "category": "navigation_or_entry",
+      "title": "部署后测试推送条件复核（2026-10-21）"
+    },
+    {
+      "path": "docs/development/drug-trace-r10-readiness-20261022/README.md",
+      "category": "navigation_or_entry",
+      "title": "r10执行后实际核查（2026-10-22 17:28 CST）"
+    },
+    {
+      "path": "docs/development/drug-trace-source-deploy-20261022/README.md",
+      "category": "navigation_or_entry",
+      "title": "药品追溯来源接入与部署实测（2026-10-22）"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/README.md",
+      "category": "navigation_or_entry",
+      "title": "定时上报落地（2026-10-24）"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/RESULT.md",
+      "category": "navigation_or_entry",
+      "title": "定时上报落地结果（2026-10-24）"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-ui-plan-20261024/evidence/FIX-00-baseline.md",
+      "category": "navigation_or_entry",
+      "title": "FIX-00 基线记录（DTR-TIMED-UI-FIX-20261024）"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-ui-plan-20261024/evidence/FIX-browser-verification.md",
+      "category": "navigation_or_entry",
+      "title": "FIX-09 浏览器复验记录（DTR-TIMED-UI-FIX-20261024，2026-10-24）"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-ui-plan-20261024/evidence/FIX-F-A07-frozen-check.md",
+      "category": "navigation_or_entry",
+      "title": "F-A07 禁改清单核对（DTR-TIMED-UI-FIX-20261024，2026-10-24）"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-ui-plan-20261024/evidence/TUI-00-baseline.md",
+      "category": "navigation_or_entry",
+      "title": "TUI-00 基线（2026-10-24，ZCode/GLM-5.3）"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-ui-plan-20261024/evidence/TUI-05-06-ui-verification.md",
+      "category": "navigation_or_entry",
+      "title": "TUI-05/06 前端验证记录（2026-10-24，ZCode/GLM-5.3）"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-ui-plan-20261024/EXECUTION_TASK.md",
+      "category": "navigation_or_entry",
+      "title": "定时上报可视化（前端+API）长任务执行书"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-ui-plan-20261024/FIX_TASK.md",
+      "category": "navigation_or_entry",
+      "title": "定时上报可视化 · 复核修复执行书（FIX-00 — FIX-09）"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-ui-plan-20261024/NEXT_AI_PROMPT.md",
+      "category": "navigation_or_entry",
+      "title": "可直接复制给下一AI"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-ui-plan-20261024/README.md",
+      "category": "navigation_or_entry",
+      "title": "定时上报可视化 · 开发计划（2026-10-24）"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-ui-plan-20261024/RESULT.md",
+      "category": "navigation_or_entry",
+      "title": "定时上报可视化执行结果（DTR-TIMED-UI-20261024）"
+    },
+    {
+      "path": "docs/development/drug-trace-trial-prerequisites-20261022/README.md",
+      "category": "navigation_or_entry",
+      "title": "单笔测试前置条件修订（2026-10-22）"
+    },
+    {
+      "path": "docs/development/drug-trace-view-verify-20261022/README.md",
+      "category": "navigation_or_entry",
+      "title": "HIS已建视图与账号核验（2026-10-22）"
+    },
+    {
+      "path": "docs/development/his-live-20261019/PLATFORM_ACCESS.md",
+      "category": "navigation_or_entry",
+      "title": "码上放心平台申请与资料交付"
+    },
+    {
+      "path": "docs/development/his-live-20261019/README.md",
+      "category": "navigation_or_entry",
+      "title": "HIS 活库核查与上传内容确认（2026-10-19）"
+    },
+    {
+      "path": "docs/development/his-sjzc-20261019/README.md",
+      "category": "navigation_or_entry",
+      "title": "HIS sjzc 核验与接入计划（2026-10-19）"
+    },
+    {
+      "path": "docs/development/platform-credentials-20261020/README.md",
+      "category": "navigation_or_entry",
+      "title": "码上放心资料登记与后续AI接手（2026-10-20）"
+    },
+    {
+      "path": "docs/development/platform-live-test-20261020/README.md",
+      "category": "navigation_or_entry",
+      "title": "真实平台联调与现场链路复测（2026-10-20）"
+    },
+    {
+      "path": "docs/maintenance/2026-10-02-整理记录.md",
+      "category": "maintenance_evidence",
+      "title": "2026-10-02 文档、启动和跨AI协作整理"
+    },
+    {
+      "path": "docs/maintenance/reporting-directory-guides-20261023/README.md",
+      "category": "maintenance_evidence",
+      "title": "各上报目录接手说明维护记录（2026-10-23）"
+    },
+    {
+      "path": "docs/operations/drug-trace-daily-health-20261026/README.md",
+      "category": "navigation_or_entry",
+      "title": "2026-10-26 早间日批只读核查"
+    },
+    {
+      "path": "docs/operations/drug-trace-flow-20261022/README.md",
+      "category": "navigation_or_entry",
+      "title": "追溯码推送流程说明"
+    },
+    {
+      "path": "docs/operations/drug-trace-ntp-dashboard-20261025/NETWORK-REQUEST.md",
+      "category": "navigation_or_entry",
+      "title": "可直接转交：追溯码系统NTP与看板访问"
+    },
+    {
+      "path": "docs/operations/drug-trace-ntp-dashboard-20261025/README.md",
+      "category": "navigation_or_entry",
+      "title": "2026-10-25 定时修复、NTP与看板部署实录"
+    },
+    {
+      "path": "docs/operations/drug-trace-queue-repair-20261026/README.md",
+      "category": "navigation_or_entry",
+      "title": "排队超时修复与三类业务缺项说明（2026-10-26）"
+    },
+    {
+      "path": "docs/operations/drug-trace-timer-health-20261025/README.md",
+      "category": "navigation_or_entry",
+      "title": "定时上报实际运行检查（2026-10-25）"
+    },
+    {
+      "path": "docs/operations/drug-trace-timer-repair-20261025/README.md",
+      "category": "navigation_or_entry",
+      "title": "定时上报修复与恢复记录（2026-10-25）"
+    },
+    {
+      "path": "docs/README.md",
+      "category": "navigation_or_entry",
+      "title": "文档分类目录"
+    },
+    {
+      "path": "docs/sources/README.md",
+      "category": "source_index",
+      "title": "原件、规范和来源效力"
+    },
+    {
+      "path": "docs/startup/DATABASE_ACCESS.md",
+      "category": "navigation_or_entry",
+      "title": "数据库查询统一入口：sjzc"
+    },
+    {
+      "path": "docs/startup/README.md",
+      "category": "navigation_or_entry",
+      "title": "启动、测试和部署入口分类"
+    },
+    {
+      "path": "implementation/AGENTS.md",
+      "category": "navigation_or_entry",
+      "title": "implementation 工作目录入口"
+    },
+    {
+      "path": "implementation/CLAUDE.md",
+      "category": "navigation_or_entry",
+      "title": "Claude 从实现目录接手"
+    },
+    {
+      "path": "implementation/deploy/dmz/README.md",
+      "category": "operations",
+      "title": "BLYB DMZ 转发器部署（v2 · DTR-FINALIZE-20261020）"
+    },
+    {
+      "path": "implementation/deploy/dmz/README.socket.md",
+      "category": "operations",
+      "title": "socket activation 说明（随发行包部署到 /opt/blyb-dmz/current/）"
+    },
+    {
+      "path": "implementation/deploy/intranet/README.md",
+      "category": "operations",
+      "title": "医院内网部署（SQLite 单机）"
+    },
+    {
+      "path": "implementation/deploy/linux/docker-offline/README.md",
+      "category": "operations",
+      "title": "离线 Docker 材料（openEuler 22.03 x86_64 · <prod-host>）"
+    },
+    {
+      "path": "implementation/deploy/linux/README.md",
+      "category": "operations",
+      "title": "Linux 生产部署（<prod-host> 基础平台）"
+    },
+    {
+      "path": "implementation/deploy/offline/README.md",
+      "category": "operations",
+      "title": "离线包构建与目标机安装（T13 回填）"
+    },
+    {
+      "path": "implementation/deploy/oracle/README.md",
+      "category": "operations",
+      "title": "Oracle Instant Client 19c 构建材料（DPL-P01）"
+    },
+    {
+      "path": "implementation/deploy/windows/win7/README.md",
+      "category": "operations",
+      "title": "Win7 构建说明（BLYB-EdgeAgent）"
+    },
+    {
+      "path": "implementation/docs/04-API目录对照矩阵.md",
+      "category": "implementation_status",
+      "title": "04 §5 API 目录逐项对照矩阵（W11/G24）"
+    },
+    {
+      "path": "implementation/docs/adr/ADR-DEV-01-Python与数据库选型.md",
+      "category": "implementation_decision",
+      "title": "ADR-DEV-01：Python 3.14 + SQLAlchemy 双引擎（SQLite开发 / PostgreSQL生产）"
+    },
+    {
+      "path": "implementation/docs/adr/ADR-DEV-02-单执行器与内嵌worker.md",
+      "category": "implementation_decision",
+      "title": "ADR-DEV-02：单Worker执行器 + 可选内嵌storage worker"
+    },
+    {
+      "path": "implementation/docs/adr/ADR-DEV-03-演示批准Pack与审慎默认.md",
+      "category": "implementation_decision",
+      "title": "ADR-DEV-03：演示批准 Pack（合成成功路径）与 review-draft 默认并存"
+    },
+    {
+      "path": "implementation/docs/adr/ADR-DEV-04-性能测量方法.md",
+      "category": "implementation_decision",
+      "title": "ADR-DEV-04：性能测试测服务子进程RSS；定位TestClient内存失真"
+    },
+    {
+      "path": "implementation/docs/adr/ADR-DEV-05-Agent打包exe.md",
+      "category": "implementation_decision",
+      "title": "ADR-DEV-05：采集端 Agent 以 PyInstaller 打包为免安装 exe（含运行环境）"
+    },
+    {
+      "path": "implementation/docs/adr/ADR-DEV-06-轮询链代次dedup与请求体模型位置.md",
+      "category": "implementation_decision",
+      "title": "ADR-DEV-06：轮询链代次dedup + 请求体模型必须模块级"
+    },
+    {
+      "path": "implementation/docs/adr/ADR-DTR-01-SDK与签名策略.md",
+      "category": "implementation_decision",
+      "title": "ADR-DTR-01：码上放心平台 SDK 与签名策略"
+    },
+    {
+      "path": "implementation/docs/adr/README.md",
+      "category": "implementation_decision",
+      "title": "实施ADR索引"
+    },
+    {
+      "path": "implementation/docs/audit/2026-10-01/G矩阵-收尾轮.md",
+      "category": "audit_evidence",
+      "title": "G01—G31 验收矩阵：整改收尾轮逐项对照（2026-10-01）"
+    },
+    {
+      "path": "implementation/docs/audit/2026-10-01/README.md",
+      "category": "audit_evidence",
+      "title": "2026-10-01 独立复核证据"
+    },
+    {
+      "path": "implementation/docs/audit/2026-10-01/本地收尾-变更与核查.md",
+      "category": "audit_evidence",
+      "title": "本地收尾轮（第4轮）变更与核查台账（2026-10-02）"
+    },
+    {
+      "path": "implementation/docs/PII保护边界.md",
+      "category": "implementation_status",
+      "title": "PII 保护边界（S07 盘点 · 本地收尾轮第4轮成文）"
+    },
+    {
+      "path": "implementation/docs/README.md",
+      "category": "implementation_status",
+      "title": "实施文档入口"
+    },
+    {
+      "path": "implementation/docs/runbooks/README.md",
+      "category": "operations",
+      "title": "运维文档索引"
+    },
+    {
+      "path": "implementation/docs/runbooks/TLS证书与验证.md",
+      "category": "operations",
+      "title": "Runbook：TLS 证书与验证（OPS-01）"
+    },
+    {
+      "path": "implementation/docs/runbooks/启动与日常运维.md",
+      "category": "operations",
+      "title": "Runbook：启动与日常运维"
+    },
+    {
+      "path": "implementation/docs/runbooks/备份与恢复.md",
+      "category": "operations",
+      "title": "Runbook：备份与恢复"
+    },
+    {
+      "path": "implementation/docs/runbooks/离线发行材料.md",
+      "category": "operations",
+      "title": "Runbook：离线发行材料"
+    },
+    {
+      "path": "implementation/docs/外部阻断清单.md",
+      "category": "implementation_status",
+      "title": "外部阻断清单"
+    },
+    {
+      "path": "implementation/docs/实施状态矩阵.md",
+      "category": "implementation_status",
+      "title": "实施状态矩阵"
+    },
+    {
+      "path": "implementation/docs/接口与设计差异.md",
+      "category": "implementation_status",
+      "title": "接口与设计差异"
+    },
+    {
+      "path": "implementation/docs/测试执行记录.md",
+      "category": "implementation_status",
+      "title": "测试执行记录"
+    },
+    {
+      "path": "implementation/docs/测试计划与执行-2026-09-30-深度核查.md",
+      "category": "implementation_status",
+      "title": "历史深度核查计划已归档"
+    },
+    {
+      "path": "implementation/docs/系统架构与流程说明.md",
+      "category": "implementation_status",
+      "title": "系统架构与流程说明（通俗版）"
+    },
+    {
+      "path": "implementation/README.md",
+      "category": "navigation_or_entry",
+      "title": "医院数据归集与上报平台（实现）"
+    },
+    {
+      "path": "README.md",
+      "category": "navigation_or_entry",
+      "title": "医院数据归集与上报平台 · 项目总入口"
+    },
+    {
+      "path": "review/round-1/分歧表.md",
+      "category": "navigation_or_entry",
+      "title": "分歧表 · round-1（2026-10-15）"
+    },
+    {
+      "path": "review/round-1/哈希.md",
+      "category": "navigation_or_entry",
+      "title": "哈希"
+    },
+    {
+      "path": "review/round-1/哈希_kimi.md",
+      "category": "navigation_or_entry",
+      "title": "哈希_kimi"
+    },
+    {
+      "path": "review/round-1/审查_kimi.md",
+      "category": "navigation_or_entry",
+      "title": "审查_kimi"
+    },
+    {
+      "path": "review/round-1/审查_zcode.md",
+      "category": "navigation_or_entry",
+      "title": "审查_zcode.md · GLM (ZCode) 独立初审 · round-1"
+    },
+    {
+      "path": "review/round-1/方案.md",
+      "category": "navigation_or_entry",
+      "title": "方案（待审对象：两份部署/契约文档）· multi-review round-1"
+    },
+    {
+      "path": "review/round-1/最终报告.md",
+      "category": "navigation_or_entry",
+      "title": "multi-review round-1 最终报告 · 2026-10-15"
+    },
+    {
+      "path": "review/round-1/检查_codex.md",
+      "category": "navigation_or_entry",
+      "title": "检查_codex"
+    },
+    {
+      "path": "review/round-1/缺席登记.md",
+      "category": "navigation_or_entry",
+      "title": "round-1 缺席登记（红线5：记原因后跳过，不重试不阻塞）"
+    },
+    {
+      "path": "一次性执行任务-本地剩余与内网部署-2026-10-01.md",
+      "category": "pending_task_spec",
+      "title": "一次性执行任务：本地剩余项 + 医院内网离线部署（2026-10-01 第4轮）"
+    },
+    {
+      "path": "交接提示词_深度核查续做.md",
+      "category": "navigation_or_entry",
+      "title": "历史提示词已归档"
+    },
+    {
+      "path": "医院数据归集与上报平台总体方案_v0.3.md",
+      "category": "navigation_or_entry",
+      "title": "v0.3总方案已归档"
+    },
+    {
+      "path": "医院数据归集与上报平台总体方案_v0.4.md",
+      "category": "active_design",
+      "title": "医院数据归集与上报平台总体方案 v0.4"
+    },
+    {
+      "path": "开发执行提示词_v0.4.md",
+      "category": "navigation_or_entry",
+      "title": "开发AI执行提示词 v0.4"
+    },
+    {
+      "path": "归档/2026-09-30/2026-09-29_静态校验记录.md",
+      "category": "historical",
+      "title": "设计交付静态校验记录"
+    },
+    {
+      "path": "归档/2026-09-30/README.md",
+      "category": "historical",
+      "title": "历史与辅助文件归档"
+    },
+    {
+      "path": "归档/2026-09-30/历史方案/病理医保云上传系统设计方案.md",
+      "category": "historical",
+      "title": "病理医保云上传系统设计方案"
+    },
+    {
+      "path": "归档/2026-09-30/历史方案/病理医保云上传系统设计方案_复核修订版.md",
+      "category": "historical",
+      "title": "病理医保云上传系统设计方案（复核修订版）"
+    },
+    {
+      "path": "归档/2026-10-02/README.md",
+      "category": "historical",
+      "title": "2026-10-02 文档整理归档"
+    },
+    {
+      "path": "归档/2026-10-02/历史提示词/交接提示词_深度核查续做.md",
+      "category": "historical",
+      "title": "交接提示词：深度核查轮·续做（交予下一个开发AI）"
+    },
+    {
+      "path": "归档/2026-10-02/历史方案/医院数据归集与上报平台总体方案_v0.3.md",
+      "category": "historical",
+      "title": "医院数据归集与上报平台总体方案 v0.3"
+    },
+    {
+      "path": "归档/2026-10-02/历史测试/测试计划与执行-2026-09-30-深度核查.md",
+      "category": "historical",
+      "title": "测试计划与执行：v0.4 实现深度核查（第二轮）"
+    },
+    {
+      "path": "归档/README.md",
+      "category": "historical",
+      "title": "历史归档总索引"
+    },
+    {
+      "path": "数据上报/1、码上放心平台/README.md",
+      "category": "navigation_or_entry",
+      "title": "码上放心平台 · 目录说明与AI接手入口"
+    },
+    {
+      "path": "数据上报/1、码上放心平台/历史上报数据/README.md",
+      "category": "navigation_or_entry",
+      "title": "码上放心历史上报数据说明"
+    },
+    {
+      "path": "数据上报/2、医保电子病历上报/README.md",
+      "category": "navigation_or_entry",
+      "title": "医保电子病历上报 · 目录说明与AI接手入口"
+    },
+    {
+      "path": "数据上报/3、病理上报/README.md",
+      "category": "navigation_or_entry",
+      "title": "病理上报 · 目录说明与AI接手入口"
+    },
+    {
+      "path": "数据上报/README.md",
+      "category": "navigation_or_entry",
+      "title": "数据上报项目目录索引与维护要求"
+    },
+    {
+      "path": "数据上报/上报项目目录说明模板.md",
+      "category": "navigation_or_entry",
+      "title": "＜业务名＞ · 目录说明与AI接手入口"
+    },
+    {
+      "path": "数据上报/历史上报数据/README.md",
+      "category": "navigation_or_entry",
+      "title": "历史上报数据 · 资料说明"
+    },
+    {
+      "path": "设计交付v0.3/00_阅读入口与开发约束.md",
+      "category": "historical",
+      "title": "医院数据归集与上报平台：开发设计交付包"
+    },
+    {
+      "path": "设计交付v0.3/01_资料复核与待确认清单.md",
+      "category": "historical",
+      "title": "资料复核、冲突处理与待确认清单"
+    },
+    {
+      "path": "设计交付v0.3/02_总体架构与可视化产品设计.md",
+      "category": "historical",
+      "title": "总体架构与可视化产品设计"
+    },
+    {
+      "path": "设计交付v0.3/03_采集端与自研存储服务详细设计.md",
+      "category": "historical",
+      "title": "Windows采集端与自研存储服务详细设计"
+    },
+    {
+      "path": "设计交付v0.3/04_数据模型与内部接口契约.md",
+      "category": "historical",
+      "title": "数据模型与内部接口契约"
+    },
+    {
+      "path": "设计交付v0.3/05_任务编排与病理_PACS适配设计.md",
+      "category": "historical",
+      "title": "任务编排、病理流程与PACS参考适配"
+    },
+    {
+      "path": "设计交付v0.3/06_迪英加扫描仪接口需求书_待厂商确认.md",
+      "category": "historical",
+      "title": "迪英加病理扫描结果采集接口需求书"
+    },
+    {
+      "path": "设计交付v0.3/07_实施任务与验收测试.md",
+      "category": "historical",
+      "title": "实施任务、测试与交付标准"
+    },
+    {
+      "path": "设计交付v0.3/08_设计交付静态校验记录.md",
+      "category": "historical",
+      "title": "设计交付静态校验记录"
+    },
+    {
+      "path": "设计交付v0.3/README.md",
+      "category": "historical",
+      "title": "v0.3 在位历史材料"
+    },
+    {
+      "path": "设计交付v0.3/契约与示例/README.md",
+      "category": "historical",
+      "title": "契约与示例说明"
+    },
+    {
+      "path": "设计交付v0.4/00_阅读入口与开发约束.md",
+      "category": "active_design",
+      "title": "医院数据归集与上报平台：开发设计交付包"
+    },
+    {
+      "path": "设计交付v0.4/01_资料复核与待确认清单.md",
+      "category": "active_design",
+      "title": "资料复核、冲突处理与待确认清单"
+    },
+    {
+      "path": "设计交付v0.4/02_总体架构与可视化产品设计.md",
+      "category": "active_design",
+      "title": "总体架构与可视化产品设计"
+    },
+    {
+      "path": "设计交付v0.4/03_采集端与自研存储服务详细设计.md",
+      "category": "active_design",
+      "title": "Windows采集端与自研存储服务详细设计"
+    },
+    {
+      "path": "设计交付v0.4/04_数据模型与内部接口契约.md",
+      "category": "active_design",
+      "title": "数据模型与内部接口契约"
+    },
+    {
+      "path": "设计交付v0.4/05_任务编排与病理_PACS适配设计.md",
+      "category": "active_design",
+      "title": "任务编排、病理流程与PACS参考适配"
+    },
+    {
+      "path": "设计交付v0.4/06_迪英加扫描仪接口需求书_待厂商确认.md",
+      "category": "active_design",
+      "title": "迪英加病理扫描结果采集接口需求书"
+    },
+    {
+      "path": "设计交付v0.4/07_实施任务与验收测试.md",
+      "category": "active_design",
+      "title": "实施任务、测试与交付标准"
+    },
+    {
+      "path": "设计交付v0.4/08_设计交付静态校验记录.md",
+      "category": "active_design",
+      "title": "设计交付静态校验记录"
+    },
+    {
+      "path": "设计交付v0.4/09_复核意见处置与证据边界.md",
+      "category": "active_design",
+      "title": "v0.4 复核意见处置与证据边界"
+    },
+    {
+      "path": "设计交付v0.4/10_首院连接器与数据质量实施契约.md",
+      "category": "active_design",
+      "title": "首院连接器与数据质量实施契约"
+    },
+    {
+      "path": "设计交付v0.4/契约与示例/README.md",
+      "category": "active_design",
+      "title": "契约与示例说明"
+    },
+    {
+      "path": "项目独立复核与详细整改计划_2026-10-01.md",
+      "category": "review_and_execution_history",
+      "title": "当前项目独立复核与详细整改执行计划"
+    },
+    {
+      "path": "docs/operations/drug-trace-mapping-ntp-20261026/README.md",
+      "category": "operations_evidence",
+      "title": "药房映射、内网校时与看板登录（2026-10-26）"
+    },
+    {
+      "path": "docs/ai/sessions/DTR-MAPPING-NTP-20261026.md",
+      "category": "ai_session_handoff",
+      "title": "药房映射、NTP与顺序补发交接"
+    }
+  ],
+  "excluded_generated_or_private_directories": [
+    ".ai",
+    ".git",
+    ".pytest_cache",
+    ".v2c",
+    ".video_agent",
+    "__pycache__",
+    "build",
+    "dist",
+    "node_modules",
+    "snapshots",
+    "validation-deps",
+    "var",
+    "校验依赖"
+  ],
+  "note": "Classification only; this catalog does not declare implementation acceptance."
+}

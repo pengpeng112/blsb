@@ -1,0 +1,177 @@
+{
+  "workflow_key": "pathology.mock_push",
+  "revision": 1,
+  "input_schema": {
+    "key": "pathology.candidate",
+    "version": "1.0"
+  },
+  "trigger": "package_changed",
+  "production_enabled": false,
+  "nodes": [
+    {
+      "id": "resolve",
+      "type": "resolve",
+      "plugin_ref": {
+        "key": "pathology.resolve",
+        "version": "1.0"
+      },
+      "parameters": {
+        "strategy": "pis_barcode_lookup"
+      },
+      "timeout_seconds": 300,
+      "retry": {
+        "max_attempts": 3,
+        "initial_delay_seconds": 5,
+        "max_delay_seconds": 300
+      }
+    },
+    {
+      "id": "quality",
+      "type": "validate",
+      "plugin_ref": {
+        "key": "pathology.quality",
+        "version": "1.0"
+      },
+      "parameters": {
+        "ruleset_ref": "hospital-demo-quality-v1"
+      },
+      "timeout_seconds": 300,
+      "retry": {
+        "max_attempts": 3,
+        "initial_delay_seconds": 5,
+        "max_delay_seconds": 300
+      }
+    },
+    {
+      "id": "ready",
+      "type": "wait_dependencies",
+      "plugin_ref": {
+        "key": "pathology.completeness",
+        "version": "1.0"
+      },
+      "parameters": {
+        "policy": "whole_case"
+      },
+      "timeout_seconds": 300,
+      "retry": {
+        "max_attempts": 3,
+        "initial_delay_seconds": 5,
+        "max_delay_seconds": 300
+      }
+    },
+    {
+      "id": "freeze",
+      "type": "package.freeze",
+      "plugin_ref": {
+        "key": "core.package",
+        "version": "1.0"
+      },
+      "parameters": {},
+      "timeout_seconds": 300,
+      "retry": {
+        "max_attempts": 3,
+        "initial_delay_seconds": 5,
+        "max_delay_seconds": 300
+      }
+    },
+    {
+      "id": "map",
+      "type": "target.map",
+      "plugin_ref": {
+        "key": "profile.pathology_internal_v1",
+        "version": "1.0"
+      },
+      "parameters": {},
+      "timeout_seconds": 300,
+      "retry": {
+        "max_attempts": 3,
+        "initial_delay_seconds": 5,
+        "max_delay_seconds": 300
+      }
+    },
+    {
+      "id": "validate",
+      "type": "target.validate",
+      "plugin_ref": {
+        "key": "core.schema",
+        "version": "1.0"
+      },
+      "parameters": {},
+      "timeout_seconds": 300,
+      "retry": {
+        "max_attempts": 3,
+        "initial_delay_seconds": 5,
+        "max_delay_seconds": 300
+      }
+    },
+    {
+      "id": "send",
+      "type": "deliver.push",
+      "plugin_ref": {
+        "key": "destination.mock_http",
+        "version": "1.0"
+      },
+      "parameters": {
+        "destination_ref": "mock-only"
+      },
+      "timeout_seconds": 300,
+      "retry": {
+        "max_attempts": 3,
+        "initial_delay_seconds": 5,
+        "max_delay_seconds": 300
+      }
+    },
+    {
+      "id": "receipt",
+      "type": "receipt.wait",
+      "plugin_ref": {
+        "key": "destination.mock_http",
+        "version": "1.0"
+      },
+      "parameters": {},
+      "timeout_seconds": 300,
+      "retry": {
+        "max_attempts": 3,
+        "initial_delay_seconds": 5,
+        "max_delay_seconds": 300
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "resolve",
+      "to": "quality",
+      "on": "success"
+    },
+    {
+      "from": "quality",
+      "to": "ready",
+      "on": "success"
+    },
+    {
+      "from": "ready",
+      "to": "freeze",
+      "on": "success"
+    },
+    {
+      "from": "freeze",
+      "to": "map",
+      "on": "success"
+    },
+    {
+      "from": "map",
+      "to": "validate",
+      "on": "success"
+    },
+    {
+      "from": "validate",
+      "to": "send",
+      "on": "success"
+    },
+    {
+      "from": "send",
+      "to": "receipt",
+      "on": "success"
+    }
+  ]
+}

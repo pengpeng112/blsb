@@ -1,0 +1,80 @@
+{
+  "utc": "2026-10-27T07:07:07.545383+00:00",
+  "network_calls": 0,
+  "release": "stability-20261027T030000Z-r2",
+  "seven_runtime_files_match_working_tree": true,
+  "bundle_hashes_verified": 282,
+  "baseline_files_unchanged": 7,
+  "driver_and_resumed_binding_verified": true,
+  "tests": {
+    "application_full": {
+      "tests": 569,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 7,
+      "passed": 562
+    },
+    "local_including_pg": {
+      "tests": 81,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 81
+    },
+    "final_guard": {
+      "tests": 15,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 15
+    },
+    "top7_operations": {
+      "tests": 26,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 26
+    },
+    "query_only_completion": {
+      "tests": 13,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 13
+    },
+    "final_driver_budget_local": {
+      "tests": 55,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 55
+    }
+  },
+  "skipped_reasons": [
+    "BLYB_PG_URL 未配置：真PG >2GB 实测未执行（本机无PG环境）",
+    "live stack functional test; set BLYB_LIVE_STACK=1 with a running stack",
+    "Windows 套接字句柄不可按 fd 序号布局",
+    "BLYB_PIS_SQLSERVER_DSN 未配置（B01 授权后启用）",
+    "BLYB_ORACLE_DSN 未配置（B01/B05 授权后启用）",
+    "pyodbc installed",
+    "50GB压力需专门磁盘窗口；默认未执行（如实记录）"
+  ],
+  "operations_scripts_compiled": 53,
+  "task_links_verified": 26,
+  "catalog_entries_unique": 3,
+  "source_sql": {
+    "01-waiting-master.sql": "23813634ad7ed61d627509c94676367478bd895ee85e58c83e3910af95d34ec2",
+    "02-waiting-trace-exact.sql": "1d3716a87aebb084b690429c444b14db287930f7dc142ebb13fcd9212f89b12a",
+    "03-waiting-trace-nearby.sql": "75f5ce8269dca8dce3f889b182a00141b9b130ad6742efe34a301d5ef10c8ffc"
+  },
+  "source_sql_live_executed": false,
+  "ui_only_successor": {
+    "release": "stability-20261027T064000Z-r3",
+    "only_three_frontend_files": true,
+    "core_runtime_unchanged": true,
+    "dependency_freeze_unchanged": true,
+    "bundle_hashes_verified": 282,
+    "synthetic_browser_checks": 18,
+    "business_posts": 0
+  }
+}

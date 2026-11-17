@@ -1,0 +1,41 @@
+{
+ "info": "11405",
+ "msgid": "合成msgid",
+ "mdtrtarea_admvs": "合成mdtr",
+ "recer_sys_code": "合成recer_sy",
+ "infver": "合成infv",
+ "opter_type": "1",
+ "opter": "合成opter",
+ "opter_name": "合成敏感值占位",
+ "inf_time": "2026-02-01 08:00:00",
+ "fixmedins_code": "合成fixmedin",
+ "input": {
+  "oprninfo": [
+   {
+    "mdtrt_sn": "合成mdtrt_sn",
+    "mdtrt_id": "合成mdtrt_id",
+    "medins_file_no": "合成敏感值占位",
+    "psn_no": "合成敏感值占位",
+    "medrcdno": "合成medrcdno",
+    "oprn_oprt_sn": 1,
+    "oprn_oprt_code": "合成oprn_opr",
+    "oprn_oprt_name": "合成oprn_opr",
+    "itvt_name": "合成itvt_nam",
+    "oprn_oprt_cnt": 1,
+    "oprn_oprt_time": "2026-02-01 08:00:00",
+    "vali_flag": "合成v"
+   }
+  ],
+  "rescinfo": [
+   {
+    "resc_begntime": "2026-02-01 08:00:00",
+    "resc_endtime": "2026-02-01 08:00:00",
+    "er_resc_rec": "合成er_resc_",
+    "resc_psn_list": "合成resc_psn",
+    "vali_flag": "合成v",
+    "resc_id": "合成resc_id",
+    "cond_outc_code": "合成c"
+   }
+  ]
+ }
+}

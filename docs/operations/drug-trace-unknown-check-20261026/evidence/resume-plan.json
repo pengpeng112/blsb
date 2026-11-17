@@ -1,0 +1,9 @@
+{
+  "previously_conclusively_checked": 8,
+  "remaining": 239,
+  "positive_controls": 1,
+  "minimum_request_interval_seconds": 3.2,
+  "query_windows": "union of overlapping business/upload windows; same exact bill identity",
+  "uploads": 0,
+  "business_writes": 0
+}

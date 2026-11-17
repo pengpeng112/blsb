@@ -1,0 +1,252 @@
+{
+ "authorization": "DTR-SCOPE-DEV-20261027 HIS read-only probe r2 (Q1 sample widening, PDA_STATE, PUB_CONFIG keys)",
+ "source_writes": 0,
+ "uploads": 0,
+ "r2_request_no_sample": {
+  "ok": true,
+  "n": 10,
+  "rows": [
+   {
+    "REQUEST_NO": "02010420261026091911",
+    "PHA_CODE": "050103"
+   },
+   {
+    "REQUEST_NO": "02010420261026094003",
+    "PHA_CODE": "050103"
+   },
+   {
+    "REQUEST_NO": "02010420261026101622",
+    "PHA_CODE": "050107"
+   },
+   {
+    "REQUEST_NO": "02010420261026102321",
+    "PHA_CODE": "050103"
+   },
+   {
+    "REQUEST_NO": "02010420261026102524",
+    "PHA_CODE": "050103"
+   },
+   {
+    "REQUEST_NO": "02010420261026103910",
+    "PHA_CODE": "050103"
+   },
+   {
+    "REQUEST_NO": "02010420261026105846",
+    "PHA_CODE": "050103"
+   },
+   {
+    "REQUEST_NO": "02010420261026110430",
+    "PHA_CODE": "050103"
+   },
+   {
+    "REQUEST_NO": "02010420261026111218",
+    "PHA_CODE": "050103"
+   },
+   {
+    "REQUEST_NO": "02010420261026115041",
+    "PHA_CODE": "050103"
+   }
+  ],
+  "seconds": 2.024
+ },
+ "r2_disp_recordno": {
+  "ok": true,
+  "n": 10,
+  "rows": [
+   {
+    "REQUEST_NO": "02010420261026111218",
+    "DIS_RECORDNO": "2026102611125737325"
+   },
+   {
+    "REQUEST_NO": "02010420261026094003",
+    "DIS_RECORDNO": "2026102609425711625"
+   },
+   {
+    "REQUEST_NO": "02010420261026115041",
+    "DIS_RECORDNO": "2026102611562007442"
+   },
+   {
+    "REQUEST_NO": "02010420261026091911",
+    "DIS_RECORDNO": "2026102609235738110"
+   },
+   {
+    "REQUEST_NO": "02010420261026101622",
+    "DIS_RECORDNO": "2026102610194612465"
+   },
+   {
+    "REQUEST_NO": "02010420261026105846",
+    "DIS_RECORDNO": "2026102611122065166"
+   },
+   {
+    "REQUEST_NO": "02010420261026102524",
+    "DIS_RECORDNO": "2026102611122075996"
+   },
+   {
+    "REQUEST_NO": "02010420261026103910",
+    "DIS_RECORDNO": "2026102611122082693"
+   },
+   {
+    "REQUEST_NO": "02010420261026102321",
+    "DIS_RECORDNO": "2026102611122088226"
+   },
+   {
+    "REQUEST_NO": "02010420261026110430",
+    "DIS_RECORDNO": "2026102611122112295"
+   }
+  ],
+  "seconds": 0.083
+ },
+ "r2_dispdetail_pda": {
+  "ok": true,
+  "n": 10,
+  "rows": [
+   {
+    "REQUEST_NO": "02010420261026115041",
+    "DIS_RECORDNO": "2026102611562007442",
+    "PDA_STATE": 0,
+    "CNT": 9
+   },
+   {
+    "REQUEST_NO": "02010420261026105846",
+    "DIS_RECORDNO": "2026102611122065166",
+    "PDA_STATE": 0,
+    "CNT": 8
+   },
+   {
+    "REQUEST_NO": "02010420261026110430",
+    "DIS_RECORDNO": "2026102611122112295",
+    "PDA_STATE": 0,
+    "CNT": 7
+   },
+   {
+    "REQUEST_NO": "02010420261026111218",
+    "DIS_RECORDNO": "2026102611125737325",
+    "PDA_STATE": 0,
+    "CNT": 3
+   },
+   {
+    "REQUEST_NO": "02010420261026101622",
+    "DIS_RECORDNO": "2026102610194612465",
+    "PDA_STATE": 0,
+    "CNT": 1
+   },
+   {
+    "REQUEST_NO": "02010420261026103910",
+    "DIS_RECORDNO": "2026102611122082693",
+    "PDA_STATE": 0,
+    "CNT": 4
+   },
+   {
+    "REQUEST_NO": "02010420261026102321",
+    "DIS_RECORDNO": "2026102611122088226",
+    "PDA_STATE": 0,
+    "CNT": 18
+   },
+   {
+    "REQUEST_NO": "02010420261026091911",
+    "DIS_RECORDNO": "2026102609235738110",
+    "PDA_STATE": 0,
+    "CNT": 19
+   },
+   {
+    "REQUEST_NO": "02010420261026094003",
+    "DIS_RECORDNO": "2026102609425711625",
+    "PDA_STATE": 0,
+    "CNT": 7
+   },
+   {
+    "REQUEST_NO": "02010420261026102524",
+    "DIS_RECORDNO": "2026102611122075996",
+    "PDA_STATE": 0,
+    "CNT": 5
+   }
+  ],
+  "seconds": 2.634
+ },
+ "r2_mtr_by_request_no": {
+  "ok": true,
+  "n": 0,
+  "rows": [],
+  "seconds": 0.003
+ },
+ "r2_mtr_by_dis_recordno": {
+  "ok": true,
+  "n": 0,
+  "rows": [],
+  "seconds": 0.002
+ },
+ "r2_vendor_send_view": {
+  "ok": true,
+  "n": 10,
+  "rows": [
+   {
+    "REQUEST_NO": "02010420261026091911",
+    "PHA_CODE": "050103",
+    "DISP_QUANTITY": 1.0,
+    "DIS_RECORDNO": "2026102609235738110"
+   },
+   {
+    "REQUEST_NO": "02010420261026091911",
+    "PHA_CODE": "050103",
+    "DISP_QUANTITY": 1.0,
+    "DIS_RECORDNO": "2026102609235738110"
+   },
+   {
+    "REQUEST_NO": "02010420261026091911",
+    "PHA_CODE": "050103",
+    "DISP_QUANTITY": 1.0,
+    "DIS_RECORDNO": "2026102609235738110"
+   },
+   {
+    "REQUEST_NO": "02010420261026091911",
+    "PHA_CODE": "050103",
+    "DISP_QUANTITY": 1.0,
+    "DIS_RECORDNO": "2026102609235738110"
+   },
+   {
+    "REQUEST_NO": "02010420261026091911",
+    "PHA_CODE": "050103",
+    "DISP_QUANTITY": 1.0,
+    "DIS_RECORDNO": "2026102609235738110"
+   },
+   {
+    "REQUEST_NO": "02010420261026091911",
+    "PHA_CODE": "050103",
+    "DISP_QUANTITY": 1.0,
+    "DIS_RECORDNO": "2026102609235738110"
+   },
+   {
+    "REQUEST_NO": "02010420261026091911",
+    "PHA_CODE": "050103",
+    "DISP_QUANTITY": 1.0,
+    "DIS_RECORDNO": "2026102609235738110"
+   },
+   {
+    "REQUEST_NO": "02010420261026091911",
+    "PHA_CODE": "050103",
+    "DISP_QUANTITY": 1.0,
+    "DIS_RECORDNO": "2026102609235738110"
+   },
+   {
+    "REQUEST_NO": "02010420261026091911",
+    "PHA_CODE": "050103",
+    "DISP_QUANTITY": 1.0,
+    "DIS_RECORDNO": "2026102609235738110"
+   },
+   {
+    "REQUEST_NO": "02010420261026091911",
+    "PHA_CODE": "050103",
+    "DISP_QUANTITY": 1.0,
+    "DIS_RECORDNO": "2026102609235738110"
+   }
+  ],
+  "seconds": 0.01
+ },
+ "r2_pub_trace_keys": {
+  "ok": true,
+  "n": 0,
+  "rows": [],
+  "seconds": 0.005
+ },
+ "r2_elapsed": 4.76
+}

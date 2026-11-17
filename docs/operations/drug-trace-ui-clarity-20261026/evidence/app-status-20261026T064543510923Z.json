@@ -1,0 +1,92 @@
+{
+  "host": "app",
+  "phase": "status",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T06:45:43.510848+00:00",
+  "result": {
+    "release": "auth-20261026T043500Z",
+    "containers": "blyb-nginx-1 Up 2 hours (healthy)\n<worker-container> Up 2 hours (healthy)\nblyb-exchange-1 Up 2 hours (healthy)\nblyb-storage-1 Up 2 hours (healthy)\nblyb-core-1 Up 2 hours (healthy)\nblyb-db-1 Up 2 hours (healthy)",
+    "units": "ExecMainStatus=9\nId=blyb-mapping-recovery-20261026.service\nActiveState=failed\nSubState=failed\n\nExecMainStatus=1\nId=blyb-daily-upload.service\nActiveState=failed\nSubState=failed\n\nId=blyb-daily-upload.timer\nActiveState=active\nSubState=waiting",
+    "ntp": "MS Name/IP address         Stratum Poll Reach LastRx Last sample               \n===============================================================================\n^* <intranet-host>                  1   8   377   207   -133ns[  +29us] +/- 1591us",
+    "progress.json": {
+      "started_utc": "2026-10-26T04:09:47.399221+00:00",
+      "outcome": "RUNNING",
+      "dates": [],
+      "driver_sha256": "1d1862d93ca36449fa8658b7295b0b9a857d8b902059057ee25f9a68a1cd8c46",
+      "current_date": "2026-10-25"
+    },
+    "resumed_unit": "ExecMainStatus=0\nActiveState=active\nSubState=running",
+    "resumed": {
+      "baseline.json": {
+        "states": {
+          "PREPARED": 1,
+          "CONFIRMED": 1325,
+          "ACCEPTED": 41,
+          "UNKNOWN": 206
+        },
+        "protected_old_hash": "a58f26edbe1551aada8aafc05dc464e3",
+        "quota": [
+          {
+            "used": 1572,
+            "max_bills": 80000
+          }
+        ],
+        "checkpoint": [
+          {
+            "row_version": 46,
+            "since_time": "2026-10-26T00:00:00"
+          }
+        ],
+        "inflight": 0
+      },
+      "progress.json": {
+        "started_utc": "2026-10-26T04:49:00.457321+00:00",
+        "outcome": "RUNNING",
+        "dates": [
+          {
+            "date": "2026-10-25",
+            "exit_code": 0,
+            "outcome": "OK",
+            "receipt": "/var/log/blyb/mapping-recovery-auth-20261026/2026-10-25.json",
+            "send": {
+              "sent": 436,
+              "skipped_terminal": 916,
+              "resumed": 1,
+              "prepared_new": 435,
+              "aborted_reason": ""
+            },
+            "send_error_count": 0,
+            "old_247_unchanged": true,
+            "checkpoint_unchanged": true
+          }
+        ],
+        "driver_sha256": "1d1862d93ca36449fa8658b7295b0b9a857d8b902059057ee25f9a68a1cd8c46",
+        "current_date": "2026-10-24"
+      }
+    },
+    "db": {
+      "states": {
+        "PREPARED": 1,
+        "CONFIRMED": 2565,
+        "ACCEPTED": 41,
+        "UNKNOWN": 206
+      },
+      "inflight": 0,
+      "pending_sends": 1,
+      "checkpoint": [
+        {
+          "row_version": 46,
+          "since_time": "2026-10-26T00:00:00"
+        }
+      ],
+      "quota": [
+        {
+          "used": 2812,
+          "max_bills": 80000
+        }
+      ],
+      "old_247_unchanged": true,
+      "checkpoint_unchanged": true
+    }
+  }
+}

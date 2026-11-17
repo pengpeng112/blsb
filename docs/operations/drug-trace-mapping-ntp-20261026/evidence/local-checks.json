@@ -1,0 +1,9 @@
+{
+  "ast_files": 11,
+  "ast_passed": true,
+  "scoped_document_links_broken": [],
+  "latest_evidence": "app-status-20261026T041151333882Z.json",
+  "batch_running": true,
+  "app_source_changes": 0,
+  "full_regression_rerun": false
+}

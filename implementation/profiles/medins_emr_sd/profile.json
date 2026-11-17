@@ -1,0 +1,26 @@
+{
+ "target_code": "medins_emr_sd",
+ "name": "山东医保电子病历上报",
+ "spec_version": "V2.0",
+ "spec_source": [
+  {
+   "path": "山东省医疗保障信息平台定点医疗机构医保电子病历接口规范V2.0(1)(2).docx",
+   "sha256": "14c03954e4ef1387f50941fc5b58be3cf9691da3610599a1b736910c28951b16"
+  }
+ ],
+ "extracted_at": "2026-11-11T02:37:18.202741+00:00",
+ "extractor_version": "spec_extract/1.0",
+ "status": "DRAFT",
+ "msgid_rule": {
+  "confirmed": true,
+  "rule": "定点医药机构编号(12)+时间(14,yyyyMMddHHmmss)+顺序号(4)",
+  "length": 30,
+  "unique": true,
+  "source": "spec:公共报文头表 msgid 行说明"
+ },
+ "signature": {
+  "confirmed": false,
+  "reason": "规范定义 cainfo/signtype 字段但未给出算法与向量"
+ },
+ "length_unit": "UNCONFIRMED"
+}

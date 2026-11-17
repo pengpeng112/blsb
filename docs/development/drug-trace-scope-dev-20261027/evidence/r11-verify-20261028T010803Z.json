@@ -1,0 +1,93 @@
+{
+ "authorization": "User authorization 2026-10-28 r11 view verification (read-only)",
+ "source_writes": 0,
+ "uploads": 0,
+ "objects": {
+  "ok": true,
+  "n": 4,
+  "rows": [
+   {
+    "OBJECT_NAME": "V_DRUG_TRACE_BILL_INP",
+    "STATUS": "VALID",
+    "CREATED": "2026-10-28 09:05:38"
+   },
+   {
+    "OBJECT_NAME": "V_DRUG_TRACE_CODE_INP",
+    "STATUS": "VALID",
+    "CREATED": "2026-10-28 09:05:38"
+   },
+   {
+    "OBJECT_NAME": "V_DRUG_TRACE_RETURN",
+    "STATUS": "VALID",
+    "CREATED": "2026-10-28 09:05:39"
+   },
+   {
+    "OBJECT_NAME": "V_DRUG_TRACE_RETURN_CODE",
+    "STATUS": "VALID",
+    "CREATED": "2026-10-28 09:05:39"
+   }
+  ]
+ },
+ "views_text": {
+  "ok": true,
+  "n": 4,
+  "rows": [
+   {
+    "VIEW_NAME": "V_DRUG_TRACE_BILL_INP",
+    "TEXT": "SELECT\n    CAST('HIS' AS VARCHAR2(16)) AS source_system,\n    'INP|' || w.REQUEST_NO || '|' || w.PHA_CODE AS source_bill_id,\n    w.REQUEST_NO AS source_bill_no,\n    TO_CHAR(TO_DATE(SUBSTR(w.PRESC_CREATE_TIME,1,19),'YYYY-MM-DD HH24:MI:SS'),'YYYYMMDDHH24MISS')\n        || '_' || w.REQUEST_NO\n        || '_' || w.PHA_CODE\n        || '_' || TO_CHAR(w.DISP_EXECUTE_TIME, 'YYYYMMDDHH24MISS')\n        || '_INP' AS source_revision,\n    CAST('INPATIENT_DISPENSE' AS VARCHAR2(32)) AS business_kind,\n    w.PHA_CODE AS pharmacy_code,\n    CAST(NULL AS VARCHAR2(64)) AS warehouse_code,\n    CAST(NULL AS VARCHAR2(64)) AS supplier_code,\n    w.DISP_EXECUTE_TIME AS bill_time,\n    w.DISP_EXECUTE_TIME AS updated_at,\n    CAST(NULL AS VARCHAR2(64)) AS source_event_seq,\n    CAST(1 AS NUMBER(1)) AS finalized,\n    CAST(0 AS NUMBER(1)) AS is_void,\n    CAST(NULL AS NUMBER(12)) AS expected_code_count,\n    CAST(NULL AS VARCHAR2(64)) AS patient_ref,\n    CAST(NULL AS VARCHAR2(64)) AS encounter_ref,\n    'REQ_NO=' || w.REQUEST_NO\n        || CHR(59) || 'DIS_REC=' || TO_CHAR(d.DIS_RECORDNO)\n        || CHR(59) || 'SRC=inpatient_request' AS source_bill_kind_raw\nFROM DRUG_USER.PHA_INP_REQUEST_DRUG w\nLEFT JOIN DRUG_USER.PHA_INP_DISPMASTER d\n  ON w.REQUEST_NO = d.REQUEST_NO\n AND TO_CHAR(w.DISP_EXECUTE_TIME, 'YYYY-MM-DD HH24:MI:SS') = d.DISP_DATE\nWHERE w.DISP_FLAG = 'send'\n  AND w.DISP_QUANTITY > 0\n  AND w.DISP_EXECUTE_TIME IS NOT NULL\nWITH READ ONLY\n"
+   },
+   {
+    "VIEW_NAME": "V_DRUG_TRACE_CODE_INP",
+    "TEXT": "SELECT\n    CAST('HIS' AS VARCHAR2(16)) AS source_system,\n    'INP|' || w.REQUEST_NO || '|' || w.PHA_CODE AS source_bill_id,\n    w.PHA_CODE AS pharmacy_code,\n    CAST('INPATIENT_DISPENSE' AS VARCHAR2(32)) AS business_kind,\n    TO_CHAR(TO_DATE(SUBSTR(w.PRESC_CREATE_TIME,1,19),'YYYY-MM-DD HH24:MI:SS'),'YYYYMMDDHH24MISS')\n        || '_' || w.REQUEST_NO\n        || '_' || w.PHA_CODE\n        || '_' || TO_CHAR(w.DISP_EXECUTE_TIME, 'YYYYMMDDHH24MISS')\n        || '_INP' AS source_revision,\n    TO_CHAR(w.EXEC_SQN) AS source_line_id,\n    T.RECORD_ID AS source_code_record_id,\n    T.T_TRACE_CODE AS trace_code,\n    w.DISP_QUANTITY AS quantity,\n    CAST(NULL AS VARCHAR2(32)) AS unit,\n    CAST(NULL AS VARCHAR2(16)) AS code_level,\n    CAST(NULL AS VARCHAR2(255)) AS parent_code,\n    T.MODIFY_TIME AS updated_at,\n    T.IS_DELETED AS is_deleted,\n    T.F_TRACE_CODE AS f_trace_code,\n    T.S_TRACE_CODE AS s_trace_code,\n    T.T_TRACE_CODE AS t_trace_code,\n    w.DISP_EXECUTE_TIME AS bill_time\nFROM DRUG_USER.MED_TRACE_RECORD T\nJOIN DRUG_USER.PHA_INP_REQUEST_DRUG w\n  ON T.TRACE_BILLNO = w.REQUEST_NO\nWHERE w.DISP_FLAG = 'send'\n  AND w.DISP_QUANTITY > 0\n  AND w.DISP_EXECUTE_TIME IS NOT NULL\n  AND T.IN_OUT_TYPE = 'OUT'\nUNION ALL\nSELECT\n    CAST('HIS' AS VARCHAR2(16)) AS source_system,\n    'INP|' || w.REQUEST_NO || '|' || w.PHA_CODE AS source_bill_id,\n    w.PHA_CODE AS pharmacy_code,\n    CAST('INPATIENT_DISPENSE' AS VARCHAR2(32)) AS business_kind,\n    TO_CHAR(TO_DATE(SUBSTR(w.PRESC_CREATE_TIME,1,19),'YYYY-MM-DD HH24:MI:SS'),'YYYYMMDDHH24MISS')\n        || '_' || w.REQUEST_NO\n        || '_' || w.PHA_CODE\n        || '_' || TO_CHAR(w.DISP_EXECUTE_TIME, 'YYYYMMDDHH24MISS')\n        || '_INP' AS source_revision,\n    TO_CHAR(w.EXEC_SQN) AS source_line_id,\n    T.RECORD_ID AS source_code_record_id,\n    T.T_TRACE_CODE AS trace_code,\n    w.DISP_QUANTITY AS quantity,\n    CAST(NULL AS VARCHAR2(32)) AS unit,\n    CAST(NULL AS VARCHAR2(16)) AS code_level,\n    CAST(NULL AS VARCHAR2(255)) AS parent_code,\n    T.MODIFY_TIME AS updated_at,\n    T.IS_DELETED AS is_deleted,\n    T.F_TRACE_CODE AS f_trace_code,\n    T.S_TRACE_CODE AS s_trace_code,\n    T.T_TRACE_CODE AS t_trace_code,\n    w.DISP_EXECUTE_TIME AS bill_time\nFROM DRUG_USER.MED_TRACE_RECORD T\nJOIN DRUG_USER.PHA_INP_DISPMASTER d2\n  ON T.TRACE_BILLNO = TO_CHAR(d2.DIS_RECORDNO)\nJOIN DRUG_USER.PHA_INP_REQUEST_DRUG w\n  ON w.REQUEST_NO = d2.REQUEST_NO\n AND TO_CHAR(w.DISP_EXECUTE_TIME, 'YYYY-MM-DD HH24:MI:SS') = d2.DISP_DATE\nWHERE w.DISP_FLAG = 'send'\n  AND w.DISP_QUANTITY > 0\n  AND w.DISP_EXECUTE_TIME IS NOT NULL\n  AND T.IN_OUT_TYPE = 'OUT'\nWITH READ ONLY\n"
+   },
+   {
+    "VIEW_NAME": "V_DRUG_TRACE_RETURN",
+    "TEXT": "SELECT\n    CAST('HIS' AS VARCHAR2(16)) AS source_system,\n    'RET|' || TO_CHAR(w.PRESC_CREATE_TIME, 'YYYYMMDDHH24MISS')\n        || '|' || TO_CHAR(w.PRESC_NO) || '|' || w.PHA_CODE AS source_bill_id,\n    TO_CHAR(w.PRESC_NO) AS source_bill_no,\n    TO_CHAR(w.CLI_EXECUTE_TIME, 'YYYYMMDDHH24MISS')\n        || '_RET_' || TO_CHAR(w.PRESC_CREATE_TIME, 'YYYYMMDDHH24MISS')\n        || '_' || TO_CHAR(w.PRESC_NO)\n        || '_' || w.PHA_CODE AS source_revision,\n    CAST('PATIENT_RETURN' AS VARCHAR2(32)) AS business_kind,\n    w.PHA_CODE AS pharmacy_code,\n    CAST(NULL AS VARCHAR2(64)) AS warehouse_code,\n    CAST(NULL AS VARCHAR2(64)) AS supplier_code,\n    w.CLI_EXECUTE_TIME AS bill_time,\n    w.CLI_EXECUTE_TIME AS updated_at,\n    CAST(NULL AS VARCHAR2(64)) AS source_event_seq,\n    CAST(1 AS NUMBER(1)) AS finalized,\n    CAST(0 AS NUMBER(1)) AS is_void,\n    CAST(NULL AS NUMBER(12)) AS expected_code_count,\n    CAST(NULL AS VARCHAR2(64)) AS patient_ref,\n    CAST(NULL AS VARCHAR2(64)) AS encounter_ref,\n    'PRESC_NO=' || TO_CHAR(w.PRESC_NO)\n        || CHR(59) || 'PAT_ID=' || w.PAT_ID\n        || CHR(59) || 'SEND_EXEC=' || (\n            SELECT MAX(TO_CHAR(s.CLI_EXECUTE_TIME, 'YYYY-MM-DD HH24:MI:SS'))\n            FROM DRUG_USER.PHA_CLI_REQUEST_DRUG s\n            WHERE s.PRESC_NO = w.PRESC_NO\n              AND s.PAT_ID = w.PAT_ID\n              AND s.PHA_CODE = w.PHA_CODE\n              AND s.CLI_FLAG = 'send'\n              AND s.SEND_DRUG_STATUS = 'Y')\n        || CHR(59) || 'SRC=cli_return' AS source_bill_kind_raw\nFROM DRUG_USER.PHA_CLI_REQUEST_DRUG w\nWHERE w.CLI_FLAG = 'return'\n  AND w.RETURN_DRUG_STATUS = 'Y'\n  AND w.CLI_INP_FLAG = 1\n  AND w.CLI_EXECUTE_TIME IS NOT NULL\nWITH READ ONLY\n"
+   },
+   {
+    "VIEW_NAME": "V_DRUG_TRACE_RETURN_CODE",
+    "TEXT": "SELECT\n    CAST('HIS' AS VARCHAR2(16)) AS source_system,\n    'RET|' || TO_CHAR(w.PRESC_CREATE_TIME, 'YYYYMMDDHH24MISS')\n        || '|' || TO_CHAR(w.PRESC_NO) || '|' || w.PHA_CODE AS source_bill_id,\n    w.PHA_CODE AS pharmacy_code,\n    CAST('PATIENT_RETURN' AS VARCHAR2(32)) AS business_kind,\n    TO_CHAR(w.CLI_EXECUTE_TIME, 'YYYYMMDDHH24MISS')\n        || '_RET_' || TO_CHAR(w.PRESC_CREATE_TIME, 'YYYYMMDDHH24MISS')\n        || '_' || TO_CHAR(w.PRESC_NO)\n        || '_' || w.PHA_CODE AS source_revision,\n    TO_CHAR(w.PRESC_DETAIL_ID) AS source_line_id,\n    T.RECORD_ID AS source_code_record_id,\n    T.T_TRACE_CODE AS trace_code,\n    w.RETURN_QUANTITY AS quantity,\n    CAST(NULL AS VARCHAR2(32)) AS unit,\n    CAST(NULL AS VARCHAR2(16)) AS code_level,\n    CAST(NULL AS VARCHAR2(255)) AS parent_code,\n    T.MODIFY_TIME AS updated_at,\n    T.IS_DELETED AS is_deleted,\n    T.F_TRACE_CODE AS f_trace_code,\n    T.S_TRACE_CODE AS s_trace_code,\n    T.T_TRACE_CODE AS t_trace_code,\n    w.CLI_EXECUTE_TIME AS bill_time\nFROM DRUG_USER.MED_TRACE_RECORD T\nJOIN DRUG_USER.PHA_CLI_REQUEST_DRUG w\n  ON T.TRACE_BILLNO = TO_CHAR(w.PRESC_NO)\n AND T.PRESC_DATE = CAST(w.PRESC_CREATE_TIME AS DATE)\n AND T.STORE_CODE = w.PHA_CODE\nWHERE w.CLI_FLAG = 'return'\n  AND w.RETURN_DRUG_STATUS = 'Y'\n  AND w.CLI_INP_FLAG = 1\n  AND w.CLI_EXECUTE_TIME IS NOT NULL\n  AND T.IN_OUT_TYPE = 'IN'\nWITH READ ONLY\n"
+   }
+  ]
+ },
+ "counts_ready_his": {
+  "V_DRUG_TRACE_BILL_INP": {
+   "ok": true,
+   "n": 1,
+   "rows": [
+    {
+     "N": 6525493
+    }
+   ]
+  },
+  "V_DRUG_TRACE_CODE_INP": {
+   "ok": true,
+   "n": 1,
+   "rows": [
+    {
+     "N": 47295
+    }
+   ]
+  },
+  "V_DRUG_TRACE_RETURN": {
+   "ok": true,
+   "n": 1,
+   "rows": [
+    {
+     "N": 7722
+    }
+   ]
+  },
+  "V_DRUG_TRACE_RETURN_CODE": {
+   "ok": true,
+   "n": 1,
+   "rows": [
+    {
+     "N": 17238
+    }
+   ]
+  }
+ },
+ "elapsed": 25.86,
+ "captured_at": "2026-10-28T01:08:03.889499+00:00"
+}

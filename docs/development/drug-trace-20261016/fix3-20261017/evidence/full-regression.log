@@ -1,0 +1,365 @@
+.............................................................s.......... [ 21%]
+.s...................................................................... [ 42%]
+........................................................................ [ 63%]
+............................sss......................................... [ 84%]
+.....................................s..............                     [100%]
+============================== warnings summary ===============================
+tests/e2e/test_vertical_slice.py: 60 warnings
+tests/fault/test_delivery_faults.py: 420 warnings
+tests/fault/test_local_gaps_storage.py: 360 warnings
+tests/fault/test_storage_protocol.py: 900 warnings
+tests/fault/test_w07_recovery.py: 900 warnings
+tests/fault/test_w08_stream_interruption.py: 60 warnings
+tests/integration/test_deep_audit.py: 720 warnings
+tests/integration/test_deploy_gaps.py: 420 warnings
+tests/integration/test_drug_trace_api.py: 300 warnings
+tests/integration/test_drug_trace_domain.py: 1320 warnings
+tests/integration/test_drug_trace_fix2.py: 1260 warnings
+tests/integration/test_drug_trace_fix3.py: 1260 warnings
+tests/integration/test_drug_trace_pg.py: 60 warnings
+tests/integration/test_drug_trace_pg_fix3.py: 180 warnings
+tests/integration/test_first_hospital_cases.py: 1200 warnings
+tests/integration/test_local_gaps.py: 1200 warnings
+tests/integration/test_remediation_round2.py: 1920 warnings
+tests/integration/test_remediation_round2b.py: 660 warnings
+tests/integration/test_w10_w11.py: 240 warnings
+tests/integration/test_w12_ui_closure.py: 120 warnings
+tests/integration/test_w14_concurrency.py: 60 warnings
+tests/integration/test_w15_restore.py: 60 warnings
+  F:\python\blyb\implementation\packages\core_db\migrate.py:42: SADeprecationWarning: Table.tometadata() is renamed to Table.to_metadata() (deprecated since: 1.4)
+    t.tometadata(md)
+
+tests/e2e/test_vertical_slice.py: 18 warnings
+tests/fault/test_delivery_faults.py: 59 warnings
+tests/fault/test_local_gaps_storage.py: 51 warnings
+tests/fault/test_storage_protocol.py: 125 warnings
+tests/fault/test_w07_recovery.py: 134 warnings
+tests/fault/test_w08_stream_interruption.py: 8 warnings
+tests/integration/test_deep_audit.py: 101 warnings
+tests/integration/test_deploy_gaps.py: 49 warnings
+tests/integration/test_drug_trace_api.py: 50 warnings
+tests/integration/test_drug_trace_domain.py: 221 warnings
+tests/integration/test_drug_trace_fix2.py: 210 warnings
+tests/integration/test_drug_trace_fix3.py: 210 warnings
+tests/integration/test_first_hospital_cases.py: 160 warnings
+tests/integration/test_local_gaps.py: 153 warnings
+tests/integration/test_remediation_round2.py: 262 warnings
+tests/integration/test_remediation_round2b.py: 95 warnings
+tests/integration/test_w10_w11.py: 32 warnings
+tests/integration/test_w12_ui_closure.py: 16 warnings
+tests/integration/test_w14_concurrency.py: 8 warnings
+tests/integration/test_w15_restore.py: 10 warnings
+  C:\Users\Administrator\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py:952: DeprecationWarning: The default datetime adapter is deprecated as of Python 3.12; see the sqlite3 documentation for suggested replacement recipes
+    cursor.execute(statement, parameters)
+
+tests/e2e/test_vertical_slice.py: 14 warnings
+tests/fault/test_delivery_faults.py: 98 warnings
+tests/fault/test_local_gaps_storage.py: 84 warnings
+tests/fault/test_storage_protocol.py: 210 warnings
+tests/fault/test_w07_recovery.py: 210 warnings
+tests/fault/test_w08_stream_interruption.py: 14 warnings
+tests/integration/test_deep_audit.py: 168 warnings
+tests/integration/test_drug_trace_domain.py: 14 warnings
+tests/integration/test_drug_trace_pg.py: 14 warnings
+tests/integration/test_drug_trace_pg_fix3.py: 28 warnings
+tests/integration/test_first_hospital_cases.py: 280 warnings
+tests/integration/test_local_gaps.py: 266 warnings
+tests/integration/test_remediation_round2.py: 448 warnings
+tests/integration/test_remediation_round2b.py: 154 warnings
+tests/integration/test_w10_w11.py: 56 warnings
+tests/integration/test_w12_ui_closure.py: 28 warnings
+tests/integration/test_w14_concurrency.py: 14 warnings
+tests/integration/test_w15_restore.py: 14 warnings
+  F:\python\blyb\implementation\plugins\domains\pathology\models.py:248: SADeprecationWarning: Table.tometadata() is renamed to Table.to_metadata() (deprecated since: 1.4)
+    t.tometadata(md)
+
+tests/e2e/test_vertical_slice.py: 10 warnings
+tests/fault/test_delivery_faults.py: 2 warnings
+tests/fault/test_storage_protocol.py: 1 warning
+tests/integration/test_deep_audit.py: 1 warning
+tests/integration/test_remediation_round2.py: 1 warning
+tests/integration/test_remediation_round2b.py: 1 warning
+  F:\python\blyb\implementation\apps\worker\engine.py:50: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    asset = db.query(Asset).get(p.get("asset_id"))
+
+tests/e2e/test_vertical_slice.py: 10 warnings
+tests/fault/test_delivery_faults.py: 2 warnings
+tests/fault/test_storage_protocol.py: 1 warning
+tests/integration/test_deep_audit.py: 1 warning
+tests/integration/test_remediation_round2.py: 1 warning
+tests/integration/test_remediation_round2b.py: 1 warning
+  F:\python\blyb\implementation\apps\worker\engine.py:53: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    acq = db.query(Acquisition).get(asset.acquisition_id)
+
+tests/e2e/test_vertical_slice.py: 121 warnings
+tests/fault/test_delivery_faults.py: 51 warnings
+tests/integration/test_deep_audit.py: 2 warnings
+tests/integration/test_first_hospital_cases.py: 1 warning
+tests/integration/test_local_gaps.py: 16 warnings
+tests/integration/test_w10_w11.py: 1 warning
+tests/integration/test_w12_ui_closure.py: 6 warnings
+  F:\python\blyb\implementation\apps\worker\engine.py:541: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    wf = db.query(WorkflowRevision).get(run.workflow_revision_id)
+
+tests/e2e/test_vertical_slice.py::test_full_vertical_slice
+tests/e2e/test_vertical_slice.py::test_full_vertical_slice
+tests/e2e/test_vertical_slice.py::test_full_vertical_slice
+tests/e2e/test_vertical_slice.py::test_full_vertical_slice
+tests/fault/test_delivery_faults.py::test_D01_timeout_accepted_no_duplicate
+tests/fault/test_delivery_faults.py::test_D02_duplicate_and_late_receipts
+tests/fault/test_delivery_faults.py::test_D06_full_download_without_receipt
+tests/fault/test_delivery_faults.py::test_H09_receipt_poll_exponential_backoff
+tests/integration/test_deep_audit.py::test_H08_confirmed_receipt_sets_target_confirmed
+  F:\python\blyb\implementation\plugins\domains\pathology\handlers.py:122: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    case = ctx.db.query(PathologyCase).get(case_id)
+
+tests/e2e/test_vertical_slice.py: 4 warnings
+tests/fault/test_delivery_faults.py: 8 warnings
+tests/fault/test_storage_protocol.py: 9 warnings
+tests/integration/test_deep_audit.py: 3 warnings
+tests/integration/test_first_hospital_cases.py: 2 warnings
+  F:\python\blyb\implementation\plugins\domains\pathology\resolver.py:436: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    slide = db.query(Slide).get(linked.slide_id)
+
+tests/e2e/test_vertical_slice.py: 4 warnings
+tests/fault/test_delivery_faults.py: 8 warnings
+tests/fault/test_storage_protocol.py: 9 warnings
+tests/integration/test_deep_audit.py: 3 warnings
+tests/integration/test_first_hospital_cases.py: 2 warnings
+  F:\python\blyb\implementation\plugins\domains\pathology\resolver.py:437: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    case = db.query(PathologyCase).get(slide.case_id)
+
+tests/e2e/test_vertical_slice.py: 72 warnings
+tests/fault/test_delivery_faults.py: 4 warnings
+tests/integration/test_deep_audit.py: 1 warning
+  F:\python\blyb\implementation\plugins\domains\pathology\handlers.py:138: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    case = ctx.db.query(PathologyCase).get(case_id)
+
+tests/e2e/test_vertical_slice.py::test_full_vertical_slice
+tests/fault/test_delivery_faults.py::test_D01_timeout_accepted_no_duplicate
+tests/fault/test_delivery_faults.py::test_D02_duplicate_and_late_receipts
+tests/fault/test_delivery_faults.py::test_D06_full_download_without_receipt
+tests/fault/test_delivery_faults.py::test_H09_receipt_poll_exponential_backoff
+tests/integration/test_deep_audit.py::test_H08_confirmed_receipt_sets_target_confirmed
+  F:\python\blyb\implementation\apps\worker\engine.py:305: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    case = db.query(PathologyCase).get(job.payload["case_id"])
+
+tests/e2e/test_vertical_slice.py: 33 warnings
+  F:\python\blyb\implementation\apps\worker\engine.py:555: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    run = db.query(WorkflowRun).get(claimed.run_id)
+
+tests/e2e/test_vertical_slice.py: 33 warnings
+  F:\python\blyb\implementation\apps\worker\engine.py:556: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    wf = db.query(WorkflowRevision).get(run.workflow_revision_id)
+
+tests/e2e/test_vertical_slice.py: 6 warnings
+tests/fault/test_delivery_faults.py: 8 warnings
+tests/integration/test_deep_audit.py: 2 warnings
+tests/integration/test_local_gaps.py: 1 warning
+  F:\python\blyb\implementation\plugins\domains\pathology\handlers.py:156: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    case = ctx.db.query(PathologyCase).get(case_id)
+
+tests/e2e/test_vertical_slice.py: 6 warnings
+tests/fault/test_delivery_faults.py: 10 warnings
+tests/integration/test_deep_audit.py: 2 warnings
+tests/integration/test_first_hospital_cases.py: 2 warnings
+tests/integration/test_local_gaps.py: 1 warning
+tests/integration/test_remediation_round2.py: 1 warning
+  F:\python\blyb\implementation\plugins\domains\pathology\pipeline.py:97: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    apps = [db.query(PathologyApplication).get(l.application_id) for l in app_links]
+
+tests/e2e/test_vertical_slice.py: 6 warnings
+tests/fault/test_delivery_faults.py: 10 warnings
+tests/integration/test_deep_audit.py: 2 warnings
+tests/integration/test_first_hospital_cases.py: 2 warnings
+tests/integration/test_local_gaps.py: 1 warning
+tests/integration/test_remediation_round2.py: 1 warning
+  F:\python\blyb\implementation\plugins\domains\pathology\pipeline.py:115: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    pat = db.query(PatientReference).get(case.patient_ref_id) if case.patient_ref_id else None
+
+tests/e2e/test_vertical_slice.py: 6 warnings
+tests/fault/test_delivery_faults.py: 10 warnings
+tests/integration/test_deep_audit.py: 2 warnings
+tests/integration/test_first_hospital_cases.py: 2 warnings
+tests/integration/test_local_gaps.py: 1 warning
+  F:\python\blyb\implementation\plugins\domains\pathology\pipeline.py:37: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    apps = [db.query(PathologyApplication).get(l.application_id) for l in app_links]
+
+tests/e2e/test_vertical_slice.py: 6 warnings
+tests/fault/test_delivery_faults.py: 8 warnings
+tests/integration/test_deep_audit.py: 2 warnings
+tests/integration/test_local_gaps.py: 1 warning
+tests/integration/test_remediation_round2.py: 1 warning
+  F:\python\blyb\implementation\plugins\core_handlers.py:58: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    return ctx.db.query(PackageRevision).get(pr_id)
+
+tests/e2e/test_vertical_slice.py::test_full_vertical_slice
+tests/e2e/test_vertical_slice.py::test_full_vertical_slice
+tests/e2e/test_vertical_slice.py::test_full_vertical_slice
+tests/e2e/test_vertical_slice.py::test_full_vertical_slice
+tests/fault/test_delivery_faults.py::test_D01_timeout_accepted_no_duplicate
+tests/fault/test_delivery_faults.py::test_D02_duplicate_and_late_receipts
+tests/fault/test_delivery_faults.py::test_D06_full_download_without_receipt
+tests/fault/test_delivery_faults.py::test_H09_receipt_poll_exponential_backoff
+tests/integration/test_deep_audit.py::test_H08_confirmed_receipt_sets_target_confirmed
+  F:\python\blyb\implementation\plugins\core_handlers.py:107: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    pkg = ctx.db.query(DataPackage).get(pr.package_id)
+
+tests/e2e/test_vertical_slice.py: 4 warnings
+tests/fault/test_delivery_faults.py: 4 warnings
+tests/integration/test_deep_audit.py: 1 warning
+tests/integration/test_first_hospital_cases.py: 1 warning
+tests/integration/test_local_gaps.py: 15 warnings
+tests/integration/test_remediation_round2.py: 1 warning
+tests/integration/test_w12_ui_closure.py: 5 warnings
+  F:\python\blyb\implementation\plugins\core_handlers.py:289: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    pr = ctx.db.query(PackageRevision).get(pr_id) if pr_id else None
+
+tests/e2e/test_vertical_slice.py: 2 warnings
+tests/fault/test_delivery_faults.py: 4 warnings
+tests/integration/test_deep_audit.py: 1 warning
+tests/integration/test_first_hospital_cases.py: 1 warning
+tests/integration/test_local_gaps.py: 2 warnings
+tests/integration/test_w12_ui_closure.py: 4 warnings
+  F:\python\blyb\implementation\plugins\core_handlers.py:248: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    dest = db.query(Destination).get(submission.destination_id)
+
+tests/e2e/test_vertical_slice.py: 4 warnings
+tests/fault/test_delivery_faults.py: 47 warnings
+tests/integration/test_deep_audit.py: 1 warning
+tests/integration/test_first_hospital_cases.py: 1 warning
+tests/integration/test_local_gaps.py: 3 warnings
+tests/integration/test_w12_ui_closure.py: 5 warnings
+  F:\python\blyb\implementation\plugins\core_handlers.py:317: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    submission = ctx.db.query(Submission).get(submission_id)
+
+tests/e2e/test_vertical_slice.py: 2 warnings
+tests/fault/test_delivery_faults.py: 3 warnings
+tests/integration/test_deep_audit.py: 2 warnings
+tests/integration/test_first_hospital_cases.py: 1 warning
+tests/integration/test_local_gaps.py: 2 warnings
+tests/integration/test_w12_ui_closure.py: 4 warnings
+  F:\python\blyb\implementation\plugins\core_handlers.py:357: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    sub = db.query(Submission).get(submission_id)
+
+tests/e2e/test_vertical_slice.py: 12 warnings
+tests/fault/test_delivery_faults.py: 2 warnings
+tests/integration/test_deep_audit.py: 1 warning
+tests/integration/test_remediation_round2.py: 1 warning
+  F:\python\blyb\implementation\plugins\core_handlers.py:451: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    asset = ctx.db.query(Asset).get(asset_id)
+
+tests/e2e/test_vertical_slice.py: 12 warnings
+tests/fault/test_delivery_faults.py: 2 warnings
+tests/integration/test_deep_audit.py: 1 warning
+  F:\python\blyb\implementation\plugins\core_handlers.py:461: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    blob = ctx.db.query(Blob).get(asset.blob_id)
+
+tests/fault/test_delivery_faults.py::test_D01_timeout_accepted_no_duplicate
+tests/integration/test_local_gaps.py::test_T7b_manual_unknown_autopoll
+  F:\python\blyb\implementation\apps\worker\engine.py:353: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    sub = db.query(Submission).get(job.payload["submission_id"])
+
+tests/fault/test_delivery_faults.py::test_D02_duplicate_and_late_receipts
+tests/integration/test_deep_audit.py::test_H08_confirmed_receipt_sets_target_confirmed
+tests/integration/test_remediation_round2.py::test_R01_accepted_receipt_is_not_confirmation
+  F:\python\blyb\implementation\plugins\core_handlers.py:376: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    sub = db.query(Submission).get(submission_id)
+
+tests/fault/test_delivery_faults.py::test_D02_duplicate_and_late_receipts
+tests/integration/test_deep_audit.py::test_H08_confirmed_receipt_sets_target_confirmed
+tests/integration/test_remediation_round2.py::test_R01_accepted_receipt_is_not_confirmation
+  F:\python\blyb\implementation\plugins\core_handlers.py:385: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    pr = db.query(PackageRevision).get(sub.package_revision_id)
+
+tests/fault/test_delivery_faults.py::test_D02_duplicate_and_late_receipts
+tests/integration/test_deep_audit.py::test_H08_confirmed_receipt_sets_target_confirmed
+  F:\python\blyb\implementation\plugins\core_handlers.py:390: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    case = db.query(PathologyCase).get(case_id)
+
+tests/fault/test_delivery_faults.py::test_D02_duplicate_and_late_receipts
+  F:\python\blyb\implementation\tests\fault\test_delivery_faults.py:154: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    s = db.query(type(sub)).get(sub.id)
+
+tests/fault/test_delivery_faults.py::test_H09_receipt_poll_exponential_backoff
+tests/fault/test_delivery_faults.py::test_H09_receipt_poll_exponential_backoff
+tests/integration/test_deep_audit.py::test_H08_confirmed_receipt_sets_target_confirmed
+  F:\python\blyb\implementation\apps\worker\engine.py:329: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    sub = db.query(Submission).get(job.payload["submission_id"])
+
+tests/integration/test_deep_audit.py::test_H02_verify_failure_releases_reservation
+  F:\python\blyb\implementation\apps\storage_service\service.py:474: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    session = db.query(UploadSession).get(session.id)
+
+tests/integration/test_deep_audit.py::test_C26_expected_unlinked_slide_visible
+tests/integration/test_local_gaps.py::test_T10_read_paths_do_not_expose_plain_id
+  F:\python\blyb\implementation\plugins\domains\pathology\routes.py:61: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    c = db.query(PathologyCase).get(case_id)
+
+tests/integration/test_deep_audit.py::test_C26_expected_unlinked_slide_visible
+  F:\python\blyb\implementation\plugins\domains\pathology\routes.py:111: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    a = db.query(PathologyApplication).get(l.application_id)
+
+tests/integration/test_deep_audit.py::test_C26_expected_unlinked_slide_visible
+tests/integration/test_local_gaps.py::test_T10_read_paths_do_not_expose_plain_id
+  F:\python\blyb\implementation\plugins\domains\pathology\routes.py:124: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    pat = (db.query(PatientReference).get(c.patient_ref_id)
+
+tests/integration/test_first_hospital_cases.py::test_F08_dirty_id_type_candidate_only
+  F:\python\blyb\implementation\tests\integration\test_first_hospital_cases.py:139: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    pat = db.query(PatientReference).get(case.patient_ref_id)
+
+tests/integration/test_first_hospital_cases.py::test_F16_void_and_addendum_new_version
+  F:\python\blyb\implementation\tests\integration\test_first_hospital_cases.py:356: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    pr = db.query(PackageRevision).get(pr_id)
+
+tests/integration/test_first_hospital_cases.py::test_F19_if_match_concurrency
+tests/integration/test_first_hospital_cases.py::test_F19_if_match_concurrency
+  F:\python\blyb\implementation\plugins\domains\pathology\routes.py:257: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    c = db.query(PathologyCase).get(case_id)
+
+tests/integration/test_first_hospital_cases.py: 1 warning
+tests/integration/test_local_gaps.py: 4 warnings
+tests/integration/test_w10_w11.py: 1 warning
+tests/integration/test_w12_ui_closure.py: 5 warnings
+  F:\python\blyb\implementation\plugins\domains\metrics\plugin.py:39: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    pkg = ctx.db.query(DataPackage).get(package_id)
+
+tests/integration/test_first_hospital_cases.py: 1 warning
+tests/integration/test_local_gaps.py: 4 warnings
+tests/integration/test_w12_ui_closure.py: 5 warnings
+  F:\python\blyb\implementation\plugins\domains\metrics\plugin.py:68: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    pr = ctx.db.query(PackageRevision).get(pr_id) if pr_id else None
+
+tests/integration/test_local_gaps.py::test_T7_manual_submission_and_publication
+tests/integration/test_local_gaps.py::test_T7_manual_submission_and_publication
+tests/integration/test_local_gaps.py::test_T7b_manual_unknown_autopoll
+tests/integration/test_local_gaps.py::test_T7b_manual_unknown_autopoll
+  F:\python\blyb\implementation\plugins\core_handlers.py:190: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    pkg = db.query(DataPackage).get(pr.package_id)
+
+tests/integration/test_local_gaps.py::test_T7_manual_submission_and_publication
+tests/integration/test_local_gaps.py::test_T7b_manual_unknown_autopoll
+  F:\python\blyb\implementation\apps\worker\engine.py:172: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    sub = db.query(Submission).get(job.payload["submission_id"])
+
+tests/integration/test_local_gaps.py::test_T7_manual_submission_and_publication
+tests/integration/test_local_gaps.py::test_T7b_manual_unknown_autopoll
+  F:\python\blyb\implementation\apps\worker\engine.py:177: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    pr = db.query(PackageRevision).get(sub.package_revision_id)
+
+tests/integration/test_local_gaps.py::test_T7_manual_submission_and_publication
+  F:\python\blyb\implementation\tests\integration\test_local_gaps.py:541: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    pr = db.query(PackageRevision).get(pr_id)
+
+tests/integration/test_local_gaps.py::test_T7b_manual_unknown_autopoll
+  F:\python\blyb\implementation\plugins\domains\pathology\handlers.py:156: SAWarning: fully NULL primary key identity cannot load any object.  This condition may raise an error in a future release.
+    case = ctx.db.query(PathologyCase).get(case_id)
+
+tests/integration/test_remediation_round2.py::test_R28_barcode_resolution_operation_reaches_terminal_state
+  F:\python\blyb\implementation\apps\worker\engine.py:284: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    acq = db.query(Acquisition).get(job.payload["acquisition_id"])
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+334 passed, 6 skipped, 18522 warnings in 666.79s (0:11:06)
+EXIT=0

@@ -1,0 +1,4 @@
+install=0
+verify=0
+verify-upstream-exit=0
+/opt/blyb-dmz/releases/20261020T130019Z

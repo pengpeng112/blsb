@@ -1,0 +1,54 @@
+{
+  "host": "app",
+  "phase": "verify",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T14:06:50.709993+00:00",
+  "result": {
+    "states": {
+      "CONFIRMED": 2576,
+      "ACCEPTED": 42,
+      "UNKNOWN": 205
+    },
+    "submissions": 2823,
+    "attempts": 2824,
+    "inflight": 0,
+    "active_jobs": 0,
+    "quota": [
+      {
+        "used": 2824,
+        "max_bills": 80000
+      }
+    ],
+    "checkpoint": [
+      {
+        "row_version": 46,
+        "since_time": "2026-10-26T00:00:00"
+      }
+    ],
+    "decision": {
+      "action": "HISTORY_RETRY_ONCE",
+      "actor": "user-authorized-ai",
+      "max_uploads": "1"
+    },
+    "target_attempts": [
+      {
+        "attempt_no": 1,
+        "http_status": 429,
+        "outcome": "UNKNOWN"
+      },
+      {
+        "attempt_no": 2,
+        "http_status": 200,
+        "outcome": "ACCEPTED"
+      }
+    ],
+    "historical_query_generations": 12,
+    "other_246_unchanged": true,
+    "checkpoint_unchanged": true,
+    "target_digest_unchanged": true,
+    "quota_increased_one": true,
+    "release": "flow-20261026T132000Z",
+    "containers": "blyb-nginx-1 Up 39 minutes (healthy)\n<worker-container> Up 39 minutes (healthy)\nblyb-storage-1 Up 39 minutes (healthy)\nblyb-exchange-1 Up 39 minutes (healthy)\nblyb-core-1 Up 39 minutes (healthy)\nblyb-db-1 Up 40 minutes (healthy)",
+    "units": "ActiveState=active\nSubState=waiting"
+  }
+}

@@ -1,0 +1,24 @@
+The authenticity of host '<prod-host> (<prod-host>)' can't be established.
+ED25519 key fingerprint is SHA256:IjK9PN01og2d/fsSjUy4rlsyRBqOiZZycBN6j46shQc.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '<prod-host>' (ED25519) to the list of known hosts.
+
+Authorized users only. All activities may be monitored and reported.
+root@<prod-host>'s password: 
+Successfully copied 3.54kB (transferred 5.12kB) to <worker-container>:/tmp/hint-test.py
+Traceback (most recent call last):
+  File "/tmp/hint-test.py", line 22, in <module>
+    t2a, r2 = q(HS, p)
+              ~^^^^^^^
+  File "/tmp/hint-test.py", line 10, in q
+    cur.execute(sql, params or {})
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.14/site-packages/oracledb/cursor.py", line 844, in execute
+    impl.execute(self)
+    ~~~~~~~~~~~~^^^^^^
+  File "src/oracledb/impl/thick/cursor.pyx", line 320, in oracledb.thick_impl.ThickCursorImpl.execute
+  File "src/oracledb/impl/thick/utils.pyx", line 484, in oracledb.thick_impl._raise_from_odpi
+  File "src/oracledb/impl/thick/utils.pyx", line 474, in oracledb.thick_impl._raise_from_info
+oracledb.exceptions.DatabaseError: ORA-00942: table or view does not exist
+Connection to <prod-host> closed.

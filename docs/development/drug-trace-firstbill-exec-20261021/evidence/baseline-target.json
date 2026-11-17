@@ -1,0 +1,112 @@
+{
+  "captured_at": "2026-10-21T15:59:28.576554+00:00",
+  "read_only": true,
+  "remote_config_changes": 0,
+  "his_queries": 0,
+  "upload_requests": 0,
+  "ssh_exit_code": 0,
+  "inventory": {
+    "release": {
+      "exit_code": 0,
+      "stdout": "/opt/blyb/releases/dpl-20261021T111000Z\n"
+    },
+    "services": {
+      "exit_code": 0,
+      "stdout": "blyb-nginx-1 blyb/nginx:dpl-20261021T111000Z Up 4 hours (healthy) 80/tcp, 0.0.0.0:443->443/tcp\nblyb-storage-1 blyb/backend:dpl-20261021T111000Z Up 4 hours (healthy) 8001/tcp\nblyb-core-1 blyb/backend:dpl-20261021T111000Z Up 4 hours (healthy) 8000/tcp\n<worker-container> blyb/backend:dpl-20261021T111000Z Up 4 hours (healthy) \nblyb-exchange-1 blyb/backend:dpl-20261021T111000Z Up 4 hours (healthy) 8002/tcp\nblyb-db-1 blyb/pg:dpl-20261021T111000Z Up 4 hours (healthy) 5432/tcp\n"
+    },
+    "clock_epoch": 1792598369.516329,
+    "tcp": [
+      {
+        "source": "<prod-host>",
+        "destination": "<relay-net-host>",
+        "port": 443,
+        "connected": true
+      },
+      {
+        "source": "<prod-host>",
+        "destination": "<his-host>",
+        "port": 1521,
+        "connected": true
+      }
+    ],
+    "worker": {
+      "exit_code": 0,
+      "data": {
+        "uid": 10001,
+        "secret_present": true,
+        "oracle_dsn_present": false,
+        "plugins": "pathology,metrics,drug_trace",
+        "signature_verified": false,
+        "client_key_readable": true,
+        "client_key_writable": false,
+        "oracle_client": {
+          "initialized": true,
+          "mode": "thick",
+          "client_version": "19.32.0.0.0",
+          "lib_dir": "/opt/oracle/instantclient",
+          "allow_thin_env": false,
+          "blocked": null
+        },
+        "mtls_health": {
+          "http_status": 200,
+          "body": {
+            "status": "UP",
+            "service": "blyb-dmz-forwarder",
+            "upstream": "not_checked_by_health",
+            "active_upstream": 0,
+            "pending_handshakes": 1,
+            "rid": "44041b42a045"
+          }
+        },
+        "real_signing_gate": "BLOCKED",
+        "gate_error_type": "CapabilityError"
+      }
+    },
+    "application_metadata": {
+      "exit_code": 0,
+      "data": {
+        "tenant": "first-hospital",
+        "state": {
+          "connectors": [
+            {
+              "id": "7d51abd7-3f32-4c8e-b2fa-9b652a511808",
+              "status": "DRAFT",
+              "active_config": false
+            }
+          ],
+          "destinations": [
+            {
+              "id": "345df8f4-410e-4c89-a258-a34957eb4151",
+              "code": "alihealth-drugtrace-retail",
+              "is_mock": true,
+              "status": "DRAFT",
+              "config_revision": null
+            }
+          ],
+          "config_revisions": [],
+          "dictionary_drafts_present": {
+            "drugtrace.ref_ent_id": "draft-1",
+            "drugtrace.query_bill_type": "draft-1",
+            "drugtrace.bill_type": "draft-1"
+          },
+          "dictionary_drafts_missing": [],
+          "production_evidence_count": 0
+        },
+        "counts": {
+          "DrugTraceBill": 0,
+          "DrugTraceBillRevision": 0,
+          "DrugTraceProductionEvidence": 0,
+          "DrugTraceCollectionRun": 0,
+          "DrugTraceSendQuota": 0
+        },
+        "evidence_statuses": [],
+        "all_domain_submission_count": 0
+      }
+    },
+    "migrations": {
+      "exit_code": 0,
+      "stdout": "BEGIN\n1|001_core_init\n2|002_pathology_domain\n3|003_receipt_publication_ref\n4|004_bigint_sizes\n5|005_storage_reservation_ledger\n6|006_config_release_digest\n7|007_tenant_composite_constraints\n8|008_publication_revoked_at_reservation_generalize\n9|009_drug_trace_domain\n10|010_drug_trace_fix2\n11|011_drug_trace_fix3\nROLLBACK\n"
+    }
+  },
+  "status": "CAPTURED"
+}

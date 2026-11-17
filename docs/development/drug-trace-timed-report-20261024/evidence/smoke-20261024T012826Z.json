@@ -1,0 +1,35 @@
+{
+  "exit_code": 0,
+  "result": {
+    "calls": [
+      {
+        "method": "POST",
+        "path": "/drug-trace/submissions/4ae81dfb-ff47-43f3-8396-086a04e2c717/send",
+        "status": 200
+      },
+      {
+        "method": "POST",
+        "path": "/drug-trace/submissions/4ae81dfb-ff47-43f3-8396-086a04e2c717/query",
+        "status": 200
+      }
+    ],
+    "bill": "04940c87-fb53-42e0-b9a9-8cd54ace0685",
+    "resumed_prepared": true,
+    "submission_id": "4ae81dfb-ff47-43f3-8396-086a04e2c717",
+    "send": {
+      "job_id": "b9e1d01a-1857-4063-a5ec-4d0c85f12163",
+      "state": "PREPARED"
+    },
+    "post_send_state": "ACCEPTED",
+    "query": {
+      "job_id": "c2e73c27-1903-4f16-8169-ee9fa225f4a9",
+      "generation": 3
+    },
+    "final_state": "ACCEPTED",
+    "attempt": {
+      "outcome": "ACCEPTED",
+      "http_status": 200
+    },
+    "ok": true
+  }
+}

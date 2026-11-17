@@ -1,0 +1,24 @@
+{
+ "info": "12501",
+ "msgid": "测试msgid",
+ "mdtrtarea_admvs": "测试mdtr",
+ "recer_sys_code": "测试recer_",
+ "infver": "测试infv",
+ "opter_type": "测试o",
+ "opter": "测试opter",
+ "opter_name": "测试患者",
+ "inf_time": "2026-01-01 00:00:00",
+ "fixmedins_code": "测试fixmed",
+ "input": {
+  "mdtrt_sn": "测试mdtrt_",
+  "medins_file_no": "测试medins",
+  "bld_cat_code": "测试b",
+  "bld_amt": 0,
+  "bld_amt_unt": "测试bld_am",
+  "bld_cnt": 0,
+  "bld_time": "2026-01-01 00:00:00",
+  "bld_rea": "测试bld_re",
+  "vali_flag": "测试v"
+ },
+ "_synthetic": true
+}

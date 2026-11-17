@@ -1,0 +1,8 @@
+{
+  "url": "https://developer.alibaba.com/docs/doc.htm?articleId=108869&docType=1",
+  "title": "淘宝开放平台：App Call Limited问题",
+  "published_updated": "2021-11-26",
+  "verified_at": "2026-10-26 20:30:23",
+  "interpretation": "官方通用定义：limited-by-api-access-count为API全部应用共享的总调用频率限制；不同于单AppKey的app-access-count或未上线应用的app-api-access-count。医疗API特定阈值仍须平台确认。",
+  "copied_full_article": false
+}

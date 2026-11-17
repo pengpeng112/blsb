@@ -1,0 +1,18 @@
+{
+  "host": "app",
+  "phase": "config_identity",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T10:12:14.416540+00:00",
+  "result": {
+    "identities": [
+      {
+        "app_key": "35085469",
+        "profile": "alihealth_yljg_retail_v1",
+        "query_bill_type": "A",
+        "n": 247
+      }
+    ],
+    "platform_calls": 0,
+    "secret_values_read": 0
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "source": "<relay-jump> platform metadata, not source live",
+  "sql": "SELECT source_code,system_code,schema_name,table_name,column_name,code,meaning,status,conflict_status,current_version_id,updated_at FROM asset.asset_column_value_domains WHERE source_code='his_source_<his_host_id>' AND ((schema_name='DRUG_USER' AND table_name='MED_TRACE_RECORD' AND column_name IN ('IN_OUT_TYPE','IS_DELETED','SPLIT_FLAG','TRACES_SUM')) OR (schema_name='PHARMACY' AND table_name='DRUG_PRESC_MASTER' AND column_name IN ('PRESC_SOURCE','FLAG'))) ORDER BY schema_name,table_name,column_name,code LIMIT 100",
+  "rows": [],
+  "row_count": 0,
+  "source_writes": 0
+}

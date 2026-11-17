@@ -1,0 +1,737 @@
+{
+  "captured_at": "2026-10-19T09:13:05.557142+00:00",
+  "channel": "sjzc/<relay-jump>/platform_metadata_only",
+  "readonly": true,
+  "business_source_writes": 0,
+  "business_source_connections": 0,
+  "credential_contents_read": false,
+  "queries": {
+    "source_catalog": {
+      "sql": "SELECT source_code,system_code,db_type,target_host,port,\n        enabled,write_policy FROM asset.asset_data_sources ORDER BY source_code LIMIT 200",
+      "rows": [
+        {
+          "source_code": "adverse_event_<intranet_host_id>",
+          "system_code": "ADVERSE_EVENT",
+          "db_type": "mysql",
+          "target_host": "<intranet-host>",
+          "port": 3306,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "bloodnew_sqlserver_<intranet_host>_7",
+          "system_code": "TRANSFUSION_NEW",
+          "db_type": "sqlserver",
+          "target_host": "<intranet-host>7",
+          "port": 1433,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "bronchoscopy_postgresql_<intranet_host>_240",
+          "system_code": "BRONCHOSCOPY",
+          "db_type": "postgresql",
+          "target_host": "<intranet-host>240",
+          "port": 5432,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "cardionet_sqlserver_<intranet_host_id>",
+          "system_code": "ECG",
+          "db_type": "sqlserver",
+          "target_host": "<intranet-host>",
+          "port": 1433,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "core2db_mysql_<intranet_host>_135",
+          "system_code": "CORE2DB",
+          "db_type": "mysql",
+          "target_host": "<intranet-host>135",
+          "port": 3306,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "dialysis_postgresql_<intranet_host_id>",
+          "system_code": "HEMODIALYSIS",
+          "db_type": "postgresql",
+          "target_host": "<intranet-host>",
+          "port": 5432,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "docare_oracle_<intranet_host_id>",
+          "system_code": "DOCARE",
+          "db_type": "oracle",
+          "target_host": "<intranet-host>",
+          "port": 1521,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "drg_postgresql_<intranet_host_id>",
+          "system_code": "DRG",
+          "db_type": "postgresql",
+          "target_host": "<intranet-host>",
+          "port": 5836,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "ecg_sqlserver_<intranet_host_id>",
+          "system_code": "ECG",
+          "db_type": "sqlserver",
+          "target_host": "<intranet-host>",
+          "port": 1433,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "emergency_clinic_<intranet_host_id>",
+          "system_code": "EMERGENCY_CLINIC",
+          "db_type": "oracle",
+          "target_host": "<intranet-host>",
+          "port": 1521,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "hearing_test_postgresql_<intranet_host_id>",
+          "system_code": "HEARING_TEST",
+          "db_type": "postgresql",
+          "target_host": "<intranet-host>",
+          "port": 15432,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "hisbase_oracle_<intranet_host_id>",
+          "system_code": "HIS",
+          "db_type": "oracle",
+          "target_host": "<intranet-host>",
+          "port": 1521,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "his_source_<his_host_id>",
+          "system_code": "HIS",
+          "db_type": "oracle",
+          "target_host": "<his-host>",
+          "port": 1521,
+          "enabled": true,
+          "write_policy": "medical_dict_push"
+        },
+        {
+          "source_code": "hrp_<intranet_host_id>",
+          "system_code": "HRP",
+          "db_type": "oracle",
+          "target_host": "<intranet-host>",
+          "port": 1521,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "infection_<intranet_host_id>",
+          "system_code": "INFECTION_SURVEILLANCE",
+          "db_type": "oracle",
+          "target_host": "<intranet-host>",
+          "port": 1521,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "interconnect_<intranet_host_id>",
+          "system_code": "INTERCONNECT_PROV",
+          "db_type": "oracle",
+          "target_host": "<intranet-host>",
+          "port": 1521,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "jhemr_vastbase_<intranet_host>_177",
+          "system_code": "JHEMR_VASTBASE",
+          "db_type": "vastbase",
+          "target_host": "<intranet-host>177",
+          "port": 5432,
+          "enabled": true,
+          "write_policy": "medical_dict_push"
+        },
+        {
+          "source_code": "lis_cache_<intranet_host_id>",
+          "system_code": "LIS_CACHE",
+          "db_type": "cache",
+          "target_host": "<intranet-host>",
+          "port": 1972,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "lis_sqlserver_<intranet_host_id>",
+          "system_code": "LIS_SOURCE",
+          "db_type": "sqlserver",
+          "target_host": "<intranet-host>",
+          "port": 1433,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "mandala_emr_oracle_<intranet_host_id>",
+          "system_code": "MANDALA_EMR",
+          "db_type": "oracle",
+          "target_host": "<intranet-host>",
+          "port": 1521,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "mobile_nursing_oracle_<intranet_host_id>",
+          "system_code": "MOBILE_NURSING",
+          "db_type": "oracle",
+          "target_host": "<intranet-host>",
+          "port": 1521,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "mr_mgmt_<intranet_host_id>",
+          "system_code": "MEDICAL_RECORD_MGMT",
+          "db_type": "oracle",
+          "target_host": "<intranet-host>",
+          "port": 1521,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "oa_sqlserver_<intranet_host_id>",
+          "system_code": "OA",
+          "db_type": "sqlserver",
+          "target_host": "<intranet-host>",
+          "port": 1433,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "occupational_disease_sqlserver_<intranet_host>_96",
+          "system_code": "OCCUPATIONAL_DISEASE",
+          "db_type": "sqlserver",
+          "target_host": "<intranet-host>96",
+          "port": 1433,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "ods_internal",
+          "system_code": "DATA_CENTER",
+          "db_type": "oracle",
+          "target_host": "<ods-host>",
+          "port": 1521,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "ods_emr",
+          "system_code": "DATA_CENTER",
+          "db_type": "oracle",
+          "target_host": "<ods-host>",
+          "port": 1521,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "ods_lis",
+          "system_code": "DATA_CENTER",
+          "db_type": "oracle",
+          "target_host": "<ods-host>",
+          "port": 1521,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "ods_pacs",
+          "system_code": "DATA_CENTER",
+          "db_type": "oracle",
+          "target_host": "<ods-host>",
+          "port": 1521,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "ods_sm",
+          "system_code": "DATA_CENTER",
+          "db_type": "oracle",
+          "target_host": "<ods-host>",
+          "port": 1521,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "ods_ydhl",
+          "system_code": "DATA_CENTER",
+          "db_type": "oracle",
+          "target_host": "<ods-host>",
+          "port": 1521,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "outpatient_mysql_<intranet_host>_161",
+          "system_code": "OUTPATIENT_APPT",
+          "db_type": "mysql",
+          "target_host": "<intranet-host>161",
+          "port": 3306,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "pacs_mysql_<intranet_host_id>",
+          "system_code": "PACS_SOURCE",
+          "db_type": "mysql",
+          "target_host": "<intranet-host>",
+          "port": 3306,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "paperless_cdms_oracle_<intranet_host_id>",
+          "system_code": "PAPERLESS_CDMS",
+          "db_type": "oracle",
+          "target_host": "<intranet-host>",
+          "port": 1521,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "pathology_sqlserver_<intranet_host_id>",
+          "system_code": "PATHOLOGY",
+          "db_type": "sqlserver",
+          "target_host": "<intranet-host>",
+          "port": 1433,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "physical_exam_sqlserver_<intranet_host_id>",
+          "system_code": "PHYSICAL_EXAM",
+          "db_type": "sqlserver",
+          "target_host": "<intranet-host>",
+          "port": 1433,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "queue_mysql_<intranet_host>_163",
+          "system_code": "QUEUE",
+          "db_type": "mysql",
+          "target_host": "<intranet-host>163",
+          "port": 3306,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "research_mysql_<intranet_host>_200",
+          "system_code": "RESEARCH_MYSQL",
+          "db_type": "mysql",
+          "target_host": "<intranet-host>200",
+          "port": 4306,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "sddw_oracle_<his_host_id>1",
+          "system_code": "SDDW_PROD",
+          "db_type": "oracle",
+          "target_host": "<his-host>1",
+          "port": 1521,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "sddw_oracle_<his_host_id>2",
+          "system_code": "SDDW_PROD",
+          "db_type": "oracle",
+          "target_host": "<his-host>2",
+          "port": 1521,
+          "enabled": true,
+          "write_policy": "readonly"
+        },
+        {
+          "source_code": "ultrasound_endoscopy_sqlserver_<intranet_host_id>",
+          "system_code": "ULTRASOUND_ENDOSCOPY",
+          "db_type": "sqlserver",
+          "target_host": "<intranet-host>",
+          "port": 1433,
+          "enabled": true,
+          "write_policy": "readonly"
+        }
+      ]
+    },
+    "source_registration": {
+      "sql": "SELECT source_code,system_code,db_type,target_host,port,\n        service_name,service_mode,connection_mode,enabled,write_policy,updated_at\n        FROM asset.asset_data_sources\n        WHERE source_code='his_source_<his_host_id>' LIMIT 1",
+      "rows": [
+        {
+          "source_code": "his_source_<his_host_id>",
+          "system_code": "HIS",
+          "db_type": "oracle",
+          "target_host": "<his-host>",
+          "port": 1521,
+          "service_name": "his",
+          "service_mode": "service_name",
+          "connection_mode": "direct",
+          "enabled": true,
+          "write_policy": "medical_dict_push",
+          "updated_at": "2026-07-13T18:43:47.631769+08:00"
+        }
+      ]
+    },
+    "same_endpoint_sources": {
+      "sql": "SELECT source_code,system_code,db_type,target_host,port,\n        service_name,service_mode,connection_mode,enabled,write_policy\n        FROM asset.asset_data_sources WHERE target_host='<his-host>' AND port=1521\n        ORDER BY source_code LIMIT 20",
+      "rows": [
+        {
+          "source_code": "his_source_<his_host_id>",
+          "system_code": "HIS",
+          "db_type": "oracle",
+          "target_host": "<his-host>",
+          "port": 1521,
+          "service_name": "his",
+          "service_mode": "service_name",
+          "connection_mode": "direct",
+          "enabled": true,
+          "write_policy": "medical_dict_push"
+        }
+      ]
+    },
+    "trace_table_registration": {
+      "sql": "SELECT system_code,source_code,schema_name,table_name,\n        column_count,source,updated_at FROM asset.asset_tables\n        WHERE system_code IN ('HIS','HIS_SOURCE') AND schema_name='DRUG_USER'\n        AND table_name='MED_TRACE_RECORD' LIMIT 10",
+      "rows": [
+        {
+          "system_code": "HIS",
+          "source_code": "his_source_<his_host_id>",
+          "schema_name": "DRUG_USER",
+          "table_name": "MED_TRACE_RECORD",
+          "column_count": 30,
+          "source": "HIS DRUG_USER",
+          "updated_at": null
+        }
+      ]
+    },
+    "trace_columns": {
+      "sql": "SELECT system_code,source_code,schema_name,table_name,column_name,\n        data_type,nullable,column_id\n        FROM asset.asset_columns\n        WHERE system_code IN ('HIS','HIS_SOURCE') AND schema_name='DRUG_USER'\n        AND table_name='MED_TRACE_RECORD' ORDER BY column_id LIMIT 50",
+      "rows": [
+        {
+          "system_code": "HIS",
+          "source_code": "his_source_<his_host_id>",
+          "schema_name": "DRUG_USER",
+          "table_name": "MED_TRACE_RECORD",
+          "column_name": "ORG_CODE",
+          "data_type": "VARCHAR2",
+          "nullable": "true",
+          "column_id": 1
+        },
+        {
+          "system_code": "HIS",
+          "source_code": "his_source_<his_host_id>",
+          "schema_name": "DRUG_USER",
+          "table_name": "MED_TRACE_RECORD",
+          "column_name": "RECORD_ID",
+          "data_type": "VARCHAR2",
+          "nullable": "false",
+          "column_id": 2
+        },
+        {
+          "system_code": "HIS",
+          "source_code": "his_source_<his_host_id>",
+          "schema_name": "DRUG_USER",
+          "table_name": "MED_TRACE_RECORD",
+          "column_name": "STORE_CODE",
+          "data_type": "VARCHAR2",
+          "nullable": "true",
+          "column_id": 3
+        },
+        {
+          "system_code": "HIS",
+          "source_code": "his_source_<his_host_id>",
+          "schema_name": "DRUG_USER",
+          "table_name": "MED_TRACE_RECORD",
+          "column_name": "TRACE_BILLNO",
+          "data_type": "VARCHAR2",
+          "nullable": "true",
+          "column_id": 4
+        },
+        {
+          "system_code": "HIS",
+          "source_code": "his_source_<his_host_id>",
+          "schema_name": "DRUG_USER",
+          "table_name": "MED_TRACE_RECORD",
+          "column_name": "DRUG_PRI",
+          "data_type": "VARCHAR2",
+          "nullable": "true",
+          "column_id": 5
+        },
+        {
+          "system_code": "HIS",
+          "source_code": "his_source_<his_host_id>",
+          "schema_name": "DRUG_USER",
+          "table_name": "MED_TRACE_RECORD",
+          "column_name": "BATCH_NO",
+          "data_type": "VARCHAR2",
+          "nullable": "true",
+          "column_id": 6
+        },
+        {
+          "system_code": "HIS",
+          "source_code": "his_source_<his_host_id>",
+          "schema_name": "DRUG_USER",
+          "table_name": "MED_TRACE_RECORD",
+          "column_name": "EXPIRE_DATE",
+          "data_type": "DATE",
+          "nullable": "true",
+          "column_id": 7
+        },
+        {
+          "system_code": "HIS",
+          "source_code": "his_source_<his_host_id>",
+          "schema_name": "DRUG_USER",
+          "table_name": "MED_TRACE_RECORD",
+          "column_name": "PRODUCT_DATE",
+          "data_type": "DATE",
+          "nullable": "true",
+          "column_id": 8
+        },
+        {
+          "system_code": "HIS",
+          "source_code": "his_source_<his_host_id>",
+          "schema_name": "DRUG_USER",
+          "table_name": "MED_TRACE_RECORD",
+          "column_name": "STORE_ID",
+          "data_type": "VARCHAR2",
+          "nullable": "true",
+          "column_id": 9
+        },
+        {
+          "system_code": "HIS",
+          "source_code": "his_source_<his_host_id>",
+          "schema_name": "DRUG_USER",
+          "table_name": "MED_TRACE_RECORD",
+          "column_name": "F_TRACE_CODE",
+          "data_type": "VARCHAR2",
+          "nullable": "true",
+          "column_id": 10
+        },
+        {
+          "system_code": "HIS",
+          "source_code": "his_source_<his_host_id>",
+          "schema_name": "DRUG_USER",
+          "table_name": "MED_TRACE_RECORD",
+          "column_name": "S_TRACE_CODE",
+          "data_type": "VARCHAR2",
+          "nullable": "true",
+          "column_id": 11
+        },
+        {
+          "system_code": "HIS",
+          "source_code": "his_source_<his_host_id>",
+          "schema_name": "DRUG_USER",
+          "table_name": "MED_TRACE_RECORD",
+          "column_name": "T_TRACE_CODE",
+          "data_type": "VARCHAR2",
+          "nullable": "true",
+          "column_id": 12
+        },
+        {
+          "system_code": "HIS",
+          "source_code": "his_source_<his_host_id>",
+          "schema_name": "DRUG_USER",
+          "table_name": "MED_TRACE_RECORD",
+          "column_name": "DRUG_ID",
+          "data_type": "VARCHAR2",
+          "nullable": "true",
+          "column_id": 13
+        },
+        {
+          "system_code": "HIS",
+          "source_code": "his_source_<his_host_id>",
+          "schema_name": "DRUG_USER",
+          "table_name": "MED_TRACE_RECORD",
+          "column_name": "PRICE",
+          "data_type": "NUMBER",
+          "nullable": "true",
+          "column_id": 14
+        },
+        {
+          "system_code": "HIS",
+          "source_code": "his_source_<his_host_id>",
+          "schema_name": "DRUG_USER",
+          "table_name": "MED_TRACE_RECORD",
+          "column_name": "CREATE_USER_ID",
+          "data_type": "VARCHAR2",
+          "nullable": "true",
+          "column_id": 15
+        },
+        {
+          "system_code": "HIS",
+          "source_code": "his_source_<his_host_id>",
+          "schema_name": "DRUG_USER",
+          "table_name": "MED_TRACE_RECORD",
+          "column_name": "CREATE_USER_NAME",
+          "data_type": "VARCHAR2",
+          "nullable": "true",
+          "column_id": 16
+        },
+        {
+          "system_code": "HIS",
+          "source_code": "his_source_<his_host_id>",
+          "schema_name": "DRUG_USER",
+          "table_name": "MED_TRACE_RECORD",
+          "column_name": "CREATE_TIME",
+          "data_type": "DATE",
+          "nullable": "true",
+          "column_id": 17
+        },
+        {
+          "system_code": "HIS",
+          "source_code": "his_source_<his_host_id>",
+          "schema_name": "DRUG_USER",
+          "table_name": "MED_TRACE_RECORD",
+          "column_name": "MODIFY_USER_ID",
+          "data_type": "VARCHAR2",
+          "nullable": "true",
+          "column_id": 18
+        },
+        {
+          "system_code": "HIS",
+          "source_code": "his_source_<his_host_id>",
+          "schema_name": "DRUG_USER",
+          "table_name": "MED_TRACE_RECORD",
+          "column_name": "MODIFY_USER_NAME",
+          "data_type": "VARCHAR2",
+          "nullable": "true",
+          "column_id": 19
+        },
+        {
+          "system_code": "HIS",
+          "source_code": "his_source_<his_host_id>",
+          "schema_name": "DRUG_USER",
+          "table_name": "MED_TRACE_RECORD",
+          "column_name": "MODIFY_TIME",
+          "data_type": "DATE",
+          "nullable": "true",
+          "column_id": 20
+        },
+        {
+          "system_code": "HIS",
+          "source_code": "his_source_<his_host_id>",
+          "schema_name": "DRUG_USER",
+          "table_name": "MED_TRACE_RECORD",
+          "column_name": "IS_DELETED",
+          "data_type": "NUMBER",
+          "nullable": "true",
+          "column_id": 21
+        },
+        {
+          "system_code": "HIS",
+          "source_code": "his_source_<his_host_id>",
+          "schema_name": "DRUG_USER",
+          "table_name": "MED_TRACE_RECORD",
+          "column_name": "DELETE_USER_ID",
+          "data_type": "VARCHAR2",
+          "nullable": "true",
+          "column_id": 22
+        },
+        {
+          "system_code": "HIS",
+          "source_code": "his_source_<his_host_id>",
+          "schema_name": "DRUG_USER",
+          "table_name": "MED_TRACE_RECORD",
+          "column_name": "DELETE_USER_NAME",
+          "data_type": "VARCHAR2",
+          "nullable": "true",
+          "column_id": 23
+        },
+        {
+          "system_code": "HIS",
+          "source_code": "his_source_<his_host_id>",
+          "schema_name": "DRUG_USER",
+          "table_name": "MED_TRACE_RECORD",
+          "column_name": "DELETE_TIME",
+          "data_type": "DATE",
+          "nullable": "true",
+          "column_id": 24
+        },
+        {
+          "system_code": "HIS",
+          "source_code": "his_source_<his_host_id>",
+          "schema_name": "DRUG_USER",
+          "table_name": "MED_TRACE_RECORD",
+          "column_name": "KIND_TYPE",
+          "data_type": "VARCHAR2",
+          "nullable": "true",
+          "column_id": 25
+        },
+        {
+          "system_code": "HIS",
+          "source_code": "his_source_<his_host_id>",
+          "schema_name": "DRUG_USER",
+          "table_name": "MED_TRACE_RECORD",
+          "column_name": "IN_OUT_TYPE",
+          "data_type": "VARCHAR2",
+          "nullable": "true",
+          "column_id": 26
+        },
+        {
+          "system_code": "HIS",
+          "source_code": "his_source_<his_host_id>",
+          "schema_name": "DRUG_USER",
+          "table_name": "MED_TRACE_RECORD",
+          "column_name": "PRESC_DATE",
+          "data_type": "DATE",
+          "nullable": "true",
+          "column_id": 27
+        },
+        {
+          "system_code": "HIS",
+          "source_code": "his_source_<his_host_id>",
+          "schema_name": "DRUG_USER",
+          "table_name": "MED_TRACE_RECORD",
+          "column_name": "PRESC_DETAILID",
+          "data_type": "VARCHAR2",
+          "nullable": "true",
+          "column_id": 28
+        },
+        {
+          "system_code": "HIS",
+          "source_code": "his_source_<his_host_id>",
+          "schema_name": "DRUG_USER",
+          "table_name": "MED_TRACE_RECORD",
+          "column_name": "SPLIT_FLAG",
+          "data_type": "NUMBER",
+          "nullable": "true",
+          "column_id": 29
+        },
+        {
+          "system_code": "HIS",
+          "source_code": "his_source_<his_host_id>",
+          "schema_name": "DRUG_USER",
+          "table_name": "MED_TRACE_RECORD",
+          "column_name": "TRACES_SUM",
+          "data_type": "NUMBER",
+          "nullable": "true",
+          "column_id": 30
+        }
+      ]
+    },
+    "trace_value_domains": {
+      "sql": "SELECT source_code,system_code,schema_name,table_name,\n        column_name,code,meaning,status,conflict_status,current_version_id,updated_at\n        FROM asset.asset_column_value_domains\n        WHERE source_code='his_source_<his_host_id>'\n        AND schema_name='DRUG_USER' AND table_name='MED_TRACE_RECORD'\n        AND column_name IN ('IN_OUT_TYPE','KIND_TYPE','IS_DELETED','SPLIT_FLAG')\n        ORDER BY column_name,code LIMIT 100",
+      "rows": []
+    },
+    "contract_view_catalog": {
+      "sql": "SELECT system_code,source_code,schema_name,table_name,column_count\n        FROM asset.asset_tables WHERE system_code IN ('HIS','HIS_SOURCE')\n        AND table_name IN ('V_DRUG_TRACE_BILL','V_DRUG_TRACE_CODE')\n        ORDER BY schema_name,table_name LIMIT 20",
+      "rows": []
+    }
+  }
+}

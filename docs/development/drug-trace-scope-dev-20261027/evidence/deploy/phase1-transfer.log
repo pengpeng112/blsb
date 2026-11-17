@@ -1,0 +1,11 @@
+[relay] 打包 scope-20261028 → scope-20261028.relay.tar.gz
+[relay] 包大小 456.8 MB
+[relay] 跳板中继目录 <prod-path>-relay/20261028T180248Z
+/dev/mapper/openeuler-home  406G  2.6G  383G    1% /home
+[relay] SFTP→跳板完成（9s，49.7 MB/s）
+[relay] keyscan <prod-host> SHA256:zv6y5hjXWw9goWN8wJ0K2gzQjhEPVuMLc…
+[relay] keyscan <prod-host> SHA256:IjK9PN01og2d/fsSjUy4rlsyRBqOiZZyc…  <= 固定值匹配
+[relay] scp 跳板→目标（大文件，耐心等待）…
+[relay] scp rc=0
+[relay] 目标侧哈希校验通过，中转 tar 已清
+[relay] 跳板中继已清理

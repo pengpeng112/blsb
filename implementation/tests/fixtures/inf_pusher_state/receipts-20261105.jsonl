@@ -1,0 +1,11 @@
+{"id": "TEST-death-001", "result": true, "errorCode": "00", "desc": "成功", "attempt": 0, "table": "death", "ts": "2026-11-05 08:00:01"}
+{"id": "TEST-admission-001", "result": false, "errorCode": "01", "desc": "服务端异常", "attempt": 0, "table": "admission", "ts": "2026-11-05 08:00:02"}
+{"id": "TEST-admission-001", "result": true, "errorCode": "00", "desc": "重试后成功", "attempt": 1, "table": "admission", "ts": "2026-11-05 08:00:05"}
+{"id": "TEST-exam-001", "result": false, "errorCode": "02", "desc": "必填项缺失", "attempt": 0, "table": "exam", "ts": "2026-11-05 08:00:06"}
+{"id": "TEST-first-001", "result": false, "stage": "client-validate", "desc": "缺必填:idCard", "attempt": 0, "table": "first_course", "ts": "2026-11-05 08:00:07"}
+{"id": "TEST-daily-001", "result": false, "stage": "network", "desc": "timed out", "attempt": 0, "table": "daily_course", "ts": "2026-11-05 08:00:08"}
+{"id": "TEST-daily-001", "result": false, "stage": "network", "desc": "timed out", "attempt": 1, "table": "daily_course", "ts": "2026-11-05 08:00:10"}
+{"id": "TEST-daily-001", "result": false, "stage": "network", "desc": "timed out", "attempt": 2, "table": "daily_course", "ts": "2026-11-05 08:00:12"}
+{"id": "TEST-exam-002", "result": true, "stage": "mock", "desc": "MOCK 未发送", "mode": "mock", "attempt": 0, "table": "exam", "ts": "2026-11-05 09:00:00"}
+{"id": "TEST-death-001", "result": true, "errorCode": "00", "desc": "重复导入行", "attempt": 0, "table": "death", "ts": "2026-11-05 08:00:01", "patientName": "测试患者001"}
+{"id": "TEST-exam-003", "result": true, "errorCode": "00", "desc": "证件 000000199001010000 出现在描述里应被脱敏", "attempt": 0, "table": "exam", "ts": "2026-11-05 10:00:00"}

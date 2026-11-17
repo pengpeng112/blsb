@@ -1,0 +1,36 @@
+#!/bin/bash
+# =============================================================================
+# relay-tunnel.sh.template —— inf_watchdog → wechat-relay SSH 隧道保活脚本模板
+# （PT-02 同步入库：生产件在 <prod-host>:<prod-path>/exchange/inf-watchdog/relay-tunnel.sh，
+#   本模板保留 SELinux 兼容的 shell 保活结构说明，部署时按实际参数替换占位符）
+#
+# 为什么必须经 shell 循环而不是 systemd 直接 exec ssh：
+#   SELinux 策略禁止 systemd 单元直接 exec /usr/bin/ssh（2026-11-16 实测）——
+#   需经脚本 while 循环拉起，服务 Type=simple 即可常驻。
+#
+# 链路：<prod-host> ──ssh -L 127.0.0.1:13000──► <frontend-host>4:<ssh-port> ──► <relay-host>:3000 wechat-relay
+# 真达判据：curl POST {} 无签名 → 预期 HTTP 401 {"detail":"Missing X-Source-Id"}
+# （TCP 连通 ≠ 真达；watchdog C11 check 每 5 分钟自动探测一次，结果入 status.json）
+# =============================================================================
+set -u
+
+JUMP_HOST="{{JUMP_HOST}}"            # 占位：跳板机地址（如 <frontend-host>4）
+JUMP_PORT="{{JUMP_PORT}}"            # 占位：跳板 ssh 端口（如 <ssh-port>）
+JUMP_USER="{{JUMP_USER}}"            # 占位：跳板账号
+KEY="{{SSH_KEY_PATH}}"               # 占位：专用密钥路径（如 <prod-path>/.ssh/id_ed25519_relay，600）
+LOCAL_PORT="{{LOCAL_PORT}}"          # 占位：本地转发端口（如 13000）
+TARGET="{{TARGET_HOST_PORT}}"        # 占位：relay 内网地址（如 <relay-host>:3000）
+LOG="{{LOG_PATH}}"                   # 占位：日志文件（同目录 relay-tunnel.log）
+
+while true; do
+  echo "$(date '+%F %T') tunnel dial ${JUMP_HOST}:${JUMP_PORT} -> ${TARGET}" >> "$LOG"
+  # ServerAlive 30s 保活 + ExitOnForwardFailure=转发失败立即退出重连（绝不带病驻留）
+  ssh -i "$KEY" -p "$JUMP_PORT" "${JUMP_USER}@${JUMP_HOST}" \
+      -N -L "127.0.0.1:${LOCAL_PORT}:${TARGET}" \
+      -o ServerAliveInterval=30 -o ServerAliveCountMax=3 \
+      -o ExitOnForwardFailure=yes -o StrictHostKeyChecking=accept-new \
+      >> "$LOG" 2>&1
+  rc=$?
+  echo "$(date '+%F %T') ssh exited rc=$rc; reconnect in 10s" >> "$LOG"
+  sleep 10          # 断线 10s 重连（watchdog 侧闪断不吞告警：未送达不写防轰账，恢复后自动补发）
+done

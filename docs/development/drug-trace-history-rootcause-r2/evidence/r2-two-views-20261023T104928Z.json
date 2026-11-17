@@ -1,0 +1,315 @@
+{
+  "channel": "sjzc/<relay-jump>/data-asset-api/OracleConnector.execute_readonly",
+  "source_writes": 0,
+  "uploads": 0,
+  "registration_changes": 0,
+  "queries": {
+    "identity": {
+      "ok": true,
+      "sql": "SELECT USER AS LOGIN_USER,SYS_CONTEXT('USERENV','SERVICE_NAME') AS SERVICE_NAME FROM DUAL",
+      "params": null,
+      "rows_returned": 1,
+      "truncated": false,
+      "rows": [
+        {
+          "LOGIN_USER": "BLYB_DRUGTRACE",
+          "SERVICE_NAME": "his"
+        }
+      ]
+    },
+    "privileges": {
+      "ok": true,
+      "sql": "SELECT PRIVILEGE FROM SESSION_PRIVS ORDER BY PRIVILEGE",
+      "params": null,
+      "rows_returned": 1,
+      "truncated": false,
+      "rows": [
+        {
+          "PRIVILEGE": "CREATE SESSION"
+        }
+      ]
+    },
+    "roles": {
+      "ok": true,
+      "sql": "SELECT ROLE FROM SESSION_ROLES ORDER BY ROLE",
+      "params": null,
+      "rows_returned": 0,
+      "truncated": false,
+      "rows": []
+    },
+    "grants": {
+      "ok": true,
+      "sql": "SELECT OWNER,TABLE_NAME,PRIVILEGE,GRANTABLE FROM USER_TAB_PRIVS_RECD ORDER BY OWNER,TABLE_NAME,PRIVILEGE",
+      "params": null,
+      "rows_returned": 2,
+      "truncated": false,
+      "rows": [
+        {
+          "OWNER": "PHARMACY",
+          "TABLE_NAME": "V_DRUG_TRACE_BILL",
+          "PRIVILEGE": "SELECT",
+          "GRANTABLE": "NO"
+        },
+        {
+          "OWNER": "PHARMACY",
+          "TABLE_NAME": "V_DRUG_TRACE_CODE",
+          "PRIVILEGE": "SELECT",
+          "GRANTABLE": "NO"
+        }
+      ]
+    },
+    "view_status": {
+      "ok": true,
+      "sql": "SELECT OWNER,OBJECT_NAME,STATUS,TO_CHAR(LAST_DDL_TIME,'YYYY-MM-DD') AS LAST_DDL FROM ALL_OBJECTS WHERE OWNER='PHARMACY' AND OBJECT_TYPE='VIEW' AND OBJECT_NAME IN ('V_DRUG_TRACE_BILL','V_DRUG_TRACE_CODE') ORDER BY OBJECT_NAME",
+      "params": null,
+      "rows_returned": 2,
+      "truncated": false,
+      "rows": [
+        {
+          "OWNER": "PHARMACY",
+          "OBJECT_NAME": "V_DRUG_TRACE_BILL",
+          "STATUS": "VALID",
+          "LAST_DDL": "2026-10-22"
+        },
+        {
+          "OWNER": "PHARMACY",
+          "OBJECT_NAME": "V_DRUG_TRACE_CODE",
+          "STATUS": "VALID",
+          "LAST_DDL": "2026-10-22"
+        }
+      ]
+    },
+    "view_definitions": {
+      "ok": true,
+      "sql": "SELECT VIEW_NAME,TEXT FROM ALL_VIEWS WHERE OWNER='PHARMACY' AND VIEW_NAME IN ('V_DRUG_TRACE_CODE','V_DRUG_TRACE_BILL') ORDER BY VIEW_NAME",
+      "params": null,
+      "rows_returned": 2,
+      "truncated": false,
+      "rows": [
+        {
+          "VIEW_NAME": "V_DRUG_TRACE_BILL",
+          "TEXT": "SELECT\n    CAST('HIS' AS VARCHAR2(16)) AS source_system,\n\n    TO_CHAR(M.PRESC_DATE, 'YYYY-MM-DD HH24:MI:SS')\n        || '|' || TO_CHAR(M.PRESC_NO)\n        || '|' || M.DISPENSARY AS source_bill_id,\n\n    TO_CHAR(M.PRESC_NO) AS source_bill_no,\n\n    TO_CHAR(M.PRESC_DATE, 'YYYYMMDDHH24MISS')\n        || '_' || TO_CHAR(M.PRESC_NO)\n        || '_' || M.DISPENSARY\n        || '_' || TO_CHAR(M.DISPENSING_DATETIME, 'YYYYMMDDHH24MISS')\n        || '_' || NVL(TO_CHAR(M.PRESC_SOURCE), 'NULL')\n        || '_' || NVL(TO_CHAR(M.FLAG), 'NULL') || '_R10_RF_' || NVL(TO_CHAR(M.REFUND_FLAG), 'NULL') AS source_revision,\n\n    CASE WHEN M.PRESC_SOURCE = 0 AND M.FLAG = 1 AND M.DISPENSING_DATETIME IS NOT NULL AND NVL(M.REFUND_FLAG, 0) = 0 THEN 'PATIENT_DISPENSE' ELSE 'UNKNOWN' END AS business_kind,\n    M.DISPENSARY AS pharmacy_code,\n    CAST(NULL AS VARCHAR2(64)) AS warehouse_code,\n    CAST(NULL AS VARCHAR2(64)) AS supplier_code,\n    M.DISPENSING_DATETIME AS bill_time,\n    M.DISPENSING_DATETIME AS updated_at,\n    CAST(NULL AS VARCHAR2(64)) AS source_event_seq,\n    CASE WHEN M.PRESC_SOURCE = 0 AND M.FLAG = 1 AND M.DISPENSING_DATETIME IS NOT NULL AND NVL(M.REFUND_FLAG, 0) = 0 THEN 1 ELSE CAST(NULL AS NUMBER(1)) END AS finalized,\n    CASE WHEN M.PRESC_SOURCE = 0 AND M.FLAG = 1 AND M.DISPENSING_DATETIME IS NOT NULL AND NVL(M.REFUND_FLAG, 0) = 0 THEN 0 ELSE CAST(NULL AS NUMBER(1)) END AS is_void,\n    CAST(NULL AS NUMBER(12)) AS expected_code_count,\n    CAST(NULL AS VARCHAR2(64)) AS patient_ref,\n    CAST(NULL AS VARCHAR2(64)) AS encounter_ref,\n\n    'PRESC_SOURCE=' || TO_CHAR(M.PRESC_SOURCE)\n        || CHR(59) || 'FLAG=' || TO_CHAR(M.FLAG)\n        AS source_bill_kind_raw\n\nFROM PHARMACY.DRUG_PRESC_MASTER M\nWITH READ ONLY\n"
+        },
+        {
+          "VIEW_NAME": "V_DRUG_TRACE_CODE",
+          "TEXT": "SELECT\n    CAST('HIS' AS VARCHAR2(16)) AS source_system,\n\n    TO_CHAR(M.PRESC_DATE, 'YYYY-MM-DD HH24:MI:SS')\n        || '|' || TO_CHAR(M.PRESC_NO)\n        || '|' || M.DISPENSARY AS source_bill_id,\n\n    M.DISPENSARY AS pharmacy_code,\n    CASE WHEN M.PRESC_SOURCE = 0 AND M.FLAG = 1 AND M.DISPENSING_DATETIME IS NOT NULL AND NVL(M.REFUND_FLAG, 0) = 0 THEN 'PATIENT_DISPENSE' ELSE 'UNKNOWN' END AS business_kind,\n\n    TO_CHAR(M.PRESC_DATE, 'YYYYMMDDHH24MISS')\n        || '_' || TO_CHAR(M.PRESC_NO)\n        || '_' || M.DISPENSARY\n        || '_' || TO_CHAR(M.DISPENSING_DATETIME, 'YYYYMMDDHH24MISS')\n        || '_' || NVL(TO_CHAR(M.PRESC_SOURCE), 'NULL')\n        || '_' || NVL(TO_CHAR(M.FLAG), 'NULL') || '_R10_RF_' || NVL(TO_CHAR(M.REFUND_FLAG), 'NULL') AS source_revision,\n\n    T.PRESC_DETAILID AS source_line_id,\n    T.RECORD_ID AS source_code_record_id,\n    T.T_TRACE_CODE AS trace_code,\n    CAST(NULL AS NUMBER(20,6)) AS quantity,\n    CAST(NULL AS VARCHAR2(32)) AS unit,\n    CAST(NULL AS VARCHAR2(16)) AS code_level,\n    CAST(NULL AS VARCHAR2(255)) AS parent_code,\n    T.MODIFY_TIME AS updated_at,\n    T.IS_DELETED AS is_deleted,\n    T.F_TRACE_CODE AS f_trace_code,\n    T.S_TRACE_CODE AS s_trace_code,\n    T.T_TRACE_CODE AS t_trace_code,\n    M.DISPENSING_DATETIME AS bill_time\n\nFROM DRUG_USER.MED_TRACE_RECORD T\nJOIN PHARMACY.DRUG_PRESC_MASTER M\n  ON T.TRACE_BILLNO = TO_CHAR(M.PRESC_NO)\n AND T.PRESC_DATE = M.PRESC_DATE\n AND T.STORE_CODE = M.DISPENSARY\n\nWHERE T.IN_OUT_TYPE = 'OUT'\nWITH READ ONLY\n"
+        }
+      ]
+    }
+  },
+  "business_identifiers_returned": false,
+  "registration": {
+    "source_code": "his_source_<his_host_id>",
+    "host": "<his-host>",
+    "port": 1521,
+    "service": "his",
+    "write_policy": "medical_dict_push"
+  },
+  "phase": "r2-two-views",
+  "budget_seconds": 300,
+  "per_query_timeout_seconds": 30,
+  "source_tables_accessed": [
+    "PHARMACY.V_DRUG_TRACE_CODE",
+    "PHARMACY.V_DRUG_TRACE_BILL"
+  ],
+  "restricted_reader_unchanged": true,
+  "q02_batches": [
+    {
+      "codes": 500,
+      "rows": 1579,
+      "seconds": 0.1479,
+      "cap_reached": false
+    },
+    {
+      "codes": 500,
+      "rows": 1542,
+      "seconds": 0.0643,
+      "cap_reached": false
+    },
+    {
+      "codes": 383,
+      "rows": 940,
+      "seconds": 0.0914,
+      "cap_reached": false
+    }
+  ],
+  "q02_stop": "ALL_CODES_QUERIED",
+  "q02_excluded_raw_state_summary": [
+    {
+      "raw_kind": "PRESC_SOURCE=0;FLAG=1",
+      "refund_raw": "1",
+      "finalized_raw": "None",
+      "void_raw": "None",
+      "rows": 46
+    },
+    {
+      "raw_kind": "PRESC_SOURCE=0;FLAG=2",
+      "refund_raw": "1",
+      "finalized_raw": "None",
+      "void_raw": "None",
+      "rows": 23
+    },
+    {
+      "raw_kind": "PRESC_SOURCE=0;FLAG=2",
+      "refund_raw": "NULL",
+      "finalized_raw": "None",
+      "void_raw": "None",
+      "rows": 1327
+    }
+  ],
+  "q02_pairs_explained": 1396,
+  "q02_rows_explained": 1396,
+  "q02_distinct_main_bills": 411,
+  "q03_dup_batch": {
+    "codes": 31,
+    "rows": 62,
+    "seconds": 0.0091,
+    "cap_reached": false
+  },
+  "q03_pairs_covered": 31,
+  "q03_pair_record_shapes": {
+    "(2, 2, 2)": 31
+  },
+  "q03_distinct_main_bills": 11,
+  "q03_whole_bill_batches": [
+    {
+      "bill_index": 0,
+      "ok": true,
+      "header_rows": 1,
+      "line_rows": 2,
+      "line_cap_reached": false,
+      "seconds": 0.0091
+    },
+    {
+      "bill_index": 1,
+      "ok": true,
+      "header_rows": 1,
+      "line_rows": 4,
+      "line_cap_reached": false,
+      "seconds": 0.0028
+    },
+    {
+      "bill_index": 2,
+      "ok": true,
+      "header_rows": 1,
+      "line_rows": 4,
+      "line_cap_reached": false,
+      "seconds": 0.0022
+    },
+    {
+      "bill_index": 3,
+      "ok": true,
+      "header_rows": 1,
+      "line_rows": 10,
+      "line_cap_reached": false,
+      "seconds": 0.0022
+    },
+    {
+      "bill_index": 4,
+      "ok": true,
+      "header_rows": 1,
+      "line_rows": 12,
+      "line_cap_reached": false,
+      "seconds": 0.0022
+    },
+    {
+      "bill_index": 5,
+      "ok": true,
+      "header_rows": 1,
+      "line_rows": 10,
+      "line_cap_reached": false,
+      "seconds": 0.0032
+    },
+    {
+      "bill_index": 6,
+      "ok": true,
+      "header_rows": 1,
+      "line_rows": 8,
+      "line_cap_reached": false,
+      "seconds": 0.0023
+    },
+    {
+      "bill_index": 7,
+      "ok": true,
+      "header_rows": 1,
+      "line_rows": 2,
+      "line_cap_reached": false,
+      "seconds": 0.0021
+    },
+    {
+      "bill_index": 8,
+      "ok": true,
+      "header_rows": 1,
+      "line_rows": 2,
+      "line_cap_reached": false,
+      "seconds": 0.0023
+    },
+    {
+      "bill_index": 9,
+      "ok": true,
+      "header_rows": 1,
+      "line_rows": 4,
+      "line_cap_reached": false,
+      "seconds": 0.0024
+    },
+    {
+      "bill_index": 10,
+      "ok": true,
+      "header_rows": 1,
+      "line_rows": 4,
+      "line_cap_reached": false,
+      "seconds": 0.0023
+    }
+  ],
+  "q03_whole_bills_fetched": 11,
+  "q03_whole_bills_truncated": false,
+  "q01_view_batches": [
+    {
+      "codes": 500,
+      "rows": 1250,
+      "seconds": 0.1428,
+      "cap_reached": false
+    },
+    {
+      "codes": 31,
+      "rows": 46,
+      "seconds": 0.0071,
+      "cap_reached": false
+    }
+  ],
+  "q01_view_stop": "ALL_CODES_QUERIED",
+  "q01_codes_with_view_rows": 369,
+  "q01_codes_without_view_rows": 162,
+  "run_completed": true,
+  "total_elapsed_seconds": 0.719,
+  "private_rows": {
+    "excluded_states": 1396,
+    "dup_pair_view_rows": 62,
+    "whole_bills": 11,
+    "missing_codes_view": 369
+  },
+  "private_details_path": "C:\\Users\\Administrator\\AppData\\Local\\BLYB\\history-rootcause-r2\\live-20261023T104928Z\\r2-details.json",
+  "captured_at": "2026-10-23T10:49:34.245659+00:00",
+  "run_id": "20261023T104928Z",
+  "private_dir": "C:\\Users\\Administrator\\AppData\\Local\\BLYB\\history-rootcause-r2\\live-20261023T104928Z",
+  "samples_selected": [
+    {
+      "id": "S01",
+      "rule": "first code-visible-under-other-line by (file,row)",
+      "file": "part_1.xlsx",
+      "row_no": 39
+    },
+    {
+      "id": "S02",
+      "rule": "first code-absent-from-view by (file,row)",
+      "file": "part_1.xlsx",
+      "row_no": 40
+    },
+    {
+      "id": "S03",
+      "rule": "first code-visible-under-other-line from a file different than S01/S02, by (file,row)",
+      "file": "part_10.xlsx",
+      "row_no": 1175
+    }
+  ]
+}

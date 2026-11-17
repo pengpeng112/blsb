@@ -1,0 +1,202 @@
+{
+ "code": "_output",
+ "schema_version": 2,
+ "length_unit": "UNCONFIRMED",
+ "note": "响应公共字段（infcode/err_msg/output…）——不混入 input 必填",
+ "children": [
+  {
+   "code": "infcode",
+   "name": "交易状态码",
+   "type": "number",
+   "max_len": 4,
+   "dict": null,
+   "has_code_dict": false,
+   "required": true,
+   "sensitive": false,
+   "source": "spec",
+   "direction": "output",
+   "locator": {
+    "heading_path": [
+     "接口报文格式",
+     "接口输入报文格式定义",
+     "接口输出报文格式定义"
+    ],
+    "table_index": 4,
+    "row": 2
+   },
+   "notes": "详见下节"
+  },
+  {
+   "code": "inf_refmsgid",
+   "name": "接收方报文ID",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "has_code_dict": false,
+   "required": true,
+   "sensitive": false,
+   "source": "spec",
+   "direction": "output",
+   "locator": {
+    "heading_path": [
+     "接口报文格式",
+     "接口输入报文格式定义",
+     "接口输出报文格式定义"
+    ],
+    "table_index": 4,
+    "row": 3
+   },
+   "notes": "接收方返回，接收方医保区划代码(6)+时间(14)+流水号(10)\n时间格式：yyyyMMddHHmmss"
+  },
+  {
+   "code": "refmsg_time",
+   "name": "接收报文时间",
+   "type": "string",
+   "max_len": 17,
+   "dict": null,
+   "has_code_dict": false,
+   "required": false,
+   "sensitive": false,
+   "source": "spec",
+   "direction": "output",
+   "locator": {
+    "heading_path": [
+     "接口报文格式",
+     "接口输入报文格式定义",
+     "接口输出报文格式定义"
+    ],
+    "table_index": 4,
+    "row": 4
+   },
+   "notes": "格式：yyyyMMddHHmmssSSS"
+  },
+  {
+   "code": "respond_time",
+   "name": "响应报文时间",
+   "type": "string",
+   "max_len": 17,
+   "dict": null,
+   "has_code_dict": false,
+   "required": false,
+   "sensitive": false,
+   "source": "spec",
+   "direction": "output",
+   "locator": {
+    "heading_path": [
+     "接口报文格式",
+     "接口输入报文格式定义",
+     "接口输出报文格式定义"
+    ],
+    "table_index": 4,
+    "row": 5
+   },
+   "notes": "格式：yyyyMMddHHmmssSSS"
+  },
+  {
+   "code": "err_msg",
+   "name": "错误信息",
+   "type": "string",
+   "max_len": 200,
+   "dict": null,
+   "has_code_dict": false,
+   "required": false,
+   "sensitive": false,
+   "source": "spec",
+   "direction": "output",
+   "locator": {
+    "heading_path": [
+     "接口报文格式",
+     "接口输入报文格式定义",
+     "接口输出报文格式定义"
+    ],
+    "table_index": 4,
+    "row": 6
+   },
+   "notes": "交易失败状态下，业务返回的错误信息"
+  },
+  {
+   "code": "signtype",
+   "name": "签名方式",
+   "type": "string",
+   "max_len": 6,
+   "dict": null,
+   "has_code_dict": false,
+   "required": false,
+   "sensitive": false,
+   "source": "spec",
+   "direction": "output",
+   "locator": {
+    "heading_path": [
+     "接口报文格式",
+     "接口输入报文格式定义",
+     "接口输出报文格式定义"
+    ],
+    "table_index": 4,
+    "row": 7
+   }
+  },
+  {
+   "code": "cainfo",
+   "name": "数字签名信息",
+   "type": "string",
+   "max_len": 1024,
+   "dict": null,
+   "has_code_dict": false,
+   "required": false,
+   "sensitive": true,
+   "source": "spec",
+   "direction": "output",
+   "locator": {
+    "heading_path": [
+     "接口报文格式",
+     "接口输入报文格式定义",
+     "接口输出报文格式定义"
+    ],
+    "table_index": 4,
+    "row": 8
+   }
+  },
+  {
+   "code": "app_id",
+   "name": "渠道id",
+   "type": "string",
+   "max_len": 32,
+   "dict": null,
+   "has_code_dict": false,
+   "required": false,
+   "sensitive": false,
+   "source": "spec",
+   "direction": "output",
+   "locator": {
+    "heading_path": [
+     "接口报文格式",
+     "接口输入报文格式定义",
+     "接口输出报文格式定义"
+    ],
+    "table_index": 4,
+    "row": 9
+   }
+  },
+  {
+   "code": "output",
+   "name": "交易输出",
+   "type": "string",
+   "max_len": 40000,
+   "dict": null,
+   "has_code_dict": false,
+   "required": false,
+   "sensitive": false,
+   "source": "spec",
+   "direction": "output",
+   "locator": {
+    "heading_path": [
+     "接口报文格式",
+     "接口输入报文格式定义",
+     "接口输出报文格式定义"
+    ],
+    "table_index": 4,
+    "row": 10
+   }
+  }
+ ]
+}

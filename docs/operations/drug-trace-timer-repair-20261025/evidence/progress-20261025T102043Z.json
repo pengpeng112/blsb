@@ -1,0 +1,169 @@
+{
+  "captured_at": "2026-10-25T10:20:43.549977+00:00",
+  "ssh_exit_code": 0,
+  "progress": {
+    "host_time": "2026-10-25T10:20:42.795542+00:00",
+    "blyb-daily-upload.service": {
+      "ExecMainStartTimestamp": "Sun 2026-10-25 18:06:11 CST",
+      "ExecMainExitTimestamp": "n/a",
+      "ExecMainStatus": "0",
+      "ActiveState": "activating",
+      "SubState": "start"
+    },
+    "blyb-daily-upload.timer": {
+      "NextElapseUSecRealtime": "Mon 2026-10-26 06:10:00 CST",
+      "ActiveState": "active",
+      "SubState": "waiting"
+    },
+    "receipts": [
+      {
+        "file": "20261025-061029.json",
+        "bytes": 0
+      },
+      {
+        "file": "20261025-175741.json",
+        "bytes": 204,
+        "window": [
+          "2026-10-24T00:00:00",
+          "2026-10-25T00:00:00"
+        ],
+        "outcome": "FAILED",
+        "fatal": "waiting_driver_replaced_for_long_batch",
+        "send": {},
+        "send_error_count": 0,
+        "send_error_codes": {},
+        "query_error_count": 0,
+        "query_count": 0,
+        "report_push": null
+      },
+      {
+        "file": "20261025-180611.json",
+        "bytes": 0
+      }
+    ],
+    "driver_error": {
+      "bytes": 0,
+      "types": []
+    },
+    "database_exit_code": 0,
+    "database": {
+      "collections": [
+        {
+          "state": "RUNNING",
+          "window_begin": "2026-10-24 00:00:00",
+          "window_end": "2026-10-25 00:00:00",
+          "created_at": "2026-10-25 09:57:41.976462",
+          "finished_at": null,
+          "summary": {}
+        },
+        {
+          "state": "DONE",
+          "window_begin": "2026-10-24 07:00:00",
+          "window_end": "2026-10-24 08:00:00",
+          "created_at": "2026-10-24 01:14:47.807142",
+          "finished_at": "2026-10-24 01:17:07.377484",
+          "summary": {
+            "bills_seen": 51,
+            "revisions_created": 0,
+            "idempotent": 51,
+            "waiting": 49,
+            "valid": 2,
+            "invalid": 0,
+            "conflicts": 0,
+            "version_rereads": 0,
+            "skipped_version_changing": 0,
+            "retried_ok": 0,
+            "retried_failed": 0
+          }
+        }
+      ],
+      "quality": [
+        {
+          "business_kind": "PATIENT_DISPENSE",
+          "quality_state": "VALID",
+          "n": 182
+        },
+        {
+          "business_kind": "UNKNOWN",
+          "quality_state": "WAITING",
+          "n": 204
+        },
+        {
+          "business_kind": "PATIENT_DISPENSE",
+          "quality_state": "WAITING",
+          "n": 14
+        }
+      ],
+      "submissions": [
+        {
+          "state": "CONFIRMED",
+          "n": 3
+        },
+        {
+          "state": "UNKNOWN",
+          "n": 1
+        }
+      ],
+      "quota": [
+        {
+          "used": 4,
+          "max_bills": 80000
+        }
+      ],
+      "jobs": [
+        {
+          "job_type": "drug_trace.query_status",
+          "state": "FAILED",
+          "n": 1
+        },
+        {
+          "job_type": "drug_trace.send",
+          "state": "SUCCEEDED",
+          "n": 2
+        },
+        {
+          "job_type": "drug_trace.collect",
+          "state": "LEASED",
+          "n": 1
+        },
+        {
+          "job_type": "drug_trace.query_status",
+          "state": "PENDING",
+          "n": 1
+        },
+        {
+          "job_type": "drug_trace.query_status",
+          "state": "SUCCEEDED",
+          "n": 2
+        }
+      ],
+      "attempts": [
+        {
+          "http_status": 200,
+          "outcome": "ACCEPTED",
+          "n": 1
+        },
+        {
+          "http_status": null,
+          "outcome": "UNKNOWN",
+          "n": 1
+        }
+      ],
+      "query_receipt_count": 2,
+      "query_results": [
+        {
+          "state": "CONFIRMED",
+          "result_type": "3",
+          "sub_process_flag": "51",
+          "n": 1
+        },
+        {
+          "state": "NOT_FOUND",
+          "result_type": null,
+          "sub_process_flag": null,
+          "n": 1
+        }
+      ]
+    }
+  }
+}

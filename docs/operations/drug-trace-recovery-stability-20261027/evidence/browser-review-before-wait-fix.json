@@ -1,0 +1,20 @@
+{
+  "synthetic": true,
+  "hospital_or_platform_connections": 0,
+  "checks": {
+    "four_clear_metrics": true,
+    "settings_hidden_from_overview": true,
+    "metric_opens_matching_records": true,
+    "same_day_manual_detail_matches_source": true,
+    "compact_no_page_overflow": true,
+    "narrow_no_page_overflow": true,
+    "demo_approval_hidden_in_real_mode": true,
+    "stop_requires_explicit_confirmation": true,
+    "manual_send_cancel_has_no_post": true,
+    "failed_statistics_not_zero_success": true,
+    "empty_not_healthy_claim": true,
+    "incomplete_problem_list_not_false_clear": true,
+    "auditor_has_no_mutation_controls": true,
+    "failed_summary_candidate_is_unverified_not_zero": true
+  }
+}

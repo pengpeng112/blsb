@@ -1,0 +1,485 @@
+{
+  "ssh_exit_code": 0,
+  "captured_at": "2026-10-25T09:43:08.782266+00:00",
+  "manual_uploads": 0,
+  "source_database_queries": 0,
+  "remote_changes": 0,
+  "snapshot": {
+    "host_time": "2026-10-25T09:43:07.789768+00:00",
+    "blyb-daily-upload.timer": {
+      "exit_code": 0,
+      "properties": {
+        "TimersCalendar": "{ OnCalendar=*-*-* 06:10:00 Asia/Shanghai ; next_elapse=Mon 2026-10-26 06:10:00 CST }",
+        "NextElapseUSecRealtime": "Mon 2026-10-26 06:10:00 CST",
+        "LastTriggerUSec": "Sun 2026-10-25 06:10:29 CST",
+        "Result": "success",
+        "ActiveState": "active",
+        "SubState": "waiting",
+        "UnitFileState": "enabled"
+      }
+    },
+    "blyb-daily-upload.service": {
+      "exit_code": 0,
+      "properties": {
+        "Result": "exit-code",
+        "ExecMainStartTimestamp": "Sun 2026-10-25 06:10:29 CST",
+        "ExecMainExitTimestamp": "Sun 2026-10-25 06:10:29 CST",
+        "ExecMainStatus": "1",
+        "ActiveState": "failed",
+        "SubState": "failed",
+        "UnitFileState": "static"
+      }
+    },
+    "containers": [
+      {
+        "name": "<worker-container>",
+        "status": "Up 3 days (healthy)"
+      },
+      {
+        "name": "blyb-nginx-1",
+        "status": "Up 3 days (healthy)"
+      },
+      {
+        "name": "blyb-core-1",
+        "status": "Up 3 days (healthy)"
+      },
+      {
+        "name": "blyb-exchange-1",
+        "status": "Up 3 days (healthy)"
+      },
+      {
+        "name": "blyb-storage-1",
+        "status": "Up 3 days (healthy)"
+      },
+      {
+        "name": "blyb-db-1",
+        "status": "Up 3 days (healthy)"
+      }
+    ],
+    "deployed_driver": {
+      "sha256": "90fc2814186b0bd9cef862a2a3fa48857818c7afb25cfb365010a079f6ddfaa8",
+      "size": 9313,
+      "has_v2_report_push": false
+    },
+    "current_release": "/opt/blyb/releases/src-20261022T103000Z",
+    "receipts": [
+      {
+        "file": "20261025-061029.json",
+        "bytes": 0,
+        "mtime_utc": "2026-10-24T22:10:29.530784+00:00",
+        "parse_error": "JSONDecodeError"
+      }
+    ],
+    "last_error_log": {
+      "bytes": 537,
+      "traceback_count": 1,
+      "error_types": {
+        "AttributeError": 1
+      },
+      "ora_codes": [],
+      "frames": [
+        {
+          "file": "daily-upload.py",
+          "line": 194,
+          "function": "<module>"
+        },
+        {
+          "file": "daily-upload.py",
+          "line": 65,
+          "function": "main"
+        },
+        {
+          "file": "daily-upload.py",
+          "line": 65,
+          "function": "<genexpr>"
+        }
+      ],
+      "attribute_errors": [
+        {
+          "object_type": "str",
+          "attribute": "get"
+        }
+      ]
+    },
+    "database": {
+      "exit_code": 0,
+      "data": {
+        "database_time": "2026-10-25 09:43:08.068921+00",
+        "database_timezone": "Etc/UTC",
+        "daily_report_table": null,
+        "schema": [
+          {
+            "table_name": "delivery_attempt",
+            "column_name": "id",
+            "data_type": "character varying"
+          },
+          {
+            "table_name": "delivery_attempt",
+            "column_name": "tenant_id",
+            "data_type": "character varying"
+          },
+          {
+            "table_name": "delivery_attempt",
+            "column_name": "submission_id",
+            "data_type": "character varying"
+          },
+          {
+            "table_name": "delivery_attempt",
+            "column_name": "attempt_no",
+            "data_type": "integer"
+          },
+          {
+            "table_name": "delivery_attempt",
+            "column_name": "request_digest",
+            "data_type": "character varying"
+          },
+          {
+            "table_name": "delivery_attempt",
+            "column_name": "started_at",
+            "data_type": "timestamp without time zone"
+          },
+          {
+            "table_name": "delivery_attempt",
+            "column_name": "ended_at",
+            "data_type": "timestamp without time zone"
+          },
+          {
+            "table_name": "delivery_attempt",
+            "column_name": "http_status",
+            "data_type": "integer"
+          },
+          {
+            "table_name": "delivery_attempt",
+            "column_name": "response_body_digest",
+            "data_type": "character varying"
+          },
+          {
+            "table_name": "delivery_attempt",
+            "column_name": "response_snapshot",
+            "data_type": "json"
+          },
+          {
+            "table_name": "delivery_attempt",
+            "column_name": "outcome",
+            "data_type": "character varying"
+          },
+          {
+            "table_name": "drug_trace_collection_run",
+            "column_name": "id",
+            "data_type": "character varying"
+          },
+          {
+            "table_name": "drug_trace_collection_run",
+            "column_name": "tenant_id",
+            "data_type": "character varying"
+          },
+          {
+            "table_name": "drug_trace_collection_run",
+            "column_name": "connector_id",
+            "data_type": "character varying"
+          },
+          {
+            "table_name": "drug_trace_collection_run",
+            "column_name": "stream",
+            "data_type": "character varying"
+          },
+          {
+            "table_name": "drug_trace_collection_run",
+            "column_name": "profile",
+            "data_type": "character varying"
+          },
+          {
+            "table_name": "drug_trace_collection_run",
+            "column_name": "window_begin",
+            "data_type": "timestamp without time zone"
+          },
+          {
+            "table_name": "drug_trace_collection_run",
+            "column_name": "window_end",
+            "data_type": "timestamp without time zone"
+          },
+          {
+            "table_name": "drug_trace_collection_run",
+            "column_name": "lookback_seconds",
+            "data_type": "integer"
+          },
+          {
+            "table_name": "drug_trace_collection_run",
+            "column_name": "state",
+            "data_type": "character varying"
+          },
+          {
+            "table_name": "drug_trace_collection_run",
+            "column_name": "summary",
+            "data_type": "json"
+          },
+          {
+            "table_name": "drug_trace_collection_run",
+            "column_name": "created_by",
+            "data_type": "character varying"
+          },
+          {
+            "table_name": "drug_trace_collection_run",
+            "column_name": "created_at",
+            "data_type": "timestamp without time zone"
+          },
+          {
+            "table_name": "drug_trace_collection_run",
+            "column_name": "finished_at",
+            "data_type": "timestamp without time zone"
+          },
+          {
+            "table_name": "job",
+            "column_name": "id",
+            "data_type": "character varying"
+          },
+          {
+            "table_name": "job",
+            "column_name": "tenant_id",
+            "data_type": "character varying"
+          },
+          {
+            "table_name": "job",
+            "column_name": "job_type",
+            "data_type": "character varying"
+          },
+          {
+            "table_name": "job",
+            "column_name": "dedup_key",
+            "data_type": "character varying"
+          },
+          {
+            "table_name": "job",
+            "column_name": "payload",
+            "data_type": "json"
+          },
+          {
+            "table_name": "job",
+            "column_name": "priority",
+            "data_type": "integer"
+          },
+          {
+            "table_name": "job",
+            "column_name": "available_at",
+            "data_type": "timestamp without time zone"
+          },
+          {
+            "table_name": "job",
+            "column_name": "state",
+            "data_type": "character varying"
+          },
+          {
+            "table_name": "job",
+            "column_name": "lease_until",
+            "data_type": "timestamp without time zone"
+          },
+          {
+            "table_name": "job",
+            "column_name": "lease_epoch",
+            "data_type": "integer"
+          },
+          {
+            "table_name": "job",
+            "column_name": "lease_owner",
+            "data_type": "character varying"
+          },
+          {
+            "table_name": "job",
+            "column_name": "attempts",
+            "data_type": "integer"
+          },
+          {
+            "table_name": "job",
+            "column_name": "max_attempts",
+            "data_type": "integer"
+          },
+          {
+            "table_name": "job",
+            "column_name": "last_error",
+            "data_type": "json"
+          },
+          {
+            "table_name": "job",
+            "column_name": "created_at",
+            "data_type": "timestamp without time zone"
+          },
+          {
+            "table_name": "job",
+            "column_name": "finished_at",
+            "data_type": "timestamp without time zone"
+          },
+          {
+            "table_name": "submission",
+            "column_name": "id",
+            "data_type": "character varying"
+          },
+          {
+            "table_name": "submission",
+            "column_name": "tenant_id",
+            "data_type": "character varying"
+          },
+          {
+            "table_name": "submission",
+            "column_name": "package_revision_id",
+            "data_type": "character varying"
+          },
+          {
+            "table_name": "submission",
+            "column_name": "destination_id",
+            "data_type": "character varying"
+          },
+          {
+            "table_name": "submission",
+            "column_name": "submission_revision",
+            "data_type": "integer"
+          },
+          {
+            "table_name": "submission",
+            "column_name": "snapshot_digest",
+            "data_type": "character varying"
+          },
+          {
+            "table_name": "submission",
+            "column_name": "state",
+            "data_type": "character varying"
+          },
+          {
+            "table_name": "submission",
+            "column_name": "idempotency_key",
+            "data_type": "character varying"
+          },
+          {
+            "table_name": "submission",
+            "column_name": "supersedes_submission",
+            "data_type": "character varying"
+          },
+          {
+            "table_name": "submission",
+            "column_name": "created_at",
+            "data_type": "timestamp without time zone"
+          },
+          {
+            "table_name": "submission",
+            "column_name": "updated_at",
+            "data_type": "timestamp without time zone"
+          }
+        ],
+        "submissions": [
+          {
+            "state": "CONFIRMED",
+            "n": 2,
+            "first_created": "2026-10-22 10:07:34.662045",
+            "last_created": "2026-10-24 01:12:30.601522"
+          },
+          {
+            "state": "PREPARED",
+            "n": 1,
+            "first_created": "2026-10-24 01:12:30.641799",
+            "last_created": "2026-10-24 01:12:30.641799"
+          }
+        ],
+        "collections": [
+          {
+            "state": "DONE",
+            "window_begin": "2026-10-24 07:00:00",
+            "window_end": "2026-10-24 08:00:00",
+            "created_at": "2026-10-24 01:14:47.807142",
+            "finished_at": "2026-10-24 01:17:07.377484",
+            "summary": {
+              "error_count": null,
+              "bills": null,
+              "ingested": null
+            }
+          },
+          {
+            "state": "DONE",
+            "window_begin": "2026-10-23 23:00:00",
+            "window_end": "2026-10-24 00:00:00",
+            "created_at": "2026-10-24 01:10:08.334004",
+            "finished_at": "2026-10-24 01:12:30.214054",
+            "summary": {
+              "error_count": null,
+              "bills": null,
+              "ingested": null
+            }
+          },
+          {
+            "state": "DONE",
+            "window_begin": "2026-10-22 00:20:30",
+            "window_end": "2026-10-22 00:20:31",
+            "created_at": "2026-10-22 10:06:54.137915",
+            "finished_at": "2026-10-22 10:07:01.268444",
+            "summary": {
+              "error_count": null,
+              "bills": null,
+              "ingested": null
+            }
+          }
+        ],
+        "quality_current": [
+          {
+            "business_kind": "UNKNOWN",
+            "quality_state": "WAITING",
+            "n": 49
+          },
+          {
+            "business_kind": "PATIENT_DISPENSE",
+            "quality_state": "VALID",
+            "n": 2
+          }
+        ],
+        "jobs": [
+          {
+            "job_type": "drug_trace.prepare",
+            "state": "SUCCEEDED",
+            "n": 2
+          },
+          {
+            "job_type": "drug_trace.send",
+            "state": "SUCCEEDED",
+            "n": 2
+          },
+          {
+            "job_type": "drug_trace.query_status",
+            "state": "SUCCEEDED",
+            "n": 5
+          },
+          {
+            "job_type": "drug_trace.collect",
+            "state": "SUCCEEDED",
+            "n": 3
+          }
+        ],
+        "quota": [
+          {
+            "used": 2,
+            "max_bills": 80000,
+            "updated_at": "2026-10-24 01:28:11.349933"
+          }
+        ],
+        "evidence": [
+          {
+            "capability": "collect",
+            "status": "APPROVED",
+            "valid_until": "2026-11-23 01:09:34.984991"
+          },
+          {
+            "capability": "query",
+            "status": "APPROVED",
+            "valid_until": "2027-10-21 00:00:00"
+          },
+          {
+            "capability": "reconcile",
+            "status": "APPROVED",
+            "valid_until": "2027-10-21 00:00:00"
+          },
+          {
+            "capability": "send",
+            "status": "APPROVED",
+            "valid_until": "2026-11-21 16:00:00"
+          }
+        ]
+      }
+    }
+  }
+}

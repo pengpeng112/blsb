@@ -1,0 +1,32 @@
+{
+  "host": "app",
+  "phase": "mapping_apply",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T04:06:13.095034+00:00",
+  "result": {
+    "result": {
+      "dictionary_id": "d13e4d3d-2c52-4988-9aca-67e6d5451d19"
+    },
+    "version": "hospital-pharmacies-20261026-r1",
+    "checks": {
+      "050102": {
+        "version": "hospital-pharmacies-20261026-r1",
+        "revision_id": "d13e4d3d-2c52-4988-9aca-67e6d5451d19",
+        "matches_existing_hospital": true
+      },
+      "050121": {
+        "version": "hospital-pharmacies-20261026-r1",
+        "revision_id": "d13e4d3d-2c52-4988-9aca-67e6d5451d19",
+        "matches_existing_hospital": true
+      },
+      "050116": {
+        "version": "hospital-pharmacies-20261026-r1",
+        "revision_id": "d13e4d3d-2c52-4988-9aca-67e6d5451d19",
+        "matches_existing_hospital": true
+      }
+    },
+    "original_dictionaries_unchanged": true,
+    "send_or_query_calls": 0,
+    "evidence_backup": "/root/blyb-maintenance-backups/mapping-20261026/20261026T040614Z.json"
+  }
+}

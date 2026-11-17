@@ -1,0 +1,48 @@
+{
+  "enabled": true,
+  "host_label": "<host-label>",
+  "pusher_state": "<prod-path>/exchange/inf-pusher/state",
+  "cron_log": "/var/log/cron",
+  "docker_bin": "/usr/local/bin/docker",
+  "state_dir": "",
+  "thresholds": {
+    "c1_stale_min": 40,
+    "c3_warn": 3,
+    "c3_crit": 8,
+    "c4_etime_min": 25,
+    "c5_warn": 10,
+    "c5_crit": 50,
+    "c6_repush_warn": 500,
+    "c8_stale_h": 26,
+    "c9_disk_pct": 80,
+    "c5_wait_warn": 300,
+    "c5_wait_crit": 1000
+  },
+  "smtp": {
+    "enabled": false,
+    "host": "",
+    "port": 25,
+    "sender": "",
+    "to": [],
+    "starttls": false
+  },
+  "webhook": {
+    "enabled": false,
+    "type": "wecom",
+    "url": ""
+  },
+  "relay": {
+    "enabled": false,
+    "url": "http://127.0.0.1:13000/api/v2/events",
+    "source_id": "inf-pusher-watchdog",
+    "category": "inf-pusher"
+  },
+  "quiet_hours": {
+    "enabled": false,
+    "start": "23:00",
+    "end": "07:30",
+    "suppress_levels": [
+      "WARN"
+    ]
+  }
+}

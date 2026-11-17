@@ -1,0 +1,69 @@
+{
+  "host": "app",
+  "phase": "inspect",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T13:59:59.025960+00:00",
+  "result": {
+    "states": {
+      "CONFIRMED": 2576,
+      "ACCEPTED": 41,
+      "UNKNOWN": 206
+    },
+    "active_jobs": 0,
+    "inflight": 0,
+    "candidate_count": 206,
+    "eligible_count": 205,
+    "sample": [
+      {
+        "submission_id": "83fd1c86-c813-473b-bf70-d09cc9d60ec4",
+        "state": "UNKNOWN",
+        "revision": 3,
+        "bill_sha256": "86b66eda8970cfb4e2b3ba67b08c71a1b7ab63cdfca05e0fcee02fe2b7c895c1",
+        "codes_count": 6,
+        "last_http_status": 429,
+        "attempts": 1,
+        "same_config": true,
+        "same_source_revision": true,
+        "send_evidence": "APPROVED",
+        "profile": "alihealth_yljg_retail_v1",
+        "upload_bill_type": "321",
+        "query_bill_type": "A",
+        "in_scope": true
+      },
+      {
+        "submission_id": "9b19170e-5ceb-4da4-99bb-7478c77d9695",
+        "state": "UNKNOWN",
+        "revision": 3,
+        "bill_sha256": "c59321aefc1d98e5246f1d622e1af4f3e86af2e85246d0d79e26162c167d618c",
+        "codes_count": 1,
+        "last_http_status": 429,
+        "attempts": 1,
+        "same_config": true,
+        "same_source_revision": true,
+        "send_evidence": "APPROVED",
+        "profile": "alihealth_yljg_retail_v1",
+        "upload_bill_type": "321",
+        "query_bill_type": "A",
+        "in_scope": true
+      },
+      {
+        "submission_id": "e5d5b88e-c331-43b2-810e-a02b15a6537b",
+        "state": "UNKNOWN",
+        "revision": 3,
+        "bill_sha256": "87c5707fa2c42fd168b2ad9715d07c94eb767e98c75b6124a7f18fed5877b0ad",
+        "codes_count": 2,
+        "last_http_status": 429,
+        "attempts": 1,
+        "same_config": true,
+        "same_source_revision": true,
+        "send_evidence": "APPROVED",
+        "profile": "alihealth_yljg_retail_v1",
+        "upload_bill_type": "321",
+        "query_bill_type": "A",
+        "in_scope": true
+      }
+    ],
+    "release": "flow-20261026T132000Z",
+    "units": "Id=blyb-daily-upload.service\nActiveState=failed\nSubState=failed\n\nId=blyb-daily-upload.timer\nActiveState=active\nSubState=waiting\n"
+  }
+}

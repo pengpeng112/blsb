@@ -1,0 +1,8 @@
+{
+  "utc": "2026-10-27T06:01:51.055357+00:00",
+  "business_source_calls": 0,
+  "metadata": {
+    "registration": "BEGIN\nSET\n[{\"source_code\":\"his_source_<his_host_id>\",\"system_code\":\"HIS\",\"db_type\":\"oracle\",\"target_host\":\"<his-host>\",\"port\":1521,\"enabled\":true,\"write_policy\":\"medical_dict_push\"}]\nCOMMIT",
+    "columns": "BEGIN\nSET\nid\nschema_name\ntable_name\ncolumn_id\ncolumn_name\ndata_type\nlength\nnullable\ncomment\nsystem_code\nsource_code\nnamespace_name\ncolumn_name_cn\nbusiness_desc_cn\nvalue_desc_cn\nsemantic_type\nis_sensitive\nreview_status\nname_cn_source\nname_cn_status\nCOMMIT"
+  }
+}

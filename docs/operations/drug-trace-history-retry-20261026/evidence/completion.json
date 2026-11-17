@@ -1,0 +1,58 @@
+{
+  "links": 14,
+  "broken": [],
+  "guards_tests": 24,
+  "real_uploads": 1,
+  "final_platform_state": "3/51 CONFIRMED",
+  "remaining_unknown_not_retried": 205,
+  "final_ledger": {
+    "states": {
+      "CONFIRMED": 2577,
+      "ACCEPTED": 41,
+      "UNKNOWN": 205
+    },
+    "submissions": 2823,
+    "attempts": 2824,
+    "inflight": 0,
+    "active_jobs": 0,
+    "quota": [
+      {
+        "used": 2824,
+        "max_bills": 80000
+      }
+    ],
+    "checkpoint": [
+      {
+        "row_version": 46,
+        "since_time": "2026-10-26T00:00:00"
+      }
+    ],
+    "decision": {
+      "action": "HISTORY_RETRY_ONCE",
+      "actor": "user-authorized-ai",
+      "max_uploads": "1"
+    },
+    "target_attempts": [
+      {
+        "attempt_no": 1,
+        "http_status": 429,
+        "outcome": "UNKNOWN"
+      },
+      {
+        "attempt_no": 2,
+        "http_status": 200,
+        "outcome": "ACCEPTED"
+      }
+    ],
+    "historical_query_generations": 12,
+    "target_state": "CONFIRMED",
+    "confirmed_query_receipts": 1,
+    "other_246_unchanged": true,
+    "checkpoint_unchanged": true,
+    "target_digest_unchanged": true,
+    "quota_increased_one": true,
+    "release": "flow-20261026T132000Z",
+    "containers": "blyb-nginx-1 Up 41 minutes (healthy)\n<worker-container> Up 41 minutes (healthy)\nblyb-storage-1 Up 41 minutes (healthy)\nblyb-exchange-1 Up 41 minutes (healthy)\nblyb-core-1 Up 41 minutes (healthy)\nblyb-db-1 Up 41 minutes (healthy)",
+    "units": "ActiveState=active\nSubState=waiting"
+  }
+}

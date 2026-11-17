@@ -1,0 +1,22 @@
+{
+  "host": "app",
+  "phase": "backup_validate",
+  "exit_code": 0,
+  "captured_at": "2026-10-27T07:33:04.911538+00:00",
+  "result": {
+    "backup": "<prod-path>/backups/20261027T072904Z",
+    "validate_only_exit": 0,
+    "archive_hashes_and_path_plan_verified": true,
+    "backup_images_available": true,
+    "pg_dump_toc_exit": 0,
+    "pg_dump_toc_entries": 553,
+    "target_created": false,
+    "production_ledger_unchanged": true,
+    "snapshot": {
+      "ledger_hash": "3f9a428652f7044f3754a5f0ef9144d4",
+      "quota": 4820
+    },
+    "full_restore_executed": false,
+    "utc": "2026-10-27T07:33:07.472472+00:00"
+  }
+}

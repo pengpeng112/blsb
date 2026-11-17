@@ -1,0 +1,161 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "event_id": {
+      "type": "string",
+      "minLength": 1,
+      "format": "uuid"
+    },
+    "agent_id": {
+      "type": "string",
+      "minLength": 1,
+      "format": "uuid"
+    },
+    "source_system_code": {
+      "type": "string",
+      "minLength": 1
+    },
+    "root_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "captured_at": {
+      "type": "string",
+      "minLength": 1,
+      "format": "date-time"
+    },
+    "source_scan_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_revision": {
+      "type": "string",
+      "minLength": 1
+    },
+    "identity_hints": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "pathology_no": {
+          "type": "string",
+          "minLength": 1
+        },
+        "slide_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "barcode_raw": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": []
+    },
+    "completion_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "enum": [
+            "vendor_api",
+            "vendor_manifest",
+            "manual_confirmation"
+          ]
+        },
+        "confirmed_at": {
+          "type": "string",
+          "minLength": 1,
+          "format": "date-time"
+        },
+        "evidence_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_immutable_assertion": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "method",
+        "confirmed_at",
+        "evidence_ref",
+        "source_immutable_assertion"
+      ]
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "client_asset_id": {
+            "type": "string",
+            "minLength": 1,
+            "format": "uuid"
+          },
+          "relative_path": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1024
+          },
+          "role": {
+            "enum": [
+              "primary",
+              "index",
+              "tile_data",
+              "label",
+              "thumbnail",
+              "metadata",
+              "report",
+              "other"
+            ]
+          },
+          "size_bytes": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "sha256": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "media_type": {
+            "type": "string",
+            "minLength": 1
+          },
+          "format_hint": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "client_asset_id",
+          "relative_path",
+          "role",
+          "size_bytes",
+          "sha256"
+        ]
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "event_id",
+    "agent_id",
+    "source_system_code",
+    "root_id",
+    "captured_at",
+    "source_scan_id",
+    "source_revision",
+    "completion_evidence",
+    "files"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.invalid/reporting/acquisition-manifest.schema.json",
+  "description": "我方拟议内部协议；服务端还须验证路径、重复ID、权限和完成证据。启发式候选不能直接提交为完成清单。"
+}

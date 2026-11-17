@@ -1,0 +1,13 @@
+{
+  "host": "app",
+  "phase": "all",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T07:17:55.542631+00:00",
+  "result": {
+    "launched": true,
+    "pid": 2118199,
+    "folder": "/root/blyb-maintenance-backups/unknown-review-20261026",
+    "mode": "one_off_query_only",
+    "uploads": 0
+  }
+}

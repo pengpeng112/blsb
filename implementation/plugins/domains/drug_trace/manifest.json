@@ -1,0 +1,10 @@
+{
+  "key": "drug_trace",
+  "module": "domains.drug_trace.plugin",
+  "domain": "drug_trace",
+  "capabilities": ["collect", "prepare", "send", "query", "reconcile",
+                   "evidence"],
+  "description": "药品追溯（码上放心）领域插件；生产默认停用，须 DrugTraceProductionEvidence 显式批准",
+  "report_targets": ["drug_trace_alihealth"],
+  "ui": {"route": "/drugtrace", "menu_group": "上报业务", "menu_label": "码上放心"}
+}

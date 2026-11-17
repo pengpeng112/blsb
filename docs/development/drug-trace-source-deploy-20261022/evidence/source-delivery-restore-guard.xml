@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="10" skipped="0" tests="16" time="52.757" timestamp="2026-10-22T17:58:25.499306+08:00" hostname="DESKTOP-J4OGV5M"><testcase classname="tests.integration.test_drug_trace_ops" name="test_ops01_test_ca_san_cert_roundtrip" time="1.791" /><testcase classname="tests.integration.test_drug_trace_ops" name="test_ops01_status_script_no_insecure_curl" time="0.001" /><testcase classname="tests.integration.test_drug_trace_ops" name="test_ops02_restore_drill_isolated_project_and_dirs" time="7.114" /><testcase classname="tests.integration.test_drug_trace_ops" name="test_restore_overlap_guard_with_existing_glob_matches[child]" time="2.292"><failure message="TypeError: unsupported operand type(s) for +: 'NoneType' and 'NoneType'">fake_docker = {'bin': 'C:\\Users\\Administrator\\AppData\\Local\\Temp\\pytest-of-Administrator\\pytest-7\\test_restore_overlap_guard...Data/Local/Temp/pytest-of-Administrator/pytest-7/test_restore_overlap_guard_wit0/prod-root/etc-blyb/runtime.env'), ...}
+tmp_path = WindowsPath('C:/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-7/test_restore_overlap_guard_wit0')
+relation = 'child'
+
+    @pytest.mark.parametrize("relation", ["child", "parent", "equal"])
+    def test_restore_overlap_guard_with_existing_glob_matches(fake_docker, tmp_path, relation):
+        """Existing directories must not expand a path test into multiple args."""
+        bdir = _make_backup(tmp_path)
+        prod = fake_docker["prod_root"]
+        for name in ("a", "b", "c"):
+            (prod / name).mkdir(exist_ok=True)
+        target = {"child": prod / "would-be-drill", "parent": prod.parent,
+                  "equal": prod}[relation]
+        r = run_bash("restore.sh", [str(bdir), "--data-root", str(target), "--validate-only"],
+                     _env(fake_docker))
+        assert r.returncode != 0
+&gt;       assert "重叠" in r.stderr + r.stdout
+                       ^^^^^^^^^^^^^^^^^^^
+E       TypeError: unsupported operand type(s) for +: 'NoneType' and 'NoneType'
+
+tests\integration\test_drug_trace_ops.py:283: TypeError</failure></testcase><testcase classname="tests.integration.test_drug_trace_ops" name="test_restore_overlap_guard_with_existing_glob_matches[parent]" time="4.536"><failure message="TypeError: unsupported operand type(s) for +: 'NoneType' and 'NoneType'">fake_docker = {'bin': 'C:\\Users\\Administrator\\AppData\\Local\\Temp\\pytest-of-Administrator\\pytest-7\\test_restore_overlap_guard...Data/Local/Temp/pytest-of-Administrator/pytest-7/test_restore_overlap_guard_wit1/prod-root/etc-blyb/runtime.env'), ...}
+tmp_path = WindowsPath('C:/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-7/test_restore_overlap_guard_wit1')
+relation = 'parent'
+
+    @pytest.mark.parametrize("relation", ["child", "parent", "equal"])
+    def test_restore_overlap_guard_with_existing_glob_matches(fake_docker, tmp_path, relation):
+        """Existing directories must not expand a path test into multiple args."""
+        bdir = _make_backup(tmp_path)
+        prod = fake_docker["prod_root"]
+        for name in ("a", "b", "c"):
+            (prod / name).mkdir(exist_ok=True)
+        target = {"child": prod / "would-be-drill", "parent": prod.parent,
+                  "equal": prod}[relation]
+        r = run_bash("restore.sh", [str(bdir), "--data-root", str(target), "--validate-only"],
+                     _env(fake_docker))
+        assert r.returncode != 0
+&gt;       assert "重叠" in r.stderr + r.stdout
+                       ^^^^^^^^^^^^^^^^^^^
+E       TypeError: unsupported operand type(s) for +: 'NoneType' and 'NoneType'
+
+tests\integration\test_drug_trace_ops.py:283: TypeError</failure></testcase><testcase classname="tests.integration.test_drug_trace_ops" name="test_restore_overlap_guard_with_existing_glob_matches[equal]" time="2.733"><failure message="TypeError: unsupported operand type(s) for +: 'NoneType' and 'NoneType'">fake_docker = {'bin': 'C:\\Users\\Administrator\\AppData\\Local\\Temp\\pytest-of-Administrator\\pytest-7\\test_restore_overlap_guard...Data/Local/Temp/pytest-of-Administrator/pytest-7/test_restore_overlap_guard_wit2/prod-root/etc-blyb/runtime.env'), ...}
+tmp_path = WindowsPath('C:/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-7/test_restore_overlap_guard_wit2')
+relation = 'equal'
+
+    @pytest.mark.parametrize("relation", ["child", "parent", "equal"])
+    def test_restore_overlap_guard_with_existing_glob_matches(fake_docker, tmp_path, relation):
+        """Existing directories must not expand a path test into multiple args."""
+        bdir = _make_backup(tmp_path)
+        prod = fake_docker["prod_root"]
+        for name in ("a", "b", "c"):
+            (prod / name).mkdir(exist_ok=True)
+        target = {"child": prod / "would-be-drill", "parent": prod.parent,
+                  "equal": prod}[relation]
+        r = run_bash("restore.sh", [str(bdir), "--data-root", str(target), "--validate-only"],
+                     _env(fake_docker))
+        assert r.returncode != 0
+&gt;       assert "重叠" in r.stderr + r.stdout
+                       ^^^^^^^^^^^^^^^^^^^
+E       TypeError: unsupported operand type(s) for +: 'NoneType' and 'NoneType'
+
+tests\integration\test_drug_trace_ops.py:283: TypeError</failure></testcase><testcase classname="tests.integration.test_drug_trace_ops" name="test_ops03_restore_rejects_path_traversal_archive" time="0.912"><failure message="TypeError: unsupported operand type(s) for +: 'NoneType' and 'NoneType'">fake_docker = {'bin': 'C:\\Users\\Administrator\\AppData\\Local\\Temp\\pytest-of-Administrator\\pytest-7\\test_ops03_restore_rejects...Data/Local/Temp/pytest-of-Administrator/pytest-7/test_ops03_restore_rejects_pat0/prod-root/etc-blyb/runtime.env'), ...}
+tmp_path = WindowsPath('C:/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-7/test_ops03_restore_rejects_pat0')
+
+    def test_ops03_restore_rejects_path_traversal_archive(fake_docker, tmp_path):
+        bdir = _make_backup(tmp_path)
+        _evil_archive(bdir, kind="traversal")
+        drill = tmp_path / "drill1"
+        r = run_bash("restore.sh", [str(bdir), "--data-root", str(drill)],
+                     _env(fake_docker))
+        assert r.returncode != 0
+&gt;       assert "穿越" in (r.stderr + r.stdout)
+                        ^^^^^^^^^^^^^^^^^^^
+E       TypeError: unsupported operand type(s) for +: 'NoneType' and 'NoneType'
+
+tests\integration\test_drug_trace_ops.py:328: TypeError</failure></testcase><testcase classname="tests.integration.test_drug_trace_ops" name="test_ops03_restore_rejects_symlink_member" time="0.952"><failure message="TypeError: unsupported operand type(s) for +: 'NoneType' and 'NoneType'">fake_docker = {'bin': 'C:\\Users\\Administrator\\AppData\\Local\\Temp\\pytest-of-Administrator\\pytest-7\\test_ops03_restore_rejects...Data/Local/Temp/pytest-of-Administrator/pytest-7/test_ops03_restore_rejects_sym0/prod-root/etc-blyb/runtime.env'), ...}
+tmp_path = WindowsPath('C:/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-7/test_ops03_restore_rejects_sym0')
+
+    def test_ops03_restore_rejects_symlink_member(fake_docker, tmp_path):
+        bdir = _make_backup(tmp_path)
+        _evil_archive(bdir, kind="symlink")
+        r = run_bash("restore.sh", [str(bdir), "--data-root", str(tmp_path / "drill2")],
+                     _env(fake_docker))
+        assert r.returncode != 0
+&gt;       assert "链接" in (r.stderr + r.stdout)
+                        ^^^^^^^^^^^^^^^^^^^
+E       TypeError: unsupported operand type(s) for +: 'NoneType' and 'NoneType'
+
+tests\integration\test_drug_trace_ops.py:338: TypeError</failure></testcase><testcase classname="tests.integration.test_drug_trace_ops" name="test_ops03_restore_rejects_nonempty_target" time="5.824"><failure message="TypeError: unsupported operand type(s) for +: 'NoneType' and 'NoneType'">fake_docker = {'bin': 'C:\\Users\\Administrator\\AppData\\Local\\Temp\\pytest-of-Administrator\\pytest-7\\test_ops03_restore_rejects...Data/Local/Temp/pytest-of-Administrator/pytest-7/test_ops03_restore_rejects_non0/prod-root/etc-blyb/runtime.env'), ...}
+tmp_path = WindowsPath('C:/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-7/test_ops03_restore_rejects_non0')
+
+    def test_ops03_restore_rejects_nonempty_target(fake_docker, tmp_path):
+        bdir = _make_backup(tmp_path)
+        drill = tmp_path / "drill3"
+        (drill / "postgres").mkdir(parents=True)
+        (drill / "postgres" / "leftover").write_text("data", encoding="utf-8")
+        r = run_bash("restore.sh", [str(bdir), "--data-root", str(drill)], _env(fake_docker))
+        assert r.returncode != 0
+&gt;       assert "非空" in (r.stderr + r.stdout)
+                        ^^^^^^^^^^^^^^^^^^^
+E       TypeError: unsupported operand type(s) for +: 'NoneType' and 'NoneType'
+
+tests\integration\test_drug_trace_ops.py:348: TypeError</failure></testcase><testcase classname="tests.integration.test_drug_trace_ops" name="test_ops03_restore_rejects_production_overlap" time="2.211"><failure message="TypeError: unsupported operand type(s) for +: 'NoneType' and 'NoneType'">fake_docker = {'bin': 'C:\\Users\\Administrator\\AppData\\Local\\Temp\\pytest-of-Administrator\\pytest-7\\test_ops03_restore_rejects...Data/Local/Temp/pytest-of-Administrator/pytest-7/test_ops03_restore_rejects_pro0/prod-root/etc-blyb/runtime.env'), ...}
+tmp_path = WindowsPath('C:/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-7/test_ops03_restore_rejects_pro0')
+
+    def test_ops03_restore_rejects_production_overlap(fake_docker, tmp_path):
+        bdir = _make_backup(tmp_path)
+        # 数据根指向生产根本身 → 必须拒绝
+        r = run_bash("restore.sh", [str(bdir), "--data-root", str(fake_docker["prod_root"])],
+                     _env(fake_docker))
+        assert r.returncode != 0
+&gt;       assert "生产" in (r.stderr + r.stdout) or "重叠" in (r.stderr + r.stdout)
+                        ^^^^^^^^^^^^^^^^^^^
+E       TypeError: unsupported operand type(s) for +: 'NoneType' and 'NoneType'
+
+tests\integration\test_drug_trace_ops.py:358: TypeError</failure></testcase><testcase classname="tests.integration.test_drug_trace_ops" name="test_ops03_restore_rejects_missing_backup_env_vars" time="1.089"><failure message="TypeError: unsupported operand type(s) for +: 'NoneType' and 'NoneType'">fake_docker = {'bin': 'C:\\Users\\Administrator\\AppData\\Local\\Temp\\pytest-of-Administrator\\pytest-7\\test_ops03_restore_rejects...Data/Local/Temp/pytest-of-Administrator/pytest-7/test_ops03_restore_rejects_mis0/prod-root/etc-blyb/runtime.env'), ...}
+tmp_path = WindowsPath('C:/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-7/test_ops03_restore_rejects_mis0')
+
+    def test_ops03_restore_rejects_missing_backup_env_vars(fake_docker, tmp_path):
+        bdir = _make_backup(tmp_path, env_override=lambda t: t.replace(
+            "BLYB_OBJECTS_DIR=/old/host/objects\n", ""))
+        r = run_bash("restore.sh", [str(bdir), "--data-root", str(tmp_path / "drill4")],
+                     _env(fake_docker))
+        assert r.returncode != 0
+&gt;       assert "BLYB_OBJECTS_DIR" in (r.stderr + r.stdout)
+                                      ^^^^^^^^^^^^^^^^^^^
+E       TypeError: unsupported operand type(s) for +: 'NoneType' and 'NoneType'
+
+tests\integration\test_drug_trace_ops.py:371: TypeError</failure></testcase><testcase classname="tests.integration.test_drug_trace_ops" name="test_ops03_restore_validate_only_writes_nothing" time="4.054" /><testcase classname="tests.integration.test_drug_trace_ops" name="test_ops04_backup_still_window_before_snapshots" time="8.642" /><testcase classname="tests.integration.test_drug_trace_ops" name="test_ops04_backup_failure_restores_services" time="7.730" /><testcase classname="tests.integration.test_drug_trace_ops" name="test_ops04_backup_rejects_objects_with_no_stop" time="1.969"><failure message="TypeError: unsupported operand type(s) for +: 'NoneType' and 'NoneType'">fake_docker = {'bin': 'C:\\Users\\Administrator\\AppData\\Local\\Temp\\pytest-of-Administrator\\pytest-7\\test_ops04_backup_rejects_...Data/Local/Temp/pytest-of-Administrator/pytest-7/test_ops04_backup_rejects_obje0/prod-root/etc-blyb/runtime.env'), ...}
+tmp_path = WindowsPath('C:/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-7/test_ops04_backup_rejects_obje0')
+
+    def test_ops04_backup_rejects_objects_with_no_stop(fake_docker, tmp_path):
+        r, _ = _run_backup(fake_docker, tmp_path, with_objects=True, no_stop=True)
+        assert r.returncode != 0
+&gt;       assert "--no-stop" in (r.stdout + r.stderr)
+                               ^^^^^^^^^^^^^^^^^^^
+E       TypeError: unsupported operand type(s) for +: 'NoneType' and 'NoneType'
+
+tests\integration\test_drug_trace_ops.py:434: TypeError</failure></testcase><testcase classname="tests.integration.test_drug_trace_ops" name="test_ops04_backup_fails_closed_on_missing_env_paths" time="0.341"><failure message="TypeError: can only concatenate str (not &quot;NoneType&quot;) to str">fake_docker = {'bin': 'C:\\Users\\Administrator\\AppData\\Local\\Temp\\pytest-of-Administrator\\pytest-7\\test_ops04_backup_fails_cl...Data/Local/Temp/pytest-of-Administrator/pytest-7/test_ops04_backup_fails_closed0/prod-root/etc-blyb/runtime.env'), ...}
+tmp_path = WindowsPath('C:/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-7/test_ops04_backup_fails_closed0')
+
+    def test_ops04_backup_fails_closed_on_missing_env_paths(fake_docker, tmp_path):
+        env_text = fake_docker["prod_env"].read_text(encoding="utf-8")
+        fake_docker["prod_env"].write_text(
+            env_text.replace(next(l for l in env_text.splitlines()
+                                  if l.startswith("BLYB_EXCHANGE_DIR=")), ""),
+            encoding="utf-8")
+        r, _ = _run_backup(fake_docker, tmp_path)
+        assert r.returncode != 0
+&gt;       assert "BLYB_EXCHANGE_DIR" in (r.stdout + r.stderr)
+                                       ^^^^^^^^^^^^^^^^^^^
+E       TypeError: can only concatenate str (not "NoneType") to str
+
+tests\integration\test_drug_trace_ops.py:445: TypeError</failure></testcase></testsuite></testsuites>

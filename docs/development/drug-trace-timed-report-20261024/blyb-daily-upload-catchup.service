@@ -1,0 +1,14 @@
+[Unit]
+Description=BLYB drug-trace daily upload CATCHUP (idempotent rerun for yesterday window; sends anything the 01:00 run left PREPARED)
+After=docker.service network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+# 幂等重入安全（DTR-BATCH-FIX Fix7, 2026-11-08）：驱动按窗口查 run——DONE 窗口
+# 跳过采集直接进 send→query→report（日报幂等 upsert）；01:00 已成功的窗口重入
+# 时 send 全部 skipped_terminal，零副作用。这是 10-31 值守脚本手工动作的常态化。
+# 与 01:00 主 unit 完全同一脚本、同一无参窗口（窗口=昨天）。
+ExecStart=/bin/bash -c 'umask 077; mkdir -p /var/log/blyb/daily-upload; TOK=$(sed -n "s/^BLYB_BOOTSTRAP_ADMIN_TOKEN=//p" /etc/blyb/runtime.env); [ -n "$TOK" ] || { echo no-token; exit 4; }; docker cp /opt/blyb/tools/blyb-daily-upload.py blyb-core-1:/tmp/daily-upload-catchup.py && printf "%%s\\n" "$TOK" | docker exec -i -u 0 -e BLYB_DAILY_REPORT_ENABLED=1 blyb-core-1 python /tmp/daily-upload-catchup.py > /var/log/blyb/daily-upload/$(date +%%Y%%m%%d)-catchup-$(date +%%H%%M%%S).json 2>/var/log/blyb/daily-upload/last-catchup-error.log'
+TimeoutStartSec=8h
+SuccessExitStatus=

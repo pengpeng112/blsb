@@ -1,0 +1,26 @@
+{
+  "revision": "r2_after_empty_field_fix",
+  "network_requests": 0,
+  "real_credentials_used": false,
+  "official_sdk_binary_used": false,
+  "signature_verified_constant": false,
+  "comparisons": [
+    {
+      "id": "official_article_example",
+      "matches": true
+    },
+    {
+      "id": "unicode_and_leading_zeros",
+      "matches": true
+    },
+    {
+      "id": "empty_optional_value",
+      "matches": true
+    },
+    {
+      "id": "empty_parameter_name",
+      "matches": true
+    }
+  ],
+  "all_reference_cases_match": true
+}

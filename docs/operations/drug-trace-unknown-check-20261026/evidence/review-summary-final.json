@@ -1,0 +1,45 @@
+{
+  "unique_targets": 247,
+  "pairs": {
+    "UNKNOWN->NOT_FOUND": 206,
+    "ACCEPTED->CONFIRMED": 41
+  },
+  "started_utc": "2026-10-26T07:15:39.949703+00:00",
+  "finished_utc": "2026-10-26T10:18:16.093940+00:00",
+  "all_final_requests_http200": {
+    "200": 63
+  },
+  "uploads": 0,
+  "his_calls": 0,
+  "business_writes": 0,
+  "poll_budget_reset": false,
+  "ledger_unchanged": true,
+  "ui_states_not_rewritten": true,
+  "production_states": {
+    "CONFIRMED": 2576,
+    "ACCEPTED": 41,
+    "UNKNOWN": 206
+  },
+  "quota": [
+    {
+      "used": 2823,
+      "max_bills": 80000
+    }
+  ],
+  "checkpoint": [
+    {
+      "row_version": 46,
+      "since_time": "2026-10-26T00:00:00"
+    }
+  ],
+  "evidence": [
+    "app-sample-20261026T071551012749Z.json",
+    "app-progress-20261026T071910852004Z.json",
+    "app-diagnose-20261026T072553502770Z.json",
+    "app-progress2-20261026T073804066814Z.json",
+    "app-progress3-20261026T073957655386Z.json",
+    "app-recheck_limit-20261026T101252209063Z.json",
+    "app-progress4-20261026T101817769627Z.json",
+    "app-inspect-20261026T101841372561Z.json"
+  ]
+}

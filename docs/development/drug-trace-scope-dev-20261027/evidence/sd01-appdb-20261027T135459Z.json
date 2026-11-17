@@ -1,0 +1,102 @@
+{
+ "authorization": "DTR-SCOPE-DEV-20261027 用户授权（<prod-host> 只读事务拉样本键/205时间分布）",
+ "appdb_reads_only": true,
+ "writes": 0,
+ "inpatient_waiting_total": 1079,
+ "inpatient_waiting_samples": [
+  {
+   "presc_no": "6475",
+   "pharmacy_code": "050103",
+   "presc_date_s": "2026-10-25 10:54:40",
+   "quality_state": "WAITING"
+  },
+  {
+   "presc_no": "6476",
+   "pharmacy_code": "050103",
+   "presc_date_s": "2026-10-25 10:54:40",
+   "quality_state": "WAITING"
+  },
+  {
+   "presc_no": "6644",
+   "pharmacy_code": "050103",
+   "presc_date_s": "2026-10-25 10:54:40",
+   "quality_state": "WAITING"
+  },
+  {
+   "presc_no": "6667",
+   "pharmacy_code": "050103",
+   "presc_date_s": "2026-10-25 11:44:01",
+   "quality_state": "WAITING"
+  },
+  {
+   "presc_no": "6668",
+   "pharmacy_code": "050103",
+   "presc_date_s": "2026-10-25 11:47:51",
+   "quality_state": "WAITING"
+  },
+  {
+   "presc_no": "6669",
+   "pharmacy_code": "050103",
+   "presc_date_s": "2026-10-25 11:50:24",
+   "quality_state": "WAITING"
+  },
+  {
+   "presc_no": "6670",
+   "pharmacy_code": "050103",
+   "presc_date_s": "2026-10-25 11:51:51",
+   "quality_state": "WAITING"
+  },
+  {
+   "presc_no": "6671",
+   "pharmacy_code": "050103",
+   "presc_date_s": "2026-10-25 11:51:51",
+   "quality_state": "WAITING"
+  },
+  {
+   "presc_no": "6672",
+   "pharmacy_code": "050103",
+   "presc_date_s": "2026-10-25 11:53:01",
+   "quality_state": "WAITING"
+  },
+  {
+   "presc_no": "6673",
+   "pharmacy_code": "050103",
+   "presc_date_s": "2026-10-25 11:54:19",
+   "quality_state": "WAITING"
+  }
+ ],
+ "return_bills": [
+  {
+   "presc_no": "57370",
+   "pharmacy_code": "050121",
+   "presc_date_s": "2026-10-26 15:24:30"
+  },
+  {
+   "presc_no": "57371",
+   "pharmacy_code": "050121",
+   "presc_date_s": "2026-10-26 15:24:30"
+  },
+  {
+   "presc_no": "57372",
+   "pharmacy_code": "050121",
+   "presc_date_s": "2026-10-26 15:24:30"
+  }
+ ],
+ "nocode_presc_no_count": 260,
+ "valid_sample_count": 300,
+ "unknown205_time_distribution": [
+  {
+   "submit_day": "2026-10-23",
+   "n": 1,
+   "first_created": "2026-10-23 17:12:30",
+   "last_created": "2026-10-23 17:12:30"
+  },
+  {
+   "submit_day": "2026-10-25",
+   "n": 204,
+   "first_created": "2026-10-25 04:28:57",
+   "last_created": "2026-10-25 04:36:54"
+  }
+ ],
+ "captured_at": "20261027T135459Z"
+}

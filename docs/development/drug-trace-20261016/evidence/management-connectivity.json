@@ -1,0 +1,28 @@
+{
+  "<prod-host>:443": {
+    "host": "<prod-host>",
+    "port": 443,
+    "connected": true
+  },
+  "<frontend-host>4:<ssh-port>": {
+    "host": "<frontend-host>4",
+    "port": <ssh-port>,
+    "connected": true
+  },
+  "<relay-net-host>:22": {
+    "host": "<relay-net-host>",
+    "port": 22,
+    "connected": true
+  },
+  "<prod-host>:22": {
+    "host": "<prod-host>",
+    "port": 22,
+    "connected": false,
+    "error": "[WinError 10061] 由于目标计算机积极拒绝，无法连接。"
+  },
+  "jump_to_target": {
+    "exit_code": 0,
+    "stdout": "[{\"port\": 22, \"connected\": true}, {\"port\": 443, \"connected\": true}]\n",
+    "stderr": ""
+  }
+}

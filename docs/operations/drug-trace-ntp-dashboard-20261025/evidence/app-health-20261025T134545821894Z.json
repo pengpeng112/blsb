@@ -1,0 +1,73 @@
+{
+  "host": "app",
+  "phase": "health",
+  "exit_code": 0,
+  "captured_at": "2026-10-25T13:45:45.821780+00:00",
+  "result": {
+    "api": {
+      "/drug-trace/daily-reports": {
+        "status": 200,
+        "shape": "list",
+        "count": 0,
+        "reports": []
+      },
+      "/drug-trace/upload-stats?days=7": {
+        "status": 200,
+        "shape": "dict"
+      },
+      "/drug-trace/send-scope": {
+        "status": 200,
+        "shape": "dict",
+        "quota": {
+          "used": 656,
+          "max_bills": 80000
+        },
+        "evidence_status": "APPROVED"
+      },
+      "/drug-trace/submission-outcomes?days=7&only=problem": {
+        "status": 200,
+        "shape": "list",
+        "count": 96
+      }
+    },
+    "ui": {
+      "error_type": "URLError"
+    },
+    "db": {
+      "states": {
+        "CONFIRMED": 409,
+        "ACCEPTED": 41,
+        "UNKNOWN": 206
+      },
+      "new_attempts": 0,
+      "new_429": 0,
+      "new_query_receipts": 49,
+      "quota": [
+        {
+          "used": 656,
+          "max_bills": 80000
+        }
+      ],
+      "query_jobs": [
+        {
+          "state": "FAILED",
+          "n": 1
+        },
+        {
+          "state": "LEASED",
+          "n": 1
+        },
+        {
+          "state": "PENDING",
+          "n": 51
+        },
+        {
+          "state": "SUCCEEDED",
+          "n": 4481
+        }
+      ]
+    },
+    "utc": "2026-10-25T13:45:45.596065+00:00",
+    "containers": "blyb-nginx-1 Up 2 minutes (healthy)\n<worker-container> Up 2 minutes (healthy)\nblyb-storage-1 Up 2 minutes (healthy)\nblyb-exchange-1 Up 2 minutes (healthy)\nblyb-core-1 Up 2 minutes (healthy)\nblyb-db-1 Up 2 minutes (healthy)"
+  }
+}

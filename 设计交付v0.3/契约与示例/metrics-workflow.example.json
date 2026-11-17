@@ -1,0 +1,91 @@
+{
+  "workflow_key": "metrics.mock_push",
+  "revision": 1,
+  "input_schema": {
+    "key": "metrics.monthly",
+    "version": "1.0"
+  },
+  "trigger": "package_changed",
+  "production_enabled": false,
+  "nodes": [
+    {
+      "id": "validate",
+      "type": "validate",
+      "plugin_ref": {
+        "key": "core.schema",
+        "version": "1.0"
+      },
+      "parameters": {},
+      "timeout_seconds": 300,
+      "retry": {
+        "max_attempts": 3,
+        "initial_delay_seconds": 5,
+        "max_delay_seconds": 300
+      }
+    },
+    {
+      "id": "freeze",
+      "type": "package.freeze",
+      "plugin_ref": {
+        "key": "core.package",
+        "version": "1.0"
+      },
+      "parameters": {},
+      "timeout_seconds": 300,
+      "retry": {
+        "max_attempts": 3,
+        "initial_delay_seconds": 5,
+        "max_delay_seconds": 300
+      }
+    },
+    {
+      "id": "map",
+      "type": "target.map",
+      "plugin_ref": {
+        "key": "profile.metrics_mock",
+        "version": "1.0"
+      },
+      "parameters": {},
+      "timeout_seconds": 300,
+      "retry": {
+        "max_attempts": 3,
+        "initial_delay_seconds": 5,
+        "max_delay_seconds": 300
+      }
+    },
+    {
+      "id": "send",
+      "type": "deliver.push",
+      "plugin_ref": {
+        "key": "destination.mock_http",
+        "version": "1.0"
+      },
+      "parameters": {
+        "destination_ref": "mock-only"
+      },
+      "timeout_seconds": 300,
+      "retry": {
+        "max_attempts": 3,
+        "initial_delay_seconds": 5,
+        "max_delay_seconds": 300
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "validate",
+      "to": "freeze",
+      "on": "success"
+    },
+    {
+      "from": "freeze",
+      "to": "map",
+      "on": "success"
+    },
+    {
+      "from": "map",
+      "to": "send",
+      "on": "success"
+    }
+  ]
+}

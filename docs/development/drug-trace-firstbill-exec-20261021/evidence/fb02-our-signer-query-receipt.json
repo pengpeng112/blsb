@@ -1,0 +1,25 @@
+{
+  "captured_at": "2026-10-21T16:30:46.018546+00:00",
+  "endpoint": "https://eco.taobao.com/router/rest",
+  "route": "Windows_to_official_HTTPS_gateway",
+  "method": "alibaba.alihealth.drugtrace.top.yljg.query.billstatus",
+  "signer": "implementation_protocol_top_sign (FB-02)",
+  "probe_bill_code": "BLYB_FB02_E1A44DA942B64B51",
+  "request_count": 1,
+  "real_uploads": 0,
+  "patient_data_sent": false,
+  "tls_validation_enabled": true,
+  "redirects_allowed": false,
+  "retries": 0,
+  "credentials_or_signatures_in_receipt": false,
+  "status": "CAPTURED",
+  "http_status": 200,
+  "parsed_whitelist": {
+    "found": null,
+    "total_num": null,
+    "unknown": true,
+    "error": null,
+    "entry_count": 0
+  },
+  "platform_accepted_signature": false
+}

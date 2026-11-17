@@ -1,0 +1,52 @@
+The authenticity of host '<prod-host> (<prod-host>)' can't be established.
+ED25519 key fingerprint is SHA256:IjK9PN01og2d/fsSjUy4rlsyRBqOiZZycBN6j46shQc.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '<prod-host>' (ED25519) to the list of known hosts.
+
+Authorized users only. All activities may be monitored and reported.
+root@<prod-host>'s password: 
+===RUN MATCH SECTION===
+                or not res.get('collection_run_id'):
+            receipt['lookback']['ok'] = False
+            receipt['lookback']['error_code'] = (
+                (res or {}).get('error_code') if isinstance(res, dict)
+                else 'RES.CREATE_FAILED')
+            receipt['lookback']['error_step'] = 'rescan_create'
+            return receipt['lookback']
+        run_ids.append(res['collection_run_id'])
+    pending = set(run_ids)
+    deadline = time.monotonic() + LOOKBACK_WAIT_SECONDS
+    while time.monotonic() < deadline:
+        if time.monotonic() + 90 >= total_deadline:
+            receipt['lookback']['ok'] = False
+            receipt['lookback']['error_code'] = 'LOOKBACK_RUN_BUDGET'
+            receipt['lookback']['error_step'] = 'wait_runs'
+            return receipt['lookback']
+        st, runs = call('GET', '/drug-trace/collection-runs?limit=200')
+        if collection_rows(st, runs):
+            states = {r['id']: r['state'] for r in runs if r['id'] in pending}
+            pending -= {rid for rid, s in states.items()
+                        if s in ('DONE', 'FAILED', 'CANCELLED')}
+            if not pending:
+                receipt['lookback']['runs'] = [
+                    {'id': rid, 'state': states.get(rid)} for rid in run_ids]
+                break
+        time.sleep(10)
+    else:
+        receipt['lookback']['ok'] = False
+        receipt['lookback']['error_code'] = 'LOOKBACK_RUN_TIMEOUT'
+        receipt['lookback']['error_step'] = 'wait_runs'
+        return receipt['lookback']
+    if any(r.get('state') != 'DONE' for r in receipt['lookback']['runs']):
+        receipt['lookback']['ok'] = False
+        receipt['lookback']['error_code'] = 'LOOKBACK_RUN_NOT_DONE'
+        receipt['lookback']['error_step'] = 'run_state'
+        return receipt['lookback']
+===PARTITION/CONNECTOR CONSTANTS===
+20:PROFILE_UNAPPROVED（范围/配额）立即中止后续发送；每日发送上限 MAX_SENDS。
+37:CONNECTOR_ID = '7d51abd7-3f32-4c8e-b2fa-9b652a511808'
+38:PROFILE = 'alihealth_yljg_retail_v1'
+39:DEST_CODE = 'alihealth-drugtrace-retail'
+40:PARTITION = 'r10-batch-daily'
+Connection to <prod-host> closed.

@@ -1,0 +1,65 @@
+{
+  "host": "app",
+  "phase": "dashboard",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T00:32:15.573947+00:00",
+  "result": {
+    "exit_code": 0,
+    "api": {
+      "/drug-trace/daily-reports": {
+        "status": 200,
+        "data": [
+          {
+            "report_date": "2026-10-25",
+            "source": "timer",
+            "outcome": "PARTIAL_FAILURE",
+            "candidate_count": 1352,
+            "sent": 3,
+            "errors_count": 1,
+            "elapsed_seconds": 8435.8,
+            "created_at": "2026-10-26T00:31:05.585767"
+          },
+          {
+            "report_date": "2026-10-24",
+            "source": "manual",
+            "outcome": "PARTIAL_FAILURE",
+            "candidate_count": 1470,
+            "sent": 654,
+            "errors_count": 1021,
+            "elapsed_seconds": 12238.0,
+            "created_at": "2026-10-25T13:51:33.716494"
+          }
+        ]
+      },
+      "/drug-trace/daily-reports/2026-10-25": {
+        "status": 200,
+        "reports": [
+          {
+            "report_date": "2026-10-25",
+            "source": "timer",
+            "outcome": "PARTIAL_FAILURE",
+            "candidate_count": 1352,
+            "send_error_count": 1,
+            "query_error_count": 247,
+            "query_error_codes": [
+              "VERSION_CONFLICT"
+            ],
+            "aborted_reason": "SEND_WORKER_TIMEOUT"
+          }
+        ]
+      },
+      "/drug-trace/upload-stats?days=2": {
+        "status": 200,
+        "shape": "dict"
+      },
+      "/drug-trace/send-scope": {
+        "status": 200,
+        "quota": {
+          "used": 659,
+          "max_bills": 80000
+        },
+        "evidence_status": "APPROVED"
+      }
+    }
+  }
+}

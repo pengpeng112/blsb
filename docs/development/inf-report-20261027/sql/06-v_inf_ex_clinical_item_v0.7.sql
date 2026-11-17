@@ -1,0 +1,92 @@
+-- =============================================================================
+-- 传染病前置软件上报 · 检查报告项目子表（emr_ex_clinical_item）取数视图 v0.7 —— 关联锚点过滤（方案 A 镜像关联，2026-11-10）
+-- 任务：INF-LINKAGE-IMPL-20261110 ｜ 模式同 02-v_inf_first_course_v0.7.sql。
+--   06 视图本身无 PATIENT_ID/SERIAL_NUMBER 输出列 → 内联新增 __PATIENT_ID/__SERIAL_NUMBER 辅助列
+--   （取自主表 EXAM_MASTER + PAT_MASTER_INDEX，新增 pmi JOIN），外层以辅助列 JOIN 锚点镜像，
+--   输出列清单与 v0.5 完全一致（辅助列不输出），推送器零改动。
+-- 回滚：文末回滚段=v0.5 全文（在库版本）
+-- =============================================================================
+
+CREATE OR REPLACE FORCE VIEW "ODS"."V_INF_EX_CLINICAL_ITEM" (
+  "ID", "EX_CLINICAL_ID", "ITEM_CODE", "ITEM_NAME",
+  "EXAMINATION_RESULT_CODE", "EXAMINATION_RESULT_NAME",
+  "EXAMINATION_QUANTIFICATION", "EXAM_QUANT_UNIT",
+  "OPERATOR_ID", "OPERATION_TIME"
+) AS
+SELECT
+  t.ID, t.EX_CLINICAL_ID, t.ITEM_CODE, t.ITEM_NAME,
+  t.EXAMINATION_RESULT_CODE, t.EXAMINATION_RESULT_NAME,
+  t.EXAMINATION_QUANTIFICATION, t.EXAM_QUANT_UNIT,
+  t.OPERATOR_ID, t.OPERATION_TIME
+FROM (
+  -- ===== v0.5 原逻辑原文 + 新增 __PATIENT_ID/__SERIAL_NUMBER 辅助列（不输出，仅供锚点 JOIN）=====
+  SELECT
+    i.EXAM_NO || '_' || TO_CHAR(i.EXAM_ITEM_NO) AS ID,
+    m.EXAM_NO AS EX_CLINICAL_ID,
+    SUBSTRB(NVL(TO_CHAR(i.EXAM_ITEM_CODE), TO_CHAR(i.EXAM_ITEM)), 1, 100) AS ITEM_CODE,
+    SUBSTRB(TO_CHAR(i.EXAM_ITEM), 1, 100) AS ITEM_NAME,
+
+    CAST(NULL AS VARCHAR2(5))  AS EXAMINATION_RESULT_CODE,
+    CAST(NULL AS VARCHAR2(20)) AS EXAMINATION_RESULT_NAME,
+    CAST(NULL AS VARCHAR2(50)) AS EXAMINATION_QUANTIFICATION,
+    CAST(NULL AS VARCHAR2(50)) AS EXAM_QUANT_UNIT,
+
+    COALESCE(TO_CHAR(m.CONFIRM_DOCT), TO_CHAR(r.REPORTER), TO_CHAR(m.DOCTOR_USER)) AS OPERATOR_ID,
+    NVL(m.REPORT_DATE_TIME, m.REQ_DATE_TIME) AS OPERATION_TIME,
+
+    m.PATIENT_ID AS LINK_PATIENT_ID,                               -- v0.7 辅助列：锚点 JOIN 用（字母开头，Oracle 标识符合规）
+    pmi.INP_NO || m.VISIT_ID AS LINK_SERIAL_NUMBER                 -- v0.7 辅助列：锚点 JOIN 用
+  FROM HIS.EXAM_ITEMS i
+  JOIN HIS.EXAM_MASTER m ON m.EXAM_NO = i.EXAM_NO
+  JOIN HIS.EXAM_REPORT r ON r.EXAM_NO = m.EXAM_NO
+  JOIN HIS.PAT_VISIT pv ON pv.PATIENT_ID = m.PATIENT_ID AND pv.VISIT_ID = m.VISIT_ID
+  JOIN HIS.PAT_MASTER_INDEX pmi ON pmi.PATIENT_ID = m.PATIENT_ID   -- v0.7 新增：serial 号源（与主表口径一致）
+  WHERE 1=1
+    AND NVL(m.REPORT_DATE_TIME, m.REQ_DATE_TIME) >= TO_DATE('2026-01-01', 'YYYY-MM-DD')
+) t
+JOIN ODS.M_INF_FXHIS_ACTIVITY act
+  ON TRIM(TO_CHAR(act.PATIENT_ID))     = TRIM(TO_CHAR(t.LINK_PATIENT_ID))
+ AND TRIM(TO_CHAR(act.SERIAL_NUMBER))  = TRIM(TO_CHAR(t.LINK_SERIAL_NUMBER))
+JOIN HIS.PAT_MASTER_INDEX pat
+  ON TRIM(TO_CHAR(pat.PATIENT_ID)) = TRIM(TO_CHAR(t.LINK_PATIENT_ID))
+WITH READ ONLY;
+
+-- =============================================================================
+-- 【DBA 执行后验证 SQL】（结果回传执行 AI 复核）
+-- 1. 行数收缩（v0.5 为 215,461 行；预期≈主表 v0.7 行数×平均项目数，与主表同比例收缩）：
+-- SELECT COUNT(*) FROM ODS.V_INF_EX_CLINICAL_ITEM;
+-- 2. 与主表对齐验证（预期=0：项目表的检查单集合应与主表 v0.7 完全一致）：
+-- SELECT COUNT(*) FROM (SELECT DISTINCT EX_CLINICAL_ID FROM ODS.V_INF_EX_CLINICAL_ITEM
+--                        MINUS SELECT ID FROM ODS.V_INF_EX_CLINICAL);
+-- 3. 增量窗内行不受影响：
+-- SELECT COUNT(*) FROM ODS.V_INF_EX_CLINICAL_ITEM WHERE OPERATION_TIME >= SYSDATE-3;
+-- =============================================================================
+
+-- =============================================================================
+-- 【回滚段 = v0.5 全文（在库版本）】回滚方式：去行首 "--" 执行，或重跑 sql/06-v_inf_ex_clinical_item.sql
+-- =============================================================================
+-- CREATE OR REPLACE FORCE VIEW "ODS"."V_INF_EX_CLINICAL_ITEM" (
+--   "ID", "EX_CLINICAL_ID", "ITEM_CODE", "ITEM_NAME",
+--   "EXAMINATION_RESULT_CODE", "EXAMINATION_RESULT_NAME",
+--   "EXAMINATION_QUANTIFICATION", "EXAM_QUANT_UNIT",
+--   "OPERATOR_ID", "OPERATION_TIME"
+-- ) AS
+-- SELECT
+--   i.EXAM_NO || '_' || TO_CHAR(i.EXAM_ITEM_NO) AS ID,
+--   m.EXAM_NO AS EX_CLINICAL_ID,
+--   SUBSTRB(NVL(TO_CHAR(i.EXAM_ITEM_CODE), TO_CHAR(i.EXAM_ITEM)), 1, 100) AS ITEM_CODE,
+--   SUBSTRB(TO_CHAR(i.EXAM_ITEM), 1, 100) AS ITEM_NAME,
+--   CAST(NULL AS VARCHAR2(5))  AS EXAMINATION_RESULT_CODE,
+--   CAST(NULL AS VARCHAR2(20)) AS EXAMINATION_RESULT_NAME,
+--   CAST(NULL AS VARCHAR2(50)) AS EXAMINATION_QUANTIFICATION,
+--   CAST(NULL AS VARCHAR2(50)) AS EXAMINATION_QUANTIFICATION_UNIT,
+--   COALESCE(TO_CHAR(m.CONFIRM_DOCT), TO_CHAR(r.REPORTER), TO_CHAR(m.DOCTOR_USER)) AS OPERATOR_ID,
+--   NVL(m.REPORT_DATE_TIME, m.REQ_DATE_TIME) AS OPERATION_TIME
+-- FROM HIS.EXAM_ITEMS i
+-- JOIN HIS.EXAM_MASTER m ON m.EXAM_NO = i.EXAM_NO
+-- JOIN HIS.EXAM_REPORT r ON r.EXAM_NO = m.EXAM_NO
+-- JOIN HIS.PAT_VISIT pv ON pv.PATIENT_ID = m.PATIENT_ID AND pv.VISIT_ID = m.VISIT_ID
+-- WHERE 1=1
+--   AND NVL(m.REPORT_DATE_TIME, m.REQ_DATE_TIME) >= TO_DATE('2026-01-01', 'YYYY-MM-DD')
+-- WITH READ ONLY;
+-- =============================================================================

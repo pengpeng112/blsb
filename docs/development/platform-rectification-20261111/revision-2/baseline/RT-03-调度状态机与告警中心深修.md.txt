@@ -1,0 +1,117 @@
+# RT-03 调度器状态机、早报时区与告警中心深度修复
+
+> 预计工作量：1.5～2.5 小时。依赖：RT-02。动生产：否（所有新调度仍默认 `enabled=False`）。
+> 先完整阅读 [总览与通用铁律](README.md)。
+
+---
+
+## 0. 背景与目标
+
+独立代码审计在 LT-04（调度、运行治理与告警中心）的代码中查出 **8 个会导致生产运行完全失真的核心逻辑缺陷**：
+1. **无 `RUNNING` 态且运行耗时恒为 0 秒**：`apps/worker/engine.py:150-167` 领取 Job 时从未将关联的 `ScheduleRun` 更新为 `RUNNING` 或写入 `started_at`；完成时 `scheduler.py:345-348` 执行 `started_at = started_at or now`（与 `ended_at` 同一时刻），导致调度记录运行中一直显示 `QUEUED`，跑完后 `duration_seconds` 永远是 `0`！
+2. **Job 重试一次成功，`ScheduleRun` 却永久定格在 `FAILED`**：`packages/workflow_core/jobs.py:166-174` 当 Job 首次抛异常进入 `RETRY_WAIT` 等待重试时返回 `finished=True`；`engine.py:194-202` 见 `finished=True` 立刻调用 `finalize_run(..., "FAILED")`；等几秒后重试成功时，`scheduler.py:337` 发现 `run.state` 已在终态集合直接忽略，造成“任务实际成功了，但调度台账永远显示失败”！
+3. **`RUN_ONCE` 演变成全量历史风暴 + 刚入队瞬间被判超时**：
+   - `scheduler.py:101-131` 每次 `tick` 只把 `next_fire_at` 往前推进一格（`cron.next_after(fire_time)`），而不是推进到 `now_utc` 之后！如果某任务停用/停机 24 小时后恢复（假设每 15 分钟一班，积压 96 班），即便策略是 `RUN_ONCE` 或 `SKIP`，worker 也会每 10 秒一轮把过去 96 个班次挨个处理/补跑一遍！
+   - 更致命的是，`scheduler.py:63` 用历史计划时间 `fire_naive + max_runtime_seconds` 计算 `deadline_at`，导致补跑任务刚入队 0.1 秒就被 `run_guard.py:37`（`now > deadline_at`）误判为 `TIMED_OUT` 触发假严重告警！
+4. **每日早报 100% 崩溃吞错，所有计划全报“表达式待核”**：
+   - `packages/core_db/engine.py:25-27` 的 `utcnow()` 返回无时区（naive）的 UTC 时间。
+   - `plugins/alerting/digest.py:21-22` 对 naive UTC 调用 `.astimezone(CST)`，Python 会把 naive 时间当成**宿主本地时间**再转 CST（在东八区服务器上直接错位 8 小时）！
+   - 紧接着 `digest.py:63` 把 naive `now` 传给 `CronExpr.next_after(now)`，而 `cron.py:100` 强制要求 `dt_utc.tzinfo is not None`，**100% 必抛 `ValueError("dt_utc must be timezone-aware")`**，被 `:65` 的 `except Exception` 吞掉后，早报里所有启用的定时任务全部输出“表达式待核”！
+5. **自监控告警互相误恢复**：`plugins/alerting/evaluator.py:156` 所有规则评估异常共用一个 `fingerprint="alerting.self"`；当规则 A 报错、规则 B 正常（或下一轮 A 修好但 C 报错）时，互相覆盖或被误判为“已恢复”。
+6. **告警入库未脱敏 & Webhook 明文 URL 绕过**：`evaluator.py:94` 把未经脱敏的 `f.detail` 原样写入数据库 `alert_event.detail`，且 `redact.py:11-16` 白名单漏了 `error_code`；`channels.py:36-38` 创建 webhook 通道时若不传 `url_env` 而直接传 `"url": "https://qyapi.weixin.../key=xxx"`，竟能绕过密钥校验把明文 webhook 密钥写入数据库！
+7. **假游标分页与新旧表字段分裂**：`ops_routes.py`（`list_runs`、`alerts2`、`notification_logs`）及 `medins_emr` 的 `debug-exchanges` 虽然在查询参数里写了 `cursor: str | None = None`，但函数体里**完全没用 `cursor`**（永远只返回第一页，前端点“加载更多”死循环重复第一页）！且旧 `AlertEvent` 默认 `severity="warning"`，新评估器写 `"warn"`，筛选 `severity=WARN` 会漏掉旧记录；`last_seen_at.desc()` 对旧记录 `NULL` 在 PG 与 SQLite 排序相反。
+
+---
+
+## 1. 修改范围
+
+```text
+implementation/plugins/scheduling/{scheduler,run_guard}.py
+implementation/apps/worker/engine.py
+implementation/packages/workflow_core/{jobs,cron}.py
+implementation/plugins/alerting/{digest,evaluator,channels,redact,rules}.py
+implementation/apps/core_api/{ops_routes,app}.py
+implementation/plugins/domains/medins_emr/routes.py   （仅补 debug-exchanges 真实游标分页）
+implementation/apps/admin_web/src/api/ops.ts          （如分页返回结构微调则同步对齐）
+implementation/apps/admin_web/src/views/{Schedules,Alerts,Dashboard}.vue （对齐 RUNNING 态/真实耗时/分页）
+implementation/tests/unit/test_rt03_*.py
+implementation/tests/integration/test_rt03_*.py
+implementation/docs/{实施状态矩阵,04-API目录对照矩阵,接口与设计差异,测试执行记录}.md
+docs/ai/{STATE,BACKLOG,HANDOFF}.md
+docs/ai/sessions/RT-03-*.md
+```
+
+---
+
+## 2. 详细实施步骤
+
+### 步骤 1：修复调度器状态机（`RUNNING` 态、真实耗时、重试不误标 `FAILED`）
+
+1. **领取 Job 时推进 `ScheduleRun` 为 `RUNNING`（`apps/worker/engine.py` & `plugins/scheduling/scheduler.py`）**：
+   - 在 `scheduler.py` 新增函数 `mark_run_started(db, job, now=None)`：当 `job.payload` 中含 `schedule_run_id` 时，查询对应 `ScheduleRun`；若其 `state == "QUEUED"`，设 `state = "RUNNING"`；若 `started_at is None`，设 `started_at = now`（首次真实开跑时刻，重试时不覆盖首次 `started_at`，或记录 `last_attempt_at`）；同时**以 `now + schedule.max_runtime_seconds` 刷新一次 `deadline_at`**（保证排队等待时间或补跑时间不会导致刚开跑就超时，而排队过久则由队列积压监控单独反映）。
+   - 在 `engine.py` 的 `_run_due_jobs` 成功 `claim_job` 后、执行具体 handler 前，调用 `mark_run_started(db, job)` 并随 claim 一起落库。
+2. **修复重试假 `FAILED`（`packages/workflow_core/jobs.py` & `apps/worker/engine.py` & `scheduler.py`）**：
+   - 检查 `jobs.py` 中 `finish_job` / 异常处理返回值：明确区分**“已进入 `RETRY_WAIT` 待重试”**与**“重试耗尽真正 `FAILED`”**！严禁在 `job.state == JobState.RETRY_WAIT` 时调用 `finalize_run(..., "FAILED")`！
+   - 当 Job 进入 `RETRY_WAIT` 时：`ScheduleRun` 保持 `RUNNING`（可在 `result_summary` 中记录 `"retrying": True, "attempts": job.attempts, "last_error": ...`），直到 Job 最终 `SUCCEEDED` 才标 `SUCCEEDED`，或重试次数耗尽进入 `JobState.FAILED` / `DEAD` 时才将 `ScheduleRun` 标为 `FAILED`！
+   - 同时保留 LT-04 B 段语义：若运行期间曾被 `run_guard` 标为 `TIMED_OUT` 或 `STALLED`，当 Job 最终迟到完成时，`finalize_run` 允许从 `TIMED_OUT`/`STALLED` 转为 `SUCCEEDED` 或 `FAILED`，并在 `result_summary` 写入 `"late": True, "was_timed_out": True`（保留超时历史痕迹），同时计算真实 `duration_seconds = max(0, int((ended_at - started_at).total_seconds()))`。
+
+### 步骤 2：修复 `misfire_policy`（`SKIP` / `RUN_ONCE`）与推进逻辑
+
+在 `plugins/scheduling/scheduler.py` 的 `tick(db, now_utc, ...)` 中：
+1. 统一将传入的 `now_utc` 规范化为 aware UTC（若 naive 则 `.replace(tzinfo=timezone.utc)`），落库前按模型约定转回与现有列一致的 UTC 格式。
+2. 当检测到 `schedule.next_fire_at <= now_utc` 时：
+   - 计算当前到期时间点 `due_fire = schedule.next_fire_at`。
+   - **一次性计算跳到当前时刻之后的下一个未来触发点**：用 `CronExpr(schedule.cron).next_after(now_utc)` 直接得出严格 `> now_utc` 的 `future_next_fire`！（严禁只推一格 `next_after(due_fire)` 导致停机恢复后成百上千次循环追赶！）
+   - 判断是否属于 misfire（错过窗口，如 `(now_utc - due_fire).total_seconds() > MISFIRE_GRACE_SECONDS`，默认 120s）：
+     * **正常准点触发（未超 grace）**：推进 `next_fire_at = future_next_fire`，按 blackout / FORBID 规则入队 1 次运行，`deadline_at = now_utc + timedelta(seconds=schedule.max_runtime_seconds)`。
+     * **已超 grace 且 `misfire_policy == "SKIP"`**：推进 `next_fire_at = future_next_fire`，仅记录 1 条 `state="MISSED"` 的 `ScheduleRun`（在 `result_summary` 注明跳过的区间起止），不入队 Job，下一轮 tick 因 `next_fire_at > now_utc` 不会再重复记 MISSED。
+     * **已超 grace 且 `misfire_policy == "RUN_ONCE"`**：找到 `<= now_utc` 的**最近一次**应触发槽位 `latest_missed_slot`（用于渲染 `{fire_date}` 等业务窗口模板），推进 `next_fire_at = future_next_fire`，**只入队这 1 次补跑**！且 `deadline_at = now_utc + timedelta(seconds=schedule.max_runtime_seconds)`（用当前实际入队时刻 `now_utc` 起算超时上限，绝不用昨天/前天的 `fire_time` 起算，彻底消灭“刚补跑入队瞬间就被判 `TIMED_OUT`”的 Bug！）。
+
+### 步骤 3：修复早报 `digest.py` 时区错位与“表达式待核”崩溃
+
+检查 `plugins/alerting/digest.py` 全文：
+1. 新增辅助函数 `_as_aware_utc(dt)`：若 `dt.tzinfo is None`，使用 **`dt.replace(tzinfo=timezone.utc)`**（绝不能对 naive UTC 直接调 `.astimezone(CST)`！那会被 Python 当成本地时区！），然后再 `.astimezone(CST)` 换算成院内北京时间！
+2. 检查昨日自然日边界计算：用 `now_cst = _as_aware_utc(now).astimezone(CST)` 算出院内今天 `00:00:00+08:00` 与昨天 `00:00:00+08:00`，确保无论服务器 OS 时区是 UTC（容器常见）还是 CST（宿主常见），算出的“昨日日期”和窗口 100% 一致！
+3. 修复今日调度计划列表：把传给 `CronExpr(s.cron).next_after(...)` 的参数改为 `_as_aware_utc(now)`（aware UTC），并将返回的 UTC 时间 `.astimezone(CST).strftime('%Y-%m-%d %H:%M')` 格式化输出！写单测验证：启用的合法 cron 调度在早报中输出准确的今日/明日触发时刻，**绝不再出现“表达式待核”**（除非 cron 字符串本身真的损坏）。
+
+### 步骤 4：修复告警评估器、深度脱敏、Webhook 密钥校验与真游标分页
+
+1. **自监控独立指纹（`plugins/alerting/evaluator.py`）**：
+   - 单条规则评估抛异常时，生成的自监控事件 fingerprint 改为 **`f"alerting.self:{tenant_id}:{rule.code}"`**！当且仅当同一条 `rule.code` 在后续评估中恢复正常无异常时，才自动 RESOLVED 该规则对应的自监控告警，杜绝规则 A 和规则 B 互相误恢复。
+2. **入库前脱敏与白名单补齐（`evaluator.py` & `redact.py`）**：
+   - 在 `redact.py` 的白名单键中补齐 `"error_code"`、`"schedule_code"`、`"late"`、`"unmapped_states"` 等合法元数据键，并对所有字符串值递归执行 `redact_text`（过滤身份证、长数字串、URL query/token）。
+   - `evaluator.py` 写入或更新 `AlertEvent.detail` 和 `AlertEvent.message` **之前**，先过一遍 `sanitize_detail(f.detail)` 与 `redact_text`，确保存入数据库的 `alert_event` 表与发往外部通道的内容一样干净脱敏。
+3. **堵死 Webhook 明文 URL 绕过（`plugins/alerting/channels.py`）**：
+   - 在通道配置校验函数中：当 `type == "webhook"` 时，**强制要求提供合法的环境变量名 `url_env`（匹配 `^[A-Z][A-Z0-9_]{2,63}$`）**，且若 config 中出现 `"url"`、`"webhook"`、`"key"`、`"token"`、`"secret"`、`"password"` 等任何直传明文 URL 或密钥字段，一律抛 `ApiError("SECRET_INLINE_FORBIDDEN", "禁止直接填写明文 URL 或密钥，请使用 url_env/password_env 环境变量引用")`！
+4. **统一告警严重级别与真实游标分页（`ops_routes.py` & `medins_emr/routes.py`）**：
+   - 兼容 `AlertEvent.severity`：查询过滤 `severity` 时，对 `WARN` 同时匹配 `("WARN", "warn", "warning")`（不区分大小写兼容历史数据），返回给前端时统一规范化为大写 `INFO` / `WARN` / `CRITICAL`；排序统一用 `COALESCE(AlertEvent.last_seen_at, AlertEvent.created_at).desc(), AlertEvent.id.desc()`，消除 PG 与 SQLite 对 `NULL` 排序不一致的问题。
+   - **实现全部 4 处真实游标分页**（杜绝假 `cursor` 参数）：
+     * `GET /api/v1/schedules/{sid}/runs`
+     * `GET /api/v1/alerts2`（并让 `GET /api/v1/alerts` 共享同一套规范化过滤逻辑，保持旧返回数组/新返回 `{items, next_cursor}` 各自契约兼容）
+     * `GET /api/v1/notification-logs`
+     * `GET /api/v1/medins-emr/debug-exchanges`
+     全部实现标准 base64 `(sort_ts, id)` 游标编码与解码 WHERE 条件 `ts < :c_ts OR (ts = :c_ts AND id < :c_id)`，非法游标返回 400 `INVALID_CURSOR`！前端 `Schedules.vue`、`Alerts.vue`、`MedinsDebug.vue` 补上“加载更多”按钮（当 `next_cursor` 非空时显示）。
+
+---
+
+## 3. 新增测试要求（≥30 个新测试）
+
+新建 `implementation/tests/unit/test_rt03_scheduler_and_digest.py` 与 `implementation/tests/integration/test_rt03_ops_pagination_and_alerts.py`：
+1. **生命周期与真实耗时测试**：入队（`QUEUED`）→ claim_job（断言变为 `RUNNING` 且 `started_at` 非空）→ 模拟时钟推进 5 秒后完成（断言 `SUCCEEDED` 且 `duration_seconds == 5`）。
+2. **重试恢复测试**：构造一个第 1 次抛异常进入 `RETRY_WAIT`、第 2 次成功的 Job handler，断言第 1 次失败后 `ScheduleRun.state` 仍为 `RUNNING`（绝不是 `FAILED`），第 2 次执行后变为 `SUCCEEDED`！再测重试次数耗尽后正确变为 `FAILED`。
+3. **`RUN_ONCE` 与 `SKIP` 停机恢复测试**：构造每 15 分钟一次的调度，`next_fire_at` 设在 24 小时前（积压 96 班）：
+   - `RUN_ONCE` 下跑一次 `tick`：断言只创建 **1 条** `QUEUED` 的 `ScheduleRun`，`next_fire_at` 直接跳到 `> now_utc`，紧接着跑 `run_guard` 断言**不会被误判为 `TIMED_OUT`**，再跑第 2 次 `tick` 断言 `fired == 0`！
+   - `SKIP` 下跑一次 `tick`：断言只记 1 条 `MISSED`，不入队任何 Job，`next_fire_at > now_utc`。
+4. **早报时区与 Cron 渲染测试**：传入 naive UTC 时间 `datetime(2026, 11, 11, 0, 0, 0)`（对应北京时间 08:00），启用 2 条合法调度，断言生成的早报文本中昨日日期为 `2026-11-10`、包含准确的下次触发时间、**不含 `"表达式待核"`**！
+5. **自监控独立指纹测试**：规则 A 抛异常、规则 B 正常 → 断言 `alerting.self:<tid>:A` 保持 `OPEN` 不被 B 误恢复；下一轮 A 恢复正常 → 断言该事件变为 `RESOLVED`。
+6. **脱敏与密钥拦截测试**：finding detail 含 18 位身份证号时落库的 `AlertEvent.detail` 已打码且保留 `error_code`；webhook 通道传 `"url": "https://..."` 返回 400 `SECRET_INLINE_FORBIDDEN`。
+7. **4 个接口真实游标翻页测试**：各造 15 条记录，以 `limit=6` 连续翻 3 页，断言 3 页 ID 拼接集合与全集严格相等、无重复无遗漏。
+
+---
+
+## 4. 验收清单
+
+- [ ] 新增测试 ≥30 项全部通过。
+- [ ] 后端全量回归 **0 failed, 0 error**，复核探针 **43/43 passed**。
+- [ ] 前端 `npm run build` 退出码 0，前端全部测试全绿。
+- [ ] 禁改清单零触碰；同步更新四类实施文档、`STATE.md`、`BACKLOG.md`、`HANDOFF.md` 与交接文档。

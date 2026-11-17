@@ -1,0 +1,22 @@
+{
+  "no_model_turn": true,
+  "no_business_data": true,
+  "no_daemon_flag_version": {
+    "exit": 0,
+    "stdout": "codex-cli 0.165.0"
+  },
+  "host_help": {
+    "exit": 0,
+    "path": "C:\\Tools\\CodexCLI\\node_modules\\@openai\\codex\\node_modules\\@openai\\codex-win32-x64\\vendor\\x86_64-pc-windows-msvc\\bin\\codex-code-mode-host.exe"
+  },
+  "host_stdio_startup": {
+    "pid": 13904,
+    "running": true
+  },
+  "foreground_initialize": true,
+  "local_command": {
+    "exitCode": 0,
+    "stdout": "CODEX_LOCAL_EXEC_OK\r\n",
+    "stderr": ""
+  }
+}

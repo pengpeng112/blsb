@@ -1,0 +1,9 @@
+{
+  "host": "dmz",
+  "phase": "dmz_upgrade",
+  "exit_code": 1,
+  "captured_at": "2026-10-26T13:28:21.721912+00:00",
+  "result": {
+    "marker_missing": true
+  }
+}

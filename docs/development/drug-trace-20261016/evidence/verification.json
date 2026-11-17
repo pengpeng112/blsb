@@ -1,0 +1,48 @@
+{
+  "at_utc": "2026-10-16T14:48:25.075827+00:00",
+  "mode": "local_document_verification",
+  "checks": {
+    "original_files": {
+      "count": 404,
+      "unchanged": true,
+      "changed_paths": []
+    },
+    "document_links": {
+      "checked": 56,
+      "valid": true,
+      "bad": []
+    },
+    "credential_scan": {
+      "files": 26,
+      "no_supplied_password_values": true,
+      "matching_files": []
+    },
+    "evidence_script_syntax": {
+      "valid": true
+    },
+    "synthetic_sql_counterexample": {
+      "input_distinct_codes": 2,
+      "max_projection": "000124",
+      "projected_codes": 1,
+      "loss_demonstrated": true,
+      "scope": "aggregation_semantics_only_not_actual_HIS_cardinality"
+    },
+    "historical_regression_xml": {
+      "tests": 235,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 6,
+      "passed": 229,
+      "rerun_this_task": false
+    },
+    "user_sql_preserved": {
+      "sha256_utf8_lf": "c7d8d1d7e8b7ad9c06b19d2fcefa68698d8a826b287ba62ce5cf8e3934d883b9",
+      "has_original_listagg_and_max": true
+    },
+    "git_diff_check": {
+      "exit_code": 0,
+      "output": "warning: in the working copy of 'docs/README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/ai/BACKLOG.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/ai/STATE.md', LF will be replaced by CRLF the next time Git touches it\n"
+    }
+  },
+  "passed": true
+}

@@ -1,0 +1,61 @@
+{
+  "host": "app",
+  "phase": "observe",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T01:05:07.882752+00:00",
+  "result": {
+    "captured_utc": "2026-10-26T01:05:05.563966+00:00",
+    "unit": {
+      "ExecMainStartTimestamp": "Mon 2026-10-26 09:01:52 CST",
+      "ExecMainExitTimestamp": "n/a",
+      "ExecMainStatus": "0",
+      "ActiveState": "activating",
+      "SubState": "start"
+    },
+    "data": {
+      "states": {
+        "PREPARED": 531,
+        "CONFIRMED": 443,
+        "ACCEPTED": 46,
+        "UNKNOWN": 206
+      },
+      "new_attempts": [
+        {
+          "http_status": 200,
+          "outcome": "ACCEPTED",
+          "n": 36
+        }
+      ],
+      "inflight_attempts": 0,
+      "confirmed_recovered": 31,
+      "quota": [
+        {
+          "used": 695,
+          "max_bills": 80000
+        }
+      ],
+      "pending_jobs": [
+        {
+          "job_type": "drug_trace.query_status",
+          "state": "LEASED",
+          "n": 1
+        },
+        {
+          "job_type": "drug_trace.query_status",
+          "state": "PENDING",
+          "n": 4
+        }
+      ],
+      "checkpoint": [
+        {
+          "row_version": 46,
+          "since_time": "2026-10-26T00:00:00"
+        }
+      ],
+      "old_nonterminal_unchanged": true,
+      "checkpoint_unchanged": true
+    },
+    "receipt_file": "/var/log/blyb/daily-upload/20261026-090152.json",
+    "receipt_bytes": 0
+  }
+}

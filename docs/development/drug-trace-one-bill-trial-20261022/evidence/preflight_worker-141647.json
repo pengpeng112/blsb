@@ -1,0 +1,15 @@
+{
+  "exit_code": 0,
+  "result": {
+    "ok": true,
+    "uploads": 0,
+    "source_writes": 0,
+    "submission_state": "PREPARED",
+    "source_snapshot_matches": true,
+    "strict_mtls": true,
+    "clock_offset_seconds": -3.339,
+    "code_count": 4,
+    "max_bills": 1,
+    "previous_vendor_upload_status": "UNKNOWN"
+  }
+}

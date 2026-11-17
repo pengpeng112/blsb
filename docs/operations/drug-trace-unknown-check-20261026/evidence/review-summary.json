@@ -1,0 +1,48 @@
+{
+  "unique_targets": 247,
+  "conclusively_checked": 184,
+  "pairs": {
+    "ACCEPTED->CONFIRMED": 41,
+    "UNKNOWN->NOT_FOUND": 143,
+    "UNKNOWN->QUERY_ERROR": 1,
+    "UNKNOWN->NOT_CHECKED": 62
+  },
+  "not_yet_verified": 63,
+  "external_block": {
+    "code": 7,
+    "msg": "App Call Limited",
+    "sub_code": "accesscontrol.limited-by-api-access-count"
+  },
+  "uploads": 0,
+  "his_calls": 0,
+  "business_writes": 0,
+  "poll_budget_reset": false,
+  "production_states_unchanged": {
+    "CONFIRMED": 2576,
+    "ACCEPTED": 41,
+    "UNKNOWN": 206
+  },
+  "quota_unchanged": [
+    {
+      "used": 2823,
+      "max_bills": 80000
+    }
+  ],
+  "checkpoint_unchanged": [
+    {
+      "row_version": 46,
+      "since_time": "2026-10-26T00:00:00"
+    }
+  ],
+  "ui_states_not_rewritten": true,
+  "complete_platform_review": false,
+  "evidence": [
+    "app-inventory-20261026T074119891034Z.json",
+    "app-sample-20261026T071551012749Z.json",
+    "app-progress-20261026T071910852004Z.json",
+    "app-progress2-20261026T073804066814Z.json",
+    "app-progress3-20261026T073957655386Z.json",
+    "app-diagnose-20261026T072553502770Z.json",
+    "app-inspect-20261026T074125737561Z.json"
+  ]
+}

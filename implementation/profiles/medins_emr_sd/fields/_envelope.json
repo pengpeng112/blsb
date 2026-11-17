@@ -1,0 +1,177 @@
+{
+ "code": "_envelope",
+ "length_unit": "UNCONFIRMED",
+ "nodes": [
+  {
+   "code": "info",
+   "name": "交易编号",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec",
+   "notes": "规范长度4与交易号5位矛盾——长度待医保确认"
+  },
+  {
+   "code": "msgid",
+   "name": "发送方报文ID",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "mdtrtarea_admvs",
+   "name": "就医地医保区划",
+   "type": "string",
+   "max_len": 6,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "insuplc_admdvs",
+   "name": "参保地医保区划",
+   "type": "string",
+   "max_len": 6,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "recer_sys_code",
+   "name": "接收方系统代码",
+   "type": "string",
+   "max_len": 10,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "dev_no",
+   "name": "设备编号",
+   "type": "string",
+   "max_len": 100,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "dev_safe_info",
+   "name": "设备安全信息",
+   "type": "string",
+   "max_len": 2000,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "cainfo",
+   "name": "数字签名信息",
+   "type": "string",
+   "max_len": 1024,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "signtype",
+   "name": "签名类型",
+   "type": "string",
+   "max_len": 10,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "infver",
+   "name": "接口版本号",
+   "type": "string",
+   "max_len": 6,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "opter_type",
+   "name": "经办人类别",
+   "type": "string",
+   "max_len": 3,
+   "dict": "Y",
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "opter",
+   "name": "经办人",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "opter_name",
+   "name": "经办人姓名",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "required": true,
+   "sensitive": true,
+   "source": "spec"
+  },
+  {
+   "code": "inf_time",
+   "name": "交易时间",
+   "type": "datetime",
+   "max_len": 19,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "fixmedins_code",
+   "name": "定点医药机构编号",
+   "type": "string",
+   "max_len": 14,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "sign_no",
+   "name": "交易签到流水号",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec"
+  },
+  {
+   "code": "input",
+   "name": "交易输入",
+   "type": "string",
+   "max_len": 40000,
+   "dict": null,
+   "required": true,
+   "sensitive": false,
+   "source": "spec"
+  }
+ ]
+}

@@ -1,0 +1,48 @@
+/* LT-02 全局组件样式：自 App.vue <style> 原样迁移（类名/选择器全保留，DrugTrace 等
+   旧页面依赖这些全局类；颜色/间距替换为 tokens 变量）。
+   兼容 class 清单（交接 LT-02.md 同步）：layout/aside/side-footer/main/password-overlay/
+   password-box/h2/table/th/td/card/grid/kpi/button(.ghost)/input/select/textarea/
+   tag(.ok/.warn/.err)/muted/pre.json/row。
+   注意：aside、main 为标签选择器，DrugTrace.vue 内部使用 <aside class="summary-column">，
+   故旧标签样式必须原样保留（不可收窄作用域），新外壳一律用自有类名（.app-*）。 */
+
+.layout { display: flex; min-height: 100vh; }
+/* RT-01：aside 裸标签样式加 :not(.app-aside) 限定——旧页面（DrugTrace 的
+   <aside class="summary-column"> 等）照常生效，新外壳 .app-aside 不再被
+   width:190px/padding 污染（折叠到 56px 时图标居中不挤压）。 */
+aside:not(.app-aside) { width: 190px; background: #10233f; color: #cfe0f5; padding: 14px 10px; display: flex; flex-direction: column; }
+aside:not(.app-aside) h1 { font-size: 15px; color: #fff; margin-bottom: 14px; padding: 0 6px; }
+aside:not(.app-aside) nav { display: flex; flex-direction: column; gap: 2px; flex: 1; }
+aside:not(.app-aside) nav a { color: #cfe0f5; text-decoration: none; padding: 7px 10px; border-radius: var(--radius); font-size: 13px; }
+aside:not(.app-aside) nav a.router-link-active { background: #1d3f70; color: #fff; }
+.side-footer { font-size: 12px; padding: 8px 6px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.side-footer button { background: none; border: 1px solid #3a5a86; color: #cfe0f5; border-radius: 4px; padding: 2px 8px; cursor: pointer; }
+.password-overlay { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; background: #0006; }
+.password-box { display: flex; flex-direction: column; gap: 14px; width: 360px; max-width: 90vw; padding: 24px; background: var(--c-surface); border-radius: var(--radius-lg); }
+.password-box label { display: flex; flex-direction: column; gap: 6px; }
+.password-box .err { color: #b23a3a; }
+main { flex: 1; padding: 20px 26px; overflow: auto; }
+
+h2 { font-size: 17px; margin-bottom: 14px; }
+table { width: 100%; border-collapse: collapse; background: var(--c-surface); border-radius: var(--radius-lg); overflow: hidden; font-size: 13px; }
+th { background: #eef2f7; text-align: left; padding: 8px 10px; color: #445; white-space: nowrap; }
+td { padding: 7px 10px; border-top: 1px solid #edf0f4; vertical-align: top; }
+
+.card { background: var(--c-surface); border-radius: var(--radius-lg); padding: 14px 16px; margin-bottom: 14px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; margin-bottom: 16px; }
+.kpi { background: var(--c-surface); border-radius: var(--radius-lg); padding: 12px 14px; }
+.kpi b { display: block; font-size: 22px; margin-top: 4px; }
+.kpi span { color: #68758a; font-size: 12px; }
+
+button { background: var(--c-primary); border: 0; color: #fff; border-radius: var(--radius); padding: 6px 14px; cursor: pointer; font-size: 13px; }
+button.ghost { background: var(--c-surface); color: var(--c-primary); border: 1px solid #b8cbe8; }
+button:disabled { opacity: .5; cursor: not-allowed; }
+input, select, textarea { border: 1px solid #cfd8e3; border-radius: var(--radius); padding: 6px 8px; font-size: 13px; }
+
+.tag { display: inline-block; padding: 1px 8px; border-radius: 10px; font-size: 12px; background: #e8eef7; color: #33517c; }
+.tag.ok { background: #e2f4e6; color: #1d6b33; }
+.tag.warn { background: #fdf3df; color: #8a6116; }
+.tag.err { background: #fbe4e4; color: #9c2b2b; }
+.muted { color: var(--c-text-3); }
+pre.json { background: #0e1726; color: #c9e3ff; padding: 10px; border-radius: var(--radius-lg); overflow: auto; font-size: 12px; }
+.row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 10px; }

@@ -1,0 +1,1031 @@
+{
+ "authorization": "User authorization 2026-10-27 HIS metadata exploration r2 (view DDL + key table columns, read-only)",
+ "source_writes": 0,
+ "uploads": 0,
+ "v_drug_user_trace": {
+  "ok": true,
+  "n": 8,
+  "rows": [
+   {
+    "VIEW_NAME": "CLI_INP_TRACE_DRUG_RETURN_VIEW",
+    "TEXT": "SELECT\r\n    w.\"PAT_NAME\",\r\n    w.\"PAT_ID\",\r\n    w.\"PRESC_NO\",\r\n    w.\"PRESC_CREATE_TIME\",\r\n    w.\"PRESC_DETAIL_ID\",\r\n    w.\"DRUG_NAME\",\r\n    w.\"DRUG_PRI\",\r\n    w.package_spec as SPECS,\r\n    w.\"SEND_QUANTITY\" as RETURN_QUANTITY,\r\n    w.\"PHA_CODE\",\r\n    t.\"DRUG_CODE\",\r\n    m.SPLIT_FLAG, --拆零标志 0、否(默认) 1、是 \r\n    (SELECT dict_name FROM PORTAL_USER.PORTAL_SYS_DICT where TYPE_CODE = 'package_unit' and dict_code = t.PACK_UNIT) as PACK_UNIT,\r\n    w.EXEC_SQN\r\nFROM\r\n  CLI_REQUEST_DRUG_VIEW w\r\nLEFT JOIN DRUG_USER.MED_DICT_PRICE t on w.DRUG_PRI =t.DRUG_PRI\r\nLEFT JOIN DRUG_USER.PHA_DICT_MEDINFO m on w.DRUG_PRI =m.DRUG_PRI and m.PHA_CODE = w.PHA_CODE\r\n WHERE\r\n        w.CLI_FLAG = 'return'\r\n    and w.CLI_INP_FLAG = 2"
+   },
+   {
+    "VIEW_NAME": "CLI_INP_TRACE_DRUG_SEND_VIEW",
+    "TEXT": "SELECT\r\n    w.\"PAT_NAME\",\r\n    w.\"PAT_ID\",\r\n    w.\"PRESC_NO\",\r\n    w.\"PRESC_CREATE_TIME\",\r\n    w.\"PRESC_DETAIL_ID\",\r\n    w.\"DRUG_NAME\",\r\n    w.\"DRUG_PRI\",\r\n    w.\"SPECS\",\r\n    w.\"SEND_QUANTITY\",\r\n    w.\"PHA_CODE\",\r\n    t.\"DRUG_CODE\",\r\n    w.SEND_NO,\r\n    m.SPLIT_FLAG\r\nFROM\r\n  DRUG_USER.PHA_CLI_REQUEST_DRUG w\r\nLEFT JOIN DRUG_USER.MED_DICT_PRICE t on w.DRUG_PRI =t.DRUG_PRI\r\nLEFT JOIN DRUG_USER.PHA_DICT_MEDINFO m on w.DRUG_PRI =m.DRUG_PRI and m.PHA_CODE = w.PHA_CODE \r\n WHERE\r\n        w.CLI_FLAG = 'send'\r\n    and w.SEND_DRUG_STATUS = 'Y'\r\n    and w.CLI_INP_FLAG = 2\r\n    and w.CLI_EXECUTE_TIME >= trunc(sysdate) - 15\r\n    and w.PHA_CODE != '050101' and w.PHA_CODE != '050117'\r\n    ORDER BY w.CLI_EXECUTE_TIME,w.\"PRESC_NO\",\r\n    w.\"PAT_ID\""
+   },
+   {
+    "VIEW_NAME": "CLI_TRACE_DRUG_RETURN_VIEW",
+    "TEXT": "SELECT\r\n    w.\"WINDOW_NO\",\r\n    w.\"PAT_NAME\",\r\n    w.\"PAT_ID\",\r\n    w.\"PRESC_NO\",\r\n    w.\"PRESC_CREATE_TIME\",\r\n    w.\"PRESC_DETAIL_ID\",\r\n    w.\"DRUG_NAME\",\r\n    w.\"DRUG_PRI\",\r\n    w.\"SPECS\",\r\n    w.\"SEND_QUANTITY\",\r\n    w.\"PHA_CODE\",\r\n    t.\"DRUG_CODE\",\r\n    m.SPLIT_FLAG, --拆零标志 0、否(默认) 1、是 \r\n    (SELECT dict_name FROM PORTAL_USER.PORTAL_SYS_DICT where TYPE_CODE = 'package_unit' and dict_code = t.PACK_UNIT) as PACK_UNIT\r\nFROM\r\n  DRUG_USER.PHA_CLI_REQUEST_DRUG w\r\nLEFT JOIN DRUG_USER.MED_DICT_PRICE t on w.DRUG_PRI =t.DRUG_PRI\r\nLEFT JOIN DRUG_USER.PHA_DICT_MEDINFO m on w.DRUG_PRI =m.DRUG_PRI and m.PHA_CODE = w.PHA_CODE \r\n WHERE\r\n        w.CLI_FLAG = 'send'\r\n    and w.SEND_DRUG_STATUS = 'Y'\r\n    and w.CLI_INP_FLAG = 1\r\n    and (w.PRESC_NO,w.PAT_ID) not in (\r\n        SELECT A.PRESC_NO,A.PAT_ID\r\n        FROM\r\n        (SELECT SUM(SEND_QUANTITY) AS sq, B.PRESC_NO,B.PAT_ID\r\n        FROM PHA_CLI_REQUEST_DRUG B\r\n        where B.SEND_DRUG_STATUS = 'Y'\r\n        and B.CLI_FLAG = 'send'\r\n        GROUP BY B.PRESC_NO,B.PAT_ID) A\r\n\r\n        LEFT JOIN\r\n\r\n        (SELECT SUM(RETURN_QUANTITY) AS rq, A.PRESC_NO,A.PAT_ID\r\n        FROM PHA_CLI_REQUEST_DRUG A\r\n        WHERE A.CLI_FLAG = 'return'\r\n        AND A.RETURN_DRUG_STATUS = 'Y'\r\n        GROUP BY A.PRESC_NO,A.PAT_ID) B\r\n\r\n        ON A.PRESC_NO = B.PRESC_NO AND A.PAT_ID = B.PAT_ID\r\n        WHERE B.rq = A.sq\r\n        GROUP BY A.PRESC_NO,A.PAT_ID\r\n        )\r\n    and w.PHA_CODE != '050101' and w.PHA_CODE != '050117'\r\n    \r\n   union all\r\n   SELECT\r\n    w.\"WINDOW_NO\",\r\n    w.\"PAT_NAME\",\r\n    w.\"PAT_ID\",\r\n    w.\"PRESC_NO\",\r\n    w.\"PRESC_CREATE_TIME\",\r\n    w.\"PRESC_DETAIL_ID\",\r\n    w.\"DRUG_NAME\",\r\n    w.\"DRUG_PRI\",\r\n    w.\"SPECS\",\r\n    w.\"SEND_QUANTITY\",\r\n    w.\"PHA_CODE\",\r\n    t.\"DRUG_CODE\",\r\n    m.SPLIT_FLAG, --拆零标志 0、否(默认) 1、是 \r\n    (SELECT dict_name FROM PORTAL_USER.PORTAL_SYS_DICT where TYPE_CODE = 'package_unit' and dict_code = t.PACK_UNIT) as PACK_UNIT\r\nFROM\r\n  DRUG_USER.PHA_CLI_REQUEST_DRUG w\r\nLEFT JOIN DRUG_USER.MED_DICT_PRICE t on w.DRUG_PRI =t.DRUG_PRI\r\nLEFT JOIN DRUG_USER.PHA_DICT_MEDINFO m on w.DRUG_PRI =m.DRUG_PRI and m.PHA_CODE = w.PHA_CODE \r\nwhere \r\n    w.\"PAT_ID\" = 'c0111756' and w.\"PRESC_NO\" in (55478,55479) and w.CLI_FLAG = 'return'"
+   },
+   {
+    "VIEW_NAME": "CLI_TRACE_DRUG_SEND_VIEW",
+    "TEXT": "SELECT\r\n    w.\"WINDOW_NO\",\r\n    w.\"PAT_NAME\",\r\n    w.\"PAT_ID\",\r\n    w.\"PRESC_NO\",\r\n    w.\"PRESC_CREATE_TIME\",\r\n    w.\"PRESC_DETAIL_ID\",\r\n    w.\"DRUG_NAME\",\r\n    w.\"DRUG_PRI\",\r\n    w.\"SPECS\",\r\n    w.\"SEND_QUANTITY\",\r\n    w.\"PHA_CODE\",\r\n    t.\"DRUG_CODE\",\r\n    m.SPLIT_FLAG, --拆零标志 0、否(默认) 1、是\r\n    (SELECT dict_name FROM PORTAL_USER.PORTAL_SYS_DICT where TYPE_CODE = 'package_unit' and dict_code = t.PACK_UNIT) as PACK_UNIT\r\nFROM\r\n  DRUG_USER.PHA_CLI_REQUEST_DRUG w\r\nLEFT JOIN DRUG_USER.MED_DICT_PRICE t on w.DRUG_PRI =t.DRUG_PRI\r\nLEFT JOIN DRUG_USER.PHA_DICT_MEDINFO m on w.DRUG_PRI =m.DRUG_PRI and m.PHA_CODE = w.PHA_CODE \r\n WHERE\r\n        w.CLI_FLAG = 'send'\r\n    and w.SEND_DRUG_STATUS = 'Y'\r\n    and w.CLI_INP_FLAG = 1\r\n    and (w.PRESC_NO,w.PAT_ID) not in (\r\n        SELECT A.PRESC_NO,A.PAT_ID\r\n        FROM\r\n        (SELECT SUM(SEND_QUANTITY) AS sq, B.PRESC_NO,B.PAT_ID\r\n        FROM PHA_CLI_REQUEST_DRUG B\r\n        where B.SEND_DRUG_STATUS = 'Y'\r\n        and B.CLI_FLAG = 'send'\r\n        GROUP BY B.PRESC_NO,B.PAT_ID) A\r\n\r\n        LEFT JOIN\r\n\r\n        (SELECT SUM(RETURN_QUANTITY) AS rq, A.PRESC_NO,A.PAT_ID\r\n        FROM PHA_CLI_REQUEST_DRUG A\r\n        WHERE A.CLI_FLAG = 'return'\r\n        AND A.RETURN_DRUG_STATUS = 'Y'\r\n        GROUP BY A.PRESC_NO,A.PAT_ID) B\r\n\r\n        ON A.PRESC_NO = B.PRESC_NO AND A.PAT_ID = B.PAT_ID\r\n        WHERE B.rq = A.sq\r\n        GROUP BY A.PRESC_NO,A.PAT_ID\r\n        )\r\n    and w.CLI_EXECUTE_TIME >= trunc(sysdate) - 15\r\n    -- and w.PHA_CODE != '050101' and w.PHA_CODE != '050117'"
+   },
+   {
+    "VIEW_NAME": "CLI_TRACE_DRUG_VIEW",
+    "TEXT": "SELECT\n    w.\"WINDOW_NO\",\n    w.\"PAT_NAME\",\n    w.\"PAT_ID\",\n    w.\"PRESC_NO\", \n    w.\"PRESC_CREATE_TIME\",\n    w.\"PRESC_DETAIL_ID\",\n    w.\"DRUG_NAME\", \n    t.\"DRUG_PRI\",\n    w.\"PACKAGE_SPEC\" AS DRUG_SPEC,\n    w.\"DRUG_CODE\",\n    abs(w.\"SEND_QUANTITY\") as SEND_QUANTITY,\n    w.\"PHA_CODE\"\nFROM\n  fxhis.CLI_REQUEST_DRUG_VIEW w\n  LEFT JOIN DRUG_USER.MED_DICT_PRICE t on w.DRUG_CODE =t.DRUG_CODE \n                                              and w.package_spec = t.SPECS AND t.FACTORY_CODE = w.firm_id\n WHERE w.CLI_INP_FLAG = 1 and w.PRESC_CREATE_TIME >= SYSDATE - 15"
+   },
+   {
+    "VIEW_NAME": "INP_TRACE_DRUG_SEND_VIEW",
+    "TEXT": "SELECT\r\n    w.\"PAT_NAME\",\r\n    w.\"PAT_ID\",\r\n    w.\"PRESC_NO\",\r\n    w.\"PRESC_CREATE_TIME\",\r\n    w.\"PRESC_DETAIL_ID\",\r\n    w.\"DRUG_NAME\",\r\n    w.\"DRUG_PRI\",\r\n    w.\"SPECS\",\r\n    w.\"SEND_QUANTITY\",\r\n    w.\"PHA_CODE\",\r\n    t.\"DRUG_CODE\",\r\n    w.SEND_NO,\r\n    m.SPLIT_FLAG\r\nFROM\r\n  DRUG_USER.PHA_CLI_REQUEST_DRUG w\r\nLEFT JOIN DRUG_USER.MED_DICT_PRICE t on w.DRUG_PRI =t.DRUG_PRI\r\nLEFT JOIN DRUG_USER.PHA_DICT_MEDINFO m on w.DRUG_PRI =m.DRUG_PRI and m.PHA_CODE = w.PHA_CODE \r\n WHERE\r\n        w.CLI_FLAG = 'send'\r\n    and w.SEND_DRUG_STATUS = 'Y'\r\n    and w.CLI_INP_FLAG = 2\r\n    and w.CLI_EXECUTE_TIME >= trunc(sysdate) - 15\r\n    and w.PHA_CODE != '050101' and w.PHA_CODE != '050117'\r\n    ORDER BY w.CLI_EXECUTE_TIME,w.\"PRESC_NO\",\r\n    w.\"PAT_ID\""
+   },
+   {
+    "VIEW_NAME": "PHA_INP_TRACE_DRUG_RETURN_VIEW",
+    "TEXT": "SELECT\r\n    w.PATIENT_NAME, -- 患者姓名\r\n    w.PAT_ID, -- 患者id\r\n    w.REQUEST_NO, -- 申请单单号\r\n    w.REQUEST_DATE AS PRESC_CREATE_TIME,-- 开立时间\r\n    w.EXEC_SQN, --医嘱执行的流水号\r\n    w.\"YZ\" AS DRUG_NAME,  --药品名称\r\n    w.\"DRUG_PRI\", -- 药品id\r\n    t.\"SPECS\" AS UNITS_SPEC, -- 规格\r\n    w.DISP_QUANTITY AS RETURN_QUANTITY,  -- 数量\r\n    w.\"PHA_CODE\",  -- 药房code\r\n    t.\"DRUG_CODE\",\r\n    '' DIS_RECORDNO,-- 医嘱发药单号\r\n    m.SPLIT_FLAG, --拆零标志 0、否(默认) 1、是\r\n    (SELECT dict_name FROM PORTAL_USER.PORTAL_SYS_DICT where TYPE_CODE = 'package_unit' and dict_code = t.PACK_UNIT) as PACK_UNIT,\r\n    p.DISP_DATE,\r\n    p.EXEC_SQN as EXEC_SQN_SEND\r\nFROM\r\n  DRUG_USER.INP_REQUEST_DRUG_VIEW w\r\nLEFT JOIN DRUG_USER.MED_DICT_PRICE t on w.DRUG_PRI =t.DRUG_PRI\r\nLEFT JOIN DRUG_USER.PHA_DICT_MEDINFO m on w.DRUG_PRI =m.DRUG_PRI and m.PHA_CODE = W.PHA_CODE\r\nLEFT JOIN PHA_INP_REQUEST_DRUG p on w.INPATIENT_NO = p.INPATIENT_NO and w.PAT_ID = p.PAT_ID and w.ORDER_SUB_NO = p.ORDER_SUB_NO and w.MO_ORDER = p.MO_ORDER \r\n  AND  TO_CHAR(\r\n           TO_DATE(\r\n               REPLACE(w.DISP_DATE, ';', ''),\r\n               'YYYY/MM/DD HH24:MI:SS'\r\n           ),\r\n           'YYYY-MM-DD HH24:MI:SS'\r\n       ) = p.DISP_DATE\r\nwhere w.DISP_QUANTITY < 0\r\n    and w.REQUEST_DATE >= trunc(sysdate) - 200"
+   },
+   {
+    "VIEW_NAME": "PHA_INP_TRACE_DRUG_SEND_VIEW",
+    "TEXT": "SELECT\r\n    w.PATIENT_NAME, -- 患者姓名\r\n    w.PAT_ID, -- 患者id\r\n    w.REQUEST_NO, -- 申请单单号\r\n    w.PRESC_CREATE_TIME,-- 开立时间\r\n    w.EXEC_SQN, --医嘱执行的流水号\r\n    w.\"DRUG_NAME\",  --药品名称\r\n    w.\"DRUG_PRI\", -- 药品id\r\n    w.\"UNITS_SPEC\", -- 规格\r\n    w.DISP_QUANTITY,  -- 数量\r\n    w.\"PHA_CODE\",  -- 药房code\r\n    t.\"DRUG_CODE\",\r\n    d.\"DIS_RECORDNO\",-- 医嘱发药单号\r\n    m.SPLIT_FLAG  --拆零标志 0、否(默认) 1、是\r\nFROM\r\n  DRUG_USER.PHA_INP_REQUEST_DRUG w\r\nLEFT JOIN DRUG_USER.MED_DICT_PRICE t on w.DRUG_PRI =t.DRUG_PRI\r\nLEFT JOIN DRUG_USER.PHA_DICT_MEDINFO m on w.DRUG_PRI =m.DRUG_PRI and m.PHA_CODE = W.PHA_CODE\r\nLEFT JOIN PHA_INP_DISPMASTER d ON w.REQUEST_NO = d.REQUEST_NO  AND TO_CHAR(w.DISP_EXECUTE_TIME, 'YYYY-MM-DD HH24:MI:SS') = d.DISP_DATE\r\nwhere w.DISP_FLAG = 'send' and w.DISP_QUANTITY > 0\r\n    and w.DISP_EXECUTE_TIME >= trunc(sysdate) - 30\r\nORDER BY d.\"DIS_RECORDNO\""
+   }
+  ]
+ },
+ "v_pharmacy_ours": {
+  "ok": true,
+  "n": 2,
+  "rows": [
+   {
+    "VIEW_NAME": "V_DRUG_TRACE_BILL",
+    "TEXT": "SELECT\n    CAST('HIS' AS VARCHAR2(16)) AS source_system,\n\n    TO_CHAR(M.PRESC_DATE, 'YYYY-MM-DD HH24:MI:SS')\n        || '|' || TO_CHAR(M.PRESC_NO)\n        || '|' || M.DISPENSARY AS source_bill_id,\n\n    TO_CHAR(M.PRESC_NO) AS source_bill_no,\n\n    TO_CHAR(M.PRESC_DATE, 'YYYYMMDDHH24MISS')\n        || '_' || TO_CHAR(M.PRESC_NO)\n        || '_' || M.DISPENSARY\n        || '_' || TO_CHAR(M.DISPENSING_DATETIME, 'YYYYMMDDHH24MISS')\n        || '_' || NVL(TO_CHAR(M.PRESC_SOURCE), 'NULL')\n        || '_' || NVL(TO_CHAR(M.FLAG), 'NULL') || '_R10_RF_' || NVL(TO_CHAR(M.REFUND_FLAG), 'NULL') AS source_revision,\n\n    CASE WHEN M.PRESC_SOURCE = 0 AND M.FLAG = 1 AND M.DISPENSING_DATETIME IS NOT NULL AND NVL(M.REFUND_FLAG, 0) = 0 THEN 'PATIENT_DISPENSE' ELSE 'UNKNOWN' END AS business_kind,\n    M.DISPENSARY AS pharmacy_code,\n    CAST(NULL AS VARCHAR2(64)) AS warehouse_code,\n    CAST(NULL AS VARCHAR2(64)) AS supplier_code,\n    M.DISPENSING_DATETIME AS bill_time,\n    M.DISPENSING_DATETIME AS updated_at,\n    CAST(NULL AS VARCHAR2(64)) AS source_event_seq,\n    CASE WHEN M.PRESC_SOURCE = 0 AND M.FLAG = 1 AND M.DISPENSING_DATETIME IS NOT NULL AND NVL(M.REFUND_FLAG, 0) = 0 THEN 1 ELSE CAST(NULL AS NUMBER(1)) END AS finalized,\n    CASE WHEN M.PRESC_SOURCE = 0 AND M.FLAG = 1 AND M.DISPENSING_DATETIME IS NOT NULL AND NVL(M.REFUND_FLAG, 0) = 0 THEN 0 ELSE CAST(NULL AS NUMBER(1)) END AS is_void,\n    CAST(NULL AS NUMBER(12)) AS expected_code_count,\n    CAST(NULL AS VARCHAR2(64)) AS patient_ref,\n    CAST(NULL AS VARCHAR2(64)) AS encounter_ref,\n\n    'PRESC_SOURCE=' || TO_CHAR(M.PRESC_SOURCE)\n        || CHR(59) || 'FLAG=' || TO_CHAR(M.FLAG)\n        AS source_bill_kind_raw\n\nFROM PHARMACY.DRUG_PRESC_MASTER M\nWITH READ ONLY\n"
+   },
+   {
+    "VIEW_NAME": "V_DRUG_TRACE_CODE",
+    "TEXT": "SELECT\n    CAST('HIS' AS VARCHAR2(16)) AS source_system,\n\n    TO_CHAR(M.PRESC_DATE, 'YYYY-MM-DD HH24:MI:SS')\n        || '|' || TO_CHAR(M.PRESC_NO)\n        || '|' || M.DISPENSARY AS source_bill_id,\n\n    M.DISPENSARY AS pharmacy_code,\n    CASE WHEN M.PRESC_SOURCE = 0 AND M.FLAG = 1 AND M.DISPENSING_DATETIME IS NOT NULL AND NVL(M.REFUND_FLAG, 0) = 0 THEN 'PATIENT_DISPENSE' ELSE 'UNKNOWN' END AS business_kind,\n\n    TO_CHAR(M.PRESC_DATE, 'YYYYMMDDHH24MISS')\n        || '_' || TO_CHAR(M.PRESC_NO)\n        || '_' || M.DISPENSARY\n        || '_' || TO_CHAR(M.DISPENSING_DATETIME, 'YYYYMMDDHH24MISS')\n        || '_' || NVL(TO_CHAR(M.PRESC_SOURCE), 'NULL')\n        || '_' || NVL(TO_CHAR(M.FLAG), 'NULL') || '_R10_RF_' || NVL(TO_CHAR(M.REFUND_FLAG), 'NULL') AS source_revision,\n\n    T.PRESC_DETAILID AS source_line_id,\n    T.RECORD_ID AS source_code_record_id,\n    T.T_TRACE_CODE AS trace_code,\n    CAST(NULL AS NUMBER(20,6)) AS quantity,\n    CAST(NULL AS VARCHAR2(32)) AS unit,\n    CAST(NULL AS VARCHAR2(16)) AS code_level,\n    CAST(NULL AS VARCHAR2(255)) AS parent_code,\n    T.MODIFY_TIME AS updated_at,\n    T.IS_DELETED AS is_deleted,\n    T.F_TRACE_CODE AS f_trace_code,\n    T.S_TRACE_CODE AS s_trace_code,\n    T.T_TRACE_CODE AS t_trace_code,\n    M.DISPENSING_DATETIME AS bill_time\n\nFROM DRUG_USER.MED_TRACE_RECORD T\nJOIN PHARMACY.DRUG_PRESC_MASTER M\n  ON T.TRACE_BILLNO = TO_CHAR(M.PRESC_NO)\n AND T.PRESC_DATE = M.PRESC_DATE\n AND T.STORE_CODE = M.DISPENSARY\n\nWHERE T.IN_OUT_TYPE = 'OUT'\nWITH READ ONLY\n"
+   }
+  ]
+ },
+ "c_drug_presc_master": {
+  "ok": true,
+  "n": 60,
+  "rows": [
+   {
+    "COLUMN_NAME": "BATCH_PROVIDE_NO",
+    "COMMENTS": "批量发药号"
+   },
+   {
+    "COLUMN_NAME": "BATH_PRINT_STATUS",
+    "COMMENTS": "0未打印，1打印，批量发药时需要判断"
+   },
+   {
+    "COLUMN_NAME": "CHARGE_TYPE",
+    "COMMENTS": "费别"
+   },
+   {
+    "COLUMN_NAME": "CLINIC_NO",
+    "COMMENTS": null
+   },
+   {
+    "COLUMN_NAME": "CONFIG_USER",
+    "COMMENTS": null
+   },
+   {
+    "COLUMN_NAME": "COSTS",
+    "COMMENTS": "费用"
+   },
+   {
+    "COLUMN_NAME": "COUNT_PER_REPETITION",
+    "COMMENTS": "每剂煎几份"
+   },
+   {
+    "COLUMN_NAME": "DECOCTION",
+    "COMMENTS": "是否代煎。0,否;1,是; "
+   },
+   {
+    "COLUMN_NAME": "DECOCTION2",
+    "COMMENTS": "1膏方"
+   },
+   {
+    "COLUMN_NAME": "DECOCTION3",
+    "COMMENTS": "1水丸"
+   },
+   {
+    "COLUMN_NAME": "DEPUTY_IDNO",
+    "COMMENTS": "代办人证件号"
+   },
+   {
+    "COLUMN_NAME": "DEPUTY_NAME",
+    "COMMENTS": "代办人"
+   },
+   {
+    "COLUMN_NAME": "DIAGNOSIS_CODE",
+    "COMMENTS": "诊断代码，多个代码用‘;’隔开"
+   },
+   {
+    "COLUMN_NAME": "DIAGNOSIS_CODE_CN",
+    "COMMENTS": "中医诊断编码;分隔"
+   },
+   {
+    "COLUMN_NAME": "DIAGNOSIS_NAME",
+    "COMMENTS": "诊断名称，多个诊断用‘;’隔开"
+   },
+   {
+    "COLUMN_NAME": "DIAGNOSIS_NAME_CN",
+    "COMMENTS": "中医诊断名称;分隔"
+   },
+   {
+    "COLUMN_NAME": "DISCHARGE_TAKING_INDICATOR",
+    "COMMENTS": "出院带药标志"
+   },
+   {
+    "COLUMN_NAME": "DISPENSARY",
+    "COMMENTS": "发药药局"
+   },
+   {
+    "COLUMN_NAME": "DISPENSATION_BY",
+    "COMMENTS": null
+   },
+   {
+    "COLUMN_NAME": "DISPENSATION_DATE",
+    "COMMENTS": null
+   },
+   {
+    "COLUMN_NAME": "DISPENSING_DATETIME",
+    "COMMENTS": "发药日期"
+   },
+   {
+    "COLUMN_NAME": "DISPENSING_PROVIDER",
+    "COMMENTS": "发药人"
+   },
+   {
+    "COLUMN_NAME": "DOCTOR_USER",
+    "COMMENTS": "医生"
+   },
+   {
+    "COLUMN_NAME": "DOSAGE_DESCRIPTION",
+    "COMMENTS": "用量说明（超过七天用量必填）"
+   },
+   {
+    "COLUMN_NAME": "ENTERED_BY",
+    "COMMENTS": "录方人"
+   },
+   {
+    "COLUMN_NAME": "ENTERED_DATATIME",
+    "COMMENTS": "录入日期"
+   },
+   {
+    "COLUMN_NAME": "ENTERED_DATETIME",
+    "COMMENTS": "录入日期"
+   },
+   {
+    "COLUMN_NAME": "FLAG",
+    "COMMENTS": "退药标志.1,正常发药;2,全退;3,部分退"
+   },
+   {
+    "COLUMN_NAME": "IDENTITY",
+    "COMMENTS": "身份"
+   },
+   {
+    "COLUMN_NAME": "INTERVENTION_FLAG",
+    "COMMENTS": "介入处方标志"
+   },
+   {
+    "COLUMN_NAME": "MEMO",
+    "COMMENTS": "备注"
+   },
+   {
+    "COLUMN_NAME": "NAME",
+    "COMMENTS": "姓名"
+   },
+   {
+    "COLUMN_NAME": "NAME_PHONETIC",
+    "COMMENTS": "姓名拼音"
+   },
+   {
+    "COLUMN_NAME": "NET_ID",
+    "COMMENTS": "互联网医院订单号"
+   },
+   {
+    "COLUMN_NAME": "ORDERED_BY",
+    "COMMENTS": "开单科室"
+   },
+   {
+    "COLUMN_NAME": "ORIGINAL_PRESC_DATE",
+    "COMMENTS": null
+   },
+   {
+    "COLUMN_NAME": "ORIGINAL_PRESC_NO",
+    "COMMENTS": null
+   },
+   {
+    "COLUMN_NAME": "PATIENT_ID",
+    "COMMENTS": "病人标识号"
+   },
+   {
+    "COLUMN_NAME": "PAYMENTS",
+    "COMMENTS": "实付费用"
+   },
+   {
+    "COLUMN_NAME": "PRESCRIBED_BY",
+    "COMMENTS": "开方医生"
+   },
+   {
+    "COLUMN_NAME": "PRESC_ATTR",
+    "COMMENTS": "处方属性"
+   },
+   {
+    "COLUMN_NAME": "PRESC_DATE",
+    "COMMENTS": "处方日期"
+   },
+   {
+    "COLUMN_NAME": "PRESC_NO",
+    "COMMENTS": "处方号"
+   },
+   {
+    "COLUMN_NAME": "PRESC_SOURCE",
+    "COMMENTS": "处方来源；0，门诊。1，住院"
+   },
+   {
+    "COLUMN_NAME": "PRESC_TYPE",
+    "COMMENTS": "处方类别，0，西药；1，中药"
+   },
+   {
+    "COLUMN_NAME": "RCPT_NO",
+    "COMMENTS": null
+   },
+   {
+    "COLUMN_NAME": "RECHARGE_PRESC_DATE",
+    "COMMENTS": "半退重新结算处方日期"
+   },
+   {
+    "COLUMN_NAME": "RECHARGE_PRESC_NO",
+    "COMMENTS": "半退重新结算处方号"
+   },
+   {
+    "COLUMN_NAME": "RECHARGE_RCPT_NO",
+    "COMMENTS": "半退重新结算收据号"
+   },
+   {
+    "COLUMN_NAME": "REFUND_FLAG",
+    "COMMENTS": "是否已退费1：已退，0/null：未退"
+   },
+   {
+    "COLUMN_NAME": "REPETITION",
+    "COMMENTS": "剂数"
+   },
+   {
+    "COLUMN_NAME": "RETURN_VISIT_DATE",
+    "COMMENTS": "退费处方日期"
+   },
+   {
+    "COLUMN_NAME": "RETURN_VISIT_NO",
+    "COMMENTS": "退费处方号"
+   },
+   {
+    "COLUMN_NAME": "SUB_STORAGE",
+    "COMMENTS": "子库房"
+   },
+   {
+    "COLUMN_NAME": "TRACE_STATUS",
+    "COMMENTS": null
+   },
+   {
+    "COLUMN_NAME": "UNIT_IN_CONTRACT",
+    "COMMENTS": "病人合同单位"
+   },
+   {
+    "COLUMN_NAME": "VERIFIED_DATETIME",
+    "COMMENTS": null
+   },
+   {
+    "COLUMN_NAME": "VERIFY_BY",
+    "COMMENTS": "审核"
+   },
+   {
+    "COLUMN_NAME": "VISIT_ID",
+    "COMMENTS": null
+   },
+   {
+    "COLUMN_NAME": "WARD_CODE",
+    "COMMENTS": "所在护理单元"
+   }
+  ]
+ },
+ "t_key_columns": {
+  "ok": true,
+  "n": 120,
+  "rows": [
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_TRACE_BILLNO",
+    "COLUMN_NAME": "STORE_CODE",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_TRACE_BILLNO",
+    "COLUMN_NAME": "TRACE_BILLNO",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_TRACE_BILLNO",
+    "COLUMN_NAME": "T_TRACE_CODE",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_TRACE_BILLNO",
+    "COLUMN_NAME": "TRACE_COUNT",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "DOCUMENT_UPLOAD_RECORD",
+    "COLUMN_NAME": "ID",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "DOCUMENT_UPLOAD_RECORD",
+    "COLUMN_NAME": "BUSINESS_TYPE",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "DOCUMENT_UPLOAD_RECORD",
+    "COLUMN_NAME": "BUSINESS_NAME",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "DOCUMENT_UPLOAD_RECORD",
+    "COLUMN_NAME": "DOCUMENT_NUMBER",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "DOCUMENT_UPLOAD_RECORD",
+    "COLUMN_NAME": "STATUS",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "DOCUMENT_UPLOAD_RECORD",
+    "COLUMN_NAME": "CREATE_TIME",
+    "DATA_TYPE": "TIMESTAMP(6)"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "DOCUMENT_UPLOAD_RECORD",
+    "COLUMN_NAME": "UPDATE_TIME",
+    "DATA_TYPE": "TIMESTAMP(6)"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "ORG_CODE",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "RECORD_NO",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "PHA_CODE",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "PHA_WINDOWNO",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "MED_DIS_METHOD",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "INP_PATID",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "DRUG_PRI",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "PRODUCT_DATE",
+    "DATA_TYPE": "DATE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "BATCH_NO",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "EXPIRE_DATE",
+    "DATA_TYPE": "DATE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "TRADE_PRICE",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "RETAIL_PRICE",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "WHOLESALE_PRICE",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "STORAGE_COST",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "WHOLESALE_COST",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "RETAIL_COST",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "DRUG_QUANTITY",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "PHA_SPECS",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "PHA_UNIT",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "PHA_PACKAGE",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "CHECK_OPER",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "CHECK_DATE",
+    "DATA_TYPE": "DATE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "FEE_DEPT",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "FEE_WARD",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "EXCUTE_DEPT",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "STORE_ID",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "ADVICE_ID",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "BABY_FLAG",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "FEE_ID",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "FEE_DATE",
+    "DATA_TYPE": "DATE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "SELF_RATIO",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "DIS_RECORDNO",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "REQUEST_NO",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "RETURN_RECORDNO",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "RETURN_REQUESTNO",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "RETURN_QUANTITY",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "PLAN_NO",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "FYLX",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "DRUG_LOC",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "PDA_STATE",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "DISP_FLAG",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "PATIENT_NAME",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "BED_NUM",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "FREQUENCY_CODE",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "FREQUENCY_NAME",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "USE_NAME",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "USAGE_CODE",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "DRUG_NAME",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "DRUG_REQ_QUANTITY",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "PRINT_STATUS",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "EXEC_DATE_TIME",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "PRINT_STATUS_TIME",
+    "DATA_TYPE": "DATE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "REQUEST_DATE",
+    "DATA_TYPE": "DATE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "DISPENSING_SEQ_NO",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COLUMN_NAME": "DISPENSING_SEQ_NO_TIME",
+    "DATA_TYPE": "NVARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPMASTER",
+    "COLUMN_NAME": "DIS_RECORDNO",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPMASTER",
+    "COLUMN_NAME": "ORG_CODE",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPMASTER",
+    "COLUMN_NAME": "DISP_DATE",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPMASTER",
+    "COLUMN_NAME": "DISP_FEE_OPER",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPMASTER",
+    "COLUMN_NAME": "DISP_WARD",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPMASTER",
+    "COLUMN_NAME": "DISP_TYPE",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPMASTER",
+    "COLUMN_NAME": "PHA_CODE",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPMASTER",
+    "COLUMN_NAME": "MED_DIS_METHOD",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPMASTER",
+    "COLUMN_NAME": "ISPRINT",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPMASTER",
+    "COLUMN_NAME": "DISP_BEGIN",
+    "DATA_TYPE": "DATE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPMASTER",
+    "COLUMN_NAME": "DISP_END",
+    "DATA_TYPE": "DATE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPMASTER",
+    "COLUMN_NAME": "DISP_OPER",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPMASTER",
+    "COLUMN_NAME": "CHECK_OPER",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPMASTER",
+    "COLUMN_NAME": "CHECK_DATE",
+    "DATA_TYPE": "DATE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPMASTER",
+    "COLUMN_NAME": "DISP_WARD_NAME",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPMASTER",
+    "COLUMN_NAME": "DISP_TYPE_NAME",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPMASTER",
+    "COLUMN_NAME": "DISP_FEE_OPER_NAME",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPMASTER",
+    "COLUMN_NAME": "DISP_STATE",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPMASTER",
+    "COLUMN_NAME": "REQUEST_NO",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPMASTER",
+    "COLUMN_NAME": "CHECK_OPER_NAME",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPMASTER",
+    "COLUMN_NAME": "DISP_OPER_NAME",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPMASTER",
+    "COLUMN_NAME": "DISP_SEND_TYPE",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "TRACE_UPLOAD_TIME_LOG",
+    "COLUMN_NAME": "LOG_ID",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "TRACE_UPLOAD_TIME_LOG",
+    "COLUMN_NAME": "BUSINESS_ID",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "TRACE_UPLOAD_TIME_LOG",
+    "COLUMN_NAME": "START_TIME",
+    "DATA_TYPE": "TIMESTAMP(6)"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "TRACE_UPLOAD_TIME_LOG",
+    "COLUMN_NAME": "END_TIME",
+    "DATA_TYPE": "TIMESTAMP(6)"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "TRACE_UPLOAD_TIME_LOG",
+    "COLUMN_NAME": "TIME_STEP",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "TRACE_UPLOAD_TIME_LOG",
+    "COLUMN_NAME": "UPLOAD_STATUS",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "TRACE_UPLOAD_TIME_LOG",
+    "COLUMN_NAME": "RECORD_COUNT",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "TRACE_UPLOAD_TIME_LOG",
+    "COLUMN_NAME": "SUCCESS_COUNT",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "TRACE_UPLOAD_TIME_LOG",
+    "COLUMN_NAME": "FAIL_COUNT",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "TRACE_UPLOAD_TIME_LOG",
+    "COLUMN_NAME": "REMARK",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "TRACE_UPLOAD_TIME_LOG",
+    "COLUMN_NAME": "CREATE_TIME",
+    "DATA_TYPE": "TIMESTAMP(6)"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "TRACE_UPLOAD_TIME_LOG",
+    "COLUMN_NAME": "UPDATE_TIME",
+    "DATA_TYPE": "TIMESTAMP(6)"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_TRACE_CODE",
+    "COLUMN_NAME": "PRESC_DATE",
+    "DATA_TYPE": "DATE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_TRACE_CODE",
+    "COLUMN_NAME": "PRESC_NO",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_TRACE_CODE",
+    "COLUMN_NAME": "ITEM_NO",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_TRACE_CODE",
+    "COLUMN_NAME": "DRUG_CODE",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_TRACE_CODE",
+    "COLUMN_NAME": "DRUG_SPEC",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_TRACE_CODE",
+    "COLUMN_NAME": "DRUG_NAME",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_TRACE_CODE",
+    "COLUMN_NAME": "FIRM_ID",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_TRACE_CODE",
+    "COLUMN_NAME": "BATCH_NO",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_TRACE_CODE",
+    "COLUMN_NAME": "PACKAGE_SPEC",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_TRACE_CODE",
+    "COLUMN_NAME": "PACKAGE_UNITS",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_TRACE_CODE",
+    "COLUMN_NAME": "TRACE_CODE",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_TRACE_CODE",
+    "COLUMN_NAME": "ITEM_NO2",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_TRACE_CODE",
+    "COLUMN_NAME": "PATIENT_ID",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_TRACE_CODE",
+    "COLUMN_NAME": "QUANTITY",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_TRACE_CODE",
+    "COLUMN_NAME": "PURCHASE_PRICE",
+    "DATA_TYPE": "NUMBER"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_TRACE_CODE",
+    "COLUMN_NAME": "GUOBIAOMA",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_TRACE_CODE",
+    "COLUMN_NAME": "ITEM_CLASS",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_TRACE_CODE",
+    "COLUMN_NAME": "DOCUMENT_NO",
+    "DATA_TYPE": "VARCHAR2"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_TRACE_CODE",
+    "COLUMN_NAME": "ENTER_DATE",
+    "DATA_TYPE": "DATE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_TRACE_CODE",
+    "COLUMN_NAME": "UPDATE_STATS",
+    "DATA_TYPE": "NUMBER"
+   }
+  ]
+ },
+ "elapsed": 0.18,
+ "captured_at": "2026-10-27T12:35:50.445453+00:00"
+}

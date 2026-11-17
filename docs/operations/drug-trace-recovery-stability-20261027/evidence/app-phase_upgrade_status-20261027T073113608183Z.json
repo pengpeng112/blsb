@@ -1,0 +1,38 @@
+{
+  "host": "app",
+  "phase": "phase_upgrade_status",
+  "exit_code": 0,
+  "captured_at": "2026-10-27T07:31:13.608108+00:00",
+  "result": {
+    "release": "stability-20261027T064000Z-r3",
+    "result": {
+      "exit_code": 0,
+      "timer_restart_exit": 0,
+      "finished_utc": "2026-10-27T07:31:05.935437+00:00",
+      "driver_before_sha256": "470b4bcca8dc28fee9d990a0d77a28e070baf8f156d5fae38b65a2014863213d",
+      "driver_after_sha256": "adbc32b1cec4de368884c97df77285825ee4cfc6b5a50a97d4d03a3d80432314",
+      "overall_budget_includes_queue": true
+    },
+    "containers": {
+      "exit_code": 0,
+      "summary": "blyb-nginx-1 Up 19 seconds (healthy)\n<worker-container> Up 25 seconds (healthy)\nblyb-exchange-1 Up 27 seconds (healthy)\nblyb-storage-1 Up 26 seconds (healthy)\nblyb-core-1 Up 25 seconds (healthy)\nblyb-bootstrap-1 Exited (0) 27 seconds ago\nblyb-migrate-1 Exited (0) 31 seconds ago\nblyb-db-1 Up About a minute (healthy)\n"
+    },
+    "migrations": {
+      "exit_code": 0,
+      "summary": "1|001_core_init\n2|002_pathology_domain\n3|003_receipt_publication_ref\n4|004_bigint_sizes\n5|005_storage_reservation_ledger\n6|006_config_release_digest\n7|007_tenant_composite_constraints\n8|008_publication_revoked_at_reservation_generalize\n9|009_drug_trace_domain\n10|010_drug_trace_fix2\n11|011_drug_trace_fix3\n12|012_drug_trace_daily_report\n13|013_console_password_sessions\n"
+    },
+    "backups": {
+      "exit_code": 0,
+      "summary": "20261027T072904Z\n20261027T055526Z\n20261026T132541Z\n20261026T064714Z\n20261026T044439Z\n20261026T005833Z\n20261025T134213Z\n20261022T095541Z\n20261021T165233Z\n20261021T111644Z\n20261016T114711Z\n"
+    },
+    "markers": {
+      "healthy": 6,
+      "备份完成": 1,
+      "安装完成": 1,
+      "升级完成": 1,
+      "Traceback": 0,
+      "ERROR": 0
+    },
+    "error_types": []
+  }
+}

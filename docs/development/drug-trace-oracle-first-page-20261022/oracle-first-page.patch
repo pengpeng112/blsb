@@ -1,0 +1,13 @@
+--- a/implementation/plugins/sources/db_view/drug_trace.py
++++ b/implementation/plugins/sources/db_view/drug_trace.py
+@@ -62,7 +62,9 @@
+             " WHERE source_system = :source_system"
+             " AND pharmacy_code = :pharmacy_code AND business_kind = :business_kind"
+             " AND source_bill_id = :source_bill_id"
+-            " AND source_code_record_id > :after_record_id"
++            # Oracle将首屏空串绑定为NULL；先允许空游标，后续页仍按原始ID严格递增。
++            " AND (:after_record_id IS NULL"
++            "      OR source_code_record_id > :after_record_id)"
+             " ORDER BY source_code_record_id)"
+             " WHERE ROWNUM <= {limit}"),
+         "params": ["source_system", "pharmacy_code", "business_kind",

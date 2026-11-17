@@ -1,0 +1,33 @@
+{
+  "host": "app",
+  "phase": "inspect",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T07:11:24.977406+00:00",
+  "result": {
+    "release": "ui-clarity-20261026T063000Z",
+    "states": {
+      "CONFIRMED": 2576,
+      "ACCEPTED": 41,
+      "UNKNOWN": 206
+    },
+    "targets": null,
+    "latest_uploads": null,
+    "latest_platform_queries": null,
+    "poll_counts": null,
+    "quota": [
+      {
+        "used": 2823,
+        "max_bills": 80000
+      }
+    ],
+    "checkpoint": [
+      {
+        "row_version": 46,
+        "since_time": "2026-10-26T00:00:00"
+      }
+    ],
+    "utc": "2026-10-26T07:11:27.222518+00:00",
+    "his_queries": 0,
+    "platform_calls": 0
+  }
+}

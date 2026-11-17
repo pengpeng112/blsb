@@ -1,0 +1,9 @@
+{
+  "host": "app",
+  "phase": "pause",
+  "exit_code": 1,
+  "captured_at": "2026-10-26T04:42:05.228695+00:00",
+  "result": {
+    "marker_missing": true
+  }
+}

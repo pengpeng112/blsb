@@ -1,0 +1,79 @@
+{
+  "captured_at": "2026-10-21T16:35:20.482944+00:00",
+  "read_only": true,
+  "remote_config_changes": 0,
+  "his_queries": 0,
+  "upload_requests": 0,
+  "target_8156": {
+    "host": "<prod-host>",
+    "results": {
+      "clock_status": {
+        "rc": 0,
+        "out": "Local time: Thu 2026-10-22 00:35:21 CST\n           Universal time: Wed 2026-10-21 16:35:21 UTC\n                 RTC time: Wed 2026-10-21 16:35:22\n                Time zone: Asia/Shanghai (CST, +0800)\nSystem clock synchronized: no\n              NTP service: active\n          RTC in local TZ: no"
+      },
+      "chrony_unit": {
+        "rc": 0,
+        "out": "active\nenabled\nrc=0"
+      },
+      "chrony_sources": {
+        "rc": 0,
+        "out": "MS Name/IP address         Stratum Poll Reach LastRx Last sample               \n==============================================================================="
+      },
+      "chrony_tracking": {
+        "rc": 0,
+        "out": "Reference ID    : 00000000 ()\nStratum         : 0\nRef time (UTC)  : Thu Jan 01 00:00:00 1970\nSystem time     : 0.000000000 seconds fast of NTP time\nLast offset     : +0.000000000 seconds\nRMS offset      : 0.000000000 seconds\nFrequency       : 0.000 ppm slow\nResidual freq   : +0.000 ppm\nSkew            : 0.000 ppm\nRoot delay      : 1.000000000 seconds\nRoot dispersion : 1.000000000 seconds\nUpdate interval : 0.0 seconds\nLeap status     : Not synchronised"
+      },
+      "ntp_unit": {
+        "rc": 0,
+        "out": "inactive\nrc=1"
+      },
+      "ntp_conf": {
+        "rc": 0,
+        "out": "pool pool.ntp.org iburst"
+      },
+      "cert_meta": {
+        "rc": 0,
+        "out": "== /etc/blyb/certs/dmz-ca.crt\n== /etc/blyb/certs/client.crt"
+      },
+      "host_clock_epoch": {
+        "rc": 0,
+        "out": "2026-10-21T16:35:21Z"
+      },
+      "_batch_rc": 0
+    }
+  },
+  "dmz_1090": {
+    "host": "<relay-net-host>",
+    "results": {
+      "clock_status": {
+        "rc": 0,
+        "out": "      Local time: Thu 2026-10-22 00:03:03 CST\n  Universal time: Wed 2026-10-21 16:03:03 UTC\n        RTC time: Wed 2026-10-21 16:35:26\n       Time zone: Asia/Shanghai (CST, +0800)\n     NTP enabled: yes\nNTP synchronized: no\n RTC in local TZ: no\n      DST active: n/a\n"
+      },
+      "chrony_unit": {
+        "rc": 0,
+        "out": "active\nenabled\nrc=0\n"
+      },
+      "chrony_sources": {
+        "rc": 0,
+        "out": "210 Number of sources = 1\nMS Name/IP address         Stratum Poll Reach LastRx Last sample               \n===============================================================================\n^? 203.107.6.88                  0  10     0     -     +0ns[   +0ns] +/-    0ns\n"
+      },
+      "ntp_unit": {
+        "rc": 0,
+        "out": "inactive\nrc=1\n"
+      },
+      "ntp_conf": {
+        "rc": 0,
+        "out": "pool ntp.aliyun.com iburst\n"
+      },
+      "cert_meta": {
+        "rc": 0,
+        "out": "== /etc/blyb-dmz/certs/forwarder.crt\nnotBefore=Oct 21 09:42:30 2026 GMT\nnotAfter=Jan 19 11:42:30 2027 GMT\nsubject= /C=CN/O=BLYB-TEST-ONLY/CN=<relay-net-host>\n                IP Address:<relay-net-host>\n== /etc/blyb-dmz/certs/clients-ca.crt\nnotBefore=Oct 21 09:42:30 2026 GMT\nnotAfter=Oct 18 11:42:30 2036 GMT\nsubject= /C=CN/O=BLYB-TEST-ONLY/CN=BLYB Test Root CA (NOT FOR PRODUCTION)\n"
+      },
+      "host_clock_epoch": {
+        "rc": 0,
+        "out": "2026-10-21T16:03:04Z\n"
+      }
+    }
+  },
+  "clock_skew_seconds_dmz_minus_8156": -1937.0
+}

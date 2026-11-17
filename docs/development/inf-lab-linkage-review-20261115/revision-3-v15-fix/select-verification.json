@@ -1,0 +1,63 @@
+{
+  "zero_row_oracle_parse": {
+    "ok": true,
+    "source": "ods_internal",
+    "db_type": "oracle",
+    "row_count": 1,
+    "rows": [
+      {
+        "PARSE_ROWS": "0"
+      }
+    ],
+    "elapsed_seconds": 1.87,
+    "sql_sha256": "4742ab729b10f56eca15fdb34814b5341c4a01109454f4eea531cc80ef011741",
+    "static_validation": "PASS_BEFORE_EXECUTION"
+  },
+  "bounded_case_preview": {
+    "ok": true,
+    "source": "ods_internal",
+    "db_type": "oracle",
+    "row_count": 3,
+    "rows": [
+      {
+        "REPORT_LABEL": "P2",
+        "ACTIVITY_TYPE_CODE": "2",
+        "N": "1",
+        "ACTIVITY_HITS": "1",
+        "OP_EMPTY": "0"
+      },
+      {
+        "REPORT_LABEL": "P3",
+        "ACTIVITY_TYPE_CODE": "2",
+        "N": "1",
+        "ACTIVITY_HITS": "1",
+        "OP_EMPTY": "0"
+      },
+      {
+        "REPORT_LABEL": "P1",
+        "ACTIVITY_TYPE_CODE": "2",
+        "N": "1",
+        "ACTIVITY_HITS": "1",
+        "OP_EMPTY": "0"
+      }
+    ],
+    "elapsed_seconds": 1.9,
+    "sql_sha256": "308ddb9aca6c82105a5f8f1f20e7e0438103b183001037fb3d786525dea85bd0",
+    "static_validation": "PASS_BEFORE_EXECUTION"
+  },
+  "current_item_codes": {
+    "ok": true,
+    "source": "ods_internal",
+    "db_type": "oracle",
+    "row_count": 1,
+    "rows": [
+      {
+        "CODE": "(NULL)",
+        "N": "38"
+      }
+    ],
+    "elapsed_seconds": 2.29,
+    "sql_sha256": "df6551ed8af3c568a73b5a3a7d9a8a72727b09164b3b9e22bc9476f9e0554515",
+    "static_validation": "PASS_BEFORE_EXECUTION"
+  }
+}

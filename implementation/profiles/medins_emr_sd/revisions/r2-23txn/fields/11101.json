@@ -1,0 +1,859 @@
+{
+ "code": "11101",
+ "schema_version": 2,
+ "envelope_ref": "fields/_envelope.json",
+ "root": "input",
+ "length_unit": "UNCONFIRMED",
+ "children": [
+  {
+   "code": "patn_bas_info",
+   "type": "object",
+   "children": [
+    {
+     "code": "nhc_medins_code",
+     "name": "卫健委医疗机构代码",
+     "type": "string",
+     "max_len": 22,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 2
+     },
+     "notes": "采用22位“卫生机构代码”，参见卫生机构(组织)分类与代码(WS218-2002)"
+    },
+    {
+     "code": "nhc_medins_name",
+     "name": "卫健委医疗机构名称",
+     "type": "string",
+     "max_len": 120,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 3
+     },
+     "notes": "医院执业许可第一名称"
+    },
+    {
+     "code": "medins_file_no",
+     "name": "医院内部档案号",
+     "type": "string",
+     "max_len": 64,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 4
+     },
+     "notes": "指医院内部患者唯一的索引号"
+    },
+    {
+     "code": "brch_code",
+     "name": "分院代码",
+     "type": "string",
+     "max_len": 20,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 5
+     },
+     "notes": "记录分院代码（内码）,如无分院，则传0"
+    },
+    {
+     "code": "brch_name",
+     "name": "分院名称",
+     "type": "string",
+     "max_len": 120,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 6
+     },
+     "notes": "分院代码不为0时必填"
+    },
+    {
+     "code": "psn_cert_type",
+     "name": "人员证件类型",
+     "type": "string",
+     "max_len": 6,
+     "dict": null,
+     "has_code_dict": true,
+     "required": true,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 7
+     },
+     "notes": "参照“人员证件类型psn_cert_type”"
+    },
+    {
+     "code": "certno",
+     "name": "证件号码",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 8
+     },
+     "notes": "新生儿存在证件号码时填写新生儿证件号码，不存在时填写联系人证件号码"
+    },
+    {
+     "code": "nwb_coner_rlts_code",
+     "name": "与患者关系",
+     "type": "string",
+     "max_len": 3,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 9
+     },
+     "notes": "当不存在新生儿证件号码填写联系人证件号码时，标识联系人与新生儿关系，参照“与患者关系patn_rlts”"
+    },
+    {
+     "code": "nwg_flag",
+     "name": "新生儿标志",
+     "type": "string",
+     "max_len": 1,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 10
+     },
+     "notes": "参照dic_flag"
+    },
+    {
+     "code": "idet_cert_no_flag",
+     "name": "是否存在新生儿身份证号码",
+     "type": "string",
+     "max_len": 1,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 11
+     },
+     "notes": "如果是新生儿此处必填,填写内容参照dic_flag， 非新生儿不用填写"
+    },
+    {
+     "code": "gend",
+     "name": "性别",
+     "type": "string",
+     "max_len": 3,
+     "dict": null,
+     "has_code_dict": true,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 12
+     },
+     "notes": "参照“性别gend”"
+    },
+    {
+     "code": "psn_name",
+     "name": "人员姓名",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 13
+     }
+    },
+    {
+     "code": "out_fee_type",
+     "name": "费用类型",
+     "type": "string",
+     "max_len": 3,
+     "dict": null,
+     "has_code_dict": true,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 14
+     },
+     "notes": "参照out_fee_type"
+    },
+    {
+     "code": "psn_no",
+     "name": "人员编号",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 15
+     },
+     "notes": "医保患者必传，自费患者传0。医保患者如不能获取则填写身份证号"
+    },
+    {
+     "code": "educ_code",
+     "name": "学历代码",
+     "type": "string",
+     "max_len": 2,
+     "dict": null,
+     "has_code_dict": true,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 16
+     },
+     "notes": "参照“学历educ”"
+    },
+    {
+     "code": "mrgs",
+     "name": "婚姻状况",
+     "type": "string",
+     "max_len": 3,
+     "dict": null,
+     "has_code_dict": true,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 17
+     },
+     "notes": "参照“婚姻状态mrg_stas”"
+    },
+    {
+     "code": "brdy",
+     "name": "出生日期",
+     "type": "datetime",
+     "max_len": null,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 18
+     },
+     "notes": "YYYY-MM-DD"
+    },
+    {
+     "code": "birplc",
+     "name": "出生地",
+     "type": "string",
+     "max_len": 32,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 19
+     },
+     "notes": "参见 GB/T 2260-2007"
+    },
+    {
+     "code": "naty",
+     "name": "民族",
+     "type": "string",
+     "max_len": 2,
+     "dict": null,
+     "has_code_dict": true,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 20
+     },
+     "notes": "参照“民族naty”"
+    },
+    {
+     "code": "ntly",
+     "name": "国籍",
+     "type": "string",
+     "max_len": 6,
+     "dict": null,
+     "has_code_dict": true,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 21
+     },
+     "notes": "参照“国籍nat_regn_code”"
+    },
+    {
+     "code": "tel",
+     "name": "电话号码",
+     "type": "string",
+     "max_len": 24,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 22
+     }
+    },
+    {
+     "code": "mob",
+     "name": "手机号码",
+     "type": "string",
+     "max_len": 20,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 23
+     }
+    },
+    {
+     "code": "abo_code",
+     "name": "ABO血型代码",
+     "type": "string",
+     "max_len": 2,
+     "dict": null,
+     "has_code_dict": true,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 24
+     },
+     "notes": "参照“ABO血型代码blotype_abo”"
+    },
+    {
+     "code": "abo_name",
+     "name": "ABO血型名称",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 25
+     }
+    },
+    {
+     "code": "r_h_blotype_rh",
+     "name": "Rh血型代码",
+     "type": "string",
+     "max_len": 2,
+     "dict": null,
+     "has_code_dict": true,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 26
+     },
+     "notes": "参照”Rh血型代码blotype_rh“"
+    },
+    {
+     "code": "r_h_blotype_name",
+     "name": "Rh血型名称",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 27
+     }
+    },
+    {
+     "code": "empr_poscode",
+     "name": "工作单位邮编",
+     "type": "string",
+     "max_len": 6,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 28
+     }
+    },
+    {
+     "code": "empr_name",
+     "name": "工作单位名称",
+     "type": "string",
+     "max_len": 128,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 29
+     }
+    },
+    {
+     "code": "empr_addr",
+     "name": "工作单位地址",
+     "type": "string",
+     "max_len": 200,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 30
+     }
+    },
+    {
+     "code": "prfs_type_code",
+     "name": "职业类别代码",
+     "type": "string",
+     "max_len": 3,
+     "dict": null,
+     "has_code_dict": true,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 31
+     },
+     "notes": "参照“职业prfs”"
+    },
+    {
+     "code": "live_addr",
+     "name": "居住地地址",
+     "type": "string",
+     "max_len": 200,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 32
+     },
+     "notes": "患者本人常住地址的描述"
+    },
+    {
+     "code": "perma_admdvs_code",
+     "name": "常住地址-行政区划代码",
+     "type": "string",
+     "max_len": 6,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 33
+     },
+     "notes": "患者本人常住地址中的县（区）的 6 位行政区划代码，如济南市历下区370102"
+    },
+    {
+     "code": "resd_addr",
+     "name": "户口地址",
+     "type": "string",
+     "max_len": 200,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 34
+     }
+    },
+    {
+     "code": "resd_addr_poscode",
+     "name": "户口地址邮编",
+     "type": "string",
+     "max_len": 6,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 35
+     }
+    },
+    {
+     "code": "coner_name",
+     "name": "联系人姓名",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 36
+     }
+    },
+    {
+     "code": "coner_rlts_code",
+     "name": "联系人关系",
+     "type": "string",
+     "max_len": 3,
+     "dict": null,
+     "has_code_dict": true,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 37
+     },
+     "notes": "参照“与患者关系patn_rlts”"
+    },
+    {
+     "code": "coner_addr",
+     "name": "联系人地址",
+     "type": "string",
+     "max_len": 200,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 38
+     }
+    },
+    {
+     "code": "coner_poscode",
+     "name": "联系人邮编",
+     "type": "string",
+     "max_len": 6,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 39
+     }
+    },
+    {
+     "code": "coner_tel",
+     "name": "联系人电话",
+     "type": "string",
+     "max_len": 24,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 6,
+      "row": 40
+     }
+    }
+   ]
+  }
+ ]
+}

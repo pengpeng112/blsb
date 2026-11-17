@@ -1,0 +1,70 @@
+{
+  "captured_at": "2026-10-21T05:03:13.197694+00:00",
+  "read_only": true,
+  "remote_changes": 0,
+  "real_uploads": 0,
+  "business_source_writes": 0,
+  "ssh_exit_code": 0,
+  "inventory": {
+    "release": {
+      "exit_code": 0,
+      "stdout": "/opt/blyb/releases/20261016T114735Z\n",
+      "stderr": ""
+    },
+    "services": {
+      "exit_code": 0,
+      "stdout": "blyb-nginx-1 blyb/nginx:20261016T114735Z Up 4 days (healthy) 80/tcp, 0.0.0.0:443->443/tcp\nblyb-exchange-1 blyb/backend:20261016T114735Z Up 4 days (healthy) 8002/tcp\n<worker-container> blyb/backend:20261016T114735Z Up 4 days (healthy) \nblyb-core-1 blyb/backend:20261016T114735Z Up 4 days (healthy) 8000/tcp\nblyb-storage-1 blyb/backend:20261016T114735Z Up 4 days (healthy) 8001/tcp\nblyb-db-1 blyb/pg:20261016T114735Z Up 4 days (healthy) 5432/tcp\n",
+      "stderr": ""
+    },
+    "tcp": [
+      {
+        "source": [
+          "<prod-host>",
+          46335
+        ],
+        "destination": [
+          "<relay-net-host>",
+          443
+        ],
+        "connected": true,
+        "elapsed_seconds": 0.001
+      },
+      {
+        "source": [
+          "<prod-host>",
+          49999
+        ],
+        "destination": [
+          "<relay-net-host>",
+          8443
+        ],
+        "connected": false,
+        "error_type": "ConnectionRefusedError",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "source": [
+          "<prod-host>",
+          57357
+        ],
+        "destination": [
+          "<his-host>",
+          1521
+        ],
+        "connected": true,
+        "elapsed_seconds": 0.0
+      }
+    ],
+    "core_config_presence": {
+      "exit_code": 0,
+      "stdout": "{\"plugins\": \"\", \"alihealth_secret_present\": false}\n",
+      "stderr": ""
+    },
+    "worker_config_presence": {
+      "exit_code": 0,
+      "stdout": "{\"plugins\": \"\", \"alihealth_secret_present\": false}\n",
+      "stderr": ""
+    }
+  },
+  "status": "CAPTURED"
+}

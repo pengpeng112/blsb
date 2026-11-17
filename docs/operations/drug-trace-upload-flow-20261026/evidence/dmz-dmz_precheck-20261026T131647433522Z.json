@@ -1,0 +1,14 @@
+{
+  "host": "dmz",
+  "phase": "dmz_precheck",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T13:16:47.433460+00:00",
+  "result": {
+    "release": "20261021T113750Z",
+    "forwarder_sha256": "ef5db6fc93d4f5317a14b696226c39d1e32160fd5283f7325321dbfc15c09ec9",
+    "normalized_sha256": "ef5db6fc93d4f5317a14b696226c39d1e32160fd5283f7325321dbfc15c09ec9",
+    "rate_per_minute": 60,
+    "rate_burst": 10,
+    "service": "ActiveState=active\nSubState=running"
+  }
+}

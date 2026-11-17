@@ -1,0 +1,148 @@
+{
+ "schema_version": 2,
+ "by_txn": {
+  "11101": [],
+  "11102": [
+   {
+    "code": "vali_flag",
+    "reason": "NO_SAMPLE_PATH",
+    "detail": "规范有而样例无——归属待人工核对"
+   }
+  ],
+  "11103": [
+   {
+    "code": "vali_flag",
+    "reason": "NO_SAMPLE_PATH",
+    "detail": "规范有而样例无——归属待人工核对"
+   }
+  ],
+  "11301": [],
+  "11401": [
+   {
+    "code": "oprn_patn_type _code",
+    "reason": "NO_SAMPLE_PATH",
+    "detail": "规范有而样例无——归属待人工核对"
+   }
+  ],
+  "11402": [
+   {
+    "code": "vali_flag",
+    "reason": "MULTI_SAMPLE_PATH",
+    "detail": "样例多路径 ['adminfo', 'coursrinfo[]', 'dieinfo[]', 'diseinfo[]', 'dscginfo[]', 'oprninfo[]', 'rescinfo[]']——不猜"
+   }
+  ],
+  "11403": [],
+  "11404": [],
+  "11405": [
+   {
+    "code": "oprn_oprt_tagt_ part_name",
+    "reason": "NO_SAMPLE_PATH",
+    "detail": "规范有而样例无——归属待人工核对"
+   },
+   {
+    "code": "oprn_oprt_mtd_ dscr",
+    "reason": "NO_SAMPLE_PATH",
+    "detail": "规范有而样例无——归属待人工核对"
+   }
+  ],
+  "11406": [
+   {
+    "code": "vali_flag",
+    "reason": "NO_SAMPLE_PATH",
+    "detail": "规范有而样例无——归属待人工核对"
+   }
+  ],
+  "11407": [
+   {
+    "code": "vali_flag",
+    "reason": "NO_SAMPLE_PATH",
+    "detail": "规范有而样例无——归属待人工核对"
+   }
+  ],
+  "11408": [],
+  "12101": [
+   {
+    "code": "etip_flag",
+    "reason": "NO_SAMPLE_PATH",
+    "detail": "规范有而样例无——归属待人工核对"
+   },
+   {
+    "code": "rx_id",
+    "reason": "NO_SAMPLE_PATH",
+    "detail": "规范有而样例无——归属待人工核对"
+   },
+   {
+    "code": "etip_org_code",
+    "reason": "NO_SAMPLE_PATH",
+    "detail": "规范有而样例无——归属待人工核对"
+   },
+   {
+    "code": "etip_org_name",
+    "reason": "NO_SAMPLE_PATH",
+    "detail": "规范有而样例无——归属待人工核对"
+   }
+  ],
+  "12102": [],
+  "12103": [],
+  "12104": [],
+  "12201": [
+   {
+    "code": "rpotc_no",
+    "reason": "MULTI_SAMPLE_PATH",
+    "detail": "样例多路径 ['examinfo', 'imageinfo[]', 'iteminfo[]', 'sampleinfo[]']——不猜"
+   },
+   {
+    "code": "appy_no",
+    "reason": "MULTI_SAMPLE_PATH",
+    "detail": "样例多路径 ['examinfo', 'iteminfo[]', 'sampleinfo[]']——不猜"
+   },
+   {
+    "code": "sapl_date",
+    "reason": "MULTI_SAMPLE_PATH",
+    "detail": "样例多路径 ['examinfo', 'sampleinfo[]']——不猜"
+   },
+   {
+    "code": "spcm_no",
+    "reason": "MULTI_SAMPLE_PATH",
+    "detail": "样例多路径 ['examinfo', 'sampleinfo[]']——不猜"
+   },
+   {
+    "code": "spcm_name",
+    "reason": "MULTI_SAMPLE_PATH",
+    "detail": "样例多路径 ['examinfo', 'sampleinfo[]']——不猜"
+   }
+  ],
+  "12401": [
+   {
+    "code": "etip_flag",
+    "reason": "NO_SAMPLE_PATH",
+    "detail": "规范有而样例无——归属待人工核对"
+   },
+   {
+    "code": "trt_servitem_code",
+    "reason": "NO_SAMPLE_PATH",
+    "detail": "规范有而样例无——归属待人工核对"
+   },
+   {
+    "code": "rx_id",
+    "reason": "NO_SAMPLE_PATH",
+    "detail": "规范有而样例无——归属待人工核对"
+   },
+   {
+    "code": "etip_org_code",
+    "reason": "NO_SAMPLE_PATH",
+    "detail": "规范有而样例无——归属待人工核对"
+   },
+   {
+    "code": "etip_org_name",
+    "reason": "NO_SAMPLE_PATH",
+    "detail": "规范有而样例无——归属待人工核对"
+   }
+  ],
+  "12501": [],
+  "12601": [],
+  "12602": [],
+  "12603": [],
+  "12604": []
+ }
+}

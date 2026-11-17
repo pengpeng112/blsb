@@ -1,0 +1,8 @@
+{
+  "exit_code": 0,
+  "result": {
+    "reference_epoch": 1792678677.0,
+    "observed_local_epoch": 1792678674.1241167,
+    "platform_http_date": "Thu, 22 Oct 2026 14:17:57 GMT"
+  }
+}

@@ -1,0 +1,117 @@
+{
+ "code": "IMAGE_INFO",
+ "root": "input",
+ "length_unit": "UNCONFIRMED",
+ "nodes": [
+  {
+   "code": "studyUid",
+   "name": "Study唯一号",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec_csv",
+   "source_row": "2"
+  },
+  {
+   "code": "pacsSeriesId",
+   "name": "序列唯一标识符",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec_csv",
+   "source_row": "3"
+  },
+  {
+   "code": "sopInstanceUid",
+   "name": "图片唯一标识符",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec_csv",
+   "source_row": "4"
+  },
+  {
+   "code": "keyImageFlag",
+   "name": "关键图标记",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec_csv",
+   "source_row": "5"
+  },
+  {
+   "code": "instanceNumber",
+   "name": "影像序列中图片顺序号",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec_csv",
+   "source_row": "6"
+  },
+  {
+   "code": "acquistionTime",
+   "name": "RIS系统图像获取日期时间",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec_csv",
+   "source_row": "7"
+  },
+  {
+   "code": "imagePath",
+   "name": "图像在介质服务器的相对路径",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec_csv",
+   "source_row": "8"
+  },
+  {
+   "code": "hostId",
+   "name": "PACS介质服务器ID",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec_csv",
+   "source_row": "9"
+  },
+  {
+   "code": "imageType",
+   "name": "图像类型",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec_csv",
+   "source_row": "10"
+  },
+  {
+   "code": "disableFlag",
+   "name": "删除标记",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "required": false,
+   "sensitive": false,
+   "source": "spec_csv",
+   "source_row": "11"
+  }
+ ]
+}

@@ -1,0 +1,2930 @@
+{
+ "authorization": "User authorization 2026-10-27: HIS data dictionary exploration for return-link and inpatient-scan clues (read-only)",
+ "source_writes": 0,
+ "uploads": 0,
+ "t_drug_user_all": {
+  "ok": true,
+  "n": 203,
+  "rows": [
+   {
+    "TABLE_NAME": "2025-07-17MED_DICT_PRICE",
+    "COMMENTS": "药品产地价格表"
+   },
+   {
+    "TABLE_NAME": "20260325MED_DICT_BASEINFO",
+    "COMMENTS": "药品目录表"
+   },
+   {
+    "TABLE_NAME": "6.30MED_DICT_BASEINFO",
+    "COMMENTS": "药品目录表"
+   },
+   {
+    "TABLE_NAME": "6.30MED_DICT_PRICE",
+    "COMMENTS": "药品产地价格表"
+   },
+   {
+    "TABLE_NAME": "7月出院患者",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "CA_MESSAGE_SIGN",
+    "COMMENTS": "处方消息签名表"
+   },
+   {
+    "TABLE_NAME": "CKYP_XXJL",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "CLI_DRUG_TRACE_CODE",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "CLI_INP_TRACE_DRUG_RETURN_VIEW",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "CLI_INP_TRACE_DRUG_SEND_VIEW",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "CLI_ORDERS_EXECUTE_DETAIL",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "CLI_ORDERS_JMPZ_FAIL",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "CLI_PRESC_DRUG_VIEW",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "CLI_REQUEST_DRUG_VIEW",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "CLI_REQUEST_DRUG_VIEW_FY",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "CLI_TRACE_BILLNO",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "CLI_TRACE_DRUG_RETURN_VIEW",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "CLI_TRACE_DRUG_SEND_VIEW",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "CLI_TRACE_DRUG_VIEW",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "CS_SECTION",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DATAPRESCRIPTIONDETAIL_DATA",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DATAPRESCRIPTION_DATA",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DOCK_CALL_LOG",
+    "COMMENTS": "对接三方的日志"
+   },
+   {
+    "TABLE_NAME": "DOCUMENT_UPLOAD_RECORD",
+    "COMMENTS": "单据上传记录表"
+   },
+   {
+    "TABLE_NAME": "DRUG_EXPORT_DETAIL",
+    "COMMENTS": "药品出库明细记录"
+   },
+   {
+    "TABLE_NAME": "DRUG_EXPORT_MASTER",
+    "COMMENTS": "药品出库主记录"
+   },
+   {
+    "TABLE_NAME": "DRUG_IMPORT_DETAIL",
+    "COMMENTS": "药品入库明细记录"
+   },
+   {
+    "TABLE_NAME": "DRUG_IMPORT_MASTER",
+    "COMMENTS": "药品入库主记录"
+   },
+   {
+    "TABLE_NAME": "DRUG_OTHER_INFO",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DRUG_SUPPLY_GUARANTEE",
+    "COMMENTS": "药品供应保障监测数据"
+   },
+   {
+    "TABLE_NAME": "DRUG_YPID",
+    "COMMENTS": "药品ID临时表"
+   },
+   {
+    "TABLE_NAME": "DS_EXCLOUD_DRUG",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "EXTRACT_INP_ORDER_EXECDATA",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "EXTRACT_INP_PATIENT_LOG",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "EXTRACT_INP_PATIENT_LOG_NEW",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "EXTRACT_IPCPAT_PRESC_DATA",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "EXTRACT_OPSPAT_PRESC_DATA",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "EXTRACT_OPS_PRESC_DATA",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "GJZXBZDW",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "INIT_ACCOUNT_LOG",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "INP_ORDER_EXECDATA",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "INP_PATIENT_LOG",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "INP_PATIENT_LOG_20260806",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "INP_REQUEST_DRUG_VIEW",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "INP_REQUEST_DRUG_VIEW_FY",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "INP_TRACE_DRUG_SEND_VIEW",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "JMPZ_CKSPKC_V",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "JMPZ_DRUG_DIC_V",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "MED_ADJUST_PRICE_DETAIL",
+    "COMMENTS": "调价明细表"
+   },
+   {
+    "TABLE_NAME": "MED_ADJUST_PRICE_LIST",
+    "COMMENTS": "调价盈亏记录表"
+   },
+   {
+    "TABLE_NAME": "MED_ADJUST_PRICE_MASTER",
+    "COMMENTS": "调价主表"
+   },
+   {
+    "TABLE_NAME": "MED_CARE_DETAIL",
+    "COMMENTS": "药品养护记录明细表"
+   },
+   {
+    "TABLE_NAME": "MED_CARE_MASTER",
+    "COMMENTS": "药品养护记录主表"
+   },
+   {
+    "TABLE_NAME": "MED_CHECK_DETAIL",
+    "COMMENTS": "盘点明细表"
+   },
+   {
+    "TABLE_NAME": "MED_CHECK_DETAIL_2025-9-1",
+    "COMMENTS": "盘点明细表"
+   },
+   {
+    "TABLE_NAME": "MED_CHECK_DETAIL_copy1",
+    "COMMENTS": "盘点明细表"
+   },
+   {
+    "TABLE_NAME": "MED_CHECK_MASTER",
+    "COMMENTS": "盘点主表"
+   },
+   {
+    "TABLE_NAME": "MED_CODE_GENERATE_RULE",
+    "COMMENTS": "单号生成规则表"
+   },
+   {
+    "TABLE_NAME": "MED_CODE_MASTER",
+    "COMMENTS": "单号主表"
+   },
+   {
+    "TABLE_NAME": "MED_DETAIL_STORAGE",
+    "COMMENTS": "药品结存记录"
+   },
+   {
+    "TABLE_NAME": "MED_DICT_BASEINFO",
+    "COMMENTS": "药品目录表"
+   },
+   {
+    "TABLE_NAME": "MED_DICT_BASEINFO_RECORD",
+    "COMMENTS": "药品修改记录表"
+   },
+   {
+    "TABLE_NAME": "MED_DICT_DEPT",
+    "COMMENTS": "药房药库名称编码表"
+   },
+   {
+    "TABLE_NAME": "MED_DICT_FACTORY",
+    "COMMENTS": "药品字典厂商"
+   },
+   {
+    "TABLE_NAME": "MED_DICT_FACTORY_copy1",
+    "COMMENTS": "药品字典厂商"
+   },
+   {
+    "TABLE_NAME": "MED_DICT_INTYPE",
+    "COMMENTS": "药品字典入库类型"
+   },
+   {
+    "TABLE_NAME": "MED_DICT_LOC",
+    "COMMENTS": "药品字典库位编码"
+   },
+   {
+    "TABLE_NAME": "MED_DICT_LOCRULE",
+    "COMMENTS": "药品字典库位编码规则"
+   },
+   {
+    "TABLE_NAME": "MED_DICT_OUTTYPE",
+    "COMMENTS": "药品字典出库类型"
+   },
+   {
+    "TABLE_NAME": "MED_DICT_PRICE",
+    "COMMENTS": "药品产地价格表"
+   },
+   {
+    "TABLE_NAME": "MED_DICT_PRICE_20250822",
+    "COMMENTS": "药品产地价格表"
+   },
+   {
+    "TABLE_NAME": "MED_DICT_PRICE_20250826",
+    "COMMENTS": "药品产地价格表"
+   },
+   {
+    "TABLE_NAME": "MED_DICT_PRICE_20260616",
+    "COMMENTS": "药品产地价格表"
+   },
+   {
+    "TABLE_NAME": "MED_DICT_PRICE_RECORD",
+    "COMMENTS": "药品产地价格修改记录表"
+   },
+   {
+    "TABLE_NAME": "MED_DICT_SUPPLIER",
+    "COMMENTS": "药品字典供货商"
+   },
+   {
+    "TABLE_NAME": "MED_DRUG_LOC",
+    "COMMENTS": "药品库位对照表"
+   },
+   {
+    "TABLE_NAME": "MED_DRUG_LOC_2025-10-30",
+    "COMMENTS": "药品库位对照表"
+   },
+   {
+    "TABLE_NAME": "MED_DRUG_LOC_copy1",
+    "COMMENTS": "药品库位对照表"
+   },
+   {
+    "TABLE_NAME": "MED_FIN_DAYDETAIL",
+    "COMMENTS": "财务月结明细表"
+   },
+   {
+    "TABLE_NAME": "MED_FIN_DAYSETTLE",
+    "COMMENTS": "财务月结主表"
+   },
+   {
+    "TABLE_NAME": "MED_FIN_MONTHDETAIL",
+    "COMMENTS": "财务月结明细表"
+   },
+   {
+    "TABLE_NAME": "MED_FIN_MONTHSETTLE",
+    "COMMENTS": "财务月结主表"
+   },
+   {
+    "TABLE_NAME": "MED_INIT_ACCOUNT",
+    "COMMENTS": "药库初始化建账表"
+   },
+   {
+    "TABLE_NAME": "MED_IN_DETAIL",
+    "COMMENTS": "采购入库明细表"
+   },
+   {
+    "TABLE_NAME": "MED_IN_DETAIL_2025-9-1",
+    "COMMENTS": "采购入库明细表"
+   },
+   {
+    "TABLE_NAME": "MED_IN_MASTER",
+    "COMMENTS": "采购入库主表"
+   },
+   {
+    "TABLE_NAME": "MED_IN_PAY",
+    "COMMENTS": "财务验收付款主表"
+   },
+   {
+    "TABLE_NAME": "MED_IN_PAYDETAIL",
+    "COMMENTS": "财务验收付款明细表"
+   },
+   {
+    "TABLE_NAME": "MED_IN_PLAN",
+    "COMMENTS": "采购计划主表"
+   },
+   {
+    "TABLE_NAME": "MED_IN_PLAN_DETAIL",
+    "COMMENTS": "采购计划明细表"
+   },
+   {
+    "TABLE_NAME": "MED_OUT_DETAIL",
+    "COMMENTS": "出库信息明细表"
+   },
+   {
+    "TABLE_NAME": "MED_OUT_MASTER",
+    "COMMENTS": "出库信息主表"
+   },
+   {
+    "TABLE_NAME": "MED_PHARMACY",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "MED_STORAGE",
+    "COMMENTS": "药品库存信息"
+   },
+   {
+    "TABLE_NAME": "MED_STORAGE_DAY",
+    "COMMENTS": "药库库存日结信息"
+   },
+   {
+    "TABLE_NAME": "MED_STORAGE_DAY_copy1",
+    "COMMENTS": "药库库存日结信息"
+   },
+   {
+    "TABLE_NAME": "MED_STORAGE_DAY_copy2",
+    "COMMENTS": "药库库存日结信息"
+   },
+   {
+    "TABLE_NAME": "MED_SUPPLIER_INFO",
+    "COMMENTS": "码上放心对应供应商信息表"
+   },
+   {
+    "TABLE_NAME": "MED_TRACE_RECORD",
+    "COMMENTS": "药品追溯码记录表"
+   },
+   {
+    "TABLE_NAME": "MED_TRACE_RECORD_copy1",
+    "COMMENTS": "药品追溯码记录表"
+   },
+   {
+    "TABLE_NAME": "MED_TRACE_STORGE",
+    "COMMENTS": "药品追溯码库存表"
+   },
+   {
+    "TABLE_NAME": "MED_TRACE_STORGE_copy1",
+    "COMMENTS": "药品追溯码库存表"
+   },
+   {
+    "TABLE_NAME": "MESSAGE_CENTER",
+    "COMMENTS": "PDA消息提醒"
+   },
+   {
+    "TABLE_NAME": "OPS_PRESC_DATA",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "PHA_ALLOCAT_MASTER",
+    "COMMENTS": "药房调拨主表"
+   },
+   {
+    "TABLE_NAME": "PHA_ALOOCAT_DETAIL",
+    "COMMENTS": "药房调拨明细表"
+   },
+   {
+    "TABLE_NAME": "PHA_BALANCE",
+    "COMMENTS": "药房价格差额表（平账表）"
+   },
+   {
+    "TABLE_NAME": "PHA_CHECK_DETAIL",
+    "COMMENTS": "药房盘点明细表"
+   },
+   {
+    "TABLE_NAME": "PHA_CHECK_DETAIL_copy1",
+    "COMMENTS": "药房盘点明细表"
+   },
+   {
+    "TABLE_NAME": "PHA_CHECK_MASTER",
+    "COMMENTS": "药房盘点主表"
+   },
+   {
+    "TABLE_NAME": "PHA_CLI_REQUEST_DRUG",
+    "COMMENTS": "门诊发药申请表"
+   },
+   {
+    "TABLE_NAME": "PHA_DETAIL_STORAGE",
+    "COMMENTS": "药房库存结存信息"
+   },
+   {
+    "TABLE_NAME": "PHA_DICT_MEDINFO",
+    "COMMENTS": "药品字典药房药品"
+   },
+   {
+    "TABLE_NAME": "PHA_FALSE_STORAGE",
+    "COMMENTS": "药房库存信息"
+   },
+   {
+    "TABLE_NAME": "PHA_FIN_DAYDETAIL",
+    "COMMENTS": "财务月结明细表"
+   },
+   {
+    "TABLE_NAME": "PHA_FIN_DAYSETTLE",
+    "COMMENTS": "财务月结主表"
+   },
+   {
+    "TABLE_NAME": "PHA_FIN_MONTHDETAIL",
+    "COMMENTS": "财务月结明细表"
+   },
+   {
+    "TABLE_NAME": "PHA_FIN_MONTHDETAIL_copy1",
+    "COMMENTS": "财务月结明细表"
+   },
+   {
+    "TABLE_NAME": "PHA_FIN_MONTHSETTLE",
+    "COMMENTS": "财务月结主表"
+   },
+   {
+    "TABLE_NAME": "PHA_FIN_MONTHSETTLE_copy1",
+    "COMMENTS": "财务月结主表"
+   },
+   {
+    "TABLE_NAME": "PHA_INIT_ACCOUNT",
+    "COMMENTS": "药房初始化建账表"
+   },
+   {
+    "TABLE_NAME": "PHA_INIT_ACCOUNT_copy1",
+    "COMMENTS": "药房初始化建账表"
+   },
+   {
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COMMENTS": "住院发药明细"
+   },
+   {
+    "TABLE_NAME": "PHA_INP_DISPMASTER",
+    "COMMENTS": "药房发药住院记录主表"
+   },
+   {
+    "TABLE_NAME": "PHA_INP_REQUEST_DRUG",
+    "COMMENTS": "住院发药申请"
+   },
+   {
+    "TABLE_NAME": "PHA_INP_REQUEST_DRUG_DISPDATE",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "PHA_INP_TRACE_DRUG_RETURN_VIEW",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "PHA_INP_TRACE_DRUG_SEND_VIEW",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "PHA_MEDICAL_ADVICE_REVIEW",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "PHA_SPECIAL_DRUG_REVIEW",
+    "COMMENTS": "特殊药品审核记录表"
+   },
+   {
+    "TABLE_NAME": "PHA_STORAGE",
+    "COMMENTS": "药房库存信息"
+   },
+   {
+    "TABLE_NAME": "PHA_STORAGE_DAY",
+    "COMMENTS": "药房库存日结信息"
+   },
+   {
+    "TABLE_NAME": "PHA_STORAGE_DAY_copy1",
+    "COMMENTS": "药房库存日结信息"
+   },
+   {
+    "TABLE_NAME": "PHA_STORAGE_DAY_copy2",
+    "COMMENTS": "药房库存日结信息"
+   },
+   {
+    "TABLE_NAME": "PHA_STORAGE_DAY_copy3",
+    "COMMENTS": "药房库存日结信息"
+   },
+   {
+    "TABLE_NAME": "PHA_STORAGE_copy1",
+    "COMMENTS": "药房库存信息"
+   },
+   {
+    "TABLE_NAME": "PHA_STORAGE_copy2",
+    "COMMENTS": "药房库存信息"
+   },
+   {
+    "TABLE_NAME": "PHA_VISIT_DISPDETAIL",
+    "COMMENTS": "门诊发药申请详情?"
+   },
+   {
+    "TABLE_NAME": "PHA_VISIT_DISPMASTER",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "PRINT_DEBUG_LOG",
+    "COMMENTS": "报表打印debuglog表"
+   },
+   {
+    "TABLE_NAME": "PUB_CONFIG",
+    "COMMENTS": "系统配置表"
+   },
+   {
+    "TABLE_NAME": "PUB_CONFIG_SET",
+    "COMMENTS": "系统配置选项设置表"
+   },
+   {
+    "TABLE_NAME": "SUPPLIER_IN_DETAIL",
+    "COMMENTS": "采购入库明细"
+   },
+   {
+    "TABLE_NAME": "SUPPLIER_IN_MASTER",
+    "COMMENTS": "采购入库主表对象"
+   },
+   {
+    "TABLE_NAME": "SYSTEM_CONFIG",
+    "COMMENTS": "系统配置项"
+   },
+   {
+    "TABLE_NAME": "SYSTEM_ORDER_GENER",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "Sheet1",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "TEMP_DRUG_INFO",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "TEMP_REQ_INFO",
+    "COMMENTS": "发药临时表"
+   },
+   {
+    "TABLE_NAME": "TMP_PREV_YEAR_STAT",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "TRACE_UPLOAD_TIME_LOG",
+    "COMMENTS": "追溯码时间段上传日志表"
+   },
+   {
+    "TABLE_NAME": "VIEW_DEBUG_LOG",
+    "COMMENTS": "报表打印debuglog表"
+   },
+   {
+    "TABLE_NAME": "VIEW_SHOWDATA",
+    "COMMENTS": "预览报表数据"
+   },
+   {
+    "TABLE_NAME": "VIEW_SHOWDATA_YZ",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_ANTI_DRUG_CONSUME",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_ANTI_FEE",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_ANTI_USE_DETAIL",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_DRUG_EXPORT_SDSE",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_DRUG_IMPORT_SDSE",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_DRUG_REAL_SDSE",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_DRUG_STOCK_CHS_SDSE",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_DRUG_STOCK_JXC_SDSE",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_INP_ANTISTRONG_DETAIL",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_INP_ANTI_EXECNUM",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_INP_ANTI_FEE",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_INP_ANTI_ITEMS",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_INP_ANTI_ORDER",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_INP_ANTI_PAVIS_PROPORTION",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_INP_ANTI_PAVIS_PROPORTION_D",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_INP_ANTI_PRESCRIPTIONS_ORDER",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_INP_ANTI_SPECIAL",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_INP_ANTI_UNITE_DEPT",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_INP_ANTI_UNITE_DOCTOR",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_INP_ANTI_USEDRUG_QK",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_INP_ANTI_USE_DEPT",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_INP_ANTI_USE_DETAIL",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_INP_ANTI_USE_DOCTOR",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_INP_DRUG_ORDER",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_INP_INTERVENE_OPERATION",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_INP_OPERATOR_QK",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_INP_ORDER",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_INP_PATIENT_ORDER",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_INP_SETTLE_YB",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_INP_TRANCE_CODE_YB",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_KJYW_OPERATION",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_KJYW_OPERATIONSUM",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_MED_DICT_LOC",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_MED_DICT_PRICE",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_OPS_ANTI_FEE",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_OPS_ANTI_PRESC",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_OPS_ANTI_PRESC_DETAIL",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_OPS_ANTI_PRESC_DRUG",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_OPS_PATIENT_PRESC",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_OPS_PRESC",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_PATIENT_INP",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_PRESC_DIANPING_DIAG",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_STAFF_INFO",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "pha_inp_new",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "pl_jpzxypsy_mx",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "sheet_drug",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "test",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "zsm",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "更改厂家",
+    "COMMENTS": null
+   }
+  ]
+ },
+ "t_pharmacy_all": {
+  "ok": true,
+  "n": 113,
+  "rows": [
+   {
+    "TABLE_NAME": "BINDING_PRESC_DETAIL",
+    "COMMENTS": "协定处方子表"
+   },
+   {
+    "TABLE_NAME": "BINDING_PRESC_MASTER",
+    "COMMENTS": "协定处方主表"
+   },
+   {
+    "TABLE_NAME": "BINDING_PRESC_SELECTION",
+    "COMMENTS": "用户与协定处方关系表"
+   },
+   {
+    "TABLE_NAME": "BUY_DRUG_PLAN",
+    "COMMENTS": "采购信息表"
+   },
+   {
+    "TABLE_NAME": "DATAPRESCRIPTIONDETAIL_DATA",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DATAPRESCRIPTION_DATA",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DOCT_DRUG_PRESC_DETAIL",
+    "COMMENTS": "待发药住院处方明细记录"
+   },
+   {
+    "TABLE_NAME": "DOCT_DRUG_PRESC_MASTER",
+    "COMMENTS": "待发药住院处方主记录"
+   },
+   {
+    "TABLE_NAME": "DOSAGE_DESCRIPTION_DICT",
+    "COMMENTS": "用量说明字典"
+   },
+   {
+    "TABLE_NAME": "DRUG_APPLICATION_LIST_DETAIL",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DRUG_APPLICATION_LIST_MASTER",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DRUG_BETCH_PROVIDER_NO",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DRUG_DISPENSE_DICT",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DRUG_DISPENSE_LABLE",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DRUG_DISPENSE_LABLE_COUNT",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DRUG_DISPENSE_PRE",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DRUG_DISPENSE_PRE_BACKUP2025",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DRUG_DISPENSE_PRE_BK",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DRUG_DISPENSE_PRE_copy1",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DRUG_DISPENSE_REC",
+    "COMMENTS": "摆药记录"
+   },
+   {
+    "TABLE_NAME": "DRUG_DISPENSE_REC_BK",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DRUG_DISPENSE_REC_DISPDATE",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DRUG_DISPENSE_REC_MASTER",
+    "COMMENTS": "医嘱打印记录表"
+   },
+   {
+    "TABLE_NAME": "DRUG_DISPENSE_REC_copy1",
+    "COMMENTS": "摆药记录"
+   },
+   {
+    "TABLE_NAME": "DRUG_DISPENSE_REQ",
+    "COMMENTS": "摆药请求 "
+   },
+   {
+    "TABLE_NAME": "DRUG_DISPENSE_REQ_BACKUP2025",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DRUG_DISPENSE_REQ_copy1",
+    "COMMENTS": "摆药请求 "
+   },
+   {
+    "TABLE_NAME": "DRUG_DISPENS_PROPERTY",
+    "COMMENTS": "药品摆药分类定义"
+   },
+   {
+    "TABLE_NAME": "DRUG_EXPORT_DETAIL",
+    "COMMENTS": "药品出库明细记录"
+   },
+   {
+    "TABLE_NAME": "DRUG_EXPORT_DETAIL_LOG_NEW",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DRUG_EXPORT_MASTER",
+    "COMMENTS": "药品出库主记录"
+   },
+   {
+    "TABLE_NAME": "DRUG_EXPORT_MASTER_LOG_NEW",
+    "COMMENTS": "药品出库主记录"
+   },
+   {
+    "TABLE_NAME": "DRUG_EXPORT_TRACE",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DRUG_IMPORT_DETAIL",
+    "COMMENTS": "药品入库明细记录"
+   },
+   {
+    "TABLE_NAME": "DRUG_IMPORT_DETAIL_DEL20170523",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DRUG_IMPORT_DETAIL_LOG_NEW",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DRUG_IMPORT_EXPORT_TRACE_CODE",
+    "COMMENTS": "药品出入库追溯码"
+   },
+   {
+    "TABLE_NAME": "DRUG_IMPORT_MASTER",
+    "COMMENTS": "药品入库主记录"
+   },
+   {
+    "TABLE_NAME": "DRUG_IMPORT_MASTER_DEL20170523",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DRUG_IMPORT_MASTER_LOG_NEW",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DRUG_INVENTORY_BALANCE",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DRUG_INVENTORY_CHECK",
+    "COMMENTS": "盘点表"
+   },
+   {
+    "TABLE_NAME": "DRUG_INVENTORY_CHECK_BACK",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DRUG_LEDGER",
+    "COMMENTS": "药品总账"
+   },
+   {
+    "TABLE_NAME": "DRUG_PACKAGES",
+    "COMMENTS": "药局药品分装记录"
+   },
+   {
+    "TABLE_NAME": "DRUG_PRESC_DETAIL",
+    "COMMENTS": "药品处方明细记录"
+   },
+   {
+    "TABLE_NAME": "DRUG_PRESC_DETAIL_BACKUP2025",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DRUG_PRESC_DETAIL_TEMP",
+    "COMMENTS": "待发药处方明细记录"
+   },
+   {
+    "TABLE_NAME": "DRUG_PRESC_DETAIL_TEMP_REFUND",
+    "COMMENTS": "待发药处方明细记录-退费"
+   },
+   {
+    "TABLE_NAME": "DRUG_PRESC_MASTER",
+    "COMMENTS": "药品处方主记录"
+   },
+   {
+    "TABLE_NAME": "DRUG_PRESC_MASTER_BACKUP2025",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DRUG_PRESC_MASTER_TEMP",
+    "COMMENTS": "待发药处方主记录"
+   },
+   {
+    "TABLE_NAME": "DRUG_PRESC_MASTER_TEMP_REFUND",
+    "COMMENTS": "待发药处方主记录-退费"
+   },
+   {
+    "TABLE_NAME": "DRUG_PRESC_QUEUE",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DRUG_PRESC_QUEUE_LABEL",
+    "COMMENTS": "药品瓶签处方序号信息"
+   },
+   {
+    "TABLE_NAME": "DRUG_PRESC_TRACE_CODE",
+    "COMMENTS": "处方发药追溯码"
+   },
+   {
+    "TABLE_NAME": "DRUG_PRICE_MODIFY",
+    "COMMENTS": "药品调价记录"
+   },
+   {
+    "TABLE_NAME": "DRUG_PRICE_MODIFY_PROFIT",
+    "COMMENTS": "药品调价盈亏表"
+   },
+   {
+    "TABLE_NAME": "DRUG_PRICE_PROFIT",
+    "COMMENTS": "药品调价盈亏记录"
+   },
+   {
+    "TABLE_NAME": "DRUG_PROVIDE_APPLICATION",
+    "COMMENTS": "药品发放申请"
+   },
+   {
+    "TABLE_NAME": "DRUG_PROVIDE_NOTICE",
+    "COMMENTS": "药品发放通知"
+   },
+   {
+    "TABLE_NAME": "DRUG_PROVIDE_NOTICE_NEW",
+    "COMMENTS": "药品发放通知"
+   },
+   {
+    "TABLE_NAME": "DRUG_PURCHASE",
+    "COMMENTS": " "
+   },
+   {
+    "TABLE_NAME": "DRUG_STOCK",
+    "COMMENTS": "药品库存"
+   },
+   {
+    "TABLE_NAME": "DRUG_STOCK_0930",
+    "COMMENTS": "财务要的数据"
+   },
+   {
+    "TABLE_NAME": "DRUG_STOCK_BALANCE",
+    "COMMENTS": "药品结转记录"
+   },
+   {
+    "TABLE_NAME": "DRUG_STOCK_BALANCE_COMPARE",
+    "COMMENTS": "药品结转记录"
+   },
+   {
+    "TABLE_NAME": "DRUG_STOCK_BEGINNING",
+    "COMMENTS": "药品库存期初数"
+   },
+   {
+    "TABLE_NAME": "DRUG_STOCK_DETAIL",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DRUG_STOCK_LOCATION",
+    "COMMENTS": "库存盘点货位"
+   },
+   {
+    "TABLE_NAME": "DRUG_STOCK_LOG",
+    "COMMENTS": "药品库存快照 按天"
+   },
+   {
+    "TABLE_NAME": "DRUG_STOCK_LOG_CHS",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DRUG_STOCK_LOG_NEW",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DRUG_STOCK_SUPPLYINDICATORLOG",
+    "COMMENTS": "药品库存供应标志修改日志"
+   },
+   {
+    "TABLE_NAME": "DRUG_STOP_LOG",
+    "COMMENTS": "药品编码停用日志"
+   },
+   {
+    "TABLE_NAME": "DRUG_STORAGE_DEPT",
+    "COMMENTS": "药品库存单位字典"
+   },
+   {
+    "TABLE_NAME": "DRUG_STORAGE_PROFILE",
+    "COMMENTS": "药品库存定义"
+   },
+   {
+    "TABLE_NAME": "DRUG_SUB_STORAGE_DICT",
+    "COMMENTS": "药品库存单位库房字典"
+   },
+   {
+    "TABLE_NAME": "DRUG_TEMP_DETAIL",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DRUG_TEMP_MASTER",
+    "COMMENTS": "药品处方主记录"
+   },
+   {
+    "TABLE_NAME": "DRUG_VIEW_BALANCE",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DRUG_VIEW_CHECK",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DRUG_VIEW_EXPORT",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DRUG_VIEW_IMPORT",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DRUG_VIEW_MODI_PRICE",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DRUG_VIEW_STOCK",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "DRUG_YPID",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "INP_BILL_DETAIL_BK",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "JMPZ_CKSPKC_V",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "MANAGED_DRUG_CATALOG",
+    "COMMENTS": "特殊管理药品目录"
+   },
+   {
+    "TABLE_NAME": "MANAGED_DRUG_CLASS_DICT",
+    "COMMENTS": "特殊管理药品类别字典"
+   },
+   {
+    "TABLE_NAME": "NEW_DRUG_MESSAGE",
+    "COMMENTS": "新药发布"
+   },
+   {
+    "TABLE_NAME": "OUT_DRUG_EXPORT",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "PACKAGE_MATERIAL_DICT",
+    "COMMENTS": "包装材料字典"
+   },
+   {
+    "TABLE_NAME": "PREPARATION_ADMIN_DICT",
+    "COMMENTS": "制剂用法字典"
+   },
+   {
+    "TABLE_NAME": "PREPARATION_COST",
+    "COMMENTS": "制剂成本"
+   },
+   {
+    "TABLE_NAME": "PREPARATION_COST_CLASS_DICT",
+    "COMMENTS": "制剂成本类别字典"
+   },
+   {
+    "TABLE_NAME": "PREPARATION_COST_ITEM_DICT",
+    "COMMENTS": "制剂成本项目字典"
+   },
+   {
+    "TABLE_NAME": "PREPARATION_DEPT_DESC",
+    "COMMENTS": "制剂室配置表"
+   },
+   {
+    "TABLE_NAME": "PREPARATION_DICT",
+    "COMMENTS": "制剂字典"
+   },
+   {
+    "TABLE_NAME": "PREPARATION_MASTER",
+    "COMMENTS": "制剂配制记录"
+   },
+   {
+    "TABLE_NAME": "PREPARATION_OPERATING_RULE",
+    "COMMENTS": "制剂配制规范"
+   },
+   {
+    "TABLE_NAME": "PREPARATION_PRESC",
+    "COMMENTS": "制剂处方"
+   },
+   {
+    "TABLE_NAME": "PREPARATION_PRICE_LIST",
+    "COMMENTS": "制剂价表"
+   },
+   {
+    "TABLE_NAME": "PREPARATION_PROBLEM",
+    "COMMENTS": "制剂配制问题记录"
+   },
+   {
+    "TABLE_NAME": "PREPARATION_RAW_MATERIAL",
+    "COMMENTS": "制剂配制投料记录"
+   },
+   {
+    "TABLE_NAME": "PREPARATION_TEST",
+    "COMMENTS": "制剂检验记录"
+   },
+   {
+    "TABLE_NAME": "PRESC_CLASS_DICT",
+    "COMMENTS": "制剂类别等级字典"
+   },
+   {
+    "TABLE_NAME": "PRESC_STANDARD_DICT",
+    "COMMENTS": "制剂处方等级字典"
+   },
+   {
+    "TABLE_NAME": "RAW_MATERIAL_DICT",
+    "COMMENTS": "16.46\t制剂原料字典"
+   },
+   {
+    "TABLE_NAME": "VOUCHER_NO_CREATE_DICT",
+    "COMMENTS": "凭证号生成字典"
+   },
+   {
+    "TABLE_NAME": "V_DRUG_TRACE_BILL",
+    "COMMENTS": null
+   },
+   {
+    "TABLE_NAME": "V_DRUG_TRACE_CODE",
+    "COMMENTS": null
+   }
+  ]
+ },
+ "c_med_trace_record": {
+  "ok": true,
+  "n": 30,
+  "rows": [
+   {
+    "COLUMN_NAME": "BATCH_NO",
+    "COMMENTS": "药品批号"
+   },
+   {
+    "COLUMN_NAME": "CREATE_TIME",
+    "COMMENTS": "创建日期"
+   },
+   {
+    "COLUMN_NAME": "CREATE_USER_ID",
+    "COMMENTS": "创建者id"
+   },
+   {
+    "COLUMN_NAME": "CREATE_USER_NAME",
+    "COMMENTS": "创建者姓名"
+   },
+   {
+    "COLUMN_NAME": "DELETE_TIME",
+    "COMMENTS": "删除时间"
+   },
+   {
+    "COLUMN_NAME": "DELETE_USER_ID",
+    "COMMENTS": "删除id"
+   },
+   {
+    "COLUMN_NAME": "DELETE_USER_NAME",
+    "COMMENTS": "删除人名称"
+   },
+   {
+    "COLUMN_NAME": "DRUG_ID",
+    "COMMENTS": "药品编码 不同厂家 药品编码相同"
+   },
+   {
+    "COLUMN_NAME": "DRUG_PRI",
+    "COMMENTS": "药品主键"
+   },
+   {
+    "COLUMN_NAME": "EXPIRE_DATE",
+    "COMMENTS": "药品效期"
+   },
+   {
+    "COLUMN_NAME": "F_TRACE_CODE",
+    "COMMENTS": "一级追溯码 大码"
+   },
+   {
+    "COLUMN_NAME": "IN_OUT_TYPE",
+    "COMMENTS": "出入库类型 IN 入库 OUT 出库"
+   },
+   {
+    "COLUMN_NAME": "IS_DELETED",
+    "COMMENTS": "删除标识0未删除  1删除"
+   },
+   {
+    "COLUMN_NAME": "KIND_TYPE",
+    "COMMENTS": "出入库类型"
+   },
+   {
+    "COLUMN_NAME": "MODIFY_TIME",
+    "COMMENTS": "修改日期"
+   },
+   {
+    "COLUMN_NAME": "MODIFY_USER_ID",
+    "COMMENTS": "修改者ID"
+   },
+   {
+    "COLUMN_NAME": "MODIFY_USER_NAME",
+    "COMMENTS": "修改者姓名"
+   },
+   {
+    "COLUMN_NAME": "ORG_CODE",
+    "COMMENTS": "机构id"
+   },
+   {
+    "COLUMN_NAME": "PRESC_DATE",
+    "COMMENTS": "处方开立日期--门诊处方用"
+   },
+   {
+    "COLUMN_NAME": "PRESC_DETAILID",
+    "COMMENTS": "处方明细号码"
+   },
+   {
+    "COLUMN_NAME": "PRICE",
+    "COMMENTS": "价格"
+   },
+   {
+    "COLUMN_NAME": "PRODUCT_DATE",
+    "COMMENTS": "生产日期"
+   },
+   {
+    "COLUMN_NAME": "RECORD_ID",
+    "COMMENTS": "记录序号"
+   },
+   {
+    "COLUMN_NAME": "SPLIT_FLAG",
+    "COMMENTS": "是否拆零标志 0、否(默认) 1、是"
+   },
+   {
+    "COLUMN_NAME": "STORE_CODE",
+    "COMMENTS": "科室编码"
+   },
+   {
+    "COLUMN_NAME": "STORE_ID",
+    "COMMENTS": "库存id"
+   },
+   {
+    "COLUMN_NAME": "S_TRACE_CODE",
+    "COMMENTS": "二级追溯码 中码"
+   },
+   {
+    "COLUMN_NAME": "TRACES_SUM",
+    "COMMENTS": "追溯码信息（三级追溯码）数量"
+   },
+   {
+    "COLUMN_NAME": "TRACE_BILLNO",
+    "COMMENTS": "追溯码对应业务单号(门诊发药对应的是处方号？)"
+   },
+   {
+    "COLUMN_NAME": "T_TRACE_CODE",
+    "COMMENTS": "三级追溯码 小码"
+   }
+  ]
+ },
+ "c_drug_presc_master": {
+  "ok": false,
+  "error": "DatabaseError: ORA-00904: \"COLUMN_ID\": 标识符无效"
+ },
+ "t_candidates": {
+  "ok": true,
+  "n": 60,
+  "rows": [
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_DRUG_TRACE_CODE",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_INP_TRACE_DRUG_RETURN_VIEW",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_INP_TRACE_DRUG_SEND_VIEW",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_TRACE_BILLNO",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_TRACE_DRUG_RETURN_VIEW",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_TRACE_DRUG_SEND_VIEW",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_TRACE_DRUG_VIEW",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "EXTRACT_INP_ORDER_EXECDATA",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "EXTRACT_INP_PATIENT_LOG",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "EXTRACT_INP_PATIENT_LOG_NEW",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "INP_ORDER_EXECDATA",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "INP_PATIENT_LOG",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "INP_PATIENT_LOG_20260806",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "INP_REQUEST_DRUG_VIEW",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "INP_REQUEST_DRUG_VIEW_FY",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "INP_TRACE_DRUG_SEND_VIEW",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "MED_TRACE_RECORD",
+    "COMMENTS": "药品追溯码记录表"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "MED_TRACE_RECORD_copy1",
+    "COMMENTS": "药品追溯码记录表"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "MED_TRACE_STORGE",
+    "COMMENTS": "药品追溯码库存表"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "MED_TRACE_STORGE_copy1",
+    "COMMENTS": "药品追溯码库存表"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPDETAIL",
+    "COMMENTS": "住院发药明细"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_DISPMASTER",
+    "COMMENTS": "药房发药住院记录主表"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_REQUEST_DRUG",
+    "COMMENTS": "住院发药申请"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_REQUEST_DRUG_DISPDATE",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_TRACE_DRUG_RETURN_VIEW",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_TRACE_DRUG_SEND_VIEW",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "TRACE_UPLOAD_TIME_LOG",
+    "COMMENTS": "追溯码时间段上传日志表"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_INP_ANTISTRONG_DETAIL",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_INP_ANTI_EXECNUM",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_INP_ANTI_FEE",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_INP_ANTI_ITEMS",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_INP_ANTI_ORDER",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_INP_ANTI_PAVIS_PROPORTION",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_INP_ANTI_PAVIS_PROPORTION_D",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_INP_ANTI_PRESCRIPTIONS_ORDER",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_INP_ANTI_SPECIAL",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_INP_ANTI_UNITE_DEPT",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_INP_ANTI_UNITE_DOCTOR",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_INP_ANTI_USEDRUG_QK",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_INP_ANTI_USE_DEPT",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_INP_ANTI_USE_DETAIL",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_INP_ANTI_USE_DOCTOR",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_INP_DRUG_ORDER",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_INP_INTERVENE_OPERATION",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_INP_OPERATOR_QK",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_INP_ORDER",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_INP_PATIENT_ORDER",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_INP_SETTLE_YB",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_INP_TRANCE_CODE_YB",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_PATIENT_INP",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DOCT_DRUG_PRESC_DETAIL",
+    "COMMENTS": "待发药住院处方明细记录"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DOCT_DRUG_PRESC_MASTER",
+    "COMMENTS": "待发药住院处方主记录"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_EXPORT_TRACE",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_IMPORT_EXPORT_TRACE_CODE",
+    "COMMENTS": "药品出入库追溯码"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_DETAIL_TEMP_REFUND",
+    "COMMENTS": "待发药处方明细记录-退费"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_MASTER_TEMP_REFUND",
+    "COMMENTS": "待发药处方主记录-退费"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_TRACE_CODE",
+    "COMMENTS": "处方发药追溯码"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "INP_BILL_DETAIL_BK",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "V_DRUG_TRACE_BILL",
+    "COMMENTS": null
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "V_DRUG_TRACE_CODE",
+    "COMMENTS": null
+   }
+  ]
+ },
+ "c_reference_cols": {
+  "ok": true,
+  "n": 241,
+  "rows": [
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "20260325MED_DICT_BASEINFO",
+    "COLUMN_NAME": "ORIGINAL_PRODUCT"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "6.30MED_DICT_BASEINFO",
+    "COLUMN_NAME": "ORIGINAL_PRODUCT"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CA_MESSAGE_SIGN",
+    "COLUMN_NAME": "PRESC_CREATE_TIME"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CA_MESSAGE_SIGN",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_INP_TRACE_DRUG_RETURN_VIEW",
+    "COLUMN_NAME": "PRESC_CREATE_TIME"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_INP_TRACE_DRUG_RETURN_VIEW",
+    "COLUMN_NAME": "PRESC_DETAIL_ID"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_INP_TRACE_DRUG_RETURN_VIEW",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_INP_TRACE_DRUG_SEND_VIEW",
+    "COLUMN_NAME": "PRESC_CREATE_TIME"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_INP_TRACE_DRUG_SEND_VIEW",
+    "COLUMN_NAME": "PRESC_DETAIL_ID"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_INP_TRACE_DRUG_SEND_VIEW",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_PRESC_DRUG_VIEW",
+    "COLUMN_NAME": "PRESC_CREATE_TIME"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_PRESC_DRUG_VIEW",
+    "COLUMN_NAME": "PRESC_DETAIL_ID"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_PRESC_DRUG_VIEW",
+    "COLUMN_NAME": "PRESC_KIND"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_PRESC_DRUG_VIEW",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_PRESC_DRUG_VIEW",
+    "COLUMN_NAME": "PRESC_TYPE_CODE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_PRESC_DRUG_VIEW",
+    "COLUMN_NAME": "PRESC_TYPE_NAME"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_REQUEST_DRUG_VIEW",
+    "COLUMN_NAME": "BILL_ORIG_ITEM_NO"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_REQUEST_DRUG_VIEW",
+    "COLUMN_NAME": "ISWORKRELAT"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_REQUEST_DRUG_VIEW",
+    "COLUMN_NAME": "PRESC_CREATE_TIME"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_REQUEST_DRUG_VIEW",
+    "COLUMN_NAME": "PRESC_DETAIL_ID"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_REQUEST_DRUG_VIEW",
+    "COLUMN_NAME": "PRESC_KIND"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_REQUEST_DRUG_VIEW",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_REQUEST_DRUG_VIEW",
+    "COLUMN_NAME": "PRESC_TYPE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_REQUEST_DRUG_VIEW",
+    "COLUMN_NAME": "PRESC_TYPE_CODE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_REQUEST_DRUG_VIEW",
+    "COLUMN_NAME": "PRESC_TYPE_NAME"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_REQUEST_DRUG_VIEW_FY",
+    "COLUMN_NAME": "BILL_ORIG_ITEM_NO"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_REQUEST_DRUG_VIEW_FY",
+    "COLUMN_NAME": "PRESC_CREATE_TIME"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_REQUEST_DRUG_VIEW_FY",
+    "COLUMN_NAME": "PRESC_DETAIL_ID"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_REQUEST_DRUG_VIEW_FY",
+    "COLUMN_NAME": "PRESC_KIND"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_REQUEST_DRUG_VIEW_FY",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_REQUEST_DRUG_VIEW_FY",
+    "COLUMN_NAME": "PRESC_TYPE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_REQUEST_DRUG_VIEW_FY",
+    "COLUMN_NAME": "PRESC_TYPE_CODE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_REQUEST_DRUG_VIEW_FY",
+    "COLUMN_NAME": "PRESC_TYPE_NAME"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_TRACE_DRUG_RETURN_VIEW",
+    "COLUMN_NAME": "PRESC_CREATE_TIME"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_TRACE_DRUG_RETURN_VIEW",
+    "COLUMN_NAME": "PRESC_DETAIL_ID"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_TRACE_DRUG_RETURN_VIEW",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_TRACE_DRUG_SEND_VIEW",
+    "COLUMN_NAME": "PRESC_CREATE_TIME"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_TRACE_DRUG_SEND_VIEW",
+    "COLUMN_NAME": "PRESC_DETAIL_ID"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_TRACE_DRUG_SEND_VIEW",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_TRACE_DRUG_VIEW",
+    "COLUMN_NAME": "PRESC_CREATE_TIME"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_TRACE_DRUG_VIEW",
+    "COLUMN_NAME": "PRESC_DETAIL_ID"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "CLI_TRACE_DRUG_VIEW",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "DRUG_IMPORT_DETAIL",
+    "COLUMN_NAME": "ORIGIN"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "EXTRACT_IPCPAT_PRESC_DATA",
+    "COLUMN_NAME": "PRESC_ATTR"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "EXTRACT_IPCPAT_PRESC_DATA",
+    "COLUMN_NAME": "PRESC_DATE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "EXTRACT_IPCPAT_PRESC_DATA",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "EXTRACT_IPCPAT_PRESC_DATA",
+    "COLUMN_NAME": "PRESC_SOURCE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "EXTRACT_IPCPAT_PRESC_DATA",
+    "COLUMN_NAME": "PRESC_TYPE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "EXTRACT_OPSPAT_PRESC_DATA",
+    "COLUMN_NAME": "PRESC_ATTR"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "EXTRACT_OPSPAT_PRESC_DATA",
+    "COLUMN_NAME": "PRESC_DATE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "EXTRACT_OPSPAT_PRESC_DATA",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "EXTRACT_OPSPAT_PRESC_DATA",
+    "COLUMN_NAME": "PRESC_SOURCE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "EXTRACT_OPSPAT_PRESC_DATA",
+    "COLUMN_NAME": "PRESC_TYPE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "EXTRACT_OPS_PRESC_DATA",
+    "COLUMN_NAME": "PRESC_ATTR"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "EXTRACT_OPS_PRESC_DATA",
+    "COLUMN_NAME": "PRESC_DATE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "EXTRACT_OPS_PRESC_DATA",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "EXTRACT_OPS_PRESC_DATA",
+    "COLUMN_NAME": "PRESC_SOURCE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "EXTRACT_OPS_PRESC_DATA",
+    "COLUMN_NAME": "PRESC_TYPE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "INP_REQUEST_DRUG_VIEW",
+    "COLUMN_NAME": "PRESC_CREATE_TIME"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "INP_REQUEST_DRUG_VIEW_FY",
+    "COLUMN_NAME": "PRESC_CREATE_TIME"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "INP_TRACE_DRUG_SEND_VIEW",
+    "COLUMN_NAME": "PRESC_CREATE_TIME"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "INP_TRACE_DRUG_SEND_VIEW",
+    "COLUMN_NAME": "PRESC_DETAIL_ID"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "INP_TRACE_DRUG_SEND_VIEW",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "MED_ADJUST_PRICE_DETAIL",
+    "COLUMN_NAME": "RETAIL_OLDSUM"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "MED_ADJUST_PRICE_DETAIL",
+    "COLUMN_NAME": "TRADE_OLDSUM"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "MED_ADJUST_PRICE_DETAIL",
+    "COLUMN_NAME": "WHOLESALE_OLDSUM"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "MED_ADJUST_PRICE_LIST",
+    "COLUMN_NAME": "RETAIL_OLDSUM"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "MED_ADJUST_PRICE_LIST",
+    "COLUMN_NAME": "TRADE_OLDSUM"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "MED_ADJUST_PRICE_LIST",
+    "COLUMN_NAME": "WHOLESALE_OLDSUM"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "MED_CHECK_DETAIL_2025-9-1",
+    "COLUMN_NAME": "RECORD_NO_OLD"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "MED_DICT_BASEINFO",
+    "COLUMN_NAME": "ORIGINAL_PRODUCT"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "MED_DICT_BASEINFO_RECORD",
+    "COLUMN_NAME": "DRUG_NAME_OLD"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "MED_DICT_FACTORY",
+    "COLUMN_NAME": "LICENSE_HOLDER"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "MED_DICT_FACTORY_copy1",
+    "COLUMN_NAME": "LICENSE_HOLDER"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "MED_DICT_LOC",
+    "COLUMN_NAME": "OLD_LOC_CODE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "MED_DICT_LOC",
+    "COLUMN_NAME": "OLD_LOC_NAME"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "MED_DICT_SUPPLIER",
+    "COLUMN_NAME": "LICENSE_HOLDER"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "MED_IN_MASTER",
+    "COLUMN_NAME": "ORIGINAL_IN_BILLNO"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "MED_PHARMACY",
+    "COLUMN_NAME": "PARENTID"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "MED_TRACE_RECORD",
+    "COLUMN_NAME": "PRESC_DATE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "MED_TRACE_RECORD",
+    "COLUMN_NAME": "PRESC_DETAILID"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "MED_TRACE_RECORD_copy1",
+    "COLUMN_NAME": "PRESC_DATE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "OPS_PRESC_DATA",
+    "COLUMN_NAME": "PRESC_ATTR"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "OPS_PRESC_DATA",
+    "COLUMN_NAME": "PRESC_DATE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "OPS_PRESC_DATA",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "OPS_PRESC_DATA",
+    "COLUMN_NAME": "PRESC_SOURCE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "OPS_PRESC_DATA",
+    "COLUMN_NAME": "PRESC_TYPE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_BALANCE",
+    "COLUMN_NAME": "RETAIL_OLDCOST"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_BALANCE",
+    "COLUMN_NAME": "RETAIL_OLDPRICE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_BALANCE",
+    "COLUMN_NAME": "TRADE_OLDCOST"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_BALANCE",
+    "COLUMN_NAME": "TRADE_OLDPRICE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_CLI_REQUEST_DRUG",
+    "COLUMN_NAME": "ISWORKRELAT"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_CLI_REQUEST_DRUG",
+    "COLUMN_NAME": "PRESC_CREATE_TIME"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_CLI_REQUEST_DRUG",
+    "COLUMN_NAME": "PRESC_CREATE_TIME_NEW"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_CLI_REQUEST_DRUG",
+    "COLUMN_NAME": "PRESC_DETAIL_ID"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_CLI_REQUEST_DRUG",
+    "COLUMN_NAME": "PRESC_KIND"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_CLI_REQUEST_DRUG",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_CLI_REQUEST_DRUG",
+    "COLUMN_NAME": "PRESC_NO_NEW"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_CLI_REQUEST_DRUG",
+    "COLUMN_NAME": "PRESC_TYPE_CODE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_CLI_REQUEST_DRUG",
+    "COLUMN_NAME": "PRESC_TYPE_NAME"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_REQUEST_DRUG",
+    "COLUMN_NAME": "DISP_NO_OLD"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_REQUEST_DRUG",
+    "COLUMN_NAME": "ISWORKRELAT"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_REQUEST_DRUG",
+    "COLUMN_NAME": "PRESC_CREATE_TIME"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_TRACE_DRUG_RETURN_VIEW",
+    "COLUMN_NAME": "PRESC_CREATE_TIME"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_INP_TRACE_DRUG_SEND_VIEW",
+    "COLUMN_NAME": "PRESC_CREATE_TIME"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_MEDICAL_ADVICE_REVIEW",
+    "COLUMN_NAME": "DISP_NO_OLD"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_MEDICAL_ADVICE_REVIEW",
+    "COLUMN_NAME": "PRESC_CREATE_TIME"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_SPECIAL_DRUG_REVIEW",
+    "COLUMN_NAME": "PRESC_CREATE_TIME"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_SPECIAL_DRUG_REVIEW",
+    "COLUMN_NAME": "PRESC_DETAIL_ID"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_SPECIAL_DRUG_REVIEW",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_SPECIAL_DRUG_REVIEW",
+    "COLUMN_NAME": "PRESC_TYPE_CODE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_SPECIAL_DRUG_REVIEW",
+    "COLUMN_NAME": "PRESC_TYPE_NAME"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_VISIT_DISPDETAIL",
+    "COLUMN_NAME": "PRESC_DETAILID"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_VISIT_DISPDETAIL",
+    "COLUMN_NAME": "PRESC_KIND"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_VISIT_DISPDETAIL",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_VISIT_DISPMASTER",
+    "COLUMN_NAME": "PRESC_DETAILID"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_VISIT_DISPMASTER",
+    "COLUMN_NAME": "PRESC_KIND"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_VISIT_DISPMASTER",
+    "COLUMN_NAME": "PRESC_KIND_NAME"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "PHA_VISIT_DISPMASTER",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_INP_TRANCE_CODE_YB",
+    "COLUMN_NAME": "ISWORKRELAT"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_INP_TRANCE_CODE_YB",
+    "COLUMN_NAME": "PRESCRIBING_TYPE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_OPS_ANTI_PRESC",
+    "COLUMN_NAME": "ANTI1_PRESCCOUNT"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_OPS_ANTI_PRESC",
+    "COLUMN_NAME": "ANTI2_PRESCCOUNT"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_OPS_ANTI_PRESC",
+    "COLUMN_NAME": "ANTI3_PRESCCOUNT"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_OPS_ANTI_PRESC",
+    "COLUMN_NAME": "PRESCCOUNT"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_OPS_ANTI_PRESC",
+    "COLUMN_NAME": "VEIN_PRESC_COUNT"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_OPS_ANTI_PRESC_DETAIL",
+    "COLUMN_NAME": "PRESC_DATE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_OPS_ANTI_PRESC_DETAIL",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_OPS_ANTI_PRESC_DRUG",
+    "COLUMN_NAME": "PRESC_DATE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_OPS_ANTI_PRESC_DRUG",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_OPS_PATIENT_PRESC",
+    "COLUMN_NAME": "PRESC_ATTR"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_OPS_PATIENT_PRESC",
+    "COLUMN_NAME": "PRESC_DATE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_OPS_PATIENT_PRESC",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_OPS_PATIENT_PRESC",
+    "COLUMN_NAME": "PRESC_SOURCE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_OPS_PATIENT_PRESC",
+    "COLUMN_NAME": "PRESC_TYPE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_OPS_PRESC",
+    "COLUMN_NAME": "PRESC_ATTR"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_OPS_PRESC",
+    "COLUMN_NAME": "PRESC_DATE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_OPS_PRESC",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_OPS_PRESC",
+    "COLUMN_NAME": "PRESC_SOURCE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "V_OPS_PRESC",
+    "COLUMN_NAME": "PRESC_TYPE"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "pha_inp_new",
+    "COLUMN_NAME": "DISP_NO_OLD"
+   },
+   {
+    "OWNER": "DRUG_USER",
+    "TABLE_NAME": "pha_inp_new",
+    "COLUMN_NAME": "PRESC_CREATE_TIME"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "BINDING_PRESC_DETAIL",
+    "COLUMN_NAME": "PRESC_ID"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "BINDING_PRESC_MASTER",
+    "COLUMN_NAME": "PRESC_ID"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "BINDING_PRESC_MASTER",
+    "COLUMN_NAME": "PRESC_TYPE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "BINDING_PRESC_SELECTION",
+    "COLUMN_NAME": "PRESC_ID"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DOCT_DRUG_PRESC_DETAIL",
+    "COLUMN_NAME": "BILL_ORIG_ITEM_NO"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DOCT_DRUG_PRESC_DETAIL",
+    "COLUMN_NAME": "PRESC_DATE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DOCT_DRUG_PRESC_DETAIL",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DOCT_DRUG_PRESC_MASTER",
+    "COLUMN_NAME": "BINDING_PRESC_TITLE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DOCT_DRUG_PRESC_MASTER",
+    "COLUMN_NAME": "PRESCRIBED_BY"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DOCT_DRUG_PRESC_MASTER",
+    "COLUMN_NAME": "PRESCRIBED_TIME"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DOCT_DRUG_PRESC_MASTER",
+    "COLUMN_NAME": "PRESC_ATTR"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DOCT_DRUG_PRESC_MASTER",
+    "COLUMN_NAME": "PRESC_DATE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DOCT_DRUG_PRESC_MASTER",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DOCT_DRUG_PRESC_MASTER",
+    "COLUMN_NAME": "PRESC_SOURCE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DOCT_DRUG_PRESC_MASTER",
+    "COLUMN_NAME": "PRESC_STATUS"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DOCT_DRUG_PRESC_MASTER",
+    "COLUMN_NAME": "PRESC_TARGET"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DOCT_DRUG_PRESC_MASTER",
+    "COLUMN_NAME": "PRESC_TYPE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_IMPORT_DETAIL",
+    "COLUMN_NAME": "ORIGIN"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_IMPORT_DETAIL_DEL20170523",
+    "COLUMN_NAME": "ORIGIN"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_IMPORT_DETAIL_LOG_NEW",
+    "COLUMN_NAME": "ORIGIN"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_DETAIL",
+    "COLUMN_NAME": "PRESC_DATE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_DETAIL",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_DETAIL_BACKUP2025",
+    "COLUMN_NAME": "PRESC_DATE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_DETAIL_BACKUP2025",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_DETAIL_TEMP",
+    "COLUMN_NAME": "PRESC_DATE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_DETAIL_TEMP",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_DETAIL_TEMP_REFUND",
+    "COLUMN_NAME": "PRESC_DATE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_DETAIL_TEMP_REFUND",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_MASTER",
+    "COLUMN_NAME": "ORIGINAL_PRESC_DATE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_MASTER",
+    "COLUMN_NAME": "ORIGINAL_PRESC_NO"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_MASTER",
+    "COLUMN_NAME": "PRESCRIBED_BY"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_MASTER",
+    "COLUMN_NAME": "PRESC_ATTR"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_MASTER",
+    "COLUMN_NAME": "PRESC_DATE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_MASTER",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_MASTER",
+    "COLUMN_NAME": "PRESC_SOURCE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_MASTER",
+    "COLUMN_NAME": "PRESC_TYPE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_MASTER",
+    "COLUMN_NAME": "RECHARGE_PRESC_DATE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_MASTER",
+    "COLUMN_NAME": "RECHARGE_PRESC_NO"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_MASTER_BACKUP2025",
+    "COLUMN_NAME": "ORIGINAL_PRESC_DATE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_MASTER_BACKUP2025",
+    "COLUMN_NAME": "ORIGINAL_PRESC_NO"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_MASTER_BACKUP2025",
+    "COLUMN_NAME": "PRESCRIBED_BY"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_MASTER_BACKUP2025",
+    "COLUMN_NAME": "PRESC_ATTR"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_MASTER_BACKUP2025",
+    "COLUMN_NAME": "PRESC_DATE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_MASTER_BACKUP2025",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_MASTER_BACKUP2025",
+    "COLUMN_NAME": "PRESC_SOURCE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_MASTER_BACKUP2025",
+    "COLUMN_NAME": "PRESC_TYPE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_MASTER_BACKUP2025",
+    "COLUMN_NAME": "RECHARGE_PRESC_DATE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_MASTER_BACKUP2025",
+    "COLUMN_NAME": "RECHARGE_PRESC_NO"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_MASTER_TEMP",
+    "COLUMN_NAME": "PRESCRIBED_BY"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_MASTER_TEMP",
+    "COLUMN_NAME": "PRESC_ATTR"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_MASTER_TEMP",
+    "COLUMN_NAME": "PRESC_DATE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_MASTER_TEMP",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_MASTER_TEMP",
+    "COLUMN_NAME": "PRESC_SOURCE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_MASTER_TEMP",
+    "COLUMN_NAME": "PRESC_TYPE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_MASTER_TEMP_REFUND",
+    "COLUMN_NAME": "PRESCRIBED_BY"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_MASTER_TEMP_REFUND",
+    "COLUMN_NAME": "PRESC_ATTR"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_MASTER_TEMP_REFUND",
+    "COLUMN_NAME": "PRESC_DATE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_MASTER_TEMP_REFUND",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_MASTER_TEMP_REFUND",
+    "COLUMN_NAME": "PRESC_SOURCE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_MASTER_TEMP_REFUND",
+    "COLUMN_NAME": "PRESC_TYPE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_QUEUE",
+    "COLUMN_NAME": "PRESC_DATE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_QUEUE",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_QUEUE_LABEL",
+    "COLUMN_NAME": "PRESC_DATE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_QUEUE_LABEL",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_TRACE_CODE",
+    "COLUMN_NAME": "PRESC_DATE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_TRACE_CODE",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRICE_MODIFY",
+    "COLUMN_NAME": "ORIGINAL_RETAIL_PRICE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRICE_MODIFY",
+    "COLUMN_NAME": "ORIGINAL_TRADE_PRICE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRICE_MODIFY_PROFIT",
+    "COLUMN_NAME": "ORIGINAL_RETAIL_PRICE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRICE_MODIFY_PROFIT",
+    "COLUMN_NAME": "ORIGINAL_TRADE_PRICE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRICE_MODIFY_PROFIT",
+    "COLUMN_NAME": "PRESC_DATE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRICE_MODIFY_PROFIT",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRICE_PROFIT",
+    "COLUMN_NAME": "OLD_PRICE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_STOCK_BALANCE",
+    "COLUMN_NAME": "EXPORT_PRESC_MONEY"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_STOCK_BALANCE",
+    "COLUMN_NAME": "EXPORT_PRESC_QUANTITY"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_STOCK_BALANCE",
+    "COLUMN_NAME": "PRESC_PROFIT"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_STOCK_BALANCE_COMPARE",
+    "COLUMN_NAME": "EXPORT_PRESC_MONEY"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_STOCK_BALANCE_COMPARE",
+    "COLUMN_NAME": "EXPORT_PRESC_QUANTITY"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_STOCK_BALANCE_COMPARE",
+    "COLUMN_NAME": "PRESC_PROFIT"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_STOCK_SUPPLYINDICATORLOG",
+    "COLUMN_NAME": "OLD_SUPPLY_INDICATOR"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_TEMP_DETAIL",
+    "COLUMN_NAME": "PRESC_DATE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_TEMP_DETAIL",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_TEMP_MASTER",
+    "COLUMN_NAME": "ORIGINAL_PRESC_DATE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_TEMP_MASTER",
+    "COLUMN_NAME": "ORIGINAL_PRESC_NO"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_TEMP_MASTER",
+    "COLUMN_NAME": "PRESCRIBED_BY"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_TEMP_MASTER",
+    "COLUMN_NAME": "PRESC_ATTR"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_TEMP_MASTER",
+    "COLUMN_NAME": "PRESC_DATE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_TEMP_MASTER",
+    "COLUMN_NAME": "PRESC_NO"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_TEMP_MASTER",
+    "COLUMN_NAME": "PRESC_SOURCE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_TEMP_MASTER",
+    "COLUMN_NAME": "PRESC_TYPE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_VIEW_BALANCE",
+    "COLUMN_NAME": "EXPORT_PRESC_MONEY"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_VIEW_BALANCE",
+    "COLUMN_NAME": "EXPORT_PRESC_QUANTITY"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_VIEW_MODI_PRICE",
+    "COLUMN_NAME": "ORIGINAL_RETAIL_PRICE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_VIEW_MODI_PRICE",
+    "COLUMN_NAME": "ORIGINAL_TRADE_PRICE"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "PREPARATION_DICT",
+    "COLUMN_NAME": "PRESC_CRITERION"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "PREPARATION_DICT",
+    "COLUMN_NAME": "PRESC_STANDARD_LEVEL"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "PREPARATION_OPERATING_RULE",
+    "COLUMN_NAME": "PRESC_AMOUNT"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "PREPARATION_OPERATING_RULE",
+    "COLUMN_NAME": "PRESC_UNITS"
+   },
+   {
+    "OWNER": "PHARMACY",
+    "TABLE_NAME": "V_DRUG_TRACE_CODE",
+    "COLUMN_NAME": "PARENT_CODE"
+   }
+  ]
+ },
+ "elapsed": 0.28,
+ "captured_at": "2026-10-27T12:34:26.048879+00:00"
+}

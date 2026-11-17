@@ -1,0 +1,43 @@
+The authenticity of host '<prod-host> (<prod-host>)' can't be established.
+ED25519 key fingerprint is SHA256:IjK9PN01og2d/fsSjUy4rlsyRBqOiZZycBN6j46shQc.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '<prod-host>' (ED25519) to the list of known hosts.
+
+Authorized users only. All activities may be monitored and reported.
+root@<prod-host>'s password: 
+===HOST DATE===
+2026-10-29 10:12:11 +0800
+===SERVICE===
+failed
+x blyb-daily-upload.service - BLYB drug-trace daily upload (collect yesterday, send, query)
+     Loaded: loaded (/etc/systemd/system/blyb-daily-upload.service; static)
+     Active: failed (Result: exit-code) since Thu 2026-10-29 10:10:35 CST; 1min 36s ago
+TriggeredBy: * blyb-daily-upload.timer
+===RECEIPTS TODAY===
+-rw-------. 1 root root   421 Oct 27 09:10 20261027-061029.json
+-rw-------. 1 root root  1014 Oct 28 10:10 20261028-061029.json
+-rw-------. 1 root root  1034 Oct 29 10:10 20261029-061029.json
+-rw-------. 1 root root     0 Oct 29 06:10 last-error.log
+===TODAY RECEIPT===
+{"window": ["2026-10-28T00:00:00", "2026-10-29T00:00:00"], "collection": {"id": "1b723764-e740-46f3-bb73-ed2c8ce83efa", "state": "RUNNING", "summary": {"bills_seen": 2050, "revisions_created": 2050, "idempotent": 0, "waiting": 910, "valid": 1140, "invalid": 0, "not_reportable": 0, "conflicts": 0, "version_rereads": 0, "skipped_version_changing": 0, "retried_ok": 0, "retried_failed": 0, "slices_completed": 82, "progress_at": "2026-10-29T02:08:32.526885", "window_completed": false, "source_metrics": {"connect_count": 82.0, "connect_seconds": 1.591507599921897, "query_count": 4182.0, "query_seconds": 7244.939479718683}}, "error_code": "collect_timeout", "candidate_count_known": false}, "send": {"sent": 0, "skipped_terminal": 0, "resumed": 0, "prepared_new": 0, "errors": [], "aborted_reason": ""}, "query": {"queried": 0, "errors": []}, "candidate_count": 0, "fatal": "collect_timeout", "outcome": "FAILED", "elapsed_seconds": 14406.2, "detail": {"run_id": "1b723764-e740-46f3-bb73-ed2c8ce83efa"}, "report_push": {"ok": true}}
+
+===LAST-ERROR===
+===DAILY REPORT ROWS===
+2026-10-28|timer|FAILED|0|0||0|14406.2
+2026-10-27|timer|FAILED|0|0||0|14406.3
+2026-10-26|manual|OK|1995|976||0|4892.7
+2026-10-26|timer|FAILED|0|0||0|10801.3
+2026-10-25|timer|OK|1352|436||0|2687.1
+2026-10-24|timer|OK|1470|815||0|4376.9
+2026-10-24|manual|PARTIAL_FAILURE|1470|654||50|12238.0
+===SUBS BY STATE 36H===
+PREPARED|2932|2026-10-27 22:12:49.729426|2026-10-29 02:10:39.890398
+===QUOTA===
+4820|80000|2026-10-27 07:21:32.45224
+===PREPARED BY WINDOW===
+ERROR:  operator does not exist: character varying = uuid
+LINE 1: ...package_revision_id JOIN drug_trace_bill b ON b.id=(pr.prove...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+Connection to <prod-host> closed.

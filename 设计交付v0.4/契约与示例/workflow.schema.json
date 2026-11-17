@@ -1,0 +1,173 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "workflow_key": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "key",
+        "version"
+      ]
+    },
+    "trigger": {
+      "enum": [
+        "package_changed",
+        "manual",
+        "scheduled"
+      ]
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_]{0,63}$"
+          },
+          "type": {
+            "enum": [
+              "parse",
+              "normalize",
+              "resolve",
+              "validate",
+              "wait_dependencies",
+              "assets.ensure",
+              "format.convert",
+              "package.freeze",
+              "target.map",
+              "target.validate",
+              "deliver.push",
+              "deliver.publish",
+              "receipt.wait",
+              "reconcile",
+              "notify"
+            ]
+          },
+          "plugin_ref": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "key": {
+                "type": "string",
+                "minLength": 1
+              },
+              "version": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "key",
+              "version"
+            ]
+          },
+          "parameters": {
+            "type": "object"
+          },
+          "timeout_seconds": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "retry": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "max_attempts": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "initial_delay_seconds": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "max_delay_seconds": {
+                "type": "integer",
+                "minimum": 1
+              }
+            },
+            "required": [
+              "max_attempts",
+              "initial_delay_seconds",
+              "max_delay_seconds"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "plugin_ref",
+          "parameters",
+          "timeout_seconds",
+          "retry"
+        ]
+      },
+      "minItems": 1
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "from": {
+            "type": "string",
+            "minLength": 1
+          },
+          "to": {
+            "type": "string",
+            "minLength": 1
+          },
+          "on": {
+            "enum": [
+              "success",
+              "invalid",
+              "needs_review"
+            ]
+          }
+        },
+        "required": [
+          "from",
+          "to",
+          "on"
+        ]
+      },
+      "minItems": 0
+    },
+    "production_enabled": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "workflow_key",
+    "revision",
+    "input_schema",
+    "trigger",
+    "nodes",
+    "edges",
+    "production_enabled"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.invalid/reporting/workflow.schema.json"
+}

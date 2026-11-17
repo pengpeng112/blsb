@@ -1,0 +1,31 @@
+The authenticity of host '<prod-host> (<prod-host>)' can't be established.
+ED25519 key fingerprint is SHA256:IjK9PN01og2d/fsSjUy4rlsyRBqOiZZycBN6j46shQc.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '<prod-host>' (ED25519) to the list of known hosts.
+
+Authorized users only. All activities may be monitored and reported.
+root@<prod-host>'s password: 
+===NEW TIMER UNIT===
+[Unit]
+Description=Run BLYB drug-trace daily upload every morning 01:00 Beijing
+
+[Timer]
+OnCalendar=*-*-* 01:00 Asia/Shanghai
+Persistent=true
+AccuracySec=1min
+Unit=blyb-daily-upload.service
+
+[Install]
+WantedBy=timers.target
+===LIST-TIMERS===
+[0m[0;4mNEXT                       [0m[0m[0;4m LEFT    [0m[0m[0;4m LAST                       [0m[0m[0;4m PASSED      [0m[0m[0;4m UNIT                   [0m[0m[0;4m ACTIVATES                [0m
+Fri 2026-10-30 01:00:00 CST 17h left Thu 2026-10-29 06:10:29 CST 1h 14min ago blyb-daily-upload.timer blyb-daily-upload.service
+
+[0;1;39m1 timers listed.[0m
+Pass --all to see loaded but inactive timers, too.
+===BACKUP===
+-rw-r--r--. 1 root root 224 Oct 24 09:39 /root/blyb-daily-upload.timer.bak-20261028T232439Z
+===SERVICE(untouched)===
+activating
+Connection to <prod-host> closed.

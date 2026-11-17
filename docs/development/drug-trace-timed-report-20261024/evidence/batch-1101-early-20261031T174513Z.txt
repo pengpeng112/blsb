@@ -1,0 +1,26 @@
+The authenticity of host '<prod-host> (<prod-host>)' can't be established.
+ED25519 key fingerprint is SHA256:IjK9PN01og2d/fsSjUy4rlsyRBqOiZZycBN6j46shQc.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '<prod-host>' (ED25519) to the list of known hosts.
+
+Authorized users only. All activities may be monitored and reported.
+root@<prod-host>'s password: 
+===HOST TIME===
+2026-11-01 01:45:13 +0800
+===SERVICE===
+activating
+===TIMER FIRED===
+n/a  n/a  Sun 2026-11-01 01:00:29 CST 44min ago blyb-daily-upload.timer blyb-daily-upload.service
+===COLLECT RUN (window 10-31)===
+RUNNING|300|139|false|2026-10-31T17:39:18.583132|0.8835923892911524
+===QUOTA===
+11671|2026-10-31 08:54:13.237632
+===SUBS LAST 2H===
+PREPARED|103
+===RECEIPT===
+-rw-------. 1 root root     0 Nov  1 01:00 20261101-010029.json
+-rw-------. 1 root root     0 Nov  1 01:00 last-error.log
+===LAST-ERROR===
+0 /var/log/blyb/daily-upload/last-error.log
+Connection to <prod-host> closed.

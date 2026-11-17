@@ -1,0 +1,13 @@
+{
+  "mode": "LOCAL_SYNTHETIC_SQLITE_NOT_ORACLE_DDL",
+  "eligible_reports": [
+    "ONE",
+    "THREE_A",
+    "THREE_B",
+    "THREE_C"
+  ],
+  "zero_candidate_absent": true,
+  "multi_candidate_waits": true,
+  "duplicate_anchor_deduplicated": true,
+  "three_reports_remain_three": true
+}

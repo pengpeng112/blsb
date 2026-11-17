@@ -1,0 +1,11 @@
+{
+  "status": "REMOTE_ERROR",
+  "error_type": "IndexError",
+  "ssh_exit_code": 1,
+  "oracle_codes": [],
+  "stderr_tail": "** WARNING: connection is not using a post-quantum key exchange algorithm.\r\n** This session may be vulnerable to \"store now, decrypt later\" attacks.\r\n** The server may need to be upgraded. See https://openssh.com/pq.html\r\n\nAuthorized users only. All activities may be monitored and reported.\nTraceback (most recent call last):\n  File \"<stdin>\", line 35, in query\nKeyError: 'queries'\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"<stdin>\", line 58, in <module>\n  File \"<stdin>\", line 40, in query\nKeyError: 'queries'\n",
+  "stdout_tail": "",
+  "captured_at": "2026-10-24T00:52:48.481290+00:00",
+  "run_id": "20261024T005243Z",
+  "private_dir": "C:\\Users\\Administrator\\AppData\\Local\\BLYB\\history-rootcause-r2\\timed-20261024T005243Z"
+}

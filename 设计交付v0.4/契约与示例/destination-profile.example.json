@@ -1,0 +1,47 @@
+{
+  "profile_key": "jinan-imaging-v2-draft",
+  "revision": 1,
+  "mode": "PULL_PUBLICATION",
+  "production_enabled": false,
+  "source_document": "济南市医保影像云数据采集标准规范V2.0（试行）",
+  "approvals": {
+    "status": "UNCONFIRMED",
+    "blocking_issues": [
+      "P01",
+      "P02",
+      "P03",
+      "P08",
+      "P09",
+      "P12",
+      "P14"
+    ]
+  },
+  "capabilities": {
+    "publish_database_views": true,
+    "publish_https_assets": true,
+    "business_receipts": "UNCONFIRMED",
+    "accepts_vendor_wsi": "UNCONFIRMED"
+  },
+  "dataset_names": {
+    "examination": {
+      "selected": null,
+      "candidates": [
+        "CHK_INFO",
+        "CHECK_INFO"
+      ]
+    },
+    "item_dictionary": {
+      "selected": null,
+      "candidates": [
+        "APPLY_ITEM_INFO",
+        "APPLY_ITEM_DIC"
+      ]
+    }
+  },
+  "asset_delivery": {
+    "url_policy": "STABLE_AUTHENTICATED_ENDPOINT",
+    "authentication": "TO_BE_CONFIRMED"
+  },
+  "unsupported_format_action": "BLOCK",
+  "unknown_remote_result_action": "WAIT_RECONCILIATION"
+}

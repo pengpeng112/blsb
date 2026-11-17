@@ -1,0 +1,2203 @@
+{
+  "authorization": "User explicit authorization 2026-10-23 ('授权你执行'); stage-D re-run with TRUNC grouping",
+  "budget_seconds": 300,
+  "per_query_timeout_seconds": 30,
+  "source_writes": 0,
+  "uploads": 0,
+  "daily_coverage": [
+    {
+      "day": "2026-07-23",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.2046,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-07-23",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 5545,
+          "MASTERS": 1747,
+          "MASTERS_WITH_OUT": 1489,
+          "MASTERS_NO_OUT_ROWS": 258,
+          "OUT_ROWS": 5287
+        },
+        {
+          "PRESC_DAY": "2026-07-23",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1200,
+          "MASTERS": 1200,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1200,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-07-24",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0835,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-07-24",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 5560,
+          "MASTERS": 1663,
+          "MASTERS_WITH_OUT": 1506,
+          "MASTERS_NO_OUT_ROWS": 157,
+          "OUT_ROWS": 5403
+        },
+        {
+          "PRESC_DAY": "2026-07-24",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1405,
+          "MASTERS": 1405,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1405,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-07-25",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0618,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-07-25",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 4409,
+          "MASTERS": 1403,
+          "MASTERS_WITH_OUT": 1228,
+          "MASTERS_NO_OUT_ROWS": 175,
+          "OUT_ROWS": 4234
+        },
+        {
+          "PRESC_DAY": "2026-07-25",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 703,
+          "MASTERS": 703,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 703,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-07-26",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.06,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-07-26",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 4055,
+          "MASTERS": 1289,
+          "MASTERS_WITH_OUT": 1194,
+          "MASTERS_NO_OUT_ROWS": 95,
+          "OUT_ROWS": 3960
+        },
+        {
+          "PRESC_DAY": "2026-07-26",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 761,
+          "MASTERS": 761,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 761,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-07-27",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0996,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-07-27",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 6661,
+          "MASTERS": 2186,
+          "MASTERS_WITH_OUT": 1947,
+          "MASTERS_NO_OUT_ROWS": 239,
+          "OUT_ROWS": 6422
+        },
+        {
+          "PRESC_DAY": "2026-07-27",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1288,
+          "MASTERS": 1288,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1288,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-07-28",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0829,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-07-28",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 5422,
+          "MASTERS": 1712,
+          "MASTERS_WITH_OUT": 1490,
+          "MASTERS_NO_OUT_ROWS": 222,
+          "OUT_ROWS": 5200
+        },
+        {
+          "PRESC_DAY": "2026-07-28",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1267,
+          "MASTERS": 1267,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1267,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-07-29",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0849,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-07-29",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 5872,
+          "MASTERS": 1857,
+          "MASTERS_WITH_OUT": 1634,
+          "MASTERS_NO_OUT_ROWS": 223,
+          "OUT_ROWS": 5649
+        },
+        {
+          "PRESC_DAY": "2026-07-29",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1173,
+          "MASTERS": 1173,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1173,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-07-30",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0813,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-07-30",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 4762,
+          "MASTERS": 1621,
+          "MASTERS_WITH_OUT": 1299,
+          "MASTERS_NO_OUT_ROWS": 322,
+          "OUT_ROWS": 4440
+        },
+        {
+          "PRESC_DAY": "2026-07-30",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1274,
+          "MASTERS": 1274,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1274,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-07-31",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0842,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-07-31",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 5486,
+          "MASTERS": 1664,
+          "MASTERS_WITH_OUT": 1510,
+          "MASTERS_NO_OUT_ROWS": 154,
+          "OUT_ROWS": 5332
+        },
+        {
+          "PRESC_DAY": "2026-07-31",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1303,
+          "MASTERS": 1303,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1303,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-08-01",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.1016,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-08-01",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 9041,
+          "MASTERS": 2611,
+          "MASTERS_WITH_OUT": 2381,
+          "MASTERS_NO_OUT_ROWS": 230,
+          "OUT_ROWS": 8811
+        },
+        {
+          "PRESC_DAY": "2026-08-01",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 817,
+          "MASTERS": 817,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 817,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-08-02",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0677,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-08-02",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 5547,
+          "MASTERS": 1604,
+          "MASTERS_WITH_OUT": 1473,
+          "MASTERS_NO_OUT_ROWS": 131,
+          "OUT_ROWS": 5416
+        },
+        {
+          "PRESC_DAY": "2026-08-02",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 724,
+          "MASTERS": 724,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 724,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-08-03",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.1097,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-08-03",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 8077,
+          "MASTERS": 2436,
+          "MASTERS_WITH_OUT": 2204,
+          "MASTERS_NO_OUT_ROWS": 232,
+          "OUT_ROWS": 7845
+        },
+        {
+          "PRESC_DAY": "2026-08-03",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1306,
+          "MASTERS": 1306,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1306,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-08-04",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0949,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-08-04",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 5583,
+          "MASTERS": 1803,
+          "MASTERS_WITH_OUT": 1591,
+          "MASTERS_NO_OUT_ROWS": 212,
+          "OUT_ROWS": 5371
+        },
+        {
+          "PRESC_DAY": "2026-08-04",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1506,
+          "MASTERS": 1506,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1506,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-08-05",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0933,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-08-05",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 6151,
+          "MASTERS": 1838,
+          "MASTERS_WITH_OUT": 1681,
+          "MASTERS_NO_OUT_ROWS": 157,
+          "OUT_ROWS": 5994
+        },
+        {
+          "PRESC_DAY": "2026-08-05",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1439,
+          "MASTERS": 1439,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1439,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-08-06",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0953,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-08-06",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 5728,
+          "MASTERS": 1844,
+          "MASTERS_WITH_OUT": 1549,
+          "MASTERS_NO_OUT_ROWS": 295,
+          "OUT_ROWS": 5433
+        },
+        {
+          "PRESC_DAY": "2026-08-06",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1499,
+          "MASTERS": 1499,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1499,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-08-07",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0851,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-08-07",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 5417,
+          "MASTERS": 1663,
+          "MASTERS_WITH_OUT": 1515,
+          "MASTERS_NO_OUT_ROWS": 148,
+          "OUT_ROWS": 5269
+        },
+        {
+          "PRESC_DAY": "2026-08-07",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1288,
+          "MASTERS": 1288,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1288,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-08-08",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0725,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-08-08",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 5042,
+          "MASTERS": 1631,
+          "MASTERS_WITH_OUT": 1441,
+          "MASTERS_NO_OUT_ROWS": 190,
+          "OUT_ROWS": 4852
+        },
+        {
+          "PRESC_DAY": "2026-08-08",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 956,
+          "MASTERS": 956,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 956,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-08-09",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0702,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-08-09",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 5110,
+          "MASTERS": 1592,
+          "MASTERS_WITH_OUT": 1464,
+          "MASTERS_NO_OUT_ROWS": 128,
+          "OUT_ROWS": 4982
+        },
+        {
+          "PRESC_DAY": "2026-08-09",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 846,
+          "MASTERS": 846,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 846,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-08-10",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.1083,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-08-10",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 7760,
+          "MASTERS": 2386,
+          "MASTERS_WITH_OUT": 2105,
+          "MASTERS_NO_OUT_ROWS": 281,
+          "OUT_ROWS": 7479
+        },
+        {
+          "PRESC_DAY": "2026-08-10",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1325,
+          "MASTERS": 1325,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1325,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-08-11",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0916,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-08-11",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 5994,
+          "MASTERS": 1757,
+          "MASTERS_WITH_OUT": 1586,
+          "MASTERS_NO_OUT_ROWS": 171,
+          "OUT_ROWS": 5823
+        },
+        {
+          "PRESC_DAY": "2026-08-11",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1374,
+          "MASTERS": 1374,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1374,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-08-12",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0897,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-08-12",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 5326,
+          "MASTERS": 1782,
+          "MASTERS_WITH_OUT": 1608,
+          "MASTERS_NO_OUT_ROWS": 174,
+          "OUT_ROWS": 5152
+        },
+        {
+          "PRESC_DAY": "2026-08-12",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1453,
+          "MASTERS": 1453,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1453,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-08-13",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0966,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-08-13",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 6100,
+          "MASTERS": 2018,
+          "MASTERS_WITH_OUT": 1674,
+          "MASTERS_NO_OUT_ROWS": 344,
+          "OUT_ROWS": 5756
+        },
+        {
+          "PRESC_DAY": "2026-08-13",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1414,
+          "MASTERS": 1414,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1414,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-08-14",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0944,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-08-14",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 6344,
+          "MASTERS": 1983,
+          "MASTERS_WITH_OUT": 1763,
+          "MASTERS_NO_OUT_ROWS": 220,
+          "OUT_ROWS": 6124
+        },
+        {
+          "PRESC_DAY": "2026-08-14",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1329,
+          "MASTERS": 1329,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1329,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-08-15",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0673,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-08-15",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 4230,
+          "MASTERS": 1482,
+          "MASTERS_WITH_OUT": 1309,
+          "MASTERS_NO_OUT_ROWS": 173,
+          "OUT_ROWS": 4057
+        },
+        {
+          "PRESC_DAY": "2026-08-15",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 815,
+          "MASTERS": 815,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 815,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-08-16",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0622,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-08-16",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 4579,
+          "MASTERS": 1393,
+          "MASTERS_WITH_OUT": 1310,
+          "MASTERS_NO_OUT_ROWS": 83,
+          "OUT_ROWS": 4496
+        },
+        {
+          "PRESC_DAY": "2026-08-16",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 792,
+          "MASTERS": 792,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 792,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-08-17",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.1027,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-08-17",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 7137,
+          "MASTERS": 2320,
+          "MASTERS_WITH_OUT": 2057,
+          "MASTERS_NO_OUT_ROWS": 263,
+          "OUT_ROWS": 6874
+        },
+        {
+          "PRESC_DAY": "2026-08-17",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1344,
+          "MASTERS": 1344,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1344,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-08-18",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0928,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-08-18",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 6367,
+          "MASTERS": 1964,
+          "MASTERS_WITH_OUT": 1758,
+          "MASTERS_NO_OUT_ROWS": 206,
+          "OUT_ROWS": 6161
+        },
+        {
+          "PRESC_DAY": "2026-08-18",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1339,
+          "MASTERS": 1339,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1339,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-08-19",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0871,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-08-19",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 5284,
+          "MASTERS": 1647,
+          "MASTERS_WITH_OUT": 1504,
+          "MASTERS_NO_OUT_ROWS": 143,
+          "OUT_ROWS": 5141
+        },
+        {
+          "PRESC_DAY": "2026-08-19",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1351,
+          "MASTERS": 1351,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1351,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-08-20",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0848,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-08-20",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 5719,
+          "MASTERS": 1868,
+          "MASTERS_WITH_OUT": 1596,
+          "MASTERS_NO_OUT_ROWS": 272,
+          "OUT_ROWS": 5447
+        },
+        {
+          "PRESC_DAY": "2026-08-20",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1143,
+          "MASTERS": 1143,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1143,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-08-21",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0801,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-08-21",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 5033,
+          "MASTERS": 1554,
+          "MASTERS_WITH_OUT": 1410,
+          "MASTERS_NO_OUT_ROWS": 144,
+          "OUT_ROWS": 4889
+        },
+        {
+          "PRESC_DAY": "2026-08-21",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1259,
+          "MASTERS": 1259,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1259,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-08-22",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.064,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-08-22",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 3963,
+          "MASTERS": 1396,
+          "MASTERS_WITH_OUT": 1236,
+          "MASTERS_NO_OUT_ROWS": 160,
+          "OUT_ROWS": 3803
+        },
+        {
+          "PRESC_DAY": "2026-08-22",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 757,
+          "MASTERS": 757,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 757,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-08-23",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0662,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-08-23",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 4292,
+          "MASTERS": 1396,
+          "MASTERS_WITH_OUT": 1316,
+          "MASTERS_NO_OUT_ROWS": 80,
+          "OUT_ROWS": 4212
+        },
+        {
+          "PRESC_DAY": "2026-08-23",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 755,
+          "MASTERS": 755,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 755,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-08-24",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.1078,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-08-24",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 7066,
+          "MASTERS": 2344,
+          "MASTERS_WITH_OUT": 2108,
+          "MASTERS_NO_OUT_ROWS": 236,
+          "OUT_ROWS": 6830
+        },
+        {
+          "PRESC_DAY": "2026-08-24",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1196,
+          "MASTERS": 1196,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1196,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-08-25",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0921,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-08-25",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 5656,
+          "MASTERS": 1797,
+          "MASTERS_WITH_OUT": 1657,
+          "MASTERS_NO_OUT_ROWS": 140,
+          "OUT_ROWS": 5516
+        },
+        {
+          "PRESC_DAY": "2026-08-25",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1386,
+          "MASTERS": 1386,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1386,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-08-26",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0936,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-08-26",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 6088,
+          "MASTERS": 2033,
+          "MASTERS_WITH_OUT": 1856,
+          "MASTERS_NO_OUT_ROWS": 177,
+          "OUT_ROWS": 5911
+        },
+        {
+          "PRESC_DAY": "2026-08-26",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1259,
+          "MASTERS": 1259,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1259,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-08-27",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0845,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-08-27",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 5281,
+          "MASTERS": 1813,
+          "MASTERS_WITH_OUT": 1593,
+          "MASTERS_NO_OUT_ROWS": 220,
+          "OUT_ROWS": 5061
+        },
+        {
+          "PRESC_DAY": "2026-08-27",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1241,
+          "MASTERS": 1241,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1241,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-08-28",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0792,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-08-28",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 5286,
+          "MASTERS": 1659,
+          "MASTERS_WITH_OUT": 1539,
+          "MASTERS_NO_OUT_ROWS": 120,
+          "OUT_ROWS": 5166
+        },
+        {
+          "PRESC_DAY": "2026-08-28",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1219,
+          "MASTERS": 1219,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1219,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-08-29",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0611,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-08-29",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 4641,
+          "MASTERS": 1448,
+          "MASTERS_WITH_OUT": 1342,
+          "MASTERS_NO_OUT_ROWS": 106,
+          "OUT_ROWS": 4535
+        },
+        {
+          "PRESC_DAY": "2026-08-29",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 727,
+          "MASTERS": 727,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 727,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-08-30",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0617,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-08-30",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 4325,
+          "MASTERS": 1467,
+          "MASTERS_WITH_OUT": 1371,
+          "MASTERS_NO_OUT_ROWS": 96,
+          "OUT_ROWS": 4229
+        },
+        {
+          "PRESC_DAY": "2026-08-30",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 724,
+          "MASTERS": 724,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 724,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-08-31",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0965,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-08-31",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 6657,
+          "MASTERS": 2304,
+          "MASTERS_WITH_OUT": 2079,
+          "MASTERS_NO_OUT_ROWS": 225,
+          "OUT_ROWS": 6432
+        },
+        {
+          "PRESC_DAY": "2026-08-31",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1059,
+          "MASTERS": 1059,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1059,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-09-01",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.1378,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-09-01",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 12895,
+          "MASTERS": 3333,
+          "MASTERS_WITH_OUT": 3124,
+          "MASTERS_NO_OUT_ROWS": 209,
+          "OUT_ROWS": 12686
+        },
+        {
+          "PRESC_DAY": "2026-09-01",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1210,
+          "MASTERS": 1210,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1210,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-09-02",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.1115,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-09-02",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 9458,
+          "MASTERS": 2600,
+          "MASTERS_WITH_OUT": 2485,
+          "MASTERS_NO_OUT_ROWS": 115,
+          "OUT_ROWS": 9343
+        },
+        {
+          "PRESC_DAY": "2026-09-02",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1240,
+          "MASTERS": 1240,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1240,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-09-03",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.1027,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-09-03",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 7969,
+          "MASTERS": 2234,
+          "MASTERS_WITH_OUT": 2022,
+          "MASTERS_NO_OUT_ROWS": 212,
+          "OUT_ROWS": 7757
+        },
+        {
+          "PRESC_DAY": "2026-09-03",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1378,
+          "MASTERS": 1378,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1378,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-09-04",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0974,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-09-04",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 7433,
+          "MASTERS": 2041,
+          "MASTERS_WITH_OUT": 1936,
+          "MASTERS_NO_OUT_ROWS": 105,
+          "OUT_ROWS": 7328
+        },
+        {
+          "PRESC_DAY": "2026-09-04",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1338,
+          "MASTERS": 1338,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1338,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-09-05",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0759,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-09-05",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 5714,
+          "MASTERS": 1891,
+          "MASTERS_WITH_OUT": 1758,
+          "MASTERS_NO_OUT_ROWS": 133,
+          "OUT_ROWS": 5581
+        },
+        {
+          "PRESC_DAY": "2026-09-05",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 765,
+          "MASTERS": 765,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 765,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-09-06",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0711,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-09-06",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 5824,
+          "MASTERS": 1836,
+          "MASTERS_WITH_OUT": 1736,
+          "MASTERS_NO_OUT_ROWS": 100,
+          "OUT_ROWS": 5724
+        },
+        {
+          "PRESC_DAY": "2026-09-06",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 642,
+          "MASTERS": 642,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 642,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-09-07",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.1103,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-09-07",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 8419,
+          "MASTERS": 2597,
+          "MASTERS_WITH_OUT": 2339,
+          "MASTERS_NO_OUT_ROWS": 258,
+          "OUT_ROWS": 8161
+        },
+        {
+          "PRESC_DAY": "2026-09-07",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1258,
+          "MASTERS": 1258,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1258,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-09-08",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.1003,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-09-08",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 7532,
+          "MASTERS": 2150,
+          "MASTERS_WITH_OUT": 2033,
+          "MASTERS_NO_OUT_ROWS": 117,
+          "OUT_ROWS": 7415
+        },
+        {
+          "PRESC_DAY": "2026-09-08",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1436,
+          "MASTERS": 1436,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1436,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-09-09",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.105,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-09-09",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 7952,
+          "MASTERS": 2391,
+          "MASTERS_WITH_OUT": 2224,
+          "MASTERS_NO_OUT_ROWS": 167,
+          "OUT_ROWS": 7785
+        },
+        {
+          "PRESC_DAY": "2026-09-09",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1279,
+          "MASTERS": 1279,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1279,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-09-10",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0954,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-09-10",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 6308,
+          "MASTERS": 1990,
+          "MASTERS_WITH_OUT": 1832,
+          "MASTERS_NO_OUT_ROWS": 158,
+          "OUT_ROWS": 6150
+        },
+        {
+          "PRESC_DAY": "2026-09-10",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1432,
+          "MASTERS": 1432,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1432,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-09-11",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0779,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-09-11",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 5611,
+          "MASTERS": 1739,
+          "MASTERS_WITH_OUT": 1658,
+          "MASTERS_NO_OUT_ROWS": 81,
+          "OUT_ROWS": 5530
+        },
+        {
+          "PRESC_DAY": "2026-09-11",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1160,
+          "MASTERS": 1160,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1160,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-09-12",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0647,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-09-12",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 4795,
+          "MASTERS": 1559,
+          "MASTERS_WITH_OUT": 1478,
+          "MASTERS_NO_OUT_ROWS": 81,
+          "OUT_ROWS": 4714
+        },
+        {
+          "PRESC_DAY": "2026-09-12",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 676,
+          "MASTERS": 676,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 676,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-09-13",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0747,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-09-13",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 5760,
+          "MASTERS": 1852,
+          "MASTERS_WITH_OUT": 1796,
+          "MASTERS_NO_OUT_ROWS": 56,
+          "OUT_ROWS": 5704
+        },
+        {
+          "PRESC_DAY": "2026-09-13",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 640,
+          "MASTERS": 640,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 640,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-09-14",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.1113,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-09-14",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 8778,
+          "MASTERS": 2712,
+          "MASTERS_WITH_OUT": 2455,
+          "MASTERS_NO_OUT_ROWS": 257,
+          "OUT_ROWS": 8521
+        },
+        {
+          "PRESC_DAY": "2026-09-14",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1098,
+          "MASTERS": 1098,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1098,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-09-15",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0951,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-09-15",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 6568,
+          "MASTERS": 2096,
+          "MASTERS_WITH_OUT": 1925,
+          "MASTERS_NO_OUT_ROWS": 171,
+          "OUT_ROWS": 6397
+        },
+        {
+          "PRESC_DAY": "2026-09-15",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1246,
+          "MASTERS": 1246,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1246,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-09-16",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0958,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-09-16",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 6636,
+          "MASTERS": 2052,
+          "MASTERS_WITH_OUT": 1942,
+          "MASTERS_NO_OUT_ROWS": 110,
+          "OUT_ROWS": 6526
+        },
+        {
+          "PRESC_DAY": "2026-09-16",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1306,
+          "MASTERS": 1306,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1306,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-09-17",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0929,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-09-17",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 6108,
+          "MASTERS": 1974,
+          "MASTERS_WITH_OUT": 1745,
+          "MASTERS_NO_OUT_ROWS": 229,
+          "OUT_ROWS": 5879
+        },
+        {
+          "PRESC_DAY": "2026-09-17",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1314,
+          "MASTERS": 1314,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1314,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-09-18",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0838,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-09-18",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 5632,
+          "MASTERS": 1827,
+          "MASTERS_WITH_OUT": 1712,
+          "MASTERS_NO_OUT_ROWS": 115,
+          "OUT_ROWS": 5517
+        },
+        {
+          "PRESC_DAY": "2026-09-18",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1173,
+          "MASTERS": 1173,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1173,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-09-19",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0697,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-09-19",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 4408,
+          "MASTERS": 1581,
+          "MASTERS_WITH_OUT": 1476,
+          "MASTERS_NO_OUT_ROWS": 105,
+          "OUT_ROWS": 4303
+        },
+        {
+          "PRESC_DAY": "2026-09-19",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 790,
+          "MASTERS": 790,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 790,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-09-20",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0656,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-09-20",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 4432,
+          "MASTERS": 1418,
+          "MASTERS_WITH_OUT": 1322,
+          "MASTERS_NO_OUT_ROWS": 96,
+          "OUT_ROWS": 4336
+        },
+        {
+          "PRESC_DAY": "2026-09-20",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 923,
+          "MASTERS": 923,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 923,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-09-21",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0955,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-09-21",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 6806,
+          "MASTERS": 2248,
+          "MASTERS_WITH_OUT": 2052,
+          "MASTERS_NO_OUT_ROWS": 196,
+          "OUT_ROWS": 6610
+        },
+        {
+          "PRESC_DAY": "2026-09-21",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1145,
+          "MASTERS": 1145,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1145,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-09-22",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.088,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-09-22",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 5936,
+          "MASTERS": 1906,
+          "MASTERS_WITH_OUT": 1750,
+          "MASTERS_NO_OUT_ROWS": 156,
+          "OUT_ROWS": 5780
+        },
+        {
+          "PRESC_DAY": "2026-09-22",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1209,
+          "MASTERS": 1209,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1209,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-09-23",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0886,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-09-23",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 6520,
+          "MASTERS": 1998,
+          "MASTERS_WITH_OUT": 1885,
+          "MASTERS_NO_OUT_ROWS": 113,
+          "OUT_ROWS": 6407
+        },
+        {
+          "PRESC_DAY": "2026-09-23",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1134,
+          "MASTERS": 1134,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1134,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-09-24",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.088,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-09-24",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 5794,
+          "MASTERS": 1974,
+          "MASTERS_WITH_OUT": 1748,
+          "MASTERS_NO_OUT_ROWS": 226,
+          "OUT_ROWS": 5568
+        },
+        {
+          "PRESC_DAY": "2026-09-24",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1248,
+          "MASTERS": 1248,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1248,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-09-25",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0554,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-09-25",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 3939,
+          "MASTERS": 1291,
+          "MASTERS_WITH_OUT": 1216,
+          "MASTERS_NO_OUT_ROWS": 75,
+          "OUT_ROWS": 3864
+        },
+        {
+          "PRESC_DAY": "2026-09-25",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 658,
+          "MASTERS": 658,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 658,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-09-26",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0643,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-09-26",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 4334,
+          "MASTERS": 1473,
+          "MASTERS_WITH_OUT": 1375,
+          "MASTERS_NO_OUT_ROWS": 98,
+          "OUT_ROWS": 4236
+        },
+        {
+          "PRESC_DAY": "2026-09-26",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 709,
+          "MASTERS": 709,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 709,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-09-27",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0602,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-09-27",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 4472,
+          "MASTERS": 1427,
+          "MASTERS_WITH_OUT": 1347,
+          "MASTERS_NO_OUT_ROWS": 80,
+          "OUT_ROWS": 4392
+        },
+        {
+          "PRESC_DAY": "2026-09-27",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 625,
+          "MASTERS": 625,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 625,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-09-28",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.1082,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-09-28",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 8255,
+          "MASTERS": 2614,
+          "MASTERS_WITH_OUT": 2349,
+          "MASTERS_NO_OUT_ROWS": 265,
+          "OUT_ROWS": 7990
+        },
+        {
+          "PRESC_DAY": "2026-09-28",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1166,
+          "MASTERS": 1166,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1166,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-09-29",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0922,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-09-29",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 7177,
+          "MASTERS": 2072,
+          "MASTERS_WITH_OUT": 1847,
+          "MASTERS_NO_OUT_ROWS": 225,
+          "OUT_ROWS": 6952
+        },
+        {
+          "PRESC_DAY": "2026-09-29",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1235,
+          "MASTERS": 1235,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1235,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-09-30",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.1009,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-09-30",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 7716,
+          "MASTERS": 2298,
+          "MASTERS_WITH_OUT": 2146,
+          "MASTERS_NO_OUT_ROWS": 152,
+          "OUT_ROWS": 7564
+        },
+        {
+          "PRESC_DAY": "2026-09-30",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1334,
+          "MASTERS": 1334,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1334,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-10-01",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.129,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-10-01",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 10934,
+          "MASTERS": 3226,
+          "MASTERS_WITH_OUT": 2931,
+          "MASTERS_NO_OUT_ROWS": 295,
+          "OUT_ROWS": 10639
+        },
+        {
+          "PRESC_DAY": "2026-10-01",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1125,
+          "MASTERS": 1125,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1125,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-10-02",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0977,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-10-02",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 7652,
+          "MASTERS": 2264,
+          "MASTERS_WITH_OUT": 2120,
+          "MASTERS_NO_OUT_ROWS": 144,
+          "OUT_ROWS": 7508
+        },
+        {
+          "PRESC_DAY": "2026-10-02",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1219,
+          "MASTERS": 1219,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1219,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-10-03",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0647,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-10-03",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 4862,
+          "MASTERS": 1599,
+          "MASTERS_WITH_OUT": 1492,
+          "MASTERS_NO_OUT_ROWS": 107,
+          "OUT_ROWS": 4755
+        },
+        {
+          "PRESC_DAY": "2026-10-03",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 741,
+          "MASTERS": 741,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 741,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-10-04",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0665,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-10-04",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 5138,
+          "MASTERS": 1632,
+          "MASTERS_WITH_OUT": 1516,
+          "MASTERS_NO_OUT_ROWS": 116,
+          "OUT_ROWS": 5022
+        },
+        {
+          "PRESC_DAY": "2026-10-04",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 732,
+          "MASTERS": 732,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 732,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-10-05",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0877,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-10-05",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 6294,
+          "MASTERS": 2173,
+          "MASTERS_WITH_OUT": 1971,
+          "MASTERS_NO_OUT_ROWS": 202,
+          "OUT_ROWS": 6092
+        },
+        {
+          "PRESC_DAY": "2026-10-05",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 876,
+          "MASTERS": 876,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 876,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-10-06",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0819,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-10-06",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 6424,
+          "MASTERS": 1882,
+          "MASTERS_WITH_OUT": 1780,
+          "MASTERS_NO_OUT_ROWS": 102,
+          "OUT_ROWS": 6322
+        },
+        {
+          "PRESC_DAY": "2026-10-06",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 918,
+          "MASTERS": 918,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 918,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-10-07",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0831,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-10-07",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 6283,
+          "MASTERS": 1953,
+          "MASTERS_WITH_OUT": 1829,
+          "MASTERS_NO_OUT_ROWS": 124,
+          "OUT_ROWS": 6159
+        },
+        {
+          "PRESC_DAY": "2026-10-07",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 977,
+          "MASTERS": 977,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 977,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-10-08",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.1045,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-10-08",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 7635,
+          "MASTERS": 2418,
+          "MASTERS_WITH_OUT": 2201,
+          "MASTERS_NO_OUT_ROWS": 217,
+          "OUT_ROWS": 7418
+        },
+        {
+          "PRESC_DAY": "2026-10-08",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1308,
+          "MASTERS": 1308,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1308,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-10-09",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0962,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-10-09",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 7083,
+          "MASTERS": 2149,
+          "MASTERS_WITH_OUT": 2028,
+          "MASTERS_NO_OUT_ROWS": 121,
+          "OUT_ROWS": 6962
+        },
+        {
+          "PRESC_DAY": "2026-10-09",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1367,
+          "MASTERS": 1367,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1367,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-10-10",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.0794,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-10-10",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 4675,
+          "MASTERS": 1590,
+          "MASTERS_WITH_OUT": 1483,
+          "MASTERS_NO_OUT_ROWS": 107,
+          "OUT_ROWS": 4568
+        },
+        {
+          "PRESC_DAY": "2026-10-10",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 1249,
+          "MASTERS": 1249,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 1249,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    },
+    {
+      "day": "2026-10-11",
+      "ok": true,
+      "rows": 2,
+      "seconds": 0.074,
+      "groups": [
+        {
+          "PRESC_DAY": "2026-10-11",
+          "PRESC_SOURCE": 0,
+          "JOIN_ROWS": 5500,
+          "MASTERS": 1735,
+          "MASTERS_WITH_OUT": 1643,
+          "MASTERS_NO_OUT_ROWS": 92,
+          "OUT_ROWS": 5408
+        },
+        {
+          "PRESC_DAY": "2026-10-11",
+          "PRESC_SOURCE": 1,
+          "JOIN_ROWS": 729,
+          "MASTERS": 729,
+          "MASTERS_WITH_OUT": 0,
+          "MASTERS_NO_OUT_ROWS": 729,
+          "OUT_ROWS": 0
+        }
+      ],
+      "cap_reached": false
+    }
+  ],
+  "daily_stop": "ALL_DAYS_QUERIED",
+  "daily_days_queried": 81,
+  "run_completed": true,
+  "total_elapsed_seconds": 7.144,
+  "captured_at": "2026-10-23T14:20:51.303210+00:00",
+  "run_id": "20261023T142042Z",
+  "supersedes": "source-audit-20261023T141852Z daily_coverage (truncated grouping)"
+}

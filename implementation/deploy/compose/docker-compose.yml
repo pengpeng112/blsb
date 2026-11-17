@@ -1,0 +1,196 @@
+# Linux 生产形态（W14修订，execution-plan §5 / DEP-A01—A13）。
+# 相对旧版的关键变化：
+# - 移除 core/storage/exchange 宿主机 8000/8001/8002 直映；唯一对外入口=nginx TLS 443
+#   （DEP-A12）。容器内部仍监听 0.0.0.0:800x，仅供 compose 网络内互访。
+# - 无 build: 段：镜像由 deploy/release/build_release.py 按 .dockerignore 白名单构建、
+#   固定 tag 并随发行包分发（DEP-A13）；Compose 直接引用 runtime.env 中的镜像名。
+# - 新增 bootstrap 一次性服务（最小幂等初始化）；migrate/bootstrap 失败不拉起业务服务。
+# - 恰好一个 worker（禁止 scale；扩容须单独证明幂等与租约安全）。
+# - 数据一律绑定挂载到 /home 大分区（§6），不用命名卷（避免落在根分区 /var/lib/docker）。
+#   隔离验证（Windows/Docker Desktop）用 test-override.yml 换回命名卷规避属主差异。
+# - core 挂载 exchange 卷（rw）：publication 撤回路径直接写交换 SQLite（T4），
+#   旧版未挂载时该路径在容器内必然失败。
+# - 全服务 restart 策略 + json-file 日志轮转 + 显式健康检查；worker 用心跳文件判活。
+# 使用（目标机）：
+#   docker compose --project-name blyb --env-file /etc/blyb/runtime.env \
+#     -f deploy/compose/docker-compose.yml <up|ps|down|...>
+# 安装/升级/回滚走 deploy/linux/install.sh 等脚本的显式健康门禁，不依赖 compose 默认等待语义。
+
+x-logging: &log
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+services:
+  db:
+    image: ${BLYB_PG_IMAGE:?set BLYB_PG_IMAGE in runtime.env}
+    environment:
+      POSTGRES_DB: blyb
+      POSTGRES_USER: blyb
+      POSTGRES_PASSWORD: ${BLYB_DB_PASSWORD:?set BLYB_DB_PASSWORD}
+    volumes:
+      - "${BLYB_PGDATA_DIR:?set BLYB_PGDATA_DIR}:/var/lib/postgresql/data"
+    healthcheck:
+      # -h 127.0.0.1 强制TCP：initdb期间的临时服务器只监听unix socket，
+      # 走socket会在用户/口令就绪前误报healthy（P2实测抢跑→迁移认证失败）
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U blyb -d blyb"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 10s
+    restart: unless-stopped
+    logging: *log
+
+  migrate:
+    image: ${BLYB_BACKEND_IMAGE:?set BLYB_BACKEND_IMAGE}
+    command: python -m apps.migrate
+    environment: &env
+      BLYB_DATABASE_URL: postgresql+psycopg://blyb:${BLYB_DB_PASSWORD}@db:5432/blyb
+      BLYB_STORAGE_EMBEDDED_WORKER: "0"
+      BLYB_EXCHANGE_DB: /data/exchange/exchange.sqlite3
+      # 现网插件集显式固定（DEVELOPMENT_PLAN §4）：升级不自动加载新增插件；
+      # 启用药品追溯须运维显式改为 pathology,metrics,drug_trace 并跑迁移。
+      BLYB_PLUGINS: ${BLYB_PLUGINS:-pathology,metrics}
+      # enroll 令牌校验发生在 core（/api/v1/agents/enroll），不是 bootstrap：
+      # 两个变量必须进共享 env，否则 core 回落 dev 默认注册密钥（P2 实测抓出）
+      BLYB_ENROLL_TOKEN: ${BLYB_ENROLL_TOKEN:?set BLYB_ENROLL_TOKEN}
+      BLYB_DISABLE_DEV_TOKENS: "1"
+    depends_on:
+      db: { condition: service_healthy }
+    restart: "no"
+    logging: *log
+
+  bootstrap:
+    image: ${BLYB_BACKEND_IMAGE:?set BLYB_BACKEND_IMAGE}
+    command: python -m apps.bootstrap
+    environment:
+      <<: *env
+      BLYB_BOOTSTRAP_ADMIN_TOKEN: ${BLYB_BOOTSTRAP_ADMIN_TOKEN:?set BLYB_BOOTSTRAP_ADMIN_TOKEN}
+      BLYB_ENROLL_TOKEN: ${BLYB_ENROLL_TOKEN:?set BLYB_ENROLL_TOKEN}
+      BLYB_DISABLE_DEV_TOKENS: "1"
+      BLYB_VOLUME_ROOT: /data/volume1
+      BLYB_TENANT_CODE: ${BLYB_TENANT_CODE:-first-hospital}
+      BLYB_TENANT_NAME: ${BLYB_TENANT_NAME:-首院}
+    volumes:
+      - "${BLYB_OBJECTS_DIR:?set BLYB_OBJECTS_DIR}:/data/volume1"
+    depends_on:
+      db: { condition: service_healthy }
+      migrate: { condition: service_completed_successfully }
+    restart: "no"
+    logging: *log
+
+  core:
+    image: ${BLYB_BACKEND_IMAGE:?set BLYB_BACKEND_IMAGE}
+    command: python -m uvicorn apps.core_api.app:get_app --factory --host 0.0.0.0 --port 8000
+    environment:
+      <<: *env
+      # 同源部署无需跨源；仅经批准的分离地址访问时填写精确 scheme://host:port 列表
+      BLYB_ALLOWED_ORIGINS: ${BLYB_ALLOWED_ORIGINS:-}
+    expose:
+      - "8000"
+    volumes:
+      - "${BLYB_EXCHANGE_DIR:?set BLYB_EXCHANGE_DIR}:/data/exchange"
+    depends_on:
+      db: { condition: service_healthy }
+      migrate: { condition: service_completed_successfully }
+      bootstrap: { condition: service_completed_successfully }
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import urllib.request;urllib.request.urlopen('http://127.0.0.1:8000/health',timeout=3)\""]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 15s
+    restart: unless-stopped
+    logging: *log
+
+  storage:
+    image: ${BLYB_BACKEND_IMAGE:?set BLYB_BACKEND_IMAGE}
+    command: python -m uvicorn apps.storage_service.app:get_app --factory --host 0.0.0.0 --port 8001
+    environment:
+      <<: *env
+      BLYB_ALLOWED_ORIGINS: ${BLYB_ALLOWED_ORIGINS:-}
+      BLYB_VOLUME_ROOT: /data/volume1
+    expose:
+      - "8001"
+    volumes:
+      - "${BLYB_OBJECTS_DIR:?set BLYB_OBJECTS_DIR}:/data/volume1"
+    depends_on:
+      db: { condition: service_healthy }
+      migrate: { condition: service_completed_successfully }
+      bootstrap: { condition: service_completed_successfully }
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import urllib.request;urllib.request.urlopen('http://127.0.0.1:8001/health',timeout=3)\""]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 15s
+    restart: unless-stopped
+    logging: *log
+
+  exchange:
+    image: ${BLYB_BACKEND_IMAGE:?set BLYB_BACKEND_IMAGE}
+    command: python -m uvicorn apps.exchange_gateway.app:get_app --factory --host 0.0.0.0 --port 8002
+    environment: *env
+    expose:
+      - "8002"
+    volumes:
+      - "${BLYB_EXCHANGE_DIR:?set BLYB_EXCHANGE_DIR}:/data/exchange"
+      - "${BLYB_OBJECTS_DIR:?set BLYB_OBJECTS_DIR}:/data/volume1:ro"
+    depends_on:
+      db: { condition: service_healthy }
+      migrate: { condition: service_completed_successfully }
+      bootstrap: { condition: service_completed_successfully }
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import urllib.request;urllib.request.urlopen('http://127.0.0.1:8002/health',timeout=3)\""]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 15s
+    restart: unless-stopped
+    logging: *log
+
+  worker:
+    image: ${BLYB_BACKEND_IMAGE:?set BLYB_BACKEND_IMAGE}
+    # 恰好一个执行器：禁止 docker compose scale worker（副作用幂等与租约未证明）
+    command: python -m apps.worker.engine
+    environment:
+      <<: *env
+      BLYB_WORKER_HEARTBEAT: /tmp/<worker-container>-heartbeat.json
+    volumes:
+      - "${BLYB_OBJECTS_DIR:?set BLYB_OBJECTS_DIR}:/data/volume1"
+      - "${BLYB_EXCHANGE_DIR:?set BLYB_EXCHANGE_DIR}:/data/exchange"
+    depends_on:
+      db: { condition: service_healthy }
+      migrate: { condition: service_completed_successfully }
+      bootstrap: { condition: service_completed_successfully }
+    healthcheck:
+      # DEP-A11：心跳文件 mtime 超过 60s 视为不健康
+      test: ["CMD-SHELL", "python -c \"import os,sys,time;sys.exit(0 if os.path.isfile('/tmp/<worker-container>-heartbeat.json') and time.time()-os.path.getmtime('/tmp/<worker-container>-heartbeat.json')<60 else 1)\""]
+      interval: 15s
+      timeout: 5s
+      retries: 6
+      start_period: 30s
+    restart: unless-stopped
+    logging: *log
+
+  nginx:
+    image: ${BLYB_NGINX_IMAGE:?set BLYB_NGINX_IMAGE}
+    ports:
+      # 唯一登记入口（DEP-A12）；绑定地址可收窄到管理网网卡
+      - "${BLYB_HTTPS_BIND:-0.0.0.0}:${BLYB_HTTPS_PORT:-443}:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ${BLYB_TLS_CERT_DIR:?set BLYB_TLS_CERT_DIR}:/etc/blyb/certs:ro
+    depends_on:
+      core: { condition: service_healthy }
+      storage: { condition: service_healthy }
+      exchange: { condition: service_healthy }
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --no-check-certificate -O /dev/null https://127.0.0.1/health || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    restart: unless-stopped
+    logging: *log

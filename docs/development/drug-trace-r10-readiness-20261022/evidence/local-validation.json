@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "checks": {
+    "both_live_views_exact_r10_tokens": true,
+    "all_16_selects_pass": true,
+    "candidate_quality_valid": true,
+    "check_reader.py_compile": true,
+    "check_runtime.py_compile": true,
+    "actual_worker_still_old_predicate": true,
+    "actual_source_unconfigured": true,
+    "actual_query_success": true,
+    "dmz_upload_method_not_enabled": true,
+    "local_links_valid": true
+  },
+  "local_link_count": 8,
+  "broken_links": [],
+  "source_writes": 0,
+  "uploads": 0,
+  "production_changes": 0,
+  "business_suite_run": false
+}

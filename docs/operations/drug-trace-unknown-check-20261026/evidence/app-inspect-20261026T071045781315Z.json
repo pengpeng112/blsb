@@ -1,0 +1,9 @@
+{
+  "host": "app",
+  "phase": "inspect",
+  "exit_code": 1,
+  "captured_at": "2026-10-26T07:10:45.781284+00:00",
+  "result": {
+    "marker_missing": true
+  }
+}

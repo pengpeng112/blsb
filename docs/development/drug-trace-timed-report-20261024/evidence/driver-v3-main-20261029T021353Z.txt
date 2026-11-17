@@ -1,0 +1,60 @@
+The authenticity of host '<prod-host> (<prod-host>)' can't be established.
+ED25519 key fingerprint is SHA256:IjK9PN01og2d/fsSjUy4rlsyRBqOiZZycBN6j46shQc.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '<prod-host>' (ED25519) to the list of known hosts.
+
+Authorized users only. All activities may be monitored and reported.
+root@<prod-host>'s password: 
+===ENV VARS===
+52:LOOKBACK_DAYS = max(0, int(os.environ.get('BLYB_LOOKBACK_DAYS', '7')))
+53:LOOKBACK_MAX_SENDS = max(0, int(os.environ.get('BLYB_LOOKBACK_MAX_SENDS', '500')))
+97:    if os.environ.get('BLYB_DAILY_REPORT_ENABLED', '1') == '0':
+===MAIN HEAD===
+def main(report_date=None):
+    started = time.monotonic()
+    total_deadline = started + DRIVER_TOTAL_WAIT_SECONDS
+    today = datetime.now(GMT8).date()
+    day = date.fromisoformat(report_date) if isinstance(report_date, str) else report_date
+    day = day if day is not None else today - timedelta(days=1)
+    wb = datetime.combine(day, dtime())  # naive GMT+8 (system convention)
+    we = wb + timedelta(days=1)
+    receipt['window'] = [wb.isoformat(), we.isoformat()]
+
+    def fail(code, key, detail=None):
+        """v1 语义保持：fatal 回执+退出码不变；v2 仅 best-effort 推送 FAILED 日报。"""
+        receipt.update({'fatal': key, 'outcome': 'FAILED',
+                        'elapsed_seconds': round(time.monotonic() - started, 1)})
+        if detail is not None:
+            receipt['detail'] = detail
+        if key.startswith('collect_'):
+            receipt['collection'] = {**(receipt.get('collection') or {}),
+                                     'error_code': key,
+                                     'candidate_count_known': False}
+        push_daily_report(day, 'FAILED')
+        print(json.dumps(receipt, ensure_ascii=False, default=str))
+        return code
+
+    if day >= today:
+        return fail(2, 'window_not_completed')
+===SEND CANDIDATES QUERY===
+        SELECT b.id AS bill_id, r.id AS rev_id, b.source_system,
+               b.pharmacy_code, b.business_kind, b.source_bill_id
+        FROM drug_trace_bill b JOIN drug_trace_bill_revision r ON r.id=b.current_revision_id
+        WHERE b.tenant_id=:t AND b.connector_id=:cid
+          AND b.bill_time>=:wb AND b.bill_time<:we
+          AND b.business_kind='PATIENT_DISPENSE' AND b.finalized=true AND b.is_void=false
+          AND r.quality_state='WAITING'
+          AND NOT EXISTS (SELECT 1 FROM drug_trace_code_index ci
+                          WHERE ci.bill_revision_id=r.id AND ci.is_deleted=false)
+          AND NOT EXISTS (SELECT 1 FROM submission s
+                          JOIN package_revision pr ON pr.id=s.package_revision_id
+                          WHERE s.tenant_id=:t
+                            AND pr.provenance->>'bill_revision_id'=r.id)
+        ORDER BY b.bill_time"""), {'t': tenant_id, 'cid': CONNECTOR_ID,
+                                   'wb': wb, 'we': we}).fetchall()
+
+
+def lookback_sendable(db, tenant_id, day):
+    """rescan 后新 VALID、未提交的回看窗门诊单（补报发送目标）。"""
+Connection to <prod-host> closed.

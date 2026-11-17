@@ -1,0 +1,12 @@
+{
+  "exit_code": 0,
+  "launched": true,
+  "unit": "blyb-mapping-recovery-auth-20261026.service",
+  "logs": "/var/log/blyb/mapping-recovery-auth-20261026",
+  "dates": [
+    "2026-10-25",
+    "2026-10-24"
+  ],
+  "driver_unchanged": true,
+  "new_source_collection": false
+}

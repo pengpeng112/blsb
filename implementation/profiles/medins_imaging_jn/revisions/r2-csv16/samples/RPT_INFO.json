@@ -1,0 +1,32 @@
+{
+ "input": {
+  "hospitalCode": "合成hospitalCo",
+  "hospitalName": "合成hospitalNa",
+  "systemId": "合成systemId",
+  "risStudyId": "合成risStudyId",
+  "reportDisease": "合成reportDise",
+  "recordNum": "合成recordNum",
+  "reportCode": "合成reportCode",
+  "reportStatus": 1,
+  "projNum": "合成projNum",
+  "itemNum": "合成itemNum",
+  "itemName": "合成itemName",
+  "categoryCode": "合成categoryCo",
+  "categoryName": "合成categoryNa",
+  "applyNum": "合成applyNum",
+  "reportOrganCode": "合成reportOrga",
+  "reportOrganName": "合成reportOrga",
+  "reportDoctorName": "合成reportDoct",
+  "reportDate": "2026-02-01 08:00:00",
+  "rvOrganCode": "合成rvOrganCod",
+  "confirmDoctorName": "合成confirmDoc",
+  "confirmDate": "2026-02-01 08:00:00",
+  "findings": "合成findings",
+  "inspectExamResult": "合成inspectExa",
+  "reportPubTime": "2026-02-01 08:00:00",
+  "snapshotCount": 1,
+  "reportImageCount": 1,
+  "lastChangeTime": "2026-02-01 08:00:00",
+  "disableFlag": 1
+ }
+}

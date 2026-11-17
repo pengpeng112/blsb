@@ -1,0 +1,18 @@
+{
+  "command": [
+    "C:\\Users\\Administrator\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+    "-m",
+    "pytest",
+    "tests/integration/test_drug_trace_domain.py",
+    "tests/integration/test_drug_trace_api.py",
+    "tests/integration/test_drug_trace_ops.py",
+    "tests/integration/test_dmz_forwarder.py",
+    "-q",
+    "-ra",
+    "--junitxml=F:\\python\\blyb\\docs\\development\\drug-trace-20261016\\review-2-20261017\\evidence\\local-regression.xml"
+  ],
+  "cwd": "F:\\python\\blyb\\implementation",
+  "bash": "D:\\Program Files\\Git\\bin\\bash.EXE",
+  "openssl": "D:\\Program Files\\Git\\usr\\bin\\openssl.EXE",
+  "exit_code": 0
+}

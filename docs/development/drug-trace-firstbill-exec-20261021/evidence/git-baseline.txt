@@ -1,0 +1,12 @@
+captured_at: 2026-10-21T16:00:10Z
+HEAD: 0ca47c6f718b4dccd53704bc151c24008dee5b07
+branch: main
+
+modified/untracked counts:
+     49 ??
+     50 M
+
+modified files (M):
+50
+untracked (??):
+49

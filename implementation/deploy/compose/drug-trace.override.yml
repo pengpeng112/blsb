@@ -1,0 +1,63 @@
+# 药品追溯启用覆盖（DTR-FINALIZE-20261020 FIN-06/FIN-A25）。
+#
+# 用法（<prod-host>，叠加在 docker-compose.yml 之上）：
+#   docker compose --project-name blyb --env-file /etc/blyb/runtime.env \
+#     -f deploy/compose/docker-compose.yml \
+#     -f deploy/compose/drug-trace.override.yml up -d worker
+#
+# 原则：
+# - AppSecret 只进 **worker**（唯一签名/采集进程）的环境，经受限的
+#   /etc/blyb/runtime.env 注入（env: SecretRef）；不进 core/storage/exchange
+#   环境、不进镜像层、不进 DMZ、不进 Git。
+# - mTLS 客户端证书/CA 只读挂载（worker 侧）；证书文件由受控渠道放至
+#   BLYB_DRUGTRACE_CERTS_DIR，目录权限仅 docker daemon root 可读。
+# - Oracle（DPL-P01 修订）：HIS 为旧 Oracle 11g → oracledb 必须 **Thick**
+#   模式（Thin 仅支持 12.1+，不适用）。Instant Client 19c 已在镜像内
+#   /opt/oracle/instantclient，worker 经 BLYB_DRUGTRACE_ORACLE_CLIENT_LIB_DIR
+#   显式绑定；缺 Client/版本不符时来源阻断（DRIVER_UNAVAILABLE），不回退
+#   Thin。受限 DSN 经 BLYB_DRUGTRACE_ORACLE_DSN 注入，或按连接器
+#   ConfigRevision 显式绑定（推荐：配置里 dsn 显式，不落全局环境）。
+# - `docker compose config` 会展开环境值：排查时用 --no-interpolate 或在
+#   受控终端执行，避免 Secret 出现在终端回显/日志。
+
+services:
+  # core 需要加载 drug_trace 插件（药品追溯管理 API 路由）；但 **不注入**
+  # AppSecret——API 进程不做签名/采集（签名只发生在 worker）。
+  core:
+    environment:
+      BLYB_PLUGINS: ${BLYB_PLUGINS_DRUGTRACE:-pathology,metrics,drug_trace,infectious,medins_emr,medins_imaging}
+
+  worker:
+    environment:
+      BLYB_ALIHEALTH_APP_KEY: ${BLYB_ALIHEALTH_APP_KEY:-}
+      BLYB_ALIHEALTH_APP_SECRET: ${BLYB_ALIHEALTH_APP_SECRET:?set BLYB_ALIHEALTH_APP_SECRET in runtime.env (restricted worker env only)}
+      BLYB_ALIHEALTH_SESSION: ${BLYB_ALIHEALTH_SESSION:-}
+      # Existing exchange volume is shared by all worker maintenance processes.
+      # State contains only hashes/timestamps; no payload or credentials.
+      BLYB_DRUGTRACE_RATE_STATE_DIR: /data/exchange/drugtrace-rate
+      BLYB_DRUGTRACE_ORACLE_DSN: ${BLYB_DRUGTRACE_ORACLE_DSN:-}
+      BLYB_DRUGTRACE_ORACLE_CLIENT_LIB_DIR: ${BLYB_DRUGTRACE_ORACLE_CLIENT_LIB_DIR:-/opt/oracle/instantclient}
+      BLYB_PLUGINS: ${BLYB_PLUGINS_DRUGTRACE:-pathology,metrics,drug_trace,infectious,medins_emr,medins_imaging}
+      # DTR-BATCH-FIX（2026-11-08）：采集分阶段计时常开（LT-08 交付；关闭时
+      # 零输出、开启近零开销）——collection run summary 的 profile.stages_ms
+      # 是夜间批次性能的首要观测口径（PLAN §3/§12）。
+      BLYB_DT_PROFILE: "1"
+    volumes:
+      - "${BLYB_DRUGTRACE_CERTS_DIR:?set BLYB_DRUGTRACE_CERTS_DIR}:/etc/blyb/certs:ro"
+
+  # RT-02：migrate/bootstrap 必须与 core/worker 用同一 BLYB_PLUGINS 集——
+  # 旧 override 只覆盖 core/worker，migrate 会漏跑插件迁移（009—020）、
+  # bootstrap 会因不认识 job_type 跳过镜像调度种子。infectious/medins_emr/
+  # medins_imaging 三个新插件均无自启生产任务、无真实外发权限，默认纳入
+  # override 后生产升级即可直接使用传染病外部台账面板与医保联调台；运维
+  # 可经 BLYB_PLUGINS_DRUGTRACE 随时收缩。
+  migrate:
+    environment:
+      BLYB_PLUGINS: ${BLYB_PLUGINS_DRUGTRACE:-pathology,metrics,drug_trace,infectious,medins_emr,medins_imaging}
+
+  bootstrap:
+    environment:
+      BLYB_PLUGINS: ${BLYB_PLUGINS_DRUGTRACE:-pathology,metrics,drug_trace,infectious,medins_emr,medins_imaging}
+
+  # storage/exchange 不注入 AppSecret（FIN-A25：只有真实签名/采集进程持有
+  # 密钥；负向断言见 compose 渲染检查）。

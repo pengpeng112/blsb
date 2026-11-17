@@ -1,0 +1,24 @@
+{
+ "info": "11103",
+ "msgid": "测试msgid",
+ "mdtrtarea_admvs": "测试mdtr",
+ "recer_sys_code": "测试recer_",
+ "infver": "测试infv",
+ "opter_type": "测试o",
+ "opter": "测试opter",
+ "opter_name": "测试患者",
+ "inf_time": "2026-01-01 00:00:00",
+ "fixmedins_code": "测试fixmed",
+ "input": {
+  "mdtrt_sn": "测试mdtrt_",
+  "medins_file_no": "测试medins",
+  "invono": "测试invono",
+  "refd_setl_flag": "测试r",
+  "setl_time": "2026-01-01 00:00:00",
+  "medfee_sumamt": 0,
+  "psn_pay": 0,
+  "setl_type": "测试s",
+  "vali_flag": "测试v"
+ },
+ "_synthetic": true
+}

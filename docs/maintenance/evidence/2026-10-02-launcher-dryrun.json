@@ -1,0 +1,138 @@
+[
+  {
+    "plan": {
+      "WorkingDirectory": "F:\\python\\blyb",
+      "Executable": "python",
+      "Arguments": [
+        "scripts/ai_session.py",
+        "status"
+      ]
+    },
+    "exit_code": 0,
+    "action": "Status"
+  },
+  {
+    "plan": {
+      "WorkingDirectory": "F:\\python\\blyb\\implementation",
+      "Executable": "python",
+      "Arguments": [
+        "run_dev.py"
+      ]
+    },
+    "exit_code": 0,
+    "action": "Dev"
+  },
+  {
+    "plan": {
+      "WorkingDirectory": "F:\\python\\blyb\\implementation",
+      "Executable": "python",
+      "Arguments": [
+        "run_dev.py",
+        "--demo"
+      ]
+    },
+    "exit_code": 0,
+    "action": "Demo"
+  },
+  {
+    "plan": {
+      "WorkingDirectory": "F:\\python\\blyb\\implementation",
+      "Executable": "python",
+      "Arguments": [
+        "apps/run_metrics_only.py"
+      ]
+    },
+    "exit_code": 0,
+    "action": "Metrics"
+  },
+  {
+    "plan": {
+      "WorkingDirectory": "F:\\python\\blyb\\implementation",
+      "Executable": "python",
+      "Arguments": [
+        "-m",
+        "apps.edge_agent.run",
+        "--once"
+      ]
+    },
+    "exit_code": 0,
+    "action": "Agent"
+  },
+  {
+    "plan": {
+      "WorkingDirectory": "F:\\python\\blyb\\implementation",
+      "Executable": "python",
+      "Arguments": [
+        "-m",
+        "apps.migrate"
+      ]
+    },
+    "exit_code": 0,
+    "action": "Migrate"
+  },
+  {
+    "plan": {
+      "WorkingDirectory": "F:\\python\\blyb\\implementation",
+      "Executable": "python",
+      "Arguments": [
+        "-m",
+        "pytest",
+        "F:\\python\\blyb\\implementation\\tests",
+        "-q",
+        "-ra"
+      ]
+    },
+    "exit_code": 0,
+    "action": "Test"
+  },
+  {
+    "plan": {
+      "WorkingDirectory": "F:\\python\\blyb\\implementation",
+      "Executable": "python",
+      "Arguments": [
+        "-m",
+        "pytest",
+        "docs/audit/2026-10-01/test_review_probes.py",
+        "-q",
+        "-ra"
+      ]
+    },
+    "exit_code": 0,
+    "action": "Probes"
+  },
+  {
+    "plan": {
+      "WorkingDirectory": "F:\\python\\blyb\\implementation\\apps\\admin_web",
+      "Executable": "npm",
+      "Arguments": [
+        "run",
+        "build"
+      ]
+    },
+    "exit_code": 0,
+    "action": "Build"
+  },
+  {
+    "plan": {
+      "WorkingDirectory": "F:\\python\\blyb",
+      "Executable": "python",
+      "Arguments": [
+        "scripts/project_docs.py",
+        "check"
+      ]
+    },
+    "exit_code": 0,
+    "action": "Docs"
+  },
+  {
+    "plan": {
+      "WorkingDirectory": "F:\\python\\blyb",
+      "Executable": "python",
+      "Arguments": [
+        "scripts/context_packet.py"
+      ]
+    },
+    "exit_code": 0,
+    "action": "Context"
+  }
+]

@@ -1,0 +1,97 @@
+{
+  "channel": "sjzc/<relay-jump>/data-asset-api/OracleConnector.execute_readonly",
+  "source_writes": 0,
+  "uploads": 0,
+  "registration_changes": 0,
+  "queries": {
+    "identity": {
+      "ok": true,
+      "sql": "SELECT USER AS LOGIN_USER,SYS_CONTEXT('USERENV','SERVICE_NAME') AS SERVICE_NAME FROM DUAL",
+      "params": null,
+      "rows_returned": 1,
+      "truncated": false,
+      "rows": [
+        {
+          "LOGIN_USER": "BLYB_DRUGTRACE",
+          "SERVICE_NAME": "his"
+        }
+      ]
+    }
+  },
+  "business_identifiers_returned": false,
+  "registration": {
+    "source_code": "his_source_<his_host_id>",
+    "host": "<his-host>",
+    "port": 1521,
+    "service": "his",
+    "write_policy": "medical_dict_push"
+  },
+  "diagnostic_batches": [
+    {
+      "group": "excluded",
+      "codes": 500,
+      "rows": 1578,
+      "seconds": 0.19
+    },
+    {
+      "group": "excluded",
+      "codes": 500,
+      "rows": 1541,
+      "seconds": 0.1054
+    },
+    {
+      "group": "excluded",
+      "codes": 383,
+      "rows": 939,
+      "seconds": 0.099
+    },
+    {
+      "group": "missing",
+      "codes": 500,
+      "rows": 1250,
+      "seconds": 0.1326
+    },
+    {
+      "group": "missing",
+      "codes": 31,
+      "rows": 46,
+      "seconds": 0.0089
+    }
+  ],
+  "excluded_raw_state_summary": [
+    {
+      "raw_kind": "PRESC_SOURCE=0;FLAG=1",
+      "refund_raw": "1",
+      "finalized_raw": "None",
+      "void_raw": "None",
+      "rows": 46
+    },
+    {
+      "raw_kind": "PRESC_SOURCE=0;FLAG=2",
+      "refund_raw": "1",
+      "finalized_raw": "None",
+      "void_raw": "None",
+      "rows": 23
+    },
+    {
+      "raw_kind": "PRESC_SOURCE=0;FLAG=2",
+      "refund_raw": "NULL",
+      "finalized_raw": "None",
+      "void_raw": "None",
+      "rows": 1327
+    }
+  ],
+  "excluded_distinct_main_bills": 411,
+  "excluded_states_explained_rows": 1396,
+  "missing_code_current_line_shapes": {
+    "14-digit-prefix": 1296
+  },
+  "missing_code_current_business_kinds": {
+    "PATIENT_DISPENSE": 1287,
+    "UNKNOWN": 9
+  },
+  "diagnosis_completed": true,
+  "total_elapsed_seconds": 0.765,
+  "private_details_path": "C:\\Users\\Administrator\\AppData\\Local\\BLYB\\history-compare-20261023\\live-20261023T041453Z\\comparison-details.json",
+  "captured_at": "2026-10-23T04:14:59.160545+00:00"
+}

@@ -1,0 +1,20 @@
+{
+  "host": "app",
+  "phase": "progress2",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T07:35:46.979233+00:00",
+  "result": {
+    "checked": 148,
+    "pairs": {
+      "CONFIRMED->CONFIRMED": 1,
+      "ACCEPTED->CONFIRMED": 35,
+      "UNKNOWN->NOT_FOUND": 112
+    },
+    "platform_calls": 148,
+    "last_checked_utc": "2026-10-26T07:35:46.949276+00:00",
+    "http": {
+      "200": 148
+    },
+    "final": null
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "captured_at": "2026-10-22T09:15:05.467336+00:00",
+  "source_writes": 0,
+  "app_writes": 0,
+  "uploads": 0,
+  "result": {
+    "ssh_exit_code": 255,
+    "status": "NO_STRUCTURED_RESULT"
+  }
+}

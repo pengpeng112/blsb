@@ -1,0 +1,33 @@
+{
+ "info": "11301",
+ "msgid": "测试msgid",
+ "mdtrtarea_admvs": "测试mdtr",
+ "recer_sys_code": "测试recer_",
+ "infver": "测试infv",
+ "opter_type": "测试o",
+ "opter": "测试opter",
+ "opter_name": "测试患者",
+ "inf_time": "2026-01-01 00:00:00",
+ "fixmedins_code": "测试fixmed",
+ "input": {
+  "mdtrt_sn": "测试mdtrt_",
+  "medins_file_no": "测试medins",
+  "ipt_bed_no": "测试ipt_be",
+  "drord_no": "测试drord_",
+  "isu_dept_code": "测试isu_de",
+  "isu_dept_name": "测试患者",
+  "drord_isu_time": "2026-01-01 00:00:00",
+  "drord_type": "测试d",
+  "drord_item_type_code": "测试drord_",
+  "drord_item_type_name": "测试患者",
+  "drord_detl_code": "测试drord_",
+  "drord_detl_name": "测试患者",
+  "drord_endtime": "2026-01-01 00:00:00",
+  "vali_flag": "测试v",
+  "medcas_drord_detl_id": "测试medcas",
+  "isu_drord_dr_code": "测试isu_dr",
+  "isu_drord_dr_name": "测试患者",
+  "drord_begntime": "2026-01-01 00:00:00"
+ },
+ "_synthetic": true
+}

@@ -1,0 +1,7 @@
+{
+  "scripts_compile": true,
+  "missing_links": [],
+  "receipt_consistency": true,
+  "source_tests_run": false,
+  "actual_trial_result": "CONFIRMED; one attempt; 3/51; no revocation"
+}

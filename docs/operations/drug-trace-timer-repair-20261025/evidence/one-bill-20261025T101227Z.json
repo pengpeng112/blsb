@@ -1,0 +1,15 @@
+{
+  "ssh_exit_code": 0,
+  "captured_at": "2026-10-25T10:12:27.638575+00:00",
+  "result": {
+    "new_upload_limit": 1,
+    "source_reads": 0,
+    "collect_jobs_claimed": 0,
+    "send_api_status": 200,
+    "jobs_finished": [
+      "drug_trace.send"
+    ],
+    "ok": false,
+    "error_type": "FileNotFoundError"
+  }
+}

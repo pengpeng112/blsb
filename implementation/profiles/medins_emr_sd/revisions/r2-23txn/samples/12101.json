@@ -1,0 +1,69 @@
+{
+ "info": "12101",
+ "msgid": "合成msgid",
+ "mdtrtarea_admvs": "合成mdtr",
+ "recer_sys_code": "合成recer_sy",
+ "infver": "合成infv",
+ "opter_type": "1",
+ "opter": "合成opter",
+ "opter_name": "合成敏感值占位",
+ "inf_time": "2026-02-01 08:00:00",
+ "fixmedins_code": "合成fixmedin",
+ "input": {
+  "labinfo": {
+   "mdtrt_sn": "合成mdtrt_sn",
+   "mdtrt_id": "合成mdtrt_id",
+   "medins_file_no": "合成敏感值占位",
+   "psn_no": "合成敏感值占位",
+   "appy_no": "合成appy_no",
+   "appy_org_code": "合成appy_org",
+   "appy_org_name": "合成appy_org",
+   "bilg_dr_codg": "合成bilg_dr_",
+   "bilg_dr_name": "合成敏感值占位",
+   "exam_org_code": "合成exam_org",
+   "exam_org_name": "合成exam_org",
+   "appy_dept_code": "合成appy_dep",
+   "appy_dept_name": "合成appy_dep",
+   "exam_dept_code": "合成exam_dep",
+   "exam_dept_name": "合成exam_dep",
+   "exam_mtd": "合成exam_mtd",
+   "rpotc_no": "合成rpotc_no",
+   "rpotc_type_name": "合成rpotc_ty",
+   "exam_item_code": "合成exam_ite",
+   "exam_item_name": "合成exam_ite",
+   "inhosp_exam_item_code": "合成inhosp_e",
+   "inhosp_exam_item_name": "合成inhosp_e",
+   "rpt_date": "2026-02-01",
+   "rpot_doc_code": "合成rpot_doc",
+   "rpot_doc": "合成rpot_doc",
+   "exam_charge": 1,
+   "vali_flag": "合成v"
+  },
+  "iteminfo": [
+   {
+    "rpotc_no": "合成rpotc_no",
+    "appy_no": "合成appy_no",
+    "exam_kpi_sn": "合成exam_kpi",
+    "exam_item_detl_code": "合成exam_ite",
+    "exam_item_detl_name": "合成exam_ite",
+    "exam_mtd": "合成exam_mtd",
+    "ref_val": "合成ref_val",
+    "ref_val_ul": "合成ref_val_",
+    "ref_val_ll": "合成ref_val_",
+    "exam_unt": "合成exam_unt",
+    "exam_rslt_val": 1,
+    "exam_rslt_dicm": "合成exam_rsl",
+    "exam_rslt_abn": "合成exam_rsl"
+   }
+  ],
+  "sampleinfo": [
+   {
+    "rpotc_no": "合成rpotc_no",
+    "appy_no": "合成appy_no",
+    "sapl_date": "2026-02-01",
+    "spcm_no": "合成spcm_no",
+    "spcm_name": "合成spcm_nam"
+   }
+  ]
+ }
+}

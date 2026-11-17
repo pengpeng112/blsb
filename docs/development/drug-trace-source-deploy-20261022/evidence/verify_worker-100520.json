@@ -1,0 +1,34 @@
+{
+  "exit_code": 0,
+  "result": {
+    "ok": true,
+    "source_writes": 0,
+    "uploads": 0,
+    "identity": {
+      "login_user": "BLYB_DRUGTRACE",
+      "service_name": "his"
+    },
+    "restricted_grants": true,
+    "privileges": [
+      {
+        "privilege": "CREATE SESSION"
+      }
+    ],
+    "role_count": 0,
+    "candidate": {
+      "key_sha256": "c055a75095109598e56f44fa1d5f8cbd0809a76538abfc7366d2df52c660f55a",
+      "window_begin": "2026-10-22T00:20:30",
+      "window_end": "2026-10-22T00:20:31",
+      "quality_state": "VALID",
+      "code_count": 4,
+      "rules": [
+        "QD-LEVEL-UNCONFIRMED"
+      ],
+      "prior_upload_reconciled": false
+    },
+    "boundary_poll_rows": 1,
+    "code_page_size": 2,
+    "secret_present": true,
+    "driver_mode": "thick"
+  }
+}

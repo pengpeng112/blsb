@@ -1,0 +1,419 @@
+{
+  "authorization": "User authorization 2026-10-24: DB re-verify + timed-report scope analysis",
+  "budget_seconds": 300,
+  "per_query_timeout_seconds": 30,
+  "source_tables_accessed": [
+    "PHARMACY.V_DRUG_TRACE_CODE",
+    "PHARMACY.V_DRUG_TRACE_BILL"
+  ],
+  "source_writes": 0,
+  "uploads": 0,
+  "queries": {
+    "identity": {
+      "ok": true,
+      "sql": "SELECT USER AS LOGIN_USER,SYS_CONTEXT('USERENV','SERVICE_NAME') AS SERVICE_NAME FROM DUAL",
+      "params": null,
+      "rows_returned": 1,
+      "truncated": false,
+      "rows": [
+        {
+          "LOGIN_USER": "BLYB_DRUGTRACE",
+          "SERVICE_NAME": "his"
+        }
+      ]
+    }
+  },
+  "q_excluded_batches": [
+    {
+      "codes": 500,
+      "rows": 1579,
+      "seconds": 0.1469,
+      "cap": false
+    },
+    {
+      "codes": 500,
+      "rows": 1542,
+      "seconds": 0.0633,
+      "cap": false
+    },
+    {
+      "codes": 383,
+      "rows": 940,
+      "seconds": 0.085,
+      "cap": false
+    }
+  ],
+  "q_excluded_stop": "DONE",
+  "excluded_state_summary": [
+    {
+      "raw": "PRESC_SOURCE=0;FLAG=1",
+      "refund": "1",
+      "fin": "None",
+      "void": "None",
+      "rows": 46
+    },
+    {
+      "raw": "PRESC_SOURCE=0;FLAG=2",
+      "refund": "1",
+      "fin": "None",
+      "void": "None",
+      "rows": 23
+    },
+    {
+      "raw": "PRESC_SOURCE=0;FLAG=2",
+      "refund": "NULL",
+      "fin": "None",
+      "void": "None",
+      "rows": 1327
+    }
+  ],
+  "excluded_pairs_seen": 1396,
+  "excluded_main_bills": 411,
+  "q_dup_batch": {
+    "codes": 31,
+    "rows": 62,
+    "seconds": 0.0096,
+    "cap": false
+  },
+  "dup_pairs_seen": 31,
+  "dup_pairs_still_2_records": 31,
+  "scope_days": [
+    {
+      "day": "2026-10-12",
+      "ok": true,
+      "seconds": 0.1512,
+      "groups": [
+        {
+          "D": "2026-10-12",
+          "KIND": "UNKNOWN",
+          "FIN": null,
+          "BILLS": 1159,
+          "SEND_ELIGIBLE": 0
+        },
+        {
+          "D": "2026-10-12",
+          "KIND": "PATIENT_DISPENSE",
+          "FIN": 1,
+          "BILLS": 2440,
+          "SEND_ELIGIBLE": 2440
+        }
+      ],
+      "code_rows": {
+        "CODE_ROWS": 7226,
+        "DELETED_ROWS": 0
+      }
+    },
+    {
+      "day": "2026-10-13",
+      "ok": true,
+      "seconds": 0.1298,
+      "groups": [
+        {
+          "D": "2026-10-13",
+          "KIND": "UNKNOWN",
+          "FIN": null,
+          "BILLS": 1499,
+          "SEND_ELIGIBLE": 0
+        },
+        {
+          "D": "2026-10-13",
+          "KIND": "PATIENT_DISPENSE",
+          "FIN": 1,
+          "BILLS": 1961,
+          "SEND_ELIGIBLE": 1961
+        }
+      ],
+      "code_rows": {
+        "CODE_ROWS": 5978,
+        "DELETED_ROWS": 0
+      }
+    },
+    {
+      "day": "2026-10-14",
+      "ok": true,
+      "seconds": 0.1311,
+      "groups": [
+        {
+          "D": "2026-10-14",
+          "KIND": "UNKNOWN",
+          "FIN": null,
+          "BILLS": 1369,
+          "SEND_ELIGIBLE": 0
+        },
+        {
+          "D": "2026-10-14",
+          "KIND": "PATIENT_DISPENSE",
+          "FIN": 1,
+          "BILLS": 2100,
+          "SEND_ELIGIBLE": 2100
+        }
+      ],
+      "code_rows": {
+        "CODE_ROWS": 6430,
+        "DELETED_ROWS": 0
+      }
+    },
+    {
+      "day": "2026-10-15",
+      "ok": true,
+      "seconds": 0.1142,
+      "groups": [
+        {
+          "D": "2026-10-15",
+          "KIND": "UNKNOWN",
+          "FIN": null,
+          "BILLS": 1261,
+          "SEND_ELIGIBLE": 0
+        },
+        {
+          "D": "2026-10-15",
+          "KIND": "PATIENT_DISPENSE",
+          "FIN": 1,
+          "BILLS": 2204,
+          "SEND_ELIGIBLE": 2204
+        }
+      ],
+      "code_rows": {
+        "CODE_ROWS": 6616,
+        "DELETED_ROWS": 0
+      }
+    },
+    {
+      "day": "2026-10-16",
+      "ok": true,
+      "seconds": 0.1098,
+      "groups": [
+        {
+          "D": "2026-10-16",
+          "KIND": "PATIENT_DISPENSE",
+          "FIN": 1,
+          "BILLS": 1885,
+          "SEND_ELIGIBLE": 1885
+        },
+        {
+          "D": "2026-10-16",
+          "KIND": "UNKNOWN",
+          "FIN": null,
+          "BILLS": 1487,
+          "SEND_ELIGIBLE": 0
+        }
+      ],
+      "code_rows": {
+        "CODE_ROWS": 5734,
+        "DELETED_ROWS": 0
+      }
+    },
+    {
+      "day": "2026-10-17",
+      "ok": true,
+      "seconds": 0.0743,
+      "groups": [
+        {
+          "D": "2026-10-17",
+          "KIND": "UNKNOWN",
+          "FIN": null,
+          "BILLS": 822,
+          "SEND_ELIGIBLE": 0
+        },
+        {
+          "D": "2026-10-17",
+          "KIND": "PATIENT_DISPENSE",
+          "FIN": 1,
+          "BILLS": 1361,
+          "SEND_ELIGIBLE": 1361
+        }
+      ],
+      "code_rows": {
+        "CODE_ROWS": 3634,
+        "DELETED_ROWS": 0
+      }
+    },
+    {
+      "day": "2026-10-18",
+      "ok": true,
+      "seconds": 0.08,
+      "groups": [
+        {
+          "D": "2026-10-18",
+          "KIND": "UNKNOWN",
+          "FIN": null,
+          "BILLS": 599,
+          "SEND_ELIGIBLE": 0
+        },
+        {
+          "D": "2026-10-18",
+          "KIND": "PATIENT_DISPENSE",
+          "FIN": 1,
+          "BILLS": 1593,
+          "SEND_ELIGIBLE": 1593
+        }
+      ],
+      "code_rows": {
+        "CODE_ROWS": 4889,
+        "DELETED_ROWS": 0
+      }
+    },
+    {
+      "day": "2026-10-19",
+      "ok": true,
+      "seconds": 0.1148,
+      "groups": [
+        {
+          "D": "2026-10-19",
+          "KIND": "PATIENT_DISPENSE",
+          "FIN": 1,
+          "BILLS": 2367,
+          "SEND_ELIGIBLE": 2367
+        },
+        {
+          "D": "2026-10-19",
+          "KIND": "UNKNOWN",
+          "FIN": null,
+          "BILLS": 1202,
+          "SEND_ELIGIBLE": 0
+        }
+      ],
+      "code_rows": {
+        "CODE_ROWS": 6915,
+        "DELETED_ROWS": 0
+      }
+    },
+    {
+      "day": "2026-10-20",
+      "ok": true,
+      "seconds": 0.107,
+      "groups": [
+        {
+          "D": "2026-10-20",
+          "KIND": "PATIENT_DISPENSE",
+          "FIN": 1,
+          "BILLS": 1774,
+          "SEND_ELIGIBLE": 1774
+        },
+        {
+          "D": "2026-10-20",
+          "KIND": "UNKNOWN",
+          "FIN": null,
+          "BILLS": 1351,
+          "SEND_ELIGIBLE": 0
+        }
+      ],
+      "code_rows": {
+        "CODE_ROWS": 5572,
+        "DELETED_ROWS": 0
+      }
+    },
+    {
+      "day": "2026-10-21",
+      "ok": true,
+      "seconds": 0.1073,
+      "groups": [
+        {
+          "D": "2026-10-21",
+          "KIND": "UNKNOWN",
+          "FIN": null,
+          "BILLS": 1369,
+          "SEND_ELIGIBLE": 0
+        },
+        {
+          "D": "2026-10-21",
+          "KIND": "PATIENT_DISPENSE",
+          "FIN": 1,
+          "BILLS": 2008,
+          "SEND_ELIGIBLE": 2008
+        }
+      ],
+      "code_rows": {
+        "CODE_ROWS": 5714,
+        "DELETED_ROWS": 0
+      }
+    },
+    {
+      "day": "2026-10-22",
+      "ok": true,
+      "seconds": 0.1055,
+      "groups": [
+        {
+          "D": "2026-10-22",
+          "KIND": "PATIENT_DISPENSE",
+          "FIN": 1,
+          "BILLS": 1756,
+          "SEND_ELIGIBLE": 1756
+        },
+        {
+          "D": "2026-10-22",
+          "KIND": "UNKNOWN",
+          "FIN": null,
+          "BILLS": 1066,
+          "SEND_ELIGIBLE": 0
+        }
+      ],
+      "code_rows": {
+        "CODE_ROWS": 5116,
+        "DELETED_ROWS": 0
+      }
+    },
+    {
+      "day": "2026-10-23",
+      "ok": true,
+      "seconds": 0.1335,
+      "groups": [
+        {
+          "D": "2026-10-23",
+          "KIND": "UNKNOWN",
+          "FIN": null,
+          "BILLS": 1282,
+          "SEND_ELIGIBLE": 0
+        },
+        {
+          "D": "2026-10-23",
+          "KIND": "PATIENT_DISPENSE",
+          "FIN": 1,
+          "BILLS": 1775,
+          "SEND_ELIGIBLE": 1775
+        }
+      ],
+      "code_rows": {
+        "CODE_ROWS": 5433,
+        "DELETED_ROWS": 0
+      }
+    },
+    {
+      "day": "2026-10-24",
+      "ok": true,
+      "seconds": 0.0214,
+      "groups": [
+        {
+          "D": "2026-10-24",
+          "KIND": "UNKNOWN",
+          "FIN": null,
+          "BILLS": 90,
+          "SEND_ELIGIBLE": 0
+        },
+        {
+          "D": "2026-10-24",
+          "KIND": "PATIENT_DISPENSE",
+          "FIN": 1,
+          "BILLS": 116,
+          "SEND_ELIGIBLE": 116
+        }
+      ],
+      "code_rows": {
+        "CODE_ROWS": 348,
+        "DELETED_ROWS": 0
+      }
+    }
+  ],
+  "scope_stop": "DONE",
+  "scope_days_queried": 13,
+  "run_completed": true,
+  "total_elapsed_seconds": 1.892,
+  "private_row_counts": {
+    "excluded_states": 1396,
+    "dup_states": 62
+  },
+  "private_details_path": "C:\\Users\\Administrator\\AppData\\Local\\BLYB\\history-rootcause-r2\\timed-20261024T005258Z\\timed-verify-details.json",
+  "captured_at": "2026-10-24T00:53:05.427784+00:00",
+  "run_id": "20261024T005258Z",
+  "private_dir": "C:\\Users\\Administrator\\AppData\\Local\\BLYB\\history-rootcause-r2\\timed-20261024T005258Z"
+}

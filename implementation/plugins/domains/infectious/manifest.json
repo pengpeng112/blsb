@@ -1,0 +1,9 @@
+{
+  "key": "infectious",
+  "module": "domains.infectious.plugin",
+  "domain": "infectious",
+  "capabilities": ["external_ledger", "collect", "send_mock"],
+  "description": "传染病智能监测预警前置软件上报（平台内影子实现；生产仍由 deploy/inf_pusher 执行）",
+  "report_targets": ["inf_cdc_frontend"],
+  "ui": {"route": "/targets/inf_cdc_frontend", "menu_group": "上报业务", "menu_label": "传染病上报"}
+}

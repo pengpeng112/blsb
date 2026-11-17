@@ -1,0 +1,590 @@
+{
+ "code": "11103",
+ "schema_version": 2,
+ "envelope_ref": "fields/_envelope.json",
+ "root": "input",
+ "length_unit": "UNCONFIRMED",
+ "children": [
+  {
+   "code": "setlinfo",
+   "type": "object",
+   "children": [
+    {
+     "code": "mdtrt_sn",
+     "name": "就医流水号",
+     "type": "string",
+     "max_len": 30,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 8,
+      "row": 2
+     },
+     "notes": "医院产生唯一就医流水号"
+    },
+    {
+     "code": "medins_file_no",
+     "name": "医院内部档案号",
+     "type": "string",
+     "max_len": 64,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 8,
+      "row": 3
+     },
+     "notes": "指医院内部患者唯一的索引号"
+    },
+    {
+     "code": "invono",
+     "name": "发票号",
+     "type": "string",
+     "max_len": 20,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 8,
+      "row": 4
+     }
+    },
+    {
+     "code": "refd_setl_flag",
+     "name": "退费结算标志",
+     "type": "string",
+     "max_len": 3,
+     "dict": null,
+     "has_code_dict": true,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 8,
+      "row": 5
+     },
+     "notes": "参照dic_flag"
+    },
+    {
+     "code": "adm_date",
+     "name": "入院日期",
+     "type": "datetime",
+     "max_len": null,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 8,
+      "row": 6
+     },
+     "notes": "yyyy-MM-dd HH:mm:ss"
+    },
+    {
+     "code": "dscg_date",
+     "name": "出院日期",
+     "type": "datetime",
+     "max_len": null,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 8,
+      "row": 7
+     },
+     "notes": "yyyy-MM-dd HH:mm:ss"
+    },
+    {
+     "code": "setl_time",
+     "name": "结算时间",
+     "type": "datetime",
+     "max_len": null,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 8,
+      "row": 8
+     },
+     "notes": "yyyy-MM-dd HH:mm:ss；多次结算取最后一次结算时间"
+    },
+    {
+     "code": "medfee_sumamt",
+     "name": "医疗费总额",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 8,
+      "row": 9
+     }
+    },
+    {
+     "code": "psn_pay",
+     "name": "个人支付金额",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 8,
+      "row": 10
+     }
+    },
+    {
+     "code": "setl_type",
+     "name": "结算类型",
+     "type": "string",
+     "max_len": 3,
+     "dict": null,
+     "has_code_dict": true,
+     "required": true,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 8,
+      "row": 11
+     },
+     "notes": "参照就诊结算类型mdtrt_setl_type：1医保结算；2自费结算"
+    },
+    {
+     "code": "opter_id",
+     "name": "经办人ID",
+     "type": "string",
+     "max_len": 20,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 8,
+      "row": 12
+     }
+    },
+    {
+     "code": "opter_name",
+     "name": "经办人姓名",
+     "type": "string",
+     "max_len": 50,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": true,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 8,
+      "row": 13
+     }
+    },
+    {
+     "code": "opt_time",
+     "name": "经办时间",
+     "type": "datetime",
+     "max_len": null,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 8,
+      "row": 14
+     },
+     "notes": "yyyy-MM-dd HH:mm:ss"
+    },
+    {
+     "code": "nurs_fee",
+     "name": "护理费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 8,
+      "row": 15
+     }
+    },
+    {
+     "code": "oprn_fee",
+     "name": "手术费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 8,
+      "row": 16
+     }
+    },
+    {
+     "code": "wmfee",
+     "name": "西药费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 8,
+      "row": 17
+     }
+    },
+    {
+     "code": "tcmpat_fee",
+     "name": "中成药费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 8,
+      "row": 18
+     }
+    },
+    {
+     "code": "tcmherb_fee",
+     "name": "中药饮片费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 8,
+      "row": 19
+     }
+    },
+    {
+     "code": "oth_fee",
+     "name": "其他费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 8,
+      "row": 20
+     }
+    },
+    {
+     "code": "bed_fee",
+     "name": "床位费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 8,
+      "row": 21
+     }
+    },
+    {
+     "code": "diag_fee",
+     "name": "诊察费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 8,
+      "row": 22
+     }
+    },
+    {
+     "code": "check_fee",
+     "name": "检查费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 8,
+      "row": 23
+     }
+    },
+    {
+     "code": "asy_fee",
+     "name": "化验费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 8,
+      "row": 24
+     }
+    },
+    {
+     "code": "trt_fee",
+     "name": "治疗费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 8,
+      "row": 25
+     }
+    },
+    {
+     "code": "hc_matl_fee",
+     "name": "卫生材料费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 8,
+      "row": 26
+     }
+    },
+    {
+     "code": "ordn_trt_fee",
+     "name": "一般诊疗费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 8,
+      "row": 27
+     }
+    },
+    {
+     "code": "rgst_fee",
+     "name": "挂号费",
+     "type": "number",
+     "max_len": 16,
+     "dict": null,
+     "has_code_dict": false,
+     "required": false,
+     "sensitive": false,
+     "source": "spec",
+     "direction": "input",
+     "locator": {
+      "heading_path": [
+       "重点说明",
+       "交易对象",
+       "输入"
+      ],
+      "table_index": 8,
+      "row": 28
+     }
+    }
+   ]
+  }
+ ]
+}

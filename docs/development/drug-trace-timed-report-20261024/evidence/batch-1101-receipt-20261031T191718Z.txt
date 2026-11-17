@@ -1,0 +1,25 @@
+The authenticity of host '<prod-host> (<prod-host>)' can't be established.
+ED25519 key fingerprint is SHA256:IjK9PN01og2d/fsSjUy4rlsyRBqOiZZycBN6j46shQc.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '<prod-host>' (ED25519) to the list of known hosts.
+
+Authorized users only. All activities may be monitored and reported.
+root@<prod-host>'s password: 
+===RECEIPT 010029===
+outcome: FAILED fatal: collect_progress_stalled elapsed: 3534.9
+collect: RUNNING bills_seen 300 q_s 0.8835923892911524 err_code: collect_progress_stalled
+Connection to <prod-host> closed.
+
+=====
+The authenticity of host '<prod-host> (<prod-host>)' can't be established.
+ED25519 key fingerprint is SHA256:IjK9PN01og2d/fsSjUy4rlsyRBqOiZZycBN6j46shQc.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '<prod-host>' (ED25519) to the list of known hosts.
+
+Authorized users only. All activities may be monitored and reported.
+root@<prod-host>'s password: 
+launcher pid=3848285
+root     3848288  0.0  0.0   4020  2788 pts/0    S+   03:17   0:00 bash /root/catchup-1101-launch.sh
+Connection to <prod-host> closed.

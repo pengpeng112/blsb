@@ -1,0 +1,9 @@
+{
+  "key": "medins_emr",
+  "module": "domains.medins_emr.plugin",
+  "domain": "medins_emr",
+  "capabilities": ["debug_console"],
+  "description": "山东医保电子病历联调台（只本地校验/Mock/执行包导出；真实联调院内手工执行）",
+  "report_targets": ["medins_emr_sd"],
+  "ui": {"route": "/targets/medins_emr_sd", "menu_group": "上报业务", "menu_label": "医保电子病历"}
+}

@@ -1,0 +1,29 @@
+{
+ "target_code": "medins_imaging_jn",
+ "name": "济南医保影像云索引",
+ "revision": "r2-csv16",
+ "schema_version": 2,
+ "status": "EXTRACTED_NOT_APPROVED",
+ "source_status": [
+  "EXTRACTED_NOT_APPROVED"
+ ],
+ "source": [
+  {
+   "path": "PACS_V2_字段清单_原样提取.csv",
+   "sha256": "dfd4c68ea3c4729a7518c9b2f6051406dbd0f7b88f7f022b08e122a9774bfade"
+  }
+ ],
+ "extracted_at": "2026-11-15T14:40:46.810275+00:00",
+ "extractor_version": "spec_extract/2.1-csv",
+ "datasets_count": 16,
+ "fields_count": 288,
+ "constraints": {
+  "type_present": 288,
+  "length_present": 285,
+  "requirement_present": 214,
+  "pending_total": 77,
+  "conditional_required": 13
+ },
+ "asset_info_note": "asset_info 为内部投影概念（LT-09 接入指南），不在本 CSV 16 数据集清单中——不新增第17个官方数据集",
+ "length_unit": "UNCONFIRMED"
+}

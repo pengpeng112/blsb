@@ -1,0 +1,28 @@
+The authenticity of host '<prod-host> (<prod-host>)' can't be established.
+ED25519 key fingerprint is SHA256:IjK9PN01og2d/fsSjUy4rlsyRBqOiZZycBN6j46shQc.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '<prod-host>' (ED25519) to the list of known hosts.
+
+Authorized users only. All activities may be monitored and reported.
+root@<prod-host>'s password: 
+Successfully copied 868B (transferred 2.56kB) to blyb-core-1:/tmp/create-run-1027.py
+{"status": 200, "data": {"collection_run_id": "238c79c2-07bb-4295-a75f-b51c8228beb6", "job_id": "c038de51-3153-47a5-83fb-04af0f5da917"}}
+Connection to <prod-host> closed.
+
+=====
+The authenticity of host '<prod-host> (<prod-host>)' can't be established.
+ED25519 key fingerprint is SHA256:IjK9PN01og2d/fsSjUy4rlsyRBqOiZZycBN6j46shQc.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '<prod-host>' (ED25519) to the list of known hosts.
+
+Authorized users only. All activities may be monitored and reported.
+root@<prod-host>'s password: 
+launcher pid=1201660
+root     1201660  0.0  0.0   4020  2888 pts/0    S+   15:51   0:00 bash /root/backfill-1027-launch.sh
+238c79c2-07bb-4295-a75f-b51c8228beb6|RUNNING
+13d263c3-fb96-4663-bee9-16dce07f70e6|DONE
+Connection to <prod-host> closed.
+
+new_run_id=238c79c2-07bb-4295-a75f-b51c8228beb6

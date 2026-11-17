@@ -1,0 +1,24 @@
+{
+ "target_code": "medins_emr_sd",
+ "active": "r2-23txn",
+ "note": "RT-04 B2 版本索引：active 指向运行时显式使用的 revision；旧版保留可恢复（只读），不覆盖、不修改历史已使用契约与 debug_exchange 解释。",
+ "revisions": {
+  "r1": {
+   "path": ".",
+   "base": true,
+   "schema_version": 1,
+   "transactions": 19,
+   "extractor": "spec_extract/1.0",
+   "note": "LT-07 平面契约原版（root 目录冻结只读；历史 debug_exchange 按此解释）"
+  },
+  "r2-23txn": {
+   "path": "revisions/r2-23txn",
+   "schema_version": 2,
+   "transactions": 23,
+   "extractor": "spec_extract/2.0-tree",
+   "note": "RT-04：清单表19 ∪ 正文标题12601~12604 = 23；树形 schema；输入/输出分离；UNRESOLVED_PATH 显式待核",
+   "digest": "e94be07fa84b1b6795ced7a158dcbf7d449930b0192470cbdc73a81455f2710e",
+   "created_at": "2026-11-14T09:11:56.537962+00:00"
+  }
+ }
+}

@@ -1,0 +1,298 @@
+{
+  "plans": [
+    {
+      "path": "docs/development/platform-evolution-20261103/LT-01-上报业务目录与插件内核.md",
+      "sha256": "b9c93553a4969d37bb2c4d81ef2d46126eb5d67d52d35bcc608ef32a316337bc"
+    },
+    {
+      "path": "docs/development/platform-evolution-20261103/LT-02-前端外壳与组件库.md",
+      "sha256": "4b6c023ca8c258f32d7b5ba4da2bbda4bde800273b34ebf56e197aa74185c318"
+    },
+    {
+      "path": "docs/development/platform-evolution-20261103/LT-03-统一推送与提交台账.md",
+      "sha256": "3042dee8cf8d0463ac450ba9a43877630c65f01b4cd7830bb30fcf5f5ff09ffc"
+    },
+    {
+      "path": "docs/development/platform-evolution-20261103/LT-04-调度运行治理与告警.md",
+      "sha256": "788e71efea2925ccdec232aca2046237987f6acf8eb53a8d71441b08d941cb78"
+    },
+    {
+      "path": "docs/development/platform-evolution-20261103/LT-05-传染病纳管.md",
+      "sha256": "5691023921826a7891b79ff696480d269f6ccedaf9cfd45df70470fd4c2fd235"
+    },
+    {
+      "path": "docs/development/platform-evolution-20261103/LT-06-运营页面.md",
+      "sha256": "d1217c5445d4c20ed2be4b689c25395512e6e5c9112cda0998929b03e0496d57"
+    },
+    {
+      "path": "docs/development/platform-evolution-20261103/LT-07-医保电子病历联调台.md",
+      "sha256": "bab7bc9159842aaa82543c1862cae59f2a24b0595df9e19ce2fcdaeaf85724ae"
+    },
+    {
+      "path": "docs/development/platform-evolution-20261103/LT-08-REPORT.md",
+      "sha256": "9ea1aaf2699fa4650393de6c3a70ddae0b796ffcb4d139fa7cda5e4d34a705ad"
+    },
+    {
+      "path": "docs/development/platform-evolution-20261103/LT-08-药品追溯采集性能.md",
+      "sha256": "1e3276690fc9bf5bc2f5c37d1764a7a9fe6bd54d8c21587380a60d1b5ef275e3"
+    },
+    {
+      "path": "docs/development/platform-evolution-20261103/LT-09-标准化收尾与发布准备.md",
+      "sha256": "135c8399f09750e9404427107ca3bc0442be9fce80820c691420465583e0f53d"
+    },
+    {
+      "path": "docs/development/platform-evolution-20261103/NEXT_AI_PROMPT.md",
+      "sha256": "8dc22b2b43c04ee990a6bae3a6fbe003a4b116d25773ae029ef42994a43d8111"
+    },
+    {
+      "path": "docs/development/platform-evolution-20261103/README.md",
+      "sha256": "b94303c512026ca63e4b6ecb4f7e455ae169fbfee1453e664bb8d17e2b6292be"
+    }
+  ],
+  "protected": [
+    {
+      "path": "implementation/deploy/inf_pusher/config.template.json",
+      "sha256": "0bec8eb5b6666c8322fab9004f03ef168a32b4d391d5b9d0e89696d359e3383b"
+    },
+    {
+      "path": "implementation/deploy/inf_pusher/deploy_8156_infpusher.py",
+      "sha256": "80adf798fcb4678c77ebb189faeaa611f0609eb00c61e5cee4ff848d483ec02a"
+    },
+    {
+      "path": "implementation/deploy/inf_pusher/go_inject_and_mock.py",
+      "sha256": "9bca6e429a29fe66321b31aa10af8d7f4ac3e077adf7118e20890c9f24546275"
+    },
+    {
+      "path": "implementation/deploy/inf_pusher/pusher.py",
+      "sha256": "8fb068d309d0d0840a4273d4b627421fb1a72bb322f31aaa5df71bce601f551b"
+    },
+    {
+      "path": "implementation/deploy/inf_pusher/run.sh",
+      "sha256": "4d44a89c05bc771c237483d1abbd13563a7f041447037596e0916cabec0f9d03"
+    },
+    {
+      "path": "implementation/deploy/inf_pusher/selftest.py",
+      "sha256": "306c683ea6598f78184b831b9602e2b42e9553b9f98d9284cac05f89ec83247a"
+    },
+    {
+      "path": "implementation/deploy/inf_pusher/tables.py",
+      "sha256": "0882ede143aa8b242113805dc803877427f196e033b32a765e66a7db549d458a"
+    },
+    {
+      "path": "implementation/deploy/inf_watchdog/config.template.json",
+      "sha256": "5fcf9f1b2722f6744b3c7aa5ed23ad4cecff4d3b50abc30ae42d54e10edb3f86"
+    },
+    {
+      "path": "implementation/deploy/inf_watchdog/deploy_8156_infwatchdog.py",
+      "sha256": "5e3e702dc1d70cd383ca99e3d38d76ccf0ae72473b1969f86c99e3ffc68e4adc"
+    },
+    {
+      "path": "implementation/deploy/inf_watchdog/inf-watchdog-daily.service",
+      "sha256": "3b8e579cdbb25784689bfb8b1090237bf7a03052bfae86d36932d2aa1979ae48"
+    },
+    {
+      "path": "implementation/deploy/inf_watchdog/inf-watchdog-daily.timer",
+      "sha256": "f9f4c9b996aefe5e5f32e9056c844676d877cbaa325bb53dba634ccc320425d0"
+    },
+    {
+      "path": "implementation/deploy/inf_watchdog/inf-watchdog.service",
+      "sha256": "436b644af250c3dc7a433b752d8b0418d43dd6894febbf0cb97c2f26b194ca1f"
+    },
+    {
+      "path": "implementation/deploy/inf_watchdog/inf-watchdog.timer",
+      "sha256": "585a40855bff56d5be83c862045a4c90371a7c695f9182c8bd63953fc5ebe8ef"
+    },
+    {
+      "path": "implementation/deploy/inf_watchdog/selftest.py",
+      "sha256": "e9b04b9c6542c6d6ccb271ca14da3a3f55821bae6047160e98de10efef68132b"
+    },
+    {
+      "path": "implementation/deploy/inf_watchdog/watchdog.py",
+      "sha256": "19ed392323aa78d4bfb83dcf4fe03996356deaa9fb8b92f756528868eb0401e3"
+    },
+    {
+      "path": "implementation/plugins/destinations/alihealth_drugtrace/client.py",
+      "sha256": "b774ccbe6c91859203a7b06812ab2729f3507513659dc1b84ceef080b66ca8ad"
+    },
+    {
+      "path": "implementation/plugins/destinations/alihealth_drugtrace/protocol.py",
+      "sha256": "e554c2eba9f981b6a58c7d8cdf9fbfd79831bd7317c032188dd6b04189655b01"
+    },
+    {
+      "path": "implementation/plugins/destinations/alihealth_drugtrace/rate_control.py",
+      "sha256": "a5dfbbd4e985beadf650993408e4ab61a20cfc48a941e22c7689f0d84008850c"
+    },
+    {
+      "path": "implementation/plugins/destinations/alihealth_drugtrace/transport.py",
+      "sha256": "0a84ea481e1de1864bfecfbcbfbba1e559e6aa2ad91606b6922a64a8194b8b8b"
+    },
+    {
+      "path": "implementation/plugins/destinations/alihealth_drugtrace/__init__.py",
+      "sha256": "9dcc59f4971851d2c18084ffbc0c1c286cf504b89b48edb3a2f0d9272a39e402"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/blyb-daily-upload-catchup.service",
+      "sha256": "c8c5bbd166725bf177fe78a14618efc586fb0751653b68d0eb1dbbbfc33ac284"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/blyb-daily-upload-catchup.timer",
+      "sha256": "15e7197a4b0282ae50d2650b6b8057937cd2ca4cb6974ddeb386db87e2affe5d"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/blyb-daily-upload.service",
+      "sha256": "4bb3cb60258a88ac1cf290895b9f5d5674ac1d0994221077ac63006d6d396b06"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/blyb-daily-upload.timer",
+      "sha256": "b0a12060474f14971bab9186265699f763124f4a93d139ab3f4d16ec4a8147f6"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/check_today.py",
+      "sha256": "60a0b53ec38a3d8751e41c5378cc9ff0ea7c435ce7d9c485342079b2d92ef84d"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/daily_upload_driver.py",
+      "sha256": "e8c655902330d4455b5575a99733a9ffb0371d4ed5b22b45d8f1ce64471e90c4"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/evidence_api.py",
+      "sha256": "f89c60d03321214f9d095dff0333abe04e4edbc49260dbe2c1e80789a03660c7"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/install_timer.py",
+      "sha256": "871d06304fb0684ff96a2c39078f9886443f50a67741ef10831bd6dacc246d2c"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/pipeline_api.py",
+      "sha256": "41eb07b305c172000ac972e58a714ed7cb685fb9fde9ef74c8a9aba6f3faaaf5"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/prod_status.py",
+      "sha256": "5cea1744dd422de25c7d2662d2cd656dc752e4e9e741ae409910a0a227f57b25"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/run_remote_api.py",
+      "sha256": "a218c36f8fa6f276e47b322c35ad89414c279cb692a85f84f1a1a9612bc3853b"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/run_timed_verify.py",
+      "sha256": "6985ca7b6c1f8d04b7a7c4066d8da894ee652a3b982f4931c85d4bfd9c904aff"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/smoke_api.py",
+      "sha256": "efebb14b945cabe6664b6110267fd209084eb0b977a91e36470c75e2e66447d8"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/timed_verify_remote.py",
+      "sha256": "e746f9f8a06c0e874c2fb1f147a2c8b592a0aa179d6cabd3b557876657da5357"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/evidence/check-today-20261028T231519Z.json",
+      "sha256": "423cd4fedaeb170cda23a2ca542b9a0274d2f7a6d93a7e2c20ea45d202032e73"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/evidence/check-today-r2.json",
+      "sha256": "942274303f477763a77657ba104f5271371c496be6f1b11309aa5a86ce218622"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/evidence/evidence-20261024T010817Z.json",
+      "sha256": "8ff7450f41b2bf7fdc2ca620197e8f78bd8d2c583c4725c390c8869b45e1043a"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/evidence/evidence-20261024T010936Z.json",
+      "sha256": "01f8e5e94935689d98b5ae7f44b3437164319ace8dadb668255d72849334aebb"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/evidence/install-20261024T013934Z.json",
+      "sha256": "55001de0f2674fa2a5683adc5555b4c7a050496df7a5dc9480415abaf250da82"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/evidence/pipeline-20261024T011236Z.json",
+      "sha256": "c1c8ae36d84c93a4ed156bca523b8ffc0d79a1edcf28505a9f71d9e57bf9da09"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/evidence/pipeline-20261024T011711Z.json",
+      "sha256": "56aad4dee0ebb90afa8ca6681f1775741eb5d0430a1ef92b67b6ea7e6ccebfd2"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/evidence/prod-status-20261024T005521Z.json",
+      "sha256": "2dced7ade977908b547e6fb14f3fdc5a74a53795a67775683eb0fc96144d1bfd"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/evidence/prod-status-20261024T005546Z.json",
+      "sha256": "acfd805e7868b5068304d7f2cc0f3574f6232ee16818f0487bc754a034b658b4"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/evidence/prod-status-20261024T005617Z.json",
+      "sha256": "cbc2f57f7ba3b15878d94f41ec17e10470d3b608ada4563e4b8572a6827f59f1"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/evidence/prod-status-20261024T005635Z.json",
+      "sha256": "a72254fab06d3618b5f06d80d7888b787fa9722a3d519e87ea18d2af9826d421"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/evidence/prod-status-20261024T005701Z.json",
+      "sha256": "c316b3b62168714546a111b89bab3405c0d35b8641704426bff3bfe0bd650cd1"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/evidence/prod-status-20261024T005742Z.json",
+      "sha256": "2f9ca92b106dfc0a7484ad0e2f62477513cf53ccbc507dec255cfb362cc24582"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/evidence/prod-status-20261024T005807Z.json",
+      "sha256": "2686fd948c95884658d93904affd1b9fd436b3103715ddd0929ea94d00e6699a"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/evidence/prod-status-20261024T011249Z.json",
+      "sha256": "00ace4abdd935ea25810193f237ed12e88d23d4fccf41ebb55ea2a86728a66aa"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/evidence/prod-status-20261024T014449Z.json",
+      "sha256": "f9ee6892abfa617c5a031b858cc4a8096ec0a9e07b53158bf9f519fc44d474c8"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/evidence/smoke-20261024T012123Z.json",
+      "sha256": "6a69a5ee55e113aa3a8370686cc837a146a2f4e1a04d928dad96bebf47299318"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/evidence/smoke-20261024T012826Z.json",
+      "sha256": "bc9c314364e54ba6ad969de1437c70d1593e35b7972635cc8e1004a874956369"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/evidence/timed-verify-20261024T005214Z.json",
+      "sha256": "bc69c480caabe354a170a4729eb89aefdd457cecbf478b234532f495c735b7a8"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/evidence/timed-verify-20261024T005243Z.json",
+      "sha256": "36d6f4c0872d1627ae37272f178bb27963ccd76cffd4049185f0dac4ebced118"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/evidence/timed-verify-20261024T005258Z.json",
+      "sha256": "523b3a977ea8a95a3db55dd634d503e88d821b45229396f91fb6326664995147"
+    },
+    {
+      "path": "docs/development/drug-trace-timed-report-20261024/evidence/unit-fix-20261024T014310Z.json",
+      "sha256": "b139cfa76ad6f6c60b6ab6ac3f74cea0b3765b5f0ff9e0d8069305b6e6fa8a15"
+    },
+    {
+      "path": "implementation/apps/admin_web/src/views/DrugTrace.vue",
+      "sha256": "2da65029749e968cc47ee9b87996867a29dac6c64ce9fa2f37d7e1b531a6d3d6"
+    },
+    {
+      "path": "implementation/apps/admin_web/src/views/drugTrace.css",
+      "sha256": "da0d4017a854daad7b4e80a246baf96edc0a1b8f81510c7b7e626111b501f7ed"
+    },
+    {
+      "path": "implementation/apps/admin_web/src/views/drugTraceDisplay.ts",
+      "sha256": "26fda7dcdb98230b95d88d2a02a0ed7f7d083b94e2f3cb479744bcc0b188bb52"
+    },
+    {
+      "path": "implementation/packages/core_db/migrate.py",
+      "sha256": "2e367d00a443161d548f18de12fbb0aafba09b25f30d3b165b8cde392c8bd04c"
+    },
+    {
+      "path": "implementation/plugins/domains/drug_trace/models.py",
+      "sha256": "9874e6d346a029528c9854d2b3be56ef10adb40e9b95cccd92a9737fac8469b7"
+    }
+  ]
+}

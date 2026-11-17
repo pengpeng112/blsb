@@ -1,0 +1,26 @@
+{
+  "checks": {
+    "verify_reader.py_compile": true,
+    "remote_code_compile": true,
+    "recheck_runtime.py_compile": true,
+    "actual_definitions_match_delivered_selects": false,
+    "all_16_live_selects_succeeded": true,
+    "header_17_code_18_columns": true,
+    "real_oracle_old_0_fixed_4": true,
+    "one_header_four_codes": true,
+    "actual_deployed_bug_present": true,
+    "actual_deployed_query_succeeded": true,
+    "zero_uploads_source_writes_remote_changes": true,
+    "private_files_ignored": true,
+    "local_document_links_valid": true
+  },
+  "passed": false,
+  "live_select_count": 16,
+  "local_link_count": 6,
+  "broken_links": [],
+  "business_regression_run": false,
+  "business_source_writes": 0,
+  "upload_requests": 0,
+  "application_code_changed": false,
+  "deployed_new_release": false
+}

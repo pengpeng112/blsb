@@ -1,0 +1,110 @@
+{
+  "host": "app",
+  "phase": "resumed_status",
+  "exit_code": 0,
+  "captured_at": "2026-10-27T06:09:09.762355+00:00",
+  "result": {
+    "baseline.json": {
+      "states": {
+        "PREPARED": 976,
+        "CONFIRMED": 3595,
+        "ACCEPTED": 42,
+        "UNKNOWN": 205
+      },
+      "window_states": {
+        "PREPARED": 976,
+        "CONFIRMED": 1018,
+        "ACCEPTED": 1
+      },
+      "protected_old_hash": "b6cff3ef40515622c29a8f5379963643",
+      "quota": [
+        {
+          "used": 3844,
+          "max_bills": 80000
+        }
+      ],
+      "checkpoint": [
+        {
+          "row_version": 80,
+          "since_time": "2026-10-27T00:00:00"
+        }
+      ],
+      "inflight": 0,
+      "pending_sends": 0,
+      "pending_prepares": 0,
+      "window_attempts": [
+        {
+          "http_status": 200,
+          "outcome": "ACCEPTED",
+          "n": 1019
+        },
+        {
+          "http_status": 200,
+          "outcome": "UNKNOWN",
+          "n": 1
+        }
+      ]
+    },
+    "progress.json": {
+      "started_utc": "2026-10-27T06:00:03.131811+00:00",
+      "outcome": "RUNNING",
+      "business_date": "2026-10-26",
+      "source": "manual",
+      "expected_valid": 1995,
+      "new_collection_allowed": false,
+      "driver_sha256": "19dd0e46a7fd4ed664ded7398c04cb547eb41053fc0a2e10f37840b64790de01",
+      "updated_utc": "2026-10-27T06:09:07.429145+00:00",
+      "snapshot": {
+        "states": {
+          "SENDING": 1,
+          "PREPARED": 864,
+          "CONFIRMED": 3681,
+          "ACCEPTED": 67,
+          "UNKNOWN": 205
+        },
+        "window_states": {
+          "SENDING": 1,
+          "PREPARED": 864,
+          "CONFIRMED": 1104,
+          "ACCEPTED": 26
+        },
+        "protected_old_hash": "b6cff3ef40515622c29a8f5379963643",
+        "quota": [
+          {
+            "used": 3956,
+            "max_bills": 80000
+          }
+        ],
+        "checkpoint": [
+          {
+            "row_version": 80,
+            "since_time": "2026-10-27T00:00:00"
+          }
+        ],
+        "inflight": 1,
+        "pending_sends": 1,
+        "pending_prepares": 0,
+        "window_attempts": [
+          {
+            "http_status": null,
+            "outcome": "UNKNOWN",
+            "n": 1
+          },
+          {
+            "http_status": 200,
+            "outcome": "ACCEPTED",
+            "n": 1130
+          },
+          {
+            "http_status": 200,
+            "outcome": "UNKNOWN",
+            "n": 1
+          }
+        ]
+      },
+      "old_246_unchanged": true,
+      "checkpoint_unchanged": true
+    },
+    "unit": "ExecMainStatus=0\nActiveState=active\nSubState=running"
+  }
+}

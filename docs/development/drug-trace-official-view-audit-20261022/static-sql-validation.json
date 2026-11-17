@@ -1,0 +1,197 @@
+{
+  "passed": true,
+  "queries": [
+    {
+      "sql": "SELECT USER AS LOGIN_USER, SYS_CONTEXT('USERENV','SERVICE_NAME') AS SERVICE_NAME FROM DUAL",
+      "errors": []
+    },
+    {
+      "sql": "SELECT PRIVILEGE FROM SESSION_PRIVS ORDER BY PRIVILEGE",
+      "errors": []
+    },
+    {
+      "sql": "SELECT ROLE FROM SESSION_ROLES ORDER BY ROLE",
+      "errors": []
+    },
+    {
+      "sql": "SELECT OWNER,TABLE_NAME,PRIVILEGE,GRANTABLE FROM USER_TAB_PRIVS_RECD ORDER BY OWNER,TABLE_NAME,PRIVILEGE",
+      "errors": []
+    },
+    {
+      "sql": "SELECT OWNER,OBJECT_NAME,STATUS FROM ALL_OBJECTS WHERE OWNER='PHARMACY' AND OBJECT_TYPE='VIEW' AND OBJECT_NAME IN ('V_DRUG_TRACE_BILL','V_DRUG_TRACE_CODE') ORDER BY OBJECT_NAME",
+      "errors": []
+    },
+    {
+      "sql": "SELECT TABLE_NAME,COLUMN_ID,COLUMN_NAME,DATA_TYPE,DATA_LENGTH FROM ALL_TAB_COLUMNS WHERE OWNER='PHARMACY' AND TABLE_NAME IN ('V_DRUG_TRACE_BILL','V_DRUG_TRACE_CODE') ORDER BY TABLE_NAME,COLUMN_ID",
+      "errors": []
+    },
+    {
+      "sql": "SELECT VIEW_NAME,TEXT_LENGTH,TEXT FROM ALL_VIEWS WHERE OWNER='PHARMACY' AND VIEW_NAME IN ('V_DRUG_TRACE_BILL','V_DRUG_TRACE_CODE') ORDER BY VIEW_NAME",
+      "errors": []
+    },
+    {
+      "sql": "SELECT source_system,source_bill_id,source_revision,business_kind,pharmacy_code,bill_time,updated_at,finalized,is_void,expected_code_count,source_bill_kind_raw FROM PHARMACY.V_DRUG_TRACE_BILL WHERE bill_time>=:begin_time AND bill_time<:end_time AND ROWNUM<=30",
+      "errors": []
+    },
+    {
+      "sql": "SELECT source_system,source_bill_id,source_revision,business_kind,pharmacy_code,source_line_id,source_code_record_id,trace_code,f_trace_code,s_trace_code,t_trace_code,is_deleted,bill_time,updated_at FROM PHARMACY.V_DRUG_TRACE_CODE WHERE bill_time>=:begin_time AND bill_time<:end_time AND ROWNUM<=100",
+      "errors": []
+    },
+    {
+      "sql": "SELECT source_revision,business_kind,finalized,is_void,bill_time,updated_at,expected_code_count FROM PHARMACY.V_DRUG_TRACE_BILL",
+      "errors": []
+    },
+    {
+      "sql": "SELECT source_revision,source_line_id,source_code_record_id,trace_code,is_deleted,bill_time,updated_at FROM PHARMACY.V_DRUG_TRACE_CODE",
+      "errors": []
+    }
+  ],
+  "business_window": "2026-10-22 00:00:00 <= bill_time < 2026-10-23 00:00:00",
+  "row_limits": {
+    "headers": 30,
+    "codes": 100,
+    "whole_bills": 8,
+    "each_whole_code_cap": 501
+  },
+  "per_query_timeout_seconds": 45,
+  "total_budget_seconds": 150,
+  "cancellation": "SSH process termination / connector call timeout; no source writes",
+  "post_execution_full_27_sql_check": [
+    {
+      "revision": "r1",
+      "key": "identity",
+      "errors": []
+    },
+    {
+      "revision": "r1",
+      "key": "privileges",
+      "errors": []
+    },
+    {
+      "revision": "r1",
+      "key": "roles",
+      "errors": []
+    },
+    {
+      "revision": "r1",
+      "key": "grants",
+      "errors": []
+    },
+    {
+      "revision": "r1",
+      "key": "view_status",
+      "errors": []
+    },
+    {
+      "revision": "r1",
+      "key": "columns",
+      "errors": []
+    },
+    {
+      "revision": "r1",
+      "key": "definitions",
+      "errors": []
+    },
+    {
+      "revision": "r1",
+      "key": "headers_sample",
+      "errors": []
+    },
+    {
+      "revision": "r1",
+      "key": "codes_sample",
+      "errors": []
+    },
+    {
+      "revision": "r1",
+      "key": "whole_header_1",
+      "errors": []
+    },
+    {
+      "revision": "r1",
+      "key": "whole_codes_1",
+      "errors": []
+    },
+    {
+      "revision": "r1",
+      "key": "whole_header_2",
+      "errors": []
+    },
+    {
+      "revision": "r1",
+      "key": "whole_codes_2",
+      "errors": []
+    },
+    {
+      "revision": "r1",
+      "key": "whole_header_3",
+      "errors": []
+    },
+    {
+      "revision": "r1",
+      "key": "whole_codes_3",
+      "errors": []
+    },
+    {
+      "revision": "r1",
+      "key": "whole_header_4",
+      "errors": []
+    },
+    {
+      "revision": "r1",
+      "key": "whole_codes_4",
+      "errors": []
+    },
+    {
+      "revision": "r1",
+      "key": "whole_header_5",
+      "errors": []
+    },
+    {
+      "revision": "r1",
+      "key": "whole_codes_5",
+      "errors": []
+    },
+    {
+      "revision": "r1",
+      "key": "whole_header_6",
+      "errors": []
+    },
+    {
+      "revision": "r1",
+      "key": "whole_codes_6",
+      "errors": []
+    },
+    {
+      "revision": "r1",
+      "key": "whole_header_7",
+      "errors": []
+    },
+    {
+      "revision": "r1",
+      "key": "whole_codes_7",
+      "errors": []
+    },
+    {
+      "revision": "r1",
+      "key": "whole_header_8",
+      "errors": []
+    },
+    {
+      "revision": "r1",
+      "key": "whole_codes_8",
+      "errors": []
+    },
+    {
+      "revision": "r2",
+      "key": "identity",
+      "errors": []
+    },
+    {
+      "revision": "r2",
+      "key": "bounded_time_lag",
+      "errors": []
+    }
+  ],
+  "post_execution_full_sql_passed": true
+}

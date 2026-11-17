@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "secret_plaintext_matches": [],
+  "task_broken_links": [],
+  "repository_broken_links_count": 233,
+  "source_or_archive_hash_errors": [],
+  "git_diff_check_exit": 0,
+  "private_directory_ignored": true,
+  "official_signed_query_count": 1,
+  "real_upload_count": 0,
+  "remote_changes": 0,
+  "his_business_queries": 0,
+  "production_forwarder_verified": false,
+  "network_dmz_outbound_verified": true,
+  "intranet_tcp_verified": true,
+  "intranet_tls_usable": false,
+  "business_source_edits": 0,
+  "new_pytest_or_full_regression_run": false,
+  "network_requests_in_this_validator": 0
+}

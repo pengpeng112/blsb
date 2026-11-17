@@ -1,0 +1,11 @@
+The authenticity of host '<prod-host> (<prod-host>)' can't be established.
+ED25519 key fingerprint is SHA256:IjK9PN01og2d/fsSjUy4rlsyRBqOiZZycBN6j46shQc.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '<prod-host>' (ED25519) to the list of known hosts.
+
+Authorized users only. All activities may be monitored and reported.
+root@<prod-host>'s password: 
+Successfully copied 1.18kB (transferred 3.07kB) to <worker-container>:/tmp/retest.py
+__RETEST__{"header_A": {"sec": [0.005, 0.0], "rows": 1}, "codes_A": {"sec": [0.004, 0.001], "rows": 2}, "header_B": {"sec": [0.002, 0.0], "rows": 1}, "codes_B": {"sec": [0.0, 0.0], "rows": 1}}
+Connection to <prod-host> closed.

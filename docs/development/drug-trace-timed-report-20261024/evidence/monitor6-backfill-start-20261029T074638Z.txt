@@ -1,0 +1,44 @@
+The authenticity of host '<prod-host> (<prod-host>)' can't be established.
+ED25519 key fingerprint is SHA256:IjK9PN01og2d/fsSjUy4rlsyRBqOiZZycBN6j46shQc.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '<prod-host>' (ED25519) to the list of known hosts.
+
+Authorized users only. All activities may be monitored and reported.
+root@<prod-host>'s password: 
+===SERVICE===
+inactive
+===HOST TIME===
+2026-10-29 15:46:31 +0800
+===CATCHUP RECEIPT===
+outcome: OK
+collection: DONE valid= 1801
+send: {'sent': 1801, 'skipped_terminal': 0, 'resumed': 1801, 'prepared_new': 0, 'aborted_reason': ''}
+query: {'queried': 0, 'errors': [], 'skipped_exhausted': 205, 'skipped_inflight': 31}
+lookback: {'ok': False, 'enabled': True, 'keys': 570, 'runs': [{'id': 'b32a934a-bcb8-4136-b560-a0efc1434db2', 'state': None}, {'id': '13d263c3-fb96-4663-bee9-16dce07f70e6', 'state': 'DONE'}], 'sent': 0, 'prepared_new': 0, 'skipped_terminal': 0, 'errors': [], 'error_code': 'LOOKBACK_RUN_NOT_DONE', 'error_step': 'run_state'}
+errors_count: 0
+report_push: {'ok': True}
+elapsed: 18771.9
+===QUOTA===
+6621|2026-10-29 07:05:10.42322
+===SUBS 10-28 WINDOW===
+CONFIRMED|1800
+PARTIAL|1
+Connection to <prod-host> closed.
+
+=====
+The authenticity of host '<prod-host> (<prod-host>)' can't be established.
+ED25519 key fingerprint is SHA256:IjK9PN01og2d/fsSjUy4rlsyRBqOiZZycBN6j46shQc.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '<prod-host>' (ED25519) to the list of known hosts.
+
+Authorized users only. All activities may be monitored and reported.
+root@<prod-host>'s password: 
+Successfully copied 31kB (transferred 32.8kB) to blyb-core-1:/tmp/daily-upload.py
+Successfully copied 203B (transferred 2.05kB) to blyb-core-1:/tmp/backfill-runner.py
+backfill started file=20261029-154639
+-rw-r--r--. 1 root root     0 Oct 29 15:46 20261029-154639-backfill-1027.err
+-rw-r--r--. 1 root root  1620 Oct 29 15:46 20261029-154639-backfill-1027.json
+-rw-------. 1 root root     0 Oct 29 10:15 last-error.log
+Connection to <prod-host> closed.

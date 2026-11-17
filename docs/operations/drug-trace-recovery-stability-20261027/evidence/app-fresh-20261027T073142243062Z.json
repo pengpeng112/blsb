@@ -1,0 +1,117 @@
+{
+  "host": "app",
+  "phase": "fresh",
+  "exit_code": 0,
+  "captured_at": "2026-10-27T07:31:42.242983+00:00",
+  "result": {
+    "states": {
+      "UNKNOWN": 205,
+      "CONFIRMED": 4613
+    },
+    "window_states": {
+      "CONFIRMED": 1995
+    },
+    "window_quality": {
+      "VALID": 1995,
+      "WAITING": 1342
+    },
+    "new_unknowns": [
+      {
+        "id": "8528553c-c9db-4548-bffd-d610ce876e41",
+        "state": "CONFIRMED",
+        "submission_revision": 6,
+        "bill_hash": "30b7d74a981b934b040d949aeade7b7039c0e9136c5d33b3f6ee49b270db28bb",
+        "codes_count": 1,
+        "started_at": "2026-10-27T04:00:03.426259",
+        "http_status": 200,
+        "outcome": "UNKNOWN",
+        "top_code": "7",
+        "sub_code": "accesscontrol.limited-by-api-access-count",
+        "reason": null,
+        "rate_limit": {
+          "source": "top7",
+          "scope": "method",
+          "retry_after": 2,
+          "code": "7",
+          "msg": "App Call Limited",
+          "sub_code": "accesscontrol.limited-by-api-access-count",
+          "sub_msg": "This ban will last for 1 more seconds",
+          "request_id": "15s07px4v2qr0"
+        },
+        "receipts": [
+          {
+            "state": "NOT_FOUND",
+            "result_type": null,
+            "sub_process_flag": null,
+            "reason": "complete platform query has no entry for bill_code",
+            "received_at": "2026-10-27T04:05:05.974135"
+          },
+          {
+            "state": "NOT_FOUND",
+            "result_type": null,
+            "sub_process_flag": null,
+            "reason": "complete platform query has no entry for bill_code",
+            "received_at": "2026-10-27T04:15:40.0667"
+          },
+          {
+            "state": "NOT_FOUND",
+            "result_type": null,
+            "sub_process_flag": null,
+            "reason": "complete platform query has no entry for bill_code",
+            "received_at": "2026-10-27T04:36:01.462045"
+          },
+          {
+            "state": "NOT_FOUND",
+            "result_type": null,
+            "sub_process_flag": null,
+            "reason": "complete platform query has no entry for bill_code",
+            "received_at": "2026-10-27T05:06:20.550417"
+          },
+          {
+            "state": "NOT_FOUND",
+            "result_type": null,
+            "sub_process_flag": null,
+            "reason": "complete platform query has no entry for bill_code",
+            "received_at": "2026-10-27T05:36:43.995715"
+          },
+          {
+            "state": "NOT_FOUND",
+            "result_type": null,
+            "sub_process_flag": null,
+            "reason": null,
+            "received_at": "2026-10-27T05:59:18.517762"
+          },
+          {
+            "state": "CONFIRMED",
+            "result_type": "3",
+            "sub_process_flag": "51",
+            "reason": null,
+            "received_at": "2026-10-27T06:01:20.583338"
+          }
+        ],
+        "query_jobs": null
+      }
+    ],
+    "quota": [
+      {
+        "used": 4820,
+        "max_bills": 80000
+      }
+    ],
+    "checkpoint": [
+      {
+        "version": 80,
+        "since_time": "2026-10-27T00:00:00"
+      }
+    ],
+    "pending": null,
+    "inflight": 0,
+    "protected_old_hash": "7a691905901917167cf999c3d8f4c202",
+    "old_205": {
+      "n": 205,
+      "hash": "7a691905901917167cf999c3d8f4c202"
+    },
+    "release": "stability-20261027T064000Z-r3",
+    "utc": "2026-10-27T07:31:44.832706+00:00"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "tool": "Codex",
+  "model": "unknown",
+  "full_regression": {
+    "cwd": "implementation",
+    "command": "python -m pytest tests -q -ra --junitxml=var/stability-regression-r3.xml",
+    "observed_process_exit_code": 0,
+    "tests": 602,
+    "passed": 595,
+    "skipped": 7,
+    "failures": 0,
+    "errors": 0,
+    "duration_seconds_from_log": 689.97,
+    "xml": "implementation/var/stability-regression-r3.xml",
+    "log": "implementation/var/stability-regression-r3.log"
+  },
+  "driver_local": {"passed": 55, "exit_code": 0, "xml": "implementation/var/stability-driver-budget.xml"},
+  "frontend": {
+    "cwd": "implementation/apps/admin_web",
+    "command": "node --experimental-strip-types --test tests/drugTraceDisplay.test.mjs",
+    "passed": 7,
+    "observed_exit_code": 0,
+    "build_command": "npm run build",
+    "build_exit_code": 0
+  },
+  "synthetic_browser": {"checks": 18, "observed_exit_code": 0, "business_posts": 0, "hospital_connections": 0},
+  "final_host_driver_normalized_sha256": "adbc32b1cec4de368884c97df77285825ee4cfc6b5a50a97d4d03a3d80432314",
+  "notes": "Observed tool-process exits and XML/log totals; duplicated targeted cases are not added to the full-regression pass count. Live Oracle and dedicated large-file cases remain skipped or unmeasured as reported."
+}

@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "F:\python\blyb\docs\development\drug-trace-20261016\fix2-20261017\evidence\probe_rerun.py", line 201, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "F:\python\blyb\docs\development\drug-trace-20261016\fix2-20261017\evidence\probe_rerun.py", line 191, in main
+    run_pure()
+    ~~~~~~~~^^
+  File "F:\python\blyb\docs\development\drug-trace-20261016\fix2-20261017\evidence\probe_rerun.py", line 32, in run_pure
+    biz = S.build_biz_params(payload)
+  File "F:\python\blyb\implementation\plugins\domains\drug_trace\service.py", line 491, in build_biz_params
+    raise ApiError("VALIDATION_FAILED",
+                   f"TOP required upload parameters missing: {missing} "
+                   "(dictionary mapping or source field absent)")
+contracts.ApiError: TOP required upload parameters missing: ['ref_user_id', 'physic_type', 'from_user_id', 'to_user_id', 'client_type'] (dictionary mapping or source field absent)

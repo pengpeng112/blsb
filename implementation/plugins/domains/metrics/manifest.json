@@ -1,0 +1,9 @@
+{
+  "key": "metrics",
+  "module": "domains.metrics.plugin",
+  "domain": "metrics",
+  "capabilities": ["csv_import", "freeze", "map"],
+  "description": "运营指标CSV月报领域插件（无患者字段）",
+  "report_targets": [],
+  "ui": null
+}

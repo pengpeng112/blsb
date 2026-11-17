@@ -1,0 +1,16 @@
+{
+ "input": {
+  "feedetlHosSn": "合成feedetlHos",
+  "feedetlSn": "合成feedetlSn",
+  "hospitalSetNo": "合成hospitalSe",
+  "applyNum": "合成applyNum",
+  "itemNum": "合成itemNum",
+  "itemName": "合成itemName",
+  "medicalItemCode": "合成medicalIte",
+  "medicalItemName": "合成medicalIte",
+  "priceItemCode": "合成priceItemC",
+  "priceItemName": "合成priceItemN",
+  "medItemType": 1,
+  "itemAmt": 1
+ }
+}

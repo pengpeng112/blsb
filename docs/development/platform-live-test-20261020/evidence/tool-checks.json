@@ -1,0 +1,17 @@
+{
+  "powershell_parse_ok": true,
+  "repeat_checks": [
+    {
+      "script": "query_probe",
+      "receipt_unchanged": true,
+      "repeat_exit_code": 1,
+      "rejected_before_add_type_and_network": true
+    },
+    {
+      "script": "enterprise_probe",
+      "receipt_unchanged": true,
+      "repeat_exit_code": 1,
+      "rejected_before_add_type_and_network": true
+    }
+  ]
+}

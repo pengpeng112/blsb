@@ -1,0 +1,41 @@
+{
+  "mode": "READ_ONLY_NO_SEND",
+  "timezone": [
+    "UTC",
+    "UTC"
+  ],
+  "files": [],
+  "runtime": {
+    "pusher.py": {
+      "sha256": "20738564401e01afcf36c1429bcfe3dbe26311016a982bce8d7f7a9a80c09e99"
+    },
+    "tables.py": {
+      "sha256": "faa2601197e6d6c782b21193ce0f0f72704f3f18ca7a5d5ea2011c269b7f2fc0",
+      "roll_out_order": [
+        "death",
+        "admission",
+        "exam",
+        "exam_item",
+        "first_course",
+        "daily_course",
+        "ex_lab",
+        "ex_lab_item",
+        "order",
+        "order_item",
+        "vital_signs",
+        "admission_info",
+        "discharge_info"
+      ]
+    },
+    "run.sh": {
+      "sha256": "4d44a89c05bc771c237483d1abbd13563a7f041447037596e0916cabec0f9d03"
+    }
+  },
+  "elapsed_seconds": 0.81,
+  "remote_exit_code": 0,
+  "local_hashes": {
+    "pusher.py": "20738564401e01afcf36c1429bcfe3dbe26311016a982bce8d7f7a9a80c09e99",
+    "tables.py": "faa2601197e6d6c782b21193ce0f0f72704f3f18ca7a5d5ea2011c269b7f2fc0",
+    "run.sh": "4d44a89c05bc771c237483d1abbd13563a7f041447037596e0916cabec0f9d03"
+  }
+}

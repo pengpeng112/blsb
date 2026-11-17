@@ -1,0 +1,12 @@
+{
+  "host": "app",
+  "phase": "upgrade",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T00:58:35.893234+00:00",
+  "result": {
+    "launched": true,
+    "pid": 1818426,
+    "private_logs": "/root/blyb-maintenance-backups/upgrade-queue-20261026T010000Z-r2-r1",
+    "release": "queue-20261026T010000Z-r2"
+  }
+}

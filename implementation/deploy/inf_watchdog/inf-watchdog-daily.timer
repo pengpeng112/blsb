@@ -1,0 +1,10 @@
+[Unit]
+Description=Run inf watchdog daily report at 08:00 Beijing (morning fallback for night alerts)
+
+[Timer]
+OnCalendar=*-*-* 08:00 Asia/Shanghai
+Persistent=true
+Unit=inf-watchdog-daily.service
+
+[Install]
+WantedBy=timers.target

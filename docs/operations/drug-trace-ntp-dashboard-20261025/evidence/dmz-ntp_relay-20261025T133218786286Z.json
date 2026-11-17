@@ -1,0 +1,16 @@
+{
+  "host": "dmz",
+  "phase": "ntp_relay",
+  "exit_code": 0,
+  "captured_at": "2026-10-25T13:32:18.786232+00:00",
+  "result": {
+    "backup": "/root/blyb-ntp-backups/20261025T133221Z-relay",
+    "runtime_allow": "200 OK",
+    "access_check": "208 Access allowed",
+    "listeners": "State      Recv-Q Send-Q Local Address:Port               Peer Address:Port              \nUNCONN     0      0      192.168.122.1:53                       *:*                   users:((\"dnsmasq\",pid=1695,fd=5))\nUNCONN     0      0      *%virbr0:67                       *:*                   users:((\"dnsmasq\",pid=1695,fd=3))\nUNCONN     0      0            *:111                      *:*                   users:((\"rpcbind\",pid=844,fd=6))\nUNCONN     0      0            *:123                      *:*                   users:((\"chronyd\",pid=11017,fd=4))\nUNCONN     0      0      127.0.0.1:323                      *:*                   users:((\"chronyd\",pid=11017,fd=5))\nUNCONN     0      0            *:49953                    *:*                   users:((\"avahi-daemon\",pid=895,fd=13))\nUNCONN     0      0            *:1012                     *:*                   users:((\"rpcbind\",pid=844,fd=7))\nUNCONN     0      0            *:5353                     *:*                   users:((\"avahi-daemon\",pid=895,fd=12))\nUNCONN     0      0         [::]:111                   [::]:*                   users:((\"rpcbind\",pid=844,fd=9))\nUNCONN     0      0        [::1]:323                   [::]:*                   users:((\"chronyd\",pid=11017,fd=6))\nUNCONN     0      0         [::]:1012                  [::]:*                   users:((\"rpcbind\",pid=844,fd=10))",
+    "enabled": "",
+    "clock_stepped": false,
+    "upstream": "<relay-net-host>",
+    "allowed_client": "<prod-host>/32"
+  }
+}

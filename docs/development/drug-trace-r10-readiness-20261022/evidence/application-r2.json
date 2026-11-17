@@ -1,0 +1,128 @@
+{
+  "captured_at": "2026-10-22T09:28:41.049022+00:00",
+  "upload_requests": 0,
+  "remote_config_changes": 0,
+  "source_writes": 0,
+  "result": {
+    "ssh_exit_code": 0,
+    "inventory": {
+      "release": {
+        "exit_code": 0,
+        "stdout": "/opt/blyb/releases/fb-20261021T164800Z\n"
+      },
+      "services": {
+        "exit_code": 0,
+        "stdout": "blyb-nginx-1 blyb/nginx:fb-20261021T164800Z Up 17 hours (healthy) 80/tcp, 0.0.0.0:443->443/tcp\n<worker-container> blyb/backend:fb-20261021T164800Z Up 17 hours (healthy) \nblyb-exchange-1 blyb/backend:fb-20261021T164800Z Up 17 hours (healthy) 8002/tcp\nblyb-core-1 blyb/backend:fb-20261021T164800Z Up 17 hours (healthy) 8000/tcp\nblyb-storage-1 blyb/backend:fb-20261021T164800Z Up 17 hours (healthy) 8001/tcp\nblyb-db-1 blyb/pg:fb-20261021T164800Z Up 17 hours (healthy) 5432/tcp\n"
+      },
+      "worker": {
+        "exit_code": 0,
+        "data": {
+          "uid": 10001,
+          "clock_epoch": 1792661325.3993726,
+          "signature_verified": true,
+          "oracle_dsn_present": false,
+          "app_secret_present": true,
+          "oracle_first_page_null_safe": false,
+          "destination": {
+            "code": "alihealth-drugtrace-retail",
+            "status": "DRAFT",
+            "is_mock": false,
+            "config_revision": "2e138e50-2be7-4574-8e48-61264be8946d",
+            "config_state": "PUBLISHED",
+            "config_type": "connector"
+          },
+          "connectors": [
+            {
+              "status": "DRAFT",
+              "active_config": false
+            }
+          ],
+          "dictionaries": [
+            {
+              "namespace": "drugtrace.ref_ent_id",
+              "version": "draft-1",
+              "approved": false,
+              "item_count": 0
+            },
+            {
+              "namespace": "drugtrace.query_bill_type",
+              "version": "draft-1",
+              "approved": false,
+              "item_count": 0
+            },
+            {
+              "namespace": "drugtrace.bill_type",
+              "version": "draft-1",
+              "approved": false,
+              "item_count": 0
+            },
+            {
+              "namespace": "drugtrace.bill_type",
+              "version": "official-202601-r1",
+              "approved": true,
+              "item_count": 1
+            },
+            {
+              "namespace": "drugtrace.query_bill_type",
+              "version": "official-202601-r1",
+              "approved": true,
+              "item_count": 1
+            }
+          ],
+          "counts": {
+            "DrugTraceBill": 0,
+            "DrugTraceProductionEvidence": 2,
+            "DrugTraceSendQuota": 0,
+            "DrugTraceCollectionRun": 0,
+            "Submission": 0
+          },
+          "evidence": {
+            "collect": {
+              "status": "MISSING",
+              "missing": [
+                "EXT-01",
+                "EXT-02"
+              ]
+            },
+            "send": {
+              "status": "MISSING",
+              "missing": [
+                "EXT-03",
+                "EXT-04",
+                "EXT-05",
+                "EXT-06",
+                "EXT-07",
+                "EXT-08",
+                "EXT-10",
+                "EXT-12"
+              ]
+            },
+            "query": {
+              "status": "APPROVED",
+              "missing": []
+            },
+            "reconcile": {
+              "status": "APPROVED",
+              "missing": []
+            }
+          },
+          "query": {
+            "method": "query.billstatus",
+            "request_count": 1,
+            "probe_bill_code": "BLYB_RECHECK_ADE8A649752B4D",
+            "found": true,
+            "total_num": 0,
+            "unknown": false,
+            "reason": null,
+            "entry_count": 0
+          }
+        }
+      },
+      "ntp": {
+        "exit_code": 0,
+        "stdout": "               Local time: Thu 2026-10-22 17:28:46 CST\n           Universal time: Thu 2026-10-22 09:28:46 UTC\n                 RTC time: Thu 2026-10-22 09:28:47\n                Time zone: Asia/Shanghai (CST, +0800)\nSystem clock synchronized: no\n              NTP service: active\n          RTC in local TZ: no\n"
+      }
+    }
+  },
+  "status": "CAPTURED"
+}

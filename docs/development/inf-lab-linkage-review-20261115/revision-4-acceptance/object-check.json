@@ -1,0 +1,29 @@
+{
+  "status": {
+    "ok": true,
+    "source": "ods_internal",
+    "db_type": "oracle",
+    "row_count": 3,
+    "rows": [
+      {
+        "OBJECT_NAME": "M_INF_FXHIS_ACTIVITY_V15",
+        "STATUS": "VALID"
+      },
+      {
+        "OBJECT_NAME": "V_INF_EX_LAB",
+        "STATUS": "VALID"
+      },
+      {
+        "OBJECT_NAME": "V_INF_EX_LAB_ITEM",
+        "STATUS": "VALID"
+      }
+    ]
+  },
+  "errors": {
+    "ok": true,
+    "source": "ods_internal",
+    "db_type": "oracle",
+    "row_count": 0,
+    "rows": []
+  }
+}

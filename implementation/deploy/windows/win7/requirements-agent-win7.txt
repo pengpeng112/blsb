@@ -1,0 +1,10 @@
+# Win7 (Python 3.8) Agent 打包依赖 —— 兼容3.8的固定版本
+# 注意：与主 requirements.txt（3.14开发环境）不同，此处为 py38 构建链专用。
+pyinstaller==5.13.2
+httpx==0.27.2
+certifi
+idna<3.11
+sniffio
+anyio<5
+httpcore==1.*
+h11<0.15

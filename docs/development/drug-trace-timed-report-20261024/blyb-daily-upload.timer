@@ -1,0 +1,11 @@
+[Unit]
+Description=Run BLYB drug-trace daily upload every morning 06:10 Beijing
+
+[Timer]
+OnCalendar=*-*-* 06:10 Asia/Shanghai
+Persistent=true
+AccuracySec=1min
+Unit=blyb-daily-upload.service
+
+[Install]
+WantedBy=timers.target

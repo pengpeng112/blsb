@@ -1,0 +1,114 @@
+{
+  "host": "app",
+  "phase": "fresh",
+  "exit_code": 0,
+  "captured_at": "2026-10-27T05:56:19.621166+00:00",
+  "result": {
+    "states": {
+      "PREPARED": 976,
+      "CONFIRMED": 3595,
+      "ACCEPTED": 41,
+      "UNKNOWN": 206
+    },
+    "window_states": {
+      "PREPARED": 976,
+      "CONFIRMED": 1018,
+      "UNKNOWN": 1
+    },
+    "window_quality": {
+      "VALID": 1995,
+      "WAITING": 1342
+    },
+    "new_unknowns": [
+      {
+        "id": "8528553c-c9db-4548-bffd-d610ce876e41",
+        "state": "UNKNOWN",
+        "submission_revision": 3,
+        "bill_hash": "30b7d74a981b934b040d949aeade7b7039c0e9136c5d33b3f6ee49b270db28bb",
+        "codes_count": 1,
+        "started_at": "2026-10-27T04:00:03.426259",
+        "http_status": 200,
+        "outcome": "UNKNOWN",
+        "top_code": "7",
+        "sub_code": "accesscontrol.limited-by-api-access-count",
+        "reason": null,
+        "rate_limit": {
+          "source": "top7",
+          "scope": "method",
+          "retry_after": 2,
+          "code": "7",
+          "msg": "App Call Limited",
+          "sub_code": "accesscontrol.limited-by-api-access-count",
+          "sub_msg": "This ban will last for 1 more seconds",
+          "request_id": "15s07px4v2qr0"
+        },
+        "receipts": [
+          {
+            "state": "NOT_FOUND",
+            "result_type": null,
+            "sub_process_flag": null,
+            "reason": "complete platform query has no entry for bill_code",
+            "received_at": "2026-10-27T04:05:05.974135"
+          },
+          {
+            "state": "NOT_FOUND",
+            "result_type": null,
+            "sub_process_flag": null,
+            "reason": "complete platform query has no entry for bill_code",
+            "received_at": "2026-10-27T04:15:40.0667"
+          },
+          {
+            "state": "NOT_FOUND",
+            "result_type": null,
+            "sub_process_flag": null,
+            "reason": "complete platform query has no entry for bill_code",
+            "received_at": "2026-10-27T04:36:01.462045"
+          },
+          {
+            "state": "NOT_FOUND",
+            "result_type": null,
+            "sub_process_flag": null,
+            "reason": "complete platform query has no entry for bill_code",
+            "received_at": "2026-10-27T05:06:20.550417"
+          },
+          {
+            "state": "NOT_FOUND",
+            "result_type": null,
+            "sub_process_flag": null,
+            "reason": "complete platform query has no entry for bill_code",
+            "received_at": "2026-10-27T05:36:43.995715"
+          }
+        ],
+        "query_jobs": [
+          {
+            "state": "PENDING",
+            "available_at": "2026-10-27T06:07:04.048618"
+          }
+        ]
+      }
+    ],
+    "quota": [
+      {
+        "used": 3843,
+        "max_bills": 80000
+      }
+    ],
+    "checkpoint": [
+      {
+        "version": 80,
+        "since_time": "2026-10-27T00:00:00"
+      }
+    ],
+    "pending": [
+      {
+        "job_type": "drug_trace.query_status",
+        "state": "PENDING",
+        "n": 1
+      }
+    ],
+    "inflight": 0,
+    "protected_old_hash": "b6cff3ef40515622c29a8f5379963643",
+    "release": "flow-20261026T132000Z",
+    "utc": "2026-10-27T05:56:21.987222+00:00"
+  }
+}

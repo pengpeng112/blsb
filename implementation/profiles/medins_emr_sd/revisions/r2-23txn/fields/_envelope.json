@@ -1,0 +1,375 @@
+{
+ "code": "_envelope",
+ "schema_version": 2,
+ "length_unit": "UNCONFIRMED",
+ "children": [
+  {
+   "code": "info",
+   "name": "交易编号",
+   "type": "string",
+   "max_len": null,
+   "dict": null,
+   "has_code_dict": false,
+   "required": true,
+   "sensitive": false,
+   "source": "spec",
+   "direction": "envelope",
+   "locator": {
+    "heading_path": [
+     "接口列表",
+     "接口报文格式",
+     "接口输入报文格式定义"
+    ],
+    "table_index": 3,
+    "row": 2
+   },
+   "notes": "规范长度4与交易号5位矛盾——长度待医保确认"
+  },
+  {
+   "code": "msgid",
+   "name": "发送方报文ID",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "has_code_dict": false,
+   "required": true,
+   "sensitive": false,
+   "source": "spec",
+   "direction": "envelope",
+   "locator": {
+    "heading_path": [
+     "接口列表",
+     "接口报文格式",
+     "接口输入报文格式定义"
+    ],
+    "table_index": 3,
+    "row": 3
+   },
+   "notes": "定点医药机构编号(12)+时间(14)+顺序号(4)时间格式：yyyyMMddHHmmss，不允许重复。"
+  },
+  {
+   "code": "mdtrtarea_admvs",
+   "name": "就医地医保区划",
+   "type": "string",
+   "max_len": 6,
+   "dict": null,
+   "has_code_dict": false,
+   "required": true,
+   "sensitive": false,
+   "source": "spec",
+   "direction": "envelope",
+   "locator": {
+    "heading_path": [
+     "接口列表",
+     "接口报文格式",
+     "接口输入报文格式定义"
+    ],
+    "table_index": 3,
+    "row": 4
+   },
+   "notes": "行政区划代码"
+  },
+  {
+   "code": "insuplc_admdvs",
+   "name": "参保地医保区划",
+   "type": "string",
+   "max_len": 6,
+   "dict": null,
+   "has_code_dict": false,
+   "required": false,
+   "sensitive": false,
+   "source": "spec",
+   "direction": "envelope",
+   "locator": {
+    "heading_path": [
+     "接口列表",
+     "接口报文格式",
+     "接口输入报文格式定义"
+    ],
+    "table_index": 3,
+    "row": 5
+   },
+   "notes": "传00000000"
+  },
+  {
+   "code": "recer_sys_code",
+   "name": "接收方系统代码",
+   "type": "string",
+   "max_len": 10,
+   "dict": null,
+   "has_code_dict": false,
+   "required": true,
+   "sensitive": false,
+   "source": "spec",
+   "direction": "envelope",
+   "locator": {
+    "heading_path": [
+     "接口列表",
+     "接口报文格式",
+     "接口输入报文格式定义"
+    ],
+    "table_index": 3,
+    "row": 6
+   },
+   "notes": "用于多套系统接入，区分不同系统使用"
+  },
+  {
+   "code": "dev_no",
+   "name": "设备编号",
+   "type": "string",
+   "max_len": 100,
+   "dict": null,
+   "has_code_dict": false,
+   "required": false,
+   "sensitive": false,
+   "source": "spec",
+   "direction": "envelope",
+   "locator": {
+    "heading_path": [
+     "接口列表",
+     "接口报文格式",
+     "接口输入报文格式定义"
+    ],
+    "table_index": 3,
+    "row": 7
+   }
+  },
+  {
+   "code": "dev_safe_info",
+   "name": "设备安全信息",
+   "type": "string",
+   "max_len": 2000,
+   "dict": null,
+   "has_code_dict": false,
+   "required": false,
+   "sensitive": false,
+   "source": "spec",
+   "direction": "envelope",
+   "locator": {
+    "heading_path": [
+     "接口列表",
+     "接口报文格式",
+     "接口输入报文格式定义"
+    ],
+    "table_index": 3,
+    "row": 8
+   }
+  },
+  {
+   "code": "cainfo",
+   "name": "数字签名信息",
+   "type": "string",
+   "max_len": 1024,
+   "dict": null,
+   "has_code_dict": false,
+   "required": false,
+   "sensitive": true,
+   "source": "spec",
+   "direction": "envelope",
+   "locator": {
+    "heading_path": [
+     "接口列表",
+     "接口报文格式",
+     "接口输入报文格式定义"
+    ],
+    "table_index": 3,
+    "row": 9
+   }
+  },
+  {
+   "code": "signtype",
+   "name": "签名类型",
+   "type": "string",
+   "max_len": 10,
+   "dict": null,
+   "has_code_dict": false,
+   "required": false,
+   "sensitive": false,
+   "source": "spec",
+   "direction": "envelope",
+   "locator": {
+    "heading_path": [
+     "接口列表",
+     "接口报文格式",
+     "接口输入报文格式定义"
+    ],
+    "table_index": 3,
+    "row": 10
+   }
+  },
+  {
+   "code": "infver",
+   "name": "接口版本号",
+   "type": "string",
+   "max_len": 6,
+   "dict": null,
+   "has_code_dict": false,
+   "required": true,
+   "sensitive": false,
+   "source": "spec",
+   "direction": "envelope",
+   "locator": {
+    "heading_path": [
+     "接口列表",
+     "接口报文格式",
+     "接口输入报文格式定义"
+    ],
+    "table_index": 3,
+    "row": 11
+   },
+   "notes": "例如：“V1.0”，版本号由医保下发通知。"
+  },
+  {
+   "code": "opter_type",
+   "name": "经办人类别",
+   "type": "string",
+   "max_len": 3,
+   "dict": null,
+   "has_code_dict": true,
+   "required": true,
+   "sensitive": false,
+   "source": "spec",
+   "direction": "envelope",
+   "locator": {
+    "heading_path": [
+     "接口列表",
+     "接口报文格式",
+     "接口输入报文格式定义"
+    ],
+    "table_index": 3,
+    "row": 12
+   },
+   "notes": "1-经办人；2-自助终端；3-移动终端"
+  },
+  {
+   "code": "opter",
+   "name": "经办人",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "has_code_dict": false,
+   "required": true,
+   "sensitive": false,
+   "source": "spec",
+   "direction": "envelope",
+   "locator": {
+    "heading_path": [
+     "接口列表",
+     "接口报文格式",
+     "接口输入报文格式定义"
+    ],
+    "table_index": 3,
+    "row": 13
+   },
+   "notes": "按地方要求传入经办人/终端编号"
+  },
+  {
+   "code": "opter_name",
+   "name": "经办人姓名",
+   "type": "string",
+   "max_len": 50,
+   "dict": null,
+   "has_code_dict": false,
+   "required": true,
+   "sensitive": true,
+   "source": "spec",
+   "direction": "envelope",
+   "locator": {
+    "heading_path": [
+     "接口列表",
+     "接口报文格式",
+     "接口输入报文格式定义"
+    ],
+    "table_index": 3,
+    "row": 14
+   },
+   "notes": "按地方要求传入经办人姓名/终端名称"
+  },
+  {
+   "code": "inf_time",
+   "name": "交易时间",
+   "type": "datetime",
+   "max_len": 19,
+   "dict": null,
+   "has_code_dict": false,
+   "required": true,
+   "sensitive": false,
+   "source": "spec",
+   "direction": "envelope",
+   "locator": {
+    "heading_path": [
+     "接口列表",
+     "接口报文格式",
+     "接口输入报文格式定义"
+    ],
+    "table_index": 3,
+    "row": 15
+   },
+   "notes": "格式：yyyy-MM-dd HH:mm:ss"
+  },
+  {
+   "code": "fixmedins_code",
+   "name": "定点医药机构编号",
+   "type": "string",
+   "max_len": 14,
+   "dict": null,
+   "has_code_dict": false,
+   "required": true,
+   "sensitive": false,
+   "source": "spec",
+   "direction": "envelope",
+   "locator": {
+    "heading_path": [
+     "接口列表",
+     "接口报文格式",
+     "接口输入报文格式定义"
+    ],
+    "table_index": 3,
+    "row": 16
+   }
+  },
+  {
+   "code": "sign_no",
+   "name": "交易签到流水号",
+   "type": "string",
+   "max_len": 30,
+   "dict": null,
+   "has_code_dict": false,
+   "required": false,
+   "sensitive": false,
+   "source": "spec",
+   "direction": "envelope",
+   "locator": {
+    "heading_path": [
+     "接口列表",
+     "接口报文格式",
+     "接口输入报文格式定义"
+    ],
+    "table_index": 3,
+    "row": 17
+   }
+  },
+  {
+   "code": "input",
+   "name": "交易输入",
+   "type": "object",
+   "max_len": 40000,
+   "dict": null,
+   "has_code_dict": false,
+   "required": true,
+   "sensitive": false,
+   "source": "spec",
+   "direction": "envelope",
+   "locator": {
+    "heading_path": [
+     "接口列表",
+     "接口报文格式",
+     "接口输入报文格式定义"
+    ],
+    "table_index": 3,
+    "row": 18
+   },
+   "notes": "交易输入对象（各交易契约为其 children）"
+  }
+ ]
+}

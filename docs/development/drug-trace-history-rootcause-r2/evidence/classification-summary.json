@@ -1,0 +1,78 @@
+{
+  "run_id": "20261023T104928Z",
+  "captured_at_local_evidence": ["r2-two-views-20261023T104928Z.json", "r2-q01b-times-20261023T104928Z.json", "r2-analysis-20261023T104928Z.json"],
+  "baseline": "r1 full-compare/diagnose 2026-10-23T04:10-04:15Z",
+  "source_table_results": "NONE - SQL01/02/03/04 not executed; no approved audit identity for raw tables this round; primary U-classification for the 5077 is therefore U05 (pending) with view-side sub-labels",
+  "historical_rows_total": 489613,
+  "conservation": {
+    "matched_same_key_same_count_rows": 484536,
+    "unmatched_rows": 5077,
+    "sum_check": "484536 + 5077 = 489613 OK",
+    "unmatched_split": {
+      "code_visible_under_other_line_rows": 3919,
+      "code_not_in_view_rows": 1158,
+      "sum_check": "3919 + 1158 = 5077 OK"
+    },
+    "unmatched_scope": {"distinct_legacy_bills": 4974, "distinct_codes": 531}
+  },
+  "u_classification": {
+    "U01_raw_key_present_master_hit": 0,
+    "U02_raw_key_present_master_miss": 0,
+    "U03_code_present_legacy_line_absent": 0,
+    "U04_code_absent_source_confirmed": 0,
+    "U05_pending_cannot_confirm": 5077,
+    "sum_check": "0+0+0+0+5077 = 5077 OK",
+    "u05_reason": "raw-table SELECT requires DBA or an approved audit identity; current reader BLYB_DRUGTRACE grants cover only the two views (re-verified this run)",
+    "u05_view_side_sublabels_rows": {
+      "code_visible_other_line_same_day_dispense": 2330,
+      "code_visible_other_line_different_day": 1589,
+      "code_not_in_view_any_line": 1158,
+      "note": "same-day figures compare historical export date vs current view bill_time (dispense time) for the same code under its 14-digit line; suggestive of same-event-different-id for 2330 rows but NOT proof - raw-table SQL01/02 decide"
+    },
+    "u05_view_side_codes": {"with_view_rows": 369, "without_view_rows": 162, "total": 531},
+    "r1_vs_r2_timepoint_change": {
+      "codes_appeared": 0,
+      "codes_vanished": 0,
+      "codes_rowcount_changed": 0,
+      "exact_legacy_pairs_now_in_view": 0,
+      "conclusion": "view-side picture stable between 2026-10-23T04:10Z and 2026-10-23T10:49Z"
+    },
+    "no_view_rows_month_spread": {"2026-07": 229, "2026-08": 364, "2026-09": 424, "2026-10": 141,
+      "note": "spread across whole period, not a trailing-window lag artifact"}
+  },
+  "unknown_refund_1396": {
+    "pairs": 1396,
+    "distinct_main_bills": 411,
+    "current_raw_states_rows": [
+      {"raw_kind": "PRESC_SOURCE=0;FLAG=1", "refund_raw": "1", "finalized_raw": null, "void_raw": null, "rows": 46},
+      {"raw_kind": "PRESC_SOURCE=0;FLAG=2", "refund_raw": "1", "finalized_raw": null, "void_raw": null, "rows": 23},
+      {"raw_kind": "PRESC_SOURCE=0;FLAG=2", "refund_raw": "NULL", "finalized_raw": null, "void_raw": null, "rows": 1327}
+    ],
+    "r1_vs_r2_state_migration": {"pairs_state_changed": 0, "pairs_left_set": 0, "pairs_new": 0},
+    "decision": "keep normal-send interception; no evidence to reclassify as normal 321"
+  },
+  "duplicate_groups_31": {
+    "groups": 31,
+    "historical_rows": 62,
+    "view_records_per_group": "2 distinct RECORD_IDs, all active (not deleted), all PATIENT_DISPENSE",
+    "distinct_main_bills_affected": 11,
+    "whole_bill_check": {
+      "bills_fetched_complete": 11,
+      "truncated": false,
+      "all_line_rows": 62,
+      "structure": "every active line of every affected bill is a duplicated code (per-bill dup groups 1/2/2/5/6/5/4/1/1/2/2, each code exactly 2x) - whole-bill double-scan pattern",
+      "quality_state": "INVALID x11",
+      "blocking_rule": "QD-DUP-CODE",
+      "headers": "all 11 bills PATIENT_DISPENSE / PRESC_SOURCE=0;FLAG=1 / finalized=1 / void=0 - they pass every other normal-branch gate"
+    },
+    "pending_cause_check": "SPLIT_FLAG / rescan / correction reason requires raw table (Q03.3) - DBA SQL04 covers the 31 codes"
+  },
+  "time_coverage_q04": {
+    "layer1_forward_all_history_keys": "done in r1, re-verified stable in r2 (no view-side change)",
+    "layer2_reverse_same_create_time_window": "NOT DONE - views expose no CREATE_TIME; MED_TRACE_RECORD has no CREATE_TIME index in the 2026-10-19 snapshot; SQL05 offers index-backed per-presc-day JOIN coverage; SQL06 confirms current indexes",
+    "old_sql_window": "T.CREATE_TIME BETWEEN 2026-07-23 00:00:00 AND 2026-10-12 00:00:00 (closed upper bound); history export dates end 2026-10-11 23:52",
+    "view_time_buckets_r1": {"before_range": 419, "within": 484539, "after_range": 446}
+  },
+  "counts_by_unit_note": "pair counts are (legacy PRESC_DETAILID, code) multiset keys; row counts keep original occurrence multiplicity; main-bill counts deduplicate join target",
+  "side_effects": {"source_writes": 0, "uploads": 0, "production_changes": 0, "platform_calls": 0}
+}

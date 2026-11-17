@@ -1,0 +1,103 @@
+{
+  "host": "app",
+  "phase": "health",
+  "exit_code": 0,
+  "captured_at": "2026-10-25T13:52:23.531472+00:00",
+  "result": {
+    "api": {
+      "/drug-trace/daily-reports": {
+        "status": 200,
+        "shape": "list",
+        "count": 1,
+        "reports": [
+          {
+            "report_date": "2026-10-24",
+            "source": "manual",
+            "outcome": "PARTIAL_FAILURE",
+            "candidate_count": 1470,
+            "sent": 654,
+            "errors_count": 1021,
+            "elapsed_seconds": 12238.0,
+            "created_at": "2026-10-25T13:51:33.716494"
+          }
+        ]
+      },
+      "/drug-trace/upload-stats?days=7": {
+        "status": 200,
+        "shape": "dict"
+      },
+      "/drug-trace/send-scope": {
+        "status": 200,
+        "shape": "dict",
+        "quota": {
+          "used": 656,
+          "max_bills": 80000
+        },
+        "evidence_status": "APPROVED"
+      },
+      "/drug-trace/submission-outcomes?days=7&only=problem": {
+        "status": 200,
+        "shape": "list",
+        "count": 96
+      }
+    },
+    "ui_server_check": {
+      "status": 200,
+      "assets": [
+        "/ui/assets/index-CF-v0NWK.js",
+        "/ui/assets/index-BxxK3OdZ.css"
+      ],
+      "asset_statuses": [
+        200,
+        200
+      ],
+      "tls_check": "existing CN and explicit trust anchor; IP SAN remains missing"
+    },
+    "ui": {
+      "error_type": "URLError",
+      "reason_type": "SSLCertVerificationError",
+      "verify_message": "IP address mismatch, certificate is not valid for '<prod-host>'.",
+      "certificate_subject": [
+        [
+          [
+            "commonName",
+            "blyb-<prod-host>"
+          ]
+        ]
+      ],
+      "certificate_san": null
+    },
+    "db": {
+      "states": {
+        "CONFIRMED": 409,
+        "ACCEPTED": 41,
+        "UNKNOWN": 206
+      },
+      "new_attempts": 0,
+      "new_429": 0,
+      "new_query_receipts": 106,
+      "quota": [
+        {
+          "used": 656,
+          "max_bills": 80000
+        }
+      ],
+      "query_jobs": [
+        {
+          "state": "FAILED",
+          "n": 1
+        },
+        {
+          "state": "PENDING",
+          "n": 11
+        },
+        {
+          "state": "SUCCEEDED",
+          "n": 4546
+        }
+      ]
+    },
+    "utc": "2026-10-25T13:52:23.340173+00:00",
+    "containers": "blyb-nginx-1 Up 8 minutes (healthy)\n<worker-container> Up 8 minutes (healthy)\nblyb-storage-1 Up 8 minutes (healthy)\nblyb-exchange-1 Up 9 minutes (healthy)\nblyb-core-1 Up 8 minutes (healthy)\nblyb-db-1 Up 9 minutes (healthy)"
+  }
+}

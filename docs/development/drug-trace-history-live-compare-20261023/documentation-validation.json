@@ -1,0 +1,10 @@
+{
+  "touched_documents_checked": 10,
+  "new_broken_links_in_touched_documents": [],
+  "preexisting_broken_links_in_touched_documents": 2,
+  "current_whole_workspace_broken_links": 236,
+  "source_hash_errors": [],
+  "passed_for_task": true,
+  "whole_workspace_link_check_passed": false,
+  "catalog_documents": 280
+}

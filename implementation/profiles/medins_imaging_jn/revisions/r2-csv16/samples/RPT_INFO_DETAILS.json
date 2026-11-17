@@ -1,0 +1,15 @@
+{
+ "input": {
+  "hospitalCode": "合成hospitalCo",
+  "systemId": "合成systemId",
+  "risStudyId": "合成risStudyId",
+  "recordNum": "合成recordNum",
+  "reportCode": "合成reportCode",
+  "detailsId": "合成detailsId",
+  "detailsNumber": 1,
+  "detailsType": 1,
+  "detailsName": "合成detailsNam",
+  "detailsValue": "合成detailsVal",
+  "disableFlag": 1
+ }
+}

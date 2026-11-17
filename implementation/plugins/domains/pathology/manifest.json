@@ -1,0 +1,10 @@
+{
+  "key": "pathology",
+  "module": "domains.pathology.plugin",
+  "domain": "pathology",
+  "capabilities": ["resolve", "quality", "completeness", "freeze",
+                   "runtime_build"],
+  "description": "病理切片归集/关联/索引/冻结领域插件",
+  "report_targets": ["pathology_cloud"],
+  "ui": {"route": "/cases", "menu_group": "上报业务", "menu_label": "病理上报"}
+}

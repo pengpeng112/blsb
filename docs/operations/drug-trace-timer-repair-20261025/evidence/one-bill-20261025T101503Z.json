@@ -1,0 +1,30 @@
+{
+  "ssh_exit_code": 0,
+  "captured_at": "2026-10-25T10:15:03.831435+00:00",
+  "result": {
+    "new_upload_limit": 1,
+    "source_reads": 0,
+    "collect_jobs_claimed": 0,
+    "worker_client_preflight": true,
+    "send_api_status": 200,
+    "jobs_finished": [
+      "drug_trace.send",
+      "drug_trace.query_status"
+    ],
+    "final_state": "CONFIRMED",
+    "attempts": [
+      {
+        "http_status": 200,
+        "outcome": "ACCEPTED"
+      }
+    ],
+    "quota": [
+      {
+        "used": 4,
+        "max_bills": 80000
+      }
+    ],
+    "collect_running_count": 1,
+    "ok": true
+  }
+}

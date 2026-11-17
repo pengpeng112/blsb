@@ -1,0 +1,94 @@
+The authenticity of host '<prod-host> (<prod-host>)' can't be established.
+ED25519 key fingerprint is SHA256:IjK9PN01og2d/fsSjUy4rlsyRBqOiZZycBN6j46shQc.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '<prod-host>' (ED25519) to the list of known hosts.
+
+Authorized users only. All activities may be monitored and reported.
+root@<prod-host>'s password: 
+===SHA===
+2f33c0267caa22f6b7ca4c99b5b1642f0dbf8dc605e322656b0e9fc51d2cc662  /opt/blyb/tools/blyb-daily-upload.py
+===LOOKBACK/WINDOW/DEADLINE GREP===
+9: 4) v3（DTR-SCOPE-DEV-20261027 SD-04/K3）：回看阶段——选出近 LOOKBACK_DAYS 天
+10:    （默认 7，env BLYB_LOOKBACK_DAYS，0=停用）0 有效码且未上报的门诊单键，
+13:    receipt['lookback']，不影响主日批退出码/回执语义**（与 v2 report_push 同模式）；
+20:PROFILE_UNAPPROVED（范围/配额）立即中止后续发送；每日发送上限 MAX_SENDS。
+24:回执仅新增 lookback 字段。回看阶段自身发送上限 LOOKBACK_MAX_SENDS。
+33:from datetime import date, datetime, time as dtime, timedelta, timezone
+42:GMT8 = timezone(timedelta(hours=8))
+44:MAX_SENDS = 3000
+52:LOOKBACK_DAYS = max(0, int(os.environ.get('BLYB_LOOKBACK_DAYS', '7')))
+53:LOOKBACK_MAX_SENDS = max(0, int(os.environ.get('BLYB_LOOKBACK_MAX_SENDS', '500')))
+54:LOOKBACK_WAIT_SECONDS = 30 * 60
+55:LOOKBACK_BATCH = 500
+57:receipt = {'window': None, 'collection': None, 'send': {'sent': 0, 'skipped_terminal': 0,
+97:    if os.environ.get('BLYB_DAILY_REPORT_ENABLED', '1') == '0':
+100:    window = receipt.get('window') or [None, None]
+103:        'window_begin': window[0], 'window_end': window[1],
+133:def wait_for_send(db, tenant_id, sid, job_id, *, total_deadline=None):
+136:    queue_deadline = time.monotonic() + SEND_QUEUE_WAIT_SECONDS
+137:    execution_deadline = None
+150:        if total_deadline is not None and now >= total_deadline:
+160:            # this same job. Keep the original overall queue deadline.
+161:            execution_deadline = None
+162:            if now >= queue_deadline:
+167:            if execution_deadline is None:
+168:                execution_deadline = now + SEND_EXECUTION_WAIT_SECONDS
+169:            if now >= execution_deadline:
+171:        elif execution_deadline is not None:
+172:            # Never reset an execution deadline when a job changes state.
+173:            if now >= execution_deadline:
+175:        elif now >= queue_deadline:
+207:def lookback_candidates(db, tenant_id, day):
+212:    wb = datetime.combine(day - timedelta(days=LOOKBACK_DAYS + 1), dtime())
+232:def lookback_sendable(db, tenant_id, day):
+235:    wb = datetime.combine(day - timedelta(days=LOOKBACK_DAYS + 1), dtime())
+263:def run_lookback(db, tenant_id, dest_id, day, total_deadline):
+266:    结果写 receipt['lookback']；本函数抛出的异常由 safe_run_lookback 兜底。"""
+267:    receipt['lookback'] = {'ok': True, 'enabled': LOOKBACK_DAYS > 0,
+270:    if LOOKBACK_DAYS <= 0:
+271:        receipt['lookback']['reason'] = 'LOOKBACK_DISABLED'
+272:        return receipt['lookback']
+===MAIN FLOW (send candidate selection)===
+    rows = db.execute(text('''SELECT s.id, coalesce(q.polls,0), coalesce(q.inflight,0)
+        FROM submission s LEFT JOIN (
+          SELECT tenant_id, payload->>'submission_id' sid, count(*) polls,
+            max(CASE WHEN state IN ('PENDING','LEASED','RETRY_WAIT') THEN 1 ELSE 0 END) inflight
+          FROM job WHERE tenant_id=:t AND job_type='drug_trace.query_status'
+            AND dedup_key LIKE ('q:' || (payload->>'submission_id') || ':%')
+          GROUP BY tenant_id,payload->>'submission_id'
+        ) q ON q.tenant_id=s.tenant_id AND q.sid=s.id
+        WHERE s.tenant_id=:t AND s.destination_id=:d
+          AND s.state IN ('ACCEPTED','UNKNOWN') AND s.created_at > now() - interval '7 days'
+        ORDER BY s.created_at'''), {'t':tenant_id,'d':dest_id}).fetchall()
+    eligible = []
+    for sid, polls, inflight in rows:
+        if polls >= QUERY_MAX_POLLS:
+            receipt['query']['skipped_exhausted'] = receipt['query'].get('skipped_exhausted',0) + 1
+        elif inflight:
+            receipt['query']['skipped_inflight'] = receipt['query'].get('skipped_inflight',0) + 1
+        elif len(eligible) < MAX_QUERY:
+            eligible.append(sid)
+        else:
+            receipt['query']['skipped_limit'] = receipt['query'].get('skipped_limit',0) + 1
+    return eligible
+
+
+def lookback_candidates(db, tenant_id, day):
+    """K3/SD-04：回看窗（+1 天余量覆盖待终态迁移单）内 0 有效码、未上报的
+    门诊 WAITING 单键。expected_code_count 全 NULL，"部分码"不可自动判定——
+    回看目标仅 0 有效码单（任务书 SD-04.3）。"""
+    from sqlalchemy import text as sql_text
+    wb = datetime.combine(day - timedelta(days=LOOKBACK_DAYS + 1), dtime())
+    we = datetime.combine(day, dtime())
+    return db.execute(sql_text("""
+        SELECT b.id AS bill_id, r.id AS rev_id, b.source_system,
+               b.pharmacy_code, b.business_kind, b.source_bill_id
+        FROM drug_trace_bill b JOIN drug_trace_bill_revision r ON r.id=b.current_revision_id
+        WHERE b.tenant_id=:t AND b.connector_id=:cid
+          AND b.bill_time>=:wb AND b.bill_time<:we
+          AND b.business_kind='PATIENT_DISPENSE' AND b.finalized=true AND b.is_void=false
+          AND r.quality_state='WAITING'
+          AND NOT EXISTS (SELECT 1 FROM drug_trace_code_index ci
+                          WHERE ci.bill_revision_id=r.id AND ci.is_deleted=false)
+Connection to <prod-host> closed.

@@ -1,0 +1,521 @@
+{
+ "authorization": "User authorization 2026-10-27 HIS probe r3 (trace-code alt table + vendor upload logs, read-only)",
+ "source_writes": 0,
+ "uploads": 0,
+ "indexes": {
+  "ok": true,
+  "n": 14,
+  "rows": [
+   {
+    "TABLE_OWNER": "DRUG_USER",
+    "TABLE_NAME": "DOCUMENT_UPLOAD_RECORD",
+    "INDEX_NAME": "SYS_C0065866",
+    "COLUMN_NAME": "ID",
+    "COLUMN_POSITION": 1
+   },
+   {
+    "TABLE_OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_TRACE_CODE",
+    "INDEX_NAME": "IND_DRUG_PRESC_TRACE",
+    "COLUMN_NAME": "PRESC_DATE",
+    "COLUMN_POSITION": 1
+   },
+   {
+    "TABLE_OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_TRACE_CODE",
+    "INDEX_NAME": "IND_DRUG_PRESC_TRACE",
+    "COLUMN_NAME": "PRESC_NO",
+    "COLUMN_POSITION": 2
+   },
+   {
+    "TABLE_OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_TRACE_CODE",
+    "INDEX_NAME": "IND_DRUG_PRESC_TRACE",
+    "COLUMN_NAME": "ITEM_NO",
+    "COLUMN_POSITION": 3
+   },
+   {
+    "TABLE_OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_TRACE_CODE",
+    "INDEX_NAME": "PK_DRUG_PRESC_TRACE_CODE",
+    "COLUMN_NAME": "PRESC_DATE",
+    "COLUMN_POSITION": 1
+   },
+   {
+    "TABLE_OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_TRACE_CODE",
+    "INDEX_NAME": "PK_DRUG_PRESC_TRACE_CODE",
+    "COLUMN_NAME": "PRESC_NO",
+    "COLUMN_POSITION": 2
+   },
+   {
+    "TABLE_OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_TRACE_CODE",
+    "INDEX_NAME": "PK_DRUG_PRESC_TRACE_CODE",
+    "COLUMN_NAME": "ITEM_NO",
+    "COLUMN_POSITION": 3
+   },
+   {
+    "TABLE_OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_TRACE_CODE",
+    "INDEX_NAME": "PK_DRUG_PRESC_TRACE_CODE",
+    "COLUMN_NAME": "TRACE_CODE",
+    "COLUMN_POSITION": 4
+   },
+   {
+    "TABLE_OWNER": "PHARMACY",
+    "TABLE_NAME": "DRUG_PRESC_TRACE_CODE",
+    "INDEX_NAME": "PK_DRUG_PRESC_TRACE_CODE",
+    "COLUMN_NAME": "ITEM_NO2",
+    "COLUMN_POSITION": 5
+   },
+   {
+    "TABLE_OWNER": "DRUG_USER",
+    "TABLE_NAME": "TRACE_UPLOAD_TIME_LOG",
+    "INDEX_NAME": "IDX_BUSINESS_ID",
+    "COLUMN_NAME": "BUSINESS_ID",
+    "COLUMN_POSITION": 1
+   },
+   {
+    "TABLE_OWNER": "DRUG_USER",
+    "TABLE_NAME": "TRACE_UPLOAD_TIME_LOG",
+    "INDEX_NAME": "IDX_END_TIME",
+    "COLUMN_NAME": "END_TIME",
+    "COLUMN_POSITION": 1
+   },
+   {
+    "TABLE_OWNER": "DRUG_USER",
+    "TABLE_NAME": "TRACE_UPLOAD_TIME_LOG",
+    "INDEX_NAME": "IDX_START_TIME",
+    "COLUMN_NAME": "START_TIME",
+    "COLUMN_POSITION": 1
+   },
+   {
+    "TABLE_OWNER": "DRUG_USER",
+    "TABLE_NAME": "TRACE_UPLOAD_TIME_LOG",
+    "INDEX_NAME": "IDX_UPLOAD_STATUS",
+    "COLUMN_NAME": "UPLOAD_STATUS",
+    "COLUMN_POSITION": 1
+   },
+   {
+    "TABLE_OWNER": "DRUG_USER",
+    "TABLE_NAME": "TRACE_UPLOAD_TIME_LOG",
+    "INDEX_NAME": "SYS_C0070097",
+    "COLUMN_NAME": "LOG_ID",
+    "COLUMN_POSITION": 1
+   }
+  ]
+ },
+ "presc_trace_codes": {
+  "ok": true,
+  "n": 0,
+  "rows": []
+ },
+ "cli_trace_billno": {
+  "ok": false,
+  "skipped": "no TRACE_BILLNO index"
+ },
+ "upload_log_recent": {
+  "ok": true,
+  "n": 30,
+  "rows": [
+   {
+    "LOG_ID": 2115050879368196098,
+    "BUSINESS_ID": "3505",
+    "ST": "2026-10-22 02:00:00",
+    "ET": "2026-10-22 04:00:00",
+    "TIME_STEP": 120,
+    "UPLOAD_STATUS": 0,
+    "RECORD_COUNT": 0,
+    "SUCCESS_COUNT": 0,
+    "FAIL_COUNT": 0,
+    "REMARK": null,
+    "CT": "2026-10-27 20:00:00"
+   },
+   {
+    "LOG_ID": 2115050879334690818,
+    "BUSINESS_ID": "3503",
+    "ST": "2026-10-27 19:00:00",
+    "ET": "2026-10-27 20:00:00",
+    "TIME_STEP": 60,
+    "UPLOAD_STATUS": 1,
+    "RECORD_COUNT": 0,
+    "SUCCESS_COUNT": 0,
+    "FAIL_COUNT": 0,
+    "REMARK": null,
+    "CT": "2026-10-27 20:00:00"
+   },
+   {
+    "LOG_ID": 2115035779819270145,
+    "BUSINESS_ID": "3505",
+    "ST": "2026-10-22 02:00:00",
+    "ET": "2026-10-22 04:00:00",
+    "TIME_STEP": 120,
+    "UPLOAD_STATUS": 0,
+    "RECORD_COUNT": 0,
+    "SUCCESS_COUNT": 0,
+    "FAIL_COUNT": 0,
+    "REMARK": null,
+    "CT": "2026-10-27 19:00:00"
+   },
+   {
+    "LOG_ID": 2115035779806736385,
+    "BUSINESS_ID": "3503",
+    "ST": "2026-10-27 18:00:00",
+    "ET": "2026-10-27 19:00:00",
+    "TIME_STEP": 60,
+    "UPLOAD_STATUS": 1,
+    "RECORD_COUNT": 0,
+    "SUCCESS_COUNT": 0,
+    "FAIL_COUNT": 0,
+    "REMARK": null,
+    "CT": "2026-10-27 19:00:00"
+   },
+   {
+    "LOG_ID": 2115020680329064449,
+    "BUSINESS_ID": "3505",
+    "ST": "2026-10-22 02:00:00",
+    "ET": "2026-10-22 04:00:00",
+    "TIME_STEP": 120,
+    "UPLOAD_STATUS": 0,
+    "RECORD_COUNT": 0,
+    "SUCCESS_COUNT": 0,
+    "FAIL_COUNT": 0,
+    "REMARK": null,
+    "CT": "2026-10-27 18:00:00"
+   },
+   {
+    "LOG_ID": 2115020680295559170,
+    "BUSINESS_ID": "3503",
+    "ST": "2026-10-27 17:00:00",
+    "ET": "2026-10-27 18:00:00",
+    "TIME_STEP": 60,
+    "UPLOAD_STATUS": 1,
+    "RECORD_COUNT": 0,
+    "SUCCESS_COUNT": 0,
+    "FAIL_COUNT": 0,
+    "REMARK": null,
+    "CT": "2026-10-27 18:00:00"
+   },
+   {
+    "LOG_ID": 2115005580859830274,
+    "BUSINESS_ID": "3505",
+    "ST": "2026-10-22 02:00:00",
+    "ET": "2026-10-22 04:00:00",
+    "TIME_STEP": 120,
+    "UPLOAD_STATUS": 0,
+    "RECORD_COUNT": 0,
+    "SUCCESS_COUNT": 0,
+    "FAIL_COUNT": 0,
+    "REMARK": null,
+    "CT": "2026-10-27 17:00:00"
+   },
+   {
+    "LOG_ID": 2115005580813742082,
+    "BUSINESS_ID": "3503",
+    "ST": "2026-10-27 16:00:00",
+    "ET": "2026-10-27 17:00:00",
+    "TIME_STEP": 60,
+    "UPLOAD_STATUS": 1,
+    "RECORD_COUNT": 17,
+    "SUCCESS_COUNT": 17,
+    "FAIL_COUNT": 0,
+    "REMARK": null,
+    "CT": "2026-10-27 17:00:00"
+   },
+   {
+    "LOG_ID": 2114990481323487234,
+    "BUSINESS_ID": "3505",
+    "ST": "2026-10-22 02:00:00",
+    "ET": "2026-10-22 04:00:00",
+    "TIME_STEP": 120,
+    "UPLOAD_STATUS": 0,
+    "RECORD_COUNT": 0,
+    "SUCCESS_COUNT": 0,
+    "FAIL_COUNT": 0,
+    "REMARK": null,
+    "CT": "2026-10-27 16:00:00"
+   },
+   {
+    "LOG_ID": 2114990481289981954,
+    "BUSINESS_ID": "3503",
+    "ST": "2026-10-27 15:00:00",
+    "ET": "2026-10-27 16:00:00",
+    "TIME_STEP": 60,
+    "UPLOAD_STATUS": 1,
+    "RECORD_COUNT": 43,
+    "SUCCESS_COUNT": 43,
+    "FAIL_COUNT": 0,
+    "REMARK": null,
+    "CT": "2026-10-27 16:00:00"
+   },
+   {
+    "LOG_ID": 2114975381930848258,
+    "BUSINESS_ID": "3505",
+    "ST": "2026-10-22 02:00:00",
+    "ET": "2026-10-22 04:00:00",
+    "TIME_STEP": 120,
+    "UPLOAD_STATUS": 0,
+    "RECORD_COUNT": 0,
+    "SUCCESS_COUNT": 0,
+    "FAIL_COUNT": 0,
+    "REMARK": null,
+    "CT": "2026-10-27 15:00:00"
+   },
+   {
+    "LOG_ID": 2114975381803970562,
+    "BUSINESS_ID": "3503",
+    "ST": "2026-10-27 14:00:00",
+    "ET": "2026-10-27 15:00:00",
+    "TIME_STEP": 60,
+    "UPLOAD_STATUS": 1,
+    "RECORD_COUNT": 8,
+    "SUCCESS_COUNT": 8,
+    "FAIL_COUNT": 0,
+    "REMARK": null,
+    "CT": "2026-10-27 15:00:00"
+   },
+   {
+    "LOG_ID": 2114960282348367873,
+    "BUSINESS_ID": "3505",
+    "ST": "2026-10-22 02:00:00",
+    "ET": "2026-10-22 04:00:00",
+    "TIME_STEP": 120,
+    "UPLOAD_STATUS": 0,
+    "RECORD_COUNT": 0,
+    "SUCCESS_COUNT": 0,
+    "FAIL_COUNT": 0,
+    "REMARK": null,
+    "CT": "2026-10-27 14:00:00"
+   },
+   {
+    "LOG_ID": 2114960282313764865,
+    "BUSINESS_ID": "3503",
+    "ST": "2026-10-27 13:00:00",
+    "ET": "2026-10-27 14:00:00",
+    "TIME_STEP": 60,
+    "UPLOAD_STATUS": 1,
+    "RECORD_COUNT": 0,
+    "SUCCESS_COUNT": 0,
+    "FAIL_COUNT": 0,
+    "REMARK": null,
+    "CT": "2026-10-27 14:00:00"
+   },
+   {
+    "LOG_ID": 2114945182857064449,
+    "BUSINESS_ID": "3505",
+    "ST": "2026-10-22 02:00:00",
+    "ET": "2026-10-22 04:00:00",
+    "TIME_STEP": 120,
+    "UPLOAD_STATUS": 0,
+    "RECORD_COUNT": 0,
+    "SUCCESS_COUNT": 0,
+    "FAIL_COUNT": 0,
+    "REMARK": null,
+    "CT": "2026-10-27 13:00:00"
+   },
+   {
+    "LOG_ID": 2114945182823559170,
+    "BUSINESS_ID": "3503",
+    "ST": "2026-10-27 12:00:00",
+    "ET": "2026-10-27 13:00:00",
+    "TIME_STEP": 60,
+    "UPLOAD_STATUS": 1,
+    "RECORD_COUNT": 0,
+    "SUCCESS_COUNT": 0,
+    "FAIL_COUNT": 0,
+    "REMARK": null,
+    "CT": "2026-10-27 13:00:00"
+   },
+   {
+    "LOG_ID": 2114930083363762177,
+    "BUSINESS_ID": "3505",
+    "ST": "2026-10-22 02:00:00",
+    "ET": "2026-10-22 04:00:00",
+    "TIME_STEP": 120,
+    "UPLOAD_STATUS": 0,
+    "RECORD_COUNT": 0,
+    "SUCCESS_COUNT": 0,
+    "FAIL_COUNT": 0,
+    "REMARK": null,
+    "CT": "2026-10-27 12:00:00"
+   },
+   {
+    "LOG_ID": 2114930083316576258,
+    "BUSINESS_ID": "3503",
+    "ST": "2026-10-27 11:00:00",
+    "ET": "2026-10-27 12:00:00",
+    "TIME_STEP": 60,
+    "UPLOAD_STATUS": 1,
+    "RECORD_COUNT": 2,
+    "SUCCESS_COUNT": 2,
+    "FAIL_COUNT": 0,
+    "REMARK": null,
+    "CT": "2026-10-27 12:00:00"
+   },
+   {
+    "LOG_ID": 2114914983847292929,
+    "BUSINESS_ID": "3505",
+    "ST": "2026-10-22 02:00:00",
+    "ET": "2026-10-22 04:00:00",
+    "TIME_STEP": 120,
+    "UPLOAD_STATUS": 0,
+    "RECORD_COUNT": 0,
+    "SUCCESS_COUNT": 0,
+    "FAIL_COUNT": 0,
+    "REMARK": null,
+    "CT": "2026-10-27 11:00:00"
+   },
+   {
+    "LOG_ID": 2114914983817981953,
+    "BUSINESS_ID": "3503",
+    "ST": "2026-10-27 10:00:00",
+    "ET": "2026-10-27 11:00:00",
+    "TIME_STEP": 60,
+    "UPLOAD_STATUS": 1,
+    "RECORD_COUNT": 3,
+    "SUCCESS_COUNT": 3,
+    "FAIL_COUNT": 0,
+    "REMARK": null,
+    "CT": "2026-10-27 11:00:00"
+   },
+   {
+    "LOG_ID": 2114899884336115713,
+    "BUSINESS_ID": "3505",
+    "ST": "2026-10-22 02:00:00",
+    "ET": "2026-10-22 04:00:00",
+    "TIME_STEP": 120,
+    "UPLOAD_STATUS": 0,
+    "RECORD_COUNT": 0,
+    "SUCCESS_COUNT": 0,
+    "FAIL_COUNT": 0,
+    "REMARK": null,
+    "CT": "2026-10-27 10:00:00"
+   },
+   {
+    "LOG_ID": 2114899884327776258,
+    "BUSINESS_ID": "3503",
+    "ST": "2026-10-27 09:00:00",
+    "ET": "2026-10-27 10:00:00",
+    "TIME_STEP": 60,
+    "UPLOAD_STATUS": 1,
+    "RECORD_COUNT": 3,
+    "SUCCESS_COUNT": 3,
+    "FAIL_COUNT": 0,
+    "REMARK": null,
+    "CT": "2026-10-27 10:00:00"
+   },
+   {
+    "LOG_ID": 2114884784904679426,
+    "BUSINESS_ID": "3503",
+    "ST": "2026-10-27 08:00:00",
+    "ET": "2026-10-27 09:00:00",
+    "TIME_STEP": 60,
+    "UPLOAD_STATUS": 1,
+    "RECORD_COUNT": 2,
+    "SUCCESS_COUNT": 2,
+    "FAIL_COUNT": 0,
+    "REMARK": null,
+    "CT": "2026-10-27 09:00:00"
+   },
+   {
+    "LOG_ID": 2114884784850104322,
+    "BUSINESS_ID": "3505",
+    "ST": "2026-10-22 02:00:00",
+    "ET": "2026-10-22 04:00:00",
+    "TIME_STEP": 120,
+    "UPLOAD_STATUS": 0,
+    "RECORD_COUNT": 0,
+    "SUCCESS_COUNT": 0,
+    "FAIL_COUNT": 0,
+    "REMARK": null,
+    "CT": "2026-10-27 09:00:00"
+   },
+   {
+    "LOG_ID": 2114869685359898625,
+    "BUSINESS_ID": "3505",
+    "ST": "2026-10-22 02:00:00",
+    "ET": "2026-10-22 04:00:00",
+    "TIME_STEP": 120,
+    "UPLOAD_STATUS": 0,
+    "RECORD_COUNT": 0,
+    "SUCCESS_COUNT": 0,
+    "FAIL_COUNT": 0,
+    "REMARK": null,
+    "CT": "2026-10-27 08:00:00"
+   },
+   {
+    "LOG_ID": 2114869685351559170,
+    "BUSINESS_ID": "3503",
+    "ST": "2026-10-27 07:00:00",
+    "ET": "2026-10-27 08:00:00",
+    "TIME_STEP": 60,
+    "UPLOAD_STATUS": 1,
+    "RECORD_COUNT": 0,
+    "SUCCESS_COUNT": 0,
+    "FAIL_COUNT": 0,
+    "REMARK": null,
+    "CT": "2026-10-27 08:00:00"
+   },
+   {
+    "LOG_ID": 2114854585874984962,
+    "BUSINESS_ID": "3505",
+    "ST": "2026-10-22 02:00:00",
+    "ET": "2026-10-22 04:00:00",
+    "TIME_STEP": 120,
+    "UPLOAD_STATUS": 0,
+    "RECORD_COUNT": 0,
+    "SUCCESS_COUNT": 0,
+    "FAIL_COUNT": 0,
+    "REMARK": null,
+    "CT": "2026-10-27 07:00:00"
+   },
+   {
+    "LOG_ID": 2114854585857159170,
+    "BUSINESS_ID": "3503",
+    "ST": "2026-10-27 06:00:00",
+    "ET": "2026-10-27 07:00:00",
+    "TIME_STEP": 60,
+    "UPLOAD_STATUS": 1,
+    "RECORD_COUNT": 0,
+    "SUCCESS_COUNT": 0,
+    "FAIL_COUNT": 0,
+    "REMARK": null,
+    "CT": "2026-10-27 07:00:00"
+   },
+   {
+    "LOG_ID": 2114839486366904322,
+    "BUSINESS_ID": "3505",
+    "ST": "2026-10-22 02:00:00",
+    "ET": "2026-10-22 04:00:00",
+    "TIME_STEP": 120,
+    "UPLOAD_STATUS": 0,
+    "RECORD_COUNT": 0,
+    "SUCCESS_COUNT": 0,
+    "FAIL_COUNT": 0,
+    "REMARK": null,
+    "CT": "2026-10-27 06:00:00"
+   },
+   {
+    "LOG_ID": 2114839486362759170,
+    "BUSINESS_ID": "3503",
+    "ST": "2026-10-27 05:00:00",
+    "ET": "2026-10-27 06:00:00",
+    "TIME_STEP": 60,
+    "UPLOAD_STATUS": 1,
+    "RECORD_COUNT": 0,
+    "SUCCESS_COUNT": 0,
+    "FAIL_COUNT": 0,
+    "REMARK": null,
+    "CT": "2026-10-27 06:00:00"
+   }
+  ]
+ },
+ "doc_upload_recent": {
+  "ok": true,
+  "n": 0,
+  "rows": []
+ },
+ "elapsed": 0.16,
+ "captured_at": "2026-10-27T12:37:52.691368+00:00"
+}

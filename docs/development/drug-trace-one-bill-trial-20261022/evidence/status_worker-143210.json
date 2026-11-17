@@ -1,0 +1,98 @@
+{
+  "exit_code": 0,
+  "result": {
+    "ok": true,
+    "source_writes": 0,
+    "submission_id": "7ed95aaa-ee66-4510-b80d-630f6c9dc381",
+    "state": "CONFIRMED",
+    "attempts": [
+      {
+        "number": 1,
+        "outcome": "ACCEPTED",
+        "http_status": 200,
+        "ended": true,
+        "snapshot": {
+          "outcome": "ACCEPTED",
+          "error": {},
+          "parsed": {
+            "keys": [
+              "model",
+              "msg_code",
+              "msg_info",
+              "request_id",
+              "response_success",
+              "sub_msg_code"
+            ],
+            "size": 155
+          }
+        }
+      }
+    ],
+    "item_states": {
+      "PENDING": 4
+    },
+    "receipts": [
+      {
+        "parsed": {
+          "state": "PROCESSING",
+          "result_type": "0",
+          "sub_process_flag": ""
+        },
+        "raw_summary": {
+          "query_status": "OK",
+          "unknown": false,
+          "total_num": 1,
+          "pages_read": 1,
+          "generation": 2
+        }
+      },
+      {
+        "parsed": {
+          "state": "CONFIRMED",
+          "result_type": "3",
+          "sub_process_flag": "51"
+        },
+        "raw_summary": {
+          "query_status": "OK",
+          "unknown": false,
+          "total_num": 1,
+          "pages_read": 1,
+          "generation": 3
+        }
+      }
+    ],
+    "jobs": [
+      {
+        "id": "ffed1591-1019-4210-88ea-c3bdfaa70738",
+        "type": "drug_trace.send",
+        "state": "SUCCEEDED",
+        "attempts": 1,
+        "error": {}
+      },
+      {
+        "id": "9d7a8a88-d0d3-4119-a5be-20979d0284cc",
+        "type": "drug_trace.query_status",
+        "state": "SUCCEEDED",
+        "attempts": 1,
+        "error": {}
+      },
+      {
+        "id": "4866444c-d4c6-40c2-be49-5d950b15280a",
+        "type": "drug_trace.query_status",
+        "state": "SUCCEEDED",
+        "attempts": 1,
+        "error": {}
+      }
+    ],
+    "quota": {
+      "used": 1,
+      "max_bills": 1
+    },
+    "approval": {
+      "status": "APPROVED",
+      "revoked": false,
+      "valid_until": "2026-10-22 15:18:32.454834",
+      "production_requirements_deferred": true
+    }
+  }
+}

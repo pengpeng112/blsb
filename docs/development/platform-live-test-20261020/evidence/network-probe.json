@@ -1,0 +1,36 @@
+{
+  "captured_at": "2026-10-20T04:00:02.925597+00:00",
+  "read_only": true,
+  "remote_changes": 0,
+  "real_uploads": 0,
+  "business_requests": 0,
+  "credentials_in_output": false,
+  "intranet": {
+    "ssh_exit_code": 0,
+    "inventory_complete": true,
+    "output": "\n/opt/blyb/releases/20261016T114735Z\n__SERVICES__\nblyb-nginx-1 Up 3 days (healthy) 80/tcp, 0.0.0.0:443->443/tcp\nblyb-exchange-1 Up 3 days (healthy) 8002/tcp\n<worker-container> Up 3 days (healthy) \nblyb-core-1 Up 3 days (healthy) 8000/tcp\nblyb-storage-1 Up 3 days (healthy) 8001/tcp\nblyb-db-1 Up 3 days (healthy) 5432/tcp\n__DMZ_TCP__\n443 ConnectionRefusedError\n8443 ConnectionRefusedError\n__END__\nConnection to <prod-host> closed.\n"
+  },
+  "dmz": {
+    "authenticated": true,
+    "checks": {
+      "listeners": {
+        "command": "ss -lntH",
+        "exit_code": 0,
+        "stdout": "LISTEN     0      128    127.0.0.1:631                      *:*                  \nLISTEN     0      100    127.0.0.1:25                       *:*                  \nLISTEN     0      128          *:111                      *:*                  \nLISTEN     0      5      192.168.122.1:53                       *:*                  \nLISTEN     0      128          *:22                       *:*                  \nLISTEN     0      128      [::1]:631                   [::]:*                  \nLISTEN     0      100      [::1]:25                    [::]:*                  \nLISTEN     0      100       [::]:8001                  [::]:*                  \nLISTEN     0      128       [::]:111                   [::]:*                  \nLISTEN     0      128       [::]:22                    [::]:*                  \n",
+        "stderr": ""
+      },
+      "clock": {
+        "command": "date -u '+%Y-%m-%dT%H:%M:%SZ'; timedatectl show --property=NTPSynchronized",
+        "exit_code": 1,
+        "stdout": "2026-10-20T03:27:55Z\n",
+        "stderr": "timedatectl：无法识别的选项“--property=NTPSynchronized”\n"
+      },
+      "official_https": {
+        "command": "curl -4 --noproxy '*' --head --connect-timeout 5 --max-time 15 --silent --show-error --output /dev/null --write-out 'http_code=%{http_code} remote_ip=%{remote_ip} remote_port=%{remote_port} ssl_verify_result=%{ssl_verify_result} time_total=%{time_total}\n' https://eco.taobao.com/router/rest",
+        "exit_code": 28,
+        "stdout": "http_code=000 remote_ip=59.82.121.55 remote_port=443 ssl_verify_result=0 time_total=5.002\n",
+        "stderr": "curl: (28) Connection timed out after 5001 milliseconds\n"
+      }
+    }
+  }
+}

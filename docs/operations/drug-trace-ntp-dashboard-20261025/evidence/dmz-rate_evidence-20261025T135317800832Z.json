@@ -1,0 +1,18 @@
+{
+  "host": "dmz",
+  "phase": "rate_evidence",
+  "exit_code": 0,
+  "captured_at": "2026-10-25T13:53:17.800787+00:00",
+  "result": {
+    "before": {
+      "exit_code": 1,
+      "rejects": {},
+      "forwards": {}
+    },
+    "after": {
+      "exit_code": 1,
+      "rejects": {},
+      "forwards": {}
+    }
+  }
+}

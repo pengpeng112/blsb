@@ -1,0 +1,25 @@
+[dry] gate_context()
+[release] DEP-A13 闸门通过：白名单无 var/SQLite/凭据/node_modules
+[dry] whitelist files: 135
+[dry] drug-trace/dmz related files in release: 19
+   F:/python/blyb/implementation/deploy/dmz/blyb-dmz-forwarder.service
+   F:/python/blyb/implementation/deploy/dmz/config.template.json
+   F:/python/blyb/implementation/deploy/dmz/forwarder.py
+   F:/python/blyb/implementation/deploy/dmz/install.sh
+   F:/python/blyb/implementation/deploy/dmz/README.md
+   F:/python/blyb/implementation/plugins/destinations/alihealth_drugtrace/__init__.py
+   F:/python/blyb/implementation/plugins/destinations/alihealth_drugtrace/client.py
+   F:/python/blyb/implementation/plugins/destinations/alihealth_drugtrace/protocol.py
+   F:/python/blyb/implementation/plugins/destinations/alihealth_drugtrace/transport.py
+   F:/python/blyb/implementation/plugins/domains/drug_trace/__init__.py
+   F:/python/blyb/implementation/plugins/domains/drug_trace/contracts.py
+   F:/python/blyb/implementation/plugins/domains/drug_trace/ingest.py
+   F:/python/blyb/implementation/plugins/domains/drug_trace/models.py
+   F:/python/blyb/implementation/plugins/domains/drug_trace/payload.py
+   F:/python/blyb/implementation/plugins/domains/drug_trace/plugin.py
+   F:/python/blyb/implementation/plugins/domains/drug_trace/quality.py
+   F:/python/blyb/implementation/plugins/domains/drug_trace/routes.py
+   F:/python/blyb/implementation/plugins/domains/drug_trace/service.py
+   F:/python/blyb/implementation/plugins/sources/db_view/drug_trace.py
+[dry] missing files: 0
+[dry] OK — gate passed, whitelist resolves, drug_trace/dmz sources included

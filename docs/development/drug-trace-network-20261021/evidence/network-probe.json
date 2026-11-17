@@ -1,0 +1,60 @@
+{
+  "captured_at": "2026-10-21T04:59:38.513959+00:00",
+  "read_only": true,
+  "remote_changes": 0,
+  "real_uploads": 0,
+  "business_requests": 0,
+  "credentials_in_output": false,
+  "intranet": {
+    "ssh_exit_code": 255,
+    "inventory_complete": false,
+    "output": ""
+  },
+  "dmz": {
+    "authenticated": true,
+    "checks": {
+      "listeners": {
+        "command": "ss -lntH",
+        "exit_code": 0,
+        "stdout": "LISTEN     0      128    127.0.0.1:631                      *:*                  \nLISTEN     0      100    127.0.0.1:25                       *:*                  \nLISTEN     0      128          *:111                      *:*                  \nLISTEN     0      5      192.168.122.1:53                       *:*                  \nLISTEN     0      128          *:22                       *:*                  \nLISTEN     0      128      [::1]:631                   [::]:*                  \nLISTEN     0      100      [::1]:25                    [::]:*                  \nLISTEN     0      100       [::]:8001                  [::]:*                  \nLISTEN     0      128       [::]:111                   [::]:*                  \nLISTEN     0      128       [::]:22                    [::]:*                  \n",
+        "stderr": ""
+      },
+      "clock": {
+        "command": "date -u '+%Y-%m-%dT%H:%M:%SZ'; LC_ALL=C timedatectl status",
+        "exit_code": 0,
+        "stdout": "2026-10-21T04:27:24Z\n      Local time: Wed 2026-10-21 12:27:24 CST\n  Universal time: Wed 2026-10-21 04:27:24 UTC\n        RTC time: Wed 2026-10-21 04:59:45\n       Time zone: Asia/Shanghai (CST, +0800)\n     NTP enabled: yes\nNTP synchronized: no\n RTC in local TZ: no\n      DST active: n/a\n",
+        "stderr": ""
+      },
+      "forwarder_units": {
+        "command": "systemctl show blyb-dmz-forwarder.service blyb-dmz-forwarder.socket -p LoadState -p ActiveState -p SubState -p FragmentPath",
+        "exit_code": 0,
+        "stdout": "LoadState=not-found\nActiveState=inactive\nSubState=dead\nFragmentPath=\n\nLoadState=not-found\nActiveState=inactive\nSubState=dead\nFragmentPath=\n",
+        "stderr": ""
+      },
+      "forwarder_directories": {
+        "command": "for p in /opt/blyb-dmz /opt/blyb-dmz/current /etc/blyb-dmz/forwarder.json; do if [ -e \"$p\" ]; then printf \"PRESENT %s\\n\" \"$p\"; else printf \"ABSENT %s\\n\" \"$p\"; fi; done",
+        "exit_code": 0,
+        "stdout": "ABSENT /opt/blyb-dmz\nABSENT /opt/blyb-dmz/current\nABSENT /etc/blyb-dmz/forwarder.json\n",
+        "stderr": ""
+      },
+      "official_dns": {
+        "command": "timeout 8 getent ahostsv4 eco.taobao.com",
+        "exit_code": 0,
+        "stdout": "59.82.122.145   STREAM tao.cn.zb.aserver.tengine.ingress.alibabacorp.com.gds.alibabadns.com\n59.82.122.145   DGRAM  \n59.82.122.145   RAW    \n",
+        "stderr": ""
+      },
+      "official_https": {
+        "command": "curl -4 --noproxy '*' --head --connect-timeout 5 --max-time 15 --silent --show-error --output /dev/null --write-out 'http_code=%{http_code} remote_ip=%{remote_ip} remote_port=%{remote_port} ssl_verify_result=%{ssl_verify_result} time_total=%{time_total}\n' https://eco.taobao.com/router/rest",
+        "exit_code": 0,
+        "stdout": "http_code=200 remote_ip=59.82.122.61 remote_port=443 ssl_verify_result=0 time_total=0.353\n",
+        "stderr": ""
+      },
+      "official_http": {
+        "command": "curl -4 --noproxy '*' --head --connect-timeout 5 --max-time 15 --silent --show-error --output /dev/null --write-out 'http_code=%{http_code} remote_ip=%{remote_ip} remote_port=%{remote_port} ssl_verify_result=%{ssl_verify_result} time_total=%{time_total}\n' http://gw.api.taobao.com/router/rest",
+        "exit_code": 0,
+        "stdout": "http_code=200 remote_ip=59.82.31.88 remote_port=80 ssl_verify_result=0 time_total=0.046\n",
+        "stderr": ""
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "ssh_exit_code": 0,
+  "result": {
+    "exit_code": 0,
+    "installed": true,
+    "business_mutations": 0,
+    "source_queries": 0,
+    "directory": "/var/log/blyb/repair-observe-20261025"
+  }
+}

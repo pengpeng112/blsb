@@ -1,0 +1,13 @@
+{
+  "host": "app",
+  "phase": "send",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T14:05:44.063557+00:00",
+  "result": {
+    "launched": true,
+    "pid": 2425872,
+    "folder": "/root/blyb-maintenance-backups/history-retry-20261026-one-r2",
+    "max_bills": 1,
+    "max_uploads": 1
+  }
+}

@@ -1,0 +1,33 @@
+{
+ "info": "11406",
+ "msgid": "合成msgid",
+ "mdtrtarea_admvs": "合成mdtr",
+ "recer_sys_code": "合成recer_sy",
+ "infver": "合成infv",
+ "opter_type": "1",
+ "opter": "合成opter",
+ "opter_name": "合成敏感值占位",
+ "inf_time": "2026-02-01 08:00:00",
+ "fixmedins_code": "合成fixmedin",
+ "input": {
+  "eocrinfo": [
+   {
+    "mdtrt_sn": "合成mdtrt_sn",
+    "mdtrt_id": "合成mdtrt_id",
+    "medins_file_no": "合成敏感值占位",
+    "psn_no": "合成敏感值占位",
+    "psn_cert_type": "合成敏感值占",
+    "certno": "合成敏感值占位",
+    "medrcdno": "合成medrcdno",
+    "otp_flag": "合",
+    "dpt_code": "合成dpt_",
+    "dpt_name": "合成dpt_name",
+    "cou_rec_date": "2026-02-01 08:00:00",
+    "or_bed_no": "合成or_bed_n",
+    "rec_cont": "合成rec_cont",
+    "doc_code": "合成doc_code",
+    "doc_name": "合成敏感值占位"
+   }
+  ]
+ }
+}

@@ -1,0 +1,13 @@
+{
+  "command": [
+    "C:\\Users\\Administrator\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+    "-m",
+    "pytest",
+    "tests/integration/test_drug_trace_fix2.py",
+    "tests/integration/test_dmz_forwarder.py",
+    "-q",
+    "-ra",
+    "--junitxml=F:\\python\\blyb\\docs\\development\\drug-trace-20261016\\review-3-20261017\\evidence\\local-tests.xml"
+  ],
+  "exit_code": 0
+}

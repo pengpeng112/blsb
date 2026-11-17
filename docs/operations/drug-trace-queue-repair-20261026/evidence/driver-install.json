@@ -1,0 +1,14 @@
+{
+  "exit_code": 0,
+  "result": {
+    "backup": "/root/blyb-maintenance-backups/20261026T010142Z-driver",
+    "report_enabled": true,
+    "dummy_verified": true,
+    "hashes": {
+      "daily_upload_driver.py": "1d1862d93ca36449fa8658b7295b0b9a857d8b902059057ee25f9a68a1cd8c46",
+      "blyb-daily-upload.service": "4bb3cb60258a88ac1cf290895b9f5d5674ac1d0994221077ac63006d6d396b06"
+    },
+    "timer": "NEXT                        LEFT     LAST                        PASSED       UNIT                    ACTIVATES\nTue 2026-10-27 06:10:00 CST 21h left Mon 2026-10-26 06:10:29 CST 2h 51min ago blyb-daily-upload.timer blyb-daily-upload.service\n\n1 timers listed.\nPass --all to see loaded but inactive timers, too.",
+    "manual_batch_started": false
+  }
+}

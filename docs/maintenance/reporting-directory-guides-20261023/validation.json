@@ -1,0 +1,18 @@
+{
+  "files_checked": 17,
+  "directory_readmes": 5,
+  "catalog_command_exit_code": 0,
+  "catalog_documents": 270,
+  "full_docs_check_before_exit_code": 1,
+  "full_docs_check_after_exit_code": 1,
+  "before_existing_new_broken_links": 234,
+  "after_existing_new_broken_links": 234,
+  "new_broken_links_introduced": [],
+  "new_local_broken_links": [],
+  "source_or_archive_hash_mismatches": [],
+  "original_materials_checked": 8,
+  "original_materials_changed": [],
+  "remote_connections": 0,
+  "uploads": 0,
+  "application_tests_run": false
+}

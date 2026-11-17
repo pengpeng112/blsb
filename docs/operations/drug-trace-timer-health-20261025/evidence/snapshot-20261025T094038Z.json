@@ -1,0 +1,87 @@
+{
+  "ssh_exit_code": 0,
+  "captured_at": "2026-10-25T09:40:38.687931+00:00",
+  "manual_uploads": 0,
+  "source_database_queries": 0,
+  "remote_changes": 0,
+  "snapshot": {
+    "host_time": "2026-10-25T09:40:37.701730+00:00",
+    "blyb-daily-upload.timer": {
+      "exit_code": 0,
+      "properties": {
+        "TimersCalendar": "{ OnCalendar=*-*-* 06:10:00 Asia/Shanghai ; next_elapse=Mon 2026-10-26 06:10:00 CST }",
+        "NextElapseUSecRealtime": "Mon 2026-10-26 06:10:00 CST",
+        "LastTriggerUSec": "Sun 2026-10-25 06:10:29 CST",
+        "Result": "success",
+        "ActiveState": "active",
+        "SubState": "waiting",
+        "UnitFileState": "enabled"
+      }
+    },
+    "blyb-daily-upload.service": {
+      "exit_code": 0,
+      "properties": {
+        "Result": "exit-code",
+        "ExecMainStartTimestamp": "Sun 2026-10-25 06:10:29 CST",
+        "ExecMainExitTimestamp": "Sun 2026-10-25 06:10:29 CST",
+        "ExecMainStatus": "1",
+        "ActiveState": "failed",
+        "SubState": "failed",
+        "UnitFileState": "static"
+      }
+    },
+    "containers": [
+      {
+        "name": "<worker-container>",
+        "status": "Up 3 days (healthy)"
+      },
+      {
+        "name": "blyb-nginx-1",
+        "status": "Up 3 days (healthy)"
+      },
+      {
+        "name": "blyb-core-1",
+        "status": "Up 3 days (healthy)"
+      },
+      {
+        "name": "blyb-exchange-1",
+        "status": "Up 3 days (healthy)"
+      },
+      {
+        "name": "blyb-storage-1",
+        "status": "Up 3 days (healthy)"
+      },
+      {
+        "name": "blyb-db-1",
+        "status": "Up 3 days (healthy)"
+      }
+    ],
+    "deployed_driver": {
+      "sha256": "90fc2814186b0bd9cef862a2a3fa48857818c7afb25cfb365010a079f6ddfaa8",
+      "size": 9313,
+      "has_v2_report_push": false
+    },
+    "current_release": "/opt/blyb/releases/src-20261022T103000Z",
+    "receipts": [
+      {
+        "file": "20261025-061029.json",
+        "bytes": 0,
+        "mtime_utc": "2026-10-24T22:10:29.530784+00:00",
+        "parse_error": "JSONDecodeError"
+      }
+    ],
+    "last_error_log": {
+      "bytes": 537,
+      "traceback_count": 1,
+      "error_types": {
+        "AttributeError": 1
+      },
+      "ora_codes": []
+    },
+    "database": {
+      "exit_code": 1,
+      "error_kind": "QUERY_FAILED",
+      "missing_columns": []
+    }
+  }
+}

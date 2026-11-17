@@ -1,0 +1,11 @@
+[Unit]
+Description=Run BLYB drug-trace daily upload catchup at 08:30 Beijing (DTR-BATCH-FIX Fix7)
+
+[Timer]
+OnCalendar=*-*-* 08:30 Asia/Shanghai
+Persistent=true
+AccuracySec=1min
+Unit=blyb-daily-upload-catchup.service
+
+[Install]
+WantedBy=timers.target

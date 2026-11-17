@@ -1,0 +1,11 @@
+The authenticity of host '<prod-host> (<prod-host>)' can't be established.
+ED25519 key fingerprint is SHA256:IjK9PN01og2d/fsSjUy4rlsyRBqOiZZycBN6j46shQc.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '<prod-host>' (ED25519) to the list of known hosts.
+
+Authorized users only. All activities may be monitored and reported.
+root@<prod-host>'s password: 
+Successfully copied 930B (transferred 2.56kB) to <worker-container>:/tmp/nls-check.py
+__NLS__{"nls": {"NLS_CALENDAR": "GREGORIAN", "NLS_COMP": "BINARY", "NLS_CURRENCY": "$", "NLS_DATE_FORMAT": "DD-MON-RR", "NLS_DATE_LANGUAGE": "AMERICAN", "NLS_DUAL_CURRENCY": "$", "NLS_ISO_CURRENCY": "AMERICA", "NLS_LANGUAGE": "AMERICAN", "NLS_LENGTH_SEMANTICS": "BYTE", "NLS_NCHAR_CONV_EXCP": "FALSE", "NLS_NUMERIC_CHARACTERS": ".,", "NLS_SORT": "BINARY", "NLS_TERRITORY": "AMERICA", "NLS_TIMESTAMP_FORMAT": "DD-MON-RR HH.MI.SSXFF AM", "NLS_TIMESTAMP_TZ_FORMAT": "DD-MON-RR HH.MI.SSXFF AM TZR", "NLS_TIME_FORMAT": "HH.MI.SSXFF AM", "NLS_TIME_TZ_FORMAT": "HH.MI.SSXFF AM TZR"}, "to_char_number": "12345.5", "literal_header_sec": 1.143, "rows": 1}
+Connection to <prod-host> closed.

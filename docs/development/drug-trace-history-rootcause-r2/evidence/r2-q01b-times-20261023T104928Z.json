@@ -1,0 +1,48 @@
+{
+  "channel": "sjzc/<relay-jump>/data-asset-api/OracleConnector.execute_readonly",
+  "source_writes": 0,
+  "uploads": 0,
+  "registration_changes": 0,
+  "queries": {
+    "identity": {
+      "ok": true,
+      "sql": "SELECT USER AS LOGIN_USER,SYS_CONTEXT('USERENV','SERVICE_NAME') AS SERVICE_NAME FROM DUAL",
+      "params": null,
+      "rows_returned": 1,
+      "truncated": false,
+      "rows": [
+        {
+          "LOGIN_USER": "BLYB_DRUGTRACE",
+          "SERVICE_NAME": "his"
+        }
+      ]
+    }
+  },
+  "business_identifiers_returned": false,
+  "registration": {
+    "source_code": "his_source_<his_host_id>",
+    "host": "<his-host>",
+    "port": 1521,
+    "service": "his",
+    "write_policy": "medical_dict_push"
+  },
+  "batches": [
+    {
+      "codes": 500,
+      "rows": 1250,
+      "seconds": 0.1265,
+      "cap_reached": false
+    },
+    {
+      "codes": 31,
+      "rows": 46,
+      "seconds": 0.0078,
+      "cap_reached": false
+    }
+  ],
+  "run_completed": true,
+  "total_elapsed_seconds": 0.157,
+  "private_details_path": "C:\\Users\\Administrator\\AppData\\Local\\BLYB\\history-rootcause-r2\\live-20261023T104928Z\\q01b-view-times.json",
+  "captured_at": "2026-10-23T10:53:03.176113+00:00",
+  "run_id": "20261023T104928Z"
+}

@@ -1,0 +1,8 @@
+{
+  "utc": "2026-10-27T11:03:37.311169+00:00",
+  "business_source_calls": 0,
+  "metadata": {
+    "registration": "BEGIN\nSET\n[{\"source_code\":\"his_source_<his_host_id>\",\"system_code\":\"HIS\",\"db_type\":\"oracle\",\"target_host\":\"<his-host>\",\"port\":1521,\"service_name\":\"his\",\"enabled\":true,\"write_policy\":\"medical_dict_push\"}]\nCOMMIT",
+    "domains": "BEGIN\nSET\n\nCOMMIT"
+  }
+}

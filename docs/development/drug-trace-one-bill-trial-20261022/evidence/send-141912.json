@@ -1,0 +1,19 @@
+{
+  "exit_code": 0,
+  "result": {
+    "ok": true,
+    "phase": "send",
+    "calls": [
+      {
+        "method": "POST",
+        "path": "/drug-trace/submissions/7ed95aaa-ee66-4510-b80d-630f6c9dc381/send",
+        "http_status": 200
+      }
+    ],
+    "approval_kind": "USER_SINGLE_BILL_EXCEPTION",
+    "send": {
+      "job_id": "ffed1591-1019-4210-88ea-c3bdfaa70738",
+      "state": "PREPARED"
+    }
+  }
+}

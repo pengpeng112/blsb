@@ -1,0 +1,29 @@
+{
+  "uses_existing_quality_function": true,
+  "writes": 0,
+  "samples": [
+    {
+      "category": "standard_key",
+      "evaluated": true,
+      "whole_code_rows": 1,
+      "quality_state": "VALID",
+      "rule_codes": [
+        "QD-LEVEL-UNCONFIRMED"
+      ],
+      "blocking_rule_codes": []
+    },
+    {
+      "category": "repeated_pair",
+      "evaluated": true,
+      "whole_code_rows": 12,
+      "quality_state": "INVALID",
+      "rule_codes": [
+        "QD-DUP-CODE",
+        "QD-LEVEL-UNCONFIRMED"
+      ],
+      "blocking_rule_codes": [
+        "QD-DUP-CODE"
+      ]
+    }
+  ]
+}

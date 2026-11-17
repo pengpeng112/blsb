@@ -1,0 +1,242 @@
+# 第二阶段深度整改（RT-01 ～ RT-06）每日执行 AI 提示词清单
+
+> **使用说明**：每天新建一个 AI 会话，将对应天数的提示词代码块**整段复制粘贴**发送即可。每个任务包含深度代码改造、新增专项测试与全量回归，预计执行耗时 **1.5～3 小时**。若当天未全部跑完（状态标为 `handed_off`），次日复制最底部的【续做专用提示词】继续完成。
+
+---
+
+## 第 1 天：RT-01 前端 P0 白屏崩溃清零、前后端契约对齐与组件挂载测试
+
+```text
+你在 Windows 工作区 F:\python\blyb 中工作，这是一个医院数据上报平台（后端在 implementation/，Vue3 前端在 implementation/apps/admin_web/）。
+今天的任务是 【RT-01：前端 P0 白屏崩溃清零、前后端契约对齐与组件挂载测试】。
+
+请严格按以下顺序自主深入执行，不要每一步停下来问我，一直做到全部验收清单通过并规范收尾：
+
+1. 必读文档：
+   - 阅读 AGENTS.md（工作区铁律，必须遵守）。
+   - 阅读独立审计总览 docs/development/platform-rectification-20261111/README.md 全文。
+   - 阅读今日详细任务书 docs/development/platform-rectification-20261111/RT-01-前端P0修复与组件挂载测试.md 全文。
+
+2. 会话登记与基线记录：
+   - 运行 python scripts/ai_session.py status 确认无冲突。
+   - 按 RT-01 的“1. 修改范围”运行 python scripts/ai_session.py start --task RT-01-20261112 --tool <你的真实工具名> --model <你的真实模型名或unknown> --scope ... 登记会话。
+   - 记录禁改文件（DrugTrace.vue、drugTrace.css、drugTraceDisplay.ts、package.json）的初始 SHA256。
+
+3. 按 RT-01 任务书步骤 1～5 逐项彻底修复（不得遗漏任何一处）：
+   - 步骤 1（修路由断路与菜单范围过滤）：修复 src/router/index.ts 与 menu.ts 中 /system/users 映射 undefined、以及 /targets/inf_cdc_frontend 静态空组件劫持动态路由 /targets/:code 导致白屏的 P0 Bug；加路由非空组件启动硬断言；修 403/404 返回首页 /dashboard；在登录与 App.vue currentUser() 后同步刷新 localStorage 的 roles 与 target_scopes 并按范围过滤菜单。
+   - 步骤 2（修公共组件契约错配）：为 Tabs.vue 补上默认 <slot />（解决 TargetDetail 全部 7 个页签空白不可见的 P0 Bug）；为 PageHeader.vue 补上 <slot name="actions" />（解决所有顶部操作按钮隐身）；让 Drawer.vue 与 Modal.vue 关闭时同时 emit('update:open', false) 和 emit('close')（解决弹窗抽屉关不掉）；让 StatusTag.vue 支持 :status 属性并在 status.ts 补齐全部生命周期/调度/告警/联调枚举映射（解决满屏状态显示 —）；补齐 ErrorState 的 compact/small 与 @retry 绑定。
+   - 步骤 3（修 SVG 图表与全局 CSS）：修 Donut.vue 双重旋转偏移扇区飞出 Bug、BarChart 刻度对齐与 >10 项 X 轴标签抽稀、LineChart 全 0 与多序列日期并集；在 tokens.css 补齐兼容变量别名，消除 components.css 裸 aside/button 对侧栏折叠与页签圆角的全局污染。
+   - 步骤 4（逐页修前后端 API 错配）：修 dashboard.mjs sortTargets 兼容 target_code（消灭两个 PRODUCTION 默认种子白屏崩溃！）；修 Dashboard.vue 的 backlog_total 字段拼写与受限用户晨报 403 温和降级；后端 report_target_routes.py 补只读脱敏 destination_summary 与如实返回 submissions 的 data_source，前端 TargetDetail.vue 删掉不存在的 /api/v1/destinations 404 请求；Ledger/LedgerPane 接通 query.bucket 深链过滤并隔离详情抽屉错误不清空列表；Users.vue 新建用户映射 target_scopes；AuditSearch.vue 改为带 Bearer Token 的 fetch+Blob 下载 CSV（解决原生链接 401）并修正 datetime-local 的 +08:00 时区偏移，整合 /audit 菜单；Schedules.vue 与 Alerts.vue 修非法 <table v-for>、去 N+1 请求、按角色加载避免 403 alert、把所有 window.alert/prompt 换成 ConfirmDialog+Toast、把所有裸 UTC 时间换成 <TimeText>；http.ts 保留 ApiError.data 兼容老页面。
+   - 步骤 5（建立零新依赖的 Vue SFC 真实渲染测试）：利用已内置的 @vue/compiler-sfc + vue/server-renderer + esbuild 在 tests/ 下编写 sfc_loader.mjs 与 render_components_and_views.test.mjs（≥20 个真实 HTML 渲染断言测试，锁死 Tabs 插槽、PageHeader actions、StatusTag 中文、路由全组件非空、Dashboard 双 PRODUCTION 排序等全部场景）。
+
+4. 硬性红线：
+   - 严禁运行 npm install 或 pip install 安装任何新包；严禁修改 DrugTrace 三件套；严禁触碰任何生产系统或已有生产链路。
+
+5. 验收与收尾：
+   - 在 implementation/apps/admin_web 运行 npm run build（退出码必须为 0）及显式枚举 *.test.mjs 运行 node --test（≥71 项全绿）。
+   - 在 implementation/ 运行后端相关测试与全量回归 python -m pytest tests -q -ra -p no:cacheprovider 确认无回归。
+   - 核对禁改文件 SHA256 未变，写交接文件 docs/ai/sessions/RT-01-20261112.md，同步更新实施状态矩阵、测试执行记录、STATE/BACKLOG/HANDOFF，跑 python scripts/project_docs.py inventory 与 check，最后用 ai_session.py end 结束会话。
+```
+
+---
+
+## 第 2 天：RT-02 后端安全鉴权闭环、单轨插件装配与测试基线清零
+
+```text
+你在 Windows 工作区 F:\python\blyb 中工作，这是一个医院数据上报平台（后端在 implementation/，Vue3 前端在 implementation/apps/admin_web/）。
+今天的任务是 【RT-02：后端安全鉴权闭环、单轨插件装配与测试基线清零】。
+
+请严格按以下顺序自主深入执行，不要每一步停下来问我，一直做到全部验收清单通过并规范收尾：
+
+1. 必读文档：
+   - 阅读 AGENTS.md。
+   - 阅读 docs/development/platform-rectification-20261111/README.md 全文。
+   - 阅读今日详细任务书 docs/development/platform-rectification-20261111/RT-02-安全鉴权单轨装配与基线清零.md 全文。
+
+2. 会话登记与基线记录：
+   - 运行 python scripts/ai_session.py status 确认无冲突。
+   - 按 RT-02 的“1. 修改范围”运行 python scripts/ai_session.py start --task RT-02-20261113 --tool <你的真实工具名> --model <你的真实模型名或unknown> --scope ... 登记会话。
+   - 记录禁改文件 docs/audit/2026-10-01/test_review_probes.py 等的初始 SHA256。
+
+3. 按 RT-02 任务书步骤 1～4 逐项落实：
+   - 步骤 1（堵死 4 处 target_scopes 越权绕过）：在 medins_emr/routes.py 全部 7 个接口入口补 p.require_target_scope("medins_emr_sd")；在 report_target_routes.py 的 PUT /{code} 补 require_target_scope(code)、POST 新建要求全局范围；在 ops_routes.py 的 POST/PUT alert-rules 校验新旧 target_code 范围（系统级空 target 要求全局范围）；在 app.py 旧接口 /api/v1/alerts 与 /api/v1/submissions 对受限人类账号按 target_scopes 过滤（保持机器 token 和 ["*"] 管理员行为不变）。
+   - 步骤 2（补齐运维审计与最后管理员并发锁）：为 ops_routes.py 中告警 ack/resolve、规则增改、通道增改全部补写 AuditEvent；重写 system_routes.py 最后管理员保护为按 ID 排序 FOR UPDATE 锁定全租户活跃管理员集合并剔除 locked_until > now 的锁定账号，彻底消灭双管理员并发自我降权归零竞态。
+   - 步骤 3（统一 app_runtime 单轨装配与 Compose 配置）：消除 app.py 与 worker/engine.py 中 _loaded_registry = None 的断层，始终构造真实的 PluginRegistry 实例传给 ops_routes；将 app.py 硬编码挂载 medins_emr 改为通用遍历 _loaded_registry.capability_list("domain.routes")；在 deploy/compose/drug-trace.override.yml 中为 migrate 和 bootstrap 服务补齐与 core/worker 一致的 BLYB_PLUGINS 配置，并同步更新 DEPLOY_RUNBOOK.md。
+   - 步骤 4（探针 43/43 全绿 + 修 PG 测试双 Bug + 清理 3400+ 弃用警告）：严禁修改 test_review_probes.py！在 oracle_client.py 识别测试注入的无 init_oracle_client 合成桩对象（不污染粘滞错误状态），同时对真实 oracledb 模块 100% 保持 Thick 强制校验与阻断；修复 test_drug_trace_pg.py 动态空闲端口、容器清理、离线无镜像时优雅 skip（消灭 1 error）及迁移列表断言；将 migrate.py 与 pathology/models.py 的 Table.tometadata 升级为 Table.to_metadata，将遗留的 db.query(M).get(id) 升级为 db.get(M, id)。
+   - 编写 ≥25 个安全、并发、单轨装配与探针兼容测试。
+
+4. 硬性红线：
+   - 严禁修改 test_review_probes.py、deploy/inf_pusher/**、deploy/inf_watchdog/**、destinations/alihealth_drugtrace/**。
+   - 严禁影响药品追溯和传染病线上生产运行逻辑。
+
+5. 验收与收尾：
+   - 运行复核探针 python -m pytest docs/audit/2026-10-01/test_review_probes.py -q -ra -p no:cacheprovider，必须达成 **43 passed, 0 failed**！
+   - 运行后端全量回归 python -m pytest tests -q -ra -p no:cacheprovider，必须达成 **0 failed, 0 error**，且 warnings 降至 <600。
+   - 更新四类实施文档、DEPLOY_RUNBOOK.md、STATE/BACKLOG/HANDOFF，写交接 docs/ai/sessions/RT-02-20261113.md，跑 project_docs.py inventory 与 check，最后用 ai_session.py end 结束会话。
+```
+
+---
+
+## 第 3 天：RT-03 调度器状态机、早报时区与告警中心深度修复
+
+```text
+你在 Windows 工作区 F:\python\blyb 中工作，这是一个医院数据上报平台（后端在 implementation/，Vue3 前端在 implementation/apps/admin_web/）。
+今天的任务是 【RT-03：调度器状态机、早报时区与告警中心深度修复】。
+
+请严格按以下顺序自主深入执行，不要每一步停下来问我，一直做到全部验收清单通过并规范收尾：
+
+1. 必读文档：
+   - 阅读 AGENTS.md。
+   - 阅读 docs/development/platform-rectification-20261111/README.md 全文。
+   - 阅读今日详细任务书 docs/development/platform-rectification-20261111/RT-03-调度状态机与告警中心深修.md 全文。
+
+2. 会话登记：
+   - 运行 python scripts/ai_session.py status 确认无冲突。
+   - 按 RT-03 的“1. 修改范围”运行 python scripts/ai_session.py start --task RT-03-20261114 --tool <你的真实工具名> --model <你的真实模型名或unknown> --scope ... 登记会话。
+
+3. 按 RT-03 任务书步骤 1～4 逐项落实：
+   - 步骤 1（修调度生命周期、真实耗时与重试假 FAILED）：worker 领任务 claim_job 时调用 mark_run_started 将 ScheduleRun 置为 RUNNING、记录真实 started_at 并按当前开跑时刻刷新 deadline_at；当 Job 抛错进入 RETRY_WAIT 等待重试时保持 ScheduleRun 为 RUNNING，绝不提前标为终态 FAILED，仅当最终成功或重试耗尽时才回写 SUCCEEDED/FAILED 并算出真实 duration_seconds（迟到完成保留 late 标记）。
+   - 步骤 2（修 RUN_ONCE 历史风暴与刚创建即超时）：scheduler.py tick 推进 next_fire_at 时一次性用 CronExpr.next_after(now_utc) 跳到当前时刻之后；SKIP 策略只记 1 条 MISSED；RUN_ONCE 策略对停机积压只补跑最近一班且 deadline_at 从 now_utc 起算，彻底消灭补跑瞬间被 run_guard 误判 TIMED_OUT 的 Bug。
+   - 步骤 3（修早报 digest.py 时区错位与“表达式待核”崩溃）：严禁对 utcnow() 返回的 naive UTC 直接调 .astimezone(CST)！先 .replace(tzinfo=timezone.utc) 转为 aware UTC 再换算东八区昨日窗口并传给 CronExpr.next_after，消灭所有启用计划在早报中变成“表达式待核”的崩溃吞错。
+   - 步骤 4（修告警自监控指纹、入库前脱敏、Webhook 密钥校验与 4 处真游标分页）：自监控异常指纹按规则独立为 alerting.self:{tid}:{rule.code}；finding detail 与 message 入库前先做 sanitize_detail + redact_text（白名单补齐 error_code 等）；堵死 channels.py 中 webhook 直传明文 "url" 绕过 url_env 校验的漏洞；统一历史 warning 与 WARN 过滤及 COALESCE 时间排序；把 schedules/{sid}/runs、alerts2、notification-logs、medins-emr/debug-exchanges 四个接口原本形同虚设的 cursor 参数全部实现为真实的数据库游标分页，前端对应页面补齐“加载更多”。
+   - 编写 ≥30 个单元测试与集成测试验证上述全部场景。
+
+4. 硬性红线：
+   - 所有新增调度与镜像调度保持默认 enabled=False（镜像保持 observe_only 强制拦截）；本地文件告警通道保留，邮件/企微保持服务端停用；不触碰任何生产运行脚本。
+
+5. 验收与收尾：
+   - 跑通新增 ≥30 项测试、后端全量回归（0 failed, 0 error）、复核探针（43/43 passed）、前端 npm run build 与 node --test 全绿。
+   - 更新四类实施文档、STATE/BACKLOG/HANDOFF，写交接 docs/ai/sessions/RT-03-20261114.md，跑 project_docs.py inventory 与 check，最后用 ai_session.py end 结束会话。
+```
+
+---
+
+## 第 4 天：RT-04 传染病影子真采集闭环与山东医保 23 交易嵌套契约重构
+
+```text
+你在 Windows 工作区 F:\python\blyb 中工作，这是一个医院数据上报平台（后端在 implementation/，Vue3 前端在 implementation/apps/admin_web/）。
+今天的任务是 【RT-04：传染病影子真采集闭环与山东医保 23 交易嵌套契约重构】。
+
+请严格按以下顺序自主深入执行，不要每一步停下来问我，一直做到全部验收清单通过并规范收尾：
+
+1. 必读文档：
+   - 阅读 AGENTS.md。
+   - 阅读 docs/development/platform-rectification-20261111/README.md 全文。
+   - 阅读今日详细任务书 docs/development/platform-rectification-20261111/RT-04-传染病真影子与医保嵌套契约.md 全文。
+
+2. 会话登记：
+   - 运行 python scripts/ai_session.py status 确认无冲突。
+   - 按 RT-04 的“1. 修改范围”运行 python scripts/ai_session.py start --task RT-04-20261115 --tool <你的真实工具名> --model <你的真实模型名或unknown> --scope ... 登记会话。
+
+3. 按 RT-04 任务书 A、B 两段逐项落实：
+   - A 段（传染病影子真闭环与外部台账修复）：
+     * 修复 infectious/send.py 漏填 PackageRevision.digest（默认空串导致幂等键退化及 UNKNOWN 人工处置失败）的严重 Bug，填入真实 64 位 SHA256；禁止原地修改已发布的 ConfigRevision，改用独立游标表持久化影子水位与已发源版本时间。
+     * 实现真正的 SQL 视图增量采集模块 infectious/collect.py（按依赖顺序与 watermark-overlap 查询 6 张视图，本地/测试用 SQLite 模拟视图跑通完整影子采集→映射→本机回环 Mock 投递闭环）。
+     * 修复外部台账导入器 inf_pusher.py 中 SHAPE_INVALID 漏计入 rows_read 的计数倒挂及纯 sent.jsonl 记录丢失问题；补齐外部台账单条详情查询（消除前端点击行 404）与 6 类文书分类统计接口+前端展示表；实现影子 vs 外部台账集合对比工具 reconcile_shadow.py。
+   - B 段（山东医保 23 交易嵌套契约重构与递归全脱敏）：
+     * 重构 tools/spec_extract/ 并重新生成 profiles/medins_emr_sd/：补齐此前漏掉的 12601—12604 四个目录上传交易（真正达到 23/23 交易齐全！）；剔除输出参数表不混入 input；结合样例嵌套路径树（100% 丢弃样例原始值！）恢复 input 下子对象与数组的真实嵌套层级；修复 "日期" 截胡 "日期型" 死代码、代码列 "Y" 误当字典名、合成样例顶层非法 "_synthetic" 字段等问题，确保 23 个合成样例跑 contract_validator 全部 0 errors。
+     * 升级 contract_validator.py 完整支持嵌套对象与数组递归校验，且不被同级 UNKNOWN_FIELD 短路。
+     * 【P0 隐私安全】：扩充敏感字段标记（补 mob/tel/addr/psn_no 等），重写 medins_emr/routes.py 的 mask_sensitive 为任意深度 dict/list 递归全脱敏（契约标记 + 敏感键名正则 + 值模式三重兜底），彻底杜绝嵌套节点内患者姓名/证件号/手机号明文落入 debug_exchange 表！运行零泄漏扫描脚本确认原始样例敏感值 0 命中。
+     * 修复前端 MedinsDebug.vue：历史表格每行补“回填院内结果”按钮、导出下载包含 headers 与调用说明的完整参数化包、支持查看公共报文头契约。
+   - 编写 ≥30 个测试（含第 3 层嵌套隐私字段落库 0 明文断言测试）。
+
+4. 硬性红线：
+   - 严禁修改 deploy/inf_pusher/**、deploy/inf_watchdog/** 及 数据上报/** 下的原始规范和样例文件；严禁把原始样例中的任何敏感值复制进代码或契约；严禁向外部真实网络发请求。
+
+5. 验收与收尾：
+   - 跑通新增 ≥30 项测试、后端全量回归（0 failed, 0 error）、复核探针（43/43 passed）、前端 npm run build 与全部前端测试。
+   - 更新医保与传染病业务 README.md、四类实施文档、STATE/BACKLOG/HANDOFF，写交接 docs/ai/sessions/RT-04-20261115.md，跑 project_docs.py inventory 与 check，最后用 ai_session.py end 结束会话。
+```
+
+---
+
+## 第 5 天：RT-05 运营写操作闭环与全部 10 个遗留配置页现代化升级
+
+```text
+你在 Windows 工作区 F:\python\blyb 中工作，这是一个医院数据上报平台（后端在 implementation/，Vue3 前端在 implementation/apps/admin_web/）。
+今天的任务是 【RT-05：运营写操作闭环与全部 10 个遗留配置页现代化升级】。
+
+请严格按以下顺序自主深入执行，不要每一步停下来问我，一直做到全部验收清单通过并规范收尾：
+
+1. 必读文档：
+   - 阅读 AGENTS.md。
+   - 阅读 docs/development/platform-rectification-20261111/README.md 全文。
+   - 阅读今日详细任务书 docs/development/platform-rectification-20261111/RT-05-运营写闭环与遗留页全面升级.md 全文。
+
+2. 会话登记：
+   - 运行 python scripts/ai_session.py status 确认无冲突。
+   - 按 RT-05 的“1. 修改范围”运行 python scripts/ai_session.py start --task RT-05-20261116 --tool <你的真实工具名> --model <你的真实模型名或unknown> --scope ... 登记会话。
+
+3. 按 RT-05 任务书步骤 1～3 全面升级界面（零新依赖）：
+   - 步骤 1（补齐新运营中心 4 处写操作闭环）：
+     * Targets.vue 增加“新建上报业务”抽屉，TargetDetail.vue 增加“编辑业务配置”抽屉（乐观锁 revision 冲突提示，切 PILOT/PRODUCTION 强制 ConfirmDialog 填理由）。
+     * Schedules.vue 增加“新建/编辑定时任务”抽屉（Job 类型下拉、Cron 防抖实时预览未来 5 次触发时间、维护窗口可视化增删器；observe_only 镜像任务保持不可编辑不可运行）。
+     * Alerts.vue 增加“新建告警规则”抽屉与“通知通道新建/编辑”抽屉（按 file/smtp/webhook 切换表单，强调仅填环境变量名）。
+   - 步骤 2（可视化升级四大平台配置页）：
+     * Mapping.vue：升级为可视化字段映射规则表格构建器（下拉选白名单转换算子 op、引用字典下拉、增删排序）+ 左右并排模拟试算对比面板（支持与 JSON 视图无损互转）。
+     * Pack.vue：新增 DiffViewer.vue 版本差异对比组件（高亮新增/修改/删除项与 digest），补齐历史版本“回滚到此版本”按钮（调 /rollback 接口必填理由），修复重复表达式与裸 <pre>。
+     * Workflows.vue：彻底删除把非法 JSON 静默吞成 {} 提交的危险代码（改为语法标红拦截提示），新增纯 SVG 有向拓扑图组件 DagGraph.vue（支持按运行记录 Step 状态染色）。
+     * Connectors.vue：按连接器类型提供结构化配置引导，连通性与盘点覆盖结果用 StatusTag + 表格 + JsonViewer 清晰展示。
+   - 步骤 3（现代化升级其余 6 个老页面）：
+     * 统一升级 Cases.vue（病例详情宽抽屉分栏展示玻片扫描树与未上报诊断）、Quality.vue（修 msg 未渲染死代码改用 Toast，规则中文说明）、Review.vue（自动拉取采集列表供点选，免手填 UUID！）、Publications.vue（补齐漏掉的 /revoke 撤回发布按钮！）、Lineage.vue（三栏血缘对照表）、Metrics.vue（CSV 文件读取与表格预览导入）。
+   - 编写 ≥25 个前端单测与 Vue SFC SSR 真实渲染断言测试。
+
+4. 硬性红线：
+   - 严禁 npm install 安装任何新包；严禁改动 DrugTrace 三件套；消灭业务视图中的裸 <pre>{{ JSON.stringify。
+
+5. 验收与收尾：
+   - 运行 npm run build（含 vue-tsc 退出码 0）及前端全部测试（≥96 项全绿）；若微调后端只读辅助字段则跑后端全量回归与 43/43 探针全绿。
+   - 更新实施状态矩阵、测试执行记录、STATE/BACKLOG/HANDOFF，写交接 docs/ai/sessions/RT-05-20261116.md，跑 project_docs.py inventory 与 check，最后用 ai_session.py end 结束会话。
+```
+
+---
+
+## 第 6 天：RT-06 多业务扩展终验（脚手架修复、影像云示范与全栈端到端验收）
+
+```text
+你在 Windows 工作区 F:\python\blyb 中工作，这是一个医院数据上报平台（后端在 implementation/，Vue3 前端在 implementation/apps/admin_web/）。
+今天的任务是收官大考 【RT-06：多业务扩展终验（脚手架修复、影像云投影示范与全栈端到端验收）】。
+
+请严格按以下顺序自主深入执行，不要每一步停下来问我，一直做到全部验收清单通过并规范收尾：
+
+1. 必读文档：
+   - 阅读 AGENTS.md。
+   - 阅读 docs/development/platform-rectification-20261111/README.md 全文。
+   - 阅读今日详细任务书 docs/development/platform-rectification-20261111/RT-06-多业务扩展与全栈端到端终验.md 全文。
+
+2. 会话登记：
+   - 运行 python scripts/ai_session.py status 确认无冲突。
+   - 按 RT-06 的“1. 修改范围”运行 python scripts/ai_session.py start --task RT-06-20261117 --tool <你的真实工具名> --model <你的真实模型名或unknown> --scope ... 登记会话。
+
+3. 按 RT-06 任务书步骤 1～5 逐项落实：
+   - 步骤 1（修脚手架只能用一次的 Bug）：修复 scripts/new_report_target.py，按目标 code 精确判重并保留尾部插入锚点以支持连续追加第 6、第 7、第 N 个新上报业务，拦截 Windows/Linux 正反斜杠路径穿越，并在测试中连续创建 2 个不同新业务验证幂等通过。
+   - 步骤 2（充实济南医保影像云示范闭环）：升级 csv_profile.py 与 profiles/medins_imaging_jn/（补齐中文字段名、敏感标记、16 个数据集合成样例，保留未确认约束标记）；在 plugins/domains/medins_imaging/ 接入 domain.routes（含 target_scopes 鉴权的数据集浏览与本地契约校验接口）及 summary/ledger 钩子。
+   - 步骤 3（病理云 79/86 位国家编码规范辅助对齐）：按根目录 93ebd53751dc40669f4c977781904f8b.txt 在 pathology/index_codec.py 新增不破坏任何既有病理测试与门禁的 8 段 79 位/86 位编码双向解析与校验辅助函数及单测，更新病理业务 README.md。
+   - 步骤 4（编写全栈端到端契约冒烟守门测试 tests/e2e/test_fullstack_console_smoke.py）：
+     * 在全新临时库跑完整 migrate + bootstrap，拉起 FastAPI TestClient + WorkerEngine，一气呵成走通：登录/RBAC/范围隔离拦截 → 五大上报业务（码上放心摘要、传染病外部导入+分类+真 SQL 影子采集对账、山东医保 23 交易校验+Mock+导出+回填+隐私零明文、济南影像云 16 数据集校验、病理冻结+79位编码） → 调度创建/运行/RUNNING→SUCCEEDED 真实耗时 → 告警评估/早报无报错/本地文件通道/ack 审计/CSV 导出！
+     * 编写前端 src/api/*.ts 全量 API 路径与 HTTP 方法 vs FastAPI app.routes 的自动交叉核对断言，确保 **0 个幽灵 404 接口**！
+   - 步骤 5：编写终验总报告 docs/development/platform-rectification-20261111/FINAL_ACCEPTANCE_REPORT.md 并同步更新 DEPLOY_RUNBOOK.md。
+
+4. 硬性红线：
+   - 不连接任何真实外部数据库/服务器，不执行生产部署，严禁改动禁改清单中的生产运行脚本与 DrugTrace 三件套。
+
+5. 终验与收官：
+   - 跑后端全量测试 python -m pytest tests -q -ra -p no:cacheprovider --junitxml=var/RT-06-final-regression.xml（必须 **0 failed, 0 error**）。
+   - 跑独立复核探针 python -m pytest docs/audit/2026-10-01/test_review_probes.py -q -ra -p no:cacheprovider（必须 **43 passed, 0 failed**）。
+   - 跑前端 npm run build（exit 0）与全部 *.test.mjs（100% passed）。
+   - 跑 python scripts/project_docs.py inventory 与 check（新增断链 0），核对禁改文件 SHA256 全一致，更新四类实施文档、各业务 README、STATE/BACKLOG/HANDOFF，写交接 docs/ai/sessions/RT-06-20261117.md，最后用 ai_session.py end --result completed 收官！
+```
+
+---
+
+## 备用：如果某天 AI 没做完（状态为 `handed_off`），次日复制这段续做
+
+```text
+你在 Windows 工作区 F:\python\blyb 中工作。昨天执行的深度整改任务 【填任务编号，如 RT-04】 尚未全部完成（状态为 handed_off）。
+今天请继续完成该任务，不要跳到下一个任务：
+
+1. 阅读 AGENTS.md、docs/development/platform-rectification-20261111/README.md 以及该任务的详细任务书 docs/development/platform-rectification-20261111/【填任务编号】-*.md。
+2. 阅读昨天的交接文件 docs/ai/sessions/【填昨天的交接文件名】.md，查看“未完成项 / 下一步”，从断点处继续，不要重做已完成并测试通过的部分。
+3. 用 python scripts/ai_session.py start 登记今天的续做会话，完成剩余步骤与全部验收清单（后端全量 0 failed/0 error、探针 43/43、前端 build + 渲染单测全绿）。
+4. 全部验收通过后，写今天的交接文件、更新 STATE/BACKLOG/HANDOFF 与四类实施文档、跑 python scripts/project_docs.py inventory 与 check，并用 python scripts/ai_session.py end --result completed 结束会话。
+```

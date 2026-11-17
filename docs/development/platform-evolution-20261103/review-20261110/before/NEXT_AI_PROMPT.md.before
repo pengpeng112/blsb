@@ -1,0 +1,370 @@
+# 每日执行 AI 提示词清单（共 9 天，每天直接复制一段发给 AI）
+
+用户已拍板的关键决策（2026-11-04）：
+1. **执行顺序**：第 1 天先做 **LT-08（药品追溯采集性能排查与优化）**，第 2～9 天依次执行 **LT-01 → LT-02 → LT-03 → LT-04 → LT-05 → LT-06 → LT-07 → LT-09**。
+2. **告警通道**：暂用本地文件通道（file-only），邮件/企业微信参数后续再对接（代码与配置结构照常实现，默认启用 file_default）。
+3. **医保影像云目录**：单独建立 `数据上报/5、医保影像云上报/README.md` 作为导航，根目录 `pacs接口上传说明/` 原件保留不搬迁。
+4. **双上报风险边界**：码上放心与传染病目前正在正常上传，**严禁阻断或影响现有上传使用**；`sole_pusher` 字段仅用于台账展示与提醒，新闸门绝对不能挂到药品追溯或传染病现有生产链路上。
+
+> **使用方法**：每天新建一个 AI 对话，把对应天数的代码块**整段复制粘贴**发送即可。如果某天 AI 没做完（状态为 `handed_off`），第二天把本文件最底部的【续做专用提示词】复制发给它，做完后再进下一天。
+
+---
+
+## 第 1 天：LT-08 药品追溯采集管道“非查询开销”排查与优化（最急优先）
+
+```text
+你在 Windows 工作区 F:\python\blyb 中工作，这是一个医院数据上报平台（Python FastAPI + SQLAlchemy 后端在 implementation/，Vue3 前端在 implementation/apps/admin_web/）。
+今天的任务是 【LT-08：药品追溯采集管道“非查询开销”排查与优化（本地，不部署）】。
+
+请严格按以下顺序自主执行，不要每一步都停下来问我，一直做到验收完成并收尾：
+
+1. 必读文档：
+   - 阅读 AGENTS.md（工作区铁律，必须遵守）。
+   - 阅读 docs/development/platform-evolution-20261103/README.md 全文（重点看“§五 通用执行通则”）。
+   - 阅读今天的详细任务书 docs/development/platform-evolution-20261103/LT-08-药品追溯采集性能.md 全文。
+
+2. 会话登记与基线测试：
+   - 运行 python scripts/ai_session.py status 确认无冲突。
+   - 按 LT-08 的“2. 修改范围”运行 python scripts/ai_session.py start --task LT-08 --tool <你的真实工具名> --model <你的真实模型名或unknown> --scope ... 登记会话。
+   - 在 implementation/ 下跑一次基线测试：python -m pytest tests -q -k drug_trace -p no:cacheprovider，记录通过数和耗时。
+
+3. 按 LT-08 任务书步骤 1～5 逐步落实：
+   - 步骤 1：仔细梳理 implementation/plugins/domains/drug_trace/service.py（run_collection、_collect_gate、_fresh_session_read、_progress）、ingest.py、quality.py、plugins/sources/db_view/drug_trace.py 的每单执行路径，找出为什么 HIS 查询已是毫秒级但每单仍有约 11 秒非查询开销。
+   - 步骤 2：编写基准脚本 implementation/tests/performance/bench_drug_trace_collect.py（500 单合成数据，统计每单耗时、分阶段耗时、SQL 执行数、commit 次数）及环境变量 BLYB_DT_PROFILE=1 可开关的分阶段计时。
+   - 步骤 3（必须先于优化代码）：编写等价测试 implementation/tests/integration/test_drug_trace_collect_equivalence.py，用固定随机种子生成 200 单合成数据生成黄金快照（锁定 DrugTraceBill/BillRevision/CodeIndex 业务列、content_digest、质量问题、NOT_REPORTABLE/WAITING 分类、summary 计数），确保优化前后业务结果 100% 逐行等价。
+   - 步骤 4：实施性能优化（如按页批量 commit、_collect_gate 与 _progress 节流、质量规则每页批量预取避免 N+1 查询、可选的源端批量取数开关 batch_fetch 默认 false），每改一项都跑等价测试与基准对比。
+   - 步骤 5：编写分析报告 docs/development/platform-evolution-20261103/LT-08-REPORT.md（含基线 vs 优化后对比表、cProfile 前 30、SQL 计数、部署建议）。
+
+4. 硬性红线（违反即任务失败）：
+   - 只在本地分析、修改和测试，绝不连接真实 HIS/Oracle、不 SSH 到 <prod-host> 服务器、不修改宿主驱动脚本（docs/development/drug-trace-timed-report-20261024/）。
+   - 严禁改变采集幂等语义、content_digest 算法、质量规则判定结果、0/1/N 与 fail-closed 门禁；绝对不能影响线上正在运行的药品上传。
+   - 不联网安装任何新依赖（不 pip install），不删测试断言或加 xfail。
+
+5. 验收与收尾：
+   - 跑通等价测试、drug_trace 专项测试、后端全量回归（python -m pytest tests -q -ra -p no:cacheprovider）及复核探针（python ../docs/audit/2026-10-01/test_review_probes.py）。
+   - 写交接文件 docs/ai/sessions/LT-08.md，更新 docs/ai/STATE.md、docs/ai/BACKLOG.md、docs/ai/HANDOFF.md 顶部，更新 implementation/docs/测试执行记录.md，运行 python scripts/project_docs.py inventory，最后用 python scripts/ai_session.py end 结束会话。
+```
+
+---
+
+## 第 2 天：LT-01 上报业务目录（ReportTarget）与插件内核整治
+
+```text
+你在 Windows 工作区 F:\python\blyb 中工作，这是一个医院数据上报平台（Python FastAPI + SQLAlchemy 后端在 implementation/，Vue3 前端在 implementation/apps/admin_web/）。
+今天的任务是 【LT-01：上报业务目录（ReportTarget）与插件内核整治】。
+
+请严格按以下顺序自主执行，不要每一步都停下来问我，一直做到验收完成并收尾：
+
+1. 必读文档：
+   - 阅读 AGENTS.md。
+   - 阅读 docs/development/platform-evolution-20261103/README.md 全文（重点看“§五 通用执行通则”）。
+   - 阅读今天的详细任务书 docs/development/platform-evolution-20261103/LT-01-上报业务目录与插件内核.md 全文。
+
+2. 会话登记与基线测试：
+   - 运行 python scripts/ai_session.py status 确认无冲突。
+   - 按 LT-01 的“2. 修改范围”运行 python scripts/ai_session.py start --task LT-01 --tool <你的真实工具名> --model <你的真实模型名或unknown> --scope ... 登记会话。
+   - 跑一次基线测试并记录结果。
+
+3. 按 LT-01 任务书步骤 1～9 逐步落实：
+   - 步骤 2：在 packages/contracts/__init__.py 追加 TargetLifecycle、TargetRuntimeKind、REPORT_BUCKETS、REPORT_BUCKET_LABELS、SUBMISSION_STATE_TO_BUCKET。
+   - 步骤 3：在 packages/core_db/models.py 追加 ReportTarget 模型；在 migrate.py 追加 @register(14, "014_report_target") 迁移（先检查 14 号是否被占用），确保空库迁移与重复执行幂等。
+   - 步骤 4：为 pathology、metrics、drug_trace 三个领域插件建立 manifest.json，改造 plugins/app_runtime.py 自动发现 manifest，保持 PLUGIN_MANIFESTS 字典兼容。
+   - 步骤 5：新建 plugins/domain_hooks.py（HOOK_OVERVIEW、HOOK_TARGET_SUMMARY、HOOK_BUILD_RUNTIME 及 TargetSummary 数据类）；把 core_api/app.py overview 中硬编码的 PathologyCase 查询抽到 domains/pathology/hooks.py；为 drug_trace 和 pathology 实现只读的 target_summary 钩子（复用药品现有统计，严禁写库或触网）。
+   - 步骤 6：新建 plugins/report_targets.py（CRUD、乐观锁 revision、审计写入、生产闸门 assert_target_can_send_real、幂等种子 seed_default_targets 写入 5 条业务：码上放心、传染病、山东医保电子病历、医保病理云、济南医保影像云）。
+     【重要用户指令】：码上放心和传染病目前正在正常上传，sole_pusher 登记为 CONFLICT/UNCONFIRMED 仅用于台账展示提醒，严禁把 assert_target_can_send_real 接到药品追溯或传染病现有生产发送链路上！影像云 readme_path 填 "数据上报/5、医保影像云上报/README.md"。
+   - 步骤 7：新建 apps/core_api/report_target_routes.py 并挂载 6 个 API 端点（/api/v1/report-targets CRUD、summary、/api/v1/report-center/overview）。
+   - 步骤 8：编写 ≥25 个单元测试与集成测试并全部跑通。
+
+4. 硬性红线：
+   - 不连任何真实数据库或服务器，不联网安装依赖，不改禁改清单文件，不删减测试断言。
+   - 严禁影响药品追溯和传染病现有功能。
+
+5. 验收与收尾：
+   - 跑通新增测试、后端全量回归（python -m pytest tests -q -ra -p no:cacheprovider）及复核探针（python ../docs/audit/2026-10-01/test_review_probes.py）。
+   - 按 LT-01 步骤 9 同步四类实施文档、数据上报/README.md、STATE/BACKLOG/HANDOFF，写交接文件 docs/ai/sessions/LT-01.md，跑 project_docs.py inventory，最后用 ai_session.py end 结束会话。
+```
+
+---
+
+## 第 3 天：LT-02 前端外壳与组件库重建
+
+```text
+你在 Windows 工作区 F:\python\blyb 中工作，这是一个医院数据上报平台（Python FastAPI + SQLAlchemy 后端在 implementation/，Vue3 前端在 implementation/apps/admin_web/）。
+今天的任务是 【LT-02：前端外壳与组件库重建（不引入新依赖）】。
+
+请严格按以下顺序自主执行，不要每一步都停下来问我，一直做到验收完成并收尾：
+
+1. 必读文档：
+   - 阅读 AGENTS.md。
+   - 阅读 docs/development/platform-evolution-20261103/README.md 全文。
+   - 阅读今天的详细任务书 docs/development/platform-evolution-20261103/LT-02-前端外壳与组件库.md 全文。
+
+2. 会话登记与基线测试：
+   - 运行 python scripts/ai_session.py status 确认无冲突。
+   - 按 LT-02 的“2. 修改范围”运行 python scripts/ai_session.py start --task LT-02 --tool <你的真实工具名> --model <你的真实模型名或unknown> --scope ... 登记会话。
+   - 在 implementation/apps/admin_web 下运行 npm run build 和 node --test tests/，记录基线结果。
+
+3. 按 LT-02 任务书步骤 1～7 逐步落实：
+   - 步骤 1～2：检查 DrugTrace.vue 用到的全局 CSS 类名并保留兼容；建立 src/styles/{tokens,base,components}.css，把 App.vue 的全局样式抽离。
+   - 步骤 3：手写 src/components/ 下的可复用组件库（≥16 个组件：AppLayout、SideMenu、PageHeader、StatCard、StatusTag、DataTable、FilterBar、Drawer、Modal、ConfirmDialog、JsonViewer、Toast/ToastHost、EmptyState/ErrorState/LoadingBlock、TimeText、BytesText、Tabs，以及纯 SVG 图表组件 charts/{LineChart,BarChart,Donut}.vue）。
+   - 步骤 4：编写纯 TS 工具函数 src/utils/{time,bytes,status,menu,rate}.ts（注意 successRate 分母为 0 时必须返回 null 显示“—”，绝不显示 100%；UNKNOWN 不计入成功），并在 tests/utils.test.mjs 中编写 ≥20 个 node:test 单元测试。
+   - 步骤 5：建立类型化 API 层 src/api/{http,types,auth,reportCenter,index}.ts，原 src/api.ts 保留所有导出名并从新层 re-export，确保旧页面零修改可用。
+   - 步骤 6：建立分组菜单配置 src/router/menu.ts 与路由守卫（未登录跳转登录，角色不足跳转 403，未知路径 404）；重做 App.vue 布局（可折叠分组侧栏 + 顶栏用户信息/角色中文名/改密/退出 + 面包屑）；用新组件改造 Overview、Audit、Blockers、Storage、Files、Devices、Submissions、Reconciliations 8 个页面（消灭直接 JSON.stringify 输出，加上加载态/空态/错误态）。
+
+4. 硬性红线：
+   - 严禁运行 npm install 安装任何新包！package.json 的依赖必须保持不变。
+   - 严禁修改 src/views/DrugTrace.vue、src/views/drugTrace.css、src/views/drugTraceDisplay.ts 及 tests/drugTraceDisplay.test.mjs，且必须保证药品追溯页面在新外壳下样式与功能正常。
+
+5. 验收与收尾：
+   - 在 implementation/apps/admin_web 下运行 npm run build（必须包含 vue-tsc 类型检查且退出码为 0）和 node --test tests/（旧测试 + 新增 ≥20 项全过）。
+   - 同步实施状态矩阵、测试执行记录、STATE/BACKLOG/HANDOFF，写交接文件 docs/ai/sessions/LT-02.md，跑 project_docs.py inventory，最后用 ai_session.py end 结束会话。
+```
+
+---
+
+## 第 4 天：LT-03 统一推送适配器（DestinationAdapter）与统一提交台账
+
+```text
+你在 Windows 工作区 F:\python\blyb 中工作，这是一个医院数据上报平台（Python FastAPI + SQLAlchemy 后端在 implementation/，Vue3 前端在 implementation/apps/admin_web/）。
+今天的任务是 【LT-03：统一推送适配器（DestinationAdapter）与统一提交台账】。
+
+请严格按以下顺序自主执行，不要每一步都停下来问我，一直做到验收完成并收尾：
+
+1. 必读文档：
+   - 阅读 AGENTS.md。
+   - 阅读 docs/development/platform-evolution-20261103/README.md 全文。
+   - 阅读今天的详细任务书 docs/development/platform-evolution-20261103/LT-03-统一推送与提交台账.md 全文。
+
+2. 会话登记与基线测试：
+   - 运行 python scripts/ai_session.py status 确认无冲突。
+   - 按 LT-03 的“2. 修改范围”运行 python scripts/ai_session.py start --task LT-03 --tool <你的真实工具名> --model <你的真实模型名或unknown> --scope ... 登记会话。
+
+3. 按 LT-03 任务书步骤 1～8 逐步落实：
+   - 步骤 2：在 packages/connector_sdk/destination.py 定义 DestinationAdapter 协议、SendResult、QueryResult、ReceiptRule 及 json_path 解析器。
+   - 步骤 3：实现配置驱动的通用 HTTP JSON 推送适配器 plugins/destinations/generic_http_json/（配置校验、scheme/host/port 白名单二次校验防注入、env:VAR 凭据引用、可注入 sleeper 的退避重试、进程内令牌桶限速、声明式回执分类规则、错误信息脱敏 redact_text、perform_generic_push 落库 DeliveryAttempt 与状态转换），并在 app_runtime.load_registry 中注册。
+   - 步骤 4：在 core_handlers.perform_push 中对 generic_http_json 等新适配器接入 LT-01 的 assert_target_can_send_real 生产闸门。
+     【重要用户指令】：码上放心正在正常上传，严禁让该闸门拦截或改变药品追溯（alihealth_drugtrace）现有发送链路！写专门测试证明药品路径不受影响。
+   - 步骤 5：在 plugins/destinations/mock_http/server.py 扩展 inf_frontend 行为档（模拟 00 成功、01/99 重试、02 拒绝、timeout、500、429、非 JSON、前 N 次失败后成功），不改变既有行为档。
+   - 步骤 6～7：实现统一提交台账服务 plugins/report_ledger.py、HOOK_LEDGER_SEARCH 钩子（通用 Submission 与药品只读查询均必须“SQL 先筛后限”+ 游标分页，彻底修复先 limit 200 再筛选漏掉旧 UNKNOWN 的问题），并在 report_target_routes.py 挂载台账列表、详情、UNKNOWN 受控人工处置（manual-resolution，带 CAS 与审计）3 个 API 端点。
+   - 步骤 8：编写 ≥30 个测试（含 300 条数据中捞最旧 5 条 UNKNOWN 的反例测试）。
+
+4. 硬性红线：
+   - 不改 plugins/destinations/alihealth_drugtrace/**、不改药品 service.py 发送/查询逻辑、不改 deploy/inf_pusher/**。
+   - 不连真实外部系统，不装新依赖。
+
+5. 验收与收尾：
+   - 跑通新增 ≥30 个测试、后端全量回归及复核探针。
+   - 更新四类实施文档、STATE/BACKLOG/HANDOFF，写交接文件 docs/ai/sessions/LT-03.md，跑 project_docs.py inventory，最后用 ai_session.py end 结束会话。
+```
+
+---
+
+## 第 5 天：LT-04 平台调度、运行治理与告警中心
+
+```text
+你在 Windows 工作区 F:\python\blyb 中工作，这是一个医院数据上报平台（Python FastAPI + SQLAlchemy 后端在 implementation/，Vue3 前端在 implementation/apps/admin_web/）。
+今天的任务是 【LT-04：平台调度、运行治理与告警中心】。
+
+请严格按以下顺序自主执行，不要每一步都停下来问我，一直做到验收完成并收尾：
+
+1. 必读文档：
+   - 阅读 AGENTS.md。
+   - 阅读 docs/development/platform-evolution-20261103/README.md 全文。
+   - 阅读今天的详细任务书 docs/development/platform-evolution-20261103/LT-04-调度运行治理与告警.md 全文。
+
+2. 会话登记与基线测试：
+   - 运行 python scripts/ai_session.py status 确认无冲突。
+   - 按 LT-04 的“2. 修改范围”运行 python scripts/ai_session.py start --task LT-04 --tool <你的真实工具名> --model <你的真实模型名或unknown> --scope ... 登记会话。
+
+3. 按 LT-04 任务书 A、B、C 三段逐步落实：
+   - A 段（调度器）：
+     * 新增迁移 015（schedule、schedule_run 表，先确认迁移号未被占用）。
+     * 实现 packages/workflow_core/cron.py（固定 CST UTC+8 的 5 段 cron 解析、维护窗口 blackout 判断、payload 模板渲染含 {fire_date_minus_1} 解决 UTC 日界问题）。
+     * 实现 plugins/scheduling/scheduler.py（多 worker 安全的条件 UPDATE 抢占、misfire SKIP/RUN_ONCE、blackout 跳过、FORBID 并发重叠跳过记 SKIPPED_OVERLAP、Job 完成回写 schedule_run）及 7 个调度 API 端点。
+   - B 段（运行治理）：
+     * 实现 plugins/scheduling/run_guard.py（检测超 deadline 标记 TIMED_OUT、租约/心跳卡死标记 STALLED 并产生告警；注意只标记和告警，绝不 kill 进程或改动业务表/Job 租约）。
+   - C 段（告警中心）：
+     * 新增迁移 016（alert_rule、notification_channel、notification_log 表，以及 alert_event 扩列保持旧接口兼容）。
+     * 实现 plugins/alerting/（8 类告警规则、去重/冷却/恢复通知评估器、白名单脱敏 redact、每日 08:00 晨报生成 digest、file/smtp/webhook 三种通道驱动且禁止内联明文密码）。
+     * 【重要用户指令】：告警通知目前只启用本地文件通道（file_default，enabled=True），邮件与企业微信后续再对接；药品与传染病的镜像调度（drug_trace.daily_mirror、inf.poll_mirror）必须设为 enabled=False，绝不能影响或重复触发线上正在运行的宿主 timer 和容器 crontab！
+     * 挂载告警、规则、通道、测试发送、通知日志、最新晨报 API 端点。
+   - 编写 ≥40 个单元测试与集成测试。
+
+4. 硬性红线：
+   - 不改 deploy/inf_watchdog/**、deploy/inf_pusher/** 和药品宿主驱动。
+   - 所有业务镜像调度默认 enabled=False；不连真实 SMTP/Webhook。
+
+5. 验收与收尾：
+   - 若时间充裕全部完成：跑通 ≥40 个新测试、全量回归及复核探针，状态标 completed。
+   - 若时间不够：先完整交付并测通 A+B 段，状态标 handed_off，严禁留下半拉子未测试代码。
+   - 更新四类实施文档、STATE/BACKLOG/HANDOFF，写交接文件 docs/ai/sessions/LT-04.md，跑 project_docs.py inventory，最后用 ai_session.py end 结束会话。
+```
+
+---
+
+## 第 6 天：LT-05 传染病上报纳入平台（只读外部台账 + 影子插件）
+
+```text
+你在 Windows 工作区 F:\python\blyb 中工作，这是一个医院数据上报平台（Python FastAPI + SQLAlchemy 后端在 implementation/，Vue3 前端在 implementation/apps/admin_web/）。
+今天的任务是 【LT-05：传染病上报纳入平台（只读外部台账 + 影子插件）】。
+
+请严格按以下顺序自主执行，不要每一步都停下来问我，一直做到验收完成并收尾：
+
+1. 必读文档：
+   - 阅读 AGENTS.md。
+   - 阅读 docs/development/platform-evolution-20261103/README.md 全文。
+   - 阅读今天的详细任务书 docs/development/platform-evolution-20261103/LT-05-传染病纳管.md 全文。
+
+2. 会话登记与基线测试：
+   - 运行 python scripts/ai_session.py status 确认无冲突。
+   - 按 LT-05 的“2. 修改范围”运行 python scripts/ai_session.py start --task LT-05 --tool <你的真实工具名> --model <你的真实模型名或unknown> --scope ... 登记会话。
+
+3. 按 LT-05 任务书 A、B 两段逐步落实：
+   - A 段（只读外部台账导入）：
+     * 新增迁移 017（external_submission_record、external_import_batch、external_import_line 表）。
+     * 实现 plugins/external_ledger/importers/inf_pusher.py（解析 receipts-YYYYMMDD.jsonl、sent.jsonl、watermark.json；严格字段白名单丢弃任何非白名单字段、desc 脱敏截断、按行 sha256 幂等防重、支持 --source-tz UTC|CST 转换、--dry-run）。
+     * 构造全合成夹具 tests/fixtures/inf_pusher_state/（ID 一律 TEST- 前缀）。
+     * 实现 CLI（apps/import_external_ledger.py）、导入 API（POST/GET /api/v1/report-center/external-imports）以及 infectious 插件的 target_summary 与 ledger_search 钩子。
+   - B 段（平台内影子插件）：
+     * 建立 plugins/domains/infectious/（manifest.json、plugin.py、tables.py、mapping.py、collect.py、send.py、hooks.py、README.md）。
+     * 编写 test_inf_tables_parity.py 与 test_inf_payload_equivalence.py，只读加载 deploy/inf_pusher/ 的定义与纯函数，100% 验证 6 张表的字段映射、日期规范化、垫片逻辑与生产 pusher 产出逐字段等价。
+     * 实现 inf.collect（基于合成 SQLite 视图 + 水位 overlap）与 inf.send（走 LT-03 generic_http_json 发往 Mock 服务 inf_frontend_mock；因为 inf_cdc_frontend 是 EXTERNAL，任何把目的地改为非 Mock 的尝试都会被闸门 PROFILE_UNAPPROVED 拒绝，写测试验证这一点）。
+   - 编写 ≥30 个测试。
+
+4. 硬性红线：
+   - 【重要用户指令】：传染病上报正在线上正常使用，严禁修改 implementation/deploy/inf_pusher/** 或 inf_watchdog/**，严禁连接 <prod-host>、ODS（<ods-host>）或前置机（<frontend-host>）！平台内插件只能发 Mock。
+
+5. 验收与收尾：
+   - 跑通新增 ≥30 个测试、全量回归及复核探针，确认 git diff implementation/deploy 为空。
+   - 更新 数据上报/4、传染病病历数据上报/README.md、四类实施文档、STATE/BACKLOG/HANDOFF，写交接文件 docs/ai/sessions/LT-05.md，跑 project_docs.py inventory，最后用 ai_session.py end 结束会话。
+```
+
+---
+
+## 第 7 天：LT-06 运营页面（驾驶舱 / 业务中心 / 调度 / 告警 / 台账 / 用户角色 / 审计）
+
+```text
+你在 Windows 工作区 F:\python\blyb 中工作，这是一个医院数据上报平台（Python FastAPI + SQLAlchemy 后端在 implementation/，Vue3 前端在 implementation/apps/admin_web/）。
+今天的任务是 【LT-06：运营页面（驾驶舱 / 上报业务中心 / 调度 / 告警 / 台账 / 用户角色 / 审计）】。
+
+请严格按以下顺序自主执行，不要每一步都停下来问我，一直做到验收完成并收尾：
+
+1. 必读文档：
+   - 阅读 AGENTS.md。
+   - 阅读 docs/development/platform-evolution-20261103/README.md 全文。
+   - 阅读今天的详细任务书 docs/development/platform-evolution-20261103/LT-06-运营页面.md 全文。
+
+2. 会话登记与基线测试：
+   - 运行 python scripts/ai_session.py status 确认无冲突。
+   - 按 LT-06 的“2. 修改范围”运行 python scripts/ai_session.py start --task LT-06 --tool <你的真实工具名> --model <你的真实模型名或unknown> --scope ... 登记会话。
+
+3. 按 LT-06 任务书优先级 P1 → P2 → P3 逐步落实：
+   - P1 核心运营页：
+     * 上报驾驶舱 Dashboard.vue（路由 /dashboard 设为新默认首页，原 /overview 保留为“平台运行指标”）：顶部时间范围切换（1/7/30天）、待办警示条（OPEN 告警、UNKNOWN>0、授权到期、双上报提醒）、5 个上报业务状态卡片网格（成功率用 successRate，UNKNOWN 单列红字，点击跳详情）、每日趋势堆叠柱状图、今日晨报与最近调度运行。
+     * 上报业务列表 Targets.vue（/targets）与业务详情 TargetDetail.vue（/targets/:code，含概况、提交台账、调度、告警、配置编辑、外部台账导入 Tabs；注意编辑 sole_pusher 等字段只做登记展示，不影响线上运行）。
+     * 跨业务提交与回执检索 Ledger.vue（/ledger，全部过滤条件传后端先筛后限、游标加载更多、UNKNOWN 人工处置弹窗）。
+   - P2 调度与告警页：
+     * 调度任务 Schedules.vue 与详情（cron 实时调 preview 显示未来 5 次触发时间，镜像调度带“镜像”标签与防重警告，立即运行与启停均需填理由）。
+     * 告警中心 Alerts.vue（告警列表确认/关闭、规则按 kind 动态表单免手写 JSON、通道配置提示填写环境变量名 + 测试发送、通知日志、晨报）。
+     * 传染病详情页专属统计与副本上传导入组件。
+   - P3 系统管理（含后端）：
+     * 新增迁移 018（账号 target_scopes 业务范围授权），实现 apps/core_api/system_routes.py 用户管理 5 个接口与审计检索/CSV 导出接口（保持旧 /api/v1/audit 无参调用 100% 兼容）。
+     * 前端用户与角色页 Users.vue（/system/users）及改造后的 Audit.vue（筛选、前后版本并排对比、导出 CSV）。
+   - 编写前端纯函数单测 ≥15 项，后端用户与审计集成测试 ≥20 项。
+
+4. 硬性红线：
+   - 不装任何新 npm/pip 包；不改 DrugTrace.vue 三件套；禁止在前端伪造假数据（后端无数据时展示空态或说明）。
+
+5. 验收与收尾：
+   - 跑通前端 npm run build、node --test tests/（新增 ≥15 项），跑通后端新增 ≥20 项测试、全量回归及复核探针。
+   - 更新四类实施文档、STATE/BACKLOG/HANDOFF，写交接文件 docs/ai/sessions/LT-06.md，跑 project_docs.py inventory，最后用 ai_session.py end 结束会话。
+```
+
+---
+
+## 第 8 天：LT-07 医保电子病历（山东 V2.0）规范契约化与联调工具台
+
+```text
+你在 Windows 工作区 F:\python\blyb 中工作，这是一个医院数据上报平台（Python FastAPI + SQLAlchemy 后端在 implementation/，Vue3 前端在 implementation/apps/admin_web/）。
+今天的任务是 【LT-07：医保电子病历（山东 V2.0）规范契约化与联调工具台】。
+
+请严格按以下顺序自主执行，不要每一步都停下来问我，一直做到验收完成并收尾：
+
+1. 必读文档：
+   - 阅读 AGENTS.md。
+   - 阅读 docs/development/platform-evolution-20261103/README.md 全文。
+   - 阅读今天的详细任务书 docs/development/platform-evolution-20261103/LT-07-医保电子病历联调台.md 全文。
+   - 阅读 数据上报/2、医保电子病历上报/README.md 与 说明.txt（院方要求：“该接口不用开发，只要确保能够调试通发送成功即可”）。
+
+2. 会话登记与基线测试：
+   - 运行 python scripts/ai_session.py status 确认无冲突。
+   - 按 LT-07 的“2. 修改范围”运行 python scripts/ai_session.py start --task LT-07 --tool <你的真实工具名> --model <你的真实模型名或unknown> --scope ... 登记会话。
+
+3. 按 LT-07 任务书步骤 1～9 逐步落实：
+   - 步骤 1～3：编写规范提取工具 implementation/tools/spec_extract/{docx_tables,sample_shape,build_profile}.py，解析《山东省医疗保障信息平台定点医疗机构医保电子病历接口规范V2.0(1)(2).docx》与样例目录结构，生成 implementation/profiles/medins_emr_sd/（profile.json、transactions.json、fields/*.json、dicts/*.json、全合成 samples/*.json、EXTRACTION_REPORT.md）。
+     【严守脱敏红线】：原始样例文件可能含真实姓名、证件号、机构码。sample_shape 只提取字段路径和类型，丢弃所有原始值！生成的 samples/*.json 一律使用合成值（如“测试患者”、000000199001010000），严禁把原始样例中的任何值复制到代码库、Profile、测试或文档中！
+   - 步骤 4：实现契约校验器 packages/mapping_engine/contract_validator.py（必填、类型、长度、字典、日期格式、嵌套数组校验，输出中文错误与字段路径）。
+   - 步骤 5：实现 plugins/destinations/medins_gateway/（公共报文头组装、msgid 生成、NoneSigner 与标注“实验性”的 TifHmacSigner、Mock 发送客户端）。
+   - 步骤 6～7：新增迁移 019（debug_exchange 联调记录表，敏感字段打码存储），实现 plugins/domains/medins_emr/ 联调插件与 7 个 API（交易清单、契约详情、本地校验、发往 Mock、导出院内手工执行包、联调历史、回填院内执行结果）。
+   - 步骤 8：实现前端联调工具台 src/views/target/MedinsDebug.vue（挂在 /targets/medins_emr_sd 下：左选交易、中改报文、右看校验错误与字段契约、底部校验/发 Mock/导出执行包/回填结果）。
+   - 步骤 9：执行一次自检脚本确认 implementation/ 下零命中原始样例中的长字符串值；编写 ≥25 个测试。
+
+4. 硬性红线：
+   - 严禁向任何真实医保地址发送请求，只能发本地 Mock 或导出执行包供院内手工执行。
+   - 严禁泄露或复制原始样例中的人名、证件号、机构码、调用地址。
+
+5. 验收与收尾：
+   - 跑通新增 ≥25 个测试、后端全量回归、复核探针及前端 npm run build。
+   - 更新 数据上报/2、医保电子病历上报/README.md、四类实施文档、STATE/BACKLOG/HANDOFF，写交接文件 docs/ai/sessions/LT-07.md，跑 project_docs.py inventory，最后用 ai_session.py end 结束会话。
+```
+
+---
+
+## 第 9 天：LT-09 标准化收尾（接入脚手架、影像云建目录与 Profile、全量回归与发布准备）
+
+```text
+你在 Windows 工作区 F:\python\blyb 中工作，这是一个医院数据上报平台（Python FastAPI + SQLAlchemy 后端在 implementation/，Vue3 前端在 implementation/apps/admin_web/）。
+今天的任务是 【LT-09：标准化收尾（新业务接入脚手架、影像云 Profile、清理、全量回归与发布准备）】。
+
+请严格按以下顺序自主执行，不要每一步都停下来问我，一直做到验收完成并收尾：
+
+1. 必读文档：
+   - 阅读 AGENTS.md。
+   - 阅读 docs/development/platform-evolution-20261103/README.md 全文。
+   - 阅读今天的详细任务书 docs/development/platform-evolution-20261103/LT-09-标准化收尾与发布准备.md 全文。
+
+2. 会话登记与基线测试：
+   - 运行 python scripts/ai_session.py status 确认无冲突。
+   - 按 LT-09 的“2. 修改范围”运行 python scripts/ai_session.py start --task LT-09 --tool <你的真实工具名> --model <你的真实模型名或unknown> --scope ... 登记会话。
+
+3. 按 LT-09 任务书步骤 1～7 逐步落实：
+   - 步骤 1：编写 docs/development/platform-evolution-20261103/新上报业务接入指南.md（含 11 步标准流程与 30 条以内接入检查清单）。
+   - 步骤 2：编写脚手架脚本 scripts/new_report_target.py 及模板 scripts/templates/report_target/**（支持一键生成插件骨架、manifest、Profile 目录、业务 README、测试骨架、ReportTarget 种子，支持 --dry-run 且幂等不覆盖已有文件），并编写脚手架单元测试。
+   - 步骤 3（走通济南医保影像云接入）：
+     * 【重要用户指令】：用户已确认单独建立 `数据上报/5、医保影像云上报/README.md` 业务目录做导航，指向根目录 `pacs接口上传说明/` 下的原始规范（原始文件原封不动，不搬迁），并同步更新 `数据上报/README.md` 总索引。
+     * 运行脚手架生成 medins_imaging 插件骨架与业务目录。
+     * 编写 tools/spec_extract/csv_profile.py，从 `设计交付v0.4/契约与示例/PACS_V2_字段清单_原样提取.csv`（16 数据集 / 288 字段）生成 `implementation/profiles/medins_imaging_jn/` 完整契约与 EXTRACTION_REPORT.md（对照已实现的 chk_info/asset_info 投影与未实现项）。
+   - 步骤 4：低风险技术债清理（plugin_registry.py 加弃用注释并核查生产 BLYB_PLUGINS 配置影响、deploy/release/dist/README_DO_NOT_USE.md 警示、空目录 README 说明、uuid7ish 注释）。
+   - 步骤 5～7：跑后端全量回归、复核探针、前端构建与单测、文档索引检查；编写生产部署手册 DEPLOY_RUNBOOK.md（只写手册不执行部署，明确避让窗口与回退方案）与总结报告 RESULT.md（汇总 LT-01～LT-09 全部实测通过、实现未测、外部阻断清单）。
+
+4. 硬性红线：
+   - 只产出代码、测试、文档与本地构建，不连接生产服务器部署，不影响线上药品和传染病运行。
+
+5. 验收与收尾：
+   - 确保后端全量回归、复核探针、前端 npm run build 与 node --test tests/、project_docs.py inventory 全部通过。
+   - 更新四类实施文档、数据上报/README.md、STATE/BACKLOG/HANDOFF，写交接文件 docs/ai/sessions/LT-09.md，最后用 ai_session.py end 结束会话。
+```
+
+---
+
+## 备用：如果某天 AI 没做完（状态为 `handed_off`），次日复制这段续做
+
+```text
+你在 Windows 工作区 F:\python\blyb 中工作。昨天执行的任务 【填任务编号，如 LT-04】 尚未全部完成（状态为 handed_off）。
+今天请继续完成该任务，不要跳到下一个任务：
+
+1. 阅读 AGENTS.md、docs/development/platform-evolution-20261103/README.md（§五 通用执行通则）以及该任务的详细任务书 docs/development/platform-evolution-20261103/【填任务编号】-*.md。
+2. 阅读昨天的交接文件 docs/ai/sessions/【填昨天的交接文件名】.md，重点看“未完成项 / 下一步”，从断点处继续，不要重做已经完成并测试通过的部分。
+3. 用 python scripts/ai_session.py start 登记今天的续做会话，跑一次现有测试确认基线正常，然后完成剩余步骤与全部验收清单。
+4. 全部验收通过后，写今天的交接文件、更新 STATE/BACKLOG/HANDOFF 与四类实施文档、跑 python scripts/project_docs.py inventory，并用 python scripts/ai_session.py end --result completed 结束会话。
+```

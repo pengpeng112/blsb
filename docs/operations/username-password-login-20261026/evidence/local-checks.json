@@ -1,0 +1,11 @@
+{
+  "source_drift": [],
+  "runtime_password_source_hash_match": true,
+  "scoped_broken_links": [],
+  "passed": 499,
+  "skipped": 7,
+  "operation_syntax_ok": true,
+  "release": "auth-20261026T043500Z",
+  "production_browser_accepted": false,
+  "resumed_batch_running": true
+}

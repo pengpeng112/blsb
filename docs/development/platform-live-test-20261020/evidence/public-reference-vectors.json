@@ -1,0 +1,48 @@
+[
+  {
+    "secret": "helloworld",
+    "reference_sign": "AF4396FC8B32007A83FAEB5695A4F354",
+    "id": "official_article_example",
+    "params": {
+      "session": "test",
+      "international_logistics_id": "LP00038357949881",
+      "v": "2.0",
+      "method": "aliexpress.logistics.redefining.getonlinelogisticsinfo",
+      "timestamp": "2016-01-01 12:00:00",
+      "logistics_status": "INIT",
+      "format": "json",
+      "sign_method": "md5",
+      "app_key": "12345678"
+    }
+  },
+  {
+    "secret": "public_offline_demo",
+    "reference_sign": "F12B20840B0B0C27FAFE1890E45BEE5C",
+    "id": "unicode_and_leading_zeros",
+    "params": {
+      "trace_codes": "00000000000000000001",
+      "note": "药品+&空 格",
+      "bill_code": "000123",
+      "method": "example.only"
+    }
+  },
+  {
+    "secret": "public_offline_demo",
+    "reference_sign": "310951910AF4CB9086BB3E3C9F07DC19",
+    "id": "empty_optional_value",
+    "params": {
+      "note": "",
+      "bill_code": "000123",
+      "method": "example.only"
+    }
+  },
+  {
+    "secret": "public_offline_demo",
+    "reference_sign": "80F8E573B2B94C172CDC093CB36FD69A",
+    "id": "empty_parameter_name",
+    "params": {
+      "": "ignored",
+      "method": "example.only"
+    }
+  }
+]

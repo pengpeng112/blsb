@@ -1,0 +1,14 @@
+{
+  "captured_at": "2026-10-21T15:30:44.127401+00:00",
+  "read_only": true,
+  "remote_config_changes": 0,
+  "his_queries": 0,
+  "upload_requests": 0,
+  "ssh_exit_code": 0,
+  "migration_ledger": "\rThe authenticity of host '<prod-host> (<prod-host>)' can't be established.\r\nED25519 key fingerprint is SHA256:IjK9PN01og2d/fsSjUy4rlsyRBqOiZZycBN6j46shQc.\r\nThis key is not known by any other names\r\nAre you sure you want to continue connecting (yes/no/[fingerprint])? yes\r\nWarning: Permanently added '<prod-host>' (ED25519) to the list of known hosts.\r\r\n\r\nAuthorized users only. All activities may be monitored and reported.\r\n\rroot@<prod-host>'s password: \r\nBEGIN\r\n1|001_core_init\r\n2|002_pathology_domain\r\n3|003_receipt_publication_ref\r\n4|004_bigint_sizes\r\n5|005_storage_reservation_ledger\r\n6|006_config_release_digest\r\n7|007_tenant_composite_constraints\r\n8|008_publication_revoked_at_reservation_generalize\r\n9|009_drug_trace_domain\r\n10|010_drug_trace_fix2\r\n11|011_drug_trace_fix3\r\nROLLBACK\r\nConnection to <prod-host> closed.\r\r\n",
+  "ntp": {
+    "exit_code": 0,
+    "stdout": "      Local time: Wed 2026-10-21 22:58:27 CST\n  Universal time: Wed 2026-10-21 14:58:27 UTC\n        RTC time: Wed 2026-10-21 15:30:50\n       Time zone: Asia/Shanghai (CST, +0800)\n     NTP enabled: yes\nNTP synchronized: no\n RTC in local TZ: no\n      DST active: n/a\n"
+  },
+  "status": "CAPTURED"
+}

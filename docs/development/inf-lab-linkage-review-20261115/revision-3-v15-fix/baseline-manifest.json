@@ -1,0 +1,33 @@
+{
+  "captured_at_utc": "2026-11-15T13:17:35.316414+00:00",
+  "files": [
+    {
+      "source": "docs/development/inf-report-20261027/sql/revisions/20261115-lab-linkage-v1.5/01-锚点对照视图.sql",
+      "sha256": "b905c866e26c55257260c623c9262ad62fc72e6469738e7081dbd2c7fa85ad53"
+    },
+    {
+      "source": "docs/development/inf-report-20261027/sql/revisions/20261115-lab-linkage-v1.5/02-检验报告视图.sql",
+      "sha256": "b1924037f01d0d3161df22fe2c9d55312d99ed8a5961211103f88fe97a6f75c4"
+    },
+    {
+      "source": "docs/development/inf-report-20261027/sql/revisions/20261115-lab-linkage-v1.5/03-检验项目视图.sql",
+      "sha256": "8fc8318fedef375494b379d510836d3b8651acf657cc1054c2092a507ada6566"
+    },
+    {
+      "source": "implementation/deploy/inf_pusher/pusher.py",
+      "sha256": "20738564401e01afcf36c1429bcfe3dbe26311016a982bce8d7f7a9a80c09e99"
+    },
+    {
+      "source": "implementation/deploy/inf_pusher/tables.py",
+      "sha256": "faa2601197e6d6c782b21193ce0f0f72704f3f18ca7a5d5ea2011c269b7f2fc0"
+    },
+    {
+      "source": "implementation/deploy/inf_pusher/run.sh",
+      "sha256": "4d44a89c05bc771c237483d1abbd13563a7f041447037596e0916cabec0f9d03"
+    },
+    {
+      "source": "implementation/deploy/inf_pusher/selftest.py",
+      "sha256": "04d62d83ec8a4cfadc5a7431cfb7a46774b67d08b70b22f47d9ed487c9c3539f"
+    }
+  ]
+}

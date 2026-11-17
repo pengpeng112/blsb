@@ -1,0 +1,17 @@
+{
+  "python_compile": "PASS",
+  "links_checked": 11,
+  "broken_links": [],
+  "receipt_consistency": {
+    "actual_worker_uid": true,
+    "query_success": true,
+    "query_records_zero": true,
+    "query_evidence_approved": true,
+    "expiry_success": true,
+    "expiry_matches_report": true,
+    "uploads_zero": true
+  },
+  "private_key_markers": [],
+  "business_tests_run": false,
+  "status": "PASS"
+}

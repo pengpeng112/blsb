@@ -1,0 +1,238 @@
+{
+  "exit_code": 0,
+  "captured_at": "2026-10-28T23:15:19.407547+00:00",
+  "transcript": "\rThe authenticity of host '<prod-host> (<prod-host>)' can't be established.\r\nED25519 key fingerprint is SHA256:IjK9PN01og2d/fsSjUy4rlsyRBqOiZZycBN6j46shQc.\r\nThis key is not known by any other names\r\nAre you sure you want to continue connecting (yes/no/[fingerprint])? yes\r\nWarning: Permanently added '<prod-host>' (ED25519) to the list of known hosts.\r\r\n\r\nAuthorized users only. All activities may be monitored and reported.\r\n\rroot@<prod-host>'s password: \r\n===HOST DATE===\r\n2026-10-29 07:15:20 +0800\r\n===TIMER===\r\n\u001b[0m\u001b[0;4mNEXT\u001b[0m\u001b[0m\u001b[0;4m LEFT\u001b[0m\u001b[0m\u001b[0;4m LAST                       \u001b[0m\u001b[0m\u001b[0;4m PASSED     \u001b[0m\u001b[0m\u001b[0;4m UNIT                   \u001b[0m\u001b[0m\u001b[0;4m ACTIVATES                \u001b[0m\r\nn/a  n/a  Thu 2026-10-29 06:10:29 CST 1h 4min ago blyb-daily-upload.timer blyb-daily-upload.service\r\n\r\n\u001b[0;1;39m1 timers listed.\u001b[0m\r\nPass --all to see loaded but inactive timers, too.\r\n===SERVICE===\r\nactivating\r\n===RECEIPTS===\r\ntotal 140\r\n-rw-------. 1 root root     0 Oct 25 06:10 20261025-061029.json\r\n-rw-------. 1 root root   204 Oct 25 18:06 20261025-175741.json\r\n-rw-------. 1 root root     0 Oct 25 18:06 20261025-180611.json\r\n-rw-------. 1 root root  6783 Oct 25 21:51 20261025-maintenance-reconstruction.json\r\n-rw-------. 1 root root 25223 Oct 26 08:31 20261026-061029.json\r\n-rw-------. 1 root root 90611 Oct 26 10:02 20261026-090152.json\r\n-rw-------. 1 root root   421 Oct 27 09:10 20261027-061029.json\r\n-rw-------. 1 root root  1014 Oct 28 10:10 20261028-061029.json\r\n-rw-------. 1 root root     0 Oct 29 06:10 20261029-061029.json\r\n-rw-------. 1 root root     0 Oct 29 06:10 last-error.log\r\n===LAST-ERROR tail===\r\n===RECEIPTS CONTENT (10-27..10-29, capped)===\r\n--- /var/log/blyb/daily-upload/20261027-061029.json\r\n{\"window\": [\"2026-10-26T00:00:00\", \"2026-10-27T00:00:00\"], \"collection\": null, \"send\": {\"sent\": 0, \"skipped_terminal\": 0, \"resumed\": 0, \"prepared_new\": 0, \"errors\": [], \"aborted_reason\": \"\"}, \"query\": {\"queried\": 0, \"errors\": []}, \"candidate_count\": 0, \"fatal\": \"collect_timeout\", \"outcome\": \"FAILED\", \"elapsed_seconds\": 10801.3, \"detail\": {\"run_id\": \"1db30ad7-9f4a-4cac-8989-88be37c54730\"}, \"report_push\": {\"ok\": true}}\r\n\r\n--- /var/log/blyb/daily-upload/20261028-061029.json\r\n{\"window\": [\"2026-10-27T00:00:00\", \"2026-10-28T00:00:00\"], \"collection\": {\"id\": \"afa0bdef-5527-48eb-9bb5-9b327c3c8936\", \"state\": \"RUNNING\", \"summary\": {\"bills_seen\": 2275, \"revisions_created\": 2275, \"idempotent\": 0, \"waiting\": 912, \"valid\": 1363, \"invalid\": 0, \"conflicts\": 0, \"version_rereads\": 0, \"skipped_version_changing\": 0, \"retried_ok\": 0, \"retried_failed\": 0, \"slices_completed\": 91, \"progress_at\": \"2026-10-28T02:10:20.997856\", \"window_completed\": false, \"source_metrics\": {\"connect_count\": 91.0, \"connect_seconds\": 1.7461014406289905, \"query_count\": 4641.0, \"query_seconds\": 8143.688955295598}}, \"error_code\": \"collect_timeout\", \"candidate_count_known\": false}, \"send\": {\"sent\": 0, \"skipped_terminal\": 0, \"resumed\": 0, \"prepared_new\": 0, \"errors\": [], \"aborted_reason\": \"\"}, \"query\": {\"queried\": 0, \"errors\": []}, \"candidate_count\": 0, \"fatal\": \"collect_timeout\", \"outcome\": \"FAILED\", \"elapsed_seconds\": 14406.3, \"detail\": {\"run_id\": \"afa0bdef-5527-48eb-9bb5-9b327c3c8936\"}, \"report_push\": {\"ok\": true}}\r\n\r\n--- /var/log/blyb/daily-upload/20261029-061029.json\r\n\r\n===DB SNAPSHOT===\r\n{\"now\" : \"2026-10-28 23:15:20.700911+00\", \"quota\" : [{\"evidence_id\":\"0eb0b906-3a3d-497b-abba-62117dd1e672\",\"used\":4820,\"max_bills\":80000,\"updated_at\":\"2026-10-27 07:21:32.45224\"}], \"runs\" : [{\"state\":\"RUNNING\",\"window_begin\":\"2026-10-28 00:00:00\",\"window_end\":\"2026-10-29 00:00:00\",\"summary\":{\"bills_seen\": 650, \"revisions_created\": 650, \"idempotent\": 0, \"waiting\": 368, \"valid\": 282, \"invalid\": 0, \"not_reportable\": 0, \"conflicts\": 0, \"version_rereads\": 0, \"skipped_version_changing\": 0, \"retried_ok\": 0, \"retried_failed\": 0, \"slices_completed\": 26, \"progress_at\": \"2026-10-28T23:13:35.850812\", \"window_completed\": false, \"source_metrics\": {\"connect_count\": 26.0, \"connect_seconds\": 0.4945799170527607, \"query_count\": 1326.0, \"query_seconds\": 2189.8313539044466}},\"created_at\":\"2026-10-28 22:10:29.787365\"}, {\"state\":\"CANCELLED\",\"window_begin\":\"2026-10-27 00:00:00\",\"window_end\":\"2026-10-28 00:00:00\",\"summary\":{\"bills_seen\": 100, \"revisions_created\": 16, \"idempotent\": 84, \"waiting\": 100, \"valid\": 0, \"invalid\": 0, \"not_reportable\": 0, \"conflicts\": 0, \"version_rereads\": 74, \"skipped_version_changing\": 0, \"retried_ok\": 0, \"retried_failed\": 0, \"slices_completed\": 4, \"progress_at\": \"2026-10-28T18:41:34.957163\", \"window_completed\": false, \"source_metrics\": {\"connect_count\": 4.0, \"connect_seconds\": 0.0881065062712878, \"query_count\": 352.0, \"query_seconds\": 1410.5734741243068}, \"stopped\": \"cancelled\"},\"created_at\":\"2026-10-28 18:17:59.694462\"}, {\"state\":\"DONE\",\"window_begin\":\"2026-10-27 00:00:00\",\"window_end\":\"2026-10-28 00:00:00\",\"summary\":{\"bills_seen\": 3205, \"revisions_created\": 3205, \"idempotent\": 0, \"waiting\": 1413, \"valid\": 1792, \"invalid\": 0, \"conflicts\": 0, \"version_rereads\": 0, \"skipped_version_changing\": 0, \"retried_ok\": 0, \"retried_failed\": 0, \"slices_completed\": 129, \"progress_at\": \"2026-10-28T03:49:28.041264\", \"window_completed\": true, \"source_metrics\": {\"connect_count\": 129.0, \"connect_seconds\": 2.471854421077296, \"query_count\": 6539.0, \"query_seconds\": 11487.279930141289}},\"created_at\":\"2026-10-27 22:10:29.818005\"}, {\"state\":\"DONE\",\"window_begin\":\"2026-10-26 00:00:00\",\"window_end\":\"2026-10-27 00:00:00\",\"summary\":{\"bills_seen\": 3337, \"revisions_created\": 3337, \"idempotent\": 0, \"waiting\": 1342, \"valid\": 1995, \"invalid\": 0, \"conflicts\": 0, \"version_rereads\": 0, \"skipped_version_changing\": 0, \"retried_ok\": 0, \"retried_failed\": 0},\"created_at\":\"2026-10-26 22:10:29.811014\"}], \"subs_by_state_3d\" : [{\"state\":\"CONFIRMED\",\"n\":4162,\"lo\":\"2026-10-26 00:19:17.592767\",\"hi\":\"2026-10-27 04:47:23.248389\"}, {\"state\":\"PREPARED\",\"n\":2074,\"lo\":\"2026-10-27 22:12:49.729426\",\"hi\":\"2026-10-28 23:14:41.879144\"}], \"subs_by_hour_2d\" : [{\"h\":\"2026-10-27 01:00:00\",\"state\":\"CONFIRMED\",\"n\":291}, {\"h\":\"2026-10-27 02:00:00\",\"state\":\"CONFIRMED\",\"n\":658}, {\"h\":\"2026-10-27 03:00:00\",\"state\":\"CONFIRMED\",\"n\":305}, {\"h\":\"2026-10-27 04:00:00\",\"state\":\"CONFIRMED\",\"n\":741}, {\"h\":\"2026-10-27 22:00:00\",\"state\":\"PREPARED\",\"n\":258}, {\"h\":\"2026-10-27 23:00:00\",\"state\":\"PREPARED\",\"n\":334}, {\"h\":\"2026-10-28 00:00:00\",\"state\":\"PREPARED\",\"n\":318}, {\"h\":\"2026-10-28 01:00:00\",\"state\":\"PREPARED\",\"n\":354}, {\"h\":\"2026-10-28 02:00:00\",\"state\":\"PREPARED\",\"n\":336}, {\"h\":\"2026-10-28 03:00:00\",\"state\":\"PREPARED\",\"n\":192}, {\"h\":\"2026-10-28 22:00:00\",\"state\":\"PREPARED\",\"n\":213}, {\"h\":\"2026-10-28 23:00:00\",\"state\":\"PREPARED\",\"n\":69}], \"attempts_1d\" : null, \"jobs\" : [{\"job_type\":\"drug_trace.prepare\",\"state\":\"SUCCEEDED\",\"n\":5294}, {\"job_type\":\"drug_trace.collect\",\"state\":\"LEASED\",\"n\":1}, {\"job_type\":\"drug_trace.send\",\"state\":\"SUCCEEDED\",\"n\":4818}, {\"job_type\":\"drug_trace.collect\",\"state\":\"SUCCEEDED\",\"n\":8}, {\"job_type\":\"drug_trace.query_status\",\"state\":\"SUCCEEDED\",\"n\":9393}, {\"job_type\":\"drug_trace.prepare\",\"state\":\"FAILED\",\"n\":1597}, {\"job_type\":\"drug_trace.query_status\",\"state\":\"FAILED\",\"n\":1}]}\r\nConnection to <prod-host> closed.\r\r\n",
+  "db": {
+    "now": "2026-10-28 23:15:20.700911+00",
+    "quota": [
+      {
+        "evidence_id": "0eb0b906-3a3d-497b-abba-62117dd1e672",
+        "used": 4820,
+        "max_bills": 80000,
+        "updated_at": "2026-10-27 07:21:32.45224"
+      }
+    ],
+    "runs": [
+      {
+        "state": "RUNNING",
+        "window_begin": "2026-10-28 00:00:00",
+        "window_end": "2026-10-29 00:00:00",
+        "summary": {
+          "bills_seen": 650,
+          "revisions_created": 650,
+          "idempotent": 0,
+          "waiting": 368,
+          "valid": 282,
+          "invalid": 0,
+          "not_reportable": 0,
+          "conflicts": 0,
+          "version_rereads": 0,
+          "skipped_version_changing": 0,
+          "retried_ok": 0,
+          "retried_failed": 0,
+          "slices_completed": 26,
+          "progress_at": "2026-10-28T23:13:35.850812",
+          "window_completed": false,
+          "source_metrics": {
+            "connect_count": 26.0,
+            "connect_seconds": 0.4945799170527607,
+            "query_count": 1326.0,
+            "query_seconds": 2189.8313539044466
+          }
+        },
+        "created_at": "2026-10-28 22:10:29.787365"
+      },
+      {
+        "state": "CANCELLED",
+        "window_begin": "2026-10-27 00:00:00",
+        "window_end": "2026-10-28 00:00:00",
+        "summary": {
+          "bills_seen": 100,
+          "revisions_created": 16,
+          "idempotent": 84,
+          "waiting": 100,
+          "valid": 0,
+          "invalid": 0,
+          "not_reportable": 0,
+          "conflicts": 0,
+          "version_rereads": 74,
+          "skipped_version_changing": 0,
+          "retried_ok": 0,
+          "retried_failed": 0,
+          "slices_completed": 4,
+          "progress_at": "2026-10-28T18:41:34.957163",
+          "window_completed": false,
+          "source_metrics": {
+            "connect_count": 4.0,
+            "connect_seconds": 0.0881065062712878,
+            "query_count": 352.0,
+            "query_seconds": 1410.5734741243068
+          },
+          "stopped": "cancelled"
+        },
+        "created_at": "2026-10-28 18:17:59.694462"
+      },
+      {
+        "state": "DONE",
+        "window_begin": "2026-10-27 00:00:00",
+        "window_end": "2026-10-28 00:00:00",
+        "summary": {
+          "bills_seen": 3205,
+          "revisions_created": 3205,
+          "idempotent": 0,
+          "waiting": 1413,
+          "valid": 1792,
+          "invalid": 0,
+          "conflicts": 0,
+          "version_rereads": 0,
+          "skipped_version_changing": 0,
+          "retried_ok": 0,
+          "retried_failed": 0,
+          "slices_completed": 129,
+          "progress_at": "2026-10-28T03:49:28.041264",
+          "window_completed": true,
+          "source_metrics": {
+            "connect_count": 129.0,
+            "connect_seconds": 2.471854421077296,
+            "query_count": 6539.0,
+            "query_seconds": 11487.279930141289
+          }
+        },
+        "created_at": "2026-10-27 22:10:29.818005"
+      },
+      {
+        "state": "DONE",
+        "window_begin": "2026-10-26 00:00:00",
+        "window_end": "2026-10-27 00:00:00",
+        "summary": {
+          "bills_seen": 3337,
+          "revisions_created": 3337,
+          "idempotent": 0,
+          "waiting": 1342,
+          "valid": 1995,
+          "invalid": 0,
+          "conflicts": 0,
+          "version_rereads": 0,
+          "skipped_version_changing": 0,
+          "retried_ok": 0,
+          "retried_failed": 0
+        },
+        "created_at": "2026-10-26 22:10:29.811014"
+      }
+    ],
+    "subs_by_state_3d": [
+      {
+        "state": "CONFIRMED",
+        "n": 4162,
+        "lo": "2026-10-26 00:19:17.592767",
+        "hi": "2026-10-27 04:47:23.248389"
+      },
+      {
+        "state": "PREPARED",
+        "n": 2074,
+        "lo": "2026-10-27 22:12:49.729426",
+        "hi": "2026-10-28 23:14:41.879144"
+      }
+    ],
+    "subs_by_hour_2d": [
+      {
+        "h": "2026-10-27 01:00:00",
+        "state": "CONFIRMED",
+        "n": 291
+      },
+      {
+        "h": "2026-10-27 02:00:00",
+        "state": "CONFIRMED",
+        "n": 658
+      },
+      {
+        "h": "2026-10-27 03:00:00",
+        "state": "CONFIRMED",
+        "n": 305
+      },
+      {
+        "h": "2026-10-27 04:00:00",
+        "state": "CONFIRMED",
+        "n": 741
+      },
+      {
+        "h": "2026-10-27 22:00:00",
+        "state": "PREPARED",
+        "n": 258
+      },
+      {
+        "h": "2026-10-27 23:00:00",
+        "state": "PREPARED",
+        "n": 334
+      },
+      {
+        "h": "2026-10-28 00:00:00",
+        "state": "PREPARED",
+        "n": 318
+      },
+      {
+        "h": "2026-10-28 01:00:00",
+        "state": "PREPARED",
+        "n": 354
+      },
+      {
+        "h": "2026-10-28 02:00:00",
+        "state": "PREPARED",
+        "n": 336
+      },
+      {
+        "h": "2026-10-28 03:00:00",
+        "state": "PREPARED",
+        "n": 192
+      },
+      {
+        "h": "2026-10-28 22:00:00",
+        "state": "PREPARED",
+        "n": 213
+      },
+      {
+        "h": "2026-10-28 23:00:00",
+        "state": "PREPARED",
+        "n": 69
+      }
+    ],
+    "attempts_1d": null,
+    "jobs": [
+      {
+        "job_type": "drug_trace.prepare",
+        "state": "SUCCEEDED",
+        "n": 5294
+      },
+      {
+        "job_type": "drug_trace.collect",
+        "state": "LEASED",
+        "n": 1
+      },
+      {
+        "job_type": "drug_trace.send",
+        "state": "SUCCEEDED",
+        "n": 4818
+      },
+      {
+        "job_type": "drug_trace.collect",
+        "state": "SUCCEEDED",
+        "n": 8
+      },
+      {
+        "job_type": "drug_trace.query_status",
+        "state": "SUCCEEDED",
+        "n": 9393
+      },
+      {
+        "job_type": "drug_trace.prepare",
+        "state": "FAILED",
+        "n": 1597
+      },
+      {
+        "job_type": "drug_trace.query_status",
+        "state": "FAILED",
+        "n": 1
+      }
+    ]
+  }
+}

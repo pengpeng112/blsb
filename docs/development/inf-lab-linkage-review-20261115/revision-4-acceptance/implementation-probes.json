@@ -1,0 +1,384 @@
+{
+  "mode": "SYNTHETIC_FROZEN_CODE_NO_NETWORK",
+  "note": "Observation assertions only; defects were reproduced, not fixed.",
+  "observations": [
+    {
+      "case": "normal_pair",
+      "events": [
+        {
+          "table": "ex_lab",
+          "id": "SYN-P",
+          "accepted": true
+        },
+        {
+          "table": "ex_lab_item",
+          "id": "SYN-C",
+          "accepted": true
+        }
+      ],
+      "exit_codes": [
+        0
+      ],
+      "stats": [
+        {
+          "table": "ex_lab",
+          "since": "2026-09-16 22:08:59",
+          "reason": "full(first-run)",
+          "rows": 1,
+          "sent": 1,
+          "skipped_same": 0,
+          "skipped_invalid": 0,
+          "failed": 0,
+          "truncated": 0,
+          "parent_wait": 0
+        },
+        {
+          "table": "ex_lab_item",
+          "since": "2026-09-16 22:08:59",
+          "reason": "full(first-run)",
+          "rows": 1,
+          "sent": 1,
+          "skipped_same": 0,
+          "skipped_invalid": 0,
+          "failed": 0,
+          "truncated": 0,
+          "parent_wait": 0
+        }
+      ]
+    },
+    {
+      "case": "parent_rejected_without_history",
+      "events": [
+        {
+          "table": "ex_lab",
+          "id": "SYN-P",
+          "accepted": false
+        }
+      ],
+      "exit_codes": [
+        0
+      ],
+      "stats": [
+        {
+          "table": "ex_lab",
+          "since": "2026-09-16 22:08:59",
+          "reason": "full(first-run)",
+          "rows": 1,
+          "sent": 0,
+          "skipped_same": 0,
+          "skipped_invalid": 0,
+          "failed": 1,
+          "truncated": 0,
+          "parent_wait": 0
+        },
+        {
+          "table": "ex_lab_item",
+          "since": "2026-09-16 22:08:59",
+          "reason": "full(first-run)",
+          "rows": 1,
+          "sent": 0,
+          "skipped_same": 0,
+          "skipped_invalid": 0,
+          "failed": 0,
+          "truncated": 0,
+          "parent_wait": 1
+        }
+      ]
+    },
+    {
+      "case": "prior_day_accepted_parent_new_child",
+      "events": [],
+      "exit_codes": [
+        0
+      ],
+      "stats": [
+        {
+          "table": "ex_lab",
+          "since": "2026-09-16 22:08:59",
+          "reason": "full(first-run)",
+          "rows": 1,
+          "sent": 0,
+          "skipped_same": 1,
+          "skipped_invalid": 0,
+          "failed": 0,
+          "truncated": 0,
+          "parent_wait": 0
+        },
+        {
+          "table": "ex_lab_item",
+          "since": "2026-09-16 22:08:59",
+          "reason": "full(first-run)",
+          "rows": 1,
+          "sent": 0,
+          "skipped_same": 0,
+          "skipped_invalid": 0,
+          "failed": 0,
+          "truncated": 0,
+          "parent_wait": 1
+        }
+      ]
+    },
+    {
+      "case": "same_day_old_parent_current_rejected",
+      "events": [
+        {
+          "table": "ex_lab",
+          "id": "SYN-P",
+          "accepted": false
+        },
+        {
+          "table": "ex_lab_item",
+          "id": "SYN-C",
+          "accepted": true
+        }
+      ],
+      "exit_codes": [
+        0
+      ],
+      "stats": [
+        {
+          "table": "ex_lab",
+          "since": "2026-09-16 22:08:59",
+          "reason": "full(first-run)",
+          "rows": 1,
+          "sent": 0,
+          "skipped_same": 0,
+          "skipped_invalid": 0,
+          "failed": 1,
+          "truncated": 0,
+          "parent_wait": 0
+        },
+        {
+          "table": "ex_lab_item",
+          "since": "2026-09-16 22:08:59",
+          "reason": "full(first-run)",
+          "rows": 1,
+          "sent": 1,
+          "skipped_same": 0,
+          "skipped_invalid": 0,
+          "failed": 0,
+          "truncated": 0,
+          "parent_wait": 0
+        }
+      ]
+    },
+    {
+      "case": "other_table_id_bypasses_parent",
+      "events": [
+        {
+          "table": "death",
+          "id": "SYN-P",
+          "accepted": true
+        },
+        {
+          "table": "ex_lab",
+          "id": "SYN-P",
+          "accepted": false
+        },
+        {
+          "table": "ex_lab_item",
+          "id": "SYN-C",
+          "accepted": true
+        }
+      ],
+      "exit_codes": [
+        0
+      ],
+      "stats": [
+        {
+          "table": "death",
+          "since": "2026-05-19 22:08:59",
+          "reason": "full(first-run)",
+          "rows": 1,
+          "sent": 1,
+          "skipped_same": 0,
+          "skipped_invalid": 0,
+          "failed": 0,
+          "truncated": 0,
+          "parent_wait": 0
+        },
+        {
+          "table": "ex_lab",
+          "since": "2026-09-16 22:08:59",
+          "reason": "full(first-run)",
+          "rows": 1,
+          "sent": 0,
+          "skipped_same": 0,
+          "skipped_invalid": 0,
+          "failed": 1,
+          "truncated": 0,
+          "parent_wait": 0
+        },
+        {
+          "table": "ex_lab_item",
+          "since": "2026-09-16 22:08:59",
+          "reason": "full(first-run)",
+          "rows": 1,
+          "sent": 1,
+          "skipped_same": 0,
+          "skipped_invalid": 0,
+          "failed": 0,
+          "truncated": 0,
+          "parent_wait": 0
+        }
+      ]
+    },
+    {
+      "case": "reconcile_stale_parent_current_rejected",
+      "events": [
+        {
+          "table": "ex_lab",
+          "id": "SYN-P",
+          "accepted": false
+        },
+        {
+          "table": "ex_lab_item",
+          "id": "SYN-C",
+          "accepted": true
+        }
+      ],
+      "exit_codes": [
+        0
+      ]
+    },
+    {
+      "case": "manifest_expired_wrong_target_bad_digest",
+      "events": [
+        {
+          "table": "ex_lab",
+          "id": "SYN-P",
+          "accepted": true
+        }
+      ],
+      "exit_codes": [
+        0
+      ],
+      "stats": [
+        {
+          "table": "ex_lab",
+          "since": "2026-09-16 22:08:59",
+          "reason": "full(first-run)",
+          "rows": 1,
+          "sent": 1,
+          "skipped_same": 0,
+          "skipped_invalid": 0,
+          "failed": 0,
+          "truncated": 0,
+          "parent_wait": 0
+        }
+      ]
+    },
+    {
+      "case": "same_manifest_applied_twice",
+      "events": [
+        {
+          "table": "ex_lab",
+          "id": "SYN-P",
+          "accepted": true
+        },
+        {
+          "table": "ex_lab",
+          "id": "SYN-P",
+          "accepted": true
+        }
+      ],
+      "exit_codes": [
+        0,
+        0
+      ],
+      "stats": [
+        {
+          "table": "ex_lab",
+          "since": "2026-11-13 10:00:00",
+          "reason": "watermark+overlap",
+          "rows": 1,
+          "sent": 1,
+          "skipped_same": 0,
+          "skipped_invalid": 0,
+          "failed": 0,
+          "truncated": 0,
+          "parent_wait": 0
+        }
+      ]
+    },
+    {
+      "case": "manifest_missing_target_not_reported",
+      "events": [],
+      "exit_codes": [
+        0
+      ],
+      "stats": [
+        {
+          "table": "ex_lab",
+          "since": "2026-09-16 22:08:59",
+          "reason": "full(first-run)",
+          "rows": 0,
+          "sent": 0,
+          "skipped_same": 0,
+          "skipped_invalid": 0,
+          "failed": 0,
+          "truncated": 0,
+          "parent_wait": 0
+        }
+      ]
+    },
+    {
+      "case": "reconcile_manifest_without_apply",
+      "events": [
+        {
+          "table": "ex_lab",
+          "id": "SYN-P",
+          "accepted": true
+        },
+        {
+          "table": "ex_lab_item",
+          "id": "SYN-C",
+          "accepted": true
+        }
+      ],
+      "exit_codes": [
+        0
+      ]
+    },
+    {
+      "case": "waiting_row_lost_outside_overlap",
+      "first_parent_wait": 1,
+      "second_source_rows": 1,
+      "waiting_child_sent_later": false,
+      "watermark": "2026-11-15 10:00:00"
+    },
+    {
+      "case": "order_historical_parent_new_child",
+      "events": [],
+      "exit_codes": [
+        0
+      ],
+      "stats": [
+        {
+          "table": "order",
+          "since": "2026-09-16 22:08:59",
+          "reason": "full(first-run)",
+          "rows": 1,
+          "sent": 0,
+          "skipped_same": 1,
+          "skipped_invalid": 0,
+          "failed": 0,
+          "truncated": 0,
+          "parent_wait": 0
+        },
+        {
+          "table": "order_item",
+          "since": "2026-09-16 22:08:59",
+          "reason": "full(first-run)",
+          "rows": 1,
+          "sent": 0,
+          "skipped_same": 0,
+          "skipped_invalid": 0,
+          "failed": 0,
+          "truncated": 0,
+          "parent_wait": 1
+        }
+      ]
+    }
+  ]
+}

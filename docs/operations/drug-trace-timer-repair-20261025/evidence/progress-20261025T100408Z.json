@@ -1,0 +1,104 @@
+{
+  "captured_at": "2026-10-25T10:04:08.560346+00:00",
+  "ssh_exit_code": 0,
+  "progress": {
+    "worker_logs": {
+      "exit_code": 0,
+      "line_count": 0,
+      "oracle_errors": {},
+      "exception_types": {},
+      "known_markers": {
+        "Traceback": 0,
+        "LEASE_LOST": 0,
+        "PROFILE_UNAPPROVED": 0,
+        "VERSION_CONFLICT": 0,
+        "SOURCE_LOOP_SUSPECTED": 0
+      }
+    },
+    "resources": [
+      {
+        "name": "<worker-container>",
+        "cpu": "2.13%",
+        "memory": "87.72MiB / 30.8GiB"
+      },
+      {
+        "name": "blyb-nginx-1",
+        "cpu": "0.00%",
+        "memory": "13.74MiB / 30.8GiB"
+      },
+      {
+        "name": "blyb-core-1",
+        "cpu": "17.62%",
+        "memory": "101.5MiB / 30.8GiB"
+      },
+      {
+        "name": "blyb-exchange-1",
+        "cpu": "16.58%",
+        "memory": "70.47MiB / 30.8GiB"
+      },
+      {
+        "name": "blyb-storage-1",
+        "cpu": "16.51%",
+        "memory": "73.74MiB / 30.8GiB"
+      },
+      {
+        "name": "blyb-db-1",
+        "cpu": "0.02%",
+        "memory": "33.12MiB / 30.8GiB"
+      }
+    ],
+    "ntp": {
+      "exit_code": 0,
+      "leap_normal": false,
+      "system_offset_seconds": [
+        "0.000000000"
+      ]
+    },
+    "database_exit_code": 0,
+    "data": {
+      "job_leases": [
+        {
+          "job_type": "drug_trace.collect",
+          "state": "LEASED",
+          "attempts": 1,
+          "lease_until": "2026-10-25 09:59:42.085674",
+          "available_at": "2026-10-25 09:57:41.978914",
+          "age_seconds": 385.917775,
+          "error_code": null
+        }
+      ],
+      "db_connections": [
+        {
+          "state": "active",
+          "wait_event_type": null,
+          "wait_event": null,
+          "n": 1,
+          "max_transaction_age": 0.0
+        },
+        {
+          "state": "idle",
+          "wait_event_type": "Client",
+          "wait_event": "ClientRead",
+          "n": 3,
+          "max_transaction_age": null
+        },
+        {
+          "state": "idle in transaction",
+          "wait_event_type": "Client",
+          "wait_event": "ClientRead",
+          "n": 1,
+          "max_transaction_age": 47.56795
+        }
+      ],
+      "collection_checkpoint": [
+        {
+          "stream": "drugtrace.bills",
+          "partition": "r10-batch-daily",
+          "row_version": 1,
+          "since_time": "2026-10-24T08:23:11",
+          "completed_window": "false"
+        }
+      ]
+    }
+  }
+}

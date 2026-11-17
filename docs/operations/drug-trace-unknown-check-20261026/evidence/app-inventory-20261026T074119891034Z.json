@@ -1,0 +1,1248 @@
+{
+  "host": "app",
+  "phase": "inventory",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T07:41:19.890796+00:00",
+  "result": {
+    "rows": [
+      {
+        "submission_id": "0ec8390f-ef83-4247-9f85-9491d4761164",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "d258007814b5d50134557b0c379c49a9"
+      },
+      {
+        "submission_id": "9e5eb634-fd15-47bb-a49d-17dbce10e056",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "f89a57564f39b0c8f6c602174ba941bd"
+      },
+      {
+        "submission_id": "ff1afbd0-b33f-41d1-9ae4-e0bebe6bc8b2",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "0477c3dbef3a6614acc720c225e961dc"
+      },
+      {
+        "submission_id": "0653be8d-7e2d-43fc-9b6d-8e636d3347e8",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "da660d93959d8fb6bff0dcebe8f86dc0"
+      },
+      {
+        "submission_id": "1509ee95-30cc-4f49-b9d3-cda7a61c41d9",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "ac287b782496cb8cea2f7c9b8d51198a"
+      },
+      {
+        "submission_id": "5aaa9241-82f6-4bdb-b47a-608e55fd43ef",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "3775873ebe88b134bfd18aabbed237bd"
+      },
+      {
+        "submission_id": "a37a30ed-12a4-4085-a249-36233d4287e2",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "76d061a8c74a96a580b90fcf55a1e570"
+      },
+      {
+        "submission_id": "8e33c34c-c77b-4c2f-a075-33f17988c86d",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "22d8a167587d004b038193001c444744"
+      },
+      {
+        "submission_id": "fc8872b4-1f51-421e-be22-e7e9f41d8933",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "739db3834ad762db9d371290857eac6a"
+      },
+      {
+        "submission_id": "b9b52293-9180-4cda-915b-3a52707488f3",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "fa5b6713ce42e64da99ccc2ce583caf5"
+      },
+      {
+        "submission_id": "9f14aafe-0ce8-437e-bcee-7cd02221f2e4",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "3b3e1858cc4148ae07a35c9b2ab71042"
+      },
+      {
+        "submission_id": "206b3f36-7464-44c8-8f87-63fdce71a291",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "53a4eb2911bb9ea413fe868761325856"
+      },
+      {
+        "submission_id": "98619f90-addb-4de4-8ab6-ec246bcd5d9a",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "1155bcf623abd83fc94757e26a5d9fe9"
+      },
+      {
+        "submission_id": "f9e2bae1-9fa1-4926-9545-fe0b386aaf06",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "3a4c4203a2276e5b075dc14fb1bb4ceb"
+      },
+      {
+        "submission_id": "edd795c2-7c45-45c9-9acd-09b285c1587a",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "07e434cc22833595e3914cb92cd204d3"
+      },
+      {
+        "submission_id": "74b8569c-e12c-42a3-aaac-61a81ea7789e",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "c9cce93ae478c78342a5ac5b38e50a65"
+      },
+      {
+        "submission_id": "8705879b-e0dd-4d10-bd10-fa4f777c73a5",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "c040b8d30e28477cef8d59eecfcbaeac"
+      },
+      {
+        "submission_id": "87f07b9c-6328-4732-bcab-5c3bdc0b2245",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "495d56a4efbf74bcf5cab5b67e7e9c49"
+      },
+      {
+        "submission_id": "ed3f1ffb-c4cd-4c82-9594-5ac0d8e20f2a",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "b1656296c1f15ec7bbab6783a8d932da"
+      },
+      {
+        "submission_id": "e9b8e8e5-0fdb-405b-83f6-7f9c909326ee",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "e1cf907c7e4d352f2f90b7b78ebc58e3"
+      },
+      {
+        "submission_id": "47d0937c-c58d-4b57-940a-00cef738674e",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "75a9bb3fc1eff7e42317ca800dd3b79e"
+      },
+      {
+        "submission_id": "e2ec9e7c-09f7-4db1-8e71-ae8fc3962dc2",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "c4c3e71baadaa2d8e3cbfc1cecc4e709"
+      },
+      {
+        "submission_id": "d7cf0e5a-869b-4694-bb10-2a21f09c547a",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "22e4fb4ed0aee9a12cda46e38b1c0ab2"
+      },
+      {
+        "submission_id": "619f00cb-2063-4c3e-952b-d5afdafd4dd1",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "d873fd801a24be1090b1efcfc123fe21"
+      },
+      {
+        "submission_id": "ce8cd60d-b97c-49f9-a14e-8a246fef1af6",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "bde423937aad8cad3994faef9678ba6e"
+      },
+      {
+        "submission_id": "0ac5bd41-2b87-4f88-867b-ece7645c3b83",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "3154b13f25c93c7ff6a7d92d11fe548d"
+      },
+      {
+        "submission_id": "3a709d25-39a0-4714-8ab1-dc64e351ddfa",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "e2b5bb2575006f381793a8c92d3c3f18"
+      },
+      {
+        "submission_id": "e368260f-3524-4b4f-a83b-614864a762c4",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "9e3b205f420db33364554b693111eb34"
+      },
+      {
+        "submission_id": "6acba7dd-f1b6-47a9-bc71-05bf4c127720",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "06017b8f3431bc1e8199a038acd6db6f"
+      },
+      {
+        "submission_id": "f32177ba-e368-450d-8f5d-746bfd201e07",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "182780e3388cbccb8d71493dea201122"
+      },
+      {
+        "submission_id": "3a699f8b-ea82-4875-91a2-e813808f4f90",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "23a2270ccf4bf0f1d2f7a79b8a8dedc6"
+      },
+      {
+        "submission_id": "845a764a-f037-4b1f-b8fb-170b9aac37cd",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "bd0f7ed5329cb94ed43eb65839add362"
+      },
+      {
+        "submission_id": "8a663282-393c-4d5c-87e3-1d207b4a4b82",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "a847d5cf1fa180d01f25d1222c8c5a81"
+      },
+      {
+        "submission_id": "5824801d-d2a4-4d8c-8fb3-5bbc49828d49",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "8a728056304cb8bc69f8706290b747e5"
+      },
+      {
+        "submission_id": "90389da5-a293-481f-a851-422d875d7d33",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "96b3a5959610d58b4e56d0550a40b691"
+      },
+      {
+        "submission_id": "6f516e22-41c2-4c73-9991-6fbeb849f517",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "ea0e20e5992b5cef302b92184e4f34fe"
+      },
+      {
+        "submission_id": "fd389858-19de-4d9a-bb1b-bf414f0a1688",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "bb1dea53dff7d6ce03062848ced97e74"
+      },
+      {
+        "submission_id": "91ba4015-98a8-4ac4-a1f2-c88a2f4a724d",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "3cb7bfa24c30672352c067bb8951bb05"
+      },
+      {
+        "submission_id": "df3ec371-e7db-47c7-8889-b8846e0f5c49",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "b73b85d3b6c8087423b7bfcd5ea5df20"
+      },
+      {
+        "submission_id": "234acdeb-cd58-4071-9eed-7135fe84fa7e",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "94ce408670ad2b42f921b4615a4e0fdb"
+      },
+      {
+        "submission_id": "7685fae7-8d34-4b6b-b1bd-38a07a961e3f",
+        "local_state": "ACCEPTED",
+        "bill_code_md5": "d6afcbfe12824b904799cf2119d016ec"
+      },
+      {
+        "submission_id": "18dcbb61-5e88-4ae4-8d06-75ff450a8dcb",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "f0f6267221bfc3ae7205d63a4d2b49e6"
+      },
+      {
+        "submission_id": "83fd1c86-c813-473b-bf70-d09cc9d60ec4",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "35ffd981d5c1c1a6ea2219bf14c825b8"
+      },
+      {
+        "submission_id": "9b19170e-5ceb-4da4-99bb-7478c77d9695",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "f316def27643cb6a45048370f0667c38"
+      },
+      {
+        "submission_id": "e5d5b88e-c331-43b2-810e-a02b15a6537b",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "26f6d31a338bf07157b984f007693f25"
+      },
+      {
+        "submission_id": "b984a197-b065-41c0-bdb7-66f2188a728a",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "dc6e8987619ca7b024b8ff6a306ca0e1"
+      },
+      {
+        "submission_id": "81f54633-c903-4f4f-a66e-446cf39ff4a4",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "8eff5607548de430774958750c3aefe0"
+      },
+      {
+        "submission_id": "3a58488a-0cca-4282-b38c-3797ce94b911",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "5869e016ec40aa789ad25ae39d832f95"
+      },
+      {
+        "submission_id": "8a852aa4-0165-4d8c-853a-28d4801e0ce8",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "a6f93307f58ddfb8276bc50f82beaac7"
+      },
+      {
+        "submission_id": "8af69cac-1713-4e42-b4c3-84b3d6aaf322",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "d63a697b7e2f0c91a2bba62c9ba67c6d"
+      },
+      {
+        "submission_id": "5ce5910b-3437-445c-8a99-36bde124416d",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "0b4be5c578b793821e0b317cfe1764b6"
+      },
+      {
+        "submission_id": "c3bbb968-52d1-4420-a5d5-7eec8054e818",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "dad5032dd937efd41f8443f516555b49"
+      },
+      {
+        "submission_id": "c2288e0f-62f4-41a6-966e-82ec5aa2194e",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "04f9853ace40f1cd0983ba4d3fd3b7fe"
+      },
+      {
+        "submission_id": "c9f88ec3-7253-4b07-a5e6-6136cb0113d1",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "328c65f0b62814979e098bee60b25e38"
+      },
+      {
+        "submission_id": "40de1228-63da-46bd-a5fe-b10796f5efa7",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "275bef39507a95a582d1f245dec96dde"
+      },
+      {
+        "submission_id": "4a0e3317-6790-4d42-92dc-c085cbcdee5c",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "e4ecd288b5636a277eb2fcb330dd1825"
+      },
+      {
+        "submission_id": "18db6b04-a991-444c-a470-6639af6285e1",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "8f0618230c0a24c1ac5972a8a2fe98dd"
+      },
+      {
+        "submission_id": "428b2680-2d9a-43c7-9869-776b5cc02541",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "750ac5b488fe0a1ad37fb3628631a0be"
+      },
+      {
+        "submission_id": "81cc29ca-3f29-4fa9-b224-a02cccfd4de6",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "2faed05c1889374d732d8def3f4715d4"
+      },
+      {
+        "submission_id": "f297b4c4-3233-43cc-ab9c-c68db5a1fd4e",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "3c91836d40a291f80bcfa22908218fe0"
+      },
+      {
+        "submission_id": "90416f50-74a8-401b-bcdc-e377190721c6",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "15258db588278edda07211e19bab9adf"
+      },
+      {
+        "submission_id": "1ec3d0ac-d365-46a7-95f4-611060b46eae",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "47b12ea5b7fdfb1943d7206da6bbcf56"
+      },
+      {
+        "submission_id": "561faf24-8850-4d16-a376-1682e4c1a00e",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "cf277468b725404fc16face20c93e29f"
+      },
+      {
+        "submission_id": "e0abc86a-bf23-45c9-84cc-0b7626724b20",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "92247e9b8d0aa14c4fca12024fe9a595"
+      },
+      {
+        "submission_id": "6e76e079-747a-40f3-8f03-a2b1f06e8299",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "1d5793238220cd432b71043b4fa6db68"
+      },
+      {
+        "submission_id": "fb5df6f9-8d97-4a01-a372-8be538741a2a",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "c6ecd65668051a7efa5a45e2585a3326"
+      },
+      {
+        "submission_id": "0790bedf-cd0e-499b-bddc-342890c33aed",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "ee7277cdbc6f16daebf18079b209c202"
+      },
+      {
+        "submission_id": "858509ba-0ea1-4dc6-b7e5-5c47d6b0afa6",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "3bda33ce5825a049a74acec21a96bb60"
+      },
+      {
+        "submission_id": "b3b19bd7-39ba-433c-b0be-b414fa7de800",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "1944a30f56ba1b8ac3443327e001f161"
+      },
+      {
+        "submission_id": "2ffc9a11-9930-4a10-8497-93cae87c5211",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "6207d89717cad6480c84ca71966de0c5"
+      },
+      {
+        "submission_id": "af7da844-2fbb-429c-94e7-b9ee3b273b49",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "22e43cd810b198081c27baddfbd91141"
+      },
+      {
+        "submission_id": "52afd546-948a-4638-886b-affc4c81832c",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "2facfbec4c7ee10d9f90c954e7e45303"
+      },
+      {
+        "submission_id": "7c794306-63c4-410e-b5fa-83c7e00dc688",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "f08745fcc3c9ffe81773e8d372ab5d8a"
+      },
+      {
+        "submission_id": "b4e21111-1cf1-4136-9a7e-a4a3d8e3255f",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "4f117784829f5e0f75f1e119c4ca4d67"
+      },
+      {
+        "submission_id": "55bba8fc-ba79-40fc-a64c-de7848d14012",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "ace447c16ef4e5eb2a2677ce26d7670c"
+      },
+      {
+        "submission_id": "a998dfe9-78f8-484b-b4c6-bf6b0adfd020",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "02d7fb92341af3328b9dfabc7f7504e0"
+      },
+      {
+        "submission_id": "5c1c94c1-a9a9-426f-bccd-1be7995cc6de",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "4705657f84979a4fe97d5ff9b2266d0d"
+      },
+      {
+        "submission_id": "f5e94fc3-c16c-4398-9c14-88e9706419e0",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "a43eb1910882239bfccd9b3866d7db63"
+      },
+      {
+        "submission_id": "fc1eda95-a648-4435-99ad-3d84af809be7",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "ed9609aeb3e7f7fcd8b0f3f15bf87816"
+      },
+      {
+        "submission_id": "8ea18253-aeee-48d2-a15b-c4fb9f9ae73c",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "15ff132f1ec87977bb5d7ddd2c6a0c1c"
+      },
+      {
+        "submission_id": "ff7af665-1119-44c3-ba58-56ef0f495292",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "c35fdb741e6cfe67711fbd44dfd446ad"
+      },
+      {
+        "submission_id": "25941560-5edb-438b-8842-b3960626ec8d",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "d3d48469a5f58a74ac102bbaef213013"
+      },
+      {
+        "submission_id": "5bb77a33-a0f8-4108-853e-288c59f65931",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "2bc74b08425992a0070941e9331ae146"
+      },
+      {
+        "submission_id": "7e48a7b6-4a50-4f2b-9586-0d9c3b6e61f5",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "bca4f474580f05c206ca5297ea1aca5c"
+      },
+      {
+        "submission_id": "3c020971-a572-4b3a-b77e-e3fa8a122888",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "fab1c2962a1df8e496903a80bba1fac3"
+      },
+      {
+        "submission_id": "6e9c95c7-3bf5-4c95-a1e6-b2bed8ec7c9b",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "021c9dddd3b1d907661ac2bf5902609b"
+      },
+      {
+        "submission_id": "fcd1fdc3-7c9c-4671-ac0d-6032c85f24dc",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "9c40d132ec87dfc29d5af1ebf494b0c0"
+      },
+      {
+        "submission_id": "96662630-adc1-42d0-8895-69fb04a0d278",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "a5142a4b5885f1867edf0deeff49cb43"
+      },
+      {
+        "submission_id": "4f68b150-970d-4749-b28a-5250f3f15c66",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "2438187b39373b7422361ed04007ef4f"
+      },
+      {
+        "submission_id": "8b023d6e-0b8e-4831-87ed-2590b123f8c7",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "a264e24f2addd98cd2237f5ca0a3a0c3"
+      },
+      {
+        "submission_id": "deaf5311-901f-46d9-a6f4-4a3237b09796",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "bc713fddef24ea4521a17b9f637b89df"
+      },
+      {
+        "submission_id": "6a693a49-b9be-414b-a0b2-8ead28fb3088",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "40426323251a882b83282d01f9a0fc85"
+      },
+      {
+        "submission_id": "e2db2810-39a6-4e3d-b739-58e0923b9cd5",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "8e9088872666888b460623637b2a3bc6"
+      },
+      {
+        "submission_id": "1a7f9042-7f9d-479f-a7fd-5f472310c050",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "77e3e61b8127b898f07815f680dfd35c"
+      },
+      {
+        "submission_id": "deaa9bad-3cde-480e-9e41-b4f5bdd84f5d",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "1ab3dbad87748cf78fa16bede55d96d4"
+      },
+      {
+        "submission_id": "b2482313-9b87-4ce1-85d5-ba9f4a7fed17",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "dc403d4d6b8d09ff0ef5ca3207d69280"
+      },
+      {
+        "submission_id": "8aa02280-ea93-43ae-8e12-ee31946a8a0f",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "b599b8606471404baa16ec6b20d24d81"
+      },
+      {
+        "submission_id": "a51a55e6-b893-48ec-a992-736ec793b479",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "2e2a56c985dbbe428a3eaf10954b369b"
+      },
+      {
+        "submission_id": "95645876-f004-4463-ba47-518f37cc8330",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "852e66c2b5cc52ed7e134265270030b8"
+      },
+      {
+        "submission_id": "a51df507-f121-426b-a97f-6241b068578b",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "528eb5f6c574303ff9f34a99413e0670"
+      },
+      {
+        "submission_id": "fd8c2668-2996-4760-b6aa-56b0f0444cbe",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "656906de5eb88e0ce581aa0ade753119"
+      },
+      {
+        "submission_id": "6391b7b2-961e-4b6d-9ce0-78eeefc84a35",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "b143e1b4ab2af1bfcdef87961f8e342d"
+      },
+      {
+        "submission_id": "97bca290-dfb2-4ed8-b796-f19c06af58a2",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "b07cd0ede16f981d116d2db452123372"
+      },
+      {
+        "submission_id": "43b4f38c-04dc-40b7-b6a9-b649c4f7d182",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "30f2fdc4715444ca2ad30ba987a6eeae"
+      },
+      {
+        "submission_id": "58d8f6bd-1044-4a13-bdd8-10efc66e8465",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "d7177b07ed80adfacd37ba82fdb11fbf"
+      },
+      {
+        "submission_id": "e1d469c0-616e-424b-bad2-5ecbb0a5f4e5",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "9097c252cbfe23a23d197de7808f00a3"
+      },
+      {
+        "submission_id": "a60bebe5-bb45-4fce-82f4-0d38883b1eee",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "dc8c34ca772d25a80946bf39edcca593"
+      },
+      {
+        "submission_id": "b826c281-f19f-4365-887f-3d92ed69962c",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "f022ae5d04c59cb15777678998bc4d21"
+      },
+      {
+        "submission_id": "57a210e5-93fd-4f37-928a-c239ddb366a1",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "a1d0f33398480a92867135296b45d47b"
+      },
+      {
+        "submission_id": "7d347933-95a9-4581-b1be-92bb2d595b6f",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "86ea15421c03267ad765d8229f9f9a8f"
+      },
+      {
+        "submission_id": "95dbb130-e5a9-455b-a2a8-898b0a4b1292",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "5f804b3f25b62c8d5cc8c9b91679e703"
+      },
+      {
+        "submission_id": "58073c54-c42b-4396-bd2b-bba207479f7e",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "ed3c2a40943fcaa595c15c8624687c0f"
+      },
+      {
+        "submission_id": "c41de41c-982b-4f98-aad0-3941dc94df53",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "79f514df2bb2dbebcee6b0d0132f7478"
+      },
+      {
+        "submission_id": "b7d0a416-9f2f-4197-9253-b6b334daad2a",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "c6d2b4f435a94d0b3c3a177690e97414"
+      },
+      {
+        "submission_id": "e64cd796-9845-4557-8706-1d275c3af59b",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "17b7546fdbe555313f4494edfd4b05e3"
+      },
+      {
+        "submission_id": "46dd19be-3e03-4aae-8cb1-19565f49dba1",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "1714d646f29fa1d5deea8a142365aa67"
+      },
+      {
+        "submission_id": "22b35ad1-0c02-42ed-a75e-0872b228f23c",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "ae6fdfff5d0557fcf52221ca7bf4057d"
+      },
+      {
+        "submission_id": "d9c0abfe-bb40-4e99-918a-aaf6b0f1796b",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "73bcd68b9cb4a03be7462e1397239e67"
+      },
+      {
+        "submission_id": "88b6427e-74f5-4b52-aaff-03a473e4c069",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "32b6ca2247950040f26f01ce67306a17"
+      },
+      {
+        "submission_id": "99eded09-0ed9-4817-be5b-7ced69a95336",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "4b98d7f1dc98b514147fa4d1f05d98e4"
+      },
+      {
+        "submission_id": "bbf2a846-e5a1-46b6-9646-52d26b83f642",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "cb111dde5ac4a1d693510437e7e4b06e"
+      },
+      {
+        "submission_id": "feb41a2d-c372-47f3-8071-86e6841038f3",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "c7749987f780b5463d5b171e3a20b858"
+      },
+      {
+        "submission_id": "2074196d-1b21-477a-9634-fb6be85520c1",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "5c058d0473ffffdd12d442c0dcc76266"
+      },
+      {
+        "submission_id": "cc1a27fa-54e4-494f-9afe-b5d2978b67e4",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "f8dd24a1d897144c9f997c21fbf4a143"
+      },
+      {
+        "submission_id": "0642e7bd-d143-4e65-956d-0f08176a52d3",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "0c6cf272c2b7a70f0adbeaa465fc0c50"
+      },
+      {
+        "submission_id": "8116c7f3-998f-43aa-a84a-2751b7adb714",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "184e733010412b0d21ba557834a56cf5"
+      },
+      {
+        "submission_id": "1e68148b-3e6c-4257-b3f9-4c0eedd709d8",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "a0136e5ece353a46160a2ba50f92cff9"
+      },
+      {
+        "submission_id": "4b482483-1605-4269-ac78-db77dd401622",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "3700d3841aa22b5cdceea5356eb447eb"
+      },
+      {
+        "submission_id": "eb0199f8-9d17-4545-844a-8118543b88a3",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "873b075b4e49b609386b407d499c2d39"
+      },
+      {
+        "submission_id": "9a8fd37f-d3b2-4d77-ab00-84ca9b67373f",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "5f8928f6d6bb1aaa6378cdf8bad9ae60"
+      },
+      {
+        "submission_id": "b7309053-e29a-4c84-b8a0-b1be7f41f597",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "645a5a46b763cc446ebfb3d7f5a6acd7"
+      },
+      {
+        "submission_id": "2ec6c056-ee96-4a6f-a055-dcd30da9bc35",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "5c596846a686c59432d15ad64bc42569"
+      },
+      {
+        "submission_id": "a10927de-26ac-4243-819c-f5e552addb72",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "e5a867052a83173821299fca72aca2e7"
+      },
+      {
+        "submission_id": "8605cadd-763a-47dd-98fb-adbb4668aa89",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "93b8dce711abf97f92c4c4e967e788bc"
+      },
+      {
+        "submission_id": "2e949229-ea7f-46ad-aeaf-b84ace6f0c03",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "34d6319193ecf4cef85e09e26a0e4e34"
+      },
+      {
+        "submission_id": "4e5e3403-be43-450c-8832-b0b6aa1d9347",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "4651f526edf72d7650aa6ce274177cc7"
+      },
+      {
+        "submission_id": "a8a7f653-2506-4ebc-8dd1-bcb54e42d111",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "b390f447db3d650317671e5173f06560"
+      },
+      {
+        "submission_id": "1a124a46-cdb8-4d08-bba7-f9dd7244698b",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "190fe4a35624d9921b191f0fa6037152"
+      },
+      {
+        "submission_id": "4c332672-9114-45ee-a09f-2179bc76aa3c",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "143b81926cf901a5394a579ee6c22ca4"
+      },
+      {
+        "submission_id": "757c01d3-10d8-425e-9064-37bc21985839",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "f25f6efe8e1a30b90327230673d4dc4f"
+      },
+      {
+        "submission_id": "86e168e4-8139-4e70-a05f-28b082033480",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "ff10051bb538a8d2ba0466522ea1f896"
+      },
+      {
+        "submission_id": "da735cb4-78fe-43c4-b4b2-f860d03029ea",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "1383fcba7c766295ef66618347cb6349"
+      },
+      {
+        "submission_id": "a84e1d1b-3578-4516-8792-ddbcdab041cf",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "9ac72664dea5c81eed79f0f230f97599"
+      },
+      {
+        "submission_id": "24b98574-20e2-407b-a89c-2c2892c9df71",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "b67b3dd7faa10f9416d59006ffc82106"
+      },
+      {
+        "submission_id": "58782a9d-b721-4f8d-a14e-86ab8ec7ea1e",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "c086c81d6679b912f10ebcfd7845df8d"
+      },
+      {
+        "submission_id": "5ff4dde5-acec-4e95-96be-7067c5190703",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "5d52faafec290f67baade7a231c36574"
+      },
+      {
+        "submission_id": "27769824-7a7e-4f6a-a40d-e9e6b2846982",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "d18c899ad85b50d58760f1577990955f"
+      },
+      {
+        "submission_id": "19e8580e-9dc3-46f8-8378-aa889aade070",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "ad57aa51376af2231462160c39fe4bb8"
+      },
+      {
+        "submission_id": "ca214cea-4533-43cc-b74f-1b43f1117338",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "2844d6de78523b4203a8f6894c2ae213"
+      },
+      {
+        "submission_id": "d51e87f3-9987-41e2-abe5-8702d6064219",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "e1d1bfadb67a6c015e661805601f0caa"
+      },
+      {
+        "submission_id": "afb17d6b-5561-4ebd-a0dc-ddd4f7ec26c6",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "932805d5d5ed990bbb90432adbd211d8"
+      },
+      {
+        "submission_id": "4f6b6f6d-01ec-49bf-8159-08f2327aec47",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "a9779b6004e738983351e08c2153a562"
+      },
+      {
+        "submission_id": "9bf9366e-741d-44cc-ab97-23f696cbfec9",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "901a12e0958935d629a64df0ea9a057b"
+      },
+      {
+        "submission_id": "3757b9fe-323a-451c-a5d4-fc1efe5c9fa7",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "05f3aa229ffa52d1550374780ef46bd7"
+      },
+      {
+        "submission_id": "900efbf6-e2e6-448d-9c1e-374aef688251",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "239ddc37cf47125df87849cb731582ca"
+      },
+      {
+        "submission_id": "e0b15ba7-f172-4839-827b-7cbe6c615df1",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "bc444ae00b305b5f8a8d9e1d87974576"
+      },
+      {
+        "submission_id": "941721f0-fb9a-47fa-a7a0-ca8d4b1332e1",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "c129f4e0eb0c0342eb2f3cbf9b4ca0e2"
+      },
+      {
+        "submission_id": "0854d542-5038-4409-a133-76a9f86000ff",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "5547ce6e7f65bbe262323bc4a50e243e"
+      },
+      {
+        "submission_id": "70eabdee-c9c0-40af-8a8c-c555c3ce6768",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "8b2ce2d318af2408da7d7a6be8f6461f"
+      },
+      {
+        "submission_id": "87bc2749-97bf-4fbb-8f43-e7580b4cab7b",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "193fe5f7a50c7ce58015b88997ac0846"
+      },
+      {
+        "submission_id": "26ee8744-fd3d-4b62-9caf-3a9ffae09d04",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "acde2abc3f8526bf9045d6d8baa5d0ea"
+      },
+      {
+        "submission_id": "1d2b7b39-460b-4111-8efe-c3958d33ba64",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "28cbafc93593dc71c7f5fefc1306e50c"
+      },
+      {
+        "submission_id": "f45c1ae5-9911-478c-9724-8b34eda10665",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "67ce14d3e2b8494462c1c5b2cb8aa912"
+      },
+      {
+        "submission_id": "669ef1d7-b428-4486-8cba-769edae6fab3",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "dce2a3778f411ec487a82bdcd7c07475"
+      },
+      {
+        "submission_id": "fa4218d7-8994-4bb6-b62e-df9b99bf876d",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "c456f91477af43e8f8eefcbc01d2b8a1"
+      },
+      {
+        "submission_id": "ef9c35e3-1683-4c22-80fe-9f672904e184",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "1dc644fb85a142e7ce87f0a7d2e156ff"
+      },
+      {
+        "submission_id": "e1a0213c-34f8-4f91-83d5-0df8423c49ec",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "d8fbbab347b7bf9fa8e16ba728607e6a"
+      },
+      {
+        "submission_id": "709d9dc2-7a53-49bd-a717-333af67c9cbc",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "c1003d48706cadb7011c6f55b8da002f"
+      },
+      {
+        "submission_id": "6427618b-d764-45d6-b1bb-33adab70c167",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "391008a23092039959331a15c4c81b5c"
+      },
+      {
+        "submission_id": "05c8d6c9-7df4-4983-b95c-dfe3f294b6fb",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "98ca00e84c80041e5ed752de9a2c1562"
+      },
+      {
+        "submission_id": "de63c9de-c43d-49c5-9dd3-35f92430e7a1",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "0c29ff690b29d57beef658ba69c18173"
+      },
+      {
+        "submission_id": "861b4c7e-8744-4453-812f-36f1b8fe2fd6",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "8de47d0c41202c7f2e1c9efa8e784d9a"
+      },
+      {
+        "submission_id": "331cff78-5501-4a19-aed0-54bec71b6d4d",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "9ba5aab7d0c8f2d7dd8a2131ac97ca07"
+      },
+      {
+        "submission_id": "18fba1d6-a638-4125-b4e4-225442758c3d",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "49cd1d5772e0f5eff3610974ce94b22c"
+      },
+      {
+        "submission_id": "64239725-6c5f-4849-9376-7c464689355c",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "28e57dcf9c3291b27d43ef9d6dfdc130"
+      },
+      {
+        "submission_id": "4e65f711-7dd6-4d0f-8649-19025ec127a9",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "f287d76d9d02792a7ab95a2721929eb7"
+      },
+      {
+        "submission_id": "4752da3a-2ef3-4df7-a424-22ff15d72a45",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "ebc68803ca83b795be8dced362ea565c"
+      },
+      {
+        "submission_id": "d39bf0ab-a9a9-4095-8dc5-c91938f8614d",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "ea6f94cd66b877ecf0a19be804fcb25a"
+      },
+      {
+        "submission_id": "30b7bd07-7cdb-481e-8f66-817a0ad3dc29",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "31a4e4ad080273ffb78e89e6587a3b76"
+      },
+      {
+        "submission_id": "22082b68-5347-44dc-bacb-f20aa7b29ae9",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "9276cc5f668882bcc386c3b540778725"
+      },
+      {
+        "submission_id": "ece8572f-dc4d-4b56-a6d9-174642277c9a",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "46aa3e1814ea7bb8ccde5ab2645a0d3a"
+      },
+      {
+        "submission_id": "c7dc306b-11fb-4894-b0ec-da87fbcac5b1",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "fbe30862aba297511063a297e87f69ca"
+      },
+      {
+        "submission_id": "d529192f-7146-43a0-9a36-d8f701d83c10",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "9534b3fe03058509a13c3f0c98d58176"
+      },
+      {
+        "submission_id": "60291343-4a03-4a35-a1ad-2ece7a38b3be",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "ea92fe591cc9cef5249705fe3b9f3d8d"
+      },
+      {
+        "submission_id": "642fc39a-b08f-4b6a-bdec-c9fd8d78a2dc",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "4a4267f256e703a8a581d6cc4475f42d"
+      },
+      {
+        "submission_id": "5dbaa65a-204d-4988-a7b1-c04f25799838",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "5a4effac83cdedfc94171403b75b27f9"
+      },
+      {
+        "submission_id": "2b2f66b7-97d2-4ebb-ac18-b9089f16a5bc",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "72c7ab2d147362bf114b0f14e88d6472"
+      },
+      {
+        "submission_id": "9df236ee-a288-4d28-97f8-a1338796ad50",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "616a0d2b6a81026882a60471bdaaec5c"
+      },
+      {
+        "submission_id": "781d2d59-bd57-4136-bcc5-ae3c0fc0fa78",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "83660efe7c5e04654a275ebc9c8fe710"
+      },
+      {
+        "submission_id": "4d99b2ba-6648-4161-8b16-c41ae445908c",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "791b132fcc929d8788d85011f3829a82"
+      },
+      {
+        "submission_id": "0a0cbbcd-ede9-4809-a0b6-74f0d734afef",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "39d2b820f425b249f83ff39c30aa65d6"
+      },
+      {
+        "submission_id": "eef459a3-5905-4a1b-b0df-8889d7b45024",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "31bea0c7864e626dde2d38dd987b74c8"
+      },
+      {
+        "submission_id": "eeb0a308-d3b1-47a2-b3d7-8598b5c5a235",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "b8274174cc5242a8733e5c5c0ef01d7c"
+      },
+      {
+        "submission_id": "859147eb-96e6-4064-8fc8-c63e9786ce6a",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "28bdc89b6541cc705d93bcae3a775076"
+      },
+      {
+        "submission_id": "4e806ca2-bb88-4c92-b6d0-9f11787394e4",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "998d21321f7c5b15b18a246ebfa902ac"
+      },
+      {
+        "submission_id": "d4f1c698-f4e2-4b49-85c2-2f415e194dc6",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "d914eaf88fda341c2c777dc93a3c0e8a"
+      },
+      {
+        "submission_id": "2183de15-c91d-4900-959a-83613a6aec9d",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "ecdb8dc0d798900253a4b4ea7430fdc1"
+      },
+      {
+        "submission_id": "18004614-c873-49f5-a9f8-846c3443f96f",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "74cbe1610f4df22fd74102a0e8853af9"
+      },
+      {
+        "submission_id": "cc6c7c52-1f16-46e3-a500-02040cd90609",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "643cc773268f07b264543e7d678580fa"
+      },
+      {
+        "submission_id": "2b4877a9-4154-4439-9f09-d5e6fe135f95",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "24e4d3be5e94552d018939833d045ad4"
+      },
+      {
+        "submission_id": "694de487-7e57-452f-a0f6-819dd4147d42",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "d17302f1a3ddd43b4859f0c9bec10d87"
+      },
+      {
+        "submission_id": "b3f0bc9c-8ff2-4008-860b-540e32a7b2df",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "2b75dfbf300940d29dca2f675b8532ad"
+      },
+      {
+        "submission_id": "a8466231-e5b8-4ba1-93b8-a66ddede51a3",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "ef457a1bbbb69bd870b449f95d73b0c7"
+      },
+      {
+        "submission_id": "b50d5020-3436-4265-acbd-a5c420ed1f62",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "062b82942427e10d00c5f641478796e1"
+      },
+      {
+        "submission_id": "54a6d80f-d397-42e9-959c-12785b151f52",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "504b2f3291973b23ad477502e4654b86"
+      },
+      {
+        "submission_id": "320a1789-b700-4884-baf7-03f2905bbf00",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "e57fc54088795c683deef2269ccbca4d"
+      },
+      {
+        "submission_id": "759242f7-95b9-4a99-8340-f670cc4aae41",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "515d23e9ab50df024207735b15b4e89d"
+      },
+      {
+        "submission_id": "12cc022d-6042-41d0-94b9-73990fbfd0e1",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "c897e63fb1c2e21a6e78c6f7b53d6e35"
+      },
+      {
+        "submission_id": "a87fd481-1518-4dba-93d1-218fac316bb3",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "e4174b063c71d744c775717d2989d8e4"
+      },
+      {
+        "submission_id": "46a43f37-853d-4f22-ba57-fd10ce33139e",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "2cae9a652e94f8184680e828805085dd"
+      },
+      {
+        "submission_id": "666e9957-1e69-42ac-aa79-5504aad9c967",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "7a410049a13e51b6f167770c4decb6d1"
+      },
+      {
+        "submission_id": "b8f895d5-f3aa-40f4-a6db-2f0e45f96db8",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "e15daa44c9f806a257852616fde04773"
+      },
+      {
+        "submission_id": "5c24b26f-9923-4931-9a78-5f3cabafeead",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "f9fab923e90211c0e79ee97eede3dfec"
+      },
+      {
+        "submission_id": "614d2d9b-c557-4c48-b91d-a6ed2fd30c00",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "1ea59bef5a8ef31e4c9a4927a08b9e40"
+      },
+      {
+        "submission_id": "c3c8d393-ebc4-476c-a316-1897690f6ddf",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "dd032d8124c80278388f6b7d6060906e"
+      },
+      {
+        "submission_id": "50117ca7-0d3e-41b9-9ef9-a8d8d05b1243",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "d8832b03f3eef49d991091fe4adda8f8"
+      },
+      {
+        "submission_id": "12c719a0-81b9-4fbf-9b28-cc0cf122203a",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "e08ec389924988e5aa6682eb55a6a695"
+      },
+      {
+        "submission_id": "ebda0164-9326-43b7-b634-954df84dfc2a",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "6d89d05ee29592fccb229da7854aa390"
+      },
+      {
+        "submission_id": "cf8bd4f2-7d68-43c0-a618-ee396ac943b6",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "7480a7520d0c2cce0d7c58d6bfba3ba2"
+      },
+      {
+        "submission_id": "1ec9a3c8-a9a7-4595-98ad-2e555c7c0799",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "4001343471ed8b58e4408bf0f629ca50"
+      },
+      {
+        "submission_id": "a3402595-8ee8-47d2-9c53-ea3b0ca00f2b",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "f83e2577373e70cbb42d317fc6db2f2a"
+      },
+      {
+        "submission_id": "a49833e2-6996-41b3-bf6d-bb665d3c298e",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "48426d980d57e16651230c63a3f19203"
+      },
+      {
+        "submission_id": "586233c8-91f4-43e0-b1d6-96c6da4c7b6f",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "1bd6264b2df1f906f3f824baef6b9602"
+      },
+      {
+        "submission_id": "93d38151-c369-4e43-90a5-69d403c8daa2",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "13dbb9984c71fe38e1ceda8dabf0a3bd"
+      },
+      {
+        "submission_id": "7901c717-eb36-40ee-9ae5-f165d8b412ad",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "7a378851b103be868dccad75aae66330"
+      },
+      {
+        "submission_id": "2eb8cae1-e519-4da9-9e3f-0cbeee6f5bfa",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "093d4bc8b6c75bc70a855915543e10bb"
+      },
+      {
+        "submission_id": "b7691d2e-7c6c-4970-8a34-f7fb6519ce1d",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "10c93c73e56b65109f804320cf5edce4"
+      },
+      {
+        "submission_id": "a87d3e55-cd17-4f41-999b-e8906601c0ef",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "4bfcecd3e353e809c5d4d93efc459012"
+      },
+      {
+        "submission_id": "3bd880b2-68b8-482d-8af8-7f2044008e72",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "514ef40b40a74e1b451d596ac514443b"
+      },
+      {
+        "submission_id": "1118edb0-ab03-46ce-9355-2e6992725224",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "4b24634341561e597c1c82f189b3fb03"
+      },
+      {
+        "submission_id": "fd089ae5-a5f0-49d2-a02d-efa75b1ecc07",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "0068e71a34b1d6f161ce0105909e61e7"
+      },
+      {
+        "submission_id": "17776c1c-8193-47b7-8c1c-b3703210e5d1",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "c0169bdc659d6009a70b11ce10a7de89"
+      },
+      {
+        "submission_id": "52b3f1d3-6113-4de2-8ea0-0784431bc0d7",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "4284fcff4a84f38a6911b83bc1be66d3"
+      },
+      {
+        "submission_id": "7d85ac4a-6e97-406f-aece-899165615a7c",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "105e4989d659f5727dd31d0d862a3fb2"
+      },
+      {
+        "submission_id": "f0bf2232-e361-48b0-8f54-c400f74eda91",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "acd505aea527abfe98062e8037c89b31"
+      },
+      {
+        "submission_id": "bd07d16f-cf34-463e-abd6-1f4f80c2b3b8",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "ad2f619ca4c95c9fc093c659799afd8d"
+      },
+      {
+        "submission_id": "ce011bb5-1851-490a-ac53-abf7e99c52db",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "583a0673583434a362034c662bf18e95"
+      },
+      {
+        "submission_id": "d10aadb4-75ae-4369-b06a-62c7332dec47",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "8f79c71ce61bb8eebdec03326a855b7a"
+      },
+      {
+        "submission_id": "0172f984-6c0a-449d-b6c7-1aade562dee7",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "ee980b02153334ccdff4e5075db4d2c9"
+      },
+      {
+        "submission_id": "4e5ae848-47bb-42b9-bc2f-b67be6252d76",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "08571a8b318fe6fb09f73d61ac10057c"
+      },
+      {
+        "submission_id": "6084b2d7-036e-4ce7-b083-21b3f9eb597d",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "a59eca6ece4e6ec68d3776bb274b94a0"
+      },
+      {
+        "submission_id": "169cfe66-8dab-48c3-975f-749bbd757a34",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "46cf68407eb7ee2bf72d84663ac6e07c"
+      },
+      {
+        "submission_id": "797dbd46-41c4-44d2-a90d-1dc637049a35",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "636c6a7515544a7dd8906d31f3a6ea97"
+      },
+      {
+        "submission_id": "aa27fa3f-8f8f-4022-8e2c-c815ddf45821",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "830cac2a01b8d509797af317b6e1d1a1"
+      },
+      {
+        "submission_id": "69f5d985-3973-436b-a23d-ffe9160b6190",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "7fda9f31b9ff7cd2357504766214a50a"
+      },
+      {
+        "submission_id": "fbe5771e-a939-4bf5-b9d1-60c701d71d0a",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "ced67f70997a5159d8743bbd9333ad00"
+      },
+      {
+        "submission_id": "a9bd328e-2038-4797-9020-3e60f4b7837f",
+        "local_state": "UNKNOWN",
+        "bill_code_md5": "d2d79767dc718071b42a81ea32f0b48e"
+      }
+    ],
+    "count": 247,
+    "platform_calls": 0,
+    "his_calls": 0
+  }
+}

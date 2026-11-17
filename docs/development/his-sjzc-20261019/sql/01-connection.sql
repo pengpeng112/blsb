@@ -1,0 +1,2 @@
+-- HIS <his-host>；只取连通标志和实际服务名，不读取患者或凭据。
+SELECT 1 AS OK, SYS_CONTEXT('USERENV','SERVICE_NAME') AS SERVICE_NAME FROM DUAL

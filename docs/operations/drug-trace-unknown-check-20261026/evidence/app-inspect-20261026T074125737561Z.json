@@ -1,0 +1,120 @@
+{
+  "host": "app",
+  "phase": "inspect",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T07:41:25.737485+00:00",
+  "result": {
+    "release": "ui-clarity-20261026T063000Z",
+    "states": {
+      "CONFIRMED": 2576,
+      "ACCEPTED": 41,
+      "UNKNOWN": 206
+    },
+    "targets": [
+      {
+        "state": "UNKNOWN",
+        "n": 206,
+        "first_created_utc": "2026-10-24T01:12:30.641799",
+        "last_created_utc": "2026-10-25T12:36:54.403925",
+        "first_business_day": "2026-10-24",
+        "last_business_day": "2026-10-24"
+      },
+      {
+        "state": "ACCEPTED",
+        "n": 41,
+        "first_created_utc": "2026-10-25T12:28:56.99138",
+        "last_created_utc": "2026-10-25T12:35:52.876848",
+        "first_business_day": "2026-10-24",
+        "last_business_day": "2026-10-24"
+      }
+    ],
+    "latest_uploads": [
+      {
+        "state": "ACCEPTED",
+        "http_status": 200,
+        "outcome": "ACCEPTED",
+        "reason": null,
+        "n": 41
+      },
+      {
+        "state": "UNKNOWN",
+        "http_status": 429,
+        "outcome": "UNKNOWN",
+        "reason": "http 429",
+        "n": 205
+      },
+      {
+        "state": "UNKNOWN",
+        "http_status": null,
+        "outcome": "UNKNOWN",
+        "reason": "send-failure: FileNotFoundError",
+        "n": 1
+      }
+    ],
+    "latest_platform_queries": [
+      {
+        "state": "UNKNOWN",
+        "classification": "UNKNOWN",
+        "reason": "http 429",
+        "error_code": null,
+        "msg_code": null,
+        "query_status": "UNKNOWN",
+        "total_num": null,
+        "earliest_utc": "2026-10-25T12:54:23.446519",
+        "latest_utc": "2026-10-25T13:31:00.766853",
+        "n": 126
+      },
+      {
+        "state": "UNKNOWN",
+        "classification": "NOT_FOUND",
+        "reason": "complete platform query has no entry for bill_code",
+        "error_code": null,
+        "msg_code": null,
+        "query_status": "OK",
+        "total_num": "0",
+        "earliest_utc": "2026-10-25T12:58:06.188721",
+        "latest_utc": "2026-10-25T13:56:26.204006",
+        "n": 80
+      },
+      {
+        "state": "ACCEPTED",
+        "classification": "UNKNOWN",
+        "reason": "http 429",
+        "error_code": null,
+        "msg_code": null,
+        "query_status": "UNKNOWN",
+        "total_num": null,
+        "earliest_utc": "2026-10-25T12:50:32.71944",
+        "latest_utc": "2026-10-25T13:25:51.190002",
+        "n": 41
+      }
+    ],
+    "poll_counts": [
+      {
+        "state": "UNKNOWN",
+        "minimum": 12,
+        "maximum": 12
+      },
+      {
+        "state": "ACCEPTED",
+        "minimum": 12,
+        "maximum": 12
+      }
+    ],
+    "quota": [
+      {
+        "used": 2823,
+        "max_bills": 80000
+      }
+    ],
+    "checkpoint": [
+      {
+        "row_version": 46,
+        "since_time": "2026-10-26T00:00:00"
+      }
+    ],
+    "utc": "2026-10-26T07:41:28.033631+00:00",
+    "his_queries": 0,
+    "platform_calls": 0
+  }
+}

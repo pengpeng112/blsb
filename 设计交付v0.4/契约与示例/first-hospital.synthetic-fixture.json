@@ -1,0 +1,70 @@
+{
+  "synthetic_only": true,
+  "note": "无真实患者；唯一、缺失、歧义、前导零用例的最小来源夹具。临床字典与申请字段语义另由批准的测试规则提供。不是生产全字段表。",
+  "slides": [
+    {
+      "Id": 1,
+      "qptmh": "900001",
+      "PathologyID": "9000001",
+      "lkh": "fixture-block-1"
+    },
+    {
+      "Id": 2,
+      "qptmh": "900002",
+      "PathologyID": "9000001",
+      "lkh": "fixture-block-1"
+    },
+    {
+      "Id": 3,
+      "qptmh": "900003",
+      "PathologyID": "9000001",
+      "lkh": "fixture-block-2"
+    },
+    {
+      "Id": 4,
+      "qptmh": "990000",
+      "PathologyID": "9000002",
+      "lkh": null
+    },
+    {
+      "Id": 5,
+      "qptmh": "990000",
+      "PathologyID": "9000003",
+      "lkh": null
+    },
+    {
+      "Id": 6,
+      "qptmh": "090001",
+      "PathologyID": "0900001",
+      "lkh": null
+    }
+  ],
+  "lookup_expectations": [
+    {
+      "barcode_raw": "900001",
+      "candidate_count": 1
+    },
+    {
+      "barcode_raw": "999999",
+      "candidate_count": 0
+    },
+    {
+      "barcode_raw": "990000",
+      "candidate_count": 2
+    },
+    {
+      "barcode_raw": "090001",
+      "candidate_count": 1
+    },
+    {
+      "barcode_raw": "90001",
+      "candidate_count": 0
+    }
+  ],
+  "pathology_number_examples": [
+    "900001",
+    "9000001",
+    "90000001",
+    "0900001"
+  ]
+}

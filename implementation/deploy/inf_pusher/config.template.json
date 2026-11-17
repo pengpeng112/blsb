@@ -1,0 +1,11 @@
+{
+  "_comment": "复制为 config.json 后填写。enabled=false 时禁止真实发送（MOCK 先行约定）。凭据只走环境变量，不写本文件。",
+  "enabled": false,
+  "base_url": "http://<frontend-host>",
+  "workdir": "<deploy-path>/state",
+  "env": {
+    "user": "INF_ODS_USER",
+    "pwd": "INF_ODS_PASSWORD",
+    "dsn": "INF_ODS_DSN"
+  }
+}

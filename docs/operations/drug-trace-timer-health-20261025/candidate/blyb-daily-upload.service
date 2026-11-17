@@ -1,0 +1,12 @@
+[Unit]
+Description=BLYB drug-trace daily upload (collect yesterday, send, query)
+After=docker.service network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+# Token stays on the host; piped via stdin into the container; never logged.
+ExecStart=/bin/bash -c 'umask 077; mkdir -p /var/log/blyb/daily-upload; TOK=$(sed -n "s/^BLYB_BOOTSTRAP_ADMIN_TOKEN=//p" /etc/blyb/runtime.env); [ -n "$TOK" ] || { echo no-token; exit 4; }; docker cp /opt/blyb/tools/blyb-daily-upload.py blyb-core-1:/tmp/daily-upload.py && printf "%%s\\n" "$TOK" | docker exec -i -u 0 blyb-core-1 python /tmp/daily-upload.py > /var/log/blyb/daily-upload/$(date +%%Y%%m%%d-%%H%%M%%S).json 2>/var/log/blyb/daily-upload/last-error.log'
+TimeoutStartSec=3h
+# The unit exits non-zero on partial failures; keep the receipt file regardless.
+SuccessExitStatus=

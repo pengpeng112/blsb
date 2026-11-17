@@ -1,0 +1,11 @@
+{
+  "host": "app",
+  "phase": "upgrade",
+  "exit_code": 0,
+  "captured_at": "2026-10-27T05:55:24.057088+00:00",
+  "result": {
+    "launched": true,
+    "pid": 3134069,
+    "release": "stability-20261027T030000Z-r2"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "retrieved_at_utc": "2026-10-22T14:55:15.413292+00:00",
+  "guide_url": "https://qg6r2i.yuque.com/qg6r2i/dxne69/gxe667idmsa9b75e?singleDoc=",
+  "public_markdown_url": "https://qg6r2i.yuque.com/qg6r2i/dxne69/gxe667idmsa9b75e/markdown?plain=true",
+  "http_status": 200,
+  "body_bytes": 39446,
+  "body_sha256": "7f57d2402a0e6f1e229957613ed1306a6bb69ede4e9658dc0061fe4acfeef91f",
+  "normalized_heading_content_identical_to_previous_snapshot": true,
+  "document_content_updated_at": "2026-06-01T03:22:04.000Z",
+  "api_url": "https://developer.alibaba.com/docs/api.htm?apiId=52553",
+  "native_web_yuque_open": "FAILED; public urllib HTML/JSON/markdown retrieval succeeded",
+  "view_comparison": [
+    {
+      "view": "V_DRUG_TRACE_BILL",
+      "matches_r10_tokens": true,
+      "live_sha256": "a896975e4df7cff1b23fd4282147da549f160be4ee591432d90dcc936851de91"
+    },
+    {
+      "view": "V_DRUG_TRACE_CODE",
+      "matches_r10_tokens": true,
+      "live_sha256": "d43eba6351b13529fd8ab2b88899338c259ffafc73deebe05a16e928dc83b04b"
+    }
+  ],
+  "source_writes": 0,
+  "uploads": 0
+}

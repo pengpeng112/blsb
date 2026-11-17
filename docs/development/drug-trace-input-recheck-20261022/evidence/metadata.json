@@ -1,0 +1,51 @@
+{
+  "captured_at": "2026-10-22T05:59:03.072400+00:00",
+  "upload_requests": 0,
+  "his_live_queries": 0,
+  "remote_config_changes": 0,
+  "read_only": true,
+  "channel": "sjzc/<relay-jump>/platform_metadata",
+  "credential_contents_read": false,
+  "queries": {
+    "his_source_registration": {
+      "sql": "SELECT source_code,system_code,db_type,target_host,port,service_name,enabled,write_policy,updated_at FROM asset.asset_data_sources WHERE source_code='his_source_<his_host_id>' LIMIT 1",
+      "rows": [
+        {
+          "source_code": "his_source_<his_host_id>",
+          "system_code": "HIS",
+          "db_type": "oracle",
+          "target_host": "<his-host>",
+          "port": 1521,
+          "service_name": "his",
+          "enabled": true,
+          "write_policy": "medical_dict_push",
+          "updated_at": "2026-07-13T18:43:47.631769+08:00"
+        }
+      ],
+      "status": "SUCCESS"
+    },
+    "same_endpoint_sources": {
+      "sql": "SELECT source_code,system_code,target_host,port,service_name,enabled,write_policy FROM asset.asset_data_sources WHERE target_host='<his-host>' AND port=1521 ORDER BY source_code LIMIT 20",
+      "rows": [
+        {
+          "source_code": "his_source_<his_host_id>",
+          "system_code": "HIS",
+          "target_host": "<his-host>",
+          "port": 1521,
+          "service_name": "his",
+          "enabled": true,
+          "write_policy": "medical_dict_push"
+        }
+      ],
+      "status": "SUCCESS"
+    },
+    "contract_view_catalog": {
+      "sql": "SELECT system_code,source_code,schema_name,table_name,column_count,updated_at FROM asset.asset_tables WHERE system_code IN ('HIS','HIS_SOURCE') AND table_name IN ('V_DRUG_TRACE_BILL','V_DRUG_TRACE_CODE') ORDER BY schema_name,table_name LIMIT 20",
+      "rows": [],
+      "status": "SUCCESS"
+    }
+  },
+  "his_live_attempted": false,
+  "source_policy_meets_readonly_requirement": false,
+  "status": "CAPTURED"
+}

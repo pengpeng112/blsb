@@ -1,0 +1,94 @@
+{
+  "host": "app",
+  "phase": "pause_retry",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T04:44:17.476944+00:00",
+  "result": {
+    "outcome": "INTERRUPTED_FOR_LOGIN_UPGRADE",
+    "utc": "2026-10-26T04:44:19.365036+00:00",
+    "before": {
+      "states": {
+        "CONFIRMED": 1315,
+        "ACCEPTED": 51,
+        "UNKNOWN": 206
+      },
+      "sending": 0,
+      "inflight": 0,
+      "pending_sends": 0,
+      "protected_old_hash": "a58f26edbe1551aada8aafc05dc464e3",
+      "quota": [
+        {
+          "used": 1572,
+          "max_bills": 80000
+        }
+      ],
+      "checkpoint": [
+        {
+          "row_version": 46,
+          "since_time": "2026-10-26T00:00:00"
+        }
+      ]
+    },
+    "drained": {
+      "states": {
+        "PREPARED": 1,
+        "CONFIRMED": 1316,
+        "ACCEPTED": 50,
+        "UNKNOWN": 206
+      },
+      "sending": 0,
+      "inflight": 0,
+      "pending_sends": 0,
+      "protected_old_hash": "a58f26edbe1551aada8aafc05dc464e3",
+      "quota": [
+        {
+          "used": 1572,
+          "max_bills": 80000
+        }
+      ],
+      "checkpoint": [
+        {
+          "row_version": 46,
+          "since_time": "2026-10-26T00:00:00"
+        }
+      ]
+    },
+    "after": {
+      "states": {
+        "PREPARED": 1,
+        "CONFIRMED": 1316,
+        "ACCEPTED": 50,
+        "UNKNOWN": 206
+      },
+      "sending": 0,
+      "inflight": 0,
+      "pending_sends": 0,
+      "protected_old_hash": "a58f26edbe1551aada8aafc05dc464e3",
+      "quota": [
+        {
+          "used": 1572,
+          "max_bills": 80000
+        }
+      ],
+      "checkpoint": [
+        {
+          "row_version": 46,
+          "since_time": "2026-10-26T00:00:00"
+        }
+      ]
+    },
+    "driver_core_pids": [
+      7943
+    ],
+    "old_247_unchanged": true,
+    "checkpoint_unchanged": true,
+    "reason": "Planned upgrade; completed sends retained, resume with normal guarded driver. Original incomplete receipts are preserved, not claimed successful.",
+    "previous_progress": {
+      "started_utc": "2026-10-26T04:09:47.399221+00:00",
+      "outcome": "RUNNING",
+      "dates": [],
+      "driver_sha256": "1d1862d93ca36449fa8658b7295b0b9a857d8b902059057ee25f9a68a1cd8c46",
+      "current_date": "2026-10-25"
+    }
+  }
+}

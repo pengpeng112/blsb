@@ -1,0 +1,26 @@
+{
+  "captured_at": "2026-10-22T05:58:40.538872+00:00",
+  "upload_requests": 0,
+  "his_live_queries": 0,
+  "remote_config_changes": 0,
+  "read_only": true,
+  "ssh_exit_code": 0,
+  "inventory": {
+    "release": {
+      "exit_code": 0,
+      "stdout": "/opt/blyb/releases/fb-20261021T164800Z\n"
+    },
+    "services": {
+      "exit_code": 0,
+      "stdout": "blyb-nginx-1 blyb/nginx:fb-20261021T164800Z Up 13 hours (healthy) 80/tcp, 0.0.0.0:443->443/tcp\n<worker-container> blyb/backend:fb-20261021T164800Z Up 13 hours (healthy) \nblyb-exchange-1 blyb/backend:fb-20261021T164800Z Up 13 hours (healthy) 8002/tcp\nblyb-core-1 blyb/backend:fb-20261021T164800Z Up 13 hours (healthy) 8000/tcp\nblyb-storage-1 blyb/backend:fb-20261021T164800Z Up 13 hours (healthy) 8001/tcp\nblyb-db-1 blyb/pg:fb-20261021T164800Z Up 13 hours (healthy) 5432/tcp\n"
+    },
+    "worker": {
+      "exit_code": 1
+    },
+    "ntp": {
+      "exit_code": 0,
+      "stdout": "               Local time: Thu 2026-10-22 13:58:46 CST\n           Universal time: Thu 2026-10-22 05:58:46 UTC\n                 RTC time: Thu 2026-10-22 05:58:47\n                Time zone: Asia/Shanghai (CST, +0800)\nSystem clock synchronized: no\n              NTP service: active\n          RTC in local TZ: no\n"
+    }
+  },
+  "status": "CAPTURED"
+}

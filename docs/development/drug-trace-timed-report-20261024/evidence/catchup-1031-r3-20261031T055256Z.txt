@@ -1,0 +1,36 @@
+The authenticity of host '<prod-host> (<prod-host>)' can't be established.
+ED25519 key fingerprint is SHA256:IjK9PN01og2d/fsSjUy4rlsyRBqOiZZycBN6j46shQc.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '<prod-host>' (ED25519) to the list of known hosts.
+
+Authorized users only. All activities may be monitored and reported.
+root@<prod-host>'s password: 
+===HOST TIME===
+2026-10-31 13:52:48 +0800
+===SERVICE===
+inactive
+===RECEIPT 111456===
+outcome: OK elapsed: 8063.1
+sent: 1241 skipped: 325 errs: 0 aborted: 
+===QUOTA===
+9979
+===PREPARED===
+1692
+Connection to <prod-host> closed.
+
+=====
+The authenticity of host '<prod-host> (<prod-host>)' can't be established.
+ED25519 key fingerprint is SHA256:IjK9PN01og2d/fsSjUy4rlsyRBqOiZZycBN6j46shQc.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '<prod-host>' (ED25519) to the list of known hosts.
+
+Authorized users only. All activities may be monitored and reported.
+root@<prod-host>'s password: 
+Successfully copied 31kB (transferred 32.8kB) to blyb-core-1:/tmp/daily-upload.py
+Successfully copied 203B (transferred 2.05kB) to blyb-core-1:/tmp/backfill-runner.py
+backfill-1029 started file=20261031-135256
+-rw-r--r--. 1 root root     0 Oct 31 13:52 20261031-135256-backfill-1029.json
+-rw-------. 1 root root     0 Oct 31 11:14 last-error.log
+Connection to <prod-host> closed.

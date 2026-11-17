@@ -1,0 +1,25 @@
+{
+  "source_matches_remote_unit": true,
+  "original_unit_sha256": "2b34f1d3804bc8751d6883291490025c5d6d5d93a2c3c052cdb650c7028f9d26",
+  "candidate_unit_sha256": "34832696c64ae60690ada2c22dd6b9f51186e6ae2209606284cf0172abdc312e",
+  "change": "Escape printf %s as %%s for systemd. No other changes.",
+  "deployed": false,
+  "candidate_runtime_verified": false,
+  "python_ast_passed": 3,
+  "manual_sends": 0,
+  "HIS_queries": 0,
+  "remote_config_changes": 0,
+  "new_broken_links": [],
+  "source_hash_errors": [],
+  "documents_checked": 6,
+  "evidence_files": 6,
+  "health_assessment": "FAILED_FIRST_SCHEDULED_RUN",
+  "review_checks_passed": true,
+  "database_probe_initial_failure_preserved": true,
+  "checks_exit_code": {
+    "python_ast": 0,
+    "candidate_only_percent_escape": 0,
+    "docs_inventory": 0,
+    "new_links_and_source_hashes": 0
+  }
+}

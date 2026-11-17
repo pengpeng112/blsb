@@ -1,0 +1,10 @@
+[Unit]
+Description=BLYB inf pusher watchdog daily report (yesterday CST summary, 08:00)
+After=network.target docker.service
+
+[Service]
+Type=oneshot
+EnvironmentFile=-<prod-path>/exchange/inf-watchdog/relay.env
+ExecStart=/usr/bin/python3 <prod-path>/exchange/inf-watchdog/watchdog.py --config <prod-path>/exchange/inf-watchdog/config.json daily
+TimeoutStartSec=12min
+

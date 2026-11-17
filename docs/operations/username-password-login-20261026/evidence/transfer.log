@@ -1,0 +1,11 @@
+[relay] 打包 auth-20261026T043500Z → auth-20261026T043500Z.relay.tar.gz
+[relay] 包大小 457.6 MB
+[relay] 跳板中继目录 <prod-path>-relay/20261026T043453Z
+/dev/mapper/openeuler-home  406G  1.4G  384G    1% /home
+[relay] SFTP→跳板完成（8s，56.2 MB/s）
+[relay] keyscan <prod-host> SHA256:IjK9PN01og2d/fsSjUy4rlsyRBqOiZZyc…  <= 固定值匹配
+[relay] keyscan <prod-host> SHA256:zv6y5hjXWw9goWN8wJ0K2gzQjhEPVuMLc…
+[relay] scp 跳板→目标（大文件，耐心等待）…
+[relay] scp rc=0
+[relay] 目标侧哈希校验通过，中转 tar 已清
+[relay] 跳板中继已清理

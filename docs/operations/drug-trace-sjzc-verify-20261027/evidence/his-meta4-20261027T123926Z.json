@@ -1,0 +1,265 @@
+{
+ "authorization": "User authorization 2026-10-27 HIS probe r4 (vendor send-request table status for missing bills, read-only)",
+ "source_writes": 0,
+ "uploads": 0,
+ "indexes": {
+  "ok": true,
+  "rows": [
+   {
+    "INDEX_NAME": "IDX_CLI_REQ_EXEC_TIME",
+    "COLUMN_NAME": "CLI_EXECUTE_TIME",
+    "COLUMN_POSITION": 1
+   },
+   {
+    "INDEX_NAME": "IDX_CLI_REQ_EXEC_TIME",
+    "COLUMN_NAME": "PRESC_DETAIL_ID",
+    "COLUMN_POSITION": 2
+   },
+   {
+    "INDEX_NAME": "IDX_CLI_REQ_EXEC_TIME",
+    "COLUMN_NAME": "CLI_FLAG",
+    "COLUMN_POSITION": 3
+   },
+   {
+    "INDEX_NAME": "IDX_PHA_CLI_REQUEST_DRUG_TIME",
+    "COLUMN_NAME": "PRESC_CREATE_TIME",
+    "COLUMN_POSITION": 1
+   },
+   {
+    "INDEX_NAME": "IDX_PHA_CLI_REQUEST_DRUG_TIME",
+    "COLUMN_NAME": "CLI_INP_FLAG",
+    "COLUMN_POSITION": 2
+   },
+   {
+    "INDEX_NAME": "IDX_PHA_CLI_REQUEST_DRUG_TIME",
+    "COLUMN_NAME": "PAT_ID",
+    "COLUMN_POSITION": 3
+   },
+   {
+    "INDEX_NAME": "IDX_PHA_CLI_REQUEST_DRUG_TIME",
+    "COLUMN_NAME": "DEPT_CODE",
+    "COLUMN_POSITION": 4
+   },
+   {
+    "INDEX_NAME": "IDX_PHA_CLI_REQUEST_DRUG_TIME",
+    "COLUMN_NAME": "PRESC_NO",
+    "COLUMN_POSITION": 5
+   },
+   {
+    "INDEX_NAME": "IDX_PHA_CLI_REQ_CLI_TIME",
+    "COLUMN_NAME": "CLI_EXECUTE_TIME",
+    "COLUMN_POSITION": 1
+   },
+   {
+    "INDEX_NAME": "IDX_PHA_CLI_REQ_PRESC",
+    "COLUMN_NAME": "PRESC_DETAIL_ID",
+    "COLUMN_POSITION": 1
+   },
+   {
+    "INDEX_NAME": "IDX_PHA_CLI_REQ_PRESC",
+    "COLUMN_NAME": "CLI_FLAG",
+    "COLUMN_POSITION": 2
+   },
+   {
+    "INDEX_NAME": "IDX_PRESC_COMBINE_11G",
+    "COLUMN_NAME": "SYS_NC00126$",
+    "COLUMN_POSITION": 1
+   },
+   {
+    "INDEX_NAME": "PCRD_IDX_CLI_FLAG",
+    "COLUMN_NAME": "CLI_FLAG",
+    "COLUMN_POSITION": 1
+   },
+   {
+    "INDEX_NAME": "PCRD_IDX_DRUG_PRI",
+    "COLUMN_NAME": "DRUG_PRI",
+    "COLUMN_POSITION": 1
+   },
+   {
+    "INDEX_NAME": "PCRD_IDX_PAT_ID",
+    "COLUMN_NAME": "PAT_ID",
+    "COLUMN_POSITION": 1
+   },
+   {
+    "INDEX_NAME": "PCRD_IDX_PRESC_DETAIL_ID",
+    "COLUMN_NAME": "PRESC_DETAIL_ID",
+    "COLUMN_POSITION": 1
+   },
+   {
+    "INDEX_NAME": "PCRD_IDX_SEND_NO",
+    "COLUMN_NAME": "SEND_NO",
+    "COLUMN_POSITION": 1
+   },
+   {
+    "INDEX_NAME": "PHA_CLI_REQUEST_DRUG_PK",
+    "COLUMN_NAME": "ID",
+    "COLUMN_POSITION": 1
+   },
+   {
+    "INDEX_NAME": "UQ_KEY_PRIMARY_CLI_KEY",
+    "COLUMN_NAME": "PRESC_DETAIL_ID",
+    "COLUMN_POSITION": 1
+   },
+   {
+    "INDEX_NAME": "UQ_KEY_PRIMARY_CLI_KEY",
+    "COLUMN_NAME": "PRESC_CREATE_TIME",
+    "COLUMN_POSITION": 2
+   },
+   {
+    "INDEX_NAME": "UQ_KEY_PRIMARY_CLI_KEY",
+    "COLUMN_NAME": "CLI_FLAG",
+    "COLUMN_POSITION": 3
+   },
+   {
+    "INDEX_NAME": "UQ_KEY_PRIMARY_CLI_KEY",
+    "COLUMN_NAME": "PRIMARY_KEY_1",
+    "COLUMN_POSITION": 4
+   }
+  ]
+ },
+ "sample_status": {
+  "ok": true,
+  "n": 12,
+  "rows": [
+   {
+    "PRESC_NO": "48649",
+    "CLI_FLAG": "send",
+    "CLI_INP_FLAG": "1",
+    "SEND_DRUG_STATUS": "Y",
+    "RETURN_DRUG_STATUS": null,
+    "PHA_CODE": "050102",
+    "SEND_Q": 1,
+    "RET_Q": null,
+    "LAST_EXEC": "2026-10-26 13:15:20"
+   },
+   {
+    "PRESC_NO": "52273",
+    "CLI_FLAG": "send",
+    "CLI_INP_FLAG": "1",
+    "SEND_DRUG_STATUS": "Y",
+    "RETURN_DRUG_STATUS": null,
+    "PHA_CODE": "050102",
+    "SEND_Q": 1,
+    "RET_Q": null,
+    "LAST_EXEC": "2026-10-26 14:01:13"
+   },
+   {
+    "PRESC_NO": "53306",
+    "CLI_FLAG": "send",
+    "CLI_INP_FLAG": "1",
+    "SEND_DRUG_STATUS": "Y",
+    "RETURN_DRUG_STATUS": null,
+    "PHA_CODE": "050102",
+    "SEND_Q": 2,
+    "RET_Q": null,
+    "LAST_EXEC": "2026-10-26 11:48:28"
+   },
+   {
+    "PRESC_NO": "57370",
+    "CLI_FLAG": "return",
+    "CLI_INP_FLAG": "1",
+    "SEND_DRUG_STATUS": "Y",
+    "RETURN_DRUG_STATUS": "Y",
+    "PHA_CODE": "050121",
+    "SEND_Q": 9,
+    "RET_Q": 9,
+    "LAST_EXEC": "2026-10-26 15:31:52"
+   },
+   {
+    "PRESC_NO": "57370",
+    "CLI_FLAG": "send",
+    "CLI_INP_FLAG": "1",
+    "SEND_DRUG_STATUS": "Y",
+    "RETURN_DRUG_STATUS": null,
+    "PHA_CODE": "050121",
+    "SEND_Q": 9,
+    "RET_Q": null,
+    "LAST_EXEC": "2026-10-26 15:26:55"
+   },
+   {
+    "PRESC_NO": "57371",
+    "CLI_FLAG": "return",
+    "CLI_INP_FLAG": "1",
+    "SEND_DRUG_STATUS": "Y",
+    "RETURN_DRUG_STATUS": "Y",
+    "PHA_CODE": "050121",
+    "SEND_Q": 3,
+    "RET_Q": 3,
+    "LAST_EXEC": "2026-10-26 15:31:24"
+   },
+   {
+    "PRESC_NO": "57371",
+    "CLI_FLAG": "send",
+    "CLI_INP_FLAG": "1",
+    "SEND_DRUG_STATUS": "Y",
+    "RETURN_DRUG_STATUS": null,
+    "PHA_CODE": "050121",
+    "SEND_Q": 3,
+    "RET_Q": null,
+    "LAST_EXEC": "2026-10-26 15:26:56"
+   },
+   {
+    "PRESC_NO": "57372",
+    "CLI_FLAG": "return",
+    "CLI_INP_FLAG": "1",
+    "SEND_DRUG_STATUS": "Y",
+    "RETURN_DRUG_STATUS": "Y",
+    "PHA_CODE": "050121",
+    "SEND_Q": 24,
+    "RET_Q": 24,
+    "LAST_EXEC": "2026-10-26 15:31:40"
+   },
+   {
+    "PRESC_NO": "57372",
+    "CLI_FLAG": "send",
+    "CLI_INP_FLAG": "1",
+    "SEND_DRUG_STATUS": "Y",
+    "RETURN_DRUG_STATUS": null,
+    "PHA_CODE": "050121",
+    "SEND_Q": 24,
+    "RET_Q": null,
+    "LAST_EXEC": "2026-10-26 15:26:55"
+   },
+   {
+    "PRESC_NO": "6852",
+    "CLI_FLAG": "send",
+    "CLI_INP_FLAG": "2",
+    "SEND_DRUG_STATUS": "Y",
+    "RETURN_DRUG_STATUS": null,
+    "PHA_CODE": "050107",
+    "SEND_Q": 40,
+    "RET_Q": null,
+    "LAST_EXEC": "2026-10-26 07:46:05"
+   },
+   {
+    "PRESC_NO": "7214",
+    "CLI_FLAG": "send",
+    "CLI_INP_FLAG": "2",
+    "SEND_DRUG_STATUS": "Y",
+    "RETURN_DRUG_STATUS": null,
+    "PHA_CODE": "050103",
+    "SEND_Q": 2,
+    "RET_Q": null,
+    "LAST_EXEC": "2026-10-26 10:02:27"
+   },
+   {
+    "PRESC_NO": "7707",
+    "CLI_FLAG": "send",
+    "CLI_INP_FLAG": "2",
+    "SEND_DRUG_STATUS": "Y",
+    "RETURN_DRUG_STATUS": null,
+    "PHA_CODE": "050103",
+    "SEND_Q": 6,
+    "RET_Q": null,
+    "LAST_EXEC": "2026-10-26 15:02:50"
+   }
+  ]
+ },
+ "sample_columns": {
+  "ok": true,
+  "n": 0,
+  "rows": []
+ },
+ "elapsed": 0.25,
+ "captured_at": "2026-10-27T12:39:26.242544+00:00"
+}

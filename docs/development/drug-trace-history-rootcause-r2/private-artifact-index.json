@@ -1,0 +1,81 @@
+{
+  "task": "DTR-HISTORY-ROOTCAUSE-R2",
+  "private_dir": "C:\\Users\\Administrator\\AppData\\Local\\BLYB\\history-rootcause-r2\\live-20261023T104928Z",
+  "acl": "current user + SYSTEM only (icacls inheritance:r + explicit grants; verified via Get-Acl in verify_r2.py)",
+  "git_ignored": "outside repository (%LOCALAPPDATA%/BLYB/history-rootcause-r2)",
+  "contains_raw_codes": true,
+  "shared_evidence_has_raw_identifiers": false,
+  "files": [
+    {
+      "file": "all-missing-codes-r2.json",
+      "sha256": "18a2e9235c6fd28a090613d94327a4d730f5dbb2cf42b4ee6c54d7c86672b71a",
+      "bytes": 12799,
+      "rows": null
+    },
+    {
+      "file": "all-missing-legacy-bills-r2.json",
+      "sha256": "71c611009d115f9a3177067687138c63706e78a866963f6b15b7b1bab34a9dc2",
+      "bytes": 129515,
+      "rows": null
+    },
+    {
+      "file": "dba-sample-package.json",
+      "sha256": "662dc7aa48b828b0674e822b4d8ee93a00c15918bd7f70d0bdf7f94a50202406",
+      "bytes": 2012,
+      "rows": null
+    },
+    {
+      "file": "q01b-view-times.json",
+      "sha256": "9931ce929667e3eec3afefbef009c32e7b80c9c45ac065089d08dc5baba609f6",
+      "bytes": 221411,
+      "rows": null
+    },
+    {
+      "file": "q03-whole-bill-quality.json",
+      "sha256": "620e3dc9411e0719bf0f399d576a3a004496bf64f0fb9880afa13aebb1e3e0ed",
+      "bytes": 4856,
+      "rows": null
+    },
+    {
+      "file": "r2-details.json",
+      "sha256": "2fbc6ae67938dbfc11c082c6246a9640bcd5b2fa6f01882c08a941cdf512337d",
+      "bytes": 400155,
+      "rows": null
+    },
+    {
+      "file": "历史上报根因核查_20261023_r2.xlsx",
+      "sha256": "afa58e8aaccb0d967ff6dac40f962eb572841a9604995cdf12473238ea581b8b",
+      "bytes": 379545,
+      "rows": null
+    },
+    {
+      "file": "source-audit-20261023T141852Z/dup-analysis.json",
+      "sha256": "d464f599329aff27b93bd20cc2adba44567b806001a70326068631914ed119da",
+      "bytes": 12961
+    },
+    {
+      "file": "source-audit-20261023T141852Z/pair-classification.json",
+      "sha256": "103ed8576b35abe2c8fb4e034a14ccce5adaccb9f48331c9c9d1c1c16fe54108",
+      "bytes": 1665453
+    },
+    {
+      "file": "source-audit-20261023T141852Z/source-rows.json",
+      "sha256": "ab885ccb5fa3eeb836078641cf9c628d43667232a663e72297d602ec65756a9b",
+      "bytes": 3421433
+    },
+    {
+      "file": "source-audit-20261023T141852Z/stageE-20261023T142211Z-e3.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "bytes": 2
+    },
+    {
+      "file": "source-audit-20261023T141852Z/历史上报根因核查_源端归因_r2b.xlsx",
+      "sha256": "227ba4a973f905b422075a06b06dfb671aeb0a62b00136f97e5e201256e76e80",
+      "bytes": 284603
+    }
+  ],
+  "older_r1_private_base": "%LOCALAPPDATA%/BLYB/history-compare-20261023 (unchanged)",
+  "generated_at": "2026-10-23T11:01:40.773194+00:00",
+  "source_audit_note": "2026-10-23 user-authorized source-table audit (READY_HIS via connector): SQL01/02/04/06 + daily coverage + stage-E executed; raw rows only under source-audit-* subdirs",
+  "updated_at": "2026-10-23T14:24:21.149669+00:00"
+}

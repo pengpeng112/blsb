@@ -1,0 +1,72 @@
+PASS camel-转换 
+PASS 日期格式 
+PASS None列丢弃 
+PASS 必填缺失检出 
+PASS 必填齐全通过 
+PASS 日期串归一-oracle默认 
+PASS 日期串归一-oracle短日期 
+PASS 日期串归一-已是规范格式 
+PASS 日期串归一-非日期串原样 
+PASS 次序保护-读回 
+PASS 水位+重叠窗 
+PASS 水位不回退 
+PASS 全量对账窗 
+PASS 白名单放行 
+PASS 白名单拦截 http://<intranet-host>9:8881/x 
+PASS 白名单拦截 http://<frontend-host>:8882/x 
+PASS 白名单拦截 https://<frontend-host>/x 
+PASS 白名单拦截 http://evil.com:8881/x 
+PASS 注册表必填可映射 death 
+PASS 注册表必填可映射 admission 
+PASS 注册表必填可映射 first_course 
+PASS 注册表必填可映射 daily_course 
+PASS 注册表必填可映射 exam 
+PASS 注册表必填可映射 exam_item 
+PASS 注册表必填可映射 ex_lab 
+PASS 注册表必填可映射 ex_lab_item 
+PASS 注册表必填可映射 order 
+PASS 注册表必填可映射 order_item 
+PASS 注册表必填可映射 vital_signs 
+PASS 注册表必填可映射 admission_info 
+PASS 注册表必填可映射 discharge_info 
+PASS 端点路径 
+PASS fetch-连接超时参数生效 
+PASS fetch-返回行正常 
+PASS mock端到端-发送1 
+PASS mock端到端-拦缺必填1 
+PASS real桩-发送1 
+PASS 次序保护-重扫跳过 
+PASS real模式守门 
+PASS 垫片-exam科室回填 
+PASS 垫片-主表操作人登记 
+PASS 垫片-子表操作人回填 
+PASS 垫片-首页操作人回填 
+PASS 垫片-非空不覆盖 
+PASS 截断统计=触顶计数 
+PASS since覆盖-无水位用override 
+PASS since覆盖-有水位仍用override 
+PASS since覆盖-幂等跳过已推 
+PASS 常规路径reason不变 
+PASS 上报opTime-发送1 
+PASS 上报opTime=上传时刻(北京时间) 
+PASS sent存源时间-解耦 
+PASS 水位仍源时间 
+PASS reconcile-单表异常不中断 
+PASS reconcile-异常表计失败 
+PASS reconcile-异常写ALERT 
+{"table": "death", "since": "2026-05-19 20:39:27", "reason": "full(first-run)", "rows": 0, "sent": 0, "skipped_same": 0, "skipped_invalid": 0, "failed": 0, "truncated": 0, "parent_wait": 0}
+{"table": "admission", "error": "DPI-1067: call timed out (模拟取数挂起)"}
+PASS main-单表异常不中断 
+PASS reconcile-yesterday按CST 
+PASS reconcile-显式日期 
+PASS reconcile-补推=表数 
+PASS reconcile-窗口行数 
+PASS reconcile-json落盘 
+PASS reconcile-ALERT生成 
+PASS reconcile-GAP行入cron.log 
+PASS reconcile-二跑幂等0 
+PASS reconcile-二跑无新GAP 
+PASS reconcile-干净无ALERT 
+PASS reconcile-失败告警 
+
+== 68 checks, 0 fail ==

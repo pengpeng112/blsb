@@ -1,0 +1,664 @@
+{
+  "channel": "sjzc/<relay-jump>/data-asset-api/OracleConnector.execute_readonly",
+  "source_writes": 0,
+  "uploads": 0,
+  "registration_changes": 0,
+  "queries": {
+    "identity": {
+      "ok": true,
+      "sql": "SELECT USER AS LOGIN_USER, SYS_CONTEXT('USERENV','SERVICE_NAME') AS SERVICE_NAME FROM DUAL",
+      "params": null,
+      "rows_returned": 1,
+      "truncated": false,
+      "rows": [
+        {
+          "LOGIN_USER": "BLYB_DRUGTRACE",
+          "SERVICE_NAME": "his"
+        }
+      ]
+    },
+    "privileges": {
+      "ok": true,
+      "sql": "SELECT PRIVILEGE FROM SESSION_PRIVS ORDER BY PRIVILEGE",
+      "params": null,
+      "rows_returned": 1,
+      "truncated": false,
+      "rows": [
+        {
+          "PRIVILEGE": "CREATE SESSION"
+        }
+      ]
+    },
+    "roles": {
+      "ok": true,
+      "sql": "SELECT ROLE FROM SESSION_ROLES ORDER BY ROLE",
+      "params": null,
+      "rows_returned": 0,
+      "truncated": false,
+      "rows": []
+    },
+    "grants": {
+      "ok": true,
+      "sql": "SELECT OWNER,TABLE_NAME,PRIVILEGE,GRANTABLE FROM USER_TAB_PRIVS_RECD ORDER BY OWNER,TABLE_NAME,PRIVILEGE",
+      "params": null,
+      "rows_returned": 2,
+      "truncated": false,
+      "rows": [
+        {
+          "OWNER": "PHARMACY",
+          "TABLE_NAME": "V_DRUG_TRACE_BILL",
+          "PRIVILEGE": "SELECT",
+          "GRANTABLE": "NO"
+        },
+        {
+          "OWNER": "PHARMACY",
+          "TABLE_NAME": "V_DRUG_TRACE_CODE",
+          "PRIVILEGE": "SELECT",
+          "GRANTABLE": "NO"
+        }
+      ]
+    },
+    "view_status": {
+      "ok": true,
+      "sql": "SELECT OWNER,OBJECT_NAME,STATUS FROM ALL_OBJECTS WHERE OWNER='PHARMACY' AND OBJECT_TYPE='VIEW' AND OBJECT_NAME IN ('V_DRUG_TRACE_BILL','V_DRUG_TRACE_CODE') ORDER BY OBJECT_NAME",
+      "params": null,
+      "rows_returned": 2,
+      "truncated": false,
+      "rows": [
+        {
+          "OWNER": "PHARMACY",
+          "OBJECT_NAME": "V_DRUG_TRACE_BILL",
+          "STATUS": "VALID"
+        },
+        {
+          "OWNER": "PHARMACY",
+          "OBJECT_NAME": "V_DRUG_TRACE_CODE",
+          "STATUS": "VALID"
+        }
+      ]
+    },
+    "columns": {
+      "ok": true,
+      "sql": "SELECT TABLE_NAME,COLUMN_ID,COLUMN_NAME,DATA_TYPE,DATA_LENGTH FROM ALL_TAB_COLUMNS WHERE OWNER='PHARMACY' AND TABLE_NAME IN ('V_DRUG_TRACE_BILL','V_DRUG_TRACE_CODE') ORDER BY TABLE_NAME,COLUMN_ID",
+      "params": null,
+      "rows_returned": 35,
+      "truncated": false,
+      "rows": [
+        {
+          "TABLE_NAME": "V_DRUG_TRACE_BILL",
+          "COLUMN_ID": 1,
+          "COLUMN_NAME": "SOURCE_SYSTEM",
+          "DATA_TYPE": "VARCHAR2",
+          "DATA_LENGTH": 16
+        },
+        {
+          "TABLE_NAME": "V_DRUG_TRACE_BILL",
+          "COLUMN_ID": 2,
+          "COLUMN_NAME": "SOURCE_BILL_ID",
+          "DATA_TYPE": "VARCHAR2",
+          "DATA_LENGTH": 69
+        },
+        {
+          "TABLE_NAME": "V_DRUG_TRACE_BILL",
+          "COLUMN_ID": 3,
+          "COLUMN_NAME": "SOURCE_BILL_NO",
+          "DATA_TYPE": "VARCHAR2",
+          "DATA_LENGTH": 40
+        },
+        {
+          "TABLE_NAME": "V_DRUG_TRACE_BILL",
+          "COLUMN_ID": 4,
+          "COLUMN_NAME": "SOURCE_REVISION",
+          "DATA_TYPE": "VARCHAR2",
+          "DATA_LENGTH": 209
+        },
+        {
+          "TABLE_NAME": "V_DRUG_TRACE_BILL",
+          "COLUMN_ID": 5,
+          "COLUMN_NAME": "BUSINESS_KIND",
+          "DATA_TYPE": "VARCHAR2",
+          "DATA_LENGTH": 16
+        },
+        {
+          "TABLE_NAME": "V_DRUG_TRACE_BILL",
+          "COLUMN_ID": 6,
+          "COLUMN_NAME": "PHARMACY_CODE",
+          "DATA_TYPE": "VARCHAR2",
+          "DATA_LENGTH": 8
+        },
+        {
+          "TABLE_NAME": "V_DRUG_TRACE_BILL",
+          "COLUMN_ID": 7,
+          "COLUMN_NAME": "WAREHOUSE_CODE",
+          "DATA_TYPE": "VARCHAR2",
+          "DATA_LENGTH": 64
+        },
+        {
+          "TABLE_NAME": "V_DRUG_TRACE_BILL",
+          "COLUMN_ID": 8,
+          "COLUMN_NAME": "SUPPLIER_CODE",
+          "DATA_TYPE": "VARCHAR2",
+          "DATA_LENGTH": 64
+        },
+        {
+          "TABLE_NAME": "V_DRUG_TRACE_BILL",
+          "COLUMN_ID": 9,
+          "COLUMN_NAME": "BILL_TIME",
+          "DATA_TYPE": "DATE",
+          "DATA_LENGTH": 7
+        },
+        {
+          "TABLE_NAME": "V_DRUG_TRACE_BILL",
+          "COLUMN_ID": 10,
+          "COLUMN_NAME": "UPDATED_AT",
+          "DATA_TYPE": "DATE",
+          "DATA_LENGTH": 7
+        },
+        {
+          "TABLE_NAME": "V_DRUG_TRACE_BILL",
+          "COLUMN_ID": 11,
+          "COLUMN_NAME": "SOURCE_EVENT_SEQ",
+          "DATA_TYPE": "VARCHAR2",
+          "DATA_LENGTH": 64
+        },
+        {
+          "TABLE_NAME": "V_DRUG_TRACE_BILL",
+          "COLUMN_ID": 12,
+          "COLUMN_NAME": "FINALIZED",
+          "DATA_TYPE": "NUMBER",
+          "DATA_LENGTH": 22
+        },
+        {
+          "TABLE_NAME": "V_DRUG_TRACE_BILL",
+          "COLUMN_ID": 13,
+          "COLUMN_NAME": "IS_VOID",
+          "DATA_TYPE": "NUMBER",
+          "DATA_LENGTH": 22
+        },
+        {
+          "TABLE_NAME": "V_DRUG_TRACE_BILL",
+          "COLUMN_ID": 14,
+          "COLUMN_NAME": "EXPECTED_CODE_COUNT",
+          "DATA_TYPE": "NUMBER",
+          "DATA_LENGTH": 22
+        },
+        {
+          "TABLE_NAME": "V_DRUG_TRACE_BILL",
+          "COLUMN_ID": 15,
+          "COLUMN_NAME": "PATIENT_REF",
+          "DATA_TYPE": "VARCHAR2",
+          "DATA_LENGTH": 64
+        },
+        {
+          "TABLE_NAME": "V_DRUG_TRACE_BILL",
+          "COLUMN_ID": 16,
+          "COLUMN_NAME": "ENCOUNTER_REF",
+          "DATA_TYPE": "VARCHAR2",
+          "DATA_LENGTH": 64
+        },
+        {
+          "TABLE_NAME": "V_DRUG_TRACE_BILL",
+          "COLUMN_ID": 17,
+          "COLUMN_NAME": "SOURCE_BILL_KIND_RAW",
+          "DATA_TYPE": "VARCHAR2",
+          "DATA_LENGTH": 99
+        },
+        {
+          "TABLE_NAME": "V_DRUG_TRACE_CODE",
+          "COLUMN_ID": 1,
+          "COLUMN_NAME": "SOURCE_SYSTEM",
+          "DATA_TYPE": "VARCHAR2",
+          "DATA_LENGTH": 16
+        },
+        {
+          "TABLE_NAME": "V_DRUG_TRACE_CODE",
+          "COLUMN_ID": 2,
+          "COLUMN_NAME": "SOURCE_BILL_ID",
+          "DATA_TYPE": "VARCHAR2",
+          "DATA_LENGTH": 69
+        },
+        {
+          "TABLE_NAME": "V_DRUG_TRACE_CODE",
+          "COLUMN_ID": 3,
+          "COLUMN_NAME": "PHARMACY_CODE",
+          "DATA_TYPE": "VARCHAR2",
+          "DATA_LENGTH": 8
+        },
+        {
+          "TABLE_NAME": "V_DRUG_TRACE_CODE",
+          "COLUMN_ID": 4,
+          "COLUMN_NAME": "BUSINESS_KIND",
+          "DATA_TYPE": "VARCHAR2",
+          "DATA_LENGTH": 16
+        },
+        {
+          "TABLE_NAME": "V_DRUG_TRACE_CODE",
+          "COLUMN_ID": 5,
+          "COLUMN_NAME": "SOURCE_REVISION",
+          "DATA_TYPE": "VARCHAR2",
+          "DATA_LENGTH": 209
+        },
+        {
+          "TABLE_NAME": "V_DRUG_TRACE_CODE",
+          "COLUMN_ID": 6,
+          "COLUMN_NAME": "SOURCE_LINE_ID",
+          "DATA_TYPE": "VARCHAR2",
+          "DATA_LENGTH": 100
+        },
+        {
+          "TABLE_NAME": "V_DRUG_TRACE_CODE",
+          "COLUMN_ID": 7,
+          "COLUMN_NAME": "SOURCE_CODE_RECORD_ID",
+          "DATA_TYPE": "VARCHAR2",
+          "DATA_LENGTH": 32
+        },
+        {
+          "TABLE_NAME": "V_DRUG_TRACE_CODE",
+          "COLUMN_ID": 8,
+          "COLUMN_NAME": "TRACE_CODE",
+          "DATA_TYPE": "VARCHAR2",
+          "DATA_LENGTH": 255
+        },
+        {
+          "TABLE_NAME": "V_DRUG_TRACE_CODE",
+          "COLUMN_ID": 9,
+          "COLUMN_NAME": "QUANTITY",
+          "DATA_TYPE": "NUMBER",
+          "DATA_LENGTH": 22
+        },
+        {
+          "TABLE_NAME": "V_DRUG_TRACE_CODE",
+          "COLUMN_ID": 10,
+          "COLUMN_NAME": "UNIT",
+          "DATA_TYPE": "VARCHAR2",
+          "DATA_LENGTH": 32
+        },
+        {
+          "TABLE_NAME": "V_DRUG_TRACE_CODE",
+          "COLUMN_ID": 11,
+          "COLUMN_NAME": "CODE_LEVEL",
+          "DATA_TYPE": "VARCHAR2",
+          "DATA_LENGTH": 16
+        },
+        {
+          "TABLE_NAME": "V_DRUG_TRACE_CODE",
+          "COLUMN_ID": 12,
+          "COLUMN_NAME": "PARENT_CODE",
+          "DATA_TYPE": "VARCHAR2",
+          "DATA_LENGTH": 255
+        },
+        {
+          "TABLE_NAME": "V_DRUG_TRACE_CODE",
+          "COLUMN_ID": 13,
+          "COLUMN_NAME": "UPDATED_AT",
+          "DATA_TYPE": "DATE",
+          "DATA_LENGTH": 7
+        },
+        {
+          "TABLE_NAME": "V_DRUG_TRACE_CODE",
+          "COLUMN_ID": 14,
+          "COLUMN_NAME": "IS_DELETED",
+          "DATA_TYPE": "NUMBER",
+          "DATA_LENGTH": 22
+        },
+        {
+          "TABLE_NAME": "V_DRUG_TRACE_CODE",
+          "COLUMN_ID": 15,
+          "COLUMN_NAME": "F_TRACE_CODE",
+          "DATA_TYPE": "VARCHAR2",
+          "DATA_LENGTH": 32
+        },
+        {
+          "TABLE_NAME": "V_DRUG_TRACE_CODE",
+          "COLUMN_ID": 16,
+          "COLUMN_NAME": "S_TRACE_CODE",
+          "DATA_TYPE": "VARCHAR2",
+          "DATA_LENGTH": 32
+        },
+        {
+          "TABLE_NAME": "V_DRUG_TRACE_CODE",
+          "COLUMN_ID": 17,
+          "COLUMN_NAME": "T_TRACE_CODE",
+          "DATA_TYPE": "VARCHAR2",
+          "DATA_LENGTH": 255
+        },
+        {
+          "TABLE_NAME": "V_DRUG_TRACE_CODE",
+          "COLUMN_ID": 18,
+          "COLUMN_NAME": "BILL_TIME",
+          "DATA_TYPE": "DATE",
+          "DATA_LENGTH": 7
+        }
+      ]
+    },
+    "definitions": {
+      "ok": true,
+      "sql": "SELECT VIEW_NAME,TEXT_LENGTH,TEXT FROM ALL_VIEWS WHERE OWNER='PHARMACY' AND VIEW_NAME IN ('V_DRUG_TRACE_BILL','V_DRUG_TRACE_CODE') ORDER BY VIEW_NAME",
+      "params": null,
+      "rows_returned": 2,
+      "truncated": false,
+      "rows": [
+        {
+          "VIEW_NAME": "V_DRUG_TRACE_BILL",
+          "TEXT_LENGTH": 1712,
+          "TEXT": "SELECT\n    CAST('HIS' AS VARCHAR2(16)) AS source_system,\n\n    TO_CHAR(M.PRESC_DATE, 'YYYY-MM-DD HH24:MI:SS')\n        || '|' || TO_CHAR(M.PRESC_NO)\n        || '|' || M.DISPENSARY AS source_bill_id,\n\n    TO_CHAR(M.PRESC_NO) AS source_bill_no,\n\n    TO_CHAR(M.PRESC_DATE, 'YYYYMMDDHH24MISS')\n        || '_' || TO_CHAR(M.PRESC_NO)\n        || '_' || M.DISPENSARY\n        || '_' || TO_CHAR(M.DISPENSING_DATETIME, 'YYYYMMDDHH24MISS')\n        || '_' || NVL(TO_CHAR(M.PRESC_SOURCE), 'NULL')\n        || '_' || NVL(TO_CHAR(M.FLAG), 'NULL') || '_R10_RF_' || NVL(TO_CHAR(M.REFUND_FLAG), 'NULL') AS source_revision,\n\n    CASE WHEN M.PRESC_SOURCE = 0 AND M.FLAG = 1 AND M.DISPENSING_DATETIME IS NOT NULL AND NVL(M.REFUND_FLAG, 0) = 0 THEN 'PATIENT_DISPENSE' ELSE 'UNKNOWN' END AS business_kind,\n    M.DISPENSARY AS pharmacy_code,\n    CAST(NULL AS VARCHAR2(64)) AS warehouse_code,\n    CAST(NULL AS VARCHAR2(64)) AS supplier_code,\n    M.DISPENSING_DATETIME AS bill_time,\n    M.DISPENSING_DATETIME AS updated_at,\n    CAST(NULL AS VARCHAR2(64)) AS source_event_seq,\n    CASE WHEN M.PRESC_SOURCE = 0 AND M.FLAG = 1 AND M.DISPENSING_DATETIME IS NOT NULL AND NVL(M.REFUND_FLAG, 0) = 0 THEN 1 ELSE CAST(NULL AS NUMBER(1)) END AS finalized,\n    CASE WHEN M.PRESC_SOURCE = 0 AND M.FLAG = 1 AND M.DISPENSING_DATETIME IS NOT NULL AND NVL(M.REFUND_FLAG, 0) = 0 THEN 0 ELSE CAST(NULL AS NUMBER(1)) END AS is_void,\n    CAST(NULL AS NUMBER(12)) AS expected_code_count,\n    CAST(NULL AS VARCHAR2(64)) AS patient_ref,\n    CAST(NULL AS VARCHAR2(64)) AS encounter_ref,\n\n    'PRESC_SOURCE=' || TO_CHAR(M.PRESC_SOURCE)\n        || CHR(59) || 'FLAG=' || TO_CHAR(M.FLAG)\n        AS source_bill_kind_raw\n\nFROM PHARMACY.DRUG_PRESC_MASTER M\nWITH READ ONLY\n"
+        },
+        {
+          "VIEW_NAME": "V_DRUG_TRACE_CODE",
+          "TEXT_LENGTH": 1498,
+          "TEXT": "SELECT\n    CAST('HIS' AS VARCHAR2(16)) AS source_system,\n\n    TO_CHAR(M.PRESC_DATE, 'YYYY-MM-DD HH24:MI:SS')\n        || '|' || TO_CHAR(M.PRESC_NO)\n        || '|' || M.DISPENSARY AS source_bill_id,\n\n    M.DISPENSARY AS pharmacy_code,\n    CASE WHEN M.PRESC_SOURCE = 0 AND M.FLAG = 1 AND M.DISPENSING_DATETIME IS NOT NULL AND NVL(M.REFUND_FLAG, 0) = 0 THEN 'PATIENT_DISPENSE' ELSE 'UNKNOWN' END AS business_kind,\n\n    TO_CHAR(M.PRESC_DATE, 'YYYYMMDDHH24MISS')\n        || '_' || TO_CHAR(M.PRESC_NO)\n        || '_' || M.DISPENSARY\n        || '_' || TO_CHAR(M.DISPENSING_DATETIME, 'YYYYMMDDHH24MISS')\n        || '_' || NVL(TO_CHAR(M.PRESC_SOURCE), 'NULL')\n        || '_' || NVL(TO_CHAR(M.FLAG), 'NULL') || '_R10_RF_' || NVL(TO_CHAR(M.REFUND_FLAG), 'NULL') AS source_revision,\n\n    T.PRESC_DETAILID AS source_line_id,\n    T.RECORD_ID AS source_code_record_id,\n    T.T_TRACE_CODE AS trace_code,\n    CAST(NULL AS NUMBER(20,6)) AS quantity,\n    CAST(NULL AS VARCHAR2(32)) AS unit,\n    CAST(NULL AS VARCHAR2(16)) AS code_level,\n    CAST(NULL AS VARCHAR2(255)) AS parent_code,\n    T.MODIFY_TIME AS updated_at,\n    T.IS_DELETED AS is_deleted,\n    T.F_TRACE_CODE AS f_trace_code,\n    T.S_TRACE_CODE AS s_trace_code,\n    T.T_TRACE_CODE AS t_trace_code,\n    M.DISPENSING_DATETIME AS bill_time\n\nFROM DRUG_USER.MED_TRACE_RECORD T\nJOIN PHARMACY.DRUG_PRESC_MASTER M\n  ON T.TRACE_BILLNO = TO_CHAR(M.PRESC_NO)\n AND T.PRESC_DATE = M.PRESC_DATE\n AND T.STORE_CODE = M.DISPENSARY\n\nWHERE T.IN_OUT_TYPE = 'OUT'\nWITH READ ONLY\n"
+        }
+      ]
+    },
+    "headers_sample": {
+      "ok": true,
+      "sql": "SELECT source_system,source_bill_id,source_revision,business_kind,pharmacy_code,bill_time,updated_at,finalized,is_void,expected_code_count,source_bill_kind_raw FROM PHARMACY.V_DRUG_TRACE_BILL WHERE bill_time>=:begin_time AND bill_time<:end_time AND ROWNUM<=30",
+      "params": "[business key retained remotely]",
+      "rows_returned": 30,
+      "truncated": false
+    },
+    "codes_sample": {
+      "ok": true,
+      "sql": "SELECT source_system,source_bill_id,source_revision,business_kind,pharmacy_code,source_line_id,source_code_record_id,trace_code,f_trace_code,s_trace_code,t_trace_code,is_deleted,bill_time,updated_at FROM PHARMACY.V_DRUG_TRACE_CODE WHERE bill_time>=:begin_time AND bill_time<:end_time AND ROWNUM<=100",
+      "params": "[business key retained remotely]",
+      "rows_returned": 100,
+      "truncated": false
+    },
+    "whole_header_1": {
+      "ok": true,
+      "sql": "SELECT source_revision,business_kind,finalized,is_void,bill_time,updated_at,expected_code_count FROM PHARMACY.V_DRUG_TRACE_BILL WHERE source_system=:source_system AND pharmacy_code=:pharmacy_code AND business_kind=:business_kind AND source_bill_id=:source_bill_id AND bill_time>=:begin_time AND bill_time<:end_time AND ROWNUM<=3",
+      "params": "[business key retained remotely]",
+      "rows_returned": 1,
+      "truncated": false
+    },
+    "whole_codes_1": {
+      "ok": true,
+      "sql": "SELECT source_revision,source_line_id,source_code_record_id,trace_code,is_deleted,bill_time,updated_at FROM PHARMACY.V_DRUG_TRACE_CODE WHERE source_system=:source_system AND pharmacy_code=:pharmacy_code AND business_kind=:business_kind AND source_bill_id=:source_bill_id AND bill_time>=:begin_time AND bill_time<:end_time AND ROWNUM<=501",
+      "params": "[business key retained remotely]",
+      "rows_returned": 4,
+      "truncated": false
+    },
+    "whole_header_2": {
+      "ok": true,
+      "sql": "SELECT source_revision,business_kind,finalized,is_void,bill_time,updated_at,expected_code_count FROM PHARMACY.V_DRUG_TRACE_BILL WHERE source_system=:source_system AND pharmacy_code=:pharmacy_code AND business_kind=:business_kind AND source_bill_id=:source_bill_id AND bill_time>=:begin_time AND bill_time<:end_time AND ROWNUM<=3",
+      "params": "[business key retained remotely]",
+      "rows_returned": 1,
+      "truncated": false
+    },
+    "whole_codes_2": {
+      "ok": true,
+      "sql": "SELECT source_revision,source_line_id,source_code_record_id,trace_code,is_deleted,bill_time,updated_at FROM PHARMACY.V_DRUG_TRACE_CODE WHERE source_system=:source_system AND pharmacy_code=:pharmacy_code AND business_kind=:business_kind AND source_bill_id=:source_bill_id AND bill_time>=:begin_time AND bill_time<:end_time AND ROWNUM<=501",
+      "params": "[business key retained remotely]",
+      "rows_returned": 1,
+      "truncated": false
+    },
+    "whole_header_3": {
+      "ok": true,
+      "sql": "SELECT source_revision,business_kind,finalized,is_void,bill_time,updated_at,expected_code_count FROM PHARMACY.V_DRUG_TRACE_BILL WHERE source_system=:source_system AND pharmacy_code=:pharmacy_code AND business_kind=:business_kind AND source_bill_id=:source_bill_id AND bill_time>=:begin_time AND bill_time<:end_time AND ROWNUM<=3",
+      "params": "[business key retained remotely]",
+      "rows_returned": 1,
+      "truncated": false
+    },
+    "whole_codes_3": {
+      "ok": true,
+      "sql": "SELECT source_revision,source_line_id,source_code_record_id,trace_code,is_deleted,bill_time,updated_at FROM PHARMACY.V_DRUG_TRACE_CODE WHERE source_system=:source_system AND pharmacy_code=:pharmacy_code AND business_kind=:business_kind AND source_bill_id=:source_bill_id AND bill_time>=:begin_time AND bill_time<:end_time AND ROWNUM<=501",
+      "params": "[business key retained remotely]",
+      "rows_returned": 1,
+      "truncated": false
+    },
+    "whole_header_4": {
+      "ok": true,
+      "sql": "SELECT source_revision,business_kind,finalized,is_void,bill_time,updated_at,expected_code_count FROM PHARMACY.V_DRUG_TRACE_BILL WHERE source_system=:source_system AND pharmacy_code=:pharmacy_code AND business_kind=:business_kind AND source_bill_id=:source_bill_id AND bill_time>=:begin_time AND bill_time<:end_time AND ROWNUM<=3",
+      "params": "[business key retained remotely]",
+      "rows_returned": 1,
+      "truncated": false
+    },
+    "whole_codes_4": {
+      "ok": true,
+      "sql": "SELECT source_revision,source_line_id,source_code_record_id,trace_code,is_deleted,bill_time,updated_at FROM PHARMACY.V_DRUG_TRACE_CODE WHERE source_system=:source_system AND pharmacy_code=:pharmacy_code AND business_kind=:business_kind AND source_bill_id=:source_bill_id AND bill_time>=:begin_time AND bill_time<:end_time AND ROWNUM<=501",
+      "params": "[business key retained remotely]",
+      "rows_returned": 1,
+      "truncated": false
+    },
+    "whole_header_5": {
+      "ok": true,
+      "sql": "SELECT source_revision,business_kind,finalized,is_void,bill_time,updated_at,expected_code_count FROM PHARMACY.V_DRUG_TRACE_BILL WHERE source_system=:source_system AND pharmacy_code=:pharmacy_code AND business_kind=:business_kind AND source_bill_id=:source_bill_id AND bill_time>=:begin_time AND bill_time<:end_time AND ROWNUM<=3",
+      "params": "[business key retained remotely]",
+      "rows_returned": 1,
+      "truncated": false
+    },
+    "whole_codes_5": {
+      "ok": true,
+      "sql": "SELECT source_revision,source_line_id,source_code_record_id,trace_code,is_deleted,bill_time,updated_at FROM PHARMACY.V_DRUG_TRACE_CODE WHERE source_system=:source_system AND pharmacy_code=:pharmacy_code AND business_kind=:business_kind AND source_bill_id=:source_bill_id AND bill_time>=:begin_time AND bill_time<:end_time AND ROWNUM<=501",
+      "params": "[business key retained remotely]",
+      "rows_returned": 1,
+      "truncated": false
+    },
+    "whole_header_6": {
+      "ok": true,
+      "sql": "SELECT source_revision,business_kind,finalized,is_void,bill_time,updated_at,expected_code_count FROM PHARMACY.V_DRUG_TRACE_BILL WHERE source_system=:source_system AND pharmacy_code=:pharmacy_code AND business_kind=:business_kind AND source_bill_id=:source_bill_id AND bill_time>=:begin_time AND bill_time<:end_time AND ROWNUM<=3",
+      "params": "[business key retained remotely]",
+      "rows_returned": 1,
+      "truncated": false
+    },
+    "whole_codes_6": {
+      "ok": true,
+      "sql": "SELECT source_revision,source_line_id,source_code_record_id,trace_code,is_deleted,bill_time,updated_at FROM PHARMACY.V_DRUG_TRACE_CODE WHERE source_system=:source_system AND pharmacy_code=:pharmacy_code AND business_kind=:business_kind AND source_bill_id=:source_bill_id AND bill_time>=:begin_time AND bill_time<:end_time AND ROWNUM<=501",
+      "params": "[business key retained remotely]",
+      "rows_returned": 1,
+      "truncated": false
+    },
+    "whole_header_7": {
+      "ok": true,
+      "sql": "SELECT source_revision,business_kind,finalized,is_void,bill_time,updated_at,expected_code_count FROM PHARMACY.V_DRUG_TRACE_BILL WHERE source_system=:source_system AND pharmacy_code=:pharmacy_code AND business_kind=:business_kind AND source_bill_id=:source_bill_id AND bill_time>=:begin_time AND bill_time<:end_time AND ROWNUM<=3",
+      "params": "[business key retained remotely]",
+      "rows_returned": 1,
+      "truncated": false
+    },
+    "whole_codes_7": {
+      "ok": true,
+      "sql": "SELECT source_revision,source_line_id,source_code_record_id,trace_code,is_deleted,bill_time,updated_at FROM PHARMACY.V_DRUG_TRACE_CODE WHERE source_system=:source_system AND pharmacy_code=:pharmacy_code AND business_kind=:business_kind AND source_bill_id=:source_bill_id AND bill_time>=:begin_time AND bill_time<:end_time AND ROWNUM<=501",
+      "params": "[business key retained remotely]",
+      "rows_returned": 1,
+      "truncated": false
+    },
+    "whole_header_8": {
+      "ok": true,
+      "sql": "SELECT source_revision,business_kind,finalized,is_void,bill_time,updated_at,expected_code_count FROM PHARMACY.V_DRUG_TRACE_BILL WHERE source_system=:source_system AND pharmacy_code=:pharmacy_code AND business_kind=:business_kind AND source_bill_id=:source_bill_id AND bill_time>=:begin_time AND bill_time<:end_time AND ROWNUM<=3",
+      "params": "[business key retained remotely]",
+      "rows_returned": 1,
+      "truncated": false
+    },
+    "whole_codes_8": {
+      "ok": true,
+      "sql": "SELECT source_revision,source_line_id,source_code_record_id,trace_code,is_deleted,bill_time,updated_at FROM PHARMACY.V_DRUG_TRACE_CODE WHERE source_system=:source_system AND pharmacy_code=:pharmacy_code AND business_kind=:business_kind AND source_bill_id=:source_bill_id AND bill_time>=:begin_time AND bill_time<:end_time AND ROWNUM<=501",
+      "params": "[business key retained remotely]",
+      "rows_returned": 1,
+      "truncated": false
+    }
+  },
+  "business_identifiers_returned": false,
+  "registration": {
+    "source_code": "his_source_<his_host_id>",
+    "host": "<his-host>",
+    "port": 1521,
+    "service": "his",
+    "write_policy": "medical_dict_push"
+  },
+  "header_sample": {
+    "rows": 30,
+    "kind": {
+      "PATIENT_DISPENSE": 15,
+      "UNKNOWN": 15
+    },
+    "raw_kind": {
+      "PRESC_SOURCE=0;FLAG=1": 15,
+      "PRESC_SOURCE=1;FLAG=0": 15
+    },
+    "normal_not_final": 0,
+    "empty_key": 0,
+    "header_updated_equals_bill_time": 30,
+    "expected_code_count_null": 30
+  },
+  "code_sample": {
+    "rows": 100,
+    "kind": {
+      "PATIENT_DISPENSE": 100
+    },
+    "deleted_values": {
+      "0": 100
+    },
+    "trace_lengths": {
+      "20": 100
+    },
+    "twenty_ascii_digits": 100,
+    "empty_record_id": 0,
+    "empty_detail_id": 0,
+    "trace_alias_mismatch": 0,
+    "late_modified_after_dispense": 100,
+    "f_nonnull": 0,
+    "s_nonnull": 0
+  },
+  "whole_bills": [
+    {
+      "sample_index": 1,
+      "header_rows": 1,
+      "code_rows": 4,
+      "row_cap_reached": false,
+      "active_code_rows": 4,
+      "deleted_values": {
+        "0": 4
+      },
+      "revision_mismatch": 0,
+      "time_mismatch": 0,
+      "duplicate_record_ids": 0,
+      "duplicate_active_codes": 0,
+      "empty_active_codes": 0,
+      "invalid_active_code_format": 0,
+      "sample_digest_sha256": "65e9acb5826cf1e516a1252511a52444cad6258211f2e95e8a238c619a77e2b8"
+    },
+    {
+      "sample_index": 2,
+      "header_rows": 1,
+      "code_rows": 1,
+      "row_cap_reached": false,
+      "active_code_rows": 1,
+      "deleted_values": {
+        "0": 1
+      },
+      "revision_mismatch": 0,
+      "time_mismatch": 0,
+      "duplicate_record_ids": 0,
+      "duplicate_active_codes": 0,
+      "empty_active_codes": 0,
+      "invalid_active_code_format": 0,
+      "sample_digest_sha256": "76724c773c58f548fc900d46813f2a1ed4f4c220cba3013f7c8c26229dfc3bbd"
+    },
+    {
+      "sample_index": 3,
+      "header_rows": 1,
+      "code_rows": 1,
+      "row_cap_reached": false,
+      "active_code_rows": 1,
+      "deleted_values": {
+        "0": 1
+      },
+      "revision_mismatch": 0,
+      "time_mismatch": 0,
+      "duplicate_record_ids": 0,
+      "duplicate_active_codes": 0,
+      "empty_active_codes": 0,
+      "invalid_active_code_format": 0,
+      "sample_digest_sha256": "bb3ce9f8d8a78ba7347735ca68afa6f40064d596b5126342144bfb6b42d94cb6"
+    },
+    {
+      "sample_index": 4,
+      "header_rows": 1,
+      "code_rows": 1,
+      "row_cap_reached": false,
+      "active_code_rows": 1,
+      "deleted_values": {
+        "0": 1
+      },
+      "revision_mismatch": 0,
+      "time_mismatch": 0,
+      "duplicate_record_ids": 0,
+      "duplicate_active_codes": 0,
+      "empty_active_codes": 0,
+      "invalid_active_code_format": 0,
+      "sample_digest_sha256": "68faf3d858400c476560147492ea7866c9e4af06837bbd7ac41c4a3cb752c47a"
+    },
+    {
+      "sample_index": 5,
+      "header_rows": 1,
+      "code_rows": 1,
+      "row_cap_reached": false,
+      "active_code_rows": 1,
+      "deleted_values": {
+        "0": 1
+      },
+      "revision_mismatch": 0,
+      "time_mismatch": 0,
+      "duplicate_record_ids": 0,
+      "duplicate_active_codes": 0,
+      "empty_active_codes": 0,
+      "invalid_active_code_format": 0,
+      "sample_digest_sha256": "a4412145bb1b91a6f152c98a7c1af71148837ad1f1a7fcfa2bc1b155ca1e826a"
+    },
+    {
+      "sample_index": 6,
+      "header_rows": 1,
+      "code_rows": 1,
+      "row_cap_reached": false,
+      "active_code_rows": 1,
+      "deleted_values": {
+        "0": 1
+      },
+      "revision_mismatch": 0,
+      "time_mismatch": 0,
+      "duplicate_record_ids": 0,
+      "duplicate_active_codes": 0,
+      "empty_active_codes": 0,
+      "invalid_active_code_format": 0,
+      "sample_digest_sha256": "835771076ffea62275cfd7199a05a0ef1489b1bd56b0a64fafade66672bd7f9c"
+    },
+    {
+      "sample_index": 7,
+      "header_rows": 1,
+      "code_rows": 1,
+      "row_cap_reached": false,
+      "active_code_rows": 1,
+      "deleted_values": {
+        "0": 1
+      },
+      "revision_mismatch": 0,
+      "time_mismatch": 0,
+      "duplicate_record_ids": 0,
+      "duplicate_active_codes": 0,
+      "empty_active_codes": 0,
+      "invalid_active_code_format": 0,
+      "sample_digest_sha256": "93467e08c04fe4dec2dff7dc75fe4152bc6c0ce3eb51d127295403240f1e04ff"
+    },
+    {
+      "sample_index": 8,
+      "header_rows": 1,
+      "code_rows": 1,
+      "row_cap_reached": false,
+      "active_code_rows": 1,
+      "deleted_values": {
+        "0": 1
+      },
+      "revision_mismatch": 0,
+      "time_mismatch": 0,
+      "duplicate_record_ids": 0,
+      "duplicate_active_codes": 0,
+      "empty_active_codes": 0,
+      "invalid_active_code_format": 0,
+      "sample_digest_sha256": "2d6b271cbbf2cdfb2c1840be7a21be6ec5b77b47e64692eaebe729dc2915a752"
+    }
+  ],
+  "elapsed_seconds": 0.279,
+  "sample_is_exhaustive": false,
+  "base_tables_read": false,
+  "captured_at": "2026-10-22T14:53:10.086510+00:00"
+}

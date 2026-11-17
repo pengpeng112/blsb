@@ -1,0 +1,16 @@
+{
+  "checked_links": 23,
+  "broken_links": [],
+  "catalog_valid": true,
+  "regression": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "7",
+    "tests": "529",
+    "time": "674.307",
+    "timestamp": "2026-10-26T21:13:29.617760+08:00",
+    "hostname": "DESKTOP-J4OGV5M"
+  },
+  "runtime_final": "app-final-20261026T133631443631Z.json"
+}

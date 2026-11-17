@@ -1,0 +1,148 @@
+{
+  "task": "REPORTING-DRUGTRACE-PLAN-20261016",
+  "started_at_utc": "2026-10-16T14:29:13.671456+00:00",
+  "mode": "read_only_inventory_no_database_source_login_no_business_post",
+  "target": {
+    "route": "ordinary_second_hop_ssh",
+    "authenticated": true,
+    "host_fingerprint_matches_prior": true,
+    "exit_code": 0,
+    "network": {
+      "time_utc": "2026-10-16T14:29:12.693972+00:00",
+      "checks": {
+        "release": {
+          "exit_code": 0,
+          "stdout": "/opt/blyb/releases/20261016T114735Z\n",
+          "stderr": ""
+        },
+        "listeners": {
+          "exit_code": 0,
+          "stdout": "State  Recv-Q Send-Q Local Address:Port Peer Address:PortProcess\nLISTEN 0      128          0.0.0.0:22        0.0.0.0:*          \nLISTEN 0      4096         0.0.0.0:443       0.0.0.0:*          \nLISTEN 0      128             [::]:22           [::]:*          \n",
+          "stderr": ""
+        },
+        "docker_version": {
+          "exit_code": 0,
+          "stdout": "29.9.1\n",
+          "stderr": ""
+        },
+        "disk": {
+          "exit_code": 0,
+          "stdout": "Filesystem                 Type  Size  Used Avail Use% Mounted on\n/dev/mapper/openeuler-root ext4   69G  2.3G   63G   4% /\n/dev/mapper/openeuler-home ext4  898G  1.7G  851G   1% /home\n",
+          "stderr": ""
+        },
+        "protected_files": {
+          "exit_code": 0,
+          "stdout": "600 root:root /etc/blyb/runtime.env\n600 root:root /etc/blyb/certs/tls.key\n",
+          "stderr": ""
+        },
+        "certificate": {
+          "exit_code": 0,
+          "stdout": "subject=CN = blyb-<prod-host>\nissuer=CN = blyb-<prod-host>\nnotBefore=Oct 16 11:43:55 2026 GMT\nnotAfter=Jan 14 11:43:55 2027 GMT\n",
+          "stderr": ""
+        },
+        "backup_files": {
+          "exit_code": 0,
+          "stdout": "600 61440 <prod-path>/backups/20261016T114711Z/exchange.sqlite3\n600 2684 <prod-path>/backups/20261016T114711Z/etc-blyb.tar.gz\n600 244 <prod-path>/backups/20261016T114711Z/SHA256SUMS\n600 74 <prod-path>/backups/20261016T114711Z/backup.json\n600 184296 <prod-path>/backups/20261016T114711Z/core.pg_dump\n",
+          "stderr": ""
+        },
+        "compose_version": {
+          "exit_code": 0,
+          "stdout": "Docker Compose version v5.6.0\n",
+          "stderr": ""
+        },
+        "containers": {
+          "exit_code": 0,
+          "stdout": "blyb-nginx-1|blyb/nginx:20261016T114735Z|Up 3 hours (healthy)|80/tcp, 0.0.0.0:443->443/tcp\nblyb-exchange-1|blyb/backend:20261016T114735Z|Up 3 hours (healthy)|8002/tcp\n<worker-container>|blyb/backend:20261016T114735Z|Up 3 hours (healthy)|\nblyb-core-1|blyb/backend:20261016T114735Z|Up 3 hours (healthy)|8000/tcp\nblyb-storage-1|blyb/backend:20261016T114735Z|Up 3 hours (healthy)|8001/tcp\nblyb-bootstrap-1|blyb/backend:20261016T114735Z|Exited (0) 3 hours ago|\nblyb-migrate-1|blyb/backend:20261016T114735Z|Exited (0) 3 hours ago|\nblyb-db-1|blyb/pg:20261016T114735Z|Up 3 hours (healthy)|5432/tcp\n",
+          "stderr": ""
+        },
+        "time_sync": {
+          "exit_code": 0,
+          "stdout": "Timezone=Asia/Shanghai\nNTP=yes\nNTPSynchronized=no\n",
+          "stderr": ""
+        },
+        "migration_steps": {
+          "exit_code": 0,
+          "stdout": "BEGIN\n1|001_core_init\n2|002_pathology_domain\n3|003_receipt_publication_ref\n4|004_bigint_sizes\n5|005_storage_reservation_ledger\n6|006_config_release_digest\n7|007_tenant_composite_constraints\n8|008_publication_revoked_at_reservation_generalize\nROLLBACK\n",
+          "stderr": ""
+        },
+        "core_counts": {
+          "exit_code": 0,
+          "stdout": "BEGIN\ntenant|1\nconnector|0\ndestination|0\nsubmission|0\ndata_package|0\njob|0\nROLLBACK\n",
+          "stderr": ""
+        },
+        "tcp_<his-host>_1521": {
+          "host": "<his-host>",
+          "port": 1521,
+          "connected": true
+        },
+        "tcp_<relay-net-host>_443": {
+          "host": "<relay-net-host>",
+          "port": 443,
+          "connected": false,
+          "error_type": "ConnectionRefusedError",
+          "error": "[Errno 111] Connection refused"
+        },
+        "tcp_<relay-net-host>_8443": {
+          "host": "<relay-net-host>",
+          "port": 8443,
+          "connected": false,
+          "error_type": "ConnectionRefusedError",
+          "error": "[Errno 111] Connection refused"
+        },
+        "worker_heartbeat": {
+          "exit_code": 0,
+          "stdout": "{\"exists\": true, \"age_seconds\": 0.111}\n",
+          "stderr": ""
+        },
+        "core_token_flags": {
+          "exit_code": 0,
+          "stdout": "{\"disable_dev\": true, \"enroll_present\": true, \"enroll_is_default\": false}\n",
+          "stderr": ""
+        },
+        "restart_policy": {
+          "exit_code": 0,
+          "stdout": "/blyb-nginx-1|restart=unless-stopped|count=0\n/blyb-exchange-1|restart=unless-stopped|count=0\n/<worker-container>|restart=unless-stopped|count=0\n/blyb-core-1|restart=unless-stopped|count=0\n/blyb-storage-1|restart=unless-stopped|count=0\n/blyb-db-1|restart=unless-stopped|count=0\n",
+          "stderr": ""
+        },
+        "release_hashes": {
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        "http_health": {
+          "error_type": "URLError",
+          "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: IP address mismatch, certificate is not valid for '<prod-host>'. (_ssl.c:1129)>"
+        },
+        "http_ui": {
+          "error_type": "URLError",
+          "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: IP address mismatch, certificate is not valid for '<prod-host>'. (_ssl.c:1129)>"
+        },
+        "http_storage": {
+          "error_type": "URLError",
+          "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: IP address mismatch, certificate is not valid for '<prod-host>'. (_ssl.c:1129)>"
+        },
+        "http_exchange": {
+          "error_type": "URLError",
+          "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: IP address mismatch, certificate is not valid for '<prod-host>'. (_ssl.c:1129)>"
+        },
+        "http_bootstrap_tenants": {
+          "error_type": "URLError",
+          "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: IP address mismatch, certificate is not valid for '<prod-host>'. (_ssl.c:1129)>"
+        },
+        "http_dev_rejected": {
+          "error_type": "URLError",
+          "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: IP address mismatch, certificate is not valid for '<prod-host>'. (_ssl.c:1129)>"
+        },
+        "http_connectors": {
+          "error_type": "URLError",
+          "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: IP address mismatch, certificate is not valid for '<prod-host>'. (_ssl.c:1129)>"
+        },
+        "http_destinations": {
+          "error_type": "URLError",
+          "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: IP address mismatch, certificate is not valid for '<prod-host>'. (_ssl.c:1129)>"
+        }
+      }
+    }
+  },
+  "finished_at_utc": "2026-10-16T14:29:15.129944+00:00"
+}

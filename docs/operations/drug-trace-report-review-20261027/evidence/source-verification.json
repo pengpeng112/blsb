@@ -1,0 +1,6 @@
+{
+  "plugins/sources/db_view/drug_trace.py": true,
+  "plugins/domains/drug_trace/ingest.py": true,
+  "apps/worker/engine.py": true,
+  "driver_lf_matches": true
+}

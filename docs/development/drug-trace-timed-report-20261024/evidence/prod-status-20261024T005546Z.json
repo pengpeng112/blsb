@@ -1,0 +1,5 @@
+{
+  "exit_code": 1,
+  "captured_at": "2026-10-24T00:55:46.581054+00:00",
+  "stderr_tail": "g (yes/no/[fingerprint])? yes\r\nWarning: Permanently added '<prod-host>' (ED25519) to the list of known hosts.\r\r\n\r\nAuthorized users only. All activities may be monitored and reported.\r\n\rroot@<prod-host>'s password: \r\nERROR:  column \"plugin_id\" does not exist\r\nLINE 5:     SELECT id::text, plugin_id, status, enabled, updated_at:...\r\n                             ^\r\nConnection to <prod-host> closed.\r\r\n"
+}

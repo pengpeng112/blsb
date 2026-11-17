@@ -1,0 +1,19 @@
+"""$name 路由（脚手架骨架；domain.routes 通用挂载；明确暂无数据）。
+
+骨架端点契约：登录即可读；如实返回 data_source=none/空清单——不返回伪成功。
+真实取数/投影实现后按业务实际契约扩展（API 矩阵同步）。
+"""
+from __future__ import annotations
+
+
+def register_routes(app, sf, auth, registry):
+    from fastapi import Depends
+
+    @app.get("/api/v1/$code/datasets")
+    def list_datasets(ctx=Depends(auth)):
+        """骨架端点：本业务尚无数据来源——空清单+data_source=none。"""
+        ctx.require_principal()
+        from contracts import ok
+        return ok({"items": [], "data_source": "none",
+                   "note": "脚手架骨架：取数未实现（不伪造数据）"},
+                  ctx.request_id)

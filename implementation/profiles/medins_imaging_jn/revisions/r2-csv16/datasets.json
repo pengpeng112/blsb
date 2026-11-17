@@ -1,0 +1,102 @@
+{
+ "schema_version": 2,
+ "datasets": [
+  {
+   "code": "APPLY_INFO",
+   "name": "",
+   "field_count": 63,
+   "name_pending": "SPEC_DATASET_NAME_UNPROVIDED"
+  },
+  {
+   "code": "CHK_INFO",
+   "name": "",
+   "field_count": 65,
+   "name_pending": "SPEC_DATASET_NAME_UNPROVIDED"
+  },
+  {
+   "code": "SERIES_INFO",
+   "name": "",
+   "field_count": 9,
+   "name_pending": "SPEC_DATASET_NAME_UNPROVIDED"
+  },
+  {
+   "code": "IMAGE_INFO",
+   "name": "",
+   "field_count": 10,
+   "name_pending": "SPEC_DATASET_NAME_UNPROVIDED"
+  },
+  {
+   "code": "PACS_HOST_INFO",
+   "name": "",
+   "field_count": 9,
+   "name_pending": "SPEC_DATASET_NAME_UNPROVIDED"
+  },
+  {
+   "code": "RIS_HOST_INFO",
+   "name": "",
+   "field_count": 8,
+   "name_pending": "SPEC_DATASET_NAME_UNPROVIDED"
+  },
+  {
+   "code": "RIS_PACS",
+   "name": "",
+   "field_count": 2,
+   "name_pending": "SPEC_DATASET_NAME_UNPROVIDED"
+  },
+  {
+   "code": "RPT_INFO",
+   "name": "",
+   "field_count": 40,
+   "name_pending": "SPEC_DATASET_NAME_UNPROVIDED"
+  },
+  {
+   "code": "RPT_INFO_DETAILS",
+   "name": "",
+   "field_count": 12,
+   "name_pending": "SPEC_DATASET_NAME_UNPROVIDED"
+  },
+  {
+   "code": "RPT_PATH_INFO",
+   "name": "",
+   "field_count": 5,
+   "name_pending": "SPEC_DATASET_NAME_UNPROVIDED"
+  },
+  {
+   "code": "RPT_IMAGE",
+   "name": "",
+   "field_count": 5,
+   "name_pending": "SPEC_DATASET_NAME_UNPROVIDED"
+  },
+  {
+   "code": "SETL_INFO",
+   "name": "",
+   "field_count": 18,
+   "name_pending": "SPEC_DATASET_NAME_UNPROVIDED"
+  },
+  {
+   "code": "SETL_DETAIL_INFO",
+   "name": "",
+   "field_count": 13,
+   "name_pending": "SPEC_DATASET_NAME_UNPROVIDED"
+  },
+  {
+   "code": "APPLY_ITEM_INFO",
+   "name": "",
+   "field_count": 7,
+   "name_pending": "SPEC_DATASET_NAME_UNPROVIDED"
+  },
+  {
+   "code": "DOC_INFO",
+   "name": "",
+   "field_count": 9,
+   "name_pending": "SPEC_DATASET_NAME_UNPROVIDED"
+  },
+  {
+   "code": "BOOK_INFO",
+   "name": "",
+   "field_count": 13,
+   "name_pending": "SPEC_DATASET_NAME_UNPROVIDED"
+  }
+ ],
+ "count": 16
+}

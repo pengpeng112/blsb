@@ -1,0 +1,77 @@
+{
+  "captured_at": "2026-10-22T09:15:48.746527+00:00",
+  "source_writes": 0,
+  "app_writes": 0,
+  "uploads": 0,
+  "result": {
+    "ssh_exit_code": 0,
+    "inventory": {
+      "release": {
+        "exit_code": 0,
+        "stdout": "/opt/blyb/releases/fb-20261021T164800Z\n"
+      },
+      "services": {
+        "exit_code": 0,
+        "stdout": "blyb-nginx-1 blyb/nginx:fb-20261021T164800Z Up 16 hours (healthy) 80/tcp, 0.0.0.0:443->443/tcp\n<worker-container> blyb/backend:fb-20261021T164800Z Up 16 hours (healthy) \nblyb-exchange-1 blyb/backend:fb-20261021T164800Z Up 16 hours (healthy) 8002/tcp\nblyb-core-1 blyb/backend:fb-20261021T164800Z Up 16 hours (healthy) 8000/tcp\nblyb-storage-1 blyb/backend:fb-20261021T164800Z Up 16 hours (healthy) 8001/tcp\nblyb-db-1 blyb/pg:fb-20261021T164800Z Up 16 hours (healthy) 5432/tcp\n"
+      },
+      "worker": {
+        "exit_code": 0,
+        "data": {
+          "dictionaries": [
+            {
+              "namespace": "drugtrace.ref_ent_id",
+              "version": "draft-1",
+              "approved": false,
+              "items": []
+            },
+            {
+              "namespace": "drugtrace.query_bill_type",
+              "version": "draft-1",
+              "approved": false,
+              "items": []
+            },
+            {
+              "namespace": "drugtrace.bill_type",
+              "version": "draft-1",
+              "approved": false,
+              "items": []
+            },
+            {
+              "namespace": "drugtrace.bill_type",
+              "version": "official-202601-r1",
+              "approved": true,
+              "items": [
+                {
+                  "code": "PATIENT_DISPENSE",
+                  "target": "321",
+                  "label": "使用出库（官方指南2026.01：321=使用出库）",
+                  "evidence": "docs/development/drug-trace-firstbill-exec-20261021/reference/official-guide-202601.md"
+                }
+              ]
+            },
+            {
+              "namespace": "drugtrace.query_bill_type",
+              "version": "official-202601-r1",
+              "approved": true,
+              "items": [
+                {
+                  "code": "PATIENT_DISPENSE",
+                  "target": "A",
+                  "label": "A=全部（官方API页：A全部/AI全部入库/AO全部出库）",
+                  "evidence": "docs/development/platform-live-test-20261020/evidence/official-query-billstatus.txt"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "ntp": {
+        "exit_code": 0,
+        "stdout": "               Local time: Thu 2026-10-22 17:15:53 CST\n           Universal time: Thu 2026-10-22 09:15:53 UTC\n                 RTC time: Thu 2026-10-22 09:15:54\n                Time zone: Asia/Shanghai (CST, +0800)\nSystem clock synchronized: no\n              NTP service: active\n          RTC in local TZ: no\n"
+      }
+    }
+  },
+  "diagnostic": {
+    "markers": []
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "syntax_parsed": 2,
+  "indexed_batch_sql": [
+    {
+      "codes": 100,
+      "errors": []
+    },
+    {
+      "codes": 500,
+      "errors": []
+    }
+  ],
+  "passed": true,
+  "max_rows": 10000,
+  "per_query_seconds": 30,
+  "initial_total_seconds": 600,
+  "HIS_writes": 0,
+  "uploads": 0
+}

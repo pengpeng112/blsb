@@ -1,0 +1,41 @@
+{
+  "host": "app",
+  "phase": "ntp_probe",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T04:04:49.520960+00:00",
+  "result": {
+    "server": "<intranet-host>",
+    "port": 123,
+    "protocol": "UDP",
+    "samples": [
+      {
+        "valid": true,
+        "offset_seconds": 3.6643455028533936,
+        "stratum": 1,
+        "local": [
+          "<prod-host>",
+          46119
+        ]
+      },
+      {
+        "valid": true,
+        "offset_seconds": 3.664256453514099,
+        "stratum": 1,
+        "local": [
+          "<prod-host>",
+          34151
+        ]
+      },
+      {
+        "valid": true,
+        "offset_seconds": 3.6642098426818848,
+        "stratum": 1,
+        "local": [
+          "<prod-host>",
+          50489
+        ]
+      }
+    ],
+    "clock_changed": false
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "task": "DTR-HISTORY-CHECK-TASK-20261023",
+  "scope": "Documentation and bounded readonly SQL templates only",
+  "sql_static_checks": [
+    {
+      "file": "01-dba-legacy-raw-check.sql",
+      "errors": [],
+      "executed": false
+    },
+    {
+      "file": "02-dba-legacy-master-link.sql",
+      "errors": [],
+      "executed": false
+    },
+    {
+      "file": "03-dba-code-context.sql",
+      "errors": [],
+      "executed": false
+    }
+  ],
+  "source_database_queries": 0,
+  "platform_calls": 0,
+  "production_changes": 0,
+  "uploads": 0,
+  "product_tests_run": false,
+  "reason": "No product code change",
+  "powershell_examples_parse_passed": 1,
+  "powershell_examples_executed": false,
+  "touched_documents_checked": 10,
+  "new_broken_links": [],
+  "whole_workspace_existing_broken_links": 236,
+  "source_hash_errors": [],
+  "catalog_documents": 283,
+  "passed": true,
+  "commands_exit_code": {
+    "sql_static_validation": 0,
+    "powershell_examples_parse": 0,
+    "docs_inventory": 0,
+    "new_link_and_source_hash_check": 0
+  }
+}

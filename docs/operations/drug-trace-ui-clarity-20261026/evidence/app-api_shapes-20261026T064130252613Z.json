@@ -1,0 +1,9 @@
+{
+  "host": "app",
+  "phase": "api_shapes",
+  "exit_code": 1,
+  "captured_at": "2026-10-26T06:41:30.252582+00:00",
+  "result": {
+    "marker_missing": true
+  }
+}

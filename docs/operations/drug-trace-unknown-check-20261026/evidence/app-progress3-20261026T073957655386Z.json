@@ -1,0 +1,82 @@
+{
+  "host": "app",
+  "phase": "progress3",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T07:39:57.655316+00:00",
+  "result": {
+    "checked": 2,
+    "pairs": {
+      "CONFIRMED->CONFIRMED": 1,
+      "UNKNOWN->QUERY_ERROR": 1
+    },
+    "platform_calls": 2,
+    "last_checked_utc": "2026-10-26T07:39:09.978796+00:00",
+    "http": {
+      "200": 2
+    },
+    "final": {
+      "exit_code": 1,
+      "summary": {
+        "ok": false,
+        "mode": "all",
+        "error_type": "RuntimeError",
+        "error_code": "UNVERIFIED_QUERY_STOP",
+        "completed": 2,
+        "uploads": 0,
+        "his_calls": 0,
+        "business_writes": 0
+      },
+      "finished_utc": "2026-10-26T07:39:10.279110+00:00"
+    },
+    "rows": [
+      {
+        "index": 0,
+        "submission_id": "7ed95aaa-ee66-4510-b80d-630f6c9dc381",
+        "local_state": "CONFIRMED",
+        "bill_code_sha256": "687fb9898a91441e66edc8d0cf49df73eba6866aa79030b7f0f88890877ef3a3",
+        "platform_state": "CONFIRMED",
+        "result_type": "3",
+        "sub_process_flag": "51",
+        "query_status": "OK",
+        "total_num": 1,
+        "pages": 1,
+        "windows": 1,
+        "reason": null,
+        "error_code": null,
+        "msg_code": null,
+        "platform_calls": 1,
+        "top_error": null,
+        "http": {
+          "200": 1
+        },
+        "checked_utc": "2026-10-26T07:39:05.419533+00:00"
+      },
+      {
+        "index": 1,
+        "submission_id": "60291343-4a03-4a35-a1ad-2ece7a38b3be",
+        "local_state": "UNKNOWN",
+        "bill_code_sha256": "78bb833e9f76808151752a20af949aca6b3f088c712431616dfc03a7787ce25e",
+        "platform_state": "QUERY_ERROR",
+        "result_type": null,
+        "sub_process_flag": null,
+        "query_status": "ERROR",
+        "total_num": null,
+        "pages": 1,
+        "windows": 1,
+        "reason": null,
+        "error_code": "7",
+        "msg_code": null,
+        "platform_calls": 1,
+        "top_error": {
+          "code": 7,
+          "msg": "App Call Limited",
+          "sub_code": "accesscontrol.limited-by-api-access-count"
+        },
+        "http": {
+          "200": 1
+        },
+        "checked_utc": "2026-10-26T07:39:09.978796+00:00"
+      }
+    ]
+  }
+}

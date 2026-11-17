@@ -1,0 +1,331 @@
+{
+  "rc": 0,
+  "result": {
+    "dry_run": [
+      200,
+      {
+        "data": {
+          "dry_run": true,
+          "valid": true,
+          "problems": [],
+          "would_publish": false,
+          "would_set_real": true
+        },
+        "request_id": "632480b2-2cc6-4fa0-9910-3bc90b985b17"
+      }
+    ],
+    "publish": [
+      200,
+      {
+        "data": {
+          "config_revision_id": "2e138e50-2be7-4574-8e48-61264be8946d",
+          "revision": 1,
+          "state": "PUBLISHED",
+          "created": true,
+          "destination_config_revision": "2e138e50-2be7-4574-8e48-61264be8946d",
+          "destination_is_mock": false
+        },
+        "request_id": "88aaa350-8bf4-4340-b639-73798db4f8cd"
+      }
+    ],
+    "list": [
+      200,
+      {
+        "data": [
+          {
+            "id": "2e138e50-2be7-4574-8e48-61264be8946d",
+            "revision": 1,
+            "state": "PUBLISHED",
+            "digest": "b33fe5d16e0e551e32a62d9d9bfa1ed6a6cbf04fd172c8289322ab4c45967f84",
+            "content_keys": [
+              "app_key",
+              "app_secret_ref",
+              "dmz_allow_hosts",
+              "dmz_base_url",
+              "dmz_ca_file",
+              "dmz_client_cert_file",
+              "dmz_client_key_file",
+              "query_date_semantics",
+              "session_ref"
+            ]
+          }
+        ],
+        "request_id": "81ff5752-e20c-4f9f-a86b-5bde49aaf913"
+      }
+    ],
+    "readiness": [
+      200,
+      {
+        "data": {
+          "profiles": [
+            {
+              "profile": "alihealth_yljg_inout_v1",
+              "label": "供应商采购入库/退供应商（uploadinoutbill）",
+              "method": "alibaba.alihealth.drugtrace.top.yljg.uploadinoutbill",
+              "destination": null,
+              "destination_ambiguous": false,
+              "destination_candidates": [
+                "345df8f4-410e-4c89-a258-a34957eb4151"
+              ],
+              "signature_verified": true,
+              "capabilities": [
+                {
+                  "capability": "collect",
+                  "status": "MISSING",
+                  "evidence_id": null,
+                  "missing": [
+                    "EXT-01",
+                    "EXT-02"
+                  ]
+                },
+                {
+                  "capability": "send",
+                  "status": "MISSING",
+                  "evidence_id": null,
+                  "missing": [
+                    "EXT-03",
+                    "EXT-04",
+                    "EXT-05",
+                    "EXT-06",
+                    "EXT-07",
+                    "EXT-08",
+                    "EXT-10",
+                    "EXT-12"
+                  ]
+                },
+                {
+                  "capability": "query",
+                  "status": "MISSING",
+                  "evidence_id": null,
+                  "missing": [
+                    "EXT-09"
+                  ]
+                },
+                {
+                  "capability": "reconcile",
+                  "status": "MISSING",
+                  "evidence_id": null,
+                  "missing": [
+                    "EXT-09"
+                  ]
+                }
+              ],
+              "code_limit_guard": 10000
+            },
+            {
+              "profile": "alihealth_yljg_retail_v1",
+              "label": "患者发药/患者退药（uploadretail）",
+              "method": "alibaba.alihealth.drugtrace.top.yljg.uploadretail",
+              "destination": {
+                "id": "345df8f4-410e-4c89-a258-a34957eb4151",
+                "code": "alihealth-drugtrace-retail",
+                "is_mock": false,
+                "status": "DRAFT",
+                "config_revision": "2e138e50-2be7-4574-8e48-61264be8946d"
+              },
+              "destination_ambiguous": false,
+              "destination_candidates": [],
+              "signature_verified": true,
+              "capabilities": [
+                {
+                  "capability": "collect",
+                  "status": "MISSING",
+                  "evidence_id": null,
+                  "missing": [
+                    "EXT-01",
+                    "EXT-02"
+                  ]
+                },
+                {
+                  "capability": "send",
+                  "status": "MISSING",
+                  "evidence_id": null,
+                  "missing": [
+                    "EXT-03",
+                    "EXT-04",
+                    "EXT-05",
+                    "EXT-06",
+                    "EXT-07",
+                    "EXT-08",
+                    "EXT-10",
+                    "EXT-12"
+                  ]
+                },
+                {
+                  "capability": "query",
+                  "status": "APPROVED",
+                  "evidence_id": "5d02297c-d49a-4019-ba5c-4ad57dc26228",
+                  "missing": []
+                },
+                {
+                  "capability": "reconcile",
+                  "status": "MISSING",
+                  "evidence_id": null,
+                  "missing": [
+                    "EXT-09"
+                  ]
+                }
+              ],
+              "code_limit_guard": 3500
+            }
+          ],
+          "layers": {
+            "CODE_READY": {
+              "status": "READY",
+              "checked_at": "2026-10-21T16:57:48.440201+00:00",
+              "detail": "drug_trace 模型/迁移可用（本 API/CLI 可答）"
+            },
+            "LOCAL_SERVICE_READY": {
+              "status": "READY",
+              "checked_at": "2026-10-21T16:57:48.443259+00:00",
+              "detail": "目的地 alihealth-drugtrace-retail status=DRAFT is_mock=False config_revision=2e138e50-2be7-4574-8e48-61264be8946d config_state={'id': '2e138e50-2be7-4574-8e48-61264be8946d', 'state': 'PUBLISHED', 'revision': 1}"
+            },
+            "NETWORK_READY": {
+              "status": "UNKNOWN",
+              "checked_at": "2026-10-21T16:57:48.443283+00:00",
+              "detail": "本端点/工具不做网络探测；外部实测（worker→DMZ mTLS health、DMZ→平台出口）见任务 evidence 目录（外部实测通过≠本层 READY）"
+            },
+            "SOURCE_READY": {
+              "status": "NOT_READY",
+              "checked_at": "2026-10-21T16:57:48.448207+00:00",
+              "detail": "HIS 生产只读来源（EXT-01/02）：evidence status=MISSING；缺 ['EXT-01', 'EXT-02']；连接器无 active config（DRAFT）"
+            },
+            "PLATFORM_READY": {
+              "status": "READY",
+              "checked_at": "2026-10-21T16:57:48.451267+00:00",
+              "detail": "签名资格+查询证据+bill_type 字典均已具备"
+            },
+            "SEND_SCOPE_READY": {
+              "status": "NOT_READY",
+              "checked_at": "2026-10-21T16:57:48.451291+00:00",
+              "detail": "首批发送授权（EXT-03..05/06/07/08/10/12）：evidence status=MISSING；缺 ['EXT-03', 'EXT-04', 'EXT-05', 'EXT-06', 'EXT-07', 'EXT-08', 'EXT-10', 'EXT-12']"
+            }
+          },
+          "report": {
+            "overall": "UNKNOWN",
+            "tenant_id": "6d3d1500-390a-433b-a596-6a554a55ca67",
+            "profile": "alihealth_yljg_retail_v1",
+            "destination": {
+              "id": "345df8f4-410e-4c89-a258-a34957eb4151",
+              "code": "alihealth-drugtrace-retail",
+              "status": "DRAFT",
+              "is_mock": false,
+              "profile_revision": "alihealth_yljg_retail_v1@1",
+              "config_revision": "2e138e50-2be7-4574-8e48-61264be8946d",
+              "config_state": {
+                "id": "2e138e50-2be7-4574-8e48-61264be8946d",
+                "state": "PUBLISHED",
+                "revision": 1
+              }
+            },
+            "destination_candidates": [],
+            "destination_ambiguous": false,
+            "connectors": [
+              {
+                "id": "7d51abd7-3f32-4c8e-b2fa-9b652a511808",
+                "status": "DRAFT",
+                "active_config": false
+              }
+            ],
+            "dictionaries": {
+              "drugtrace.bill_type": {
+                "state": "APPROVED",
+                "versions": [
+                  "draft-1",
+                  "official-202601-r1"
+                ],
+                "approved_versions": [
+                  "official-202601-r1"
+                ]
+              },
+              "drugtrace.ref_ent_id": {
+                "state": "DRAFT_ONLY",
+                "versions": [
+                  "draft-1"
+                ],
+                "approved_versions": []
+              },
+              "drugtrace.query_bill_type": {
+                "state": "APPROVED",
+                "versions": [
+                  "draft-1",
+                  "official-202601-r1"
+                ],
+                "approved_versions": [
+                  "official-202601-r1"
+                ]
+              }
+            },
+            "signature_verified": true,
+            "capabilities": {
+              "collect": {
+                "status": "MISSING",
+                "missing": [
+                  "EXT-01",
+                  "EXT-02"
+                ]
+              },
+              "send": {
+                "status": "MISSING",
+                "missing": [
+                  "EXT-03",
+                  "EXT-04",
+                  "EXT-05",
+                  "EXT-06",
+                  "EXT-07",
+                  "EXT-08",
+                  "EXT-10",
+                  "EXT-12"
+                ]
+              },
+              "query": {
+                "status": "APPROVED",
+                "missing": []
+              },
+              "reconcile": {
+                "status": "MISSING",
+                "missing": [
+                  "EXT-09"
+                ]
+              }
+            },
+            "layers": {
+              "CODE_READY": {
+                "status": "READY",
+                "checked_at": "2026-10-21T16:57:48.440201+00:00",
+                "detail": "drug_trace 模型/迁移可用（本 API/CLI 可答）"
+              },
+              "LOCAL_SERVICE_READY": {
+                "status": "READY",
+                "checked_at": "2026-10-21T16:57:48.443259+00:00",
+                "detail": "目的地 alihealth-drugtrace-retail status=DRAFT is_mock=False config_revision=2e138e50-2be7-4574-8e48-61264be8946d config_state={'id': '2e138e50-2be7-4574-8e48-61264be8946d', 'state': 'PUBLISHED', 'revision': 1}"
+              },
+              "NETWORK_READY": {
+                "status": "UNKNOWN",
+                "checked_at": "2026-10-21T16:57:48.443283+00:00",
+                "detail": "本端点/工具不做网络探测；外部实测（worker→DMZ mTLS health、DMZ→平台出口）见任务 evidence 目录（外部实测通过≠本层 READY）"
+              },
+              "SOURCE_READY": {
+                "status": "NOT_READY",
+                "checked_at": "2026-10-21T16:57:48.448207+00:00",
+                "detail": "HIS 生产只读来源（EXT-01/02）：evidence status=MISSING；缺 ['EXT-01', 'EXT-02']；连接器无 active config（DRAFT）"
+              },
+              "PLATFORM_READY": {
+                "status": "READY",
+                "checked_at": "2026-10-21T16:57:48.451267+00:00",
+                "detail": "签名资格+查询证据+bill_type 字典均已具备"
+              },
+              "SEND_SCOPE_READY": {
+                "status": "NOT_READY",
+                "checked_at": "2026-10-21T16:57:48.451291+00:00",
+                "detail": "首批发送授权（EXT-03..05/06/07/08/10/12）：evidence status=MISSING；缺 ['EXT-03', 'EXT-04', 'EXT-05', 'EXT-06', 'EXT-07', 'EXT-08', 'EXT-10', 'EXT-12']"
+              }
+            },
+            "note": "UNKNOWN 不是绿灯；层状态≠发送许可（发送仍走证据门禁+配额）"
+          }
+        },
+        "request_id": "7177f938-4e25-47af-b2a5-bf6b6771f301"
+      }
+    ]
+  }
+}

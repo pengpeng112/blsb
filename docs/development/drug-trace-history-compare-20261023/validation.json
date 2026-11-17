@@ -1,0 +1,10 @@
+{
+  "input_files": 25,
+  "input_rows": 489613,
+  "original_sha256_unchanged": true,
+  "sql_static_check": "PASS; NOT EXECUTED",
+  "source_writes": 0,
+  "live_queries": 0,
+  "uploads": 0,
+  "overall_comparison_status": "pending_daytime_window_approval"
+}

@@ -1,0 +1,29 @@
+{
+  "source_file": "implementation/plugins/sources/db_view/drug_trace.py",
+  "before_sha256": "2b035a22735079d96e291897e9a5ee1f5b21b9f44371b61f4599c77173f9c594",
+  "after_sha256": "5a80ae322887b19a441a65d48140f750e9deff507890f65ba07c756a822f7423",
+  "patch_sha256": "22ee8e3ac2006a9146f8dacfa08ead10b6147c48fad3337bee4563b45c50886c",
+  "test_counts": {
+    "before": {
+      "tests": 12,
+      "failures": 10,
+      "errors": 0,
+      "skipped": 0
+    },
+    "targeted": {
+      "tests": 110,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 2
+    },
+    "targeted-r2": {
+      "tests": 110,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "live_verification_passed": true,
+  "production_deployed": false,
+  "uploads": 0
+}

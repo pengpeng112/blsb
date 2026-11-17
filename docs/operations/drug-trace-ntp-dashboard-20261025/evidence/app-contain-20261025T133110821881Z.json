@@ -1,0 +1,18 @@
+{
+  "host": "app",
+  "phase": "contain",
+  "exit_code": 0,
+  "captured_at": "2026-10-25T13:31:10.821835+00:00",
+  "result": {
+    "backup": "/root/blyb-maintenance-backups/20261025T133009Z",
+    "driver": {
+      "daily_driver_terminated": 1
+    },
+    "worker_stop": "Flag --time has been deprecated, use --timeout instead\n<worker-container>",
+    "reason": "authorized_ntp_dashboard_upgrade_and_rate_limit_containment",
+    "utc": "2026-10-25T13:31:10.655687+00:00",
+    "approval_revoked": false,
+    "submission_states_changed": false,
+    "source_database_writes": 0
+  }
+}

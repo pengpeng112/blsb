@@ -1,0 +1,90 @@
+{
+ "matched": 21,
+ "only_in_external": 7,
+ "only_in_shadow": 7,
+ "version_mismatch": 1,
+ "unknown_source_time": 2,
+ "duplicate": 0,
+ "conflict": 1,
+ "total_shadow": 32,
+ "total_external": 32,
+ "matched_keys": [
+  "s/death/S7D1M0",
+  "s/death/S7D1M1",
+  "s/death/S7D1M2",
+  "s/death/S7D2M0",
+  "s/death/S7D2M1",
+  "s/death/S7D2M2",
+  "s/death/S7D3M0",
+  "s/death/S7D3M1",
+  "s/death/S7D3M2",
+  "s/death/S7D4M0",
+  "s/death/S7D4M1",
+  "s/death/S7D4M2",
+  "s/death/S7D5M0",
+  "s/death/S7D5M1",
+  "s/death/S7D5M2",
+  "s/death/S7D6M0",
+  "s/death/S7D6M1",
+  "s/death/S7D6M2",
+  "s/death/S7D7M0",
+  "s/death/S7D7M1",
+  "s/death/S7D7M2"
+ ],
+ "only_in_external_keys": [
+  "s/death/S7D1OE",
+  "s/death/S7D2OE",
+  "s/death/S7D3OE",
+  "s/death/S7D4OE",
+  "s/death/S7D5OE",
+  "s/death/S7D6OE",
+  "s/death/S7D7OE"
+ ],
+ "only_in_shadow_keys": [
+  "s/death/S7D1OS",
+  "s/death/S7D2OS",
+  "s/death/S7D3OS",
+  "s/death/S7D4OS",
+  "s/death/S7D5OS",
+  "s/death/S7D6OS",
+  "s/death/S7D7OS"
+ ],
+ "version_mismatch_details": [
+  {
+   "key": "s/death/S7VMS",
+   "shadow_op_time": "2026-11-03 10:00:00",
+   "external_op_time": "2026-11-03 11:00:00",
+   "direction": "external_newer",
+   "shadow_version_digest_prefix": "ab12"
+  }
+ ],
+ "unknown_source_time_details": [
+  {
+   "key": "s/death/S7UNK",
+   "shadow_op_time": null,
+   "external_op_time": "2026-11-05 12:00:00",
+   "note": "一侧源时间未知——单列，不擅自补时间/不参与版本比较"
+  },
+  {
+   "key": "s/death/S7UNKX",
+   "shadow_op_time": "2026-11-05 13:00:00",
+   "external_op_time": null,
+   "note": "一侧源时间未知——单列，不擅自补时间/不参与版本比较"
+  }
+ ],
+ "duplicate_keys": [],
+ "conflict_keys": [
+  "s/death/S7CF"
+ ],
+ "params": {
+  "tenant_id": "3639734e-cd25-4998-b7f4-aab9e0b99b03",
+  "target_code": "inf_cdc_frontend",
+  "source_instance": "s",
+  "tables": "(all)",
+  "op_time_window": [
+   "2026-11-01 00:00:00",
+   "2026-11-08 00:00:00"
+  ]
+ },
+ "note": "平台本地影子对账（只读；无自动重发）；版本=source_op_time+源内容摘要；上传时间/导入时间/snapshot digest 不参与比较"
+}

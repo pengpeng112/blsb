@@ -1,0 +1,32 @@
+{
+  "mapping_key": "pathology.local_to_internal",
+  "revision": 1,
+  "production_enabled": false,
+  "rules": [
+    {
+      "target": "/case/pathology_no",
+      "source": "/pis/pathologyNo",
+      "op": "identity",
+      "on_missing": "block"
+    },
+    {
+      "target": "/index/certificate_type",
+      "source": "/his/certificateKind",
+      "op": "dictionary_lookup",
+      "dictionary_ref": {
+        "namespace": "hospital_demo_to_GA_cert",
+        "version": "unapproved-draft"
+      },
+      "on_unmapped": "block"
+    },
+    {
+      "target": "/index/application_time",
+      "source": "/pis/requestTime",
+      "op": "format_datetime",
+      "input_timezone": "Asia/Shanghai",
+      "output_format": "YYYYMMDDHHmmss",
+      "on_missing": "block"
+    }
+  ],
+  "note": "字段和字典为模拟占位，未确认映射不得用于生产。输出格式令牌由映射引擎定义，不能未经转换直接传给strftime。"
+}

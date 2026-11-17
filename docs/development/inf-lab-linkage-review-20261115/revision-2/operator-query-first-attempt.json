@@ -1,0 +1,14 @@
+{
+  "ok": false,
+  "connector_error_codes": [
+    "ORA-00972"
+  ],
+  "error_types": [
+    "DatabaseError"
+  ],
+  "note": "Connector returned non-JSON; raw output not retained.",
+  "elapsed_seconds": 1.73,
+  "sql_sha256": "b6b8bfdb1f1ae241c191161ef6ec0bd7445bf6f4ceebb4e1e87fd7814e9fef5a",
+  "static_validation": "PASS_BEFORE_EXECUTION",
+  "sql_redacted_template": "SELECT COUNT(*) AS TARGET_REPORTS, SUM(CASE WHEN a.TRANSCRIPTIONIST IS NULL THEN 1 ELSE 0 END) AS NO_TRANSCRIPTIONIST, SUM(CASE WHEN EXISTS (SELECT 1 FROM HIS.DEPT_DICT d WHERE d.DEPT_CODE=TO_CHAR(a.PERFORMED_BY)) THEN 1 ELSE 0 END) AS PERFORMED_BY_MATCHES_DEPARTMENT, SUM(CASE WHEN EXISTS (SELECT 1 FROM HIS.STAFF_DICT s WHERE s.EMP_NO=TO_CHAR(a.PERFORMED_BY)) THEN 1 ELSE 0 END) AS PERFORMED_BY_MATCHES_STAFF FROM HIS.LAB_TEST_MASTER a WHERE a.TEST_NO IN (:key_4,:key_5,:key_6,:key_7,:key_8,:key_9)"
+}

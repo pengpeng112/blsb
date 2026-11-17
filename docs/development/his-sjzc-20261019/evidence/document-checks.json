@@ -1,0 +1,961 @@
+{
+  "global_docs_check_exit_code": 1,
+  "global_broken_link_count": 233,
+  "changed_files_broken_links": [],
+  "source_or_archive_hash_mismatches": [],
+  "global_broken_links": [
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r2/README.md",
+      "target": "../../../review/round-1/最终报告.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r2/REVISION-2.md",
+      "target": "../../../review/round-1/最终报告.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r2/execution-plan.md",
+      "target": "../../../review/round-1/最终报告.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r2/view-contract.md",
+      "target": "../../../review/round-1/最终报告.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r3/README.md",
+      "target": "../../../review/round-1/最终报告.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r3/README.md",
+      "target": "REVISION-2.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r3/README.md",
+      "target": "REVISION-2.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r3/README.md",
+      "target": "REVISION-3.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r3/README.md",
+      "target": "REVISION-3.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r3/README.md",
+      "target": "SESSION.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r3/README.md",
+      "target": "connection-evidence.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r3/README.md",
+      "target": "connection-report.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r3/README.md",
+      "target": "jump-network-evidence.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r3/README.md",
+      "target": "revisions/r1/README.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r3/README.md",
+      "target": "revisions/r2/README.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r3/execution-plan.md",
+      "target": "../../../review/round-1/最终报告.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r3/execution-plan.md",
+      "target": "REVISION-2.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r3/execution-plan.md",
+      "target": "REVISION-3.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r3/execution-plan.md",
+      "target": "revisions/r1/README.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r3/execution-plan.md",
+      "target": "revisions/r2/README.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r3/view-contract.md",
+      "target": "../../../review/round-1/最终报告.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r3/view-contract.md",
+      "target": "REVISION-3.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r4/README.md",
+      "target": "../../../review/round-1/最终报告.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r4/README.md",
+      "target": "REVISION-2.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r4/README.md",
+      "target": "REVISION-2.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r4/README.md",
+      "target": "REVISION-3.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r4/README.md",
+      "target": "REVISION-3.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r4/README.md",
+      "target": "REVISION-4.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r4/README.md",
+      "target": "REVISION-4.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r4/README.md",
+      "target": "SESSION.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r4/README.md",
+      "target": "connection-evidence.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r4/README.md",
+      "target": "connection-report.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r4/README.md",
+      "target": "jump-network-evidence.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r4/README.md",
+      "target": "revisions/r3/SNAPSHOT.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r4/README.md",
+      "target": "view-contract.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r4/README.md",
+      "target": "网络开通与接口资料协调单.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r4/README.md",
+      "target": "网络开通及资料回执.xlsx"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r4/README.md",
+      "target": "网络端口申请表.csv"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r4/execution-plan.md",
+      "target": "../../../review/round-1/最终报告.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r4/execution-plan.md",
+      "target": "REVISION-2.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r4/execution-plan.md",
+      "target": "REVISION-3.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r4/execution-plan.md",
+      "target": "REVISION-4.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r4/execution-plan.md",
+      "target": "revisions/r1/README.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r4/execution-plan.md",
+      "target": "revisions/r2/README.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r4/execution-plan.md",
+      "target": "revisions/r3/SNAPSHOT.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r4/execution-plan.md",
+      "target": "网络开通与接口资料协调单.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r4/execution-plan.md",
+      "target": "网络开通及资料回执.xlsx"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r5/README.md",
+      "target": "../../../review/round-1/最终报告.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r5/README.md",
+      "target": "REVISION-2.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r5/README.md",
+      "target": "REVISION-2.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r5/README.md",
+      "target": "REVISION-3.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r5/README.md",
+      "target": "REVISION-3.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r5/README.md",
+      "target": "REVISION-4.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r5/README.md",
+      "target": "REVISION-5.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r5/README.md",
+      "target": "REVISION-5.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r5/README.md",
+      "target": "SESSION.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r5/README.md",
+      "target": "connection-evidence.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r5/README.md",
+      "target": "jump-network-evidence.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r5/README.md",
+      "target": "view-contract.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r5/README.md",
+      "target": "网络开通与接口资料协调单.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r5/README.md",
+      "target": "网络开通及资料回执.xlsx"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r5/README.md",
+      "target": "网络端口申请表.csv"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r5/connection-report.md",
+      "target": "connection-evidence-20261016T021120426186Z.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r5/connection-report.md",
+      "target": "revision-3/api-document-check.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r5/connection-report.md",
+      "target": "revision-3/network-evidence.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r5/connection-report.md",
+      "target": "revision-3/target-login-evidence.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r5/connection-report.md",
+      "target": "revision-3/target-login-evidence.log"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r5/execution-plan.md",
+      "target": "../../../review/round-1/最终报告.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r5/execution-plan.md",
+      "target": "REVISION-2.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r5/execution-plan.md",
+      "target": "REVISION-3.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r5/execution-plan.md",
+      "target": "REVISION-4.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r5/execution-plan.md",
+      "target": "REVISION-5.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r5/execution-plan.md",
+      "target": "revisions/r1/README.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r5/execution-plan.md",
+      "target": "revisions/r2/README.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r5/execution-plan.md",
+      "target": "revisions/r3/SNAPSHOT.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r5/execution-plan.md",
+      "target": "revisions/r4/SNAPSHOT.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r5/execution-plan.md",
+      "target": "网络开通与接口资料协调单.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r5/execution-plan.md",
+      "target": "网络开通及资料回执.xlsx"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r6/README.md",
+      "target": "../../../review/round-1/最终报告.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r6/README.md",
+      "target": "NETWORK-RETEST-20261016.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r6/README.md",
+      "target": "REVISION-2.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r6/README.md",
+      "target": "REVISION-2.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r6/README.md",
+      "target": "REVISION-3.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r6/README.md",
+      "target": "REVISION-3.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r6/README.md",
+      "target": "REVISION-4.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r6/README.md",
+      "target": "REVISION-5.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r6/README.md",
+      "target": "REVISION-5.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r6/README.md",
+      "target": "SESSION.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r6/README.md",
+      "target": "connection-evidence.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r6/README.md",
+      "target": "jump-network-evidence.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r6/README.md",
+      "target": "view-contract.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r6/README.md",
+      "target": "网络开通与接口资料协调单.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r6/README.md",
+      "target": "网络开通及资料回执.xlsx"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r6/README.md",
+      "target": "网络端口申请表.csv"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r6/connection-report.md",
+      "target": "NETWORK-RETEST-20261016.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r6/connection-report.md",
+      "target": "connection-evidence-20261016T021120426186Z.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r6/connection-report.md",
+      "target": "revision-3/api-document-check.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r6/connection-report.md",
+      "target": "revision-3/network-evidence.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r6/connection-report.md",
+      "target": "revision-3/target-login-evidence.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r6/connection-report.md",
+      "target": "revision-3/target-login-evidence.log"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r6/execution-plan.md",
+      "target": "../../../review/round-1/最终报告.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r6/execution-plan.md",
+      "target": "NETWORK-RETEST-20261016.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r6/execution-plan.md",
+      "target": "REVISION-2.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r6/execution-plan.md",
+      "target": "REVISION-3.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r6/execution-plan.md",
+      "target": "REVISION-4.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r6/execution-plan.md",
+      "target": "REVISION-5.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r6/execution-plan.md",
+      "target": "revisions/r1/README.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r6/execution-plan.md",
+      "target": "revisions/r2/README.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r6/execution-plan.md",
+      "target": "revisions/r3/SNAPSHOT.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r6/execution-plan.md",
+      "target": "revisions/r4/SNAPSHOT.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r6/execution-plan.md",
+      "target": "网络开通与接口资料协调单.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r6/execution-plan.md",
+      "target": "网络开通及资料回执.xlsx"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/README.md",
+      "target": "../../../review/round-1/最终报告.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/README.md",
+      "target": "DMZ-CHECK-20261016.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/README.md",
+      "target": "NETWORK-RETEST-20261016.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/README.md",
+      "target": "REVISION-2.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/README.md",
+      "target": "REVISION-2.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/README.md",
+      "target": "REVISION-3.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/README.md",
+      "target": "REVISION-3.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/README.md",
+      "target": "REVISION-4.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/README.md",
+      "target": "REVISION-5.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/README.md",
+      "target": "REVISION-5.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/README.md",
+      "target": "SESSION.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/README.md",
+      "target": "connection-evidence.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/README.md",
+      "target": "jump-network-evidence.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/README.md",
+      "target": "view-contract.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/README.md",
+      "target": "网络开通与接口资料协调单.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/README.md",
+      "target": "网络开通及资料回执.xlsx"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/README.md",
+      "target": "网络端口申请表.csv"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/connection-report.md",
+      "target": "DMZ-CHECK-20261016.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/connection-report.md",
+      "target": "NETWORK-RETEST-20261016.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/connection-report.md",
+      "target": "connection-evidence-20261016T021120426186Z.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/connection-report.md",
+      "target": "revision-3/api-document-check.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/connection-report.md",
+      "target": "revision-3/network-evidence.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/connection-report.md",
+      "target": "revision-3/target-login-evidence.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/connection-report.md",
+      "target": "revision-3/target-login-evidence.log"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/execution-plan.md",
+      "target": "../../../review/round-1/最终报告.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/execution-plan.md",
+      "target": "DMZ-CHECK-20261016.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/execution-plan.md",
+      "target": "NETWORK-RETEST-20261016.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/execution-plan.md",
+      "target": "REVISION-2.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/execution-plan.md",
+      "target": "REVISION-3.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/execution-plan.md",
+      "target": "REVISION-4.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/execution-plan.md",
+      "target": "REVISION-5.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/execution-plan.md",
+      "target": "revisions/r1/README.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/execution-plan.md",
+      "target": "revisions/r2/README.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/execution-plan.md",
+      "target": "revisions/r3/SNAPSHOT.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/execution-plan.md",
+      "target": "revisions/r4/SNAPSHOT.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/execution-plan.md",
+      "target": "网络开通与接口资料协调单.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r7/execution-plan.md",
+      "target": "网络开通及资料回执.xlsx"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/README.md",
+      "target": "../../../review/round-1/最终报告.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/README.md",
+      "target": "DMZ-CHECK-20261016.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/README.md",
+      "target": "DMZ-CHECK-20261016.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/README.md",
+      "target": "HIS-CHECK-20261016.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/README.md",
+      "target": "HIS-CHECK-20261016.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/README.md",
+      "target": "NETWORK-RETEST-20261016.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/README.md",
+      "target": "REVISION-2.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/README.md",
+      "target": "REVISION-2.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/README.md",
+      "target": "REVISION-3.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/README.md",
+      "target": "REVISION-4.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/README.md",
+      "target": "REVISION-5.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/README.md",
+      "target": "REVISION-5.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/README.md",
+      "target": "SESSION.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/README.md",
+      "target": "connection-evidence.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/README.md",
+      "target": "jump-network-evidence.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/README.md",
+      "target": "view-contract.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/README.md",
+      "target": "网络开通与接口资料协调单.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/README.md",
+      "target": "网络开通及资料回执.xlsx"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/README.md",
+      "target": "网络端口申请表.csv"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/connection-report.md",
+      "target": "DMZ-CHECK-20261016.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/connection-report.md",
+      "target": "HIS-CHECK-20261016.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/connection-report.md",
+      "target": "NETWORK-RETEST-20261016.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/connection-report.md",
+      "target": "connection-evidence-20261016T021120426186Z.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/connection-report.md",
+      "target": "revision-3/api-document-check.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/connection-report.md",
+      "target": "revision-3/network-evidence.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/connection-report.md",
+      "target": "revision-3/target-login-evidence.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/connection-report.md",
+      "target": "revision-3/target-login-evidence.log"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/execution-plan.md",
+      "target": "../../../review/round-1/最终报告.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/execution-plan.md",
+      "target": "DMZ-CHECK-20261016.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/execution-plan.md",
+      "target": "HIS-CHECK-20261016.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/execution-plan.md",
+      "target": "NETWORK-RETEST-20261016.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/execution-plan.md",
+      "target": "REVISION-2.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/execution-plan.md",
+      "target": "REVISION-3.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/execution-plan.md",
+      "target": "REVISION-4.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/execution-plan.md",
+      "target": "REVISION-5.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/execution-plan.md",
+      "target": "revisions/r1/README.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/execution-plan.md",
+      "target": "revisions/r2/README.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/execution-plan.md",
+      "target": "revisions/r3/SNAPSHOT.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/execution-plan.md",
+      "target": "revisions/r4/SNAPSHOT.json"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/execution-plan.md",
+      "target": "网络开通与接口资料协调单.md"
+    },
+    {
+      "file": "docs/deployment/reporting-20261015/revisions/r8/execution-plan.md",
+      "target": "网络开通及资料回执.xlsx"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/evidence/before-BACKLOG.md",
+      "target": "../../一次性执行任务-本地剩余与内网部署-2026-10-01.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/evidence/before-HANDOFF.md",
+      "target": "sessions/REPORTING-LINUX-DEPLOY-20261016.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/evidence/before-README.md",
+      "target": "../implementation/docs/README.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/evidence/before-README.md",
+      "target": "../implementation/docs/adr/README.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/evidence/before-README.md",
+      "target": "../implementation/docs/audit/2026-10-01/README.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/evidence/before-README.md",
+      "target": "../implementation/docs/runbooks/README.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/evidence/before-README.md",
+      "target": "../一次性执行任务-本地剩余与内网部署-2026-10-01.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/evidence/before-README.md",
+      "target": "../医院数据归集与上报平台总体方案_v0.4.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/evidence/before-README.md",
+      "target": "../归档/README.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/evidence/before-README.md",
+      "target": "../设计交付v0.3/README.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/evidence/before-README.md",
+      "target": "../设计交付v0.4/00_阅读入口与开发约束.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/evidence/before-README.md",
+      "target": "../项目独立复核与详细整改计划_2026-10-01.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/evidence/before-README.md",
+      "target": "CODE_MAP.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/evidence/before-README.md",
+      "target": "ai/BACKLOG.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/evidence/before-README.md",
+      "target": "ai/START_HERE.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/evidence/before-README.md",
+      "target": "ai/START_HERE.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/evidence/before-README.md",
+      "target": "catalog.json"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/evidence/before-README.md",
+      "target": "sources/README.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/evidence/before-README.md",
+      "target": "startup/README.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/evidence/before-README.md",
+      "target": "startup/README.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/review-2-20261017/evidence/before-BACKLOG.md",
+      "target": "../../一次性执行任务-本地剩余与内网部署-2026-10-01.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/review-2-20261017/evidence/before-BACKLOG.md",
+      "target": "../development/drug-trace-20261016/README.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/review-2-20261017/evidence/before-HANDOFF.md",
+      "target": "../development/drug-trace-20261016/README.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/review-2-20261017/evidence/before-HANDOFF.md",
+      "target": "sessions/DTR-IMPLEMENT-20261016.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/review-2-20261017/evidence/before-HANDOFF.md",
+      "target": "sessions/DTR-IMPLEMENT-20261016.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/review-2-20261017/evidence/before-STATE.md",
+      "target": "../development/drug-trace-20261016/README.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/review-2-20261017/evidence/before-STATE.md",
+      "target": "../development/drug-trace-20261016/SQL_REVIEW.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/review-2-20261017/evidence/before-STATE.md",
+      "target": "sessions/DTR-IMPLEMENT-20261016.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/review-2-20261017/evidence/before-STATE.md",
+      "target": "sessions/REPORTING-DRUGTRACE-PLAN-20261016.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/review-3-20261017/evidence/before-BACKLOG.md",
+      "target": "../../一次性执行任务-本地剩余与内网部署-2026-10-01.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/review-3-20261017/evidence/before-BACKLOG.md",
+      "target": "../development/drug-trace-20261016/README.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/review-3-20261017/evidence/before-BACKLOG.md",
+      "target": "../development/drug-trace-20261016/fix2-20261017/README.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/review-3-20261017/evidence/before-BACKLOG.md",
+      "target": "../development/drug-trace-20261016/review-2-20261017/README.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/review-3-20261017/evidence/before-HANDOFF.md",
+      "target": "../development/drug-trace-20261016/fix2-20261017/README.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/review-3-20261017/evidence/before-HANDOFF.md",
+      "target": "../development/drug-trace-20261016/review-2-20261017/evidence/local-regression.xml"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/review-3-20261017/evidence/before-HANDOFF.md",
+      "target": "../development/drug-trace-20261016/review-2-20261017/evidence/probe-results.json"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/review-3-20261017/evidence/before-HANDOFF.md",
+      "target": "sessions/DTR-IMPLEMENT-20261016.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/review-3-20261017/evidence/before-HANDOFF.md",
+      "target": "sessions/DTR-REVIEW2-20261017.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/review-3-20261017/evidence/before-STATE.md",
+      "target": "../development/drug-trace-20261016/README.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/review-3-20261017/evidence/before-STATE.md",
+      "target": "../development/drug-trace-20261016/SQL_REVIEW.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/review-3-20261017/evidence/before-STATE.md",
+      "target": "../development/drug-trace-20261016/fix2-20261017/README.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/review-3-20261017/evidence/before-STATE.md",
+      "target": "../development/drug-trace-20261016/review-2-20261017/README.md"
+    },
+    {
+      "file": "docs/development/drug-trace-20261016/review-3-20261017/evidence/before-STATE.md",
+      "target": "sessions/REPORTING-DRUGTRACE-PLAN-20261016.md"
+    }
+  ],
+  "modified_from_task_baseline": [
+    "AI_START.md",
+    "docs/ai/START_HERE.md",
+    "docs/ai/STATE.md",
+    "docs/ai/HANDOFF.md",
+    "docs/ai/BACKLOG.md",
+    "docs/startup/README.md",
+    "docs/README.md",
+    "implementation/plugins/domains/drug_trace/service.py",
+    "implementation/docs/外部阻断清单.md",
+    "implementation/docs/实施状态矩阵.md",
+    "implementation/docs/接口与设计差异.md",
+    "implementation/docs/测试执行记录.md"
+  ],
+  "new_markdown_files": [
+    "docs/startup/DATABASE_ACCESS.md",
+    "docs/development/his-sjzc-20261019/README.md",
+    "docs/ai/sessions/HIS-SJZC-BIND-20261019.md"
+  ],
+  "catalog_inventory_exit_code": 0,
+  "catalog_document_count": 196
+}

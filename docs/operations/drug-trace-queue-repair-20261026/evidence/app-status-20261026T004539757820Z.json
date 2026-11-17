@@ -1,0 +1,254 @@
+{
+  "host": "app",
+  "phase": "status",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T00:45:39.757697+00:00",
+  "result": {
+    "captured_gmt8": "2026-10-26T08:45:37.079267+08:00",
+    "business_window": [
+      "2026-10-25",
+      "2026-10-26"
+    ],
+    "current_release": "/opt/blyb/releases/ui-20261025T140000Z",
+    "blyb-daily-upload.service": {
+      "exit_code": 0,
+      "properties": {
+        "TimeoutStartUSec": "6h",
+        "Result": "exit-code",
+        "ExecMainStartTimestamp": "Mon 2026-10-26 06:10:29 CST",
+        "ExecMainExitTimestamp": "Mon 2026-10-26 08:31:05 CST",
+        "ExecMainStatus": "1",
+        "ActiveState": "failed",
+        "SubState": "failed"
+      }
+    },
+    "blyb-daily-upload.timer": {
+      "exit_code": 0,
+      "properties": {
+        "NextElapseUSecRealtime": "Tue 2026-10-27 06:10:00 CST",
+        "Result": "success",
+        "ActiveState": "active",
+        "SubState": "waiting"
+      }
+    },
+    "containers": {
+      "exit_code": 0,
+      "status": "blyb-nginx-1 Up 11 hours (healthy)\n<worker-container> Up 11 hours (healthy)\nblyb-storage-1 Up 11 hours (healthy)\nblyb-exchange-1 Up 11 hours (healthy)\nblyb-core-1 Up 11 hours (healthy)\nblyb-db-1 Up 11 hours (healthy)"
+    },
+    "receipts": [
+      {
+        "file": "20261026-061029.json",
+        "bytes": 25223,
+        "window": [
+          "2026-10-25T00:00:00",
+          "2026-10-26T00:00:00"
+        ],
+        "candidate_count": 1352,
+        "outcome": "PARTIAL_FAILURE",
+        "elapsed_seconds": 8435.8,
+        "report_push": {
+          "ok": true
+        },
+        "send_counters": {
+          "sent": 3,
+          "skipped_terminal": 0,
+          "resumed": 3,
+          "prepared_new": 0
+        },
+        "send_error_codes": {
+          "SEND_WORKER_TIMEOUT": 1
+        },
+        "aborted_reason": "SEND_WORKER_TIMEOUT",
+        "query_counters": {
+          "queried": 1
+        },
+        "query_errors": 247
+      }
+    ],
+    "driver_stderr": {
+      "bytes": 0,
+      "exception_types": [],
+      "oracle_codes": []
+    },
+    "database_exit_code": 0,
+    "database": {
+      "collections": [
+        {
+          "state": "DONE",
+          "window_begin": "2026-10-25 00:00:00",
+          "window_end": "2026-10-26 00:00:00",
+          "created_at": "2026-10-25 22:10:29.797302",
+          "finished_at": "2026-10-26 00:19:16.394601",
+          "summary": {
+            "bills_seen": 2059,
+            "revisions_created": 2059,
+            "idempotent": 0,
+            "waiting": 707,
+            "valid": 1352,
+            "invalid": 0,
+            "conflicts": 0,
+            "version_rereads": 0,
+            "skipped_version_changing": 0,
+            "retried_ok": 0,
+            "retried_failed": 0
+          }
+        },
+        {
+          "state": "DONE",
+          "window_begin": "2026-10-24 00:00:00",
+          "window_end": "2026-10-25 00:00:00",
+          "created_at": "2026-10-25 09:57:41.976462",
+          "finished_at": "2026-10-25 12:28:46.67042",
+          "summary": {
+            "bills_seen": 2414,
+            "revisions_created": 2363,
+            "idempotent": 51,
+            "waiting": 944,
+            "valid": 1470,
+            "invalid": 0,
+            "conflicts": 0,
+            "version_rereads": 0,
+            "skipped_version_changing": 0,
+            "retried_ok": 0,
+            "retried_failed": 0
+          }
+        },
+        {
+          "state": "DONE",
+          "window_begin": "2026-10-24 07:00:00",
+          "window_end": "2026-10-24 08:00:00",
+          "created_at": "2026-10-24 01:14:47.807142",
+          "finished_at": "2026-10-24 01:17:07.377484",
+          "summary": {
+            "bills_seen": 51,
+            "revisions_created": 0,
+            "idempotent": 51,
+            "waiting": 49,
+            "valid": 2,
+            "invalid": 0,
+            "conflicts": 0,
+            "version_rereads": 0,
+            "skipped_version_changing": 0,
+            "retried_ok": 0,
+            "retried_failed": 0
+          }
+        }
+      ],
+      "quality": [
+        {
+          "business_kind": "PATIENT_DISPENSE",
+          "quality_state": "VALID",
+          "n": 1352
+        },
+        {
+          "business_kind": "UNKNOWN",
+          "quality_state": "WAITING",
+          "n": 650
+        },
+        {
+          "business_kind": "PATIENT_DISPENSE",
+          "quality_state": "WAITING",
+          "n": 57
+        }
+      ],
+      "all_states": {
+        "PREPARED": 567,
+        "CONFIRMED": 412,
+        "ACCEPTED": 41,
+        "UNKNOWN": 206
+      },
+      "today_created_states": {
+        "CONFIRMED": 3,
+        "PREPARED": 567
+      },
+      "today_jobs": [
+        {
+          "job_type": "drug_trace.prepare",
+          "state": "SUCCEEDED",
+          "n": 570,
+          "oldest": "2026-10-26 00:19:16.654411",
+          "lease_until": "2026-10-26 00:40:11.559118"
+        },
+        {
+          "job_type": "drug_trace.send",
+          "state": "SUCCEEDED",
+          "n": 3,
+          "oldest": "2026-10-26 00:19:18.759893",
+          "lease_until": "2026-10-26 00:25:09.327452"
+        },
+        {
+          "job_type": "drug_trace.collect",
+          "state": "SUCCEEDED",
+          "n": 1,
+          "oldest": "2026-10-25 22:10:29.805552",
+          "lease_until": "2026-10-25 22:12:29.851616"
+        },
+        {
+          "job_type": "drug_trace.query_status",
+          "state": "SUCCEEDED",
+          "n": 4,
+          "oldest": "2026-10-26 00:19:37.866963",
+          "lease_until": "2026-10-26 00:40:12.580107"
+        },
+        {
+          "job_type": "drug_trace.prepare",
+          "state": "FAILED",
+          "n": 782,
+          "oldest": "2026-10-26 00:19:16.961634",
+          "lease_until": "2026-10-26 00:39:34.835107"
+        }
+      ],
+      "today_job_errors": [
+        {
+          "job_type": "drug_trace.prepare",
+          "error": "no approved mapping for drugtrace.ref_ent_id:'050116'",
+          "n": 7
+        },
+        {
+          "job_type": "drug_trace.prepare",
+          "error": "no approved mapping for drugtrace.ref_ent_id:'050121'",
+          "n": 775
+        }
+      ],
+      "today_attempts": [
+        {
+          "http_status": 200,
+          "outcome": "ACCEPTED",
+          "n": 3
+        }
+      ],
+      "today_queries": [
+        {
+          "state": "CONFIRMED",
+          "n": 4
+        }
+      ],
+      "quota": [
+        {
+          "used": 659,
+          "max_bills": 80000
+        }
+      ],
+      "checkpoint": [
+        {
+          "partition": "r10-batch-daily",
+          "row_version": 46,
+          "since_time": "2026-10-26T00:00:00",
+          "completed_window": "true"
+        }
+      ]
+    },
+    "ntp_sources": {
+      "exit_code": 0,
+      "status": "MS Name/IP address         Stratum Poll Reach LastRx Last sample               \n===============================================================================\n^? <relay-net-host>                   0   8     0     -     +0ns[   +0ns] +/-    0ns"
+    },
+    "ntp_tracking": {
+      "exit_code": 0,
+      "status": "Reference ID    : 00000000 ()\nStratum         : 0\nRef time (UTC)  : Thu Jan 01 00:00:00 1970\nSystem time     : 0.000000000 seconds fast of NTP time\nLast offset     : +0.000000000 seconds\nRMS offset      : 0.000000000 seconds\nFrequency       : 0.000 ppm slow\nResidual freq   : +0.000 ppm\nSkew            : 0.000 ppm\nRoot delay      : 1.000000000 seconds\nRoot dispersion : 1.000000000 seconds\nUpdate interval : 0.0 seconds\nLeap status     : Not synchronised"
+    },
+    "ntp_unit": {
+      "exit_code": 0,
+      "status": "ActiveState=active\nUnitFileState=enabled"
+    }
+  }
+}

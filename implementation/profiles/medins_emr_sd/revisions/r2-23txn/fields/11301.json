@@ -1,0 +1,1214 @@
+{
+ "code": "11301",
+ "schema_version": 2,
+ "envelope_ref": "fields/_envelope.json",
+ "root": "input",
+ "length_unit": "UNCONFIRMED",
+ "children": [
+  {
+   "code": "data",
+   "type": "array",
+   "items": {
+    "code": "data",
+    "type": "object",
+    "children": [
+     {
+      "code": "mdtrt_sn",
+      "name": "就医流水号",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 2
+      },
+      "notes": "医院产生唯一就医流水号"
+     },
+     {
+      "code": "mdtrt_id",
+      "name": "就诊ID",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 3
+      },
+      "notes": "医保返回唯一流水号"
+     },
+     {
+      "code": "medins_file_no",
+      "name": "医院内部档案号",
+      "type": "string",
+      "max_len": 64,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": true,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 4
+      },
+      "notes": "指医院内部患者唯一的索引号"
+     },
+     {
+      "code": "ipt_bed_no",
+      "name": "住院床号",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 5
+      }
+     },
+     {
+      "code": "drord_no",
+      "name": "医嘱号",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 6
+      },
+      "notes": "医嘱号是医院内部唯一标识一条医嘱的编号，必须保证在本医院内不重复。"
+     },
+     {
+      "code": "isu_dept_code",
+      "name": "下达科室代码",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": true,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 7
+      },
+      "notes": "参照科室代码（caty）"
+     },
+     {
+      "code": "isu_dept_name",
+      "name": "下达科室名称",
+      "type": "string",
+      "max_len": 50,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 8
+      }
+     },
+     {
+      "code": "drord_isu_time",
+      "name": "医嘱下达时间",
+      "type": "datetime",
+      "max_len": null,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 9
+      },
+      "notes": "yyyy-MM-dd HH:mm:ss"
+     },
+     {
+      "code": "exe_dept_code",
+      "name": "执行科室代码",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": true,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 10
+      },
+      "notes": "参照科室代码（caty）"
+     },
+     {
+      "code": "exe_dept_name",
+      "name": "执行科室名称",
+      "type": "string",
+      "max_len": 50,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 11
+      }
+     },
+     {
+      "code": "drord_chker_name",
+      "name": "医嘱审核人姓名",
+      "type": "string",
+      "max_len": 50,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": true,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 12
+      }
+     },
+     {
+      "code": "drord_ptr_name",
+      "name": "医嘱执行人姓名",
+      "type": "string",
+      "max_len": 50,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": true,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 13
+      }
+     },
+     {
+      "code": "drord_grp_no",
+      "name": "医嘱组号",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 14
+      }
+     },
+     {
+      "code": "drord_type",
+      "name": "医嘱类别",
+      "type": "string",
+      "max_len": 3,
+      "dict": null,
+      "has_code_dict": true,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 15
+      },
+      "notes": "参照“医嘱类别”drord_type"
+     },
+     {
+      "code": "drord_item_type_code",
+      "name": "医嘱项目分类代码",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": true,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 16
+      },
+      "notes": "参照“医嘱项目分类drord_item_type”"
+     },
+     {
+      "code": "drord_item_type_name",
+      "name": "医嘱项目分类名称",
+      "type": "string",
+      "max_len": 100,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 17
+      }
+     },
+     {
+      "code": "drord_detl_code",
+      "name": "医嘱明细代码",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 18
+      },
+      "notes": "填写医院内自编的唯一标识该收费的编码"
+     },
+     {
+      "code": "drord_detl_name",
+      "name": "医嘱明细名称",
+      "type": "string",
+      "max_len": 100,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 19
+      },
+      "notes": "填写医院内自编的唯一标识该收费的编码名称"
+     },
+     {
+      "code": "medn_type_code",
+      "name": "药物类型代码",
+      "type": "string",
+      "max_len": 100,
+      "dict": null,
+      "has_code_dict": true,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 20
+      },
+      "notes": "若为药品，则必填写，若为非药品，则为空"
+     },
+     {
+      "code": "medn_type_name",
+      "name": "药物类型名称",
+      "type": "string",
+      "max_len": 100,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 21
+      },
+      "notes": "若为药品，则必填写，若为非药品，则为空"
+     },
+     {
+      "code": "drug_dosform",
+      "name": "药品剂型",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": true,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 22
+      },
+      "notes": "参考【drug_dosform】代码，若为药品，则必填写，若为非药品，则为空"
+     },
+     {
+      "code": "drug_dosform_name",
+      "name": "药品剂型名称",
+      "type": "string",
+      "max_len": 110,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 23
+      },
+      "notes": "若为药品，则必填写，若为非药品，则为空"
+     },
+     {
+      "code": "drug_spec",
+      "name": "药品规格",
+      "type": "string",
+      "max_len": 50,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 24
+      },
+      "notes": "若为药品，则必填写，若为非药品，则为空"
+     },
+     {
+      "code": "dismed_cnt",
+      "name": "发药数量",
+      "type": "number",
+      "max_len": 5,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 25
+      },
+      "notes": "若为药品，则必填写，若为非药品，则为空"
+     },
+     {
+      "code": "dismed_cnt_unt",
+      "name": "发药数量单位",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 26
+      },
+      "notes": "若为药品，则必填写，若为非药品，则为空"
+     },
+     {
+      "code": "medn_use_frqu",
+      "name": "药物使用-频率",
+      "type": "string",
+      "max_len": 20,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 27
+      },
+      "notes": "若为药品，则必填写，若为非药品，则为空"
+     },
+     {
+      "code": "medn_used_dosunt",
+      "name": "药物使用-剂量单位",
+      "type": "string",
+      "max_len": 10,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 28
+      },
+      "notes": "若为药品，则必填写，若为非药品，则为空"
+     },
+     {
+      "code": "drug_used_sdose",
+      "name": "药物使用-次剂量",
+      "type": "number",
+      "max_len": 16,
+      "dict": null,
+      "has_code_dict": true,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 29
+      },
+      "notes": "若为药品，则必填写，若为非药品，则为空"
+     },
+     {
+      "code": "drug_used_idose",
+      "name": "药物使用-总剂量",
+      "type": "number",
+      "max_len": 16,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 30
+      },
+      "notes": "若为药品，则必填写，若为非药品，则为空"
+     },
+     {
+      "code": "drug_used_way_code",
+      "name": "药物使用-途径代码",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": true,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 31
+      },
+      "notes": "若为药品，则必填写，若为非药品，则为空，填写时参考药物使用-途径代码(drug_medc_way_code)"
+     },
+     {
+      "code": "drug_used_way",
+      "name": "药物使用-途径",
+      "type": "string",
+      "max_len": 100,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 32
+      },
+      "notes": "若为药品，则必填写，若为非药品，则为空"
+     },
+     {
+      "code": "medc_days",
+      "name": "用药天数",
+      "type": "number",
+      "max_len": 5,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 33
+      }
+     },
+     {
+      "code": "medc_begntime",
+      "name": "用药开始时间",
+      "type": "datetime",
+      "max_len": null,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 34
+      },
+      "notes": "yyyy-MM-dd HH:mm:ss"
+     },
+     {
+      "code": "medc_endtime",
+      "name": "用药停止时间",
+      "type": "datetime",
+      "max_len": null,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 35
+      },
+      "notes": "yyyy-MM-dd HH:mm:ss"
+     },
+     {
+      "code": "skintst_dicm",
+      "name": "皮试判别",
+      "type": "string",
+      "max_len": 10,
+      "dict": null,
+      "has_code_dict": true,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 36
+      },
+      "notes": "参照过敏皮试判别skintst_dicm"
+     },
+     {
+      "code": "tcmherb_foote",
+      "name": "草药脚注",
+      "type": "string",
+      "max_len": 200,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 37
+      }
+     },
+     {
+      "code": "drord_endtime",
+      "name": "医嘱结束时间",
+      "type": "datetime",
+      "max_len": null,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 38
+      },
+      "notes": "yyyy-MM-dd HH:mm:ss"
+     },
+     {
+      "code": "ipt_dept_code",
+      "name": "住院科室代码",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": true,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 39
+      },
+      "notes": "参照caty"
+     },
+     {
+      "code": "ipt_dept_name",
+      "name": "住院科室名称",
+      "type": "string",
+      "max_len": 50,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 40
+      }
+     },
+     {
+      "code": "medins_orgcode",
+      "name": "医疗机构组织机构代码",
+      "type": "string",
+      "max_len": 50,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 41
+      }
+     },
+     {
+      "code": "unif_purc_drug_flag",
+      "name": "统一采购药品标志",
+      "type": "string",
+      "max_len": 3,
+      "dict": null,
+      "has_code_dict": true,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 42
+      },
+      "notes": "参考dic_flag"
+     },
+     {
+      "code": "drug_mgt_plaf_code",
+      "name": "药品管理平台代码",
+      "type": "string",
+      "max_len": 50,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 43
+      }
+     },
+     {
+      "code": "drug_purc_code",
+      "name": "药品采购代码",
+      "type": "string",
+      "max_len": 20,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 44
+      }
+     },
+     {
+      "code": "bas_medn_flag",
+      "name": "基本药物标志",
+      "type": "string",
+      "max_len": 3,
+      "dict": null,
+      "has_code_dict": true,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 45
+      },
+      "notes": "参考dic_flag"
+     },
+     {
+      "code": "vali_flag",
+      "name": "有效标志",
+      "type": "string",
+      "max_len": 3,
+      "dict": null,
+      "has_code_dict": true,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 46
+      },
+      "notes": "参考dic_flag"
+     },
+     {
+      "code": "medcas_drord_detl_id",
+      "name": "病案医嘱明细id",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 47
+      },
+      "notes": "主键"
+     },
+     {
+      "code": "isu_drord_dr_code",
+      "name": "下达医嘱医生代码",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 48
+      },
+      "notes": "按国家局编码规范填写"
+     },
+     {
+      "code": "isu_drord_dr_name",
+      "name": "下达医嘱医生姓名",
+      "type": "string",
+      "max_len": 50,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": true,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 49
+      }
+     },
+     {
+      "code": "drord_chker_code",
+      "name": "医嘱审核人代码",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 50
+      },
+      "notes": "按国家局编码规范填写"
+     },
+     {
+      "code": "drord_ptr_code",
+      "name": "医嘱执行人代码",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 51
+      },
+      "notes": "按国家局编码规范填写"
+     },
+     {
+      "code": "end_drord_dr_code",
+      "name": "结束医嘱医生代码",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 52
+      },
+      "notes": "按国家局编码规范填写"
+     },
+     {
+      "code": "end_drord_dr_name",
+      "name": "结束医嘱医生姓名",
+      "type": "string",
+      "max_len": 30,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": true,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 53
+      }
+     },
+     {
+      "code": "drord_begntime",
+      "name": "医嘱开嘱时间",
+      "type": "datetime",
+      "max_len": null,
+      "dict": null,
+      "has_code_dict": false,
+      "required": true,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 54
+      },
+      "notes": "yyyy-MM-dd HH:mm:ss"
+     },
+     {
+      "code": "feedetl_sn",
+      "name": "医保费用明细流水号",
+      "type": "string",
+      "max_len": 500,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 55
+      },
+      "notes": "国家医保接口文档中2301交易中对应的feedetl_sn，多个流水号用|分开"
+     },
+     {
+      "code": "med_list_codg",
+      "name": "医保目录编码",
+      "type": "string",
+      "max_len": 500,
+      "dict": null,
+      "has_code_dict": false,
+      "required": false,
+      "sensitive": false,
+      "source": "spec",
+      "direction": "input",
+      "locator": {
+       "heading_path": [
+        "重点说明",
+        "交易对象",
+        "输入参数"
+       ],
+       "table_index": 9,
+       "row": 56
+      },
+      "notes": "医保目录编码必填，多个医保目录用|分开"
+     }
+    ]
+   }
+  }
+ ]
+}

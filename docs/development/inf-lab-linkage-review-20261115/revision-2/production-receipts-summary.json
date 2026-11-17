@@ -1,0 +1,203 @@
+{
+  "mode": "READ_ONLY_NO_SEND",
+  "timezone": [
+    "UTC",
+    "UTC"
+  ],
+  "files": [
+    {
+      "file": "receipts-20261114.jsonl",
+      "exists": true,
+      "groups": {},
+      "complete": true,
+      "lines_scanned": 8555101,
+      "bytes_before": 1398921712,
+      "bytes_after": 1398921712
+    },
+    {
+      "file": "receipts-20261115.jsonl",
+      "exists": true,
+      "groups": {
+        "P3/ex_lab": {
+          "records": 6,
+          "accepted": 5,
+          "mock": 1,
+          "failed": 0,
+          "first_accepted_ts": "2026-11-15 07:01:10",
+          "last_accepted_ts": "2026-11-15 12:22:33",
+          "first_accepted_line": 39949,
+          "last_accepted_line": 69831,
+          "unique_accepted_ids": 1
+        },
+        "P1/ex_lab": {
+          "records": 6,
+          "accepted": 5,
+          "mock": 1,
+          "failed": 0,
+          "first_accepted_ts": "2026-11-15 07:01:10",
+          "last_accepted_ts": "2026-11-15 12:22:33",
+          "first_accepted_line": 39950,
+          "last_accepted_line": 69832,
+          "unique_accepted_ids": 1
+        },
+        "P2/ex_lab": {
+          "records": 6,
+          "accepted": 5,
+          "mock": 1,
+          "failed": 0,
+          "first_accepted_ts": "2026-11-15 07:01:10",
+          "last_accepted_ts": "2026-11-15 12:22:33",
+          "first_accepted_line": 39951,
+          "last_accepted_line": 69833,
+          "unique_accepted_ids": 1
+        },
+        "P3/ex_lab_item": {
+          "records": 27,
+          "accepted": 27,
+          "mock": 0,
+          "failed": 0,
+          "first_accepted_ts": "2026-11-15 11:34:17",
+          "last_accepted_ts": "2026-11-15 11:34:17",
+          "first_accepted_line": 66809,
+          "last_accepted_line": 66835,
+          "unique_accepted_ids": 27
+        },
+        "P2/ex_lab_item": {
+          "records": 7,
+          "accepted": 7,
+          "mock": 0,
+          "failed": 0,
+          "first_accepted_ts": "2026-11-15 11:34:17",
+          "last_accepted_ts": "2026-11-15 11:34:17",
+          "first_accepted_line": 66836,
+          "last_accepted_line": 66845,
+          "unique_accepted_ids": 7
+        },
+        "P1/ex_lab_item": {
+          "records": 4,
+          "accepted": 4,
+          "mock": 0,
+          "failed": 0,
+          "first_accepted_ts": "2026-11-15 11:34:17",
+          "last_accepted_ts": "2026-11-15 11:34:17",
+          "first_accepted_line": 66841,
+          "last_accepted_line": 66846,
+          "unique_accepted_ids": 4
+        }
+      },
+      "complete": true,
+      "lines_scanned": 69833,
+      "bytes_before": 11469970,
+      "bytes_after": 11469970
+    },
+    {
+      "file": "sent.jsonl",
+      "exists": true,
+      "groups": {
+        "P3/ex_lab": {
+          "records": 5,
+          "accepted": 5,
+          "mock": 0,
+          "failed": 0,
+          "first_accepted_ts": "2026-11-15 07:01:10",
+          "last_accepted_ts": "2026-11-15 12:22:33",
+          "first_accepted_line": 8661332,
+          "last_accepted_line": 8682986,
+          "unique_accepted_ids": 1
+        },
+        "P1/ex_lab": {
+          "records": 5,
+          "accepted": 5,
+          "mock": 0,
+          "failed": 0,
+          "first_accepted_ts": "2026-11-15 07:01:10",
+          "last_accepted_ts": "2026-11-15 12:22:33",
+          "first_accepted_line": 8661333,
+          "last_accepted_line": 8682987,
+          "unique_accepted_ids": 1
+        },
+        "P2/ex_lab": {
+          "records": 5,
+          "accepted": 5,
+          "mock": 0,
+          "failed": 0,
+          "first_accepted_ts": "2026-11-15 07:01:10",
+          "last_accepted_ts": "2026-11-15 12:22:33",
+          "first_accepted_line": 8661334,
+          "last_accepted_line": 8682988,
+          "unique_accepted_ids": 1
+        },
+        "P3/ex_lab_item": {
+          "records": 27,
+          "accepted": 27,
+          "mock": 0,
+          "failed": 0,
+          "first_accepted_ts": "2026-11-15 11:34:17",
+          "last_accepted_ts": "2026-11-15 11:34:17",
+          "first_accepted_line": 8681895,
+          "last_accepted_line": 8681921,
+          "unique_accepted_ids": 27
+        },
+        "P2/ex_lab_item": {
+          "records": 7,
+          "accepted": 7,
+          "mock": 0,
+          "failed": 0,
+          "first_accepted_ts": "2026-11-15 11:34:17",
+          "last_accepted_ts": "2026-11-15 11:34:17",
+          "first_accepted_line": 8681922,
+          "last_accepted_line": 8681931,
+          "unique_accepted_ids": 7
+        },
+        "P1/ex_lab_item": {
+          "records": 4,
+          "accepted": 4,
+          "mock": 0,
+          "failed": 0,
+          "first_accepted_ts": "2026-11-15 11:34:17",
+          "last_accepted_ts": "2026-11-15 11:34:17",
+          "first_accepted_line": 8681927,
+          "last_accepted_line": 8681932,
+          "unique_accepted_ids": 4
+        }
+      },
+      "complete": true,
+      "lines_scanned": 8682988,
+      "bytes_before": 1063595494,
+      "bytes_after": 1063595494
+    }
+  ],
+  "runtime": {
+    "pusher.py": {
+      "sha256": "20738564401e01afcf36c1429bcfe3dbe26311016a982bce8d7f7a9a80c09e99"
+    },
+    "tables.py": {
+      "sha256": "faa2601197e6d6c782b21193ce0f0f72704f3f18ca7a5d5ea2011c269b7f2fc0",
+      "roll_out_order": [
+        "death",
+        "admission",
+        "exam",
+        "exam_item",
+        "first_course",
+        "daily_course",
+        "ex_lab",
+        "ex_lab_item",
+        "order",
+        "order_item",
+        "vital_signs",
+        "admission_info",
+        "discharge_info"
+      ]
+    },
+    "run.sh": {
+      "sha256": "4d44a89c05bc771c237483d1abbd13563a7f041447037596e0916cabec0f9d03"
+    }
+  },
+  "elapsed_seconds": 34.88,
+  "remote_exit_code": 0,
+  "local_hashes": {
+    "pusher.py": "20738564401e01afcf36c1429bcfe3dbe26311016a982bce8d7f7a9a80c09e99",
+    "tables.py": "faa2601197e6d6c782b21193ce0f0f72704f3f18ca7a5d5ea2011c269b7f2fc0",
+    "run.sh": "4d44a89c05bc771c237483d1abbd13563a7f041447037596e0916cabec0f9d03"
+  }
+}

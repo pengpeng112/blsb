@@ -1,0 +1,115 @@
+{
+  "task": "DTR-HISTORY-ROOTCAUSE-R2",
+  "tool_model": "ZCode / GLM-5.3",
+  "timezone": "UTC timestamps; local wall clock Asia/Shanghai (UTC+8), runs at 2026-10-23 18:49/18:53 local",
+  "authorization_basis": "user instruction via NEXT_AI_PROMPT 2026-10-23 executing EXECUTION_TASK Q00-Q06; equivalent read-only authorization for this business via restricted reader (EXECUTION_TASK sect.4: do not re-ask equivalent approvals)",
+  "channel": "sjzc/<relay-jump>/data-asset-api/OracleConnector.execute_readonly",
+  "identity": {
+    "login_user": "BLYB_DRUGTRACE",
+    "service_name": "his",
+    "privileges": "CREATE SESSION only",
+    "roles": "none",
+    "grants": "SELECT on PHARMACY.V_DRUG_TRACE_BILL/CODE only",
+    "reverified_unchanged": true
+  },
+  "registration": {
+    "source_code": "his_source_<his_host_id>",
+    "host": "<his-host>",
+    "port": 1521,
+    "service": "his",
+    "write_policy": "medical_dict_push"
+  },
+  "source_objects_accessed": [
+    "PHARMACY.V_DRUG_TRACE_CODE",
+    "PHARMACY.V_DRUG_TRACE_BILL"
+  ],
+  "raw_table_access": "NONE - DRUG_USER.MED_TRACE_RECORD / PHARMACY.DRUG_PRESC_MASTER not queried; SQL01-06 prepared for DBA/approved audit identity",
+  "runs": [
+    {
+      "evidence": "r2-two-views-20261023T104928Z.json",
+      "captured_at": "2026-10-23T10:49:34.245659+00:00",
+      "budget_seconds": 300,
+      "elapsed": 0.719,
+      "identity_meta_queries": 6,
+      "q02_batches": [
+        {
+          "codes": 500,
+          "rows": 1579,
+          "seconds": 0.1479,
+          "cap_reached": false
+        },
+        {
+          "codes": 500,
+          "rows": 1542,
+          "seconds": 0.0643,
+          "cap_reached": false
+        },
+        {
+          "codes": 383,
+          "rows": 940,
+          "seconds": 0.0914,
+          "cap_reached": false
+        }
+      ],
+      "q03_dup_batch": {
+        "codes": 31,
+        "rows": 62,
+        "seconds": 0.0091,
+        "cap_reached": false
+      },
+      "whole_bill_batches": 11,
+      "q01_view_batches": [
+        {
+          "codes": 500,
+          "rows": 1250,
+          "seconds": 0.1428,
+          "cap_reached": false
+        },
+        {
+          "codes": 31,
+          "rows": 46,
+          "seconds": 0.0071,
+          "cap_reached": false
+        }
+      ],
+      "stop_reasons": {
+        "q02": "ALL_CODES_QUERIED",
+        "q01": "ALL_CODES_QUERIED"
+      },
+      "errors": []
+    },
+    {
+      "evidence": "r2-q01b-times-20261023T104928Z.json",
+      "captured_at": "2026-10-23T10:53:03.176113+00:00",
+      "elapsed": 0.157,
+      "batches": [
+        {
+          "codes": 500,
+          "rows": 1250,
+          "seconds": 0.1265,
+          "cap_reached": false
+        },
+        {
+          "codes": 31,
+          "rows": 46,
+          "seconds": 0.0078,
+          "cap_reached": false
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "online_query_total_seconds": 0.876,
+  "selects_total": 37,
+  "row_caps_hit": 0,
+  "oracle_errors": [],
+  "view_definitions": {
+    "identical_to_r1_capture": true,
+    "tokens_equal_r10_draft": true
+  },
+  "source_writes": 0,
+  "uploads": 0,
+  "production_changes": 0,
+  "platform_calls": 0,
+  "generated_at": "2026-10-23T10:55:27.693713+00:00"
+}

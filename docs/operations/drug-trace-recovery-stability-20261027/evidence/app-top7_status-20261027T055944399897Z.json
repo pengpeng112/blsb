@@ -1,0 +1,126 @@
+{
+  "host": "app",
+  "phase": "top7_status",
+  "exit_code": 0,
+  "captured_at": "2026-10-27T05:59:44.399789+00:00",
+  "result": {
+    "runner": {
+      "exit_code": 0,
+      "result": {
+        "task": "DTR-RECOVERY-STABILITY-20261027-TOP7-ONCE",
+        "target": "8528553c-c9db-4548-bffd-d610ce876e41",
+        "started_utc": "2026-10-27T05:59:18.011466+00:00",
+        "stage": "sent",
+        "upload_calls": 1,
+        "lookup": {
+          "submission_id": "8528553c-c9db-4548-bffd-d610ce876e41",
+          "bill_hash": "30b7d74a981b934b040d949aeade7b7039c0e9136c5d33b3f6ee49b270db28bb",
+          "state": "NOT_FOUND",
+          "query_status": "OK",
+          "checked_utc": "2026-10-27T05:59:18.417551+00:00",
+          "pages": 1,
+          "windows": 1
+        },
+        "candidate": {
+          "submission_id": "8528553c-c9db-4548-bffd-d610ce876e41",
+          "state": "UNKNOWN",
+          "revision": 3,
+          "attempts": 1,
+          "last_http_status": 200,
+          "top_code": "7",
+          "sub_code": "accesscontrol.limited-by-api-access-count",
+          "bill_hash": "30b7d74a981b934b040d949aeade7b7039c0e9136c5d33b3f6ee49b270db28bb",
+          "codes_count": 1,
+          "same_config": true,
+          "same_source": true,
+          "same_tenant": true,
+          "snapshot_matches": true,
+          "destination_enabled": true,
+          "real_destination": true,
+          "active_jobs": 0,
+          "inflight": 0,
+          "send_approved": true,
+          "in_scope": true,
+          "profile": "alihealth_yljg_retail_v1",
+          "bill_type": "321",
+          "query_bill_type": "A"
+        },
+        "before": {
+          "state": "UNKNOWN",
+          "revision": 3,
+          "attempts": 1,
+          "snapshot_digest": "1c6538e056ddf485f9771e7528cb7186bbca5c69a808658f3b5d972c14ea56ae",
+          "query_generations": 6,
+          "bill_hash": "30b7d74a981b934b040d949aeade7b7039c0e9136c5d33b3f6ee49b270db28bb"
+        },
+        "decision_id": "60591508-dc28-5db0-b25c-d94659d724a1",
+        "sent_utc": "2026-10-27T05:59:20.040286+00:00",
+        "result": {
+          "outcome": "ACCEPTED",
+          "http_status": 200
+        },
+        "local_state": "ACCEPTED",
+        "attempts": 2,
+        "manual_queries": 0
+      }
+    },
+    "container_exit": 0,
+    "progress": {
+      "task": "DTR-RECOVERY-STABILITY-20261027-TOP7-ONCE",
+      "target": "8528553c-c9db-4548-bffd-d610ce876e41",
+      "started_utc": "2026-10-27T05:59:18.011466+00:00",
+      "stage": "sent",
+      "upload_calls": 1,
+      "lookup": {
+        "submission_id": "8528553c-c9db-4548-bffd-d610ce876e41",
+        "bill_hash": "30b7d74a981b934b040d949aeade7b7039c0e9136c5d33b3f6ee49b270db28bb",
+        "state": "NOT_FOUND",
+        "query_status": "OK",
+        "checked_utc": "2026-10-27T05:59:18.417551+00:00",
+        "pages": 1,
+        "windows": 1
+      },
+      "candidate": {
+        "submission_id": "8528553c-c9db-4548-bffd-d610ce876e41",
+        "state": "UNKNOWN",
+        "revision": 3,
+        "attempts": 1,
+        "last_http_status": 200,
+        "top_code": "7",
+        "sub_code": "accesscontrol.limited-by-api-access-count",
+        "bill_hash": "30b7d74a981b934b040d949aeade7b7039c0e9136c5d33b3f6ee49b270db28bb",
+        "codes_count": 1,
+        "same_config": true,
+        "same_source": true,
+        "same_tenant": true,
+        "snapshot_matches": true,
+        "destination_enabled": true,
+        "real_destination": true,
+        "active_jobs": 0,
+        "inflight": 0,
+        "send_approved": true,
+        "in_scope": true,
+        "profile": "alihealth_yljg_retail_v1",
+        "bill_type": "321",
+        "query_bill_type": "A"
+      },
+      "before": {
+        "state": "UNKNOWN",
+        "revision": 3,
+        "attempts": 1,
+        "snapshot_digest": "1c6538e056ddf485f9771e7528cb7186bbca5c69a808658f3b5d972c14ea56ae",
+        "query_generations": 6,
+        "bill_hash": "30b7d74a981b934b040d949aeade7b7039c0e9136c5d33b3f6ee49b270db28bb"
+      },
+      "decision_id": "60591508-dc28-5db0-b25c-d94659d724a1",
+      "sent_utc": "2026-10-27T05:59:20.040286+00:00",
+      "result": {
+        "outcome": "ACCEPTED",
+        "http_status": 200
+      },
+      "local_state": "ACCEPTED",
+      "attempts": 2,
+      "manual_queries": 0
+    }
+  }
+}

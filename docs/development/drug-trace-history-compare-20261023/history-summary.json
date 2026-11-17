@@ -1,0 +1,690 @@
+{
+  "files": [
+    {
+      "file": "part_1.xlsx",
+      "rows": 20000,
+      "bytes": 650154,
+      "sha256": "9496d11e2db76cf85f99521bab547b09db73daf2e103371716adde81f78adeb4"
+    },
+    {
+      "file": "part_2.xlsx",
+      "rows": 20000,
+      "bytes": 652977,
+      "sha256": "28c205587eb44bb21f86da778b667c463614e3234e4eb3411473f8f6381c8830"
+    },
+    {
+      "file": "part_3.xlsx",
+      "rows": 20000,
+      "bytes": 640680,
+      "sha256": "5f4698598821cf8e1ef426c816b5177be1e28df593239f56954a2484fbceb3b5"
+    },
+    {
+      "file": "part_4.xlsx",
+      "rows": 20000,
+      "bytes": 644373,
+      "sha256": "75fba18c820880759ee43dde3f68b1507fe1fe2ad3d70dbc830d9e128b5d5a17"
+    },
+    {
+      "file": "part_5.xlsx",
+      "rows": 20000,
+      "bytes": 652504,
+      "sha256": "48befdfb152ae06e4d2f9a47f2fc40030c3eeac25e6b4da25fd141e653be2992"
+    },
+    {
+      "file": "part_6.xlsx",
+      "rows": 20000,
+      "bytes": 651552,
+      "sha256": "b6b3105abc12a264896b6daca728616d9b2d589776118a9708a71a441d6385a5"
+    },
+    {
+      "file": "part_7.xlsx",
+      "rows": 20000,
+      "bytes": 655281,
+      "sha256": "cb77cfd198fabfae719439bc5821b91f337c00cf354ce7d9dbb3bf5578fdd66d"
+    },
+    {
+      "file": "part_8.xlsx",
+      "rows": 20000,
+      "bytes": 654498,
+      "sha256": "e30e8dcca69c7fc59e3b3b418c447e60cb81bb15c5173a81d6fb1ed409bd8c8a"
+    },
+    {
+      "file": "part_9.xlsx",
+      "rows": 20000,
+      "bytes": 657847,
+      "sha256": "7343c1ca93c7b3501967aee31ecc402ffb758b592a562cd15fb8b4cb1ecdb523"
+    },
+    {
+      "file": "part_10.xlsx",
+      "rows": 20000,
+      "bytes": 659003,
+      "sha256": "c0fdad86da138c5268247782ceea9cca10ee35cd90f06d006a109b69d3cbd0a3"
+    },
+    {
+      "file": "part_11.xlsx",
+      "rows": 20000,
+      "bytes": 659109,
+      "sha256": "5496c03236e323c36cbe0c6fdc84ce7379c90ec4bfa19b38bb1a0c8f21fdd9ff"
+    },
+    {
+      "file": "part_12.xlsx",
+      "rows": 20000,
+      "bytes": 626528,
+      "sha256": "de41dbb0888a176de8515b187f8b4716c4660e01fc850308405289f6715009cd"
+    },
+    {
+      "file": "part_13.xlsx",
+      "rows": 20000,
+      "bytes": 638183,
+      "sha256": "6abbf3ba52bd337afac6730230a164c6e56663ccbc0fb309e83e81e938abf48b"
+    },
+    {
+      "file": "part_14.xlsx",
+      "rows": 20000,
+      "bytes": 649525,
+      "sha256": "6368b449f7b8a10ed0bbed8f463453dcbb17ea8d72a09a7790d7d8b29dc2734c"
+    },
+    {
+      "file": "part_15.xlsx",
+      "rows": 20000,
+      "bytes": 648353,
+      "sha256": "e09abb0d02bd4350f17b4d9894e7a218fb25459ae6afed8ebafb86102ef3e03c"
+    },
+    {
+      "file": "part_16.xlsx",
+      "rows": 20000,
+      "bytes": 655951,
+      "sha256": "13bd62c68b44426fb2cb85292e065f30cf9ca3decd71055cec53ee0296b28d56"
+    },
+    {
+      "file": "part_17.xlsx",
+      "rows": 20000,
+      "bytes": 653410,
+      "sha256": "d39919ba348ae0055686fa3f0a5ad9462db0f3044541688c207e94ba21dcbb76"
+    },
+    {
+      "file": "part_18.xlsx",
+      "rows": 20000,
+      "bytes": 659968,
+      "sha256": "b8f7af8ee3d77c2a4becbe8b0f1c829df5bd0f83795638c1835b2765dd75a09e"
+    },
+    {
+      "file": "part_19.xlsx",
+      "rows": 20000,
+      "bytes": 651523,
+      "sha256": "6e1c0a90c0067323ade97969c0f8b32b3a9a6c274c47fdfb5cbef3433a9ff3ff"
+    },
+    {
+      "file": "part_20.xlsx",
+      "rows": 20000,
+      "bytes": 656221,
+      "sha256": "094e366a1da0015f74a4f8cb498c8f3fbe52e0beeb001b6eaa58a4fd44f945aa"
+    },
+    {
+      "file": "part_21.xlsx",
+      "rows": 20000,
+      "bytes": 642010,
+      "sha256": "63d4a9c89e7ca46dece878afc85fe7efb02659aad4b3bf3d18fb4daaf5b48281"
+    },
+    {
+      "file": "part_22.xlsx",
+      "rows": 20000,
+      "bytes": 641222,
+      "sha256": "acbb93958ee342be114eae4f5d004e4439ad9ba9bd5d6d1d5f26e63f36bcde00"
+    },
+    {
+      "file": "part_23.xlsx",
+      "rows": 20000,
+      "bytes": 654170,
+      "sha256": "3194b2ef19a11983bfbb76b0b3566722106d882aaaf6fe8617c3ad244c8b6283"
+    },
+    {
+      "file": "part_24.xlsx",
+      "rows": 20000,
+      "bytes": 646685,
+      "sha256": "2aacf14ba12fd9911d84eefa7ca03bfd05439250cd39c5d28e9a71f569116471"
+    },
+    {
+      "file": "part_25.xlsx",
+      "rows": 9613,
+      "bytes": 321356,
+      "sha256": "63b4df99abbeedf78bcefe9889310a29494b88ffd5756e3d0e49882d881884aa"
+    }
+  ],
+  "rows": 489613,
+  "unique_bills": 205334,
+  "unique_codes": 473614,
+  "unique_bill_code_pairs": 489582,
+  "unique_exact_rows": 489613,
+  "bill_time_min": "2026-07-23 00:02:14",
+  "bill_time_max": "2026-10-11 23:52:04",
+  "bills_with_multiple_times": 14,
+  "codes_with_multiple_bills": 3562,
+  "numeric_code_cells": 0,
+  "validation_issues": {},
+  "bill_shapes": {
+    "DDDDDDDDDDDDDD_DDDDD_D": 440937,
+    "DDDDDDDDDDDDDDDDDDDD_D": 4937,
+    "DDDDDDDDDDDDDDDDDDDD_DD": 138,
+    "DDDDDDDDDDDDDD_DDDD_D": 39519,
+    "DDDDDDDDDDDDDD_DD_D": 454,
+    "DDDDDDDDDDDDDD_DDD_D": 3602,
+    "DDDDDDDDDDDDDD_D_D": 24,
+    "DDDDDDDDDDDDDDDDDDDD_DDD": 2
+  },
+  "per_day": [
+    {
+      "date": "2026-07-23",
+      "rows": 5388,
+      "bills": 2224,
+      "codes": 5243
+    },
+    {
+      "date": "2026-07-24",
+      "rows": 5484,
+      "bills": 2231,
+      "codes": 5375
+    },
+    {
+      "date": "2026-07-25",
+      "rows": 4325,
+      "bills": 1814,
+      "codes": 4233
+    },
+    {
+      "date": "2026-07-26",
+      "rows": 3992,
+      "bills": 1745,
+      "codes": 3936
+    },
+    {
+      "date": "2026-07-27",
+      "rows": 6490,
+      "bills": 2762,
+      "codes": 6297
+    },
+    {
+      "date": "2026-07-28",
+      "rows": 5186,
+      "bills": 2145,
+      "codes": 5058
+    },
+    {
+      "date": "2026-07-29",
+      "rows": 5794,
+      "bills": 2475,
+      "codes": 5612
+    },
+    {
+      "date": "2026-07-30",
+      "rows": 4541,
+      "bills": 1984,
+      "codes": 4415
+    },
+    {
+      "date": "2026-07-31",
+      "rows": 5414,
+      "bills": 2279,
+      "codes": 5301
+    },
+    {
+      "date": "2026-08-01",
+      "rows": 8874,
+      "bills": 3312,
+      "codes": 8749
+    },
+    {
+      "date": "2026-08-02",
+      "rows": 5470,
+      "bills": 2178,
+      "codes": 5429
+    },
+    {
+      "date": "2026-08-03",
+      "rows": 7907,
+      "bills": 3081,
+      "codes": 7780
+    },
+    {
+      "date": "2026-08-04",
+      "rows": 5438,
+      "bills": 2269,
+      "codes": 5320
+    },
+    {
+      "date": "2026-08-05",
+      "rows": 6031,
+      "bills": 2484,
+      "codes": 5886
+    },
+    {
+      "date": "2026-08-06",
+      "rows": 5474,
+      "bills": 2272,
+      "codes": 5357
+    },
+    {
+      "date": "2026-08-07",
+      "rows": 5384,
+      "bills": 2219,
+      "codes": 5253
+    },
+    {
+      "date": "2026-08-08",
+      "rows": 4899,
+      "bills": 2107,
+      "codes": 4782
+    },
+    {
+      "date": "2026-08-09",
+      "rows": 5021,
+      "bills": 2153,
+      "codes": 4935
+    },
+    {
+      "date": "2026-08-10",
+      "rows": 7533,
+      "bills": 3103,
+      "codes": 7404
+    },
+    {
+      "date": "2026-08-11",
+      "rows": 5770,
+      "bills": 2353,
+      "codes": 5677
+    },
+    {
+      "date": "2026-08-12",
+      "rows": 5164,
+      "bills": 2365,
+      "codes": 4973
+    },
+    {
+      "date": "2026-08-13",
+      "rows": 5892,
+      "bills": 2458,
+      "codes": 5757
+    },
+    {
+      "date": "2026-08-14",
+      "rows": 6173,
+      "bills": 2544,
+      "codes": 6077
+    },
+    {
+      "date": "2026-08-15",
+      "rows": 4031,
+      "bills": 1877,
+      "codes": 3935
+    },
+    {
+      "date": "2026-08-16",
+      "rows": 4549,
+      "bills": 1983,
+      "codes": 4408
+    },
+    {
+      "date": "2026-08-17",
+      "rows": 6992,
+      "bills": 3025,
+      "codes": 6692
+    },
+    {
+      "date": "2026-08-18",
+      "rows": 6241,
+      "bills": 2574,
+      "codes": 6135
+    },
+    {
+      "date": "2026-08-19",
+      "rows": 5231,
+      "bills": 2241,
+      "codes": 5059
+    },
+    {
+      "date": "2026-08-20",
+      "rows": 5494,
+      "bills": 2297,
+      "codes": 5408
+    },
+    {
+      "date": "2026-08-21",
+      "rows": 4928,
+      "bills": 2067,
+      "codes": 4845
+    },
+    {
+      "date": "2026-08-22",
+      "rows": 3898,
+      "bills": 1793,
+      "codes": 3768
+    },
+    {
+      "date": "2026-08-23",
+      "rows": 4262,
+      "bills": 1913,
+      "codes": 4156
+    },
+    {
+      "date": "2026-08-24",
+      "rows": 6924,
+      "bills": 3082,
+      "codes": 6697
+    },
+    {
+      "date": "2026-08-25",
+      "rows": 5531,
+      "bills": 2441,
+      "codes": 5357
+    },
+    {
+      "date": "2026-08-26",
+      "rows": 6059,
+      "bills": 2718,
+      "codes": 5785
+    },
+    {
+      "date": "2026-08-27",
+      "rows": 5171,
+      "bills": 2277,
+      "codes": 4988
+    },
+    {
+      "date": "2026-08-28",
+      "rows": 5253,
+      "bills": 2210,
+      "codes": 5093
+    },
+    {
+      "date": "2026-08-29",
+      "rows": 4633,
+      "bills": 1999,
+      "codes": 4491
+    },
+    {
+      "date": "2026-08-30",
+      "rows": 4329,
+      "bills": 2044,
+      "codes": 4143
+    },
+    {
+      "date": "2026-08-31",
+      "rows": 6501,
+      "bills": 2951,
+      "codes": 6254
+    },
+    {
+      "date": "2026-09-01",
+      "rows": 12777,
+      "bills": 4396,
+      "codes": 12631
+    },
+    {
+      "date": "2026-09-02",
+      "rows": 9441,
+      "bills": 3574,
+      "codes": 9274
+    },
+    {
+      "date": "2026-09-03",
+      "rows": 7797,
+      "bills": 3028,
+      "codes": 7628
+    },
+    {
+      "date": "2026-09-04",
+      "rows": 7418,
+      "bills": 2833,
+      "codes": 7275
+    },
+    {
+      "date": "2026-09-05",
+      "rows": 5706,
+      "bills": 2509,
+      "codes": 5505
+    },
+    {
+      "date": "2026-09-06",
+      "rows": 5756,
+      "bills": 2485,
+      "codes": 5598
+    },
+    {
+      "date": "2026-09-07",
+      "rows": 8267,
+      "bills": 3333,
+      "codes": 8043
+    },
+    {
+      "date": "2026-09-08",
+      "rows": 7481,
+      "bills": 2997,
+      "codes": 7355
+    },
+    {
+      "date": "2026-09-09",
+      "rows": 7834,
+      "bills": 3245,
+      "codes": 7655
+    },
+    {
+      "date": "2026-09-10",
+      "rows": 6176,
+      "bills": 2707,
+      "codes": 6042
+    },
+    {
+      "date": "2026-09-11",
+      "rows": 5639,
+      "bills": 2403,
+      "codes": 5509
+    },
+    {
+      "date": "2026-09-12",
+      "rows": 4768,
+      "bills": 2115,
+      "codes": 4640
+    },
+    {
+      "date": "2026-09-13",
+      "rows": 5758,
+      "bills": 2673,
+      "codes": 5584
+    },
+    {
+      "date": "2026-09-14",
+      "rows": 8574,
+      "bills": 3435,
+      "codes": 8360
+    },
+    {
+      "date": "2026-09-15",
+      "rows": 6463,
+      "bills": 2857,
+      "codes": 6305
+    },
+    {
+      "date": "2026-09-16",
+      "rows": 6634,
+      "bills": 2859,
+      "codes": 6491
+    },
+    {
+      "date": "2026-09-17",
+      "rows": 5944,
+      "bills": 2583,
+      "codes": 5841
+    },
+    {
+      "date": "2026-09-18",
+      "rows": 5581,
+      "bills": 2419,
+      "codes": 5458
+    },
+    {
+      "date": "2026-09-19",
+      "rows": 4331,
+      "bills": 2055,
+      "codes": 4199
+    },
+    {
+      "date": "2026-09-20",
+      "rows": 4366,
+      "bills": 1921,
+      "codes": 4232
+    },
+    {
+      "date": "2026-09-21",
+      "rows": 6658,
+      "bills": 2864,
+      "codes": 6480
+    },
+    {
+      "date": "2026-09-22",
+      "rows": 5709,
+      "bills": 2428,
+      "codes": 5589
+    },
+    {
+      "date": "2026-09-23",
+      "rows": 6540,
+      "bills": 2671,
+      "codes": 6397
+    },
+    {
+      "date": "2026-09-24",
+      "rows": 5599,
+      "bills": 2474,
+      "codes": 5484
+    },
+    {
+      "date": "2026-09-25",
+      "rows": 3866,
+      "bills": 1729,
+      "codes": 3776
+    },
+    {
+      "date": "2026-09-26",
+      "rows": 4234,
+      "bills": 1955,
+      "codes": 4063
+    },
+    {
+      "date": "2026-09-27",
+      "rows": 4467,
+      "bills": 1895,
+      "codes": 4373
+    },
+    {
+      "date": "2026-09-28",
+      "rows": 8056,
+      "bills": 3227,
+      "codes": 7888
+    },
+    {
+      "date": "2026-09-29",
+      "rows": 6932,
+      "bills": 2712,
+      "codes": 6811
+    },
+    {
+      "date": "2026-09-30",
+      "rows": 7687,
+      "bills": 3085,
+      "codes": 7561
+    },
+    {
+      "date": "2026-10-01",
+      "rows": 10669,
+      "bills": 4044,
+      "codes": 10514
+    },
+    {
+      "date": "2026-10-02",
+      "rows": 7532,
+      "bills": 2963,
+      "codes": 7400
+    },
+    {
+      "date": "2026-10-03",
+      "rows": 4800,
+      "bills": 2130,
+      "codes": 4710
+    },
+    {
+      "date": "2026-10-04",
+      "rows": 5080,
+      "bills": 2259,
+      "codes": 4938
+    },
+    {
+      "date": "2026-10-05",
+      "rows": 6207,
+      "bills": 2788,
+      "codes": 5997
+    },
+    {
+      "date": "2026-10-06",
+      "rows": 6344,
+      "bills": 2681,
+      "codes": 6193
+    },
+    {
+      "date": "2026-10-07",
+      "rows": 6241,
+      "bills": 2644,
+      "codes": 6069
+    },
+    {
+      "date": "2026-10-08",
+      "rows": 7494,
+      "bills": 3101,
+      "codes": 7311
+    },
+    {
+      "date": "2026-10-09",
+      "rows": 7058,
+      "bills": 2794,
+      "codes": 6861
+    },
+    {
+      "date": "2026-10-10",
+      "rows": 4604,
+      "bills": 2052,
+      "codes": 4464
+    },
+    {
+      "date": "2026-10-11",
+      "rows": 5454,
+      "bills": 2362,
+      "codes": 5350
+    }
+  ],
+  "per_month": [
+    {
+      "month": "2026-07",
+      "rows": 46614,
+      "bills": 19659
+    },
+    {
+      "month": "2026-08",
+      "rows": 175057,
+      "bills": 74390
+    },
+    {
+      "month": "2026-09",
+      "rows": 196459,
+      "bills": 81467
+    },
+    {
+      "month": "2026-10",
+      "rows": 71483,
+      "bills": 29818
+    }
+  ],
+  "elapsed_seconds": 35.65,
+  "source_files_changed": false,
+  "live_queries": 0,
+  "repeated_exact_rows": 0,
+  "repeated_bill_code_rows": 31
+}

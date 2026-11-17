@@ -1,0 +1,18 @@
+{
+  "ssh_exit_code": 0,
+  "captured_at": "2026-10-25T09:45:14.181168+00:00",
+  "manual_uploads": 0,
+  "source_database_queries": 0,
+  "remote_changes": 0,
+  "snapshot": {
+    "show_exit_code": 0,
+    "source_unescaped_percent_s": true,
+    "source_escaped_percent_s": false,
+    "effective_format_found": true,
+    "effective_printf_format": "/bin/sh\\n",
+    "dummy_stripped_equals_input": false,
+    "dummy_equals_shell_path": true,
+    "dummy_ends_newline": true,
+    "dummy_ends_literal_backslash_n": false
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "host": "app",
+  "phase": "system",
+  "exit_code": 0,
+  "captured_at": "2026-10-27T06:27:52.062138+00:00",
+  "result": {
+    "utc": "2026-10-27T06:27:51.811340+00:00",
+    "release": "stability-20261027T030000Z-r2",
+    "send_authorization": {
+      "http_status": 200,
+      "status": "APPROVED",
+      "valid_until": "2026-11-21T16:00:00",
+      "scope": {
+        "window_begin": "2026-10-24T00:00:00+08:00",
+        "window_end": "2026-11-23T00:00:00+08:00",
+        "pharmacies": [
+          "050121",
+          "050102",
+          "050101",
+          "050116",
+          "050117"
+        ],
+        "max_bills": 80000
+      },
+      "quota": {
+        "used": 4180,
+        "max_bills": 80000
+      }
+    },
+    "daily_timer": "NextElapseUSecRealtime=Wed 2026-10-28 06:10:00 CST\nActiveState=active\nSubState=waiting",
+    "original_timer_run": "Result=exit-code\nExecMainStatus=3\nActiveState=failed\nSubState=failed",
+    "containers": "blyb-nginx-1 Up 30 minutes (healthy)\n<worker-container> Up 30 minutes (healthy)\nblyb-storage-1 Up 30 minutes (healthy)\nblyb-exchange-1 Up 30 minutes (healthy)\nblyb-core-1 Up 30 minutes (healthy)\nblyb-db-1 Up 31 minutes (healthy)",
+    "resources": "blyb-nginx-1 CPU=0.00% MEM=13.39MiB / 30.8GiB\n<worker-container> CPU=0.07% MEM=72.58MiB / 30.8GiB\nblyb-storage-1 CPU=0.17% MEM=74.23MiB / 30.8GiB\nblyb-exchange-1 CPU=0.13% MEM=70.8MiB / 30.8GiB\nblyb-core-1 CPU=1.83% MEM=143.2MiB / 30.8GiB\nblyb-db-1 CPU=0.02% MEM=85.79MiB / 30.8GiB",
+    "disk": "Filesystem                  Size  Used Avail Use% Mounted on\n/dev/mapper/openeuler-root   69G  6.6G   59G  11% /\n/dev/mapper/openeuler-home  898G  9.2G  844G   2% /home\n/dev/mapper/openeuler-root   69G  6.6G   59G  11% /",
+    "queue": {
+      "overdue_leases": 0,
+      "window_attempts": [
+        {
+          "http_status": 200,
+          "outcome": "ACCEPTED",
+          "n": 1355
+        },
+        {
+          "http_status": 200,
+          "outcome": "UNKNOWN",
+          "n": 1
+        }
+      ],
+      "new_failed_jobs": null,
+      "unpublished_outbox": 0
+    }
+  }
+}

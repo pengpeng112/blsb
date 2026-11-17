@@ -1,0 +1,16 @@
+{
+  "captured_at": "2026-10-25T09:57:42.331517+00:00",
+  "ssh_exit_code": 0,
+  "result": {
+    "installed": true,
+    "started": true,
+    "business_containers_restarted": 0,
+    "backup_dir": "/root/blyb-timer-backups/20261025T095741Z",
+    "public_dummy_passed": true,
+    "hashes": {
+      "daily_upload_driver.py": "579c07fc2cc22f53d2bc2d1415094d5171dfdb1a08121633aec1fbbbf76e0073",
+      "blyb-daily-upload.service": "594d7fa62146133d22f3e0b29d9c2bace16b99a67234c8a59622f3fbe1b9e9eb"
+    },
+    "service_state": "activating"
+  }
+}

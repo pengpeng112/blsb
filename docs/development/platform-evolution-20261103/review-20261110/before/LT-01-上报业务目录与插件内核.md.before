@@ -1,0 +1,330 @@
+# LT-01 上报业务目录（ReportTarget）与插件内核整治
+
+> 预计：1 个执行日。依赖：无。动生产：否。迁移：014。
+> 先读 [README §五 通则](README.md#五所有长任务通用的执行通则执行-ai-必读每个-lt-文件都引用本节)。
+
+## 0. 为什么做
+
+系统要"兼容多个上报要求"，首先得有一个**一级实体**描述"本院要报的每一项"。现在只有 Destination 和插件，
+回答不了：本院一共要报几个？每个归谁负责？谁是唯一推送方（防原厂家/crbsb 双推）？处于开发/Mock/试点/生产哪个阶段？
+今天报得怎么样？同时核心代码里写死了病理逻辑，新增业务要改核心——这违背 v0.4 ADR-01。
+
+## 1. 本任务交付物（全部完成才算 completed）
+
+1. 迁移 014 + 模型 `ReportTarget`（上报业务目录表）。
+2. 插件 manifest 文件化：每个插件目录下 `manifest.json`，`app_runtime` 自动发现；`PLUGIN_MANIFESTS` 保留为派生字典（兼容旧代码/测试）。
+3. 领域钩子 `plugins/domain_hooks.py`：`overview_contrib`、`target_summary` 两个钩子先落地；`build_runtime` 去病理硬编码。
+4. 统一状态桶 `REPORT_BUCKETS`（contracts）+ 各插件状态→桶映射。
+5. API：上报业务目录 CRUD + 单业务摘要 + 全业务总览（6 个端点）。
+6. 种子：幂等写入 5 条上报业务（码上放心/传染病/医保电子病历/病理云/医保影像云）。
+7. 生产闸门函数 `assert_target_can_send_real(db, tenant_id, target_code)`。
+8. 测试 ≥ 25 个新用例；全量回归不新增失败；四类实施文档同步。
+
+## 2. 修改范围（登记 ai_session 时逐个 --scope）
+
+```
+implementation/packages/contracts/__init__.py          （只追加常量）
+implementation/packages/core_db/models.py              （只追加 ReportTarget 类）
+implementation/packages/core_db/migrate.py             （只追加 014）
+implementation/plugins/app_runtime.py
+implementation/plugins/domain_hooks.py                 （新建）
+implementation/plugins/report_targets.py               （新建：服务层+闸门+种子）
+implementation/plugins/domains/pathology/manifest.json （新建）
+implementation/plugins/domains/pathology/plugin.py     （只追加钩子登记）
+implementation/plugins/domains/pathology/hooks.py      （新建）
+implementation/plugins/domains/metrics/manifest.json   （新建）
+implementation/plugins/domains/drug_trace/manifest.json（新建）
+implementation/plugins/domains/drug_trace/plugin.py    （只追加钩子登记）
+implementation/plugins/domains/drug_trace/hooks.py     （新建，只读统计）
+implementation/apps/core_api/app.py                    （overview 改调钩子 + 挂新路由）
+implementation/apps/core_api/report_target_routes.py   （新建）
+implementation/apps/bootstrap.py 或 seed 脚本           （先查实际文件名，见步骤 6）
+implementation/tests/unit/test_report_target_*.py      （新建）
+implementation/tests/integration/test_report_target_api.py（新建）
+implementation/docs/实施状态矩阵.md 04-API目录对照矩阵.md 接口与设计差异.md 测试执行记录.md
+docs/ai/STATE.md docs/ai/BACKLOG.md docs/ai/HANDOFF.md docs/ai/sessions/LT-01-*.md
+数据上报/README.md
+```
+
+## 3. 步骤
+
+### 步骤 1：先读懂再动手（30 分钟，不写代码）
+
+依次打开并记笔记到交接文件"现状速记"一节：
+
+- `implementation/plugins/app_runtime.py`（全文 123 行）：`PLUGIN_MANIFESTS`、`load_registry`、`build_runtime`。
+- `implementation/plugins/plugin_registry.py`：旧兼容层，记下它导出哪些函数（`build_runtime`、`enqueue`、`apply_business_confirmation` 等）——**本任务不删它**。
+- `implementation/apps/core_api/app.py` 第 135—160 行（插件装配）、第 374—418 行（`/api/v1/admin/overview`）。
+- `implementation/plugins/domains/pathology/plugin.py`、`domains/drug_trace/plugin.py`、`domains/metrics/plugin.py`。
+- `implementation/packages/core_db/migrate.py` 中 `@register(13, ...)` 的完整写法（照抄风格）。
+- `implementation/packages/core_db/models.py` 中 `Destination`、`AlertEvent` 类（照抄列定义风格：`_pk()`、`TS`、JSON 列写法）。
+- 找出 drug_trace 已有的统计函数：在 `plugins/domains/drug_trace/service.py` 和 `routes.py` 里搜 `upload-stats`、`overview`、`summary`、`def .*stats`，记录函数名与返回结构。**钩子要复用这些函数，不要重写统计 SQL。**
+
+### 步骤 2：契约常量（contracts）
+
+在 `packages/contracts/__init__.py` 末尾**追加**（不改已有内容）：
+
+```python
+# ---- LT-01 上报业务目录 ----
+class TargetLifecycle:
+    PLANNED = "PLANNED"          # 已登记需求，未开发
+    DEVELOPING = "DEVELOPING"    # 开发中
+    MOCK_ONLY = "MOCK_ONLY"      # 只能发 Mock
+    PILOT = "PILOT"              # 试点（真实发送须逐次授权）
+    PRODUCTION = "PRODUCTION"    # 正式
+    SUSPENDED = "SUSPENDED"      # 暂停
+    RETIRED = "RETIRED"          # 下线
+    ALL = (PLANNED, DEVELOPING, MOCK_ONLY, PILOT, PRODUCTION, SUSPENDED, RETIRED)
+
+class TargetRuntimeKind:
+    PLATFORM = "PLATFORM"        # 由本平台插件推送
+    EXTERNAL = "EXTERNAL"        # 由平台外程序推送（如 inf_pusher），平台只读观测
+    MANUAL = "MANUAL"            # 人工上报，平台只登记
+    ALL = (PLATFORM, EXTERNAL, MANUAL)
+
+# 统一状态桶：所有插件把自己的状态映射到这 8 个桶，供驾驶舱/台账统一展示
+REPORT_BUCKETS = ("PENDING", "SENDING", "ACCEPTED", "CONFIRMED",
+                  "PARTIAL", "REJECTED", "UNKNOWN", "NOT_REPORTABLE")
+REPORT_BUCKET_LABELS = {
+    "PENDING": "待发送", "SENDING": "发送中", "ACCEPTED": "已受理(待确认)",
+    "CONFIRMED": "已确认", "PARTIAL": "部分成功", "REJECTED": "被拒绝",
+    "UNKNOWN": "结果未知", "NOT_REPORTABLE": "不上报",
+}
+# 通用 Submission 状态 → 桶
+SUBMISSION_STATE_TO_BUCKET = {
+    "PREPARED": "PENDING", "SENDING": "SENDING", "ACCEPTED": "ACCEPTED",
+    "CONFIRMED": "CONFIRMED", "PARTIAL": "PARTIAL", "REJECTED": "REJECTED",
+    "UNKNOWN": "UNKNOWN",
+}
+```
+
+先核对 `SubmissionState` 的实际取值（同文件内），若有额外状态，补进映射；**未映射的状态在统计时计入 `UNKNOWN` 并在返回里 `unmapped_states` 列出，不能静默丢弃**。
+
+### 步骤 3：模型 + 迁移 014
+
+`packages/core_db/models.py` 末尾追加 `ReportTarget`（列名照下表，类型风格照抄现有模型）：
+
+| 列 | 类型 | 说明 |
+|---|---|---|
+| id | `_pk()` | |
+| tenant_id | String(36), index | |
+| code | String(64) | 业务编码，租户内唯一（加 UniqueConstraint(tenant_id, code)） |
+| name | String(128) | 中文名 |
+| category | String(32) | 药品追溯/传染病/医保/病理/影像/其他 |
+| authority | String(128) | 主管/接收单位 |
+| plugin_key | String(64), default "" | 对应插件 key，可空 |
+| destination_id | String(36), nullable | 关联 Destination，可空 |
+| mode | String(16) | PUSH / PULL / HYBRID |
+| lifecycle | String(16) | TargetLifecycle |
+| runtime_kind | String(16) | TargetRuntimeKind |
+| owner_dept | String(64), default "" | 负责科室 |
+| contact | String(128), default "" | 联系人（只写姓名/科室，不写手机号） |
+| sole_pusher | String(16), default "UNCONFIRMED" | 唯一推送方确认：CONFIRMED / UNCONFIRMED / CONFLICT |
+| sole_pusher_note | Text, default "" | 例："原厂家程序 3503 仍在上传，待停" |
+| spec_docs | JSON, default list | 规范文件相对路径列表 |
+| readme_path | String(255), default "" | `数据上报/...README.md` |
+| schedule_note | String(255), default "" | 人读的频率说明（真实调度见 LT-04） |
+| extra | JSON, default dict | 预留 |
+| revision | Integer, default 1 | 每次更新 +1（乐观锁） |
+| created_at / updated_at | TS | |
+| updated_by | String(64), default "" | |
+
+`migrate.py` 追加：
+
+```python
+@register(14, "014_report_target")
+def _m014(conn):
+    # 只新增表，不改旧表；照 013 的建表方式写（Base.metadata 中只建 report_target）
+    ...
+```
+
+**校验**：新建一个 SQLite 空库跑迁移到最新；再跑一次确认幂等（不报错、不重复建）。照搬现有迁移测试的写法
+（`tests/` 里搜 `schema_migrations` 找到现成测试，把 14 加入期望列表；若现有测试断言"最新=13"，改成断言"包含 1—14"
+属于**合理更新期望**，要在交接里说明，不算削弱断言）。
+
+### 步骤 4：manifest 文件化
+
+为三个插件各建 `manifest.json`，内容从 `PLUGIN_MANIFESTS` 原样搬过去，并增加 `report_targets`、`ui` 字段：
+
+```json
+{
+  "key": "drug_trace",
+  "module": "domains.drug_trace.plugin",
+  "domain": "drug_trace",
+  "capabilities": ["collect", "prepare", "send", "query", "reconcile", "evidence"],
+  "description": "药品追溯（码上放心）领域插件；生产默认停用，须 DrugTraceProductionEvidence 显式批准",
+  "report_targets": ["drug_trace_alihealth"],
+  "ui": {"route": "/drugtrace", "menu_group": "上报业务", "menu_label": "码上放心"}
+}
+```
+
+（pathology：`report_targets: ["pathology_cloud"]`，ui route `/cases`；metrics：`report_targets: []`，ui 为 null。）
+
+改 `app_runtime.py`：
+
+```python
+_DOMAINS_DIR = Path(__file__).parent / "domains"
+
+def discover_manifests() -> dict[str, dict]:
+    out = {}
+    for mf in sorted(_DOMAINS_DIR.glob("*/manifest.json")):
+        data = json.loads(mf.read_text(encoding="utf-8"))
+        for k in ("key", "module", "domain", "capabilities", "description"):
+            if k not in data:
+                raise RuntimeError(f"manifest {mf} missing {k}")
+        if data["key"] in out:
+            raise RuntimeError(f"duplicate plugin key {data['key']}")
+        out[data["key"]] = data
+    return out
+
+PLUGIN_MANIFESTS: dict[str, dict] = discover_manifests()
+```
+
+要求：
+- `enabled_plugins()`、`load_registry()` 逻辑不变；`PLUGIN_MANIFESTS` 的 key 集合必须仍是 `{"pathology","metrics","drug_trace"}`（写测试断言）。
+- 新增 `test_manifest_discovery.py`：①三个 key 都在；②manifest 缺字段抛错（用 tmp_path 造坏 manifest，通过参数把目录传进去——所以 `discover_manifests` 加一个可选 `root` 参数）；③重复 key 抛错。
+- Docker 镜像会不会漏打 json？检查 `implementation/Dockerfile` 与 `.dockerignore` 是否 COPY 整个 plugins 目录；如果是按 `*.py` 拷贝，要把 json 加进去，并在交接里写明。
+
+### 步骤 5：领域钩子
+
+新建 `plugins/domain_hooks.py`：
+
+```python
+"""领域钩子：核心只通过钩子拿业务数据，不 import 任何具体领域模块。"""
+from dataclasses import dataclass, field
+
+HOOK_OVERVIEW = "hook.overview_contrib"     # fn(db, tenant_id) -> dict（合并进 /admin/overview）
+HOOK_TARGET_SUMMARY = "hook.target_summary" # fn(db, tenant_id, target_code, days) -> TargetSummary | None
+HOOK_BUILD_RUNTIME = "hook.build_runtime"   # 保留病理 runtime 语义
+
+@dataclass
+class TargetSummary:
+    target_code: str
+    window_days: int
+    buckets: dict[str, int]                 # 键必须 ⊆ REPORT_BUCKETS
+    daily: list[dict] = field(default_factory=list)  # [{"date":"2026-11-01","CONFIRMED":10,...}]
+    last_success_at: str | None = None      # ISO8601 UTC
+    backlog: int = 0                        # 待发送+发送中+未知
+    unmapped_states: dict[str, int] = field(default_factory=dict)
+    data_source: str = "platform"           # platform | external_ledger | none
+    note: str = ""
+```
+
+`PluginRegistry` 增加：
+
+```python
+def build_runtime(self, db, tenant_id, **kw):
+    fn = self.capability(HOOK_BUILD_RUNTIME) or self.capability("pathology.build_runtime")
+    ...（其余不变）
+
+def overview_contribs(self, db, tenant_id) -> dict:
+    merged = {}
+    for fn in self.capability_list(HOOK_OVERVIEW):
+        merged.update(fn(db, tenant_id))
+    return merged
+
+def target_summary(self, db, tenant_id, target_code, days):
+    for fn in self.capability_list(HOOK_TARGET_SUMMARY):
+        r = fn(db, tenant_id, target_code, days)
+        if r is not None:
+            return r
+    return None
+```
+
+病理插件：新建 `domains/pathology/hooks.py`，把 app.py overview 中 **`cases`、`cases_clinically_ready` 两个键的计算**搬进
+`overview_contrib(db, tenant_id)`；`plugin.py::register` 追加 `reg.attach(HOOK_OVERVIEW, overview_contrib)` 和
+`reg.attach(HOOK_BUILD_RUNTIME, build_runtime)`（保留原 `pathology.build_runtime` 附件不删）。
+
+app.py overview：删掉 `from domains.pathology.models import PathologyCase` 那两行，在返回字典里合并
+`**registry.overview_contribs(db, tid)`。**返回的键名、值必须与改前完全一致**（病理未启用时 `cases` 键缺失是可接受的新行为，
+但要写测试覆盖：metrics-only 进程调用 overview 不报错）。
+> 注意：app.py 有"旧兼容层"与"BLYB_PLUGINS"两条装配路径（第 140—156 行）。先弄清楚两条路径下拿到 registry 对象的方式，
+> 保证两条路径都能调用 `overview_contribs`；若旧兼容层没有 registry 对象，就在旧路径下调用 `app_runtime.load_registry(["pathology","metrics"])`
+> 得到等价对象——**以现有测试全绿为准**。
+
+药品插件：新建 `domains/drug_trace/hooks.py::target_summary(db, tenant_id, target_code, days)`：
+- `target_code != "drug_trace_alihealth"` 返回 None。
+- 复用步骤 1 找到的已有统计函数；把药品自己的状态（如 PREPARED/ACCEPTED/CONFIRMED/UNKNOWN/NOT_REPORTABLE/WAITING…）映射到 `REPORT_BUCKETS`，映射表写成模块级常量 `DRUG_TRACE_STATE_TO_BUCKET` 并加单测。
+- **只读**：不得调用任何会写库、入队或触网的函数。
+
+病理插件同样实现 `target_summary`（`pathology_cloud`），基于通用 `Submission` 表按 destination 统计；数据都是 Mock 时 `note="Mock 目的地数据"`。
+
+### 步骤 6：服务层、闸门、种子 —— `plugins/report_targets.py`
+
+```python
+def list_targets(db, tenant_id) -> list[ReportTarget]
+def get_target(db, tenant_id, code) -> ReportTarget            # 不存在抛 ApiError("NOT_FOUND")
+def upsert_target(db, tenant_id, data: dict, actor: str, expected_revision: int | None) -> ReportTarget
+    # 校验 lifecycle/runtime_kind/mode/sole_pusher 取值；expected_revision 不符抛 ApiError("CONFLICT")
+    # 写 AuditEvent（照抄 app.py 中已有审计写法，action="report_target.upsert"，记录前后 diff 的字段名，不记大字段全文）
+def assert_target_can_send_real(db, tenant_id, code) -> None:
+    # 真实（非 Mock）发送前统一调用：
+    # lifecycle ∈ {PILOT, PRODUCTION} 且 runtime_kind == PLATFORM 且 sole_pusher != "CONFLICT"
+    # 否则抛 ApiError("PROFILE_UNAPPROVED", 说明原因)
+def seed_default_targets(db, tenant_id) -> int:   # 幂等：已存在的 code 不覆盖，只补缺；返回新增条数
+```
+
+种子内容（**字段值照抄，不要自行发挥**）：
+
+| code | name | category | authority | plugin_key | mode | lifecycle | runtime_kind | sole_pusher | readme_path |
+|---|---|---|---|---|---|---|---|---|---|
+| drug_trace_alihealth | 码上放心药品追溯 | 药品追溯 | 阿里健康码上放心平台 | drug_trace | PUSH | PRODUCTION | PLATFORM | CONFLICT | 数据上报/1、码上放心平台/README.md |
+| inf_cdc_frontend | 传染病智能监测预警前置软件 | 传染病 | 国家疾控（前置软件 <frontend-host>） | infectious | PUSH | PRODUCTION | EXTERNAL | UNCONFIRMED | 数据上报/4、传染病病历数据上报/README.md |
+| medins_emr_sd | 山东医保电子病历上报 | 医保 | 山东省医疗保障信息平台 | medins_emr | PUSH | PLANNED | PLATFORM | UNCONFIRMED | 数据上报/2、医保电子病历上报/README.md |
+| pathology_cloud | 医保病理云索引 | 病理 | 医保病理云（协议未发布） | pathology | HYBRID | MOCK_ONLY | PLATFORM | UNCONFIRMED | 数据上报/3、病理上报/README.md |
+| medins_imaging_jn | 济南医保影像云索引 | 影像 | 济南市医保影像云 | "" | HYBRID | PLANNED | PLATFORM | UNCONFIRMED | 数据上报/5、医保影像云上报/README.md |
+
+`sole_pusher_note`：码上放心写"原厂家程序与本平台并行上传中（用户已确认正在上传，不得阻断现有使用；待信息科后续协调唯一推送方）"；
+传染病写"crbsb/FXHIS 是否并行推送待信息科确认（不得影响现有 inf_pusher 推送）"。`spec_docs` 填该业务目录下实际存在的规范文件相对路径（先 `Get-ChildItem` 核实，不存在的不写）。
+
+> [!WARNING]
+> **用户已明确指示：双上报风险登记仅用于台账展示与提醒，绝不能影响正在运行的药品与传染病上传！**
+> 码上放心 lifecycle=PRODUCTION 且 sole_pusher=CONFLICT，**本任务及后续任务严禁把 `assert_target_can_send_real` 接到药品追溯现有发送链路上**（药品有自己的 ProductionEvidence 门禁，在生产运行）。
+> 闸门只给 LT-03 之后的新通用发送路径（`generic_http_json` 等）使用，且即使在通用路径中也只拦截未获准的新目标，不得影响既有生产业务。在交接里写清楚这一点。
+
+种子调用位置：先查 `implementation/apps/` 下 `bootstrap.py`/`seed.py` 哪个在部署时执行（看 `deploy/compose/docker-compose.yml` 的 bootstrap 服务命令）。
+在 bootstrap 里追加一次 `seed_default_targets` 调用（幂等）；同时提供 CLI：`python -m apps.seed_report_targets --tenant <id>`（若 apps 不是包，照现有脚本的调用方式写）。
+
+### 步骤 7：API —— `apps/core_api/report_target_routes.py`
+
+照 `domains/drug_trace/routes.py::register(app, ...)` 的挂载方式写一个 `register(app, sf, auth, registry)`，在 app.py 中调用一次。
+
+| 方法 | 路径 | 角色 | 说明 |
+|---|---|---|---|
+| GET | /api/v1/report-targets | 任意登录 | 列表 |
+| GET | /api/v1/report-targets/{code} | 任意登录 | 详情 |
+| POST | /api/v1/report-targets | platform_admin | 新建（code 已存在→409 CONFLICT） |
+| PUT | /api/v1/report-targets/{code} | platform_admin, config_editor | 更新，body 必带 `revision` |
+| GET | /api/v1/report-targets/{code}/summary?days=7 | 任意登录 | 调钩子；days 限 1—90；无钩子返回 `data_source:"none"`，buckets 全 0，**不报 500** |
+| GET | /api/v1/report-center/overview?days=7 | 任意登录 | 所有 target 的 summary 数组 + 合计；单个 target 钩子抛异常时该项 `error` 字段写错误码，其余照常返回 |
+
+返回格式用 app.py 现有的 `ok(data, request_id)` 与错误处理约定。租户一律取 `principal.tenant_id`，**不接受客户端传 tenant**。
+
+### 步骤 8：测试（≥25 个用例）
+
+- `tests/unit/test_report_target_contracts.py`：桶常量、映射完整性（`SubmissionState` 每个值都有映射）。
+- `tests/unit/test_manifest_discovery.py`：见步骤 4。
+- `tests/unit/test_report_target_service.py`：upsert 校验非法枚举、revision 冲突、审计写入、种子幂等（跑两次第二次新增 0）、闸门 6 种组合（PLANNED/MOCK_ONLY/PILOT/PRODUCTION × PLATFORM/EXTERNAL × CONFLICT）。
+- `tests/unit/test_drug_trace_bucket_map.py`：药品状态映射；未知状态进 unmapped。
+- `tests/integration/test_report_target_api.py`：6 个端点正常/越权（operator 调 POST → 403）/跨租户不可见/summary days=0 与 days=91 → 400/钩子抛异常时 overview 局部 error。
+- 回归：`/api/v1/admin/overview` 键集合与改前一致（先在改前跑一次把键集合写进测试常量）。
+
+### 步骤 9：收尾
+
+按 README §5.5。四类实施文档写明：新增实体 ReportTarget、6 个 API、迁移 014、manifest 机制、钩子机制、闸门**尚未接入药品链路**。
+`数据上报/README.md` 索引表加一列或一段说明："平台内上报业务目录见 `/api/v1/report-targets`，编码对照：……"（列 5 个 code）。
+
+## 4. 验收清单（逐条在交接里打勾并附证据）
+
+- [ ] `python -m pytest tests/unit/test_manifest_discovery.py tests/unit/test_report_target_*.py tests/integration/test_report_target_api.py -q` 全过，新增用例 ≥25
+- [ ] 全量回归：失败数 ≤ 基线失败数，且无新失败项名
+- [ ] `test_review_probes.py` 结果与基线一致
+- [ ] `grep -n "domains.pathology" apps/core_api/app.py` 的行数比改前少（overview 不再 import 病理），交接里写前后数字
+- [ ] 新空 SQLite 库迁移到 014 成功，重复执行幂等
+- [ ] 种子执行两次，第二次新增 0
+- [ ] 未修改禁改清单任一文件（`git status`/`git diff --stat` 贴进交接）
+
+## 5. 停止条件
+
+- 步骤 5 改 overview 导致超过 3 个既有测试失败且 1 小时内修不好 → 回退 overview 改动（保留钩子定义与其余交付），交接标注"overview 钩子化未完成"。
+- 不得为了通过测试修改既有测试的业务断言。

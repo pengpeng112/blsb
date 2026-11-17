@@ -1,0 +1,9 @@
+{
+  "rendered": false,
+  "reason": "BROWSER_TLS_OR_NETWORK_FAILURE",
+  "error_type": "Error",
+  "direct_tls": {
+    "error_type": "SSLEOFError",
+    "errno": 8
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "host": "app",
+  "phase": "health",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T13:32:10.584539+00:00",
+  "result": {
+    "dmz_mtls_health_status": 200,
+    "health": {
+      "status": "UP",
+      "service": "blyb-dmz-forwarder",
+      "upstream": "not_checked_by_health",
+      "active_upstream": 0,
+      "pending_handshakes": 1,
+      "rid": "c99ffa482d89"
+    },
+    "upstream_calls": 0,
+    "uploads": 0,
+    "business_writes": 0
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "total": 2200,
+  "valid": 1273,
+  "waiting": 927,
+  "progressing": true,
+  "new_uploads": 0,
+  "daily_batch_complete": false,
+  "links": 11,
+  "broken_links": [],
+  "readonly_remote_commands_exit0": true,
+  "application_tests_run": false
+}

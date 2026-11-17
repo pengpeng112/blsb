@@ -1,0 +1,11 @@
+[Unit]
+Description=BLYB terminal-row retention purge (job/outbox >14d, DTR-BATCH-FIX Fix5; dry-run logs counts, --apply deletes)
+After=docker.service
+
+[Service]
+Type=oneshot
+# 默认 --apply 模式（timer 场景）；手动巡检可改跑 purge_terminal_rows.sh 不带参（dry-run）。
+# 脚本路径 = 发行目录内 deploy/linux/purge_terminal_rows.sh，经 current 符号链接解析。
+ExecStart=/bin/bash /opt/blyb/current/implementation/deploy/linux/purge_terminal_rows.sh --apply --days 14
+TimeoutStartSec=30min
+# 输出进 journal：journalctl -u blyb-purge-terminal.service

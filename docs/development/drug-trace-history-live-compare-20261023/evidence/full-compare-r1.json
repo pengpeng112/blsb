@@ -1,0 +1,7785 @@
+{
+  "channel": "sjzc/<relay-jump>/data-asset-api/OracleConnector.execute_readonly",
+  "source_writes": 0,
+  "uploads": 0,
+  "registration_changes": 0,
+  "queries": {
+    "identity": {
+      "ok": true,
+      "sql": "SELECT USER AS LOGIN_USER,SYS_CONTEXT('USERENV','SERVICE_NAME') AS SERVICE_NAME FROM DUAL",
+      "params": null,
+      "rows_returned": 1,
+      "truncated": false,
+      "rows": [
+        {
+          "LOGIN_USER": "BLYB_DRUGTRACE",
+          "SERVICE_NAME": "his"
+        }
+      ]
+    },
+    "privileges": {
+      "ok": true,
+      "sql": "SELECT PRIVILEGE FROM SESSION_PRIVS ORDER BY PRIVILEGE",
+      "params": null,
+      "rows_returned": 1,
+      "truncated": false,
+      "rows": [
+        {
+          "PRIVILEGE": "CREATE SESSION"
+        }
+      ]
+    },
+    "roles": {
+      "ok": true,
+      "sql": "SELECT ROLE FROM SESSION_ROLES ORDER BY ROLE",
+      "params": null,
+      "rows_returned": 0,
+      "truncated": false,
+      "rows": []
+    },
+    "grants": {
+      "ok": true,
+      "sql": "SELECT OWNER,TABLE_NAME,PRIVILEGE,GRANTABLE FROM USER_TAB_PRIVS_RECD ORDER BY OWNER,TABLE_NAME,PRIVILEGE",
+      "params": null,
+      "rows_returned": 2,
+      "truncated": false,
+      "rows": [
+        {
+          "OWNER": "PHARMACY",
+          "TABLE_NAME": "V_DRUG_TRACE_BILL",
+          "PRIVILEGE": "SELECT",
+          "GRANTABLE": "NO"
+        },
+        {
+          "OWNER": "PHARMACY",
+          "TABLE_NAME": "V_DRUG_TRACE_CODE",
+          "PRIVILEGE": "SELECT",
+          "GRANTABLE": "NO"
+        }
+      ]
+    },
+    "view_definitions": {
+      "ok": true,
+      "sql": "SELECT VIEW_NAME,TEXT FROM ALL_VIEWS WHERE OWNER='PHARMACY' AND VIEW_NAME IN ('V_DRUG_TRACE_CODE','V_DRUG_TRACE_BILL') ORDER BY VIEW_NAME",
+      "params": null,
+      "rows_returned": 2,
+      "truncated": false,
+      "rows": [
+        {
+          "VIEW_NAME": "V_DRUG_TRACE_BILL",
+          "TEXT": "SELECT\n    CAST('HIS' AS VARCHAR2(16)) AS source_system,\n\n    TO_CHAR(M.PRESC_DATE, 'YYYY-MM-DD HH24:MI:SS')\n        || '|' || TO_CHAR(M.PRESC_NO)\n        || '|' || M.DISPENSARY AS source_bill_id,\n\n    TO_CHAR(M.PRESC_NO) AS source_bill_no,\n\n    TO_CHAR(M.PRESC_DATE, 'YYYYMMDDHH24MISS')\n        || '_' || TO_CHAR(M.PRESC_NO)\n        || '_' || M.DISPENSARY\n        || '_' || TO_CHAR(M.DISPENSING_DATETIME, 'YYYYMMDDHH24MISS')\n        || '_' || NVL(TO_CHAR(M.PRESC_SOURCE), 'NULL')\n        || '_' || NVL(TO_CHAR(M.FLAG), 'NULL') || '_R10_RF_' || NVL(TO_CHAR(M.REFUND_FLAG), 'NULL') AS source_revision,\n\n    CASE WHEN M.PRESC_SOURCE = 0 AND M.FLAG = 1 AND M.DISPENSING_DATETIME IS NOT NULL AND NVL(M.REFUND_FLAG, 0) = 0 THEN 'PATIENT_DISPENSE' ELSE 'UNKNOWN' END AS business_kind,\n    M.DISPENSARY AS pharmacy_code,\n    CAST(NULL AS VARCHAR2(64)) AS warehouse_code,\n    CAST(NULL AS VARCHAR2(64)) AS supplier_code,\n    M.DISPENSING_DATETIME AS bill_time,\n    M.DISPENSING_DATETIME AS updated_at,\n    CAST(NULL AS VARCHAR2(64)) AS source_event_seq,\n    CASE WHEN M.PRESC_SOURCE = 0 AND M.FLAG = 1 AND M.DISPENSING_DATETIME IS NOT NULL AND NVL(M.REFUND_FLAG, 0) = 0 THEN 1 ELSE CAST(NULL AS NUMBER(1)) END AS finalized,\n    CASE WHEN M.PRESC_SOURCE = 0 AND M.FLAG = 1 AND M.DISPENSING_DATETIME IS NOT NULL AND NVL(M.REFUND_FLAG, 0) = 0 THEN 0 ELSE CAST(NULL AS NUMBER(1)) END AS is_void,\n    CAST(NULL AS NUMBER(12)) AS expected_code_count,\n    CAST(NULL AS VARCHAR2(64)) AS patient_ref,\n    CAST(NULL AS VARCHAR2(64)) AS encounter_ref,\n\n    'PRESC_SOURCE=' || TO_CHAR(M.PRESC_SOURCE)\n        || CHR(59) || 'FLAG=' || TO_CHAR(M.FLAG)\n        AS source_bill_kind_raw\n\nFROM PHARMACY.DRUG_PRESC_MASTER M\nWITH READ ONLY\n"
+        },
+        {
+          "VIEW_NAME": "V_DRUG_TRACE_CODE",
+          "TEXT": "SELECT\n    CAST('HIS' AS VARCHAR2(16)) AS source_system,\n\n    TO_CHAR(M.PRESC_DATE, 'YYYY-MM-DD HH24:MI:SS')\n        || '|' || TO_CHAR(M.PRESC_NO)\n        || '|' || M.DISPENSARY AS source_bill_id,\n\n    M.DISPENSARY AS pharmacy_code,\n    CASE WHEN M.PRESC_SOURCE = 0 AND M.FLAG = 1 AND M.DISPENSING_DATETIME IS NOT NULL AND NVL(M.REFUND_FLAG, 0) = 0 THEN 'PATIENT_DISPENSE' ELSE 'UNKNOWN' END AS business_kind,\n\n    TO_CHAR(M.PRESC_DATE, 'YYYYMMDDHH24MISS')\n        || '_' || TO_CHAR(M.PRESC_NO)\n        || '_' || M.DISPENSARY\n        || '_' || TO_CHAR(M.DISPENSING_DATETIME, 'YYYYMMDDHH24MISS')\n        || '_' || NVL(TO_CHAR(M.PRESC_SOURCE), 'NULL')\n        || '_' || NVL(TO_CHAR(M.FLAG), 'NULL') || '_R10_RF_' || NVL(TO_CHAR(M.REFUND_FLAG), 'NULL') AS source_revision,\n\n    T.PRESC_DETAILID AS source_line_id,\n    T.RECORD_ID AS source_code_record_id,\n    T.T_TRACE_CODE AS trace_code,\n    CAST(NULL AS NUMBER(20,6)) AS quantity,\n    CAST(NULL AS VARCHAR2(32)) AS unit,\n    CAST(NULL AS VARCHAR2(16)) AS code_level,\n    CAST(NULL AS VARCHAR2(255)) AS parent_code,\n    T.MODIFY_TIME AS updated_at,\n    T.IS_DELETED AS is_deleted,\n    T.F_TRACE_CODE AS f_trace_code,\n    T.S_TRACE_CODE AS s_trace_code,\n    T.T_TRACE_CODE AS t_trace_code,\n    M.DISPENSING_DATETIME AS bill_time\n\nFROM DRUG_USER.MED_TRACE_RECORD T\nJOIN PHARMACY.DRUG_PRESC_MASTER M\n  ON T.TRACE_BILLNO = TO_CHAR(M.PRESC_NO)\n AND T.PRESC_DATE = M.PRESC_DATE\n AND T.STORE_CODE = M.DISPENSARY\n\nWHERE T.IN_OUT_TYPE = 'OUT'\nWITH READ ONLY\n"
+        }
+      ]
+    },
+    "quality_header_0": {
+      "ok": true,
+      "sql": "SELECT source_system,source_bill_id,source_revision,business_kind,pharmacy_code,bill_time,finalized,is_void,expected_code_count FROM PHARMACY.V_DRUG_TRACE_BILL WHERE source_system=:ss AND source_bill_id=:bid AND business_kind=:kind AND pharmacy_code=:pharmacy AND bill_time=:bt AND ROWNUM<=3",
+      "params": "[business key retained remotely]",
+      "rows_returned": 1,
+      "truncated": false
+    },
+    "quality_codes_0": {
+      "ok": true,
+      "sql": "SELECT source_line_id,source_code_record_id,trace_code,is_deleted,quantity,unit,code_level,parent_code,f_trace_code,s_trace_code,t_trace_code FROM PHARMACY.V_DRUG_TRACE_CODE WHERE source_system=:ss AND source_bill_id=:bid AND business_kind=:kind AND pharmacy_code=:pharmacy AND bill_time=:bt AND ROWNUM<=501",
+      "params": "[business key retained remotely]",
+      "rows_returned": 1,
+      "truncated": false
+    },
+    "quality_header_2": {
+      "ok": true,
+      "sql": "SELECT source_system,source_bill_id,source_revision,business_kind,pharmacy_code,bill_time,finalized,is_void,expected_code_count FROM PHARMACY.V_DRUG_TRACE_BILL WHERE source_system=:ss AND source_bill_id=:bid AND business_kind=:kind AND pharmacy_code=:pharmacy AND bill_time=:bt AND ROWNUM<=3",
+      "params": "[business key retained remotely]",
+      "rows_returned": 1,
+      "truncated": false
+    },
+    "quality_codes_2": {
+      "ok": true,
+      "sql": "SELECT source_line_id,source_code_record_id,trace_code,is_deleted,quantity,unit,code_level,parent_code,f_trace_code,s_trace_code,t_trace_code FROM PHARMACY.V_DRUG_TRACE_CODE WHERE source_system=:ss AND source_bill_id=:bid AND business_kind=:kind AND pharmacy_code=:pharmacy AND bill_time=:bt AND ROWNUM<=501",
+      "params": "[business key retained remotely]",
+      "rows_returned": 12,
+      "truncated": false
+    }
+  },
+  "business_identifiers_returned": false,
+  "registration": {
+    "source_code": "his_source_<his_host_id>",
+    "host": "<his-host>",
+    "port": 1521,
+    "service": "his",
+    "write_policy": "medical_dict_push"
+  },
+  "authorization": "User explicitly authorized current daytime readonly comparison on 2026-10-23",
+  "batches": [
+    {
+      "batch": 0,
+      "codes": 100,
+      "rows": 127,
+      "seconds": 0.0229,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 1,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0935,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 2,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0274,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 3,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0275,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 4,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0286,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 5,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0266,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 6,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0283,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 7,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0178,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 8,
+      "codes": 500,
+      "rows": 1689,
+      "seconds": 0.0765,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 9,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.0252,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 10,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0227,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 11,
+      "codes": 500,
+      "rows": 1872,
+      "seconds": 0.0738,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 12,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0221,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 13,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0238,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 14,
+      "codes": 500,
+      "rows": 687,
+      "seconds": 0.0269,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 15,
+      "codes": 500,
+      "rows": 577,
+      "seconds": 0.0267,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 16,
+      "codes": 500,
+      "rows": 650,
+      "seconds": 0.033,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 17,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0195,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 18,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0224,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 19,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0246,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 20,
+      "codes": 500,
+      "rows": 616,
+      "seconds": 0.0343,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 21,
+      "codes": 500,
+      "rows": 528,
+      "seconds": 0.0232,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 22,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0228,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 23,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0177,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 24,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0205,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 25,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0225,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 26,
+      "codes": 500,
+      "rows": 515,
+      "seconds": 0.0253,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 27,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0239,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 28,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0216,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 29,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.02,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 30,
+      "codes": 500,
+      "rows": 507,
+      "seconds": 0.0204,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 31,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0205,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 32,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0217,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 33,
+      "codes": 500,
+      "rows": 506,
+      "seconds": 0.0203,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 34,
+      "codes": 500,
+      "rows": 507,
+      "seconds": 0.0206,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 35,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0214,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 36,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0195,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 37,
+      "codes": 500,
+      "rows": 550,
+      "seconds": 0.0282,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 38,
+      "codes": 500,
+      "rows": 511,
+      "seconds": 0.0204,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 39,
+      "codes": 500,
+      "rows": 506,
+      "seconds": 0.0186,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 40,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0224,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 41,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0221,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 42,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0202,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 43,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0186,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 44,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0212,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 45,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.019,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 46,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.0237,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 47,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0181,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 48,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0172,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 49,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.0194,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 50,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0187,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 51,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0184,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 52,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0256,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 53,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0197,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 54,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0232,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 55,
+      "codes": 500,
+      "rows": 510,
+      "seconds": 0.0272,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 56,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0216,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 57,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0196,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 58,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0203,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 59,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0213,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 60,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0187,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 61,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0205,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 62,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0198,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 63,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0207,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 64,
+      "codes": 500,
+      "rows": 621,
+      "seconds": 0.0321,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 65,
+      "codes": 500,
+      "rows": 505,
+      "seconds": 0.0238,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 66,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0176,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 67,
+      "codes": 500,
+      "rows": 747,
+      "seconds": 0.0358,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 68,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0211,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 69,
+      "codes": 500,
+      "rows": 560,
+      "seconds": 0.0297,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 70,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0203,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 71,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0196,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 72,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0165,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 73,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.017,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 74,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0184,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 75,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0196,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 76,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0246,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 77,
+      "codes": 500,
+      "rows": 508,
+      "seconds": 0.0298,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 78,
+      "codes": 500,
+      "rows": 505,
+      "seconds": 0.0205,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 79,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.0213,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 80,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0189,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 81,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0232,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 82,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.027,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 83,
+      "codes": 500,
+      "rows": 510,
+      "seconds": 0.1203,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 84,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0229,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 85,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0194,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 86,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0226,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 87,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0203,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 88,
+      "codes": 500,
+      "rows": 505,
+      "seconds": 0.0186,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 89,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0183,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 90,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.023,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 91,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0239,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 92,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0219,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 93,
+      "codes": 500,
+      "rows": 508,
+      "seconds": 0.021,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 94,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0209,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 95,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0251,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 96,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0289,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 97,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.026,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 98,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0244,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 99,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0227,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 100,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0244,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 101,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0281,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 102,
+      "codes": 500,
+      "rows": 506,
+      "seconds": 0.0231,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 103,
+      "codes": 500,
+      "rows": 752,
+      "seconds": 0.03,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 104,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0262,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 105,
+      "codes": 500,
+      "rows": 651,
+      "seconds": 0.044,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 106,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0212,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 107,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0218,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 108,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.022,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 109,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0207,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 110,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0192,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 111,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0176,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 112,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0188,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 113,
+      "codes": 500,
+      "rows": 689,
+      "seconds": 0.0263,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 114,
+      "codes": 500,
+      "rows": 505,
+      "seconds": 0.0271,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 115,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0252,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 116,
+      "codes": 500,
+      "rows": 519,
+      "seconds": 0.0318,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 117,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0199,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 118,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0184,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 119,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0197,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 120,
+      "codes": 500,
+      "rows": 529,
+      "seconds": 0.0272,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 121,
+      "codes": 500,
+      "rows": 507,
+      "seconds": 0.0217,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 122,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0259,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 123,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0233,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 124,
+      "codes": 500,
+      "rows": 624,
+      "seconds": 0.0276,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 125,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0191,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 126,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0189,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 127,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0176,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 128,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0188,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 129,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0158,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 130,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0232,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 131,
+      "codes": 500,
+      "rows": 578,
+      "seconds": 0.0267,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 132,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0207,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 133,
+      "codes": 500,
+      "rows": 517,
+      "seconds": 0.0222,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 134,
+      "codes": 500,
+      "rows": 524,
+      "seconds": 0.0222,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 135,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0197,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 136,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0171,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 137,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0204,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 138,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.0199,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 139,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0194,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 140,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0203,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 141,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0205,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 142,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0172,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 143,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0206,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 144,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.0195,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 145,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0189,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 146,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0175,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 147,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0212,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 148,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0248,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 149,
+      "codes": 500,
+      "rows": 508,
+      "seconds": 0.0259,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 150,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0191,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 151,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0181,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 152,
+      "codes": 500,
+      "rows": 519,
+      "seconds": 0.0187,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 153,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0172,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 154,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0206,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 155,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0204,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 156,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0191,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 157,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0204,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 158,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0211,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 159,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0177,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 160,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0171,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 161,
+      "codes": 500,
+      "rows": 1021,
+      "seconds": 0.0431,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 162,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0197,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 163,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0187,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 164,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0194,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 165,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0187,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 166,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.021,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 167,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.018,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 168,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.0176,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 169,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0227,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 170,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0245,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 171,
+      "codes": 500,
+      "rows": 543,
+      "seconds": 0.0218,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 172,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0199,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 173,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0184,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 174,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0196,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 175,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0189,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 176,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0228,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 177,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.0289,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 178,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0196,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 179,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0225,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 180,
+      "codes": 500,
+      "rows": 528,
+      "seconds": 0.0264,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 181,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0219,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 182,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0178,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 183,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0169,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 184,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0168,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 185,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0191,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 186,
+      "codes": 500,
+      "rows": 510,
+      "seconds": 0.0213,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 187,
+      "codes": 500,
+      "rows": 506,
+      "seconds": 0.0218,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 188,
+      "codes": 500,
+      "rows": 510,
+      "seconds": 0.0263,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 189,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.0236,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 190,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0185,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 191,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0205,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 192,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0242,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 193,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0169,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 194,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0193,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 195,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0179,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 196,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0172,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 197,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.017,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 198,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0175,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 199,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0179,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 200,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0221,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 201,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.022,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 202,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0222,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 203,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.0188,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 204,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0254,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 205,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0217,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 206,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0219,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 207,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0208,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 208,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.0231,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 209,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0174,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 210,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0201,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 211,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0221,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 212,
+      "codes": 500,
+      "rows": 559,
+      "seconds": 0.024,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 213,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0189,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 214,
+      "codes": 500,
+      "rows": 507,
+      "seconds": 0.0219,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 215,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0198,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 216,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0177,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 217,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0207,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 218,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0215,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 219,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0214,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 220,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.021,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 221,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0231,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 222,
+      "codes": 500,
+      "rows": 509,
+      "seconds": 0.0196,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 223,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0184,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 224,
+      "codes": 500,
+      "rows": 505,
+      "seconds": 0.0199,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 225,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0193,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 226,
+      "codes": 500,
+      "rows": 524,
+      "seconds": 0.0206,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 227,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0254,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 228,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.021,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 229,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0256,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 230,
+      "codes": 500,
+      "rows": 506,
+      "seconds": 0.0221,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 231,
+      "codes": 500,
+      "rows": 591,
+      "seconds": 0.0285,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 232,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0198,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 233,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0208,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 234,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0175,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 235,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0202,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 236,
+      "codes": 500,
+      "rows": 508,
+      "seconds": 0.0208,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 237,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.017,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 238,
+      "codes": 500,
+      "rows": 516,
+      "seconds": 0.026,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 239,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0239,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 240,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0213,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 241,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0184,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 242,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0198,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 243,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.017,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 244,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0175,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 245,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0181,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 246,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0213,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 247,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0175,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 248,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0187,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 249,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0184,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 250,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0206,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 251,
+      "codes": 500,
+      "rows": 507,
+      "seconds": 0.0208,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 252,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0212,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 253,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0233,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 254,
+      "codes": 500,
+      "rows": 512,
+      "seconds": 0.1058,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 255,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0263,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 256,
+      "codes": 500,
+      "rows": 507,
+      "seconds": 0.0236,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 257,
+      "codes": 500,
+      "rows": 506,
+      "seconds": 0.0249,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 258,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0239,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 259,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0388,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 260,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0321,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 261,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0202,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 262,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0236,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 263,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0235,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 264,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0257,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 265,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0256,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 266,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0216,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 267,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0203,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 268,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0253,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 269,
+      "codes": 500,
+      "rows": 506,
+      "seconds": 0.0247,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 270,
+      "codes": 500,
+      "rows": 511,
+      "seconds": 0.0219,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 271,
+      "codes": 500,
+      "rows": 553,
+      "seconds": 0.0221,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 272,
+      "codes": 500,
+      "rows": 526,
+      "seconds": 0.0237,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 273,
+      "codes": 500,
+      "rows": 539,
+      "seconds": 0.0314,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 274,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0253,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 275,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0185,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 276,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0234,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 277,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0226,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 278,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0203,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 279,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.018,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 280,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.018,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 281,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0186,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 282,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0174,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 283,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.02,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 284,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0196,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 285,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.028,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 286,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.017,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 287,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0218,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 288,
+      "codes": 500,
+      "rows": 510,
+      "seconds": 0.0191,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 289,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0201,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 290,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.023,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 291,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0205,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 292,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0215,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 293,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0214,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 294,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0181,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 295,
+      "codes": 500,
+      "rows": 510,
+      "seconds": 0.0423,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 296,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0184,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 297,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0176,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 298,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0199,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 299,
+      "codes": 500,
+      "rows": 506,
+      "seconds": 0.0213,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 300,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0183,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 301,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0176,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 302,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0197,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 303,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0197,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 304,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0193,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 305,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0222,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 306,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0182,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 307,
+      "codes": 500,
+      "rows": 519,
+      "seconds": 0.0245,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 308,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0205,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 309,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0173,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 310,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0185,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 311,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0168,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 312,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0179,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 313,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0197,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 314,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0174,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 315,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.017,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 316,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0167,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 317,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0193,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 318,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.018,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 319,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0203,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 320,
+      "codes": 500,
+      "rows": 506,
+      "seconds": 0.0181,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 321,
+      "codes": 500,
+      "rows": 817,
+      "seconds": 0.0357,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 322,
+      "codes": 500,
+      "rows": 515,
+      "seconds": 0.0255,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 323,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0201,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 324,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0235,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 325,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0219,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 326,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0242,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 327,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0169,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 328,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0193,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 329,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0228,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 330,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0197,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 331,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0272,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 332,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0208,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 333,
+      "codes": 500,
+      "rows": 506,
+      "seconds": 0.028,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 334,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0246,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 335,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0207,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 336,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0278,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 337,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0208,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 338,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0196,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 339,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0212,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 340,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0219,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 341,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.0226,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 342,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0251,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 343,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0309,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 344,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0217,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 345,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0177,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 346,
+      "codes": 500,
+      "rows": 506,
+      "seconds": 0.0201,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 347,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0202,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 348,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.018,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 349,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0196,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 350,
+      "codes": 500,
+      "rows": 505,
+      "seconds": 0.0171,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 351,
+      "codes": 500,
+      "rows": 506,
+      "seconds": 0.0221,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 352,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0217,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 353,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0215,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 354,
+      "codes": 500,
+      "rows": 716,
+      "seconds": 0.034,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 355,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0192,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 356,
+      "codes": 500,
+      "rows": 591,
+      "seconds": 0.0296,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 357,
+      "codes": 500,
+      "rows": 509,
+      "seconds": 0.0248,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 358,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0223,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 359,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0186,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 360,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0223,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 361,
+      "codes": 500,
+      "rows": 533,
+      "seconds": 0.0309,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 362,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0197,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 363,
+      "codes": 500,
+      "rows": 519,
+      "seconds": 0.0288,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 364,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0335,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 365,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0196,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 366,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.024,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 367,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0188,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 368,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0366,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 369,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.0263,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 370,
+      "codes": 500,
+      "rows": 505,
+      "seconds": 0.0238,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 371,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0223,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 372,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.029,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 373,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0227,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 374,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0173,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 375,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0173,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 376,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0213,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 377,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0213,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 378,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0224,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 379,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0211,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 380,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0193,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 381,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.02,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 382,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0253,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 383,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0228,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 384,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0237,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 385,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0227,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 386,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0216,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 387,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.0205,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 388,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.02,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 389,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.019,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 390,
+      "codes": 500,
+      "rows": 505,
+      "seconds": 0.0205,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 391,
+      "codes": 500,
+      "rows": 519,
+      "seconds": 0.0239,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 392,
+      "codes": 500,
+      "rows": 512,
+      "seconds": 0.0183,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 393,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0164,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 394,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0177,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 395,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0173,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 396,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0172,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 397,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0167,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 398,
+      "codes": 500,
+      "rows": 509,
+      "seconds": 0.018,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 399,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0199,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 400,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0175,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 401,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0155,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 402,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0177,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 403,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.016,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 404,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0161,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 405,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0191,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 406,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0192,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 407,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0178,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 408,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0195,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 409,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.0185,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 410,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.019,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 411,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0186,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 412,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0183,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 413,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0156,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 414,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0163,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 415,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0187,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 416,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0163,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 417,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0187,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 418,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0175,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 419,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0181,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 420,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0165,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 421,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.017,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 422,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0165,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 423,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0193,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 424,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0206,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 425,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0218,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 426,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0189,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 427,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0188,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 428,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0233,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 429,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0211,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 430,
+      "codes": 500,
+      "rows": 506,
+      "seconds": 0.0224,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 431,
+      "codes": 500,
+      "rows": 757,
+      "seconds": 0.0288,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 432,
+      "codes": 500,
+      "rows": 567,
+      "seconds": 0.0289,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 433,
+      "codes": 500,
+      "rows": 505,
+      "seconds": 0.0193,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 434,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0218,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 435,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0202,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 436,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0176,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 437,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0257,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 438,
+      "codes": 500,
+      "rows": 505,
+      "seconds": 0.0223,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 439,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0263,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 440,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0197,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 441,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0182,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 442,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0186,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 443,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0182,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 444,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0167,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 445,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0203,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 446,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0188,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 447,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0191,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 448,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0182,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 449,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0179,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 450,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0176,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 451,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0191,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 452,
+      "codes": 500,
+      "rows": 509,
+      "seconds": 0.0199,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 453,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0167,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 454,
+      "codes": 500,
+      "rows": 512,
+      "seconds": 0.0186,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 455,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0196,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 456,
+      "codes": 500,
+      "rows": 505,
+      "seconds": 0.0193,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 457,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0175,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 458,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0178,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 459,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0187,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 460,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0198,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 461,
+      "codes": 500,
+      "rows": 520,
+      "seconds": 0.021,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 462,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.1032,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 463,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.018,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 464,
+      "codes": 500,
+      "rows": 508,
+      "seconds": 0.0288,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 465,
+      "codes": 500,
+      "rows": 506,
+      "seconds": 0.0172,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 466,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0236,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 467,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0221,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 468,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.025,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 469,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0191,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 470,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0212,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 471,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0201,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 472,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0212,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 473,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0176,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 474,
+      "codes": 500,
+      "rows": 505,
+      "seconds": 0.0176,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 475,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0193,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 476,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0228,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 477,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0232,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 478,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0234,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 479,
+      "codes": 500,
+      "rows": 611,
+      "seconds": 0.0327,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 480,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.0215,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 481,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0178,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 482,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0204,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 483,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0226,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 484,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0232,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 485,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0171,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 486,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0185,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 487,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0202,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 488,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.018,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 489,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.026,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 490,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0255,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 491,
+      "codes": 500,
+      "rows": 507,
+      "seconds": 0.0279,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 492,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0234,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 493,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0273,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 494,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0204,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 495,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0251,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 496,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0229,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 497,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0221,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 498,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0215,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 499,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.021,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 500,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0207,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 501,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0248,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 502,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0208,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 503,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0193,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 504,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0181,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 505,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0245,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 506,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0232,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 507,
+      "codes": 500,
+      "rows": 507,
+      "seconds": 0.0268,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 508,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0249,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 509,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0234,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 510,
+      "codes": 500,
+      "rows": 505,
+      "seconds": 0.0204,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 511,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0187,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 512,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0187,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 513,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0221,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 514,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0203,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 515,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0251,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 516,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0207,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 517,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0203,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 518,
+      "codes": 500,
+      "rows": 507,
+      "seconds": 0.0231,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 519,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0206,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 520,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0228,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 521,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0219,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 522,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0208,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 523,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.021,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 524,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.023,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 525,
+      "codes": 500,
+      "rows": 505,
+      "seconds": 0.0206,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 526,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.0289,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 527,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0189,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 528,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0219,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 529,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0246,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 530,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0211,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 531,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0182,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 532,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.02,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 533,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0221,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 534,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0181,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 535,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0189,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 536,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0189,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 537,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0195,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 538,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.019,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 539,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.024,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 540,
+      "codes": 500,
+      "rows": 505,
+      "seconds": 0.0175,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 541,
+      "codes": 500,
+      "rows": 509,
+      "seconds": 0.0192,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 542,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0201,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 543,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.0179,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 544,
+      "codes": 500,
+      "rows": 507,
+      "seconds": 0.0199,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 545,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0227,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 546,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0184,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 547,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0217,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 548,
+      "codes": 500,
+      "rows": 505,
+      "seconds": 0.0193,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 549,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0231,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 550,
+      "codes": 500,
+      "rows": 518,
+      "seconds": 0.0199,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 551,
+      "codes": 500,
+      "rows": 505,
+      "seconds": 0.0208,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 552,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0204,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 553,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0189,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 554,
+      "codes": 500,
+      "rows": 518,
+      "seconds": 0.02,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 555,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0252,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 556,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0187,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 557,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0199,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 558,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0198,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 559,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0218,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 560,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0186,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 561,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0181,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 562,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0187,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 563,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0193,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 564,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0187,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 565,
+      "codes": 500,
+      "rows": 655,
+      "seconds": 0.0347,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 566,
+      "codes": 500,
+      "rows": 568,
+      "seconds": 0.0291,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 567,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0195,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 568,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0171,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 569,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0167,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 570,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0189,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 571,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0173,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 572,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0182,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 573,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0174,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 574,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0181,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 575,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0178,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 576,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.02,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 577,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.018,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 578,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0181,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 579,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0176,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 580,
+      "codes": 500,
+      "rows": 505,
+      "seconds": 0.0196,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 581,
+      "codes": 500,
+      "rows": 510,
+      "seconds": 0.0193,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 582,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0203,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 583,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0199,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 584,
+      "codes": 500,
+      "rows": 1528,
+      "seconds": 0.0451,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 585,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0202,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 586,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0209,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 587,
+      "codes": 500,
+      "rows": 506,
+      "seconds": 0.0236,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 588,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0191,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 589,
+      "codes": 500,
+      "rows": 505,
+      "seconds": 0.0208,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 590,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0191,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 591,
+      "codes": 500,
+      "rows": 505,
+      "seconds": 0.0172,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 592,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.0157,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 593,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0155,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 594,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0159,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 595,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0183,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 596,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0163,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 597,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0167,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 598,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0184,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 599,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0174,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 600,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.0191,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 601,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0193,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 602,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0163,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 603,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0187,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 604,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0191,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 605,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0175,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 606,
+      "codes": 500,
+      "rows": 505,
+      "seconds": 0.0173,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 607,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0179,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 608,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.019,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 609,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0176,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 610,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0176,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 611,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0161,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 612,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.019,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 613,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0169,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 614,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0178,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 615,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0169,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 616,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0155,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 617,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0214,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 618,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0188,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 619,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.017,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 620,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.02,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 621,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0827,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 622,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0179,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 623,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0184,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 624,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0169,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 625,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0183,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 626,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.018,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 627,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0211,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 628,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0227,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 629,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0197,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 630,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0202,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 631,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0203,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 632,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0218,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 633,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0208,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 634,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0211,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 635,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0227,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 636,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0181,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 637,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.0205,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 638,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0174,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 639,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0176,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 640,
+      "codes": 500,
+      "rows": 505,
+      "seconds": 0.0181,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 641,
+      "codes": 500,
+      "rows": 509,
+      "seconds": 0.0185,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 642,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0247,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 643,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.02,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 644,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0184,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 645,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0188,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 646,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0168,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 647,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0201,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 648,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0194,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 649,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0185,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 650,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0184,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 651,
+      "codes": 500,
+      "rows": 520,
+      "seconds": 0.028,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 652,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0194,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 653,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0203,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 654,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.0201,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 655,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0181,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 656,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0167,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 657,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0208,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 658,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0183,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 659,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0205,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 660,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.024,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 661,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0255,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 662,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0207,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 663,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0204,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 664,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.0219,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 665,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.0184,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 666,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0198,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 667,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0177,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 668,
+      "codes": 500,
+      "rows": 687,
+      "seconds": 0.0308,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 669,
+      "codes": 500,
+      "rows": 602,
+      "seconds": 0.0262,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 670,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0203,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 671,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0188,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 672,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0173,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 673,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0172,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 674,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0168,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 675,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0201,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 676,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0254,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 677,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0199,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 678,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0177,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 679,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0244,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 680,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0231,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 681,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.02,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 682,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0214,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 683,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0216,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 684,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0204,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 685,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0208,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 686,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0199,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 687,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0216,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 688,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0222,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 689,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0199,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 690,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0229,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 691,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0203,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 692,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0201,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 693,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.027,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 694,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.019,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 695,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0208,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 696,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0177,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 697,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0202,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 698,
+      "codes": 500,
+      "rows": 529,
+      "seconds": 0.0308,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 699,
+      "codes": 500,
+      "rows": 512,
+      "seconds": 0.0259,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 700,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0157,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 701,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0188,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 702,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0216,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 703,
+      "codes": 500,
+      "rows": 543,
+      "seconds": 0.0302,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 704,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.021,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 705,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.02,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 706,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.0165,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 707,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0189,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 708,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0185,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 709,
+      "codes": 500,
+      "rows": 507,
+      "seconds": 0.0318,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 710,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0204,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 711,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0219,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 712,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0174,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 713,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0193,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 714,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0172,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 715,
+      "codes": 500,
+      "rows": 505,
+      "seconds": 0.0221,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 716,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.0265,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 717,
+      "codes": 500,
+      "rows": 900,
+      "seconds": 0.0349,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 718,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0192,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 719,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0186,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 720,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0158,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 721,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0174,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 722,
+      "codes": 500,
+      "rows": 508,
+      "seconds": 0.0208,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 723,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.0195,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 724,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0188,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 725,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0154,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 726,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0172,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 727,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0162,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 728,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0168,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 729,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0222,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 730,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0162,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 731,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0194,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 732,
+      "codes": 500,
+      "rows": 506,
+      "seconds": 0.0184,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 733,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.0257,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 734,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0228,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 735,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0187,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 736,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0216,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 737,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0228,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 738,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0156,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 739,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0173,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 740,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0153,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 741,
+      "codes": 500,
+      "rows": 530,
+      "seconds": 0.0226,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 742,
+      "codes": 500,
+      "rows": 696,
+      "seconds": 0.0272,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 743,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0195,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 744,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0178,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 745,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0242,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 746,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0275,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 747,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0207,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 748,
+      "codes": 500,
+      "rows": 573,
+      "seconds": 0.0249,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 749,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0198,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 750,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0172,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 751,
+      "codes": 500,
+      "rows": 506,
+      "seconds": 0.02,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 752,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0216,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 753,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0194,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 754,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0203,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 755,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0189,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 756,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.0189,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 757,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0181,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 758,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0193,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 759,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0177,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 760,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0178,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 761,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0181,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 762,
+      "codes": 500,
+      "rows": 542,
+      "seconds": 0.0226,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 763,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0238,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 764,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0178,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 765,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0209,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 766,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0164,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 767,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0159,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 768,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0212,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 769,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0174,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 770,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0201,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 771,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0165,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 772,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0175,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 773,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0191,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 774,
+      "codes": 500,
+      "rows": 523,
+      "seconds": 0.021,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 775,
+      "codes": 500,
+      "rows": 688,
+      "seconds": 0.03,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 776,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0196,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 777,
+      "codes": 500,
+      "rows": 832,
+      "seconds": 0.0353,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 778,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0264,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 779,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.0205,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 780,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0212,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 781,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.0237,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 782,
+      "codes": 500,
+      "rows": 723,
+      "seconds": 0.0335,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 783,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.021,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 784,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0175,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 785,
+      "codes": 500,
+      "rows": 517,
+      "seconds": 0.0198,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 786,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0187,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 787,
+      "codes": 500,
+      "rows": 557,
+      "seconds": 0.0265,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 788,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0162,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 789,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0181,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 790,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0193,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 791,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.02,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 792,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0232,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 793,
+      "codes": 500,
+      "rows": 562,
+      "seconds": 0.0256,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 794,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0186,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 795,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0173,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 796,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0187,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 797,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0219,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 798,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0181,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 799,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0178,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 800,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0173,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 801,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0161,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 802,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0163,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 803,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0832,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 804,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0173,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 805,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0188,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 806,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0179,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 807,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0171,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 808,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0168,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 809,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0209,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 810,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0198,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 811,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.019,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 812,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0168,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 813,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.02,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 814,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0193,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 815,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0193,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 816,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0198,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 817,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0187,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 818,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0197,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 819,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0229,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 820,
+      "codes": 500,
+      "rows": 506,
+      "seconds": 0.0184,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 821,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0167,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 822,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0175,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 823,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0174,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 824,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0176,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 825,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0169,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 826,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0168,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 827,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0161,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 828,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0166,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 829,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0189,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 830,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0186,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 831,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0189,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 832,
+      "codes": 500,
+      "rows": 505,
+      "seconds": 0.0206,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 833,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0259,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 834,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0211,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 835,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.018,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 836,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0211,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 837,
+      "codes": 500,
+      "rows": 506,
+      "seconds": 0.0193,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 838,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0254,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 839,
+      "codes": 500,
+      "rows": 529,
+      "seconds": 0.0248,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 840,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0196,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 841,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0148,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 842,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0173,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 843,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0193,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 844,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0179,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 845,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0171,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 846,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0181,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 847,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.024,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 848,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0201,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 849,
+      "codes": 500,
+      "rows": 505,
+      "seconds": 0.0219,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 850,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0217,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 851,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0204,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 852,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.0194,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 853,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0194,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 854,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0192,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 855,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0208,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 856,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0206,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 857,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0188,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 858,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0174,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 859,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0183,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 860,
+      "codes": 500,
+      "rows": 506,
+      "seconds": 0.0184,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 861,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0165,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 862,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0166,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 863,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.016,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 864,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0212,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 865,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0211,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 866,
+      "codes": 500,
+      "rows": 521,
+      "seconds": 0.0167,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 867,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0233,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 868,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0259,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 869,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0232,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 870,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.024,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 871,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0249,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 872,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0295,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 873,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0249,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 874,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0302,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 875,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0184,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 876,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0186,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 877,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0181,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 878,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0166,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 879,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0169,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 880,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0174,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 881,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0193,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 882,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0211,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 883,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0204,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 884,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.019,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 885,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.019,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 886,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.021,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 887,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.029,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 888,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0228,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 889,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0185,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 890,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0199,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 891,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.017,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 892,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0195,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 893,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0187,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 894,
+      "codes": 500,
+      "rows": 506,
+      "seconds": 0.0207,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 895,
+      "codes": 500,
+      "rows": 529,
+      "seconds": 0.0288,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 896,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0207,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 897,
+      "codes": 500,
+      "rows": 510,
+      "seconds": 0.0291,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 898,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0172,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 899,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0181,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 900,
+      "codes": 500,
+      "rows": 854,
+      "seconds": 0.0315,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 901,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.0204,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 902,
+      "codes": 500,
+      "rows": 506,
+      "seconds": 0.0153,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 903,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0164,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 904,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0197,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 905,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0212,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 906,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0217,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 907,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0194,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 908,
+      "codes": 500,
+      "rows": 598,
+      "seconds": 0.0323,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 909,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0211,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 910,
+      "codes": 500,
+      "rows": 507,
+      "seconds": 0.0216,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 911,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0228,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 912,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0207,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 913,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0212,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 914,
+      "codes": 500,
+      "rows": 637,
+      "seconds": 0.0272,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 915,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0189,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 916,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0191,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 917,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0229,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 918,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0231,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 919,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0208,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 920,
+      "codes": 500,
+      "rows": 504,
+      "seconds": 0.0195,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 921,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0196,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 922,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0259,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 923,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0216,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 924,
+      "codes": 500,
+      "rows": 505,
+      "seconds": 0.0198,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 925,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0197,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 926,
+      "codes": 500,
+      "rows": 501,
+      "seconds": 0.0187,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 927,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0199,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 928,
+      "codes": 500,
+      "rows": 503,
+      "seconds": 0.0184,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 929,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0167,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 930,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0181,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 931,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0209,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 932,
+      "codes": 500,
+      "rows": 505,
+      "seconds": 0.02,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 933,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0174,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 934,
+      "codes": 500,
+      "rows": 502,
+      "seconds": 0.0176,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 935,
+      "codes": 500,
+      "rows": 520,
+      "seconds": 0.0223,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 936,
+      "codes": 500,
+      "rows": 520,
+      "seconds": 0.0203,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 937,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0181,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 938,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0168,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 939,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0197,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 940,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0162,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 941,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0187,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 942,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0169,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 943,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.018,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 944,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0176,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 945,
+      "codes": 500,
+      "rows": 500,
+      "seconds": 0.0191,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 946,
+      "codes": 500,
+      "rows": 506,
+      "seconds": 0.0356,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 947,
+      "codes": 500,
+      "rows": 511,
+      "seconds": 0.019,
+      "ok": true,
+      "cap_reached": false
+    },
+    {
+      "batch": 948,
+      "codes": 14,
+      "rows": 39,
+      "seconds": 0.0076,
+      "ok": true,
+      "cap_reached": false
+    }
+  ],
+  "budget_seconds": 599,
+  "per_query_timeout_seconds": 30,
+  "source_tables_accessed": [
+    "PHARMACY.V_DRUG_TRACE_CODE",
+    "PHARMACY.V_DRUG_TRACE_BILL"
+  ],
+  "stop_reason": "ALL_REQUESTED_CODES_QUERIED",
+  "summary": {
+    "historical_rows": 489613,
+    "historical_pairs": 489582,
+    "historical_codes": 473614,
+    "covered_codes": 473614,
+    "covered_pairs": 489582,
+    "covered_historical_rows": 489613,
+    "view_rows_for_requested_codes": 485404,
+    "distinct_source_record_ids": 485404,
+    "pairs_equal_count": 484505,
+    "pairs_absent_from_view": 5077,
+    "historical_rows_of_absent_pairs": 5077,
+    "pairs_fewer_view_records": 0,
+    "pairs_more_view_records": 0,
+    "historical_pairs_with_unknown_kind": 1396,
+    "historical_pairs_with_deleted_rows": 0,
+    "eligible_normal_pairs": 483109,
+    "matched_pairs_not_currently_eligible": 1396,
+    "new_pairs_for_same_codes": 868,
+    "source_record_id_duplicate_rows": 0,
+    "all_historical_pairs_queried": true
+  },
+  "current_view_kinds": [
+    {
+      "kind": "PATIENT_DISPENSE",
+      "rows": 483985
+    },
+    {
+      "kind": "UNKNOWN",
+      "rows": 1419
+    }
+  ],
+  "current_deleted_values": [
+    {
+      "raw_value": "0",
+      "rows": 485404
+    }
+  ],
+  "missing_pair_classifications": {
+    "20-digit-prefix / code_exists_under_other_line": 3919,
+    "20-digit-prefix / code_absent_from_view": 1158
+  },
+  "historical_repeated_pairs": [
+    {
+      "expected_records": 2,
+      "view_records": 2,
+      "eligible_records": 2,
+      "pairs": 31
+    }
+  ],
+  "view_time_buckets": [
+    {
+      "period": "after historical file dates",
+      "rows": 446
+    },
+    {
+      "period": "before historical file dates",
+      "rows": 419
+    },
+    {
+      "period": "within historical file dates (dispense time only)",
+      "rows": 484539
+    }
+  ],
+  "same_create_time_bidirectional_audit": false,
+  "total_elapsed_seconds": 52.242,
+  "private_details_path": "C:\\Users\\Administrator\\AppData\\Local\\BLYB\\history-compare-20261023\\live-20261023T041009Z\\comparison-details.json",
+  "captured_at": "2026-10-23T04:11:08.557076+00:00"
+}

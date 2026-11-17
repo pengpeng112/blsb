@@ -1,0 +1,22 @@
+--- task-baseline/service.py
++++ current/service.py
+@@ -307,12 +307,19 @@
+ 
+     oracle：dsn_env（该连接器专用受限只读账号；缺省回退全局兼容变量）、
+     objects{bill_view,code_view}（对象白名单，仅接受 [SCHEMA.]OBJECT 标识符）。
++    source_profile 可绑定版本化源事实；只有元数据、尚无活库契约验证的版本拒绝采集。
+     synthetic：namespace 隔离。配置即连接绑定——采集不得跨 connector/tenant
+     复用其他连接器的 DSN 或对象名。
+     """
+     from connector_sdk import CapabilityError
+     cfg = connector_config or {}
+     mode = str(cfg.get("mode", "synthetic"))
++    if "source_profile" in cfg:
++        from sources.db_view.source_profiles import get_source_profile
++        if mode != "oracle":
++            raise CapabilityError(
++                "CAPABILITY_UNSUPPORTED", "source_profile requires oracle mode")
++        get_source_profile(str(cfg["source_profile"])).require_runtime_ready()
+     if mode == "synthetic":
+         from sources.db_view.drug_trace import SyntheticDrugTraceWarehouse
+         return SyntheticDrugTraceWarehouse(

@@ -1,0 +1,24 @@
+{
+  "host": "app",
+  "phase": "diagnose",
+  "exit_code": 0,
+  "captured_at": "2026-10-26T07:25:53.502723+00:00",
+  "result": {
+    "exit_code": 0,
+    "summary": {
+      "classification": {
+        "state": "CONFIRMED",
+        "result_type": "3",
+        "sub_process_flag": "51"
+      },
+      "http": [
+        200,
+        200
+      ],
+      "top_errors": [],
+      "business_writes": 0,
+      "uploads": 0
+    },
+    "rows": []
+  }
+}

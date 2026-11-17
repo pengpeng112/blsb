@@ -1,0 +1,9 @@
+{
+  "exit_code": 0,
+  "launched": true,
+  "unit": "blyb-recovery-stability-20261027.service",
+  "date": "2026-10-26",
+  "source": "manual",
+  "logs": "/var/log/blyb/recovery-stability-20261027",
+  "new_his_collection_allowed": false
+}
