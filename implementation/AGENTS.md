@@ -1,8 +1,4 @@
 # implementation 工作目录入口
 
-本项目当前没有Git根；某些工具从子目录启动时只发现本文件。
-请明确读取 [根目录共同约定](../AGENTS.md) 和 [共享接手入口](../docs/ai/START_HERE.md)。
-
-这里是唯一业务源码根；不搬迁apps/packages/plugins，不改导入布局来整理文档。
-运行现有测试和启动命令时工作目录为本目录；当前状态见 [STATE](../docs/ai/STATE.md)。
-记录任务前切到根目录调用 `scripts/ai_session.py`，或用其绝对路径。
+请先读取根目录 [AGENTS.md](../AGENTS.md)（唯一规则源）与 [AI 接手入口](../docs/ai/START_HERE.md)。
+本目录为唯一业务源码根，保留 `apps/packages/plugins/tests/deploy/docs` 目录与导入布局；登记会话从根目录执行 `python scripts/ai_session.py`。

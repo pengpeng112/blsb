@@ -1,4 +1,3 @@
 # Claude 从实现目录接手
 
-请读取 [本目录AGENTS入口](AGENTS.md)，按其指引读取根目录共享规则与当前交接。
-不建立独立的实现目录任务状态；统一使用 `../docs/ai/`。
+请读取根目录 [AGENTS.md](../AGENTS.md) 与 [AI 接手入口](../docs/ai/START_HERE.md)，统一使用 `../docs/ai/` 共享状态。

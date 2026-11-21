@@ -1,7 +1,27 @@
 # Runtime state, credentials and generated output; source/design originals remain visible.
 .ai/
+.opencode/
 .v2c/
 .video_agent/
+/*.out
+**/review/*.err
+**/review/*.raw
+**/review/*.rc
+**/verify/*.err
+**/verify/*.raw
+**/verify/*.rc
+implementation/deploy/dmz/el7-runtime/
+/docs/ai/archive/
+/docs/ai/sessions/RECOVER-STALE-*.md
+/docs/ai/sessions/WORKSPACE-CLEANUP-*.md
+/docs/ai/sessions/INF-*.md
+/docs/development/inf-continuity-review-20261119/
+/docs/development/inf-notice-20261118/
+/docs/development/drug-trace-*/evidence/
+/docs/development/drug-trace-*/*.py
+/docs/development/platform-live-test-20261020/network_probe.py
+/docs/operations/drug-trace-*/evidence/
+/docs/operations/drug-trace-*/*.py
 **/__pycache__/
 **/.pytest_cache/
 **/node_modules/

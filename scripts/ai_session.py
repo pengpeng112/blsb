@@ -132,6 +132,55 @@ def update(root, sid, *, result=None, summary, handoff=None):
     return entry
 
 
+def status_summary(root, *, show_all=False, recent=5, stale_hours=24):
+    all_recs = records(root)
+    if show_all:
+        return all_recs
+    now_dt = datetime.now(timezone.utc)
+    counts = {}
+    active = []
+    closed = []
+    for rec in all_recs:
+        st = rec.get("status", "unknown")
+        counts[st] = counts.get(st, 0) + 1
+        if st == "running":
+            item = dict(rec)
+            try:
+                upd = datetime.fromisoformat(str(rec.get("updated_at") or rec.get("started_at") or ""))
+                if upd.tzinfo is None:
+                    upd = upd.replace(tzinfo=timezone.utc)
+                age_h = round((now_dt - upd).total_seconds() / 3600.0, 1)
+                item["idle_hours"] = age_h
+                if age_h >= stale_hours:
+                    item["stale_warning"] = True
+            except ValueError:
+                pass
+            active.append(item)
+        else:
+            closed.append(rec)
+    closed.sort(key=lambda r: str(r.get("ended_at") or r.get("updated_at") or ""), reverse=True)
+    recent_closed = [
+        {
+            "session_id": r.get("session_id"),
+            "task": r.get("task"),
+            "tool": r.get("tool"),
+            "model": r.get("model"),
+            "status": r.get("status"),
+            "ended_at": r.get("ended_at") or r.get("updated_at"),
+            "handoff": r.get("handoff"),
+            "summary": str(r.get("summary", ""))[:160],
+        }
+        for r in closed[:recent]
+    ]
+    return {
+        "total": len(all_recs),
+        "counts": counts,
+        "active": active,
+        "recent_closed": recent_closed,
+        "hint": "Use `status --all` to inspect full historical session JSON.",
+    }
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--workspace", type=Path, default=ROOT, help="test/alternate checkout root")
@@ -141,7 +190,9 @@ def main(argv=None):
     s.add_argument("--tool", required=True)
     s.add_argument("--model", required=True, help="actual model or unknown; do not guess")
     s.add_argument("--scope", action="append", required=True)
-    subs.add_parser("status")
+    st = subs.add_parser("status")
+    st.add_argument("--all", action="store_true", dest="show_all", help="dump all historical sessions")
+    st.add_argument("--recent", type=int, default=5, help="number of recent closed sessions to show")
     for command in ("checkpoint", "end"):
         s = subs.add_parser(command)
         s.add_argument("--session", required=True)
@@ -161,7 +212,7 @@ def main(argv=None):
         if args.command == "start":
             data = start(root, task=args.task, tool=args.tool, model=args.model, scopes=args.scope)
         elif args.command == "status":
-            data = records(root)
+            data = status_summary(root, show_all=args.show_all, recent=max(0, args.recent))
         elif args.command == "recover":
             data = update(root, args.session, result="handed_off", summary="Explicit recovery: " + args.reason,
                           handoff=args.handoff)

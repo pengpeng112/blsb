@@ -1,26 +1,16 @@
 # 给任何工具或模型的通用接手提示词
 
-可直接复制下面的内容到 ZCode/zcod、Codex、Grok、Claude 或 GPT/Kimi/GLM 等模型会话。
-把最后一行替换为当前任务；工具品牌不改变业务规则。
+复制下方内容到任意 AI 工具（Codex / Claude / ZCode / Antigravity / Grok / 纯聊天模型），将最后一行替换为本次任务：
 
 ```text
-项目工作区：F:\python\blyb。
-先读根目录AGENTS.md、docs/ai/START_HERE.md、STATE.md、HANDOFF.md。
-涉及具体上报业务时，再读数据上报/README.md及数据上报/<编号、业务名>/README.md，
-从中定位该项目接口原件、代码/视图、部署和最新证据。每个上报项目必须保留这份目录说明；
-新增项目或修改上述路径/证据时同步维护，模板见数据上报/上报项目目录说明模板.md。
-涉及连库/表结构/取数时，先读docs/startup/DATABASE_ACCESS.md及其中的sjzc技能；
-统一从<relay-jump>受控入口查询，不读取或打印凭据内容，不向用户重复索要已登记密码。
-从docs/ai/BACKLOG.md选择本次任务，读取对应详细任务书和相关v0.4设计。
-核对当前代码和证据，不相信未验证的完成标签，不重新创建项目骨架。
-有文件和终端能力时：先登记工具、实际模型、任务和修改范围；持续实现并运行必要验证，
-结束更新共享交接与实际状态，记录未完成项，释放本次登记范围。
-不能访问本地文件时：使用生成的context-packet给建议/补丁，所有执行与测试标未执行；
-由本地执行工具落地并验证，不能声称已经改好或已经通过。
-真实医院数据库接入须有当前用户授权并满足sjzc/源技能门禁；离线任务不得连库。
-真实发送须另有对应业务授权与证据，不覆盖冻结历史。
-本次任务：请填写要执行的任务编号、目标或需要回答的问题。
+工作区：F:\python\blyb。
+1. 先遵循根目录 AGENTS.md（唯一规则源），读取 docs/ai/START_HERE.md、STATE.md、HANDOFF.md。
+2. 涉及具体上报业务时，再读 数据上报/README.md 及对应业务 README；涉及查库先读 docs/startup/DATABASE_ACCESS.md 与全局 sjzc 技能。
+3. 有本地读写/终端能力时：开工前跑 python scripts/ai_session.py status 检查活跃锁，非琐碎任务先 start 登记最小修改范围，改完验证并更新精简状态后 end 释放锁。
+4. 遵守 AGENTS.md §7 文件放置与文书自动整理规范：新建文件按目录归位；若发现根目录或业务目录有用户新放的未整理文书，主动按规范整理归位（批量移动/删除先确认），并跑 `.\project.ps1 -Action Docs` 保持 0 断链与 0 根杂项。
+5. 无本地文件能力时：仅基于 project.ps1 -Action Context 生成的 .ai/context-packet.md 给建议/补丁，所有执行与测试标“未执行”。
+6. 生产写入/部署/外发/DDL/删除核心文件/引入新依赖必须先获本轮明确批准；严禁向公开 Git 仓提交真实内网 IP、密钥或患者 PII。
+本次任务：<填写任务编号、目标或问题>
 ```
 
-聊天模型的上下文由 `project.ps1 -Action Context` 生成在 `.ai/context-packet.md`；发出前检查是否适合分享。
-该文件只包含允许的共享文档，不自动读取数据库、密钥、原始报文或工具私有聊天。
+纯聊天模型接手包由 `.\project.ps1 -Action Context` 生成至 `.ai/context-packet.md`（已精简 ≤25 KB，不含密钥与运行数据）。

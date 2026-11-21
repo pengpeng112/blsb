@@ -9,7 +9,24 @@ import re
 
 ROOT = Path(__file__).resolve().parents[1]
 SKIP = {"node_modules", "__pycache__", ".git", ".pytest_cache", ".ai", ".v2c", ".video_agent",
-        "var", "dist", "build", "snapshots", "validation-deps", "校验依赖"}
+        ".opencode", "var", "dist", "build", "snapshots", "validation-deps", "校验依赖"}
+HISTORICAL_LINK_SKIP_DIRS = {"baselines", "baseline", "revisions", "before", "review", "evidence", "archive"}
+ALLOWED_ROOT_DIRS = {
+    ".ai", ".git", ".opencode", ".pytest_cache", ".v2c", ".video_agent",
+    "docs", "implementation", "pacs接口上传说明", "scripts", "snapshots",
+    "归档", "数据上报", "设计交付v0.3", "设计交付v0.4",
+}
+ALLOWED_ROOT_FILES = {
+    ".gitattributes", ".gitignore", "AGENTS.md", "AI_START.md", "CLAUDE.md",
+    "README.md", "project.ps1", "医院数据归集与上报平台总体方案_v0.4.md",
+    # 5 root-level hash-pinned originals tracked by 设计交付v0.4/资料提取/来源文件摘要.json
+    "93ebd53751dc40669f4c977781904f8b.txt",
+    "AI复核报告_v0.3设计与真实库核验_2026-09-30.md",
+    "说明.txt",
+    "“医保病理云索引”方案(征求意见稿).pdf",
+    "医保病理云数据集及字典（征求意见稿）.xlsx",
+}
+STATE_BLOAT_MAX_LINES = 200
 LINK = re.compile(r"\[[^\]]*\]\(")
 
 
@@ -41,8 +58,10 @@ def markdown_files(root):
 
 
 def category(path):
-    if path.startswith("归档/") or path.startswith("设计交付v0.3/"):
+    if path.startswith("归档/") or path.startswith("设计交付v0.3/") or path.startswith("docs/ai/archive/"):
         return "historical"
+    if path == "docs/HISTORY.md":
+        return "history_overview"
     if path.startswith("设计交付v0.4/") or path == "医院数据归集与上报平台总体方案_v0.4.md":
         return "active_design"
     if path.startswith("docs/ai/"):
@@ -68,17 +87,24 @@ def category(path):
     return "navigation_or_entry"
 
 
+def _is_historical_snapshot_doc(rel: str) -> bool:
+    if rel.startswith("归档/") or rel.startswith("设计交付v0.3/") or rel.startswith("AI复核报告_"):
+        return True
+    parts = Path(rel).parts[:-1]
+    return any(p in HISTORICAL_LINK_SKIP_DIRS for p in parts)
+
+
 def broken_links(root):
     result = []
     for p in markdown_files(root):
         rel = p.relative_to(root).as_posix()
-        # Archived originals retain their original bytes and relative paths.
-        if rel.startswith("归档/") or rel.startswith("设计交付v0.3/"):
+        # Archived originals and point-in-time baseline/revision snapshots retain original relative paths.
+        if _is_historical_snapshot_doc(rel):
             continue
         text = re.sub(r"```.*?```", "", p.read_text(encoding="utf-8-sig"), flags=re.S)
         for value in link_targets(text):
             target = value.strip().strip("<>").split("#", 1)[0]
-            if not target or re.match(r"(?:https?://|mailto:|app://|data:)", target):
+            if not target or re.match(r"(?:https?://|mailto:|app://|data:|[A-Za-z]:/)", target):
                 continue
             if not (p.parent / target).exists():
                 result.append({"file": rel, "target": target})
@@ -92,12 +118,13 @@ def source_errors(root):
         p = root / r["file"].replace("\\", "/")
         if not p.is_file() or hashlib.sha256(p.read_bytes()).hexdigest() != r["sha256"]:
             errors.append(r["file"])
-    archive = root / "归档/2026-10-02/归档清单.json"
-    if archive.exists():
-        for r in json.loads(archive.read_text(encoding="utf-8-sig"))["files"]:
-            p = root / r["archive_path"]
-            if not p.is_file() or hashlib.sha256(p.read_bytes()).hexdigest() != r["sha256"]:
-                errors.append(r["archive_path"])
+    for rel_manifest in ("归档/2026-10-02/归档清单.json", "归档/2026-11-21/归档清单.json"):
+        archive = root / rel_manifest
+        if archive.exists():
+            for r in json.loads(archive.read_text(encoding="utf-8-sig"))["files"]:
+                p = root / r["archive_path"]
+                if not p.is_file() or hashlib.sha256(p.read_bytes()).hexdigest() != r["sha256"]:
+                    errors.append(r["archive_path"])
     return errors
 
 
@@ -117,9 +144,53 @@ def inventory(root):
     return len(rows)
 
 
+def _suggest_placement(path: Path) -> str:
+    if path.is_dir():
+        if path.name.lower() in {"var", "tmp", "temp", "build", "dist"}:
+            return "清理或移至 implementation/var/（禁止根目录创建平行运行目录）"
+        return "按业务归入 数据上报/<编号、业务名>/ 或 docs/development/<专题-YYYYMMDD>/"
+    suf = path.suffix.lower()
+    if suf in {".xlsx", ".xls", ".pdf", ".doc", ".docx", ".csv"}:
+        return "归入 数据上报/<编号、业务名>/（同步更新对应 README.md）"
+    if suf in {".md", ".txt"}:
+        return "归入 docs/development/<专题-YYYYMMDD>/、数据上报/<编号、业务名>/ 或 归档/<日期>/"
+    if suf in {".py", ".ps1", ".sh"}:
+        return "归入 scripts/ 或 implementation/ 对应子目录（一次性脚本放临时目录用完即删）"
+    if suf in {".out", ".log", ".tmp", ".bak", ".zip", ".tar", ".gz", ".tgz"}:
+        return "临时输出/压缩包不应留在根目录，请清理或移至 implementation/var/"
+    return "按 AGENTS.md §7 归类放置并更新对应索引"
+
+
+def root_hygiene_warnings(root: Path):
+    warnings = []
+    for item in sorted(root.iterdir(), key=lambda p: p.name.lower()):
+        if item.is_dir() and item.name not in ALLOWED_ROOT_DIRS:
+            warnings.append({"path": item.name + "/", "suggestion": _suggest_placement(item)})
+        elif item.is_file() and item.name not in ALLOWED_ROOT_FILES:
+            warnings.append({"path": item.name, "suggestion": _suggest_placement(item)})
+    return warnings
+
+
+def state_bloat_warnings(root: Path, max_lines: int = STATE_BLOAT_MAX_LINES):
+    warnings = []
+    for name in ("STATE.md", "HANDOFF.md", "BACKLOG.md"):
+        p = root / "docs" / "ai" / name
+        if p.is_file():
+            cnt = len(p.read_text(encoding="utf-8-sig", errors="ignore").splitlines())
+            if cnt > max_lines:
+                warnings.append({
+                    "file": f"docs/ai/{name}",
+                    "lines": cnt,
+                    "limit": max_lines,
+                    "suggestion": "请将历史条目归档至 docs/ai/archive/，保持活跃摘要精简",
+                })
+    return warnings
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("command", choices=("inventory", "check"))
+    ap.add_argument("--strict", action="store_true", help="treat root hygiene warnings as check failures")
     args = ap.parse_args()
     if args.command == "inventory":
         print(f"Catalogued {inventory(ROOT)} documents in docs/catalog.json")
@@ -130,9 +201,18 @@ def main():
     new = [x for x in current if x not in known]
     legacy = [x for x in current if x in known]
     bad_sources = source_errors(ROOT)
-    print(json.dumps({"new_broken_links": new, "preexisting_broken_links": legacy,
-                      "source_or_archive_hash_mismatches": bad_sources}, ensure_ascii=False, indent=2))
-    return 1 if new or bad_sources else 0
+    root_warns = root_hygiene_warnings(ROOT)
+    bloat_warns = state_bloat_warnings(ROOT)
+    print(json.dumps({
+        "new_broken_links": new,
+        "preexisting_broken_links": legacy,
+        "source_or_archive_hash_mismatches": bad_sources,
+        "root_hygiene_warnings": root_warns,
+        "state_bloat_warnings": bloat_warns,
+    }, ensure_ascii=False, indent=2))
+    if new or bad_sources or (args.strict and (root_warns or bloat_warns)):
+        return 1
+    return 0
 
 
 if __name__ == "__main__":

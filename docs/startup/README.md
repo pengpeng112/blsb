@@ -1,90 +1,57 @@
-# 启动、测试和部署入口分类
+# 启动、测试和部署入口说明
 
-推荐从根目录调用 [project.ps1](../../project.ps1)。包装器固定工作目录、委托现有入口并透传退出码，不安装依赖。
-例：`powershell -NoProfile -File F:\python\blyb\project.ps1 -Action Dev`。
+> 更新日期：`2026-11-21`。统一推荐从根目录执行 [project.ps1](../../project.ps1)（自动固定工作目录、透传退出码、不自动联网安装依赖、不终止占用端口的外部进程）。
 
-医院各系统数据库查询统一使用 [sjzc 数据库入口](DATABASE_ACCESS.md)：
-先查平台元数据，满足当前授权与源技能门禁后再限量只读核验；不读取凭据内容。
+## 1. 按业务定位材料与连库
 
-## 先按具体上报项目定位材料
+- **上报业务导航**：从 [数据上报总索引](../../数据上报/README.md) 进入对应业务的 `README.md`（定位接口原件、代码/视图、凭据受限路径与最新证据）。
+- **只读查库**：统一经 [DATABASE_ACCESS.md](DATABASE_ACCESS.md) 与全局 `sjzc` 技能（受控元数据/只读通道，不读取明文凭据）。
 
-从[数据上报总索引](../../数据上报/README.md)选择项目，再读取该业务目录里的README：[码上放心](../../数据上报/1、码上放心平台/README.md)、[医保电子病历](../../数据上报/2、医保电子病历上报/README.md)、[病理](../../数据上报/3、病理上报/README.md)。
+## 2. 本地开发、演示与健康检查
 
-**每个上报项目都必须在 `数据上报/<编号、业务名>/README.md` 建立并维护目录说明。** 按[模板](../../数据上报/上报项目目录说明模板.md)写清原件/接口及版本、项目代码路径、SQL/视图及映射、服务器与调用方向、凭据受限存放位置、启动/部署/回退、实测证据和未完成项。
-新增项目或修改相关接口、路径、部署、证据时一并更新业务README和总索引；不把密码或患者资料写进README，不复制一套源码或状态。具体业务原件/代码/部署资料位置由这些说明给出，不能从别的上报项目猜。
-该要求已同步根AGENTS、AI_START和共享接手入口；资料索引不意味着自动获得生产连库或发送权限。
-
-## 本地开发和演示
-
-| Action | 原入口/工作目录 | 数据与服务 |
+| Action | 委托入口 | 说明 |
 |---|---|---|
-| Dev | implementation内 `python run_dev.py` | 迁移+合成种子；core8000/UI、storage8001、exchange8002、mock8090、一个worker |
-| Demo | implementation内 `python run_dev.py --demo` | 同上，加3片+1重扫与Agent演示 |
-| Metrics | implementation内 `python apps/run_metrics_only.py` | 独立metrics-only，默认core8010，隔离根var/metrics-only；按原入口声明的能力使用 |
-| Agent | implementation内 `python -m apps.edge_agent.run --once` | Agent单轮；会读取/生成agent配置并登记/上传合成来源，只用于已配置的本地演示 |
+| `Dev` | `implementation/run_dev.py` | 迁移 + 合成种子，前台启动 core(8000)/storage(8001)/exchange(8002)/mock(8090) + worker |
+| `Demo` | `implementation/run_dev.py --demo` | 同上 + 3 片+1 重扫与 Agent 单轮演示 |
+| `Showcase` | `scripts/seed_local_showcase.py --confirm-local-demo` | 灌入 5 业务高仿真演示数据（仅限本机 SQLite，生产环境自动熔断） |
+| `Health` | 本机 HTTP 只读探活 | 检查 `8000/8001/8002/8090` `/health` 状态 |
+| `Metrics` | `implementation/apps/run_metrics_only.py` | 独立 metrics-only 模式（默认 8010） |
+| `Agent` | `python -m apps.edge_agent.run --once` | 本地采集端单轮运行 |
 
-默认核心库在 `implementation/packages/var/`，交换库/卷/日志在 `implementation/var/`；包装器保留这些路径。
-Dev/Demo拒绝已占用的四个端口，不自动终止原进程；若继承非SQLite数据库URL，拒绝对其写合成种子。
-前台Ctrl+C停止本次栈。旧脚本和已在运行的服务不由包装器接管。
+- 默认开发核心库：`implementation/packages/var/blyb.sqlite3`；交换库：`implementation/var/exchange.sqlite3`。
+- `Dev`/`Demo`/`Showcase` 若检测到非 SQLite `BLYB_DATABASE_URL` 会主动拒绝执行；前台 `Ctrl+C` 停止。
 
-## 验证/维护
+## 3. 验证与维护命令
 
 ```powershell
-.\project.ps1 -Action Test
-.\project.ps1 -Action Test -TestPath tests/integration/test_w10_w11.py
-.\project.ps1 -Action Probes
-.\project.ps1 -Action Build
-.\project.ps1 -Action Docs
-.\project.ps1 -Action Status
-.\project.ps1 -Action Context
-.\project.ps1 -Action Dev -DryRun
+.\project.ps1 -Action TestFast                                      # 快速冒烟（<15s：传染病双 selftest + 协作单测）
+.\project.ps1 -Action Test -TestPath tests/unit/test_inf_activity_gate.py  # 定向单测
+.\project.ps1 -Action Test                                          # 后端全量 pytest（约 3–4 分钟）
+.\project.ps1 -Action TestWeb                                       # 前端 node --test（使用现有 node_modules）
+.\project.ps1 -Action Build                                         # 前端离线构建（vue-tsc + vite）
+.\project.ps1 -Action Probes                                        # 43 项架构复核探针
+.\project.ps1 -Action Docs                                          # 活跃文档断链 + 来源/归档 SHA256 核验
+.\project.ps1 -Action Status                                        # 查看活跃 AI 会话锁与最近交接
+.\project.ps1 -Action Context                                       # 生成精简 .ai/context-packet.md
 ```
 
-TestPath仅允许implementation/tests范围；Probes有独立入口。Build使用已安装node_modules，不能因构建缺依赖自动联网。
-Docs检查活动文档相对链接与来源/归档hash；目录新增/归档后执行 `python scripts/project_docs.py inventory` 更新目录。
-Status只读取本地协作登记；Context只导出允许的共享文档。
+- 新增或归档文档后运行 `python scripts/project_docs.py inventory` 更新 `docs/catalog.json`。
+- `implementation/tests/functional/run_live.sh` 会终止固定端口进程并清空测试目录，仅限确认完全隔离时手工执行。
 
-正式回归会按环境门控跳过功能/真驱动/PG/50GiB等测试，不能把skip当通过。
-真实栈旧入口 `implementation/tests/functional/run_live.sh` 会终止固定端口进程并清测试目录，使用前核实全部为独立测试数据和本任务拥有的服务。
-它不属于默认Test入口；本次整理未运行它、未终止任何已有服务。
+## 4. 数据库迁移与生产部署形态
 
-## 编号迁移和单服务部署
-
-迁移使用显式目标，避免在错误目录生成另一个库：
+迁移需显式指定目标库 URL：
 
 ```powershell
 $env:BLYB_DATABASE_URL = 'sqlite:///F:/python/blyb/implementation/var/example/core.sqlite3'
 .\project.ps1 -Action Migrate
 ```
 
-示例父目录须先存在；实际目标由当前任务配置。无需迁移时不要运行。
-业务数据库配置不写入公共交接文件，命令/日志不回显真实连接秘密。
-
-单服务的原入口在implementation目录执行：
-
-```powershell
-$env:BLYB_FACTORY = '1'
-$env:BLYB_STORAGE_EMBEDDED_WORKER = '0'
-python -m apps.migrate
-python -m uvicorn apps.core_api.app:get_app --factory --host 127.0.0.1 --port 8000
-# 另终端：storage/exchange对应get_app --factory，分别8001/8002
-# worker：python -m apps.worker.engine
-```
-
-迁移目标、对象卷、exchange路径、secret_ref与权限必须由部署配置显式提供。
-`run_dev.py`是合成开发栈。医院内网单机部署用 `implementation/deploy/intranet/start.ps1`，说明在 [内网部署](../../implementation/deploy/intranet/README.md)。不要用 Dev/Demo 启动生产库。
-
-## 其他形态及证据边界
-
-| 形态 | 文件 | 当前验证边界 |
+| 形态 | 入口与手册 | 当前边界 |
 |---|---|---|
-| 容器/PG | implementation/Dockerfile、deploy/compose/docker-compose.yml | 有材料，当前记录仍缺PG实测/清洁容器安装 |
-| Windows计划任务 | deploy/windows/install-agent-service.ps1 | 实际是计划任务，不称SCM服务 |
-| Windows SCM | deploy/windows/install-agent-scm.ps1、apps/edge_agent/win_service.py | 框架，现场/pywin32验证待完成 |
-| EXE打包 | deploy/windows/build-agent-exe.ps1、win7/README | 原有Win10/11证据与Win7未执行分列 |
-| 离线发行 | deploy/offline/、[runbook](../../implementation/docs/runbooks/离线发行材料.md) | 文件/hash存在不等于隔离网完整安装通过 |
-| 内网 SQLite 单机 | [intranet 启动](../../implementation/deploy/intranet/README.md) | 2026-10-02 旧脚本实跑过健康检查。2026-10-05 起启动脚本会拒绝空令牌和占用端口，对象卷改到 `var/intranet/volume1`。本机 8000 被其他程序占用，新脚本的完整拉起尚未在本会话复跑 |
-| 新根恢复 | [备份恢复](../../implementation/docs/runbooks/备份与恢复.md) | 自动化新根恢复测试已有；50GiB 与清洁机器演练未做 |
-
-2026-10-02 对包装器做了解析和各 Action DryRun，没有改开发库，也没有做生产验收。
-2026-10-05 的部署修订见 [内网部署](../../implementation/deploy/intranet/README.md) 和 [HANDOFF](../ai/HANDOFF.md)。
+| **医院内网 SQLite 单机** | [implementation/deploy/intranet/README.md](../../implementation/deploy/intranet/README.md) | 加固启动脚本拒绝空令牌与占口，用于单机落地 |
+| **传染病宿主推送与守护** | `implementation/deploy/inf_pusher/`、`inf_watchdog/` | 已在生产推送宿主机运行（详见 [INF-BUGFIX-20261119](../ai/sessions/INF-BUGFIX-20261119.md)） |
+| **四包受控生产升级** | [DEPLOY_UPGRADE_RUNBOOK.md](../development/platform-polish-and-stability-20261116/DEPLOY_UPGRADE_RUNBOOK.md) | 独立灰度与秒级回滚（待 HT-04 勘误收官后按窗口执行） |
+| **DMZ / Linux 离线包** | `implementation/deploy/dmz/`、`linux/docker-offline/`、`oracle/`、`offline/` | 保留单份离线依赖（含 EL7 Python 运行时 `deploy/dmz/el7-runtime/`） |
+| **Windows Agent EXE / 服务** | `implementation/deploy/windows/` | Win10/11 EXE 已实测；Win7 / SCM / 50GiB 压测未做现场验收 |
+| **备份与新根恢复** | [备份与恢复.md](../../implementation/docs/runbooks/备份与恢复.md) | 自动化恢复测试已有；清洁机演练待维护窗口 |
